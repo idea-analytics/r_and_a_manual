@@ -1,6 +1,8 @@
 fig:nice-fig
 tab:nice-tab
-prerequisites
+a-little-about-this-manual
+what-goes-in-this-manual
+how-do-you-contribute-to-this-book
 intro
 literature
 methods
