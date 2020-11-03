@@ -1,0 +1,226 @@
+# Measures
+
+## The Students Table
+
+The Students table is probably the most important table of all. It contains historical student personal data since IDEA's inception. 
+
+We use this table to know to what subpopulation a student belongs to. Also, we can link this table to other student data using the _[StudentNumber]_ field.
+
+**Table:** [[REDACTED-HOST]].[PROD1].[Schools].[Students]
+
+**Main fields:** [AcademicYear] [StudentNumber] | [SchoolNumber] | [GradeLevelID] | [EnrollmentStatus] | [Gender] | [SPED] | [ELLCode] | [PrimaryDisabilityCode ] | [SecondaryDisabilityCode ] | [TertiaryDisabilityCode ] | [EconomicDisadvantageCode] | [FederalHispanicFlag] | [FederaRaceI] | [FederaRaceA] | [FederaRaceB] | [FederaRaceP] |  [FederaRaceW] |[EntryDate] | [ExitDate] | [RowIsCurrent]
+
+**Who is what?:** 
+
+* **_[EnrollmentStatus]:_** 
+  + If EnrollmentStatus = 0, it means that the student is/was an active student for the corresponding academic year,
+  + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
+  + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
+
+* **_[ELLCode]:_** English Language Learner (ELL) A.K.A. Limited English Proficiency (LEP)
+  + If ELLCode = 0, student **is not** identified as an ELL student,
+  + If ELLCode = 1, the student **is** identified as an ELL student,
+  + If ELLCode not in (0,1), it means the student is not currently identified as an ELL but was identified before as one.
+
+* **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
+  + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
+  
+* **_[DisabilityCode]_**
+
+  DisabilityCode | Description
+  ---------------|-------------
+ 0 | No disability
+ 1 | Orthopedic impairment
+ 2 | Other health impairment
+ 3 | Auditory impairment
+ 4 | Visual impairment
+ 5 | Deaf-Blind
+ 6 | Intellectual Disability
+ 7 | Emotional disturbance
+ 8 | Learning disability
+ 9 | Speech impairment
+ 10 | Autism
+ 13 | Traumatic brain injury
+ 14 | Noncategorical early childhood
+
+```{r disability, echo=TRUE, eval=FALSE}
+SELECT DISTINCT 
+ [StudentNumber], 
+ [PrimaryDisabilityCode] AS [DisabilityCode], 
+ [PrimaryDisabilityDescription] AS [DisabilityDescription]
+
+ FROM (
+
+SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019'
+
+ UNION ALL
+
+SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019'
+
+ UNION ALL
+
+SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019') A WHERE [PrimaryDisabilityDescription] <> '' ORDER BY StudentNumber
+
+
+```
+
+* **_[EconomicDisadvantageCode]:_** A.K.A ECD 
+  + If EconomicDisadvantageCode = 0, then the student is _not identified as economically disadvantaged_, otherwise the student is identified as **economically disadvantaged**,
+  + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
+  + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
+  + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+
+
+* **_Race / Ethnicity:_** 
+
+* **_[RowIsCurrent]:_** 
+
+**Context:**
+
+* **Who Counts?** 
+
+
+
+* **Who is a 4year 2year?**
+
+
+
+* **Persistence Rate by:**
+
+  + **District:** use all data
+  +	**Region:** use the [RegionDescription] field
+  +	**School:** [SchoolShortName] + [SchoolType]
+  +	**Grade Level:** [GradeLevelID]
+  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
+
+
+* **Other Useful Fields:**
+  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
+  + [LeaverWeek] to know the week when the student left the district.
+
+* **SQL Code Example:**
+
+```{r example1, echo=TRUE, eval=FALSE}
+SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
+FROM [`[REDACTED-HOST]`].[Persistence].[dbo].[PersistenceCode]
+WHERE [FDOPCOUNTP] = 1
+```
+
+Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.
+
+## Student Persistence
+
+Student Persistence is one of the most important measures. Chiefs, VPs, and School Leaders are always monitoring this metric which gives us a good idea of our efforts to provide high quality service to our students and their families. We say a student persisted if the student was enrolled and attended the school on the “First Day Of Persistence (FDOP)” for two consecutive years. 
+
+Example: John enrolled IDEA Public Schools on August 19, 2019 and attended to the school the FDOP which is the Monday after the official first week of school. John completes the 2019-2020 academic year and by August 17, 2020 (FDOP) John enrolls again and attends to the school. If John was enrolled but did not attend on the FDOP and he decides to come back until September, then John won’t count as a student who persisted.
+
+**Database:** [[REDACTED-HOST]].[Persistence]
+
+**Main metrics:** District, Regional, School, Subpopulation, Grade Level
+
+**General Formula:** 1 – (Leavers/All Students)
+
+**Tables:**
+
+* **_[dbo].[PersistenceCode]:_** This table is used to calculate persistence rate for the current academic year. It shows data for the most recent week. We will see different week numbers, but this is because the first day of school is different across the district.
+
+* **_[dbo].[PersistenceCodeHistorical]:_** This table shows the final persistence data (as of last week of persistence). Here we will find historical data starting from 2019-2020. The table will be updated every year.
+
+* **_[dbo].[PersistenceHistorical]:_** As the previous table, this one contains final persistence data. The table will not be updated but it includes 2018-2019 data.
+
+**Context:**
+
+* **Who Counts?** 
+
+To calculate persistence, we need to first filter [FDOPCOUNTP] = 1 (FDOP First Day Of Persistence). The number of students resulting from this operation would be our denominator.
+
+* **Who is a Leaver?**
+
+If FDOPLEAVER equals 1, then that student is considered as a leaver otherwise is a current student. All summer leavers (June – August) from [SummerLeaver] = 1, are marked as FDOPLEAVER = 1. All leavers should have an [EnrollmentStatus] =2. The number of students resulting from this operation would be our numerator.
+
+* **Persistence Rate by:**
+
+  + **District:** use all data
+  +	**Region:** use the [RegionDescription] field
+  +	**School:** [SchoolShortName] + [SchoolType]
+  +	**Grade Level:** [GradeLevelID]
+  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
+
+
+* **Other Useful Fields:**
+  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
+  + [LeaverWeek] to know the week when the student left the district.
+
+* **SQL Code Example:**
+
+```{r example2, echo=TRUE, eval=FALSE}
+SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
+FROM [`[REDACTED-HOST]`].[Persistence].[dbo].[PersistenceCode]
+WHERE [FDOPCOUNTP] = 1
+```
+
+## College Application & Matriculation Metrics
+
+To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
+
+**Database:** [[REDACTED-HOST]].[PROD1].[Colleges]
+
+**Main metrics:** Percent at least 1 application, Percent at least 1 submission, Percent at least 1 acceptance
+
+**Most important columns:** [Stage] | [ResultCode]
+
+**Tables:**
+
+* **_[Colleges]:_** Here we will find all colleges/universities. What makes this table important is the [CEEB] field which is an ID that can help us connect distinct college related data sources like Naviance with National Student Clearinghouse data!
+
+* **_[CollegeTuition]:_** Besides having in-state tuition and out-of-state tuition data, we can also find two other unique codes ([OPEID] and [ACTCode]), that will aid us to college data across different data sources. 
+
+* **_[EDocs]:_** Details about  application submitted e-documents.
+
+* **_[StudentCollegeApplication]:_** This is the main table. We use it to calculate most of the metrics the College Application & Matriculation dashboard has. We can find data from 2018 up to the current academic year.
+
+* **_[StudentCollegeApplicationsSummary]:_** 
+
+* **_[StudentScholarships]:_** 
+
+
+**Context:**
+
+* **Who Counts?** 
+
+
+
+* **Who is a 4year 2year?**
+
+
+
+* **Persistence Rate by:**
+
+  + **District:** use all data
+  +	**Region:** use the [RegionDescription] field
+  +	**School:** [SchoolShortName] + [SchoolType]
+  +	**Grade Level:** [GradeLevelID]
+  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
+
+
+* **Other Useful Fields:**
+  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
+  + [LeaverWeek] to know the week when the student left the district.
+
+* **SQL Code Example:**
+
+```{r example3, echo=TRUE, eval=FALSE}
+SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
+FROM [`[REDACTED-HOST]`].[Persistence].[dbo].[PersistenceCode]
+WHERE [FDOPCOUNTP] = 1
+```
+
