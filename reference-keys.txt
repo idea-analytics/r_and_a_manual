@@ -8,8 +8,7 @@ rodrigo-san-miguel
 chris-haid
 data-access
 the-data-warehouse
-accessing-the-data-warehouse
-connection-strings
+ip-addresses-of-current-servers
 projects
 project-process
 onboarding-via-wrike
