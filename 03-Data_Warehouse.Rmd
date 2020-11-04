@@ -1,10 +1,67 @@
 # Data Access
 
+```{r}
+
+```
+
 ## The Data Warehouse
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications
 
-## Accessing the Data Warehouse 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+```{r display_dw_tables, echo=FALSE, warning=FALSE}
 
-### Connection Strings
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
+  janitor::clean_names() %>% 
+  select(r_and_a_uses = r_a_uses_x,
+         server_name, 
+         database_name, 
+         table_name, 
+         column_name, 
+         data_type, 
+         constraint) %>% 
+  mutate(
+         across(where(is.character), as_factor),
+         r_and_a_uses = !is.na(r_and_a_uses))
+
+
+rna_dw_usage %>% 
+  janitor::clean_names("title") %>% 
+  DT::datatable(filter = "top", rownames = FALSE)
+```
+
+
+### IP Addresses of current servers
+
+For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
+
+| IP Adress   | Server Name       |
+|-------------|-------------------|
+|172.24.16.195|   795184-LOGI     |
+|172.24.16.208|   795198-CUSTAPPS |
+|172.24.16.209|   795199-CUSTAPSV |
+|172.24.16.166|   887192-SQLDS    |
+|172.24.16.193|   795182-SQLCUSAP |
+|172.24.16.125|   795178-DISERVIC |
+|172.24.16.207|   795197-DIONLINE |
+|172.24.16.198|   964592-SQLDS    |
+|172.24.17.56 |   1123130-SDPDTMP |
+|172.24.16.83 |   1064618-SQLDI   |
+|172.24.16.216|   1054148-FINAPP  |
+|172.24.17.111|   1064596-SQLRPT2 |
+|172.24.17.110|   1064599-SQLRPTH |
+|172.24.16.80 |   1064611-SRC4    |
+|172.24.16.206|   795196-HQSTAGIN |
+|172.24.16.196|   795186-HQPROD01 |
+|172.24.16.197|   795187-HQSQA01  |
+|172.24.16.201|   795191-AUTOMATI |
+|172.24.16.82 |   1064615-API1    |
+|172.24.16.110|   1017144-SQLRPT  |
+|172.24.16.205|   795195-HQSQLSA1 | 
+|172.24.16.81 |   1064613-SQLPRD2 |
+|10.255.88.201|   HQVSQLDS        |
+|172.24.17.160|   1065574-SQLPRD1 |
+|172.24.16.210|   1044407-SQLDS2  |
+|10.255.88.176|   HQVSDBACKUPS    |
+|172.24.16.79 |   924794-AUXAUTO  |
+|10.255.88.152|   SQLBI           |
+
+: List of Windows Servers hosting SQLServer DBs and their IP Addresses

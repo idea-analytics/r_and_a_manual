@@ -19,6 +19,8 @@ This manual is written in **Markdown** and managed with git/Github.
 Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
 
 ```{r include=FALSE}
+library(tidyverse)
+
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
