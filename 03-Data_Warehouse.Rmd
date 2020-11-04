@@ -1,10 +1,67 @@
 # Data Access
 
+```{r}
+
+```
+
 ## The Data Warehouse
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications
 
-## Accessing the Data Warehouse 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+```{r display_dw_tables, echo=FALSE, warning=FALSE}
 
-### Connection Strings
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
+  janitor::clean_names() %>% 
+  select(r_and_a_uses = r_a_uses_x,
+         server_name, 
+         database_name, 
+         table_name, 
+         column_name, 
+         data_type, 
+         constraint) %>% 
+  mutate(
+         across(where(is.character), as_factor),
+         r_and_a_uses = !is.na(r_and_a_uses))
+
+
+rna_dw_usage %>% 
+  janitor::clean_names("title") %>% 
+  DT::datatable(filter = "top", rownames = FALSE)
+```
+
+
+### IP Addresses of current servers
+
+For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
+
+| IP Adress   | Server Name       |
+|-------------|-------------------|
+|[REDACTED-IP]|   [REDACTED-HOST]     |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP] |   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]   |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] | 
+|[REDACTED-IP] |   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]        |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   1044407-SQLDS2  |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP] |   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST]           |
+
+: List of Windows Servers hosting SQLServer DBs and their IP Addresses
