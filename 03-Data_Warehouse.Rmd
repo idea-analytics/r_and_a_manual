@@ -20,12 +20,13 @@ rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>%
          constraint) %>% 
   mutate(
          across(where(is.character), as_factor),
-         r_and_a_uses = !is.na(r_and_a_uses))
+         r_and_a_uses = !is.na(r_and_a_uses)) %>% 
+  distinct()
 
 
 rna_dw_usage %>% 
   janitor::clean_names("title") %>% 
-  DT::datatable(filter = "top", rownames = FALSE)
+  DT::datatable(filter = "top", rownames = FALSE, )
 ```
 
 
