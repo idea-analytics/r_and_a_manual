@@ -1,0 +1,67 @@
+# Data Access
+
+```{r}
+
+```
+
+## The Data Warehouse
+The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications
+
+```{r display_dw_tables, echo=FALSE, warning=FALSE}
+
+rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
+  janitor::clean_names() %>% 
+  select(r_and_a_uses = r_a_uses_x,
+         server_name, 
+         database_name, 
+         table_name, 
+         column_name, 
+         data_type, 
+         constraint) %>% 
+  mutate(
+         across(where(is.character), as_factor),
+         r_and_a_uses = !is.na(r_and_a_uses))
+
+
+rna_dw_usage %>% 
+  janitor::clean_names("title") %>% 
+  DT::datatable(filter = "top", rownames = FALSE)
+```
+
+
+### IP Addresses of current servers
+
+For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
+
+| IP Adress   | Server Name       |
+|-------------|-------------------|
+|[REDACTED-IP]|   [REDACTED-HOST]     |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP] |   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]   |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP] |   [REDACTED-HOST]    |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST] | 
+|[REDACTED-IP] |   [REDACTED-HOST] |
+|[REDACTED-IP]|   [REDACTED-HOST]        |
+|[REDACTED-IP]|   [REDACTED-HOST] |
+|[REDACTED-IP]|   1044407-SQLDS2  |
+|[REDACTED-IP]|   [REDACTED-HOST]    |
+|[REDACTED-IP] |   [REDACTED-HOST]  |
+|[REDACTED-IP]|   [REDACTED-HOST]           |
+
+: List of Windows Servers hosting SQLServer DBs and their IP Addresses
