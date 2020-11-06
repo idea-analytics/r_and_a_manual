@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Models and Methods | IDEA R&amp;A Manual</title>
+  <title>Chapter 9 Models and Methods | IDEA R&amp;A Manual</title>
   <meta name="description" content="This is IDEA Public Schools’ Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual" />
+  <meta property="og:title" content="Chapter 9 Models and Methods | IDEA R&amp;A Manual" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual" />
+  <meta name="twitter:title" content="Chapter 9 Models and Methods | IDEA R&amp;A Manual" />
   
   <meta name="twitter:description" content="This is IDEA Public Schools’ Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Edison Coronado, Chris Haid, Rodrigo San Midguel" />
 
 
-<meta name="date" content="2020-11-04" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -67,6 +67,70 @@
 <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -112,9 +176,14 @@
 </ul></li>
 <li class="chapter" data-level="5" data-path="coding-standards.html"><a href="coding-standards.html"><i class="fa fa-check"></i><b>5</b> Coding Standards</a></li>
 <li class="chapter" data-level="6" data-path="visualization-standards.html"><a href="visualization-standards.html"><i class="fa fa-check"></i><b>6</b> Visualization Standards</a></li>
-<li class="chapter" data-level="7" data-path="metrics-adn-meaures.html"><a href="metrics-adn-meaures.html"><i class="fa fa-check"></i><b>7</b> Metrics adn meaures</a></li>
-<li class="chapter" data-level="8" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>8</b> Models and Methods</a></li>
-<li class="chapter" data-level="9" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks</a></li>
+<li class="chapter" data-level="7" data-path="measures.html"><a href="measures.html"><i class="fa fa-check"></i><b>7</b> Measures</a><ul>
+<li class="chapter" data-level="7.1" data-path="measures.html"><a href="measures.html#the-students-table"><i class="fa fa-check"></i><b>7.1</b> The Students Table</a></li>
+<li class="chapter" data-level="7.2" data-path="measures.html"><a href="measures.html#student-persistence"><i class="fa fa-check"></i><b>7.2</b> Student Persistence</a></li>
+<li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="metrics-adn-meaures.html"><a href="metrics-adn-meaures.html"><i class="fa fa-check"></i><b>8</b> Metrics adn meaures</a></li>
+<li class="chapter" data-level="9" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>9</b> Models and Methods</a></li>
+<li class="chapter" data-level="10" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>10</b> Tips and Tricks</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -137,7 +206,7 @@
 
             <section class="normal" id="section-">
 <div id="models-and-methods" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Models and Methods</h1>
+<h1><span class="header-section-number">Chapter 9</span> Models and Methods</h1>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 
 </div>
