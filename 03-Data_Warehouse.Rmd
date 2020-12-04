@@ -66,3 +66,14 @@ For the fastest performance when working remotely it is best to directly access 
 |10.255.88.152|   SQLBI           |
 
 : List of Windows Servers hosting SQLServer DBs and their IP Addresses
+
+
+### Databases that R&A frquently uses. 
+```{r}
+rna_dw_usage %>% filter(r_and_a_uses) %>% 
+  elect(server_name, database_name) %>% 
+  distinct() %>% 
+  janitor::clean_names("title")
+```
+: List of Windows Servers hosting SQLServer DBs and their IP Addresses
+
