@@ -71,7 +71,7 @@ For the fastest performance when working remotely it is best to directly access 
 ### Databases that R&A frquently uses. 
 ```{r}
 rna_dw_usage %>% filter(r_and_a_uses) %>% 
-  elect(server_name, database_name) %>% 
+  select(server_name, database_name) %>% 
   distinct() %>% 
   janitor::clean_names("title")
 ```
