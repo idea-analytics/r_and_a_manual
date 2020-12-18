@@ -1,11 +1,19 @@
-# Data Access
+# Accessing IDEA Data
 
 ```{r}
 
 ```
+TERST
+
 
 ## The Data Warehouse
-The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications
+
+The 'data warehouse' is actually a collection of disparate SQL Server databases hosted by IDEA Public Schools. Some databases are used to host the original source data while others are used as the data model for production applications (like [Locus dashboards](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards)). In a sense it is really more like a data mart than a data warehouse. 
+
+### Data warehouse servers, databases, and tables
+The following table lists all of the servers and databases that R&A is aware of. **This list is not necessarily complete** as the Software Development and Data Warehouse teams may add or remove databases.[^data_warehouse-1] This table can be filtered, sorted, and searched.
+
+[^data_warehouse-1]: R&A has a biweekly check-ins with Jana Carter to align on changes and share findings. Anything discovered in that meeting should be updated here as as possible.
 
 ```{r display_dw_tables, echo=FALSE, warning=FALSE}
 
@@ -29,51 +37,50 @@ rna_dw_usage %>%
   DT::datatable(filter = "top", rownames = FALSE, )
 ```
 
-
 ### IP Addresses of current servers
 
-For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
+For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP addresses and server names.
 
-| IP Adress   | Server Name       |
-|-------------|-------------------|
-|[REDACTED-IP]|   [REDACTED-HOST]     |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP] |   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]   |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] | 
-|[REDACTED-IP] |   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]        |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   1044407-SQLDS2  |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP] |   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST]           |
+| IP Address     | Server Name     |
+|---------------|-----------------|
+| [REDACTED-IP] | [REDACTED-HOST]     |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST]    |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST]    |
+| [REDACTED-IP]  | [REDACTED-HOST] |
+| [REDACTED-IP]  | [REDACTED-HOST]   |
+| [REDACTED-IP] | [REDACTED-HOST]  |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP]  | [REDACTED-HOST]    |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST]  |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP]  | [REDACTED-HOST]    |
+| [REDACTED-IP] | [REDACTED-HOST]  |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP]  | [REDACTED-HOST] |
+| [REDACTED-IP] | [REDACTED-HOST]        |
+| [REDACTED-IP] | [REDACTED-HOST] |
+| [REDACTED-IP] | 1044407-SQLDS2  |
+| [REDACTED-IP] | [REDACTED-HOST]    |
+| [REDACTED-IP]  | [REDACTED-HOST]  |
+| [REDACTED-IP] | [REDACTED-HOST]           |
 
 : List of Windows Servers hosting SQLServer DBs and their IP Addresses
 
+### Databases that R&A frquently uses.
 
-### Databases that R&A frquently uses. 
 ```{r}
 rna_dw_usage %>% filter(r_and_a_uses) %>% 
   select(server_name, database_name) %>% 
   distinct() %>% 
   janitor::clean_names("title")
 ```
-: List of Windows Servers hosting SQLServer DBs and their IP Addresses
+
 
