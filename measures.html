@@ -24,7 +24,7 @@
 <meta name="author" content="Edison Coronado, Chris Haid, Rodrigo San Midguel" />
 
 
-<meta name="date" content="2020-12-04" />
+<meta name="date" content="2021-02-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="visualization-standards.html"/>
 <link rel="next" href="metrics-adn-meaures.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,11 +51,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.16/datatables.js"></script>
+<script src="libs/datatables-binding-0.17/datatables.js"></script>
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -63,8 +61,8 @@
 <script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
 <link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="libs/selectize-0.12.0/selectize.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -181,6 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="measures.html"><a href="measures.html#the-students-table"><i class="fa fa-check"></i><b>7.1</b> The Students Table</a></li>
 <li class="chapter" data-level="7.2" data-path="measures.html"><a href="measures.html#student-persistence"><i class="fa fa-check"></i><b>7.2</b> Student Persistence</a></li>
 <li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
+<li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#critical-student-intervention-csi-identification"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="metrics-adn-meaures.html"><a href="metrics-adn-meaures.html"><i class="fa fa-check"></i><b>8</b> Metrics adn meaures</a></li>
 <li class="chapter" data-level="9" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>9</b> Models and Methods</a></li>
@@ -329,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,</li>
 <li>If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.</li>
 </ul></li>
-<li><p><strong><em>Race / Ethnicity:</em></strong></p></li>
+<li><p><strong><em>Race / Ethnicity:</em></strong> Same like in TX .</p></li>
 <li><p><strong><em>[RowIsCurrent]:</em></strong></p></li>
 </ul>
 <p><strong>Context:</strong></p>
@@ -435,6 +434,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="measures.html#cb6-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
 <span id="cb6-2"><a href="measures.html#cb6-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
 <span id="cb6-3"><a href="measures.html#cb6-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+</div>
+<div id="critical-student-intervention-csi-identification" class="section level2">
+<h2><span class="header-section-number">7.4</span> Critical Student Intervention (CSI) Identification</h2>
+<p>To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia’s team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.</p>
+<p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Schools]</p>
+<p><strong>Main metrics:</strong> Percent of CSI students by school</p>
+<p><strong>Most important columns:</strong> [ProgramID] | [InterventionType]</p>
+<p><strong>Tables:</strong></p>
+<ul>
+<li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
+<li><p><strong>SQL Code Example:</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="measures.html#cb7-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb7-2"><a href="measures.html#cb7-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb7-3"><a href="measures.html#cb7-3"></a>      ,[ProgramID]</span>
+<span id="cb7-4"><a href="measures.html#cb7-4"></a>      ,CASE </span>
+<span id="cb7-5"><a href="measures.html#cb7-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb7-6"><a href="measures.html#cb7-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb7-7"><a href="measures.html#cb7-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb7-8"><a href="measures.html#cb7-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb7-9"><a href="measures.html#cb7-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<ul>
+<li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
+<li><p><strong>SQL Code Example:</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="measures.html#cb8-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb8-2"><a href="measures.html#cb8-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
+<span id="cb8-3"><a href="measures.html#cb8-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
+<span id="cb8-4"><a href="measures.html#cb8-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
+<span id="cb8-5"><a href="measures.html#cb8-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
+<span id="cb8-6"><a href="measures.html#cb8-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
+<span id="cb8-7"><a href="measures.html#cb8-7"></a>LEFT JOIN </span>
+<span id="cb8-8"><a href="measures.html#cb8-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb8-9"><a href="measures.html#cb8-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb8-10"><a href="measures.html#cb8-10"></a>      ,[ProgramID]</span>
+<span id="cb8-11"><a href="measures.html#cb8-11"></a>      ,CASE </span>
+<span id="cb8-12"><a href="measures.html#cb8-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb8-13"><a href="measures.html#cb8-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb8-14"><a href="measures.html#cb8-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb8-15"><a href="measures.html#cb8-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb8-16"><a href="measures.html#cb8-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
+<span id="cb8-17"><a href="measures.html#cb8-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
+<span id="cb8-18"><a href="measures.html#cb8-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
 
 </div>
 </div>
