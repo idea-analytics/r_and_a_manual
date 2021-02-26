@@ -80,7 +80,7 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
   + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
 
 
-* **_Race / Ethnicity:_** 
+* **_Race / Ethnicity:_** Same like in TX . 
 
 * **_[RowIsCurrent]:_** 
 
@@ -223,4 +223,59 @@ SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
 FROM [`1065574-SQLPRD1`].[Persistence].[dbo].[PersistenceCode]
 WHERE [FDOPCOUNTP] = 1
 ```
+
+
+## Critical Student Intervention (CSI) Identification
+
+To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
+
+**Database:** [1065574-SQLPRD1].[PROD1].[Schools]
+
+**Main metrics:** Percent of CSI students by school
+
+**Most important columns:** [ProgramID] | [InterventionType]
+
+**Tables:**
+
+* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
+
+* **SQL Code Example:**
+
+```{r csi1, echo=TRUE, eval=FALSE}
+SELECT DISTINCT AcademicYear, [Subject], ProgramID
+FROM (SELECT [AcademicYear]
+      ,[ProgramID]
+      ,CASE 
+	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
+	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI]
+  WHERE [AcademicYear] = '2018-2019' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
+GROUP BY AcademicYear, [Subject], ProgramID
+```
+
+* **_[StudentCSIDetails]:_** Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the **_[StudentCSI]_** table data to the Students table and get the percent of CSI students per school.
+
+* **SQL Code Example:**
+
+```{r csi2, echo=TRUE, eval=FALSE}
+SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
+FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
+INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
+ON A.SchoolNumber = B.SchoolNumber
+LEFT JOIN [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C
+ON A.StudentNumber = C.StudentNumber AND A.AcademicYear = C.AcademicYear
+LEFT JOIN 
+(SELECT DISTINCT AcademicYear, [Subject], ProgramID
+FROM (SELECT [AcademicYear]
+      ,[ProgramID]
+      ,CASE 
+	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
+	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI]
+  WHERE [AcademicYear] = '2020-2021' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
+GROUP BY AcademicYear, [Subject], ProgramID) AS D
+ON C.ProgramID = D.ProgramID
+WHERE A.AcademicYear = '2020-2021'
+```
+
 
