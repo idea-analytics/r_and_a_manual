@@ -65,7 +65,7 @@ For the fastest performance when working remotely it is best to directly access 
 |172.24.16.79 |   924794-AUXAUTO  |
 |10.255.88.152|   SQLBI           |
 
-: List of Windows Servers hosting SQLServer DBs and their IP Addresses
+: List of Windows Servers hosting SQL Server Databases and their IP Addresses
 
 
 ### Databases that R&A frquently uses. 
