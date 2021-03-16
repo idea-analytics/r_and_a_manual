@@ -28,11 +28,11 @@ The 'data warehouse' is actually a collection of disparate databases hosted by I
 
 While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only accesses `r n_servers` servers hosting `r n_dbs` databases and `r prettyNum(n_tables, big.mark = ",")` distinct tables. It's a lot, for sure. 
 
-### Core Data warehouse server configuration
+### Core data warehouse server configuration
 
-The servers are not islands unot themselves, but rather form a small economy of data flows  
+The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.  
 
-```{r server_graphs}
+```{r server_graphs, echo=FALSE}
 DiagrammeR::grViz("
   digraph data_wh {
     
@@ -44,7 +44,8 @@ DiagrammeR::grViz("
           style = filled, 
           fontname = Helvetica, 
           fillcolor= '#f9a054', 
-          color = '#626363']
+          color = '#626363',
+          fontcolor = white]
     DSPS; DSIII; DSOT 
   
     node [fillcolor= '#1a4784']
