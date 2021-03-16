@@ -30,7 +30,7 @@ While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only 
 
 ### Core Data warehouse server configuration
 
-The servers are not islands unot themselves, but rather form an interacting small economy of data flow.s 
+The servers are not islands unot themselves, but rather form a small economy of data flows  
 
 ```{r server_graphs}
 DiagrammeR::grViz("
@@ -40,33 +40,39 @@ DiagrammeR::grViz("
     graph [overlap = true, layout = dot, rankdir = LR]
   
     #node statement
-    node [shape = cylinder, style = filled, fontname = Helvetica, fillcolor= '#f9a054', alpha=0.01]
+    node [shape = cylinder, 
+          style = filled, 
+          fontname = Helvetica, 
+          fillcolor= '#f9a054', 
+          color = '#626363']
     DSPS; DSIII; DSOT 
   
-    node [rank = same, shape = cylinder, fontname = Helvetica, fillcolor= '#1a4784', fontcolor = white]
+    node [fillcolor= '#1a4784']
     PROD1; PROD2
 
-    node [shape = cylinder, fontname = Helvetica, fillcolor= '#a4c364', fontcolor = white]
+    node [fillcolor= '#a4c364']
     RS2; RS1
   
-  node [shape = cylinder, fontname = Helvetica, fillcolor= '#53b4cc', fontcolor = white]
-    FO1; STHIS; RSHIS
-
+  node [fillcolor= '#53b4cc']
+  STHIS; RSHIS
+ 
+  node [fillcolor = firebrick]
+  FO1
   
   node [rank = 5, shape = box, fontname = Helvetica, fillcolor= '#ffde75', fontcolor = black]
     LOGI
 
   # subgraph statements
-  subgraph cluster_ds {rank = same; style = dotted; DSPS; DSPS; DSIII; DSOT}
-  subgraph cluster_ds {rank = same; style = dotted; PROD1; PROD2}
+  subgraph cluster_ds {rank = same; style = dotted; DSPS; DSIII; DSOT}
+  subgraph cluster_prod {rank = same; style = dotted; PROD1; PROD2}
   subgraph cluster_rs {rank = same; style = dotted; RS2; RS1}
   subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS}
   
     #edges statement
-  
+  edge [color = '#626363', arrowhead=vee]
   {DSPS DSIII DSOT} -> PROD1 
   {DSPS DSIII DSOT} -> PROD2
-   #PROD1 -> {DSOT DSIII}
+   PROD1 -> {DSOT DSIII} [color = gray, style=dashed]
    PROD1 -> RS2
    PROD2 -> RS1
   {PROD1 PROD2} -> FO1
