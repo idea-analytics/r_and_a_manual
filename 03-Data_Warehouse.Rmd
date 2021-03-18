@@ -1,14 +1,6 @@
 # Data Access
 
-```{r}
-
-```
-
-## The Data Warehouse
-The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications
-
-```{r display_dw_tables, echo=FALSE, warning=FALSE}
-
+```{r load_dw, include=FALSE}
 rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
   janitor::clean_names() %>% 
   select(r_and_a_uses = r_a_uses_x,
@@ -23,14 +15,243 @@ rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>%
          r_and_a_uses = !is.na(r_and_a_uses)) %>% 
   distinct()
 
+n_servers <- rna_dw_usage %>% distinct(server_name) %>% nrow()
+n_dbs <- rna_dw_usage %>% distinct(database_name) %>% nrow()
+n_tables <- rna_dw_usage %>% 
+  select(server_name, database_name, table_name) %>% 
+  distinct() %>% 
+  nrow()
+```
 
+## The Data Warehouse
+The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications.
+
+While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only accesses `r n_servers` servers hosting `r n_dbs` databases and `r prettyNum(n_tables, big.mark = ",")` distinct tables. It's a lot, for sure. 
+
+### Core data warehouse server configuration
+
+The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.  
+
+```{r server_graphs, echo=FALSE, fig.cap="Data in the warehouse is initially stored in 'src_*` databases in 'DS*' servers and flows to the right towads Logi hosted Locus dashboards."}
+DiagrammeR::grViz("
+  digraph data_wh {
+    label='Basic Data Flows in Core Data Warehouse';
+    labelloc = 't'; 
+  #graph statement
+  graph [overlap = true, layout = dot, rankdir = LR]
+  
+    #node statement
+    node [shape = cylinder, 
+          style = filled, 
+          fontname = Helvetica, 
+          fillcolor= '#f9a054', 
+          color = '#626363',
+          fontcolor = white,
+          fontsize=10]
+    DSPS [label=<DS-PS<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
+    DS3  [label=<DS-III<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
+    DSOT [label=<DS-OT<br/><font point-size='6'>[REDACTED-HOST]</font>>] 
+  
+    node [fillcolor= '#1a4784']
+    PROD1 [label=<PROD1<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
+    PROD2 [label=<PROD2<br/><font point-size='6'>[REDACTED-HOST]</font>>]
+    
+    node [fillcolor= '#a4c364']
+    RS2 [label=<RS2<br/><font point-size='6'>[REDACTED-HOST] </font>>];
+    RS1 [label=<RS1<br/><font point-size='6'>[REDACTED-HOST] </font>>]
+  
+  node [fillcolor= '#53b4cc']
+  STHIS [label= <ST-HIS<br/><font point-size='6'> xxxxxx-STHist </font>>]; 
+  RSHIS [label=<RS-HIS<br/><font point-size='6'> xxxxxx-SQLRPTHis  </font>>]
+ 
+  node [fillcolor = firebrick]
+  FO1 [label =<FO1<br/><font point-size='6'> Local Failover </font>>]
+  
+  node [shape = box, fontname = Helvetica, fillcolor= '#ffde75', fontcolor = black]
+  LOGI
+
+  # subgraph statements
+  subgraph cluster_ds {rank = same; style = dotted; DSPS; DS3; DSOT; label='1. Data Storage'}
+  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = '2. Production'}
+  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label='4. Reporting'}
+  subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = '3. Historical' }
+  
+  #edges statement
+  edge [color = '#626363', arrowhead=vee]
+  {DSPS DS3} -> PROD1 
+  {DSOT} -> PROD2
+   PROD1 -> {DSOT DS3} [label='Look-ups', color = gray, style=dashed, fontcolor=gray, fontsize=7]
+   PROD1 -> RS2
+   PROD2 -> RS1
+  {PROD1 PROD2} -> FO1 [color = firebrick]
+  {PROD1 PROD2} -> STHIS
+   STHIS -> RSHIS
+  {RS2 RS1 RSHIS} -> LOGI
+  
+  }
+")
+
+
+
+```
+
+Figure \@ref(fig:server_graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
+
+The following sections provide some details on the what databases might be found on each server.
+
+#### DS Servers
+**NOTE: the DS servers have names that do not correspond the the servers' URLS.  Why this is the case is not clear, but this is something to pay attention to when work with data from these sources**
+
+* **`DS-PS`** is hosted on  `[REDACTED-HOST]` and serves as a source for `PROD1`.  Most the data hosted on `DS-PS` mirror PowerSchool's Oracle back-end (espececially the `Schools`, `ADA`, and `Enrollment` databases), but it also has data from Teams Insights, staffing, college applications and outcomes, student persistence, among other things. 
+
+  * **Databases**:
+
+    * ADA  
+    * Attendance
+    * BlendedLearning
+    * CNP
+    * Colleges
+    * Enrollment
+    * Finance
+    * Insights: data from Microsoft Teams
+    * Persistence
+    * Schools: key data from PowerSchool
+    * Schools.DL
+    * Staffing
+    * Survey
+    
+  * **Sources**:
+    
+    * PowerSchool
+    * Other undefined sources 
+
+  * **Targets**:
+    
+    * `Prod1`
+    
+
+* **`DS-III`** is hosted on  `1044407-SQLDS2`  and serves as a source for `PROD2`. (note that this is a bit confusing . . . which makes this writer think we may have this wrong; why would something called `DS-III` have  server named `DS2` that mostly provides source data to `PROD2`?) The data hosted on `DS-III` is almost exclusively source data from testing platforms like Illuminate DnA, AP, IB, ACT, and SAT. 
+
+  * **Databases**:
+    
+    * SRC_IA 
+    * SRC_IB 
+    * SRC_AP 
+    * SRC_LEAP 
+    * SRC_EA 
+    * SRC_Dibles 
+    * SRC_NWEA 
+    * SRC_Plan 
+    * SRC_SAT 
+    * SRC_Telpas 
+    * SRC_ACT 
+    * SRC_Explorer  
+
+    
+  * **Sources**:
+    
+    * See the database names just above
+    * `PROD1` for lookup data about students and schools
+
+  * **Targets**:
+    
+    * `Prod2`
+    
+* **DS-OT** is hosted on `[REDACTED-HOST] `  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learing platforms. 
+
+  * **Databases**:
+    
+      * SRC_Zendesk
+      * SRC_Naviance
+      * SRC_StMath
+      * SRC_DreamBox
+      * SRC_IHT 
+      * SRC_TylerMunis 
+      * SRC_TeachBoost 
+      * SRC_StaffRetention 
+      * SRC_SchoolMint
+      * SRC_Recruitment
+      * SRC_OpsCampusRanking 
+      * SRC_JobVite 
+      * SRC_HR SRC_GetRating 
+      * SRC_ConnerStoneEvaluations 
+      * SRC_BlendedLearning 
+      * IdeaInstructionReporting 
+      
+      
+  * **Sources**:
+    
+    * See the database names just above
+    * `PROD1` for lookup data about students and schools
+
+  * **Targets**:
+    
+    * `Prod1`
+      
+    
+
+
+#### PROD Servers
+
+* **PROD1** is hosted on ` [REDACTED-HOST]` and contains a variety of data bases sourced from `DS-PS` and `DS-OT`. The key studetns, schools, and regions data is found here and is infact used by `DS-III` and `DS-OT`. Microsoft Insights data is now found here as well. This is the where transformed data is stored that is moved to `RS2 ` (again, it is not clear why the server number doesn't quite line up as we move from initial DS to PROD to RS).
+
+  * **Databases**:
+
+    * ADA  
+    * Attendance
+    * BlendedLearning
+    * CNP
+    * Colleges
+    * Enrollment
+    * Finance
+    * Insights: data from Microsoft Teams
+    * Persistence
+    * Schools: key data from PowerSchool
+    * Schools.DL
+    * Staffing
+    * Survey
+    
+  * **Sources**:
+    
+    * `DS-PS`
+    * `DS-OT`
+  
+ * **Targets**:
+ 
+  * `RS2`
+  * `ST-HIS`
+  * `FO1`
+  
+* **PROD2** hosts all other data that is not on `PROD`, which is to say data initially stored in `DS-III`.  This is the source server for `RS1` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
+
+  * **Databases**:
+  
+    * Assessments
+    * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
+    
+#### RS and Hisotrical data Servers
+
+* **RS1** 
+
+* **RS2**
+
+* **ST-HIS**
+
+* **RS-HIS**
+
+
+### Server, Table, and Field Lookup
+
+Table \@reg(fig:display_dw_tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture
+
+```{r display_dw_tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
 rna_dw_usage %>% 
   janitor::clean_names("title") %>% 
   DT::datatable(filter = "top", rownames = FALSE, )
 ```
 
 
-### IP Addresses of current servers
+#### IP Addresses of current servers
 
 For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
 
@@ -60,7 +281,7 @@ For the fastest performance when working remotely it is best to directly access 
 |[REDACTED-IP] |   [REDACTED-HOST] |
 |[REDACTED-IP]|   [REDACTED-HOST]        |
 |[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   1044407-SQLDS2  |
+|[REDACTED-IP]|   [REDACTED-HOST]  |
 |[REDACTED-IP]|   [REDACTED-HOST]    |
 |[REDACTED-IP] |   [REDACTED-HOST]  |
 |[REDACTED-IP]|   [REDACTED-HOST]           |
