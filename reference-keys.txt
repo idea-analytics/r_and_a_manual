@@ -1,4 +1,6 @@
-a-little-about-this-manual
+fig:server-graphs
+fig:display-dw-tables
+about
 what-goes-in-this-manual
 how-do-you-contribute-to-this-book
 who
