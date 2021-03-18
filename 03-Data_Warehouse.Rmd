@@ -32,7 +32,7 @@ While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only 
 
 The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.  
 
-```{r server_graphs, echo=FALSE, fig.cap="Data in the warehouse is initially stored in 'src_*` databases in 'DS*' servers and flows to the right towads Logi hosted Locus dashboards."}
+```{r server-graphs, echo=FALSE, fig.cap="Data in the warehouse is initially stored in 'src_*` databases in 'DS*' servers and flows to the right towads Logi hosted Locus dashboards."}
 DiagrammeR::grViz("
   digraph data_wh {
     label='Basic Data Flows in Core Data Warehouse';
@@ -95,7 +95,7 @@ DiagrammeR::grViz("
 
 ```
 
-Figure \@ref(fig:server_graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
+Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
 
 The following sections provide some details on the what databases might be found on each server.
 
@@ -242,9 +242,9 @@ The following sections provide some details on the what databases might be found
 
 ### Server, Table, and Field Lookup
 
-Table \@reg(fig:display_dw_tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture
+Table \@ref(fig:display-dw-tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture
 
-```{r display_dw_tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
+```{r display-dw-tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
 rna_dw_usage %>% 
   janitor::clean_names("title") %>% 
   DT::datatable(filter = "top", rownames = FALSE, )
