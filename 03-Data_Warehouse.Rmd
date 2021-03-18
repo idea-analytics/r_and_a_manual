@@ -24,7 +24,7 @@ n_tables <- rna_dw_usage %>%
 ```
 
 ## The Data Warehouse
-The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some data bases are used to host the original source data, some are used as the data model for production applications.
+The 'data warehouse' is actually a collection of disparate databases hosted by IDEA Public Schools.  Some databases are used to host the original source data, some are used as the data model for production applications, while others site between those two points.
 
 While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only accesses `r n_servers` servers hosting `r n_dbs` databases and `r prettyNum(n_tables, big.mark = ",")` distinct tables. It's a lot, for sure. 
 
@@ -231,18 +231,60 @@ The following sections provide some details on the what databases might be found
     
 #### RS and Hisotrical data Servers
 
-* **RS1** 
+R&A tends not to use these tables very often. `RS1`, `RS2`, and `RS-HIS` all have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. `ST-HIS` ostensibly has snapshots of data from the `PROD` servers, but that is just an unverified hunch 
 
-* **RS2**
+
 
 * **ST-HIS**
+  
+  * **Databases**: unknown
+    
+  * **Sources**:
+      
+    * `PROD1`
+    * `PROD2`
+    * something called `ST1` and ST2`?
+    
+    * **Targets**
+      * `RS-HIS`
 
+* **RS1** 
+  
+  * **Databases**: unknown
+  * **Sources**:
+    
+    * `PROD2`
+    * something called `ST2`?
+  
+  * **Targets**
+    * Logi
+    
+* **RS2**
+  
+  * **Databases**: unknown
+  * **Sources**:
+    
+    * `PROD1`
+    * something called `ST1`?
+  
+  * **Targets**
+    * Logi
+  
 * **RS-HIS**
+    
+    * **Databases**: unknown
+    * **Sources**:
+    * `ST-HIS`
+    
+  
+  * **Targets**
+    * Logi
+
 
 
 ### Server, Table, and Field Lookup
 
-Table \@ref(fig:display-dw-tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture
+Table \@ref(fig:display-dw-tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture.
 
 ```{r display-dw-tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
 rna_dw_usage %>% 
