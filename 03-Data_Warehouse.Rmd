@@ -227,7 +227,7 @@ The following sections provide some details on the what databases might be found
   * **Databases**:
   
     * Assessments
-    * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondances between teachers and students. 
+    * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
     
 #### RS and Hisotrical data Servers
 
@@ -240,6 +240,10 @@ The following sections provide some details on the what databases might be found
 * **RS-HIS**
 
 
+### Server, Table, and Field Lookup
+
+Table \@reg(fig:display_dw_tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture
+
 ```{r display_dw_tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
 rna_dw_usage %>% 
   janitor::clean_names("title") %>% 
@@ -247,7 +251,7 @@ rna_dw_usage %>%
 ```
 
 
-### IP Addresses of current servers
+#### IP Addresses of current servers
 
 For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
 
