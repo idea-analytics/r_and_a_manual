@@ -95,7 +95,7 @@ DiagrammeR::grViz("
 
 ```
 
-Figure \@ref(#fig:server_graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
+Figure \@ref(fig:server_graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
 
 The following sections provide some details on the what databases might be found on each server.
 
@@ -193,7 +193,7 @@ The following sections provide some details on the what databases might be found
 
 #### PROD Servers
 
-* **PROD1**: 
+* **PROD1** is hosted on ` 1065574-SQLPRD1` and contains a variety of data bases sourced from `DS-PS` and `DS-OT`. The key studetns, schools, and regions data is found here and is infact used by `DS-III` and `DS-OT`. Microsoft Insights data is now found here as well. This is the where transformed data is stored that is moved to `RS2 ` (again, it is not clear why the server number doesn't quite line up as we move from initial DS to PROD to RS).
 
   * **Databases**:
 
@@ -210,6 +210,34 @@ The following sections provide some details on the what databases might be found
     * Schools.DL
     * Staffing
     * Survey
+    
+  * **Sources**:
+    
+    * `DS-PS`
+    * `DS-OT`
+  
+ * **Targets**:
+ 
+  * `RS2`
+  * `ST-HIS`
+  * `FO1`
+  
+* **PROD2** hosts all other data that is not on `PROD`, which is to say data initially stored in `DS-III`.  This is the source server for `RS1` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
+
+  * **Databases**:
+  
+    * Assessments
+    * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondances between teachers and students. 
+    
+#### RS and Hisotrical data Servers
+
+* **RS1** 
+
+* **RS2**
+
+* **ST-HIS**
+
+* **RS-HIS**
 
 
 ```{r display_dw_tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
