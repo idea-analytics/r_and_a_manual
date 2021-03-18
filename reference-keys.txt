@@ -8,6 +8,11 @@ rodrigo-san-miguel
 chris-haid
 data-access
 the-data-warehouse
+core-data-warehouse-server-configuration
+ds-servers
+prod-servers
+rs-and-hisotrical-data-servers
+server-table-and-field-lookup
 ip-addresses-of-current-servers
 databases-that-ra-frquently-uses.
 projects
@@ -25,6 +30,5 @@ the-students-table
 student-persistence
 college-application-matriculation-metrics
 critical-student-intervention-csi-identification
-metrics-adn-meaures
 models-and-methods
 tips-and-tricks
