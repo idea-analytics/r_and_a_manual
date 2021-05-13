@@ -332,11 +332,13 @@ For the fastest performance when working remotely it is best to directly access 
 
 
 ### Databases that R&A frquently uses. 
-```{r}
+```{r echo=FALSE}
 rna_dw_usage %>% filter(r_and_a_uses) %>% 
   select(server_name, database_name) %>% 
   distinct() %>% 
-  janitor::clean_names("title")
+  janitor::clean_names("title") %>% 
+  DT::datatable(filter = "top", rownames = FALSE)
+  
 ```
 : List of Windows Servers hosting SQLServer DBs and their IP Addresses
 
