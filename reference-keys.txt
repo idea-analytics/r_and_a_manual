@@ -8,6 +8,7 @@ about-research-and-analysis
 edison-coronado
 rodrigo-san-miguel
 chris-haid
+mishan-jensen-phd
 steven-macapagal
 data-access
 the-data-warehouse
