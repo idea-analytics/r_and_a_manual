@@ -198,9 +198,13 @@ Merging changes in your feature branch with the main branch requires you go to G
 *pull request*.  A pull request is essential asking the main branch to "pull" in your changes and is technically known as a merge..  So here are the steps.
 
 1. Go to the repo (https://github.com/idea-analytics/r_and_a_manual).  
-1. You may see an info box suggesting you can merge your branch.  If so, click on the link.  Otherwise the **Pull Requests** tab at the top of the page and then click the green **New Pull Request** button.
-1. In the gray bar at the top select the **second** drop down labelled `compare: main` and select your branch name. 
-1. ...
+1. You may see an info box suggesting you can merge your branch.  If so, click on the **Compare & pull request**  button.  If not select your branch and click the Pull Request icon. 
+1. If you are able to merge (you'll know) click the **Create pull request** button.
+1. Ask someone to review you request (ideally)
+1. Click the **Merge pull request button** and confimr the merge. 
+1. If you are done with our feature branch feel free to delete it. 
+
+You done!
 
 :::gotcha
 You'll want to be careful here if you are working with others. If you pulled your main branch donw a while ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
