@@ -18,6 +18,9 @@ server-table-and-field-lookup
 ip-addresses-of-current-servers
 databases-that-ra-frquently-uses.
 projects
+version-control-with-github
+getting-started-with-git-github-and-rstudio
+first-steps-from-happy-git-with-r
 project-process
 onboarding-via-wrike
 project-template-for-analyses
