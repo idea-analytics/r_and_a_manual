@@ -2,11 +2,56 @@
 
 Some _significant_ applications are demonstrated in this chapter.
 
+## Version control with Github
+
+All analysis projects need to be saved via Git (on your local computer) and pushed to Github.  Doing so has several benefits to both you, to your future self, and to your teammates:
+
+*  Since Git is a version control system, you get to save and track  changes in your work (data, source code, reports, PowerPoint decks, Shiny dashboards) incrementally.
+*  Incremental saving means you can recover from any accidental plunders. It's like Track Changes in Word, but for multiple files and folders.  Spill a Diet Coke on your laptop in the middle of a big analysis?  No big deal (if you've been pushing commits to Github, it'll all be there!)
+* Collaboration is much more structured, with powerful tools for asynchronous work and managing versions.
+* Referencing and reviewing code, tracking issues, and sharing what you've done is seamless, which means ...
+* Your work will be reproducible: anyone from R&A can pull your repo from Github, run your analyses, add to or edit what you've done, and share those changes back in a way that is communicative and documented. 
+* setting up web documentation for any R packages you build become seamless.
+
+But enough on the **why** let's get to **how** (if you do want to know more on the why, [check out this excellent article by Jenny Bryan](https://doi.org/10.7287/peerj.preprints.3159v2 ))
+
+### Getting Started with Git, Github, and RStudio
+
+Here's a quick overview of what you'll need to do, with details to follow:
+
+* Dedicate a directory (a.k.a “folder”) to it.
+* Make it an RStudio Project.
+* Make it a Git repository.
+* Go about your usual business. But instead of only saving individual files, periodically you make a commit, which takes a multi-file snapshot of the entire project.
+* Push commits to GitHub periodically.
+  * This is like sharing a document with colleagues on OneDrive or DropBox or sending it out as an email attachment. 
+  
+#### First steps (from _Happy git with R_)
+
+1. [Register for   GitHub account.](https://happygitwithr.com/github-acct.html#github-acct)
+1. [Install or update R and RStudio](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio)
+1. [Install Git](https://happygitwithr.com/install-git.html#install-git)
+  1.  Those on Windows will want [to do these steps as well](https://happygitwithr.com/shell.html#windows-shell-hell)
+1. [Introduce yourself to Git.](https://happygitwithr.com/hello-git.html#hello-git)
+1. [Prove local Git can talk to GitHub.](https://happygitwithr.com/push-pull-github.html#push-pull-github)
+1. [Cache your username and password](https://happygitwithr.com/credential-caching.html#credential-caching) so you don’t need to authenticate yourself to GitHub interactively ad nauseum.
+1. Create and save a [GitHub Personal Access Token (PAT)](https://happygitwithr.com/credential-caching.html#credential-caching).
+1. [Prove RStudio can find local Git and, therefore, can talk to GitHub](https://happygitwithr.com/rstudio-git-github.html#rstudio-git-github).
+
+
+  
+
+  
+
+
+
 ## Project Process
 Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
 
 ### Onboarding via Wrike
 Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+
+
 
 ### Project Template (for analyses)
 Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
