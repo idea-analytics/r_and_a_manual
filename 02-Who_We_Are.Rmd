@@ -14,5 +14,8 @@ Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in
 ## Chris Haid 
 Chris is the VP of Data Analytics 
 
+## Mishan Jensen, PhD
+Dr. Mishan Jensen is an Evaluator on IDEA’s Academic Services team with 4 years of experience in program evaluation in a large urban school district and 2 years of experience as a Statistician for the Texas Department of Public Safety. She holds a master’s and doctoral degree from the University of Texas at Austin in educational psychology, with a specialization in quantitative methods. Previous work included evaluating multilingual education, teacher appraisal programs, and integration of arts into the classroom. During her time at UT, Mishan assisted with the development of the College of Education’s first fully web-based Introduction to Statistics course, as well as provided assistant teaching support for most of the graduate level statistics courses offered.
+
 ## Steven Macapagal
-Steven Macapagal (aka Mac) is a statistician with R&A and a former math teacher at IDEA Frontier and IDEA Bluff Springs. He loves Dr. Pepper, baseball, and watching Shark Tank.
+Steven Macapagal (aka Mac) is a statistician with R&A and a former math teacher at IDEA Frontier and IDEA Bluff Springs. He loves Dr. Pepper, baseball, and watching Shark Tank
