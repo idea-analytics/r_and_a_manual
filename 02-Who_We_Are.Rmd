@@ -13,3 +13,6 @@ Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in
 
 ## Chris Haid 
 Chris is the VP of Data Analytics 
+
+## Steven Macapagal
+Steven Macapagal (aka Mac) is a statistician with R&A and a former math teacher at IDEA Frontier and IDEA Bluff Springs. He loves Dr. Pepper, baseball, and watching Shark Tank.
