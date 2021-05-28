@@ -75,7 +75,7 @@ But first things first:
 
 \*\*Note that throughout the steps below I'll show you how to each step Ok. Your ready? Great! Here we go.
 
-#### Get the  [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
+#### Get the [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
 
 1.  Go to [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repo in your browser.
 
@@ -85,39 +85,38 @@ But first things first:
 
 #### Clone the repo {.tabset}
 
-Now you'll pull the remote repo from Github onto you computer.  You'll want to think about where you want to save this.  For example I save data analysis projects in seperate folders under a `Data_Analysis/` folder.  I save the manual just on my one drive.  
+Now you'll pull the remote repo from Github onto you computer. You'll want to think about where you want to save this. For example I save data analysis projects in seperate folders under a `Data_Analysis/` folder. I save the manual just on my one drive.
 
 ##### Comand line
 
-Here I'm saving this to temporary space,  by navigating to `~/tmp/~` and then cloning the data:
+Here I'm saving this to temporary space, by navigating to `~/tmp/~` and then cloning the data:
+
 ```{bash cloning, eval=FALSE}
 cd ~/tmp/
 git clone https://github.com/idea-analytics/r_and_a_manual.git
 ```
+
 This will pull down all the content of the repo: files, folders, all commits, all branches. Really the whole kit and kaboodle.
 
 ##### RStudio
 
 Here's how you do it from RStudio:
 
-1. In RStudio, start a new Project: **File > New Project > Version Control > Git**, or click on project icon in the upper right-hand corner of the IDE and select **New Project...**.
-![](img/new_project_selection.png "Creating a new project")
-1. In the “repository URL” paste the URL of your new GitHub repository. That is: https://github.com/idea-analytics/r_and_a_manual.git
-1. Be intentional about where you create this project.
-1. You should click “Open in new session”.
-![](img/new_session_checkbox.png "Making sure you create a new session")
-1. Click **Create Project** to create a new directory, which will be all of these things:
+1.  In RStudio, start a new Project: **File \> New Project \> Version Control \> Git**, or click on project icon in the upper right-hand corner of the IDE and select **New Project...**. ![](img/new_project_selection.png "Creating a new project")
+2.  In the "repository URL" paste the URL of your new GitHub repository. That is: <https://github.com/idea-analytics/r_and_a_manual.git>
+3.  Be intentional about where you create this project.
+4.  You should click "Open in new session". ![](img/new_session_checkbox.png "Making sure you create a new session")
+5.  Click **Create Project** to create a new directory, which will be all of these things:
 
-  * a directory or “folder” on your computer
-  * a Git repository, linked to the remote GitHub repository
-  * an RStudio Project
+-   a directory or "folder" on your computer
+-   a Git repository, linked to the remote GitHub repository
+-   an RStudio Project
 
-Cool.  You should now have the R&A Manual files on repo history on your computer!
-
+Cool. You should now have the R&A Manual files on repo history on your computer!
 
 #### Checkout a branch
 
-*Before you start doing anything* you should check out a branch.  A branch is like your own, tempory, disposable workspace.  When you checkout a branch you create a new copy of the the repo and changes you make only happen on the branch.  When your happy with the changes and are ready to share them you'll to a pull request. But we'll get to that below. 
+*Before you start doing anything* you should check out a branch. A branch is like your own, tempory, disposable workspace. When you checkout a branch you create a new copy of the the repo and changes you make only happen on the branch. When your happy with the changes and are ready to share them you'll to a pull request. But we'll get to that below.
 
 ##### Command line
 
@@ -134,32 +133,27 @@ Or you can do both of those moves in one line by using `git checkout` with the `
 git checkout -b update-bio-cjh
 ```
 
-
-
 ##### RStudio
 
-1. Click on the *Git* panel (usually in the upper right on that standard RStudio layout, but YMMV if you've customized your layouts).
-2. Click on the purple "branch" icon (it kinda looks like a piece of a flowchart).
-![](img/rstduio_create_branch.png "Creating a branch in RStudio")
-3. Giving a short but meaningful name (something like, `update-bio-cjh`).  Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.  
-
+1.  Click on the *Git* panel (usually in the upper right on that standard RStudio layout, but YMMV if you've customized your layouts).
+2.  Click on the purple "branch" icon (it kinda looks like a piece of a flowchart). ![](img/rstduio_create_branch.png "Creating a branch in RStudio")
+3.  Giving a short but meaningful name (something like, `update-bio-cjh`). Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.
 
 #### Making changes and saving them
 
-You now on a new branch and go go makes some changes.  Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would 
+You now on a new branch and go go makes some changes. Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would
 
-Now you'll want to commit those changes, which takes a snapshot of the current state on the branch you are working on.  
+Now you'll want to commit those changes, which takes a snapshot of the current state on the branch you are working on.
 
 #### Command line
 
-after saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did. 
+after saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
 
 ```{bash commit, eval=FALSE}
 git commit -a -m "Updated Chris's bio"
 ```
 
-You should do this often.  After a while you'll want to push your changes up to Github (frequently, but not as often as commits):
-
+You should do this often. After a while you'll want to push your changes up to Github (frequently, but not as often as commits):
 
 ```{bash push, eval = FALSE}
 git push
@@ -174,39 +168,34 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin update-bio-cjh
 ```
 
-Go ahead and copy and run that command.  
+Go ahead and copy and run that command.
 
 ```{bash, eval=FALSE}
 git push --set-upstream origin update-bio-cjh
 ```
 
-
-After that you can just use `git push` and you'll branch changes will be saved remotely. 
+After that you can just use `git push` and you'll branch changes will be saved remotely.
 
 #### RStudio
 
-1. In your git panel you see changed (or new) files show up.  You'll want to select the checkbox for any file that's been modifed (inicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit:
-![](img/rstudio_git_staged.png)
-1. Click the commit button and new diaglogeu box will open, which will show any changes you've made in an y file.  Select the checkbos for staged, if isn't already selected, add a commit message and click **Commit**
-![](img/rstudio_commit.png)
-1. When your ready to save those to the repo, simply press the *Push* button.
+1.  In your git panel you see changed (or new) files show up. You'll want to select the check box for any file that's been modified (indicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit: ![](img/rstudio_git_staged.png)
+2.  Click the commit button and new dialog box will open, which will show any changes you've made in an y file. Select the check box for staged, if isn't already selected, add a commit message and click **Commit** ![](img/rstudio_commit.png)
+3.  When your ready to save those to the repo, simply press the *Push* button.
 
+#### Merging changes.
 
-#### Merging changes. 
+Merging changes in your feature branch with the main branch requires you go to Github and to a *pull request*. A pull request is essential asking the main branch to "pull" in your changes and is technically known as a merge.. So here are the steps.
 
-Merging changes in your feature branch with the main branch requires you go to Github and to a 
-*pull request*.  A pull request is essential asking the main branch to "pull" in your changes and is technically known as a merge..  So here are the steps.
-
-1. Go to the repo (https://github.com/idea-analytics/r_and_a_manual).  
-1. You may see an info box suggesting you can merge your branch.  If so, click on the **Compare & pull request**  button.  If not select your branch and click the Pull Request icon. 
-1. If you are able to merge (you'll know) click the **Create pull request** button.
-1. Ask someone to review you request (ideally)
-1. Click the **Merge pull request button** and confirm the merge. 
-1. If you are done with our feature branch feel free to delete it. 
+1.  Go to the repo (<https://github.com/idea-analytics/r_and_a_manual>).\
+2.  You may see an info box suggesting you can merge your branch. If so, click on the **Compare & pull request** button. If not select your branch and click the Pull Request icon.
+3.  If you are able to merge (you'll know) click the **Create pull request** button.
+4.  Ask someone to review you request (ideally)
+5.  Click the **Merge pull request button** and confirm the merge.
+6.  If you are done with our feature branch feel free to delete it.
 
 You done!
 
-:::gotcha
+::: {.gotcha}
 You'll want to be careful here if you are working with others. If you pulled your main branch down a while ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
 
 The best remedy is to checkout and pull main---which gets up to date---and then checkout your branch and run `git merge main`. You may have to resolve conflicts.
@@ -220,9 +209,91 @@ Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in
 
 Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
 
-### Project Template (for analyses)
+## ProjectTemplate (for analyses)
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+[ProjectTempalate](http://projecttemplate.net/) is both an R package and an approach. Simply put, it's a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use `renv` for that), and seperating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.
+
+Is it perfect? No. It has more features than we'll likely ever use (logging, code profiling, and unit testing).
+
+::: {.tip}
+IF you are new to ProjectTemplate the [Getting Started Tutorial is great](http://projecttemplate.net/getting_started.html). Indeed, it's always good to [read the docs](https://tyk.io/wp-content/webp-express/webp-images/uploads/2017/06/documentation_matrix.jpg.webp)
+:::
+
+Seriously, though. The [ProjectTemplate documentation](http://projecttemplate.net/) is great and you should really set aside an hour to read through it. This manual will provide a very abbreviated overview of how to use ProjectTemplate at IDEA, but will not be a stand in for the official documentation.
+
+### Installing ProjectTemplate
+
+Installing the package is straightforward
+
+```{r install_pt, eval=FALSE}
+install.packages("ProjectTemplate")
+```
+
+### Creating a project with ProjectTemplate
+
+Creating a project is pretty simple. Navigate to where you typically save projects vai RStudio and then run the following commands
+
+```{r create-poject, eval=FALSE}
+library(ProjectTemplate)
+create.project("learning-pt")
+```
+
+Doing that bestows upon you the following directory structure:
+
+![ProjectTemplate Directory Structure](img/learning-pt-directory-structure.png "ProjectTemplate Directory Structure")
+
+:::gotcha
+You'll notice in the image above that there is `.Rproj` file, which isn't added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following
+
+`create.project("../learning-pt/", merge.strategy = "allow.non.conflict")`,
+
+which allows you to scaffold ProjectTemplate in an existing directory while ignoring any existing files and folders (usually *.Rproj and .git).
+:::
+
+### What goes where
+
+We only use about half of the directories that ProjectTemplate Scaffolds.  Here's what we use ,in the order it's evaluated by ProjectTemplate when you run `load.project()`:
+
+**config**
+This directory contains the configuration file `global.dcf`.  This is the first thing that `load.project()` looks at. The [fill list of what each setting does is here](http://projecttemplate.net/configuring.html).  Here are a few highlights, in thier order of importance.
+
+
+* `load_libraries`: This can be set to ‘on’ or ‘off’. If `load_libraries` is on, the system will load all of the R packages listed in the libraries field described below. By default, `load_libraries` is off. *I highly recommend that you turn this on*
+* 'libraries': This is a comma separated list of all the R packages that the user wants to automatically load when `load.project()` is called. These packages must already be installed before calling `load.project()`. By default, the reshape2, plyr, tidyverse, stringr and lubridate packages are included in this list. *I recommend dropping these and only adding packages you are using for the project*. 
+* `data_loading`: This can be set to ‘on’ or ‘off’. If data_loading is on, the system will load data from both the cache and data directories with cache taking precedence in the case of name conflict. By default, `data_loading` is on.
+*  `cache_loading`: This can be set to ‘on’ or ‘off’. If `cache_loading` is on, the system will load data from the cache directory before any attempt to load from the data directory. By default, `cache_loading` is on.
+* `munging`: This can be set to ‘on’ or ‘off’. If `munging` is on, the system will execute the files in the `munge` directory sequentially using the order implied by the `sort()` function. If `munging` is off, none of the files in the `munge` directory will be executed. By default, `munging` is on.
+* `as_factors`: This can be set to ‘on’ or ‘off’. If `as_factors` is on, the system will convert every character vector into a factor when creating data frames; most importantly, this automatic conversion occurs when reading in data automatically. If ‘off’, character vectors will remain character vectors. By default, `as_factors` is off. *This is a very good default, and the opposite of base R. 
+
+**lib**: this directory is used to house helper functions.  You can store them in an `*.R` file (like the included `helpers.R` file). ** As a general rule of thumb, if you've copied-and-pasted a block of code twice, don't do it a third time; rather, abstract that block into a function and save it in this directory.  `load.project` sources the files in this directory after readying `global.dcf`. 
+
+**cache**: Here you’ll store any data sets that (i) are generated during a preprocessing step and (ii) don’t need to be regenerated every single time you analyze your data. You can use the `cache()` function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate’s priority rules.  ProjectTemplate always checks this before running code in the `data/` and `munge/`. directories. You can [learn more about caching here](http://projecttemplate.net/caching.html).
+
+**data**: You store your raw data files here. If they are encoded [in a supported file format](http://projecttemplate.net/file_formats.html), they’ll automatically be loaded when you call `load.project()`, *unless cached versions of their output exist in the `cache/` directory. 
+
+**munge**: Here you can store any preprocessing or "data munging" code for your project. For example, if you need to add columns at runtime, merge normalized data set,s or globally censor any data points, that code should be stored in the `munge` directory. The preprocessing scripts stored in `munge` will be executed in alphabetical order when you call `load.project()`, *so you should prepend numbers (to digit like `01-aggregate_schools`, `02-calc-means`, ...) to the filenames to indicate their sequential order.*. Files in here are run after those in `cache/` and `data/` are loaded.
+
+**reports**: Here you can store any output reports, especially RMarkdown reports, that you produce.  This is where final reports live
+
+:::gotcha
+ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`.  The biggest issue is running `load.project()` inside of RMarkdown.  ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying.  It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
+
+`setwd(here::here); load.project()`
+
+This will change the working directory to the top of project and then run `load.project`.  After the project is loaded `knitr` will set the working directory back to `reports/`, so all other file references should be relative to `reports/`
+:::
+
+**src**: Here you’ll store your  statistical analysis and mahcine scripts. You should add the following piece of code to the start of each analysis script: `library('ProjectTemplate); load.project()` (you don't need the tip above here). You should also do your best to ensure that any code that’s shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel.  You may want to `cache()` your results here as well. 
+
+**graphs**: Here you can store any graphs or PowerPoints that you produce, with the exception of those already contained in RMarkdown files. 
+
+
+
+
+
+
+
+
 
 ### Project publication
 
