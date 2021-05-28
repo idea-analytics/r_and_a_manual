@@ -201,13 +201,13 @@ Merging changes in your feature branch with the main branch requires you go to G
 1. You may see an info box suggesting you can merge your branch.  If so, click on the **Compare & pull request**  button.  If not select your branch and click the Pull Request icon. 
 1. If you are able to merge (you'll know) click the **Create pull request** button.
 1. Ask someone to review you request (ideally)
-1. Click the **Merge pull request button** and confimr the merge. 
+1. Click the **Merge pull request button** and confirm the merge. 
 1. If you are done with our feature branch feel free to delete it. 
 
 You done!
 
 :::gotcha
-You'll want to be careful here if you are working with others. If you pulled your main branch donw a while ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
+You'll want to be careful here if you are working with others. If you pulled your main branch down a while ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
 
 The best remedy is to checkout and pull main---which gets up to date---and then checkout your branch and run `git merge main`. You may have to resolve conflicts.
 :::
