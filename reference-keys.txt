@@ -38,7 +38,10 @@ rstudio-2
 merging-changes.
 project-process
 onboarding-via-wrike
-project-template-for-analyses
+projecttemplate-for-analyses
+installing-projecttemplate
+creating-a-project-with-projecttemplate
+what-goes-where
 project-publication
 project-lists
 recurring-projects

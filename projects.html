@@ -179,12 +179,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="projects.html"><a href="projects.html#project-process"><i class="fa fa-check"></i><b>4.2</b> Project Process</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="projects.html"><a href="projects.html#onboarding-via-wrike"><i class="fa fa-check"></i><b>4.2.1</b> Onboarding via Wrike</a></li>
-<li class="chapter" data-level="4.2.2" data-path="projects.html"><a href="projects.html#project-template-for-analyses"><i class="fa fa-check"></i><b>4.2.2</b> Project Template (for analyses)</a></li>
-<li class="chapter" data-level="4.2.3" data-path="projects.html"><a href="projects.html#project-publication"><i class="fa fa-check"></i><b>4.2.3</b> Project publication</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="projects.html"><a href="projects.html#project-lists"><i class="fa fa-check"></i><b>4.3</b> Project lists</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="projects.html"><a href="projects.html#recurring-projects"><i class="fa fa-check"></i><b>4.3.1</b> Recurring Projects</a></li>
-<li class="chapter" data-level="4.3.2" data-path="projects.html"><a href="projects.html#special-i.e.-ad-hoc-projects"><i class="fa fa-check"></i><b>4.3.2</b> Special (i.e., Ad-hoc) Projects</a></li>
+<li class="chapter" data-level="4.3" data-path="projects.html"><a href="projects.html#projecttemplate-for-analyses"><i class="fa fa-check"></i><b>4.3</b> ProjectTemplate (for analyses)</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="projects.html"><a href="projects.html#installing-projecttemplate"><i class="fa fa-check"></i><b>4.3.1</b> Installing ProjectTemplate</a></li>
+<li class="chapter" data-level="4.3.2" data-path="projects.html"><a href="projects.html#creating-a-project-with-projecttemplate"><i class="fa fa-check"></i><b>4.3.2</b> Creating a project with ProjectTemplate</a></li>
+<li class="chapter" data-level="4.3.3" data-path="projects.html"><a href="projects.html#what-goes-where"><i class="fa fa-check"></i><b>4.3.3</b> What goes where</a></li>
+<li class="chapter" data-level="4.3.4" data-path="projects.html"><a href="projects.html#project-publication"><i class="fa fa-check"></i><b>4.3.4</b> Project publication</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="projects.html"><a href="projects.html#project-lists"><i class="fa fa-check"></i><b>4.4</b> Project lists</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="projects.html"><a href="projects.html#recurring-projects"><i class="fa fa-check"></i><b>4.4.1</b> Recurring Projects</a></li>
+<li class="chapter" data-level="4.4.2" data-path="projects.html"><a href="projects.html#special-i.e.-ad-hoc-projects"><i class="fa fa-check"></i><b>4.4.2</b> Special (i.e., Ad-hoc) Projects</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="coding-standards.html"><a href="coding-standards.html"><i class="fa fa-check"></i><b>5</b> Coding Standards</a></li>
@@ -310,12 +314,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><span class="header-section-number">4.1.3.2.2</span> RStudio</h5>
 <p>Here’s how you do it from RStudio:</p>
 <ol style="list-style-type: decimal">
-<li>In RStudio, start a new Project: <strong>File &gt; New Project &gt; Version Control &gt; Git</strong>, or click on project icon in the upper right-hand corner of the IDE and select <strong>New Project…</strong>.
-<img src="img/new_project_selection.png" title="Creating a new project" /></li>
+<li>In RStudio, start a new Project: <strong>File &gt; New Project &gt; Version Control &gt; Git</strong>, or click on project icon in the upper right-hand corner of the IDE and select <strong>New Project…</strong>. <img src="img/new_project_selection.png" title="Creating a new project" /></li>
 <li>In the “repository URL” paste the URL of your new GitHub repository. That is: <a href="https://github.com/idea-analytics/r_and_a_manual.git" class="uri">https://github.com/idea-analytics/r_and_a_manual.git</a></li>
 <li>Be intentional about where you create this project.</li>
-<li>You should click “Open in new session”.
-<img src="img/new_session_checkbox.png" title="Making sure you create a new session" /></li>
+<li>You should click “Open in new session”. <img src="img/new_session_checkbox.png" title="Making sure you create a new session" /></li>
 <li>Click <strong>Create Project</strong> to create a new directory, which will be all of these things:</li>
 </ol>
 <ul>
@@ -341,8 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><span class="header-section-number">4.1.3.3.2</span> RStudio</h5>
 <ol style="list-style-type: decimal">
 <li>Click on the <em>Git</em> panel (usually in the upper right on that standard RStudio layout, but YMMV if you’ve customized your layouts).</li>
-<li>Click on the purple “branch” icon (it kinda looks like a piece of a flowchart).
-<img src="img/rstduio_create_branch.png" title="Creating a branch in RStudio" /></li>
+<li>Click on the purple “branch” icon (it kinda looks like a piece of a flowchart). <img src="img/rstduio_create_branch.png" title="Creating a branch in RStudio" /></li>
 <li>Giving a short but meaningful name (something like, <code>update-bio-cjh</code>). Make sure the <strong>Sync branch with remote</strong> checkbox is selected; this will save you a step later when you push you changes up to the repo.</li>
 </ol>
 </div>
@@ -370,17 +371,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rstudio-2" class="section level4">
 <h4><span class="header-section-number">4.1.3.6</span> RStudio</h4>
 <ol style="list-style-type: decimal">
-<li>In your git panel you see changed (or new) files show up. You’ll want to select the checkbox for any file that’s been modifed (inicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit:
-<img src="img/rstudio_git_staged.png" /></li>
-<li>Click the commit button and new diaglogeu box will open, which will show any changes you’ve made in an y file. Select the checkbos for staged, if isn’t already selected, add a commit message and click <strong>Commit</strong>
-<img src="img/rstudio_commit.png" /></li>
+<li>In your git panel you see changed (or new) files show up. You’ll want to select the check box for any file that’s been modified (indicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit: <img src="img/rstudio_git_staged.png" /></li>
+<li>Click the commit button and new dialog box will open, which will show any changes you’ve made in an y file. Select the check box for staged, if isn’t already selected, add a commit message and click <strong>Commit</strong> <img src="img/rstudio_commit.png" /></li>
 <li>When your ready to save those to the repo, simply press the <em>Push</em> button.</li>
 </ol>
 </div>
 <div id="merging-changes." class="section level4">
 <h4><span class="header-section-number">4.1.3.7</span> Merging changes.</h4>
-<p>Merging changes in your feature branch with the main branch requires you go to Github and to a
-<em>pull request</em>. A pull request is essential asking the main branch to “pull” in your changes and is technically known as a merge.. So here are the steps.</p>
+<p>Merging changes in your feature branch with the main branch requires you go to Github and to a <em>pull request</em>. A pull request is essential asking the main branch to “pull” in your changes and is technically known as a merge.. So here are the steps.</p>
 <ol style="list-style-type: decimal">
 <li>Go to the repo (<a href="https://github.com/idea-analytics/r_and_a_manual" class="uri">https://github.com/idea-analytics/r_and_a_manual</a>).<br />
 </li>
@@ -405,24 +403,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.2.1</span> Onboarding via Wrike</h3>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 </div>
-<div id="project-template-for-analyses" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Project Template (for analyses)</h3>
-<p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
+</div>
+<div id="projecttemplate-for-analyses" class="section level2">
+<h2><span class="header-section-number">4.3</span> ProjectTemplate (for analyses)</h2>
+<p><a href="http://projecttemplate.net/">ProjectTempalate</a> is both an R package and an approach. Simply put, it’s a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use <code>renv</code> for that), and seperating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.</p>
+<p>Is it perfect? No. It has more features than we’ll likely ever use (logging, code profiling, and unit testing).</p>
+<div class="tip">
+<p>IF you are new to ProjectTemplate the <a href="http://projecttemplate.net/getting_started.html">Getting Started Tutorial is great</a>. Indeed, it’s always good to <a href="https://tyk.io/wp-content/webp-express/webp-images/uploads/2017/06/documentation_matrix.jpg.webp">read the docs</a></p>
+</div>
+<p>Seriously, though. The <a href="http://projecttemplate.net/">ProjectTemplate documentation</a> is great and you should really set aside an hour to read through it. This manual will provide a very abbreviated overview of how to use ProjectTemplate at IDEA, but will not be a stand in for the official documentation.</p>
+<div id="installing-projecttemplate" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Installing ProjectTemplate</h3>
+<p>Installing the package is straightforward</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="projects.html#cb8-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;ProjectTemplate&quot;</span>)</span></code></pre></div>
+</div>
+<div id="creating-a-project-with-projecttemplate" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Creating a project with ProjectTemplate</h3>
+<p>Creating a project is pretty simple. Navigate to where you typically save projects vai RStudio and then run the following commands</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="projects.html#cb9-1"></a><span class="kw">library</span>(ProjectTemplate)</span>
+<span id="cb9-2"><a href="projects.html#cb9-2"></a><span class="kw">create.project</span>(<span class="st">&quot;learning-pt&quot;</span>)</span></code></pre></div>
+<p>Doing that bestows upon you the following directory structure:</p>
+<div class="figure">
+<img src="img/learning-pt-directory-structure.png" title="ProjectTemplate Directory Structure" alt="" />
+<p class="caption">ProjectTemplate Directory Structure</p>
+</div>
+<div class="gotcha">
+<p>You’ll notice in the image above that there is <code>.Rproj</code> file, which isn’t added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following</p>
+<p><code>create.project("../learning-pt/", merge.strategy = "allow.non.conflict")</code>,</p>
+<p>which allows you to scaffold ProjectTemplate in an existing directory while ignoring any existing files and folders (usually *.Rproj and .git).</p>
+</div>
+</div>
+<div id="what-goes-where" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> What goes where</h3>
+<p>We only use about half of the directories that ProjectTemplate Scaffolds. Here’s what we use ,in the order it’s evaluated by ProjectTemplate when you run <code>load.project()</code>:</p>
+<p><strong>config</strong>
+This directory contains the configuration file <code>global.dcf</code>. This is the first thing that <code>load.project()</code> looks at. The <a href="http://projecttemplate.net/configuring.html">fill list of what each setting does is here</a>. Here are a few highlights, in thier order of importance.</p>
+<ul>
+<li><code>load_libraries</code>: This can be set to ‘on’ or ‘off’. If <code>load_libraries</code> is on, the system will load all of the R packages listed in the libraries field described below. By default, <code>load_libraries</code> is off. <em>I highly recommend that you turn this on</em></li>
+<li>‘libraries’: This is a comma separated list of all the R packages that the user wants to automatically load when <code>load.project()</code> is called. These packages must already be installed before calling <code>load.project()</code>. By default, the reshape2, plyr, tidyverse, stringr and lubridate packages are included in this list. <em>I recommend dropping these and only adding packages you are using for the project</em>.</li>
+<li><code>data_loading</code>: This can be set to ‘on’ or ‘off’. If data_loading is on, the system will load data from both the cache and data directories with cache taking precedence in the case of name conflict. By default, <code>data_loading</code> is on.</li>
+<li><code>cache_loading</code>: This can be set to ‘on’ or ‘off’. If <code>cache_loading</code> is on, the system will load data from the cache directory before any attempt to load from the data directory. By default, <code>cache_loading</code> is on.</li>
+<li><code>munging</code>: This can be set to ‘on’ or ‘off’. If <code>munging</code> is on, the system will execute the files in the <code>munge</code> directory sequentially using the order implied by the <code>sort()</code> function. If <code>munging</code> is off, none of the files in the <code>munge</code> directory will be executed. By default, <code>munging</code> is on.</li>
+<li><code>as_factors</code>: This can be set to ‘on’ or ‘off’. If <code>as_factors</code> is on, the system will convert every character vector into a factor when creating data frames; most importantly, this automatic conversion occurs when reading in data automatically. If ‘off’, character vectors will remain character vectors. By default, <code>as_factors</code> is off. *This is a very good default, and the opposite of base R.</li>
+</ul>
+<p><strong>lib</strong>: this directory is used to house helper functions. You can store them in an <code>*.R</code> file (like the included <code>helpers.R</code> file). ** As a general rule of thumb, if you’ve copied-and-pasted a block of code twice, don’t do it a third time; rather, abstract that block into a function and save it in this directory. <code>load.project</code> sources the files in this directory after readying <code>global.dcf</code>.</p>
+<p><strong>cache</strong>: Here you’ll store any data sets that (i) are generated during a preprocessing step and (ii) don’t need to be regenerated every single time you analyze your data. You can use the <code>cache()</code> function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate’s priority rules. ProjectTemplate always checks this before running code in the <code>data/</code> and <code>munge/</code>. directories. You can <a href="http://projecttemplate.net/caching.html">learn more about caching here</a>.</p>
+<p><strong>data</strong>: You store your raw data files here. If they are encoded <a href="http://projecttemplate.net/file_formats.html">in a supported file format</a>, they’ll automatically be loaded when you call <code>load.project()</code>, *unless cached versions of their output exist in the <code>cache/</code> directory.</p>
+<p><strong>munge</strong>: Here you can store any preprocessing or “data munging” code for your project. For example, if you need to add columns at runtime, merge normalized data set,s or globally censor any data points, that code should be stored in the <code>munge</code> directory. The preprocessing scripts stored in <code>munge</code> will be executed in alphabetical order when you call <code>load.project()</code>, <em>so you should prepend numbers (to digit like <code>01-aggregate_schools</code>, <code>02-calc-means</code>, …) to the filenames to indicate their sequential order.</em>. Files in here are run after those in <code>cache/</code> and <code>data/</code> are loaded.</p>
+<p><strong>reports</strong>: Here you can store any output reports, especially RMarkdown reports, that you produce. This is where final reports live</p>
+<div class="gotcha">
+<p>ProjectTemplate doesn’t always play well with RMarkdown (well, really the issue is with <code>knitr</code>. The biggest issue is running <code>load.project()</code> inside of RMarkdown. ProjectTemplate will complain that your <code>reports/</code> directory is not a ProjectTemplate directory, which is annoying. It’s easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:</p>
+<p><code>setwd(here::here); load.project()</code></p>
+<p>This will change the working directory to the top of project and then run <code>load.project</code>. After the project is loaded <code>knitr</code> will set the working directory back to <code>reports/</code>, so all other file references should be relative to <code>reports/</code></p>
+</div>
+<p><strong>src</strong>: Here you’ll store your statistical analysis and mahcine scripts. You should add the following piece of code to the start of each analysis script: <code>library('ProjectTemplate); load.project()</code> (you don’t need the tip above here). You should also do your best to ensure that any code that’s shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel. You may want to <code>cache()</code> your results here as well.</p>
+<p><strong>graphs</strong>: Here you can store any graphs or PowerPoints that you produce, with the exception of those already contained in RMarkdown files.</p>
 </div>
 <div id="project-publication" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> Project publication</h3>
+<h3><span class="header-section-number">4.3.4</span> Project publication</h3>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 </div>
 </div>
 <div id="project-lists" class="section level2">
-<h2><span class="header-section-number">4.3</span> Project lists</h2>
+<h2><span class="header-section-number">4.4</span> Project lists</h2>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 <div id="recurring-projects" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> Recurring Projects</h3>
+<h3><span class="header-section-number">4.4.1</span> Recurring Projects</h3>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 </div>
 <div id="special-i.e.-ad-hoc-projects" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Special (i.e., Ad-hoc) Projects</h3>
+<h3><span class="header-section-number">4.4.2</span> Special (i.e., Ad-hoc) Projects</h3>
 <p>Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.</p>
 
 </div>
