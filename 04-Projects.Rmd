@@ -278,7 +278,7 @@ This directory contains the configuration file `global.dcf`.  This is the first 
 :::gotcha
 ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`.  The biggest issue is running `load.project()` inside of RMarkdown.  ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying.  It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
 
-`setwd(here::here); load.project()`
+`setwd(here::here()); load.project()`
 
 This will change the working directory to the top of project and then run `load.project`.  After the project is loaded `knitr` will set the working directory back to `reports/`, so all other file references should be relative to `reports/`
 :::
