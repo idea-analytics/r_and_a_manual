@@ -2,7 +2,7 @@
 
 Some *significant* applications are demonstrated in this chapter.
 
-## Version control with Github
+## Version control with Github {#section-github}
 
 All analysis projects need to be saved via Git (on your local computer) and pushed to Github. Doing so has several benefits to both you, to your future self, and to your teammates:
 
@@ -209,9 +209,9 @@ Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in
 
 Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
 
-## ProjectTemplate (for analyses)
+## ProjectTemplate (for analyses) {#section-ProjectTemplate}
 
-[ProjectTempalate](http://projecttemplate.net/) is both an R package and an approach. Simply put, it's a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use `renv` for that), and seperating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.
+[ProjectTempalate](http://projecttemplate.net/) is both an R package and an approach. Simply put, it's a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use `renv` for that), and separating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.
 
 Is it perfect? No. It has more features than we'll likely ever use (logging, code profiling, and unit testing).
 
@@ -242,71 +242,142 @@ Doing that bestows upon you the following directory structure:
 
 ![ProjectTemplate Directory Structure](img/learning-pt-directory-structure.png "ProjectTemplate Directory Structure")
 
-:::gotcha
+::: {.gotcha}
 You'll notice in the image above that there is `.Rproj` file, which isn't added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following
 
 `create.project("../learning-pt/", merge.strategy = "allow.non.conflict")`,
 
-which allows you to scaffold ProjectTemplate in an existing directory while ignoring any existing files and folders (usually *.Rproj and .git).
+which allows you to scaffold ProjectTemplate in an existing directory while ignoring any existing files and folders (usually \*.Rproj and .git).
 :::
 
 ### What goes where
 
-We only use about half of the directories that ProjectTemplate Scaffolds.  Here's what we use ,in the order it's evaluated by ProjectTemplate when you run `load.project()`:
+We only use about half of the directories that ProjectTemplate Scaffolds. Here's what we use ,in the order it's evaluated by ProjectTemplate when you run `load.project()`:
 
-**config**
-This directory contains the configuration file `global.dcf`.  This is the first thing that `load.project()` looks at. The [fill list of what each setting does is here](http://projecttemplate.net/configuring.html).  Here are a few highlights, in thier order of importance.
+**config** This directory contains the configuration file `global.dcf`. This is the first thing that `load.project()` looks at. The [fill list of what each setting does is here](http://projecttemplate.net/configuring.html). Here are a few highlights, in thier order of importance.
 
+-   `load_libraries`: This can be set to 'on' or 'off'. If `load_libraries` is on, the system will load all of the R packages listed in the libraries field described below. By default, `load_libraries` is off. *I highly recommend that you turn this on*
+-   'libraries': This is a comma separated list of all the R packages that the user wants to automatically load when `load.project()` is called. These packages must already be installed before calling `load.project()`. By default, the reshape2, plyr, tidyverse, stringr and lubridate packages are included in this list. *I recommend dropping these and only adding packages you are using for the project*.
+-   `data_loading`: This can be set to 'on' or 'off'. If data_loading is on, the system will load data from both the cache and data directories with cache taking precedence in the case of name conflict. By default, `data_loading` is on.
+-   `cache_loading`: This can be set to 'on' or 'off'. If `cache_loading` is on, the system will load data from the cache directory before any attempt to load from the data directory. By default, `cache_loading` is on.
+-   `munging`: This can be set to 'on' or 'off'. If `munging` is on, the system will execute the files in the `munge` directory sequentially using the order implied by the `sort()` function. If `munging` is off, none of the files in the `munge` directory will be executed. By default, `munging` is on.
+-   `as_factors`: This can be set to 'on' or 'off'. If `as_factors` is on, the system will convert every character vector into a factor when creating data frames; most importantly, this automatic conversion occurs when reading in data automatically. If 'off', character vectors will remain character vectors. By default, `as_factors` is off. \*This is a very good default, and the opposite of base R.
 
-* `load_libraries`: This can be set to ‘on’ or ‘off’. If `load_libraries` is on, the system will load all of the R packages listed in the libraries field described below. By default, `load_libraries` is off. *I highly recommend that you turn this on*
-* 'libraries': This is a comma separated list of all the R packages that the user wants to automatically load when `load.project()` is called. These packages must already be installed before calling `load.project()`. By default, the reshape2, plyr, tidyverse, stringr and lubridate packages are included in this list. *I recommend dropping these and only adding packages you are using for the project*. 
-* `data_loading`: This can be set to ‘on’ or ‘off’. If data_loading is on, the system will load data from both the cache and data directories with cache taking precedence in the case of name conflict. By default, `data_loading` is on.
-*  `cache_loading`: This can be set to ‘on’ or ‘off’. If `cache_loading` is on, the system will load data from the cache directory before any attempt to load from the data directory. By default, `cache_loading` is on.
-* `munging`: This can be set to ‘on’ or ‘off’. If `munging` is on, the system will execute the files in the `munge` directory sequentially using the order implied by the `sort()` function. If `munging` is off, none of the files in the `munge` directory will be executed. By default, `munging` is on.
-* `as_factors`: This can be set to ‘on’ or ‘off’. If `as_factors` is on, the system will convert every character vector into a factor when creating data frames; most importantly, this automatic conversion occurs when reading in data automatically. If ‘off’, character vectors will remain character vectors. By default, `as_factors` is off. *This is a very good default, and the opposite of base R. 
+**lib**: this directory is used to house helper functions. You can store them in an `*.R` file (like the included `helpers.R` file). \*\* As a general rule of thumb, if you've copied-and-pasted a block of code twice, don't do it a third time; rather, abstract that block into a function and save it in this directory. `load.project` sources the files in this directory after readying `global.dcf`.
 
-**lib**: this directory is used to house helper functions.  You can store them in an `*.R` file (like the included `helpers.R` file). ** As a general rule of thumb, if you've copied-and-pasted a block of code twice, don't do it a third time; rather, abstract that block into a function and save it in this directory.  `load.project` sources the files in this directory after readying `global.dcf`. 
+**cache**: Here you'll store any data sets that (i) are generated during a preprocessing step and (ii) don't need to be regenerated every single time you analyze your data. You can use the `cache()` function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate's priority rules. ProjectTemplate always checks this before running code in the `data/` and `munge/`. directories. You can [learn more about caching here](http://projecttemplate.net/caching.html).
 
-**cache**: Here you’ll store any data sets that (i) are generated during a preprocessing step and (ii) don’t need to be regenerated every single time you analyze your data. You can use the `cache()` function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate’s priority rules.  ProjectTemplate always checks this before running code in the `data/` and `munge/`. directories. You can [learn more about caching here](http://projecttemplate.net/caching.html).
-
-**data**: You store your raw data files here. If they are encoded [in a supported file format](http://projecttemplate.net/file_formats.html), they’ll automatically be loaded when you call `load.project()`, *unless cached versions of their output exist in the `cache/` directory. 
+**data**: You store your raw data files here. If they are encoded [in a supported file format](http://projecttemplate.net/file_formats.html), they'll automatically be loaded when you call `load.project()`, \*unless cached versions of their output exist in the `cache/` directory.
 
 **munge**: Here you can store any preprocessing or "data munging" code for your project. For example, if you need to add columns at runtime, merge normalized data set,s or globally censor any data points, that code should be stored in the `munge` directory. The preprocessing scripts stored in `munge` will be executed in alphabetical order when you call `load.project()`, *so you should prepend numbers (to digit like `01-aggregate_schools`, `02-calc-means`, ...) to the filenames to indicate their sequential order.*. Files in here are run after those in `cache/` and `data/` are loaded.
 
-**reports**: Here you can store any output reports, especially RMarkdown reports, that you produce.  This is where final reports live
+**reports**: Here you can store any output reports, especially RMarkdown reports, that you produce. This is where final reports live
 
-:::gotcha
-ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`.  The biggest issue is running `load.project()` inside of RMarkdown.  ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying.  It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
+::: {.gotcha}
+ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`. The biggest issue is running `load.project()` inside of RMarkdown. ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying. It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
 
 `setwd(here::here()); load.project()`
 
-This will change the working directory to the top of project and then run `load.project`.  After the project is loaded `knitr` will set the working directory back to `reports/`, so all other file references should be relative to `reports/`
+This will change the working directory to the top of project and then run `load.project`. After the project is loaded `knitr` will set the working directory back to `reports/`, so all other file references should be relative to `reports/`
 :::
 
-**src**: Here you’ll store your  statistical analysis and mahcine scripts. You should add the following piece of code to the start of each analysis script: `library('ProjectTemplate); load.project()` (you don't need the tip above here). You should also do your best to ensure that any code that’s shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel.  You may want to `cache()` your results here as well. 
+**src**: Here you'll store your statistical analysis and mahcine scripts. You should add the following piece of code to the start of each analysis script: `library('ProjectTemplate); load.project()` (you don't need the tip above here). You should also do your best to ensure that any code that's shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel. You may want to `cache()` your results here as well.
 
-**graphs**: Here you can store any graphs or PowerPoints that you produce, with the exception of those already contained in RMarkdown files. 
+**graphs**: Here you can store any graphs or PowerPoints that you produce, with the exception of those already contained in RMarkdown files.
 
+## The `renv` package: Ensuring reproducibility
 
+The [`renv` package](https://rstudio.github.io/renv/) goes a long way to solving a pernicious problem: Dependency Hell. Here's a good description of the problem:
 
+[![Definition of dependency hell](img/dependency_hell.jpeg "renv helps avoid this"){width="447"}](https://arxiv.org/pdf/1410.0846.pdf)
 
+This problem most manifest when you revisit a recurring project a year later. You updated some year variables in your code and rerun your code and ready to pat yourself on the back and then BAM! Your code breaks. It breaks because over the previous 12 months the packages you relied upon a year ago have been updated over time and don't work with other packages. Sometimes all you need to to is update all of your packages and everything is hunky-dory; but other times this brute force process doesn't work. You are left trying to understand whats changed over multiple packages, what your need to change in your code and something you thought would take you an hour takes a a week, with most days feeling like your just banging your heard against the wall.
 
+This issues alone should be enough to convince you that your need to create **re**producible **env**ironments.
 
+Another reason is related and often very immediate: working on the same analysis with someone else. Perhaps you are are fastidious and only use the most current version of every package and your partner is risk averse and only updates packages after they've been out in the wild for at least a year. If you are in this boat your going to have problems.
 
+Again, you need to create **re**producible **env**ironments.
 
+This is a common technique in Python and there it goes by the name of virtual environments. `renv` is an R implementation of the concept that is pretty elegant Along with [ProjectTemplate](#section-ProjectTemplate) we use the [`renv` package](https://rstudio.github.io/renv/) to ensure that our analysis projects are:
 
-### Project publication
+1.  **Isolated**: Each project gets its own library of R packages, so you can feel free to upgrade and change package versions in one project without worrying about breaking your other projects.
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+2.  **Portable**: Because `renv` captures the state of your R packages within a `lockfile`, you can more easily share and collaborate on projects with others, and ensure that everyone is working from a common base.
 
-## Project lists
+3.  **Reproducible**: Use `renv::snapshot()` to save the state of your R library to the lockfile `renv.lock`. You can later use `renv::restore()` to restore your R library exactly as specified in the lockfile.
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+These three points are crucial for working well with others and protection your future self.
 
-### Recurring Projects
+::: {.tip}
+As usual, you really should [read the docs for `renv`](https://rstudio.github.io/renv/articles/renv.html). They are thorough and clear.
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+There's also an excellent [FAQ](https://rstudio.github.io/renv/articles/faq.html)
+:::
 
-### Special (i.e., Ad-hoc) Projects
+### Setting up `renv` with a new project
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+If you are starting a new project in RStudio then setting up `renv` is easy: just be sure to click the Use renv with this project.
+
+![Definition of dependency hell](img/renv-new-Project.png "Be sure to click the "Use renv with this project" checkbok"){width="447"}
+
+Checking that box will add the bootstrap `renv`, installing the package if necessary as well as a few folders and files that serve as infrastructure
+
+### Setting up `renv` with an existing project
+
+If you've got a project that you want to starting using `renv` it's pretty straightforward:.
+
+1.  Install `renv` if you don't have it: `install.packages('renv')`
+2.  Use `renv::init()` to initialize a project. `renv` will discover the R packages used in your project, and install those packages into a private project library.
+
+It's really that simple!
+
+### Using `renv`
+
+The `renv` workflow is super, duper simple, after you've set it up:
+
+1.  Work in your project as usual, installing and upgrading R packages as required as your project evolves.
+2.  Use `renv::snapshot()` to save the state of your project library. The project state will be serialized into a file called `renv.lock`.
+3.  If you want to revert to the previous state of your project---i.e., you installed a new version of a package and it's wreaking havoc on your project---simply use `renv::restore()`.
+
+::: {.hat}
+Following these simple steps isolates your projects environment from the rest of your other projects. So downloading a bleeding-edge, dev version of package from GitHub b/c you need a new feature won't pollute your other projects that are running just fine. This is the isolation bit mentioned in the three points above
+:::
+
+### Collaborating with `renv`
+
+The `renv` developers recommend the following steps when using `renv` in collaborative settings
+
+1.  Use a [git](https://git-scm.com/)/[GitHub](https://github.com/) repo.
+
+2.  One user should explicitly initialize `renv` in the project, via [`renv::init()`](https://rstudio.github.io/renv/reference/init.html) or when starting an RStudio project. Doing so will create the initial `renv` lockfile, and also write the `renv` auto-loaders to the project's `.Rprofile` and `renv/activate.R`. These will ensure the right version of `renv` is downloaded and installed for your collaborators when they start in this project.
+
+3.  Share your project sources, alongside the generated lockfile `renv.lock` via GitHub. Be sure to also share the generated auto-loaders in `.Rprofile` and `renv/activate.R` via the repo.
+
+4.  When a collaborator first launches in this project, `renv` should automatically bootstrap itself, thereby downloading and installing the appropriate version of `renv` into the project library. After this has completed, they can then use [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) to restore the project library locally on their machine.
+
+::: {.gotcha}
+While working on a project, you or your collaborators may need to update or install new packages in your project. **When this occurs, you'll also want to ensure your collaborators are then using the same newly-installed packages.** In general, the process looks like this:
+
+1.  A user installs, or updates, one or more packages in their local project library;
+
+2.  That user calls [`renv::snapshot()`](https://rstudio.github.io/renv/reference/snapshot.html) to update the `renv.lock` lockfile;
+
+3.  That user then shares the updated version of `renv.lock` with their collaborators via github;
+
+4.  Other collaborators then---after a git pull---call [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) to install the packages specified in the newly-updated lockfile.
+
+**A bit of care is required** if collaborators wish to update the shared `renv.lock` lockfile concurrently -- in particular, if multiple collaborators are installing new packages and updating their own local copy of the lockfile, then conflicts would need to be sorted out afterwards.
+
+Use teams to ensure any changes to `renv.lock` are communicated so that everyone knows and understands when and why packages have been installed or updated.
+:::
+
+For more information on collaboration strategies, please visit [environments.rstudio.com](https://environments.rstudio.com/).
+
+### `renv` and RStudio Connect
+
+In short there should be no issues, but there is one important thing to always keep in mind when publishing to RStudio connect:
+
+::: {.gotcha}
+The `renv` generated `.Rprofile` file should **not** be included in deployments to RStudio Connect.
+:::
