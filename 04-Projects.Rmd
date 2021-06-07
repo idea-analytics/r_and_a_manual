@@ -381,3 +381,5 @@ In short there should be no issues, but there is one important thing to always k
 ::: {.gotcha}
 The `renv` generated `.Rprofile` file should **not** be included in deployments to RStudio Connect.
 :::
+
+You can read more [here about `renv` and publishing to RStudio Connect](https://rstudio.github.io/renv/articles/rsconnect.html)
