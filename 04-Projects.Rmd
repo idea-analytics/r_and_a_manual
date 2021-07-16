@@ -176,6 +176,52 @@ git push --set-upstream origin update-bio-cjh
 
 After that you can just use `git push` and you'll branch changes will be saved remotely.
 
+#### Maintaining large files
+
+If you have a file that is over 100 MB in size (e.g. a PowerBI dashboard), GitHub will block your commit (or at least send you a warning). There are two ways of approaching this issue:
+
+1.  Use the large file storage (LFS) extension to commit the file.
+2.  Add the file to .gitignore so the file is not committed.
+
+##### Large file storage (LFS)
+
+Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 137 MB in size, so it cannot be handled through normal a Git workflow. You will need to download the LFS extension from this site: <https://git-lfs.github.com/>. Once you download, then you will follow these steps:
+
+1.  Open the Git command line. (I have not found a solution through RStudio or GitHub Desktop).
+2.  Switch to the repo and branch that has the large file.
+3.  Install the LFS extension in the correct repo and branch using 
+
+```{bash lfs install, eval = FALSE}
+git lfs install
+```
+
+4.  Track the file extension (in our scenario, .pbix), using
+
+```{bash lfs track, eval = FALSE}
+git lfs track "*.pbix"
+```
+
+5.  Track .gitattributes.
+
+```{bash add gitattributes, eval = FALSE}
+git add .gitattributes
+```
+N.B.  Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch.
+6.  Commit the file and push normally.
+
+When you commit, you will see a message like this, indicating the LFS extension was used on that file:
+(need to insert image or message here)
+
+You are done!
+
+##### Using `.gitignore`
+Alternatively, you could choose not to commit the file and just keep the large file locally. (This is a good option if the file can be generated through code, like a `.csv` output). You will follow these steps:
+
+1.  If the file does not already exist, create a text file called `.gitignore` in your repo.
+2.  Add the name of the file you wish to ignore in the `.gitignore` file (e.g. `.Rdata` is ignored when using ProjectTemplate).
+3.  Save `.gitignore` and commit.
+
+
 #### RStudio
 
 1.  In your git panel you see changed (or new) files show up. You'll want to select the check box for any file that's been modified (indicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit: ![](img/rstudio_git_staged.png)
