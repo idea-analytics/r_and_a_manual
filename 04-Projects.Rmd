@@ -209,10 +209,7 @@ git add .gitattributes
 N.B.  Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch.
 6.  Commit the file and push normally.
 
-When you commit, you will see a message like this, indicating the LFS extension was used on that file:
-(need to insert image or message here)
-
-You are done!
+When you commit, you will see a message indicating the LFS extension was used on that file.
 
 ##### Using `.gitignore`
 Alternatively, you could choose not to commit the file and just keep the large file locally. (This is a good option if the file can be generated through code, like a `.csv` output). You will follow these steps:
