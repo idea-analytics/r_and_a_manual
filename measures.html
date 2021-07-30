@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Rodrigo San Miguel, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-06-04" />
+<meta name="date" content="2021-07-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,31 +314,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="measures.html#cb10-1"></a>SELECT DISTINCT </span>
-<span id="cb10-2"><a href="measures.html#cb10-2"></a> [StudentNumber], </span>
-<span id="cb10-3"><a href="measures.html#cb10-3"></a> [PrimaryDisabilityCode] AS [DisabilityCode], </span>
-<span id="cb10-4"><a href="measures.html#cb10-4"></a> [PrimaryDisabilityDescription] AS [DisabilityDescription]</span>
-<span id="cb10-5"><a href="measures.html#cb10-5"></a></span>
-<span id="cb10-6"><a href="measures.html#cb10-6"></a> <span class="kw">FROM</span> (</span>
-<span id="cb10-7"><a href="measures.html#cb10-7"></a></span>
-<span id="cb10-8"><a href="measures.html#cb10-8"></a>SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
-<span id="cb10-9"><a href="measures.html#cb10-9"></a></span>
-<span id="cb10-10"><a href="measures.html#cb10-10"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb10-11"><a href="measures.html#cb10-11"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
-<span id="cb10-12"><a href="measures.html#cb10-12"></a></span>
-<span id="cb10-13"><a href="measures.html#cb10-13"></a> UNION ALL</span>
-<span id="cb10-14"><a href="measures.html#cb10-14"></a></span>
-<span id="cb10-15"><a href="measures.html#cb10-15"></a>SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
-<span id="cb10-16"><a href="measures.html#cb10-16"></a></span>
-<span id="cb10-17"><a href="measures.html#cb10-17"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb10-18"><a href="measures.html#cb10-18"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
-<span id="cb10-19"><a href="measures.html#cb10-19"></a></span>
-<span id="cb10-20"><a href="measures.html#cb10-20"></a> UNION ALL</span>
-<span id="cb10-21"><a href="measures.html#cb10-21"></a></span>
-<span id="cb10-22"><a href="measures.html#cb10-22"></a>SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
-<span id="cb10-23"><a href="measures.html#cb10-23"></a></span>
-<span id="cb10-24"><a href="measures.html#cb10-24"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb10-25"><a href="measures.html#cb10-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> &#39;&#39;</span> ORDER BY StudentNumber</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="measures.html#cb13-1"></a>SELECT DISTINCT </span>
+<span id="cb13-2"><a href="measures.html#cb13-2"></a> [StudentNumber], </span>
+<span id="cb13-3"><a href="measures.html#cb13-3"></a> [PrimaryDisabilityCode] AS [DisabilityCode], </span>
+<span id="cb13-4"><a href="measures.html#cb13-4"></a> [PrimaryDisabilityDescription] AS [DisabilityDescription]</span>
+<span id="cb13-5"><a href="measures.html#cb13-5"></a></span>
+<span id="cb13-6"><a href="measures.html#cb13-6"></a> <span class="kw">FROM</span> (</span>
+<span id="cb13-7"><a href="measures.html#cb13-7"></a></span>
+<span id="cb13-8"><a href="measures.html#cb13-8"></a>SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
+<span id="cb13-9"><a href="measures.html#cb13-9"></a></span>
+<span id="cb13-10"><a href="measures.html#cb13-10"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb13-11"><a href="measures.html#cb13-11"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
+<span id="cb13-12"><a href="measures.html#cb13-12"></a></span>
+<span id="cb13-13"><a href="measures.html#cb13-13"></a> UNION ALL</span>
+<span id="cb13-14"><a href="measures.html#cb13-14"></a></span>
+<span id="cb13-15"><a href="measures.html#cb13-15"></a>SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
+<span id="cb13-16"><a href="measures.html#cb13-16"></a></span>
+<span id="cb13-17"><a href="measures.html#cb13-17"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb13-18"><a href="measures.html#cb13-18"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
+<span id="cb13-19"><a href="measures.html#cb13-19"></a></span>
+<span id="cb13-20"><a href="measures.html#cb13-20"></a> UNION ALL</span>
+<span id="cb13-21"><a href="measures.html#cb13-21"></a></span>
+<span id="cb13-22"><a href="measures.html#cb13-22"></a>SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
+<span id="cb13-23"><a href="measures.html#cb13-23"></a></span>
+<span id="cb13-24"><a href="measures.html#cb13-24"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb13-25"><a href="measures.html#cb13-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> &#39;&#39;</span> ORDER BY StudentNumber</span></code></pre></div>
 <ul>
 <li><p><strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD</p>
 <ul>
@@ -369,9 +369,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="measures.html#cb11-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb11-2"><a href="measures.html#cb11-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb11-3"><a href="measures.html#cb11-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="measures.html#cb14-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb14-2"><a href="measures.html#cb14-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb14-3"><a href="measures.html#cb14-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.</p>
 </div>
 <div id="student-persistence" class="section level2">
@@ -412,9 +412,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="measures.html#cb12-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb12-2"><a href="measures.html#cb12-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb12-3"><a href="measures.html#cb12-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="measures.html#cb15-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb15-2"><a href="measures.html#cb15-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb15-3"><a href="measures.html#cb15-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="college-application-matriculation-metrics" class="section level2">
 <h2><span class="header-section-number">7.3</span> College Application &amp; Matriculation Metrics</h2>
@@ -450,9 +450,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="measures.html#cb13-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb13-2"><a href="measures.html#cb13-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb13-3"><a href="measures.html#cb13-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="measures.html#cb16-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb16-2"><a href="measures.html#cb16-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb16-3"><a href="measures.html#cb16-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="critical-student-intervention-csi-identification" class="section level2">
 <h2><span class="header-section-number">7.4</span> Critical Student Intervention (CSI) Identification</h2>
@@ -465,37 +465,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="measures.html#cb14-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb14-2"><a href="measures.html#cb14-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb14-3"><a href="measures.html#cb14-3"></a>      ,[ProgramID]</span>
-<span id="cb14-4"><a href="measures.html#cb14-4"></a>      ,CASE </span>
-<span id="cb14-5"><a href="measures.html#cb14-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb14-6"><a href="measures.html#cb14-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb14-7"><a href="measures.html#cb14-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb14-8"><a href="measures.html#cb14-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb14-9"><a href="measures.html#cb14-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="measures.html#cb17-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb17-2"><a href="measures.html#cb17-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb17-3"><a href="measures.html#cb17-3"></a>      ,[ProgramID]</span>
+<span id="cb17-4"><a href="measures.html#cb17-4"></a>      ,CASE </span>
+<span id="cb17-5"><a href="measures.html#cb17-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb17-6"><a href="measures.html#cb17-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb17-7"><a href="measures.html#cb17-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb17-8"><a href="measures.html#cb17-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb17-9"><a href="measures.html#cb17-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
 <ul>
 <li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="measures.html#cb15-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb15-2"><a href="measures.html#cb15-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
-<span id="cb15-3"><a href="measures.html#cb15-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
-<span id="cb15-4"><a href="measures.html#cb15-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
-<span id="cb15-5"><a href="measures.html#cb15-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
-<span id="cb15-6"><a href="measures.html#cb15-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
-<span id="cb15-7"><a href="measures.html#cb15-7"></a>LEFT JOIN </span>
-<span id="cb15-8"><a href="measures.html#cb15-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb15-9"><a href="measures.html#cb15-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb15-10"><a href="measures.html#cb15-10"></a>      ,[ProgramID]</span>
-<span id="cb15-11"><a href="measures.html#cb15-11"></a>      ,CASE </span>
-<span id="cb15-12"><a href="measures.html#cb15-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb15-13"><a href="measures.html#cb15-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb15-14"><a href="measures.html#cb15-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb15-15"><a href="measures.html#cb15-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb15-16"><a href="measures.html#cb15-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
-<span id="cb15-17"><a href="measures.html#cb15-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
-<span id="cb15-18"><a href="measures.html#cb15-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="measures.html#cb18-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb18-2"><a href="measures.html#cb18-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
+<span id="cb18-3"><a href="measures.html#cb18-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
+<span id="cb18-4"><a href="measures.html#cb18-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
+<span id="cb18-5"><a href="measures.html#cb18-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
+<span id="cb18-6"><a href="measures.html#cb18-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
+<span id="cb18-7"><a href="measures.html#cb18-7"></a>LEFT JOIN </span>
+<span id="cb18-8"><a href="measures.html#cb18-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb18-9"><a href="measures.html#cb18-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb18-10"><a href="measures.html#cb18-10"></a>      ,[ProgramID]</span>
+<span id="cb18-11"><a href="measures.html#cb18-11"></a>      ,CASE </span>
+<span id="cb18-12"><a href="measures.html#cb18-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb18-13"><a href="measures.html#cb18-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb18-14"><a href="measures.html#cb18-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb18-15"><a href="measures.html#cb18-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb18-16"><a href="measures.html#cb18-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
+<span id="cb18-17"><a href="measures.html#cb18-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
+<span id="cb18-18"><a href="measures.html#cb18-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
 
 </div>
 </div>

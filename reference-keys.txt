@@ -34,6 +34,9 @@ command-line
 rstudio-1
 making-changes-and-saving-them
 command-line-1
+maintaining-large-files
+large-file-storage-lfs
+using-.gitignore
 rstudio-2
 merging-changes.
 project-process
