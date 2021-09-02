@@ -1,27 +1,31 @@
 # Models and Methods 
 
-Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate summary, inference, visualization or prediction.
-
-## Statistical approaches
+Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.
 
 We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. However, the design of the program influences how we establish our methods of research.
 
-### Research design
+## Research design
 
-#### Causal inference
+### Causal inference
 
-### Descriptive statistics
+suggested topics - potential outcomes, matching models, etc.
 
-#### Numerical summaries - broad principles
+## Descriptive statistics
 
-#### Graphical summaries - broad principles
+### Numerical summaries - broad principles
 
-### Inferential statistics
+suggested topics - using measures of center AND spread, identifying outliers, describing a mean, describing a mean as a function of other covariates (lead into modeling section)
 
-#### Classical inference
+### Graphical summaries - broad principles
 
-### Predictive statistics - modeling
+## Inferential statistics
 
-#### Linear modeling
+## Modeling
 
-#### Generalized linear modeling
+### Linear modeling
+
+suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
+
+### Generalized linear modeling
+
+suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
