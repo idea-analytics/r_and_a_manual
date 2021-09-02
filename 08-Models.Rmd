@@ -1,3 +1,27 @@
 # Models and Methods 
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate summary, inference, visualization or prediction.
+
+## Statistical approaches
+
+We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. However, the design of the program influences how we establish our methods of research.
+
+### Research design
+
+#### Causal inference
+
+### Descriptive statistics
+
+#### Numerical summaries - broad principles
+
+#### Graphical summaries - broad principles
+
+### Inferential statistics
+
+#### Classical inference
+
+### Predictive statistics - modeling
+
+#### Linear modeling
+
+#### Generalized linear modeling
