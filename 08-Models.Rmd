@@ -10,6 +10,10 @@ We use methods in descriptive, inferential, and predictive statistics to underst
 
 suggested topics - potential outcomes, matching models, etc.
 
+### Experimental design
+
+suggested topics - ANOVA, ANCOVA, MANOVA, nested, mixed effects, crossover design, etc.
+
 ## Descriptive statistics
 
 ### Numerical summaries - broad principles
@@ -20,7 +24,7 @@ suggested topics - using measures of center AND spread, identifying outliers, de
 
 ## Inferential statistics
 
-## Modeling
+## Modeling and predictive statistics
 
 ### Linear modeling
 
@@ -29,3 +33,7 @@ suggested topics - uses, diagnostics, commands, interpreting, limitations, concl
 ### Generalized linear modeling
 
 suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
+
+multinomial logit, log models, zero-inflated models
+
+### Machine learning
