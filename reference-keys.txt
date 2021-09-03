@@ -59,4 +59,15 @@ student-persistence
 college-application-matriculation-metrics
 critical-student-intervention-csi-identification
 models-and-methods
+research-design
+causal-inference
+experimental-design
+descriptive-statistics
+numerical-summaries---broad-principles
+graphical-summaries---broad-principles
+inferential-statistics
+modeling-and-predictive-statistics
+linear-modeling
+generalized-linear-modeling
+machine-learning
 tips-and-tricks
