@@ -16,25 +16,31 @@ suggested topics - ANOVA, ANCOVA, MANOVA, nested, mixed effects, crossover desig
 
 ## Descriptive statistics
 
-When summarizing a distribution of data, we are usually tasked with finding counts and proportions for categorical data, or means and medians for quantitative data and then displaying those values for our stakeholders. To provide context and increase the statistical literacy of our team and family, we also describe the spread, shape, and unusual features of the distribution.
+When summarizing a distribution of data, we are usually tasked with describing (1) measures of center, such as counts and proportions for categorical data, or means and medians for quantitative data and then displaying those values for our stakeholders. To provide context and increase the statistical literacy of our team and family, we also describe the (2) spread, (3) shape, and (4) unusual features of the distribution.
 
 ### Numerical summaries - broad principles
 
-suggested topics - using measures of center AND spread, identifying outliers, describing a mean, describing a mean as a function of other covariates (lead into modeling section)
+For **categorical data**, consider the distribution of proportions and counts (the sample size) across the various categories. One-way and two-way frequency tables, with marginal and total proportions and counts, are useful for displaying the data.
 
-For categorical data, consider the distribution of proportions and counts (the sample size) across the various categories. One-way and two-way frequency tables, with marginal and total proportions and counts, are useful for displaying the data.
+For **univariate, quantitative data**, use the shape of the distribution to determine appropriate numerical measures. For symmetric data, the mean $\bar{x}$ `mean(x)` and standard deviation $s$ `sd(x)` can be appropriate for reporting and is accessible by a broad audience. For skewed data, consider the median $\tilde{x}$ `median(x)` (and possibly the MAD - median absolute deviation `mad(x)`), and provide context for choosing these measures. Note: The median is also a widely accessible statistic to most people, since it describes the midpoint of your distribution. Consider using it alongside the mean.
 
-For univariate quantitative data, use the shape of the distribution to determine appropriate numerical measures. For symmetric data, the mean $\bar{x}$ `mean(x)` and standard deviation $s$ `sd(x)` can be appropriate for reporting and can be more easily understood by a broader audience. For skewed data, consider the median $\tilde{x}$ `median(x)` (and possibly the MAD - median absolute deviation `mad(x)`), and provide context for choosing these measures.
+For **bivariate data**, use a scatterplot to determine if linear measures can be used appropriately. The Pearson correlation $r$ `cor(x, y)` can be easily understood by a wide audience to describe the linear strength of a bivariate association. However, the Spearman rank correlation `cor(x, y, method = "spearman")` can provide an associative measure for monotonic nonlinear associations, and Kendall's $\tau$ `cor(x, y, method = "kendall")` can describe concordance for ordinal data.
 
-For bivariate data, use a scatterplot to determine if linear measures can be used appropriately. The Pearson correlation $r$ `cor(x, y)` can be easily understood by a wide audience to describe the linear strength of a bivariate association. However, the Spearman rank correlation `cor(x, y, method = "spearman")` can provide an associative measure for monotonic nonlinear associations, and Kendall's $\tau$ `cor(x, y, method = "kendall")` can describe concordance for ordinal data.
+When describing **outliers** in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set. 
 
-When describing outliers in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set.
+::: {.tip}
+One heuristic for deciding what to do with an outlier is to ask yourself, "Does this observation *belong* in the sample?"
+
+If you decide that the observation is fundamentally different than the others (e.g. a school is off-model and does not implement the Imagine Learning the same way that other schools do), then you might consider removing that observation. If the observation represents some exceptional case of the proposed model, then you might consider keeping that observation.
+:::
 
 In general, we should be modeling a measure of center and its spread as a function of covariates (see Modeling and predictive statistics).
 
 ### Graphical summaries - broad principles
 
 ## Inferential statistics
+
+suggested topics - confidence intervals vs. p-values and communication
 
 ## Modeling and predictive statistics
 
