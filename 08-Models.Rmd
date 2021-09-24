@@ -38,6 +38,24 @@ In general, we should be modeling a measure of center and its spread as a functi
 
 ### Graphical summaries - broad principles
 
+While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways, and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the [ideacolors](https://idea-analytics.github.io/ideacolors/) package for aesthetics.
+
+Selecting an appropriate graphical display depends on the purpose of the analysis and the communication of results. Bar graphs, line graphs, histograms, and scatterplots each have their place in displaying central tendency; however, emphasis should be placed on displaying variation within the data.
+
+#### Displaying variation
+
+Variation can be addressed by the following (non-exhaustive) list:
+
+1. Comparing sample sizes, both for the entire distribution and within each group
+
+2. Comparing variation within and between groups
+
+3. Displaying variation across time
+
+4. Clustering of values in a region (and conversely, gaps in data)
+
+(will expand later)
+
 ## Inferential statistics
 
 suggested topics - confidence intervals vs. p-values and communication
