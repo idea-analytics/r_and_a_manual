@@ -54,7 +54,44 @@ Variation can be addressed by the following (non-exhaustive) list:
 
 4. Clustering of values in a region (and conversely, gaps in data)
 
-(will expand later)
+Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:
+
+```{r variation_example, echo=TRUE, eval=FALSE}
+
+make_Data_By_Launch_Cohort() %>%
+  ggplot(aes(x = LaunchSchoolYear,
+             y = jitter(MedianGrowth),
+             group = School)) +
+  geom_point(aes(color = School,
+                 alpha = 0.2),
+             size = 3.5) +
+  geom_point(aes(y = MedianGrowthLaunch,
+                 color = LaunchOrder),
+             shape = 3,
+             size = 5) +
+  scale_color_idea() + 
+  theme_idea_light() +
+  facet_wrap(~LaunchOrder,
+             labeller = labeller(LaunchOrder = c("1" = "First Year",
+                                                 "2" = "Second Year",
+                                                 "3" = "Third Year"))) +
+  labs(title = "Median RenStar Reading Growth",
+       subtitle = "Results grouped by schools launching in the same year",
+       caption = "+ represents median RenStar reading growth for that launching cohort",
+       x = "Launch Year",
+       y = "Median RenStar Growth") +
+  scale_x_discrete(labels = c("2017-2018" = "2017-18",
+                              "2018-2019" = "2018-19",
+                              "2019-2020" = "2019-20",
+                              "2020-2021" = "2020-21")) + 
+  theme(legend.position = "none")
+
+```
+
+This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a "plus" shape at a larger size to emphasize the median growth for each school year.
+
+(add graph later)
+
 
 ## Inferential statistics
 
