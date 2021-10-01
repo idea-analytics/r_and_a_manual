@@ -38,6 +38,60 @@ In general, we should be modeling a measure of center and its spread as a functi
 
 ### Graphical summaries - broad principles
 
+While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways, and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the [ideacolors](https://idea-analytics.github.io/ideacolors/) package for aesthetics.
+
+Selecting an appropriate graphical display depends on the purpose of the analysis and the communication of results. Bar graphs, line graphs, histograms, and scatterplots each have their place in displaying central tendency; however, emphasis should be placed on displaying variation within the data.
+
+#### Displaying variation
+
+Variation can be addressed by the following (non-exhaustive) list:
+
+1. Comparing sample sizes, both for the entire distribution and within each group
+
+2. Comparing variation within and between groups
+
+3. Displaying variation across time
+
+4. Clustering of values in a region (and conversely, gaps in data)
+
+Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:
+
+```{r variation_example, echo=TRUE, eval=FALSE}
+
+make_Data_By_Launch_Cohort() %>%
+  ggplot(aes(x = LaunchSchoolYear,
+             y = jitter(MedianGrowth), #jittering of clustered points
+             group = School)) +
+  geom_point(aes(color = School, #change color by school
+                 alpha = 0.2), #set transparency level to 0.2
+             size = 3.5) + #increases size of point
+  geom_point(aes(y = MedianGrowthLaunch,
+                 color = LaunchOrder),
+             shape = 3, #changes shape to plus sign +
+             size = 5) +
+  scale_color_idea() + 
+  theme_idea_light() +
+  facet_wrap(~LaunchOrder,
+             labeller = labeller(LaunchOrder = c("1" = "First Year",
+                                                 "2" = "Second Year",
+                                                 "3" = "Third Year"))) +
+  labs(title = "Median RenStar Reading Growth",
+       subtitle = "Results grouped by schools launching in the same year",
+       caption = "+ represents median RenStar reading growth for that launching cohort",
+       x = "Launch Year",
+       y = "Median RenStar Growth") +
+  scale_x_discrete(labels = c("2017-2018" = "2017-18",
+                              "2018-2019" = "2018-19",
+                              "2019-2020" = "2019-20",
+                              "2020-2021" = "2020-21")) + 
+  theme(legend.position = "none")
+
+```
+
+This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a "plus" shape at a larger size to emphasize the median growth for each school year.
+
+[![This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.](img/variation-in-graph-example.png "Example of a graph displaying variation in median RenStar growth")]
+
 ## Inferential statistics
 
 suggested topics - confidence intervals vs. p-values and communication
