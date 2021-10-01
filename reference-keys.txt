@@ -65,6 +65,7 @@ experimental-design
 descriptive-statistics
 numerical-summaries---broad-principles
 graphical-summaries---broad-principles
+displaying-variation
 inferential-statistics
 modeling-and-predictive-statistics
 linear-modeling
