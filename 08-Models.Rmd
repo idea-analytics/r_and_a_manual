@@ -60,14 +60,14 @@ Different approaches to this could be altering alpha values, jittering, color sc
 
 make_Data_By_Launch_Cohort() %>%
   ggplot(aes(x = LaunchSchoolYear,
-             y = jitter(MedianGrowth),
+             y = jitter(MedianGrowth), #jittering of clustered points
              group = School)) +
-  geom_point(aes(color = School,
-                 alpha = 0.2),
-             size = 3.5) +
+  geom_point(aes(color = School, #change color by school
+                 alpha = 0.2), #set transparency level to 0.2
+             size = 3.5) + #increases size of point
   geom_point(aes(y = MedianGrowthLaunch,
                  color = LaunchOrder),
-             shape = 3,
+             shape = 3, #changes shape to plus sign +
              size = 5) +
   scale_color_idea() + 
   theme_idea_light() +
@@ -90,8 +90,7 @@ make_Data_By_Launch_Cohort() %>%
 
 This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a "plus" shape at a larger size to emphasize the median growth for each school year.
 
-(add graph later)
-
+[![This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.](img/variation-in-graph-example.png "Example of a graph displaying variation in median RenStar growth")]
 
 ## Inferential statistics
 
