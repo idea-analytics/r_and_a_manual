@@ -1,3 +1,22 @@
 # Tips and Tricks
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+This section of the R&A Manual is for sharing various tricks that are will make you life easier.  Rules of thumb, explanations of how things work, and useful design patterns are all fair game. 
+
+## Data processing 
+
+### De-duplicating rows in a table. 
+
+There are two general purpose design patterns for de-duplicating rows in a table in either R or SQL.
+
+1. In R use the `dplyr::distinct()` function and in SQL use a DISTINCT clause.  This is pretty simple and robust, with the typical use case of wanting to reduce many **identical** rows to a single row. 
+2. If you are trying to de-duplicate where you may have **non-identical** rows (e.g., a student has taken the same assessment multiple times in a testing window and you'd like to get the latest date) then you can use a `group_by-arrange-row_number-filter` pattern:
+
+    1. Group you data by the columns that uniquely identify your object of inquiry (e.g., student number)
+    2. Arrange or sort the data by a column that puts an ordering you care about within the grouped data (e.g., assessment date)
+    3. Create a new column that contains the row number *within the group* (e.g, a student with 5 assessments in a window would have `row_number = 1` for the first date and `row_number = 5` for the last date).
+    4. Filter for the maximum row number(with `dplyr::filter()` in R or a `WHERE` clause in SQL)
+    5. (optional) Ungroup your data. 
+  
+### Creating "Scaffolds" when joining data.  
+
+In progress . . . 
