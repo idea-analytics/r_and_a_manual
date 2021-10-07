@@ -25,6 +25,20 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
   + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
   
+* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](http://ritter.tea.state.tx.us/peims/standards/1314/c035.html):
+
+  InstructionalSettingCode | Description
+  -------------------------|-------------
+ 0 | No additional SPED services
+ 1 | Homebound
+ 40 | Mainstream
+ 41 | Resource Room/Services < 21%
+ 42 | Resource Room/Services 21- <50%
+ 43 | Resource Room/Services 50- 60%
+ 44 | Resource Room/Services > 60%
+ 
+  + If InstructionalSettingCode = 43 or 44, the student is typically in RISE.
+
 * **_[DisabilityCode]_**
 
   DisabilityCode | Description
