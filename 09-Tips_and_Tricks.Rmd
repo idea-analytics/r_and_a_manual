@@ -19,4 +19,4 @@ There are two general purpose design patterns for de-duplicating rows in a table
   
 ### Creating "Scaffolds" when joining data.  
 
-In progress . . . 
+Coming Soon. . . 
