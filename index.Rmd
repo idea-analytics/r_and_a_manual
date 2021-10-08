@@ -14,11 +14,9 @@ description: "This is IDEA Public Schools' Research & Analysis Team's ever evolv
 
 # A little about this manual {#about}
 
-This manual is written in **Markdown** and managed with git/Github. 
+The *IDEA R&A Manual*  is [IDEA Public Schools'](www.ideapublicschools.org) Research & Analysis Team's ever evolving encyclopedia of resources and best practices.  It's purpose is to make any R&A team member's (or really any other interested reader's) job easier, by sharing how we do our jobs.   
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
-
-
+The manual is particularly aimed at a technical audience (e.g. statisticians, data analysts, data engineers, data scientists) and most contributions are from technical authors. Indeed, the expectation is that technical members for the R&A team will contribute to this manual regularly (i.e., weekly or daily during the festive (information) harvesting celebration of Doctoberfest)
 
 
 ```{r include=FALSE}
@@ -33,7 +31,17 @@ knitr::write_bib(c(
 
 ## What goes in this manual?
 
+Anything and everything we learn during the course of our work at IDEA. Of particular help is any information, learning, or insights, but some topics that are especially useful to your colleages (and our future self) include:
+
+* Locations of important tables in [the data warehouse][The Data Warehouse]
+* Information about how to use data in the warehouse (e.g. how do you [identify students in CSI](#csi)
+* Links and examples to useful R packages
+* [Tips and tricks] in R, SQL, or Python that you discover in the course of your work 
+* Templates:  output templates, input templates, [ProjectTemplates](#section-ProjectTemplate), . . . all the templates. 
+
 ## How do you contribute to this book?
 
+This manual is written in **Markdown** and managed with git/Github. 
 
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
 
