@@ -56,7 +56,7 @@ measures
 the-students-table
 student-persistence
 college-application-matriculation-metrics
-critical-student-intervention-csi-identification
+csi
 models-and-methods
 research-design
 causal-inference

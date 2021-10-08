@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Rodrigo San Miguel, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-10-07" />
+<meta name="date" content="2021-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="measures.html"><a href="measures.html#the-students-table"><i class="fa fa-check"></i><b>7.1</b> The Students Table</a></li>
 <li class="chapter" data-level="7.2" data-path="measures.html"><a href="measures.html#student-persistence"><i class="fa fa-check"></i><b>7.2</b> Student Persistence</a></li>
 <li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
-<li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#critical-student-intervention-csi-identification"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
+<li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#csi"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>8</b> Models and Methods</a><ul>
 <li class="chapter" data-level="8.1" data-path="models-and-methods.html"><a href="models-and-methods.html#research-design"><i class="fa fa-check"></i><b>8.1</b> Research design</a><ul>
@@ -246,17 +246,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">IDEA R&amp;A Manual</h1>
 <p class="author"><em>Chris Haid, Edison Coronado, Rodrigo San Miguel, Mishan Jensen, Maura Carter, Steven Macapagal</em></p>
-<p class="date"><em>2021-10-07</em></p>
+<p class="date"><em>2021-10-08</em></p>
 </div>
 <div id="about" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> A little about this manual</h1>
-<p>This manual is written in <strong>Markdown</strong> and managed with git/Github.</p>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>. Use second (<code>##</code>) and third (<code>###</code>) level headings for sections in each chapter.</p>
+<p>The <em>IDEA R&amp;A Manual</em> is <a href="www.ideapublicschools.org">IDEA Public Schools’</a> Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices. It’s purpose is to make any R&amp;A team member’s (or really any other interested reader’s) job easier, by sharing how we do our jobs.</p>
+<p>The manual is particularly aimed at a technical audience (e.g. statisticians, data analysts, data engineers, data scientists) and most contributions are from technical authors. Indeed, the expectation is that technical members for the R&amp;A team will contribute to this manual regularly (i.e., weekly or daily during the festive (information) harvesting celebration of Doctoberfest)</p>
 <div id="what-goes-in-this-manual" class="section level2">
 <h2><span class="header-section-number">1.1</span> What goes in this manual?</h2>
+<p>Anything and everything we learn during the course of our work at IDEA. Of particular help is any information, learning, or insights, but some topics that are especially useful to your colleages (and our future self) include:</p>
+<ul>
+<li>Locations of important tables in <a href="data-access.html#the-data-warehouse">the data warehouse</a></li>
+<li>Information about how to use data in the warehouse (e.g. how do you <a href="measures.html#csi">identify students in CSI</a></li>
+<li>Links and examples to useful R packages</li>
+<li><a href="tips-and-tricks.html#tips-and-tricks">Tips and tricks</a> in R, SQL, or Python that you discover in the course of your work</li>
+<li>Templates: output templates, input templates, <a href="projects.html#section-ProjectTemplate">ProjectTemplates</a>, . . . all the templates.</li>
+</ul>
 </div>
 <div id="how-do-you-contribute-to-this-book" class="section level2">
 <h2><span class="header-section-number">1.2</span> How do you contribute to this book?</h2>
+<p>This manual is written in <strong>Markdown</strong> and managed with git/Github.</p>
+<div class="tip">
+<p>If you are unfamiliar with git/Github you’ll want to read through<a href="projects.html#section-github">how we use git in the Projects chapter</a></p>
+</div>
+<p>The general process is as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Clone the repo: If you haven’t already, pull this book down <a href="https://github.com/idea-analytics/r_and_a_manual">from it’s Github repo</a>. From the command line run <code>git clone https://github.com/idea-analytics/r_and_a_manual.git</code>.</li>
+<li>Or, pull down the latest version of the master branch <code>git checkout master</code> and then <code>git pull</code></li>
+<li>In File Explorer/Finder find the <code>r_and_a_manaul</code> folder and double click <code>r_and_a_manual.Rproj</code>, which will open the book’s project in RStudio</li>
+<li>Check out a branch <code>git checkout -b my-manual-update</code>.</li>
+<li>Make updates. You can run in R <code>bookdown::serve_book</code> to have it recompile the book on save.</li>
+<li>Commit frequently.</li>
+<li>Push your changes on yoru branch up to Github.</li>
+<li>Intitiate a pull request to merge your changes. If they are minor you can do the whole process your self. IF they are major–especially changing the books structure–then have another team member review your pull request before merging.</li>
+<li>Complete the merge.</li>
+<li>Rinse and repeat!</li>
+</ol>
+<div class="tip">
+<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>. Use second (<code>##</code>) and third (<code>###</code>) level headings for sections in each chapter.</p>
+</div>
 
 </div>
 </div>
