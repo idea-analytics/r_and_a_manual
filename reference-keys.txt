@@ -9,6 +9,7 @@ edison-coronado
 chris-haid
 mishan-jensen-phd
 steven-macapagal
+maura-carter
 data-access
 the-data-warehouse
 core-data-warehouse-server-configuration
