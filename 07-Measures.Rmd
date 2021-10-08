@@ -225,7 +225,7 @@ WHERE [FDOPCOUNTP] = 1
 ```
 
 
-## Critical Student Intervention (CSI) Identification
+## Critical Student Intervention (CSI) Identification {#csi}
 
 To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
 
