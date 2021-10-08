@@ -249,9 +249,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. However, the design of the program influences how we establish our methods of research.</p>
 <div id="research-design" class="section level2">
 <h2><span class="header-section-number">8.1</span> Research design</h2>
+<p>When our works requires us to assign causation, we must consider how the data were collected before deciding on an appropriate model.</p>
 <div id="causal-inference" class="section level3">
 <h3><span class="header-section-number">8.1.1</span> Causal inference</h3>
-<p>suggested topics - potential outcomes, matching models, etc.</p>
+<p>Most of our data is observational, so if we want to describe causal relationships in our data, we must appeal to potential outcomes. Thus, we will briefly cover some of relevant causal inference concepts and techniques.</p>
+<p>When a student is marked for inclusion in, say, a tutorial group, we would like to see how much the tutorial increased their score on a test, compared to a scenario where the student did not attend the tutorial. If the student attends the tutorial, we can measure the outcome of the treatment (the tutorial) by seeing what grade they earned after a test; we cannot observe, however, the outcome of the control (no tutorial). Potential outcomes aims to remedy this.</p>
+<div id="potential-outcomes" class="section level4">
+<h4><span class="header-section-number">8.1.1.1</span> Potential outcomes</h4>
+<p>Suppose we have both the treatment and control outcomes for each student. We would like to measure <span class="math inline">\(\delta_i = Y^1_i - Y^0_i\)</span>, the difference in the treatment outcome <span class="math inline">\(Y^1_i\)</span> and control outcome <span class="math inline">\(Y^0_i\)</span> for student <span class="math inline">\(i\)</span>. Then, our main estimators for the tutorial effect are <span class="math inline">\(ATE, ATT\)</span> and <span class="math inline">\(ATU\)</span>, which are defined below:
+- <span class="math inline">\(ATE = E[\delta_i]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment <strong>E</strong>ffect <span class="math inline">\(E[\delta_i] = E[Y^1_i - Y^0_i]\)</span>. In other words, <span class="math inline">\(ATE\)</span> answers the question “What is the additional effect of the treatment?”
+- <span class="math inline">\(ATT = E[\delta_i \mid \textrm{in treatment group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>T</strong>reatment group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]\)</span>. In other words, <span class="math inline">\(ATT\)</span> answers the question “What is the additional effect of the treatment for those in the treatment group?”
+- <span class="math inline">\(ATU = E[\delta_i \mid \textrm{in control group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>U</strong>ntreated (control) group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in control group}]\)</span>. In other words, <span class="math inline">\(ATU\)</span> answers the question “What is the additional effect of the treatment for those in the control group?”
+- <span class="math inline">\(ATE\)</span> can be decomposed into a weighted average of <span class="math inline">\(ATT, ATU\)</span>, such that <span class="math inline">\(ATE = p\times ATT + (1-p)\times ATU\)</span>, where <span class="math inline">\(p\)</span> is the weight of the treatment group.</p>
+<p>In our scenario,
+- <span class="math inline">\(ATE\)</span> represents the expected marginal effect of the tutorial group on test scores for all students,
+- <span class="math inline">\(ATT\)</span> represents the expected marginal effect of the tutorial group for students who participate in tutorials, and
+- <span class="math inline">\(ATU\)</span> represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.</p>
+<p>Estimates may be biased because we do not randomly assign students to tutorials - we select them for each group based on some criteria. Using randomization inference, we can separate assignment bias from the estimates of <span class="math inline">\(ATT, ATU\)</span> to find appropriate estimates and p-values on <span class="math inline">\(ATE\)</span>.</p>
+</div>
+<div id="matching-models" class="section level4">
+<h4><span class="header-section-number">8.1.1.2</span> Matching models</h4>
+</div>
+<div id="regression-discontinuity" class="section level4">
+<h4><span class="header-section-number">8.1.1.3</span> Regression discontinuity</h4>
+</div>
+<div id="instrumental-variables" class="section level4">
+<h4><span class="header-section-number">8.1.1.4</span> Instrumental variables</h4>
+</div>
+<div id="difference-in-differences" class="section level4">
+<h4><span class="header-section-number">8.1.1.5</span> Difference-in-differences</h4>
+</div>
 </div>
 <div id="experimental-design" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Experimental design</h3>
@@ -315,7 +342,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-26"><a href="models-and-methods.html#cb19-26"></a>                              <span class="st">&quot;2020-2021&quot;</span> =<span class="st"> &quot;2020-21&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb19-27"><a href="models-and-methods.html#cb19-27"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
-<p>[<img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt="This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians." />]</p>
+<div class="figure">
+<img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt="" />
+<p class="caption">This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.</p>
+</div>
 </div>
 </div>
 </div>

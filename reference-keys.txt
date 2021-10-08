@@ -60,6 +60,11 @@ csi
 models-and-methods
 research-design
 causal-inference
+potential-outcomes
+matching-models
+regression-discontinuity
+instrumental-variables
+difference-in-differences
 experimental-design
 descriptive-statistics
 numerical-summaries---broad-principles

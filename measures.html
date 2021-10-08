@@ -269,6 +269,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.</li>
 </ul></li>
+<li><p><strong><em>[InstructionalSettingCode]:</em></strong> Students who are classified as SPED may receive additional services. Their services can be found in the <strong>InstructionalSettingDescription</strong> column, which is linked to a specific <a href="http://ritter.tea.state.tx.us/peims/standards/1314/c035.html">PEIMS code</a>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>InstructionalSettingCode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>No additional SPED services</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Homebound</td>
+</tr>
+<tr class="odd">
+<td>40</td>
+<td>Mainstream</td>
+</tr>
+<tr class="even">
+<td>41</td>
+<td>Resource Room/Services &lt; 21%</td>
+</tr>
+<tr class="odd">
+<td>42</td>
+<td>Resource Room/Services 21- &lt;50%</td>
+</tr>
+<tr class="even">
+<td>43</td>
+<td>Resource Room/Services 50- 60%</td>
+</tr>
+<tr class="odd">
+<td>44</td>
+<td>Resource Room/Services &gt; 60%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If InstructionalSettingCode = 43 or 44, the student is typically in RISE.</li>
+</ul></li>
 <li><p><strong><em>[DisabilityCode]</em></strong></p>
 <table>
 <thead>
