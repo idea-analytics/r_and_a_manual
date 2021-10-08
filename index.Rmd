@@ -43,5 +43,23 @@ Anything and everything we learn during the course of our work at IDEA. Of parti
 
 This manual is written in **Markdown** and managed with git/Github. 
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
+::: {.tip}
+If you are unfamiliar with git/Github you'll want to read through[ how we use git in the Projects chapter](#section-github)
+:::
 
+The general process is as follows:
+
+1. Clone the repo:  If you haven't already, pull this book down [from it's Github repo](https://github.com/idea-analytics/r_and_a_manual).  From the command line run `git clone https://github.com/idea-analytics/r_and_a_manual.git`.
+1.  Or, pull down the latest version of the master branch `git checkout master` and then `git pull`
+1.  In File Explorer/Finder find the `r_and_a_manaul` folder and double click `r_and_a_manual.Rproj`, which will open the book's project in RStudio
+1. Check out a branch `git checkout -b my-manual-update`.
+1.  Make updates.  You can run in R `bookdown::serve_book` to have it recompile the book on save. 
+1. Commit frequently.
+1. Push your changes on yoru branch up to Github.
+1.  Intitiate a pull request to merge your changes.  If they are minor you can do the whole process your self. IF they are major--especially changing the books structure--then have another team member review your pull request before merging. 
+1. Complete the merge. 
+1. Rinse and repeat!
+
+::: {.tip}
+Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
+:::
