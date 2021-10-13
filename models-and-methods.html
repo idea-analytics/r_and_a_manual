@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Rodrigo San Miguel, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-10-08" />
+<meta name="date" content="2021-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -257,19 +257,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When a student is marked for inclusion in, say, a tutorial group, we would like to see how much the tutorial increased their score on a test, compared to a scenario where the student did not attend the tutorial. If the student attends the tutorial, we can measure the outcome of the treatment (the tutorial) by seeing what grade they earned after a test; we cannot observe, however, the outcome of the control (no tutorial). Potential outcomes aims to remedy this.</p>
 <div id="potential-outcomes" class="section level4">
 <h4><span class="header-section-number">8.1.1.1</span> Potential outcomes</h4>
-<p>Suppose we have both the treatment and control outcomes for each student. We would like to measure <span class="math inline">\(\delta_i = Y^1_i - Y^0_i\)</span>, the difference in the treatment outcome <span class="math inline">\(Y^1_i\)</span> and control outcome <span class="math inline">\(Y^0_i\)</span> for student <span class="math inline">\(i\)</span>. Then, our main estimators for the tutorial effect are <span class="math inline">\(ATE, ATT\)</span> and <span class="math inline">\(ATU\)</span>, which are defined below:
-- <span class="math inline">\(ATE = E[\delta_i]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment <strong>E</strong>ffect <span class="math inline">\(E[\delta_i] = E[Y^1_i - Y^0_i]\)</span>. In other words, <span class="math inline">\(ATE\)</span> answers the question “What is the additional effect of the treatment?”
-- <span class="math inline">\(ATT = E[\delta_i \mid \textrm{in treatment group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>T</strong>reatment group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]\)</span>. In other words, <span class="math inline">\(ATT\)</span> answers the question “What is the additional effect of the treatment for those in the treatment group?”
-- <span class="math inline">\(ATU = E[\delta_i \mid \textrm{in control group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>U</strong>ntreated (control) group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in control group}]\)</span>. In other words, <span class="math inline">\(ATU\)</span> answers the question “What is the additional effect of the treatment for those in the control group?”
-- <span class="math inline">\(ATE\)</span> can be decomposed into a weighted average of <span class="math inline">\(ATT, ATU\)</span>, such that <span class="math inline">\(ATE = p\times ATT + (1-p)\times ATU\)</span>, where <span class="math inline">\(p\)</span> is the weight of the treatment group.</p>
-<p>In our scenario,
-- <span class="math inline">\(ATE\)</span> represents the expected marginal effect of the tutorial group on test scores for all students,
-- <span class="math inline">\(ATT\)</span> represents the expected marginal effect of the tutorial group for students who participate in tutorials, and
-- <span class="math inline">\(ATU\)</span> represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.</p>
+<p>Suppose we have both the treatment and control outcomes for each student. We would like to measure <span class="math inline">\(\delta_i = Y^1_i - Y^0_i\)</span>, the difference in the treatment outcome <span class="math inline">\(Y^1_i\)</span> and control outcome <span class="math inline">\(Y^0_i\)</span> for student <span class="math inline">\(i\)</span>. Then, our main estimators for the tutorial effect are <span class="math inline">\(ATE, ATT\)</span> and <span class="math inline">\(ATU\)</span>, which are defined below:</p>
+<ul>
+<li><p><span class="math inline">\(ATE = E[\delta_i]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment <strong>E</strong>ffect <span class="math inline">\(E[\delta_i] = E[Y^1_i - Y^0_i]\)</span>. In other words, <span class="math inline">\(ATE\)</span> answers the question “What is the additional effect of the treatment?”</p></li>
+<li><p><span class="math inline">\(ATT = E[\delta_i \mid \textrm{in treatment group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>T</strong>reatment group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]\)</span>. In other words, <span class="math inline">\(ATT\)</span> answers the question “What is the additional effect of the treatment for those in the treatment group?”</p></li>
+<li><p><span class="math inline">\(ATU = E[\delta_i \mid \textrm{in control group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>U</strong>ntreated (control) group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in control group}]\)</span>. In other words, <span class="math inline">\(ATU\)</span> answers the question “What is the additional effect of the treatment for those in the control group?”</p></li>
+<li><p><span class="math inline">\(ATE\)</span> can be decomposed into a weighted average of <span class="math inline">\(ATT, ATU\)</span>, such that <span class="math inline">\(ATE = p\times ATT + (1-p)\times ATU\)</span>, where <span class="math inline">\(p\)</span> is the weight of the treatment group.</p></li>
+</ul>
+<p>In our scenario,</p>
+<ul>
+<li><p><span class="math inline">\(ATE\)</span> represents the expected marginal effect of the tutorial group on test scores for all students,</p></li>
+<li><p><span class="math inline">\(ATT\)</span> represents the expected marginal effect of the tutorial group for students who participate in tutorials, and</p></li>
+<li><p><span class="math inline">\(ATU\)</span> represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.</p></li>
+</ul>
 <p>Estimates may be biased because we do not randomly assign students to tutorials - we select them for each group based on some criteria. Using randomization inference, we can separate assignment bias from the estimates of <span class="math inline">\(ATT, ATU\)</span> to find appropriate estimates and p-values on <span class="math inline">\(ATE\)</span>.</p>
 </div>
 <div id="matching-models" class="section level4">
 <h4><span class="header-section-number">8.1.1.2</span> Matching models</h4>
+<p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
+<p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="models-and-methods.html#cb19-1"></a><span class="co">#use matchit like a glm</span></span>
+<span id="cb19-2"><a href="models-and-methods.html#cb19-2"></a>m_out &lt;-<span class="st"> </span><span class="kw">matchit</span>(ActiveIL <span class="op">~</span><span class="st"> </span>Race <span class="op">+</span><span class="st"> </span>Gender <span class="op">+</span><span class="st"> </span>Grade <span class="op">+</span></span>
+<span id="cb19-3"><a href="models-and-methods.html#cb19-3"></a><span class="st">                   </span>SPED <span class="op">+</span><span class="st"> </span>LEP <span class="op">+</span><span class="st"> </span>EcoDis <span class="op">+</span><span class="st"> </span>GradeEquivalentBOY, <span class="co">#response specifies control/treatment, covariates specify what to match</span></span>
+<span id="cb19-4"><a href="models-and-methods.html#cb19-4"></a>                 <span class="dt">data =</span> rs_il_mod,</span>
+<span id="cb19-5"><a href="models-and-methods.html#cb19-5"></a>                 <span class="dt">method =</span> <span class="st">&quot;cem&quot;</span>, <span class="co">#specify matching method</span></span>
+<span id="cb19-6"><a href="models-and-methods.html#cb19-6"></a>                 <span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>,</span>
+<span id="cb19-7"><a href="models-and-methods.html#cb19-7"></a>                 <span class="dt">estimand =</span> <span class="st">&quot;ATT&quot;</span>)</span>
+<span id="cb19-8"><a href="models-and-methods.html#cb19-8"></a></span>
+<span id="cb19-9"><a href="models-and-methods.html#cb19-9"></a><span class="co">#produces data frame with needed weights</span></span>
+<span id="cb19-10"><a href="models-and-methods.html#cb19-10"></a>m_data &lt;-<span class="st"> </span><span class="kw">match.data</span>(m_out)</span>
+<span id="cb19-11"><a href="models-and-methods.html#cb19-11"></a></span>
+<span id="cb19-12"><a href="models-and-methods.html#cb19-12"></a><span class="co">#model uses weighted linear model to estimate causal effect of using Imagine Learning</span></span>
+<span id="cb19-13"><a href="models-and-methods.html#cb19-13"></a>m_att &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(GradeEquivalentGrowth <span class="op">~</span><span class="st"> </span>ActiveIL,</span>
+<span id="cb19-14"><a href="models-and-methods.html#cb19-14"></a>                   <span class="dt">data =</span> m_data,</span>
+<span id="cb19-15"><a href="models-and-methods.html#cb19-15"></a>                   <span class="dt">weights =</span> m_data<span class="op">$</span>weights)</span>
+<span id="cb19-16"><a href="models-and-methods.html#cb19-16"></a></span>
+<span id="cb19-17"><a href="models-and-methods.html#cb19-17"></a><span class="kw">summary</span>(m_att)</span></code></pre></div>
 </div>
 <div id="regression-discontinuity" class="section level4">
 <h4><span class="header-section-number">8.1.1.3</span> Regression discontinuity</h4>
@@ -315,33 +338,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Clustering of values in a region (and conversely, gaps in data)</p></li>
 </ol>
 <p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="models-and-methods.html#cb19-1"></a><span class="kw">make_Data_By_Launch_Cohort</span>() <span class="op">%&gt;%</span></span>
-<span id="cb19-2"><a href="models-and-methods.html#cb19-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> LaunchSchoolYear,</span>
-<span id="cb19-3"><a href="models-and-methods.html#cb19-3"></a>             <span class="dt">y =</span> <span class="kw">jitter</span>(MedianGrowth), <span class="co">#jittering of clustered points</span></span>
-<span id="cb19-4"><a href="models-and-methods.html#cb19-4"></a>             <span class="dt">group =</span> School)) <span class="op">+</span></span>
-<span id="cb19-5"><a href="models-and-methods.html#cb19-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> School, <span class="co">#change color by school</span></span>
-<span id="cb19-6"><a href="models-and-methods.html#cb19-6"></a>                 <span class="dt">alpha =</span> <span class="fl">0.2</span>), <span class="co">#set transparency level to 0.2</span></span>
-<span id="cb19-7"><a href="models-and-methods.html#cb19-7"></a>             <span class="dt">size =</span> <span class="fl">3.5</span>) <span class="op">+</span><span class="st"> </span><span class="co">#increases size of point</span></span>
-<span id="cb19-8"><a href="models-and-methods.html#cb19-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> MedianGrowthLaunch,</span>
-<span id="cb19-9"><a href="models-and-methods.html#cb19-9"></a>                 <span class="dt">color =</span> LaunchOrder),</span>
-<span id="cb19-10"><a href="models-and-methods.html#cb19-10"></a>             <span class="dt">shape =</span> <span class="dv">3</span>, <span class="co">#changes shape to plus sign +</span></span>
-<span id="cb19-11"><a href="models-and-methods.html#cb19-11"></a>             <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
-<span id="cb19-12"><a href="models-and-methods.html#cb19-12"></a><span class="st">  </span><span class="kw">scale_color_idea</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-13"><a href="models-and-methods.html#cb19-13"></a><span class="st">  </span><span class="kw">theme_idea_light</span>() <span class="op">+</span></span>
-<span id="cb19-14"><a href="models-and-methods.html#cb19-14"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>LaunchOrder,</span>
-<span id="cb19-15"><a href="models-and-methods.html#cb19-15"></a>             <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">LaunchOrder =</span> <span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;First Year&quot;</span>,</span>
-<span id="cb19-16"><a href="models-and-methods.html#cb19-16"></a>                                                 <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;Second Year&quot;</span>,</span>
-<span id="cb19-17"><a href="models-and-methods.html#cb19-17"></a>                                                 <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;Third Year&quot;</span>))) <span class="op">+</span></span>
-<span id="cb19-18"><a href="models-and-methods.html#cb19-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Median RenStar Reading Growth&quot;</span>,</span>
-<span id="cb19-19"><a href="models-and-methods.html#cb19-19"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Results grouped by schools launching in the same year&quot;</span>,</span>
-<span id="cb19-20"><a href="models-and-methods.html#cb19-20"></a>       <span class="dt">caption =</span> <span class="st">&quot;+ represents median RenStar reading growth for that launching cohort&quot;</span>,</span>
-<span id="cb19-21"><a href="models-and-methods.html#cb19-21"></a>       <span class="dt">x =</span> <span class="st">&quot;Launch Year&quot;</span>,</span>
-<span id="cb19-22"><a href="models-and-methods.html#cb19-22"></a>       <span class="dt">y =</span> <span class="st">&quot;Median RenStar Growth&quot;</span>) <span class="op">+</span></span>
-<span id="cb19-23"><a href="models-and-methods.html#cb19-23"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span> =<span class="st"> &quot;2017-18&quot;</span>,</span>
-<span id="cb19-24"><a href="models-and-methods.html#cb19-24"></a>                              <span class="st">&quot;2018-2019&quot;</span> =<span class="st"> &quot;2018-19&quot;</span>,</span>
-<span id="cb19-25"><a href="models-and-methods.html#cb19-25"></a>                              <span class="st">&quot;2019-2020&quot;</span> =<span class="st"> &quot;2019-20&quot;</span>,</span>
-<span id="cb19-26"><a href="models-and-methods.html#cb19-26"></a>                              <span class="st">&quot;2020-2021&quot;</span> =<span class="st"> &quot;2020-21&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb19-27"><a href="models-and-methods.html#cb19-27"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="models-and-methods.html#cb20-1"></a><span class="kw">make_Data_By_Launch_Cohort</span>() <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="models-and-methods.html#cb20-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> LaunchSchoolYear,</span>
+<span id="cb20-3"><a href="models-and-methods.html#cb20-3"></a>             <span class="dt">y =</span> <span class="kw">jitter</span>(MedianGrowth), <span class="co">#jittering of clustered points</span></span>
+<span id="cb20-4"><a href="models-and-methods.html#cb20-4"></a>             <span class="dt">group =</span> School)) <span class="op">+</span></span>
+<span id="cb20-5"><a href="models-and-methods.html#cb20-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> School, <span class="co">#change color by school</span></span>
+<span id="cb20-6"><a href="models-and-methods.html#cb20-6"></a>                 <span class="dt">alpha =</span> <span class="fl">0.2</span>), <span class="co">#set transparency level to 0.2</span></span>
+<span id="cb20-7"><a href="models-and-methods.html#cb20-7"></a>             <span class="dt">size =</span> <span class="fl">3.5</span>) <span class="op">+</span><span class="st"> </span><span class="co">#increases size of point</span></span>
+<span id="cb20-8"><a href="models-and-methods.html#cb20-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> MedianGrowthLaunch,</span>
+<span id="cb20-9"><a href="models-and-methods.html#cb20-9"></a>                 <span class="dt">color =</span> LaunchOrder),</span>
+<span id="cb20-10"><a href="models-and-methods.html#cb20-10"></a>             <span class="dt">shape =</span> <span class="dv">3</span>, <span class="co">#changes shape to plus sign +</span></span>
+<span id="cb20-11"><a href="models-and-methods.html#cb20-11"></a>             <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></span>
+<span id="cb20-12"><a href="models-and-methods.html#cb20-12"></a><span class="st">  </span><span class="kw">scale_color_idea</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb20-13"><a href="models-and-methods.html#cb20-13"></a><span class="st">  </span><span class="kw">theme_idea_light</span>() <span class="op">+</span></span>
+<span id="cb20-14"><a href="models-and-methods.html#cb20-14"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>LaunchOrder,</span>
+<span id="cb20-15"><a href="models-and-methods.html#cb20-15"></a>             <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">LaunchOrder =</span> <span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;First Year&quot;</span>,</span>
+<span id="cb20-16"><a href="models-and-methods.html#cb20-16"></a>                                                 <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;Second Year&quot;</span>,</span>
+<span id="cb20-17"><a href="models-and-methods.html#cb20-17"></a>                                                 <span class="st">&quot;3&quot;</span> =<span class="st"> &quot;Third Year&quot;</span>))) <span class="op">+</span></span>
+<span id="cb20-18"><a href="models-and-methods.html#cb20-18"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Median RenStar Reading Growth&quot;</span>,</span>
+<span id="cb20-19"><a href="models-and-methods.html#cb20-19"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Results grouped by schools launching in the same year&quot;</span>,</span>
+<span id="cb20-20"><a href="models-and-methods.html#cb20-20"></a>       <span class="dt">caption =</span> <span class="st">&quot;+ represents median RenStar reading growth for that launching cohort&quot;</span>,</span>
+<span id="cb20-21"><a href="models-and-methods.html#cb20-21"></a>       <span class="dt">x =</span> <span class="st">&quot;Launch Year&quot;</span>,</span>
+<span id="cb20-22"><a href="models-and-methods.html#cb20-22"></a>       <span class="dt">y =</span> <span class="st">&quot;Median RenStar Growth&quot;</span>) <span class="op">+</span></span>
+<span id="cb20-23"><a href="models-and-methods.html#cb20-23"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;2017-2018&quot;</span> =<span class="st"> &quot;2017-18&quot;</span>,</span>
+<span id="cb20-24"><a href="models-and-methods.html#cb20-24"></a>                              <span class="st">&quot;2018-2019&quot;</span> =<span class="st"> &quot;2018-19&quot;</span>,</span>
+<span id="cb20-25"><a href="models-and-methods.html#cb20-25"></a>                              <span class="st">&quot;2019-2020&quot;</span> =<span class="st"> &quot;2019-20&quot;</span>,</span>
+<span id="cb20-26"><a href="models-and-methods.html#cb20-26"></a>                              <span class="st">&quot;2020-2021&quot;</span> =<span class="st"> &quot;2020-21&quot;</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb20-27"><a href="models-and-methods.html#cb20-27"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
 <div class="figure">
 <img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt="" />
