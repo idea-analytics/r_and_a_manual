@@ -17,19 +17,53 @@ When a student is marked for inclusion in, say, a tutorial group, we would like 
 #### Potential outcomes
 
 Suppose we have both the treatment and control outcomes for each student. We would like to measure $\delta_i = Y^1_i - Y^0_i$, the difference in the treatment outcome $Y^1_i$ and control outcome $Y^0_i$ for student $i$. Then, our main estimators for the tutorial effect are $ATE, ATT$ and $ATU$, which are defined below:
-- $ATE = E[\delta_i]$ represents the **A**verage **T**reatment **E**ffect $E[\delta_i] = E[Y^1_i - Y^0_i]$. In other words, $ATE$ answers the question "What is the additional effect of the treatment?"
-  - $ATT = E[\delta_i \mid \textrm{in treatment group}]$ represents the **A**verage **T**reatment effect of the **T**reatment group, $E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]$. In other words, $ATT$ answers the question "What is the additional effect of the treatment for those in the treatment group?"
-  - $ATU = E[\delta_i \mid \textrm{in control group}]$ represents the **A**verage **T**reatment effect of the **U**ntreated (control) group, $E[Y^1_i - Y^0_i \mid \textrm{in control group}]$. In other words, $ATU$ answers the question "What is the additional effect of the treatment for those in the control group?"
-- $ATE$ can be decomposed into a weighted average of $ATT, ATU$, such that $ATE = p\times ATT + (1-p)\times ATU$, where $p$ is the weight of the treatment group.
+
+-   $ATE = E[\delta_i]$ represents the **A**verage **T**reatment **E**ffect $E[\delta_i] = E[Y^1_i - Y^0_i]$. In other words, $ATE$ answers the question "What is the additional effect of the treatment?"
+
+  -   $ATT = E[\delta_i \mid \textrm{in treatment group}]$ represents the **A**verage **T**reatment effect of the **T**reatment group, $E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]$. In other words, $ATT$ answers the question "What is the additional effect of the treatment for those in the treatment group?"
+  
+  -   $ATU = E[\delta_i \mid \textrm{in control group}]$ represents the **A**verage **T**reatment effect of the **U**ntreated (control) group, $E[Y^1_i - Y^0_i \mid \textrm{in control group}]$. In other words, $ATU$ answers the question "What is the additional effect of the treatment for those in the control group?"
+
+-   $ATE$ can be decomposed into a weighted average of $ATT, ATU$, such that $ATE = p\times ATT + (1-p)\times ATU$, where $p$ is the weight of the treatment group.
 
 In our scenario,
-- $ATE$ represents the expected marginal effect of the tutorial group on test scores for all students,
-- $ATT$ represents the expected marginal effect of the tutorial group for students who participate in tutorials, and
-- $ATU$ represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.
+
+-   $ATE$ represents the expected marginal effect of the tutorial group on test scores for all students,
+
+-   $ATT$ represents the expected marginal effect of the tutorial group for students who participate in tutorials, and
+
+-   $ATU$ represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.
 
 Estimates may be biased because we do not randomly assign students to tutorials - we select them for each group based on some criteria. Using randomization inference, we can separate assignment bias from the estimates of $ATT, ATU$ to find appropriate estimates and p-values on $ATE$.
 
 #### Matching models 
+
+We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate $ATE$ since we have both the treatment and control outcomes.
+
+By using the `matchit` package in R, we can specify covariates we would like to match in our data between the treatment and control groups.
+
+```{r matchit_example, echo=TRUE, eval=FALSE}
+#use matchit like a glm
+m_out <- matchit(ActiveIL ~ Race + Gender + Grade +
+                   SPED + LEP + EcoDis + GradeEquivalentBOY, #response specifies control/treatment, covariates specify what to match
+                 data = rs_il_mod,
+                 method = "cem", #specify matching method
+                 link = "logit",
+                 estimand = "ATT")
+
+#produces data frame with needed weights
+m_data <- match.data(m_out)
+
+#model uses weighted linear model to estimate causal effect of using Imagine Learning
+m_att <- lm_robust(GradeEquivalentGrowth ~ ActiveIL,
+                   data = m_data,
+                   weights = m_data$weights)
+
+summary(m_att)
+
+```
+
+
 
 #### Regression discontinuity
 
