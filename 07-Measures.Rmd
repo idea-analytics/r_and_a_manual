@@ -17,10 +17,17 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
   + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
   + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
 
-* **_[ELLCode]:_** English Language Learner (ELL) A.K.A. Limited English Proficiency (LEP)
-  + If ELLCode = 0, student **is not** identified as an ELL student,
-  + If ELLCode = 1, the student **is** identified as an ELL student,
-  + If ELLCode not in (0,1), it means the student is not currently identified as an ELL but was identified before as one.
+* **_[ELLCode]:_** English Learner (EL) A.K.A. Limited English Proficiency (LEP)
+  + If ELLCode = 0, student **is not** identified as an EL student,
+  + If ELLCode = 1, the student **is** identified as an EL student,
+  + If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,
+  + If ELLCode = "F", the student **is not** identified as an EL student but is in the First Year of Monitoring status,
+  + IF ELLCode = "S", the student **is not** identified as an EL student but is in the Second Year of Monitoring status,
+  + If ELLCode = 3, the student **is not** identified as an EL student but is in the Third Year of Monitoring status,
+  + If ELLCode = 4, the student **is not** identified as an EL student but is in the Fourth Year of Monitoring status,
+  + If ELLCode = 5, the student **is not** identified as an EL student but was at one point more than 4 years ago.
+  
+* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
 
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
   + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
@@ -92,42 +99,20 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
   + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
   + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
   + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+  
+* **ECDFlag** Consolidates the codes above to 0/1 indicator
+  + If ECDFlag = TRUE (1), the student **is** identified as economically disadvantaged,
+  + If ECDFlag = FALSE (0), the student **is not** identified as economically disadvantaged.
 
 
-* **_Race / Ethnicity:_** Same like in TX . 
+* **_Race / Ethnicity:_** Same like in TX
+  + If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,
+  + If the student **does not** identify as Hispanic or Latino and only selected one race the student is classified as that race,
+  + If the student **does not** identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.
 
-* **_[RowIsCurrent]:_** 
-
-**Context:**
-
-* **Who Counts?** 
-
+* **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
 
 
-* **Who is a 4year 2year?**
-
-
-
-* **Persistence Rate by:**
-
-  + **District:** use all data
-  +	**Region:** use the [RegionDescription] field
-  +	**School:** [SchoolShortName] + [SchoolType]
-  +	**Grade Level:** [GradeLevelID]
-  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
-
-
-* **Other Useful Fields:**
-  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
-  + [LeaverWeek] to know the week when the student left the district.
-
-* **SQL Code Example:**
-
-```{r example1, echo=TRUE, eval=FALSE}
-SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
-FROM [`[REDACTED-HOST]`].[Persistence].[dbo].[PersistenceCode]
-WHERE [FDOPCOUNTP] = 1
-```
 
 Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.
 
