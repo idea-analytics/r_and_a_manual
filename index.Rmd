@@ -22,6 +22,7 @@ The manual is particularly aimed at a technical audience (e.g. statisticians, da
 ```{r include=FALSE}
 library(tidyverse)
 
+
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
