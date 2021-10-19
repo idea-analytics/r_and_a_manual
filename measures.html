@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Rodrigo San Miguel, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-10-18" />
+<meta name="date" content="2021-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -260,12 +260,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If EnrollmentStatus = 2, it means the student left the district before completing the academic year,</li>
 <li>If EnrollmentStatus = 3, it means the student graduated from IDEA’s high school.</li>
 </ul></li>
-<li><p><strong><em>[ELLCode]:</em></strong> English Language Learner (ELL) A.K.A. Limited English Proficiency (LEP)</p>
+<li><p><strong><em>[ELLCode]:</em></strong> English Learner (EL) A.K.A. Limited English Proficiency (LEP)</p>
 <ul>
-<li>If ELLCode = 0, student <strong>is not</strong> identified as an ELL student,</li>
-<li>If ELLCode = 1, the student <strong>is</strong> identified as an ELL student,</li>
-<li>If ELLCode not in (0,1), it means the student is not currently identified as an ELL but was identified before as one.</li>
+<li>If ELLCode = 0, student <strong>is not</strong> identified as an EL student,</li>
+<li>If ELLCode = 1, the student <strong>is</strong> identified as an EL student,</li>
+<li>If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,</li>
+<li>If ELLCode = “F”, the student <strong>is not</strong> identified as an EL student but is in the First Year of Monitoring status,</li>
+<li>IF ELLCode = “S”, the student <strong>is not</strong> identified as an EL student but is in the Second Year of Monitoring status,</li>
+<li>If ELLCode = 3, the student <strong>is not</strong> identified as an EL student but is in the Third Year of Monitoring status,</li>
+<li>If ELLCode = 4, the student <strong>is not</strong> identified as an EL student but is in the Fourth Year of Monitoring status,</li>
+<li>If ELLCode = 5, the student <strong>is not</strong> identified as an EL student but was at one point more than 4 years ago.</li>
 </ul></li>
+<li><p><strong>EL Reclassification</strong> An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5</p></li>
 <li><p><strong><em>[SPED]:</em></strong> SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.</p>
 <ul>
 <li>If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.</li>
@@ -402,81 +408,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-24"><a href="measures.html#cb13-24"></a> FROM [PROD1].[Schools].[Students]</span>
 <span id="cb13-25"><a href="measures.html#cb13-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> &#39;&#39;</span> ORDER BY StudentNumber</span></code></pre></div>
 <ul>
-<li><p><strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD</p>
+<li><strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD
 <ul>
 <li>If EconomicDisadvantageCode = 0, then the student is <em>not identified as economically disadvantaged</em>, otherwise the student is identified as <strong>economically disadvantaged</strong>,</li>
 <li>If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,</li>
 <li>If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,</li>
 <li>If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.</li>
 </ul></li>
-<li><p><strong><em>Race / Ethnicity:</em></strong> Same like in TX .</p></li>
-<li><p><strong><em>[RowIsCurrent]:</em></strong></p></li>
-</ul>
-<p><strong>Context:</strong></p>
+<li><strong>ECDFlag</strong> Consolidates the codes above to 0/1 indicator
 <ul>
-<li><p><strong>Who Counts?</strong></p></li>
-<li><p><strong>Who is a 4year 2year?</strong></p></li>
-<li><p><strong>Persistence Rate by:</strong></p>
-<ul>
-<li><strong>District:</strong> use all data</li>
-<li><strong>Region:</strong> use the [RegionDescription] field</li>
-<li><strong>School:</strong> [SchoolShortName] + [SchoolType]</li>
-<li><strong>Grade Level:</strong> [GradeLevelID]</li>
-<li><strong>Student Type (new or returning):</strong> use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.</li>
+<li>If ECDFlag = TRUE (1), the student <strong>is</strong> identified as economically disadvantaged,</li>
+<li>If ECDFlag = FALSE (0), the student <strong>is not</strong> identified as economically disadvantaged.</li>
 </ul></li>
-<li><p><strong>Other Useful Fields:</strong></p>
+<li><strong><em>Race / Ethnicity:</em></strong> Same like in TX
 <ul>
-<li>Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.</li>
-<li>[LeaverWeek] to know the week when the student left the district.</li>
+<li>If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,</li>
+<li>If the student <strong>does not</strong> identify as Hispanic or Latino and only selected one race the student is classified as that race,</li>
+<li>If the student <strong>does not</strong> identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.</li>
 </ul></li>
-<li><p><strong>SQL Code Example:</strong></p></li>
+<li><strong><em>[RowIsCurrent]:</em></strong> Indicates the most current row for a student, <strong>Only to be used on the current school year</strong></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="measures.html#cb14-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb14-2"><a href="measures.html#cb14-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb14-3"><a href="measures.html#cb14-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.</p>
 </div>
 <div id="student-persistence" class="section level2">
 <h2><span class="header-section-number">7.2</span> Student Persistence</h2>
-<p>Student Persistence is one of the most important measures. Chiefs, VPs, and School Leaders are always monitoring this metric which gives us a good idea of our efforts to provide high quality service to our students and their families. We say a student persisted if the student was enrolled and attended the school on the “First Day Of Persistence (FDOP)” for two consecutive years.</p>
-<p>Example: John enrolled IDEA Public Schools on August 19, 2019 and attended to the school the FDOP which is the Monday after the official first week of school. John completes the 2019-2020 academic year and by August 17, 2020 (FDOP) John enrolls again and attends to the school. If John was enrolled but did not attend on the FDOP and he decides to come back until September, then John won’t count as a student who persisted.</p>
+<p>Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the “First Day of Persistence (FDOP)” for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.</p>
+<p>Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn’t return until September, John would not count as a student who persisted.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[Persistence]</p>
-<p><strong>Main metrics:</strong> District, Regional, School, Subpopulation, Grade Level</p>
+<p><strong>Main metrics:</strong> District, Regional, School, Sub-population, Grade Level</p>
 <p><strong>General Formula:</strong> 1 – (Leavers/All Students)</p>
 <p><strong>Tables:</strong></p>
 <ul>
-<li><p><strong><em>[dbo].[PersistenceCode]:</em></strong> This table is used to calculate persistence rate for the current academic year. It shows data for the most recent week. We will see different week numbers, but this is because the first day of school is different across the district.</p></li>
-<li><p><strong><em>[dbo].[PersistenceCodeHistorical]:</em></strong> This table shows the final persistence data (as of last week of persistence). Here we will find historical data starting from 2019-2020. The table will be updated every year.</p></li>
-<li><p><strong><em>[dbo].[PersistenceHistorical]:</em></strong> As the previous table, this one contains final persistence data. The table will not be updated but it includes 2018-2019 data.</p></li>
+<li><p><strong><em>[dbo].[PersistenceCode]:</em></strong> This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).</p></li>
+<li><p><strong><em>[dbo].[PersistenceHistorical]:</em></strong> This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2020-2021. This table is updated with the previous years’ data after that year is closed out and the next persistence year has started.</p></li>
 </ul>
 <p><strong>Context:</strong></p>
 <ul>
 <li><strong>Who Counts?</strong></li>
 </ul>
-<p>To calculate persistence, we need to first filter [FDOPCOUNTP] = 1 (FDOP First Day Of Persistence). The number of students resulting from this operation would be our denominator.</p>
+<p>To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(EXCLUDE == 0, FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. These two filters should be used when looking at current <strong>or</strong> historical data.</p>
 <ul>
 <li><strong>Who is a Leaver?</strong></li>
 </ul>
-<p>If FDOPLEAVER equals 1, then that student is considered as a leaver otherwise is a current student. All summer leavers (June – August) from [SummerLeaver] = 1, are marked as FDOPLEAVER = 1. All leavers should have an [EnrollmentStatus] =2. The number of students resulting from this operation would be our numerator.</p>
+<p>All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a current student.</p>
 <ul>
-<li><p><strong>Persistence Rate by:</strong></p>
+<li><strong>Other Useful Fields:</strong>
 <ul>
-<li><strong>District:</strong> use all data</li>
-<li><strong>Region:</strong> use the [RegionDescription] field</li>
-<li><strong>School:</strong> [SchoolShortName] + [SchoolType]</li>
-<li><strong>Grade Level:</strong> [GradeLevelID]</li>
-<li><strong>Student Type (new or returning):</strong> use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.</li>
+<li><strong>AcademicYear:</strong> the academic year</li>
+<li><strong>RegionDescription:</strong> the region the student is in</li>
+<li><strong>SchoolShortName:</strong> the school the student attends</li>
+<li><strong>SchoolType:</strong> Academy of College Prep</li>
+<li><strong>GradeLevelID:</strong> Student’s grade level (integer ranging from -1 = Pre-K to 12)</li>
+<li><strong>NewStudent:</strong> indicates if the student is new (1) or returning (0)</li>
+<li><strong>PersistenceWeek:</strong> the current week of persistence based on the student’s region and school (ranges from 1-52)</li>
+<li><strong>LeaverWeek:</strong> the persistence week the student left the district</li>
+<li><strong>ULeaverWeek:</strong> the persistence week the student left the district if it was after the last day of school</li>
+<li><strong>PersistenceCode:</strong> the reason the student left the district</li>
+<li><strong>PersistenceCategory:</strong> the category that the reason falls into for why the student left the district</li>
+<li><strong>PersistenceComment:</strong> any additional comments the SIS clerk has for why the student left the district</li>
+<li><strong>EnrollmentStatus:</strong> contains the enrollment status, but is not accurate <strong>Do Not Use</strong></li>
+<li><strong>EntryDate:</strong> the date the student entered school for a particular academic year or the date the student started school at a new campus</li>
+<li><strong>ExitDate:</strong> the last day of the academic year (last day of school) or the day the student left the district (summer leavers are sometimes snapped back to the last day of school, beware)</li>
+<li><strong>Recapture:</strong> 0/1 indicator of students that have left and then returned to the district. 1 = recaptured, 0 = not recaptured. <strong>Not to be Trusted</strong></li>
+<li><strong>SummerLeaver:</strong> 0/1 indicator for students that leave during the summer</li>
+<li><strong>StudentGender:</strong> “M”/“F” gender indicator</li>
+<li><strong>Race:</strong> race indicator combined with ethnicity; ex. “WHITE-HISPANIC”</li>
+<li><strong>IsHispanic:</strong> indicates whether the student identifies as Hispanic; values = “HISPANIC” or “NON-HISPANIC”</li>
+<li><strong>Migrant:</strong> 0/1 indicator of student’s migrant status</li>
+<li><strong>LEP:</strong> 0/1 indicator of student’s English Learner status. <strong>Inaccurate Don’t Use</strong></li>
+<li><strong>Sped:</strong> 0/1 indicator of student’s SPED status</li>
+<li><strong>EconDisad:</strong> 0/1 indicator of student’s economic disadvantaged status. <strong>Inaccurate Don’t Use</strong></li>
+<li><strong>IsCSI:</strong> 0/1 indicator for students identified as CSI</li>
+<li><strong>ContinuousEnrollment:</strong> 0/1 indicates whether the student has been continuously enrolled</li>
 </ul></li>
-<li><p><strong>Other Useful Fields:</strong></p>
-<ul>
-<li>Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.</li>
-<li>[LeaverWeek] to know the week when the student left the district.</li>
-</ul></li>
-<li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="measures.html#cb15-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb15-2"><a href="measures.html#cb15-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb15-3"><a href="measures.html#cb15-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="college-application-matriculation-metrics" class="section level2">
 <h2><span class="header-section-number">7.3</span> College Application &amp; Matriculation Metrics</h2>
@@ -512,9 +517,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="measures.html#cb16-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb16-2"><a href="measures.html#cb16-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb16-3"><a href="measures.html#cb16-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="measures.html#cb14-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb14-2"><a href="measures.html#cb14-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb14-3"><a href="measures.html#cb14-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="csi" class="section level2">
 <h2><span class="header-section-number">7.4</span> Critical Student Intervention (CSI) Identification</h2>
@@ -527,37 +532,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="measures.html#cb17-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb17-2"><a href="measures.html#cb17-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb17-3"><a href="measures.html#cb17-3"></a>      ,[ProgramID]</span>
-<span id="cb17-4"><a href="measures.html#cb17-4"></a>      ,CASE </span>
-<span id="cb17-5"><a href="measures.html#cb17-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb17-6"><a href="measures.html#cb17-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb17-7"><a href="measures.html#cb17-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb17-8"><a href="measures.html#cb17-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb17-9"><a href="measures.html#cb17-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="measures.html#cb15-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb15-2"><a href="measures.html#cb15-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb15-3"><a href="measures.html#cb15-3"></a>      ,[ProgramID]</span>
+<span id="cb15-4"><a href="measures.html#cb15-4"></a>      ,CASE </span>
+<span id="cb15-5"><a href="measures.html#cb15-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb15-6"><a href="measures.html#cb15-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb15-7"><a href="measures.html#cb15-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb15-8"><a href="measures.html#cb15-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb15-9"><a href="measures.html#cb15-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
 <ul>
 <li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="measures.html#cb18-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb18-2"><a href="measures.html#cb18-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
-<span id="cb18-3"><a href="measures.html#cb18-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
-<span id="cb18-4"><a href="measures.html#cb18-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
-<span id="cb18-5"><a href="measures.html#cb18-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
-<span id="cb18-6"><a href="measures.html#cb18-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
-<span id="cb18-7"><a href="measures.html#cb18-7"></a>LEFT JOIN </span>
-<span id="cb18-8"><a href="measures.html#cb18-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb18-9"><a href="measures.html#cb18-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb18-10"><a href="measures.html#cb18-10"></a>      ,[ProgramID]</span>
-<span id="cb18-11"><a href="measures.html#cb18-11"></a>      ,CASE </span>
-<span id="cb18-12"><a href="measures.html#cb18-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb18-13"><a href="measures.html#cb18-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb18-14"><a href="measures.html#cb18-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb18-15"><a href="measures.html#cb18-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb18-16"><a href="measures.html#cb18-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
-<span id="cb18-17"><a href="measures.html#cb18-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
-<span id="cb18-18"><a href="measures.html#cb18-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="measures.html#cb16-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb16-2"><a href="measures.html#cb16-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
+<span id="cb16-3"><a href="measures.html#cb16-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
+<span id="cb16-4"><a href="measures.html#cb16-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
+<span id="cb16-5"><a href="measures.html#cb16-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
+<span id="cb16-6"><a href="measures.html#cb16-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
+<span id="cb16-7"><a href="measures.html#cb16-7"></a>LEFT JOIN </span>
+<span id="cb16-8"><a href="measures.html#cb16-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb16-9"><a href="measures.html#cb16-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb16-10"><a href="measures.html#cb16-10"></a>      ,[ProgramID]</span>
+<span id="cb16-11"><a href="measures.html#cb16-11"></a>      ,CASE </span>
+<span id="cb16-12"><a href="measures.html#cb16-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
+<span id="cb16-13"><a href="measures.html#cb16-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb16-14"><a href="measures.html#cb16-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb16-15"><a href="measures.html#cb16-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
+<span id="cb16-16"><a href="measures.html#cb16-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
+<span id="cb16-17"><a href="measures.html#cb16-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
+<span id="cb16-18"><a href="measures.html#cb16-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
 <p>###Specific Projects</p>
 <p>##Teacher Hiring</p>
 <ol style="list-style-type: decimal">
