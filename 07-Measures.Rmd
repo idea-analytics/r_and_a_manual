@@ -1,5 +1,7 @@
 # Measures
 
+Within this chapter we will find the measures IDEA Public Schools stakeholders are the most interested about.
+
 ## The Students Table
 
 The Students table is probably the most important table of all. It contains historical student personal data since IDEA's inception. 
@@ -112,9 +114,65 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 * **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
 
+### Common queries
+
+We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:
+
+* SQL example:
+```{r sql_current_seniors, echo=TRUE, eval=FALSE}
+SELECT [AcademicYear]
+	  ,C.[RegionDescription]  
+	  ,B.[SchoolName]
+	  ,[GradeLevelID]
+	  ,[StudentNumber]
+    ,[StudentFullName]
+    ,[FirstName]
+    ,[MiddleInitial]
+    ,[LastName]
+
+#join Schools and Regions tables
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
+    LEFT JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
+      ON A.[SchoolNumber] = B.[SchoolNumber]
+    INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Regions] AS C
+      ON B.[RegionID] = C.[RegionID]
+
+#filter for currently enrolled seniors in 2021-2022
+  WHERE [AcademicYear] = '2021-2022'
+    AND [GradeLevelID] = '12'
+    AND [ExitDate] > '2022-05-01'
+    AND [RowIsCurrent] = '1'
+    
+```
+
+* R example:
+```{r r_current_seniors, echo=TRUE, eval=FALSE}
+get_students() %>%
+
+#filter for currently enrolled seniors in 2021-2022
+  filter(AcademicYear == "2021-2022",
+         GradeLevelID == "12",
+         ExitDate > "2022-05-01",
+         RowIsCurrent == 1) %>%
+  
+#join Schools and Regions tables
+  inner_join(get_schools(),
+             by = c("SchoolNumber" = "SchoolNumber")) %>%
+  inner_join(get_regions(),
+             by = c("RegionID" = "RegionID")) %>%
+  
+  select(AcademicYear,
+         RegionDescription,
+         SchoolName,
+         GradeLevelID,
+         StudentNumber,
+         StudentFullName,
+         FirstName,
+         MiddleInitial,
+         LastName)
+```
 
 
-Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.
 
 ## Student Persistence
 
