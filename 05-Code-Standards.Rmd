@@ -1,3 +1,9 @@
 # Coding Standards
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+We will be writing more here in the coming weeks, months, and years. But for all intents and purposes, we should follow the [Tidyverse Style Guide](https://style.tidyverse.org/index.html), which is was originally derived from Google's R Style guide, but in a an amazing case of an [Ouroboros](https://en.wikipedia.org/wiki/Ouroboros), is now informed by the Tidyverse Style Guide.
+
+[![ouroboros: A Snake Eating it's Tail](https://media.istockphoto.com/vectors/uroboros-snake-coiled-in-a-ring-biting-its-tail-scratch-board-black-vector-id1216824086?k=20&m=1216824086&s=612x612&w=0&h=C4GD_7_z3Ma8v3Z9GRSPEkHlbx9cLQ0R7IkBdOl9RuM= "A Snake Eating it's Tail")](https://en.wikipedia.org/wiki/Ouroboros)
+
+## File naming standards. 
+
+We will also come up with more here soon, but in the meantime, Jenny Bryan's guidance is pretty excellent.  [You can read more here](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
