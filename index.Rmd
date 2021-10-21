@@ -64,3 +64,110 @@ The general process is as follows:
 ::: {.tip}
 Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.  Use second (`##`) and third (`###`) level headings for sections in each chapter. 
 :::
+
+### Adding "Tips" and other callouts
+
+Do you see the blue box just above this section?  That's a tips box, but we have a few others you can add.  
+
+Doing so is super simple by using a special block tag (`:::`) in your RMarkdown that creates a CSS-styled `<div>` block in the resulting HTML when this manual's RMD files are rendered.
+
+Here's an example.  Writing this in your RMD:
+
+```{markdown}
+::: {.tip}
+This is s a tip box!
+  
+You should use this for quick callouts that are important pieces of hard-earned wisdom
+:::
+```
+Results in this:
+
+::: {.tip}
+This is s a tip box!
+
+You should use this for quick callouts that are important pieces of hard-earned wisdom
+:::
+
+There are *four* other callout boxes we can use, each with a different icon:
+
+
+```{markdown}
+::: {.rstudio-tip}
+This is an **RSTudio** Tip box
+
+This is s a different tip box to use for any sage advice regarding RStduio products like RStudio Connect, the RStudio  IDE, or even RStudio supported packages.
+:::
+```
+
+
+```{markdown}
+::: {.rstudio-tip}
+This is a **RSTudio** Tip box
+
+This is s a different tip box to use for any sage advice regarding RStduio products like RStudio Connect, the RStudio  IDE, or even RStudio supported packages.
+:::
+```
+
+::: {.rstudio-tip}
+This is a **RSTudio** Tip box
+
+This is s a different tip box to use for any sage advice regarding RStudio products like RStudio Connect, the RStudio IDE, or even RStudio supported packages.
+:::
+
+
+
+```{markdown}
+::: {.gotcha}
+This is a **gotcha** call out
+
+Warn your reader of things to look out for with this box.
+:::
+```
+
+
+::: {.gotcha}
+This is a **gotcha** call out
+
+Warn your reader of things to look out for with this box.
+:::
+
+
+```{markdown}
+::: {.design}
+This is a **design** call out
+
+This is great looking spot to provide extra advice on look-and-feel and design conventions.
+:::
+```
+
+
+::: {.design}
+This is a **design** call out
+
+This is great looking spot to provide extra advice on look-and-feel and design conventions.
+:::
+
+
+```{markdown}
+::: {hat}
+This is a **hat** call out
+
+You get a hat!  
+
+You can use this extra special tips that seem like magic.  Or something like that.
+:::
+```
+
+
+::: {.hat}
+This is a **hat** call out
+
+You get a hat!  
+
+You can use this extra special tips that seem like magic.  Or something like that.
+:::
+
+
+
+
+
