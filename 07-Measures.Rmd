@@ -1,5 +1,7 @@
 # Measures
 
+Within this chapter we will find the measures IDEA Public Schools stakeholders are the most interested about.
+
 ## The Students Table
 
 The Students table is probably the most important table of all. It contains historical student personal data since IDEA's inception. 
@@ -17,10 +19,17 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
   + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
   + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
 
-* **_[ELLCode]:_** English Language Learner (ELL) A.K.A. Limited English Proficiency (LEP)
-  + If ELLCode = 0, student **is not** identified as an ELL student,
-  + If ELLCode = 1, the student **is** identified as an ELL student,
-  + If ELLCode not in (0,1), it means the student is not currently identified as an ELL but was identified before as one.
+* **_[ELLCode]:_** English Learner (EL) A.K.A. Limited English Proficiency (LEP)
+  + If ELLCode = 0, student **is not** identified as an EL student,
+  + If ELLCode = 1, the student **is** identified as an EL student,
+  + If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,
+  + If ELLCode = "F", the student **is not** identified as an EL student but is in the First Year of Monitoring status,
+  + IF ELLCode = "S", the student **is not** identified as an EL student but is in the Second Year of Monitoring status,
+  + If ELLCode = 3, the student **is not** identified as an EL student but is in the Third Year of Monitoring status,
+  + If ELLCode = 4, the student **is not** identified as an EL student but is in the Fourth Year of Monitoring status,
+  + If ELLCode = 5, the student **is not** identified as an EL student but was at one point more than 4 years ago.
+  
+* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
 
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
   + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
@@ -92,95 +101,135 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
   + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
   + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
   + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+  
+* **ECDFlag** Consolidates the codes above to 0/1 indicator
+  + If ECDFlag = TRUE (1), the student **is** identified as economically disadvantaged,
+  + If ECDFlag = FALSE (0), the student **is not** identified as economically disadvantaged.
 
 
-* **_Race / Ethnicity:_** Same like in TX . 
+* **_Race / Ethnicity:_** Same like in TX
+  + If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,
+  + If the student **does not** identify as Hispanic or Latino and only selected one race the student is classified as that race,
+  + If the student **does not** identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.
 
-* **_[RowIsCurrent]:_** 
+* **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
 
-**Context:**
+### Common queries
 
-* **Who Counts?** 
+We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:
 
+* SQL example:
+```{r sql_current_seniors, echo=TRUE, eval=FALSE}
+SELECT [AcademicYear]
+	  ,C.[RegionDescription]  
+	  ,B.[SchoolName]
+	  ,[GradeLevelID]
+	  ,[StudentNumber]
+    ,[StudentFullName]
+    ,[FirstName]
+    ,[MiddleInitial]
+    ,[LastName]
 
+#join Schools and Regions tables
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
+    LEFT JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
+      ON A.[SchoolNumber] = B.[SchoolNumber]
+    INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Regions] AS C
+      ON B.[RegionID] = C.[RegionID]
 
-* **Who is a 4year 2year?**
-
-
-
-* **Persistence Rate by:**
-
-  + **District:** use all data
-  +	**Region:** use the [RegionDescription] field
-  +	**School:** [SchoolShortName] + [SchoolType]
-  +	**Grade Level:** [GradeLevelID]
-  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
-
-
-* **Other Useful Fields:**
-  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
-  + [LeaverWeek] to know the week when the student left the district.
-
-* **SQL Code Example:**
-
-```{r example1, echo=TRUE, eval=FALSE}
-SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
-FROM [`1065574-SQLPRD1`].[Persistence].[dbo].[PersistenceCode]
-WHERE [FDOPCOUNTP] = 1
+#filter for currently enrolled seniors in 2021-2022
+  WHERE [AcademicYear] = '2021-2022'
+    AND [GradeLevelID] = '12'
+    AND [ExitDate] > '2022-05-01'
+    AND [RowIsCurrent] = '1'
+    
 ```
 
-Within this chapter we will find the measures IDEA Public Schools stakeholders talk are the most interested about.
+* R example:
+```{r r_current_seniors, echo=TRUE, eval=FALSE}
+get_students() %>%
+
+#filter for currently enrolled seniors in 2021-2022
+  filter(AcademicYear == "2021-2022",
+         GradeLevelID == "12",
+         ExitDate > "2022-05-01",
+         RowIsCurrent == 1) %>%
+  
+#join Schools and Regions tables
+  inner_join(get_schools(),
+             by = c("SchoolNumber" = "SchoolNumber")) %>%
+  inner_join(get_regions(),
+             by = c("RegionID" = "RegionID")) %>%
+  
+  select(AcademicYear,
+         RegionDescription,
+         SchoolName,
+         GradeLevelID,
+         StudentNumber,
+         StudentFullName,
+         FirstName,
+         MiddleInitial,
+         LastName)
+```
+
+
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures. Chiefs, VPs, and School Leaders are always monitoring this metric which gives us a good idea of our efforts to provide high quality service to our students and their families. We say a student persisted if the student was enrolled and attended the school on the “First Day Of Persistence (FDOP)” for two consecutive years. 
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence (FDOP)" for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
 
-Example: John enrolled IDEA Public Schools on August 19, 2019 and attended to the school the FDOP which is the Monday after the official first week of school. John completes the 2019-2020 academic year and by August 17, 2020 (FDOP) John enrolls again and attends to the school. If John was enrolled but did not attend on the FDOP and he decides to come back until September, then John won’t count as a student who persisted.
+Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
 
 **Database:** [1065574-SQLPRD1].[Persistence]
 
-**Main metrics:** District, Regional, School, Subpopulation, Grade Level
+**Main metrics:** District, Regional, School, Sub-population, Grade Level
 
 **General Formula:** 1 – (Leavers/All Students)
 
 **Tables:**
 
-* **_[dbo].[PersistenceCode]:_** This table is used to calculate persistence rate for the current academic year. It shows data for the most recent week. We will see different week numbers, but this is because the first day of school is different across the district.
+* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).
 
-* **_[dbo].[PersistenceCodeHistorical]:_** This table shows the final persistence data (as of last week of persistence). Here we will find historical data starting from 2019-2020. The table will be updated every year.
-
-* **_[dbo].[PersistenceHistorical]:_** As the previous table, this one contains final persistence data. The table will not be updated but it includes 2018-2019 data.
+* **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2020-2021. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
 **Context:**
 
 * **Who Counts?** 
 
-To calculate persistence, we need to first filter [FDOPCOUNTP] = 1 (FDOP First Day Of Persistence). The number of students resulting from this operation would be our denominator.
+To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(EXCLUDE == 0, FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. These two filters should be used when looking at current **or** historical data.
 
 * **Who is a Leaver?**
 
-If FDOPLEAVER equals 1, then that student is considered as a leaver otherwise is a current student. All summer leavers (June – August) from [SummerLeaver] = 1, are marked as FDOPLEAVER = 1. All leavers should have an [EnrollmentStatus] =2. The number of students resulting from this operation would be our numerator.
-
-* **Persistence Rate by:**
-
-  + **District:** use all data
-  +	**Region:** use the [RegionDescription] field
-  +	**School:** [SchoolShortName] + [SchoolType]
-  +	**Grade Level:** [GradeLevelID]
-  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
-
+All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a current student.
 
 * **Other Useful Fields:**
-  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
-  + [LeaverWeek] to know the week when the student left the district.
+  + **AcademicYear:** the academic year
+  + **RegionDescription:** the region the student is in
+  + **SchoolShortName:** the school the student attends
+  + **SchoolType:** Academy of College Prep
+  + **GradeLevelID:** Student's grade level (integer ranging from -1 = Pre-K to 12)
+  + **NewStudent:** indicates if the student is new (1) or returning (0)
+  + **PersistenceWeek:** the current week of persistence based on the student's region and school (ranges from 1-52)
+  + **LeaverWeek:** the persistence week the student left the district
+  + **ULeaverWeek:** the persistence week the student left the district if it was after the last day of school
+  + **PersistenceCode:** the reason the student left the district
+  + **PersistenceCategory:** the category that the reason falls into for why the student left the district
+  + **PersistenceComment:** any additional comments the SIS clerk has for why the student left the district
+  + **EnrollmentStatus:** contains the enrollment status, but is not accurate **Do Not Use**
+  + **EntryDate:** the date the student entered school for a particular academic year or the date the student started school at a new campus
+  + **ExitDate:** the last day of the academic year (last day of school) or the day the student left the district (summer leavers are sometimes snapped back to the last day of school, beware)
+  + **Recapture:** 0/1 indicator of students that have left and then returned to the district. 1 = recaptured, 0 = not recaptured. **Not to be Trusted**
+  + **SummerLeaver:** 0/1 indicator for students that leave during the summer
+  + **StudentGender:** "M"/"F" gender indicator
+  + **Race:** race indicator combined with ethnicity; ex. "WHITE-HISPANIC"
+  + **IsHispanic:** indicates whether the student identifies as Hispanic; values = "HISPANIC" or "NON-HISPANIC"
+  + **Migrant:** 0/1 indicator of student's migrant status
+  + **LEP:** 0/1 indicator of student's English Learner status. **Inaccurate Don't Use**
+  + **Sped:** 0/1 indicator of student's SPED status
+  + **EconDisad:** 0/1 indicator of student's economic disadvantaged status. **Inaccurate Don't Use**
+  + **IsCSI:** 0/1 indicator for students identified as CSI
+  + **ContinuousEnrollment:** 0/1 indicates whether the student has been continuously enrolled
 
-* **SQL Code Example:**
-
-```{r example2, echo=TRUE, eval=FALSE}
-SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
-FROM [`1065574-SQLPRD1`].[Persistence].[dbo].[PersistenceCode]
-WHERE [FDOPCOUNTP] = 1
-```
 
 ## College Application & Matriculation Metrics
 
@@ -292,4 +341,19 @@ ON C.ProgramID = D.ProgramID
 WHERE A.AcademicYear = '2020-2021'
 ```
 
+###Specific Projects
 
+
+##Teacher Hiring
+
+
+1. Jobvite Data
+          *Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+          This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application.
+          
+          
+2. Teacher Export Data
+
+##Camp Rio
+
+##TSLIP
