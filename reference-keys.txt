@@ -3,6 +3,7 @@ fig:display-dw-tables
 about
 what-goes-in-this-manual
 how-do-you-contribute-to-this-book
+adding-tips-and-other-callouts
 who
 about-research-and-analysis
 edison-coronado
