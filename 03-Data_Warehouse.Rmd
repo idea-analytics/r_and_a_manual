@@ -1,4 +1,8 @@
-# Data Access
+# The Data Warhehouse and how to access it
+
+The [first section](#section-the-data-warehouse) that follows provides lots of context about IDEA's data warehouse.
+
+If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section \@ref(#accessing-the-data-warehouse-from-r) on accessing from R below. 
 
 ```{r load_dw, include=FALSE}
 rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
@@ -341,4 +345,72 @@ rna_dw_usage %>% filter(r_and_a_uses) %>%
   
 ```
 : List of Windows Servers hosting SQLServer DBs and their IP Addresses
+
+## Accessing the data warehouse from R
+
+The most straightforward way to access the data warehouse is to use our own, bespoke r package: `ideadata`, which is [maintained on github](https://github.com/idea-analytics/ideadata)
+
+### Installation
+
+
+Since `ideadata` is an internal IDEA package there is only a development version, which is installed from [GitHub](https://github.com/) with:
+
+``` {r install, eval=FALSE}
+#install.packages("remotes")
+remotes::install_github("idea-analytics/ideadata")
+
+#renv::install("idea-analytics/ideadata@main") also works
+```
+### Example
+
+Here's how you connect to the `Schools` table in the warehouse.
+
+```{r example, eval=FALSE}
+library(dplyr)
+library(ideadata)
+
+schools <- get_schools()
+
+glimpse(schools)
+```
+
+
+The `schools` object above is `tbl` object.  That means it works with `dplyr` verbs and functions, but  what  happens in the background is that `dplyr` and `dbplyr` generate SQL that is sent to the database you are connected to and  all that computation (e.g., filtering, selecting, joining, calculations, aggregation) are completed on the remote SQL Server instance and **not** on your computer.  
+
+Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python do what they can do (like modeling or graphics) that the database can't do. 
+
+Pulling that data down is easy with [dplyr::collect()]
+
+```{r collect, eval=FALSE}
+library(dplyr)
+
+schools_df <- schools %>% 
+  collect() %>% 
+  janitor::clean_names()
+```
+
+(Here `janitor::clean_names()` snake_cases all the column names). 
+
+#### What if I am pulling down lots of data (say, millions of rows)?
+In this instance the database connection may fail.  It's not ideal, but it happens.  One way to deal with this is to pull down the data piecemeal.  The `collector()` function in `ideadata` makes this task trivial. It takes column names as arguments (unquote) from the table you want to pull down and those columns are used to break up the data into smaller sets of data that are pulled down from the database onto your computer and then recombined into a single table. 
+
+```{r collector, eval=FALSE}
+
+schools_df <- schools %>% 
+  collector(SchoolState, CountyName) %>% 
+  janitor::clean_names()
+
+```
+
+::: {.gotcha}
+The `ideadata` package is clever in that it updates its knowledge of the data warehouse every time you load the package with `library(ideadata)`.  However to do that you need to have access to the the warehouse, and that requires that you are on the VPN/behind the firewall. Do makes sure that is true before invoking the package!
+:::
+
+### Where to learn more
+
+`ideadata` [has it's own documentation here](https://idea-analytics.github.io/ideadata/).  If you can't find an answer there, then reach out to Chris Haid (he's responsible for this craziness).  
+
+::: {.tip}
+[Go to this article](https://idea-analytics.github.io/ideadata/articles/setting-up-your-credentials.html) to set up your credentials in R so that the warehouse can authenticate and authorize you as verified user
+:::
 

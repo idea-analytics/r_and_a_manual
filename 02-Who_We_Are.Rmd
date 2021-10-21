@@ -2,26 +2,26 @@
 
 ## About Research and Analysis
 
-We are the research and analysis team at IDEA Public Schools.  We are evaluators, statisticians, data scientists, and engineers, seeking above all to generate insight
+We are the research and analysis team at IDEA Public Schools.  We are evaluators, statisticians, data scientists, and engineers, seeking above all to generate insight.
 
-## Edison Coronado
+### Edison Coronado
 
 Edison supports IDEA by making sure our stakeholders have access to the highest quality information that is streamlined, efficient, and accurate.  He works with all teams across IDEA to increase the accuracy of our information used to help guide all stakeholders in making the best possible decisions.  Edison also works with different teams in identifying opportunities to improve the process we use to collect, share, and use information.
 
 
-## Chris Haid 
+### Chris Haid 
 Chris Haid is VP of Data Analytics at IDEA Public Schools, where leads research, evaluation, and data analysis across 160 schools in Texas and Louisiana.
 
 Previously he was KIPP Chicago’s Chief of Staff, leading progress monitoring, strategic planning, data analysis, and technology planning. He also supported external affairs, growth strategy, communications, and development. Other roles he held at KIPP Chicago included Chief Information Officer and the Director of Research and Analysis.
 
 Chris has held academic positions at Yale University, New York University, and the University of Chicago. He has taught graduate and undergraduate courses in social scientific theory, statistical analysis, game theory, international development, and globalization. Chris attended the College of William and Mary where he earned a BA in Economics and the University of Chicago earning both a MPP and a MA in Political Science.
 
-## Mishan Jensen, PhD
+### Mishan Jensen, PhD
 Dr. Mishan Jensen is a statistician on IDEA’s Academic Services Team with 4 years of experience in program evaluation in a large urban school district and 2 years of experience as a Statistician for the Texas Department of Public Safety. She holds a master and doctoral degrees from the University of Texas at Austin in educational psychology, with a specialization in quantitative methods. Previous work included evaluating multilingual education, teacher appraisal programs, and integration of arts into the classroom. During her time at UT, Mishan assisted with the development of the College of Education’s first fully web-based Introduction to Statistics course, as well as provided assistant teaching support for most of the graduate level statistics courses offered.
 
-## Steven Macapagal
+### Steven Macapagal
 Steven Macapagal (Mac) is a statistician with IDEA Public Schools on the Research and Analysis team and has taught 6th through 12th grade. Most recently, he was a middle school math teacher and grade team leader at IDEA Bluff Springs College Prep in Austin, TX and prior to that, started his career at IDEA Frontier College Prep in Brownsville, TX as a 2014 corps member with Teach For America. Throughout his time at IDEA Frontier, he taught AP and IB math and economics, served as 12th grade team leader, and witnessed IDEA fulfill its promise to his 5 senior classes, all of whom achieved 100 percent matriculation to college. He earned his BA in economics and mathematics at The University of Texas at Austin and is currently working on his MS in statistics at Texas A&M University.
 
 
-## Maura Carter
+### Maura Carter
 Maura Carter is a Statistician on the R&A Team at IDEA, and a former mathematics educator and university instructor in the Statistics department at University of California, Santa Cruz. She holds a master's degree from University of Notre Dame in nonprofit business management, and a master's degree from California State University in Statistics and Data Science. She enjoys volunteering, mentoring students in STEM topics, ocean science, and scuba diving. Maura supports IDEA by providing analytical and statistical support to a variety of teams and decision makers across the organization.
