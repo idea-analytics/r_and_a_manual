@@ -11,7 +11,7 @@ chris-haid
 mishan-jensen-phd
 steven-macapagal
 maura-carter
-data-access
+the-data-warhehouse-and-how-to-access-it
 the-data-warehouse
 core-data-warehouse-server-configuration
 ds-servers
@@ -20,6 +20,11 @@ rs-and-hisotrical-data-servers
 server-table-and-field-lookup
 ip-addresses-of-current-servers
 databases-that-ra-frquently-uses.
+accessing-the-data-warehouse-from-r
+installation
+example
+what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows
+where-to-learn-more
 projects
 section-github
 getting-started-with-git-github-and-rstudio
@@ -53,6 +58,7 @@ using-renv
 collaborating-with-renv
 renv-and-rstudio-connect
 coding-standards
+file-naming-standards.
 visualization-standards
 measures
 the-students-table
