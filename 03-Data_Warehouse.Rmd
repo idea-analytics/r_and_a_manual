@@ -344,7 +344,7 @@ rna_dw_usage %>% filter(r_and_a_uses) %>%
   DT::datatable(filter = "top", rownames = FALSE)
   
 ```
-: List of Windows Servers hosting SQLServer DBs and their IP Addresses
+: List of Windows Servers hosting SQL Server DBs and their IP Addresses
 
 ## Accessing the data warehouse from R
 
@@ -406,6 +406,12 @@ schools_df <- schools %>%
 The `ideadata` package is clever in that it updates its knowledge of the data warehouse every time you load the package with `library(ideadata)`.  However to do that you need to have access to the the warehouse, and that requires that you are on the VPN/behind the firewall. Do makes sure that is true before invoking the package!
 :::
 
+
+### Finding things in the data warehouse
+
+The `ideadata` package has a function that will open up a sortable, filterable, and searchable table in the RStudio idea: [`view_warehouse_meta_data()`](https://idea-analytics.github.io/ideadata/reference/view_warehouse_metadata.html)
+
+
 ### Where to learn more
 
 `ideadata` [has it's own documentation here](https://idea-analytics.github.io/ideadata/).  If you can't find an answer there, then reach out to Chris Haid (he's responsible for this craziness).  
@@ -413,4 +419,11 @@ The `ideadata` package is clever in that it updates its knowledge of the data wa
 ::: {.tip}
 [Go to this article](https://idea-analytics.github.io/ideadata/articles/setting-up-your-credentials.html) to set up your credentials in R so that the warehouse can authenticate and authorize you as verified user
 :::
+
+
+## Key tables
+
+This section details important tables.  In general you want to stick with databases `PROD1` or `PROD2` but your mileage may vary. 
+
+Another important aspect of the warehouse is that the sources system for most student data is our SIS: PowerSchool.  The [PowerSchool Tables Data Dictionary](http://www.albertapsug.ca/uploads/1/5/1/2/15120130/ps10x_data_dictionary_tbl.pdf) is a helpful resource in understanding fields and relationships between tables. 
 
