@@ -211,7 +211,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="measures.html"><a href="measures.html#the-students-table"><i class="fa fa-check"></i><b>7.1</b> The Students Table</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="measures.html"><a href="measures.html#common-queries"><i class="fa fa-check"></i><b>7.1.1</b> Common queries</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="measures.html"><a href="measures.html#student-persistence"><i class="fa fa-check"></i><b>7.2</b> Student Persistence</a></li>
+<li class="chapter" data-level="7.2" data-path="measures.html"><a href="measures.html#student-persistence"><i class="fa fa-check"></i><b>7.2</b> Student Persistence</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="measures.html"><a href="measures.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fa fa-check"></i><b>7.2.1</b> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
 <li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#csi"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
 </ul></li>
@@ -551,6 +553,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>ContinuousEnrollment:</strong> 0/1 indicates whether the student has been continuously enrolled</li>
 </ul></li>
 </ul>
+<div id="student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</h3>
+<p>Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to “snapshot” whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the “snapshot” date selected.</p>
+<p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1]</p>
+<p><strong>Tables:</strong></p>
+<ul>
+<li><p><strong><em>[Attendance].[Students]:</em></strong> This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.</p></li>
+<li><p><strong><em>[ADA].[StudentDailyMembership]</em></strong> This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.</p></li>
+<li><p><strong>Other Useful Fields:</strong></p>
+<ul>
+<li><strong>AcademicYear:</strong> the academic year (in both tables)</li>
+<li><strong>SchoolName:</strong> the long school name (in both tables)</li>
+<li><strong>schoolnumber:</strong> the school number (in the StudentDailyMembership (2016-2017 &amp; prior) table it is SchoolNumber)</li>
+<li><strong>SchoolShortName:</strong> the school’s short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)</li>
+<li><strong>SchoolType:</strong> indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)</li>
+<li><strong>RegionDescription:</strong> the region (Only on the Attendance.Students table - 2017-2018 to present)</li>
+<li><strong>GradeLevelID:</strong> student’s grade level (in both tables)</li>
+<li><strong>WeekNumber:</strong> the number of the week in the academic year (in both tables) <strong>Use Cautiously</strong> the weeks are <strong>NOT</strong> numbered properly in 2019-2020 contains in the Attendance.Students table</li>
+<li><strong>AttDate:</strong> the date for the attendance record (format “YYYY-MM-DD”) (in both tables)</li>
+<li><strong>Membership:</strong> indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)</li>
+<li><strong>SchoolTypeOperation:</strong> indicates if the school is “FULL SCALE”, “SCALING”, “or”LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually</li>
+</ul></li>
+</ul>
+</div>
 </div>
 <div id="college-application-matriculation-metrics" class="section level2">
 <h2><span class="header-section-number">7.3</span> College Application &amp; Matriculation Metrics</h2>

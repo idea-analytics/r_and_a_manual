@@ -66,6 +66,7 @@ measures
 the-students-table
 common-queries
 student-persistence
+student-persistence-using-attendance-tables-a.k.a.-cohort-persistence
 college-application-matriculation-metrics
 csi
 models-and-methods
