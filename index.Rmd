@@ -32,7 +32,7 @@ knitr::write_bib(c(
 
 ## What goes in this manual?
 
-Anything and everything we learn during the course of our work at IDEA. Of particular help is any information, learning, or insights, but some topics that are especially useful to your colleages (and our future self) include:
+Anything and everything we learn during the course of our work at IDEA. Of particular help is any information, learning, or insights, but some topics that are especially useful to your colleagues (and our future self) include:
 
 * Locations of important tables in [the data warehouse][The Data Warehouse]
 * Information about how to use data in the warehouse (e.g. how do you [identify students in CSI](#csi)
