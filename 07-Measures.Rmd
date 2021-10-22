@@ -229,6 +229,31 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   + **EconDisad:** 0/1 indicator of student's economic disadvantaged status. **Inaccurate Don't Use**
   + **IsCSI:** 0/1 indicator for students identified as CSI
   + **ContinuousEnrollment:** 0/1 indicates whether the student has been continuously enrolled
+  
+### Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)
+
+Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
+
+**Database:** [1065574-SQLPRD1].[PROD1]
+
+**Tables:**
+
+* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.
+
+* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.
+
+* **Other Useful Fields:**
+  + **AcademicYear:** the academic year (in both tables)
+  + **SchoolName:** the long school name (in both tables)
+  + **schoolnumber:** the school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
+  + **SchoolShortName:** the school's short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)
+  + **SchoolType:** indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)
+  + **RegionDescription:** the region (Only on the Attendance.Students table - 2017-2018 to present)
+  + **GradeLevelID:** student's grade level (in both tables)
+  + **WeekNumber:** the number of the week in the academic year (in both tables) **Use Cautiously** the weeks are **NOT** numbered properly in 2019-2020 contains in the Attendance.Students table
+  + **AttDate:** the date for the attendance record (format "YYYY-MM-DD") (in both tables)
+  + **Membership:** indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)
+  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", "or "LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
 
 
 ## College Application & Matriculation Metrics
