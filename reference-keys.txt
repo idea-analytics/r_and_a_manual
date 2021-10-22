@@ -24,7 +24,9 @@ accessing-the-data-warehouse-from-r
 installation
 example
 what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows
+finding-things-in-the-data-warehouse
 where-to-learn-more
+key-tables
 projects
 section-github
 getting-started-with-git-github-and-rstudio
