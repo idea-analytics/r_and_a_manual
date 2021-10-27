@@ -119,7 +119,7 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:
 
 * SQL example:
-```{r sql_current_seniors, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT [AcademicYear]
 	  ,C.[RegionDescription]  
 	  ,B.[SchoolName]
@@ -130,14 +130,14 @@ SELECT [AcademicYear]
     ,[MiddleInitial]
     ,[LastName]
 
-#join Schools and Regions tables
+--join Schools and Regions tables
   FROM [[REDACTED-HOST]].[PROD1].[Schools].[Students] AS A
     LEFT JOIN [[REDACTED-HOST]].[PROD1].[Schools].[Schools] AS B
       ON A.[SchoolNumber] = B.[SchoolNumber]
     INNER JOIN [[REDACTED-HOST]].[PROD1].[Schools].[Regions] AS C
       ON B.[RegionID] = C.[RegionID]
 
-#filter for currently enrolled seniors in 2021-2022
+--filter for currently enrolled seniors in 2021-2022
   WHERE [AcademicYear] = '2021-2022'
     AND [GradeLevelID] = '12'
     AND [ExitDate] > '2022-05-01'
@@ -365,6 +365,62 @@ GROUP BY AcademicYear, [Subject], ProgramID) AS D
 ON C.ProgramID = D.ProgramID
 WHERE A.AcademicYear = '2020-2021'
 ```
+
+## Assessment Data
+
+### DIBELS
+
+Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uoregon.edu/) is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.
+
+Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is usually pulled and stored in the warehouse.
+
+**Table:** [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]
+
+**Main metrics:** Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests
+
+**Most important columns:** [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]
+
+**Other useful fields:** 
+  + **[School Year], [School Name], [Assessment Grade]:** use to filter the table to the appropriate students
+  + **[Benchmark Period]:** labeled as BOY, MOY, or EOY
+  + **[Student ID (District ID)]:** use to match students back to the Students table.
+  + Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by **[Student Last Name]** and **[Student First Name]**. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.
+  
+**Context:**
+
+* **Who is assessed?** 
+
+All students in K, 1 and 2 are assessed using DIBELS. 
+
+* **Which tests/columns are actually used?**
+  + **[Assessment Measure-Composite Score-Levels]:** A *composite level* is assigned to all students, regardless if they complete all sections. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-Composite Score-Score]:** A *composite score* is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).
+  + **[Assessment Measure-LNF-Levels]:** The LNF, or *Letter Naming Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
+  + **[Assessment Measure-LNF-Score]:** This is a numerical measure of LNF in the interval [0, 59+).
+  + **[Assessment Measure-PSF-Levels]:** The PSF, or *Phonemic Segmentation Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-PSF-Score]:** This is a numerical measure of PSF in the interval [0, 61+).
+  + **[Assessment Measure-NWF (CLS)-Levels]:** The NWF, or *Nonsense Word Fluency* test, is administered to K-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-NWF (CLS)-Score]:** This is a numerical measure of NWF in the interval [0, 46+).
+  + **[Assessment Measure-DORF (Fluency)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-DORF (Fluency)-Score]:**  This is a numerical measure of DORF - Fluency in the interval [0, 164+).
+  + **[Assessment Measure-DORF (Accuracy)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
+  + **[Assessment Measure-DORF (Accuracy)-Score]:** This is a numerical measure of DORF - Accuracy in the interval [0, 96+).
+  + The remaining assessment measures were used historically but are no longer actively tested.
+
+* **Why are there NAs for certain tests if the student took the assessment?**
+
+DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
+
+* **Who can I ask for more context?**
+
+  + Nkosi Geary-Smith is the Director of Early Literacy. She has context on the DIBELS assessment and how it is used.
+  + Chris Gonzalez is the VP of Accountability. He pulls the DIBELS data and uploads it to the warehouse.
+  + The University of Oregon maintains the [DIBELS site](https://dibels.uoregon.edu/) and publishes guides on administering and interpreting scores.
+  
+
+### Renaissance STAR (also RenStar, Little Star)
+
+  
 
 ###Specific Projects
 
