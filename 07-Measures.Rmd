@@ -394,24 +394,33 @@ All students in K, 1 and 2 are assessed using DIBELS.
 
 * **Which tests/columns are actually used?**
   + **[Assessment Measure-Composite Score-Levels]:** A *composite level* is assigned to all students, regardless if they complete all sections. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
-  + **[Assessment Measure-Composite Score-Score]:** A *composite score* is assigned to all students, regardless if they complete all sections.
+  + **[Assessment Measure-Composite Score-Score]:** A *composite score* is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).
   + **[Assessment Measure-LNF-Levels]:** The LNF, or *Letter Naming Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
-  + **[Assessment Measure-LNF-Score]:** This is a numerical measure of LNF.
-  + **[Assessment Measure-PSF-Levels]:** The PSF, or *Phonetmic Segmentation Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
-  + **[Assessment Measure-PSF-Score]:** This is a numerical measure of PSF.
-  + **[Assessment Measure-NWF (CLS)-Levels]:**
-  + **[Assessment Measure-NWF (CLS)-Score]:** 
-  + **[Assessment Measure-DORF (Fluency)-Levels]:** 
-  + **[Assessment Measure-DORF (Fluency)-Score]:** 
-  + **[Assessment Measure-DORF (Accuracy)-Levels]:**
-  + **[Assessment Measure-DORF (Accuracy)-Score]:**
-  + The remaining assessment measures were used historically, according to Chris Gonzalez, but are no longer actively tested.
+  + **[Assessment Measure-LNF-Score]:** This is a numerical measure of LNF in the interval [0, 59+).
+  + **[Assessment Measure-PSF-Levels]:** The PSF, or *Phonemic Segmentation Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-PSF-Score]:** This is a numerical measure of PSF in the interval [0, 61+).
+  + **[Assessment Measure-NWF (CLS)-Levels]:** The NWF, or *Nonsense Word Fluency* test, is administered to K-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-NWF (CLS)-Score]:** This is a numerical measure of NWF in the interval [0, 46+).
+  + **[Assessment Measure-DORF (Fluency)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-DORF (Fluency)-Score]:**  This is a numerical measure of DORF - Fluency in the interval [0, 164+).
+  + **[Assessment Measure-DORF (Accuracy)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
+  + **[Assessment Measure-DORF (Accuracy)-Score]:** This is a numerical measure of DORF - Accuracy in the interval [0, 96+).
+  + The remaining assessment measures were used historically but are no longer actively tested.
 
-* **Why are there NAs?**
+* **Why are there NAs for certain tests if the student took the assessment?**
 
-DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a student does not meet a certain criteria on a required measure. If a student scores below a certain threshold on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. 
+DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
 
+* **Who can I ask for more context?**
 
+  + Nkosi Geary-Smith is the Director of Early Literacy. She has context on the DIBELS assessment and how it is used.
+  + Chris Gonzalez is the VP of Accountability. He pulls the DIBELS data and uploads it to the warehouse.
+  + The University of Oregon maintains the [DIBELS site](https://dibels.uoregon.edu/) and publishes guides on administering and interpreting scores.
+  
+
+### Renaissance STAR (also RenStar, Little Star)
+
+  
 
 ###Specific Projects
 
