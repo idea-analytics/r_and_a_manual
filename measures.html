@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-10-22" />
+<meta name="date" content="2021-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -216,6 +216,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
 <li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#csi"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
+<li class="chapter" data-level="7.5" data-path="measures.html"><a href="measures.html#assessment-data"><i class="fa fa-check"></i><b>7.5</b> Assessment Data</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="measures.html"><a href="measures.html#dibels"><i class="fa fa-check"></i><b>7.5.1</b> DIBELS</a></li>
+<li class="chapter" data-level="7.5.2" data-path="measures.html"><a href="measures.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>7.5.2</b> Renaissance STAR (also RenStar, Little Star)</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>8</b> Models and Methods</a><ul>
 <li class="chapter" data-level="8.1" data-path="models-and-methods.html"><a href="models-and-methods.html#research-design"><i class="fa fa-check"></i><b>8.1</b> Research design</a><ul>
@@ -451,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>SQL example:</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="measures.html#cb24-1"></a>SELECT [AcademicYear]</span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="measures.html#cb24-1"></a><span class="kw">SELECT</span> [AcademicYear]</span>
 <span id="cb24-2"><a href="measures.html#cb24-2"></a>      ,C.[RegionDescription]  </span>
 <span id="cb24-3"><a href="measures.html#cb24-3"></a>      ,B.[SchoolName]</span>
 <span id="cb24-4"><a href="measures.html#cb24-4"></a>      ,[GradeLevelID]</span>
@@ -461,18 +465,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-8"><a href="measures.html#cb24-8"></a>    ,[MiddleInitial]</span>
 <span id="cb24-9"><a href="measures.html#cb24-9"></a>    ,[LastName]</span>
 <span id="cb24-10"><a href="measures.html#cb24-10"></a></span>
-<span id="cb24-11"><a href="measures.html#cb24-11"></a><span class="co">#join Schools and Regions tables</span></span>
-<span id="cb24-12"><a href="measures.html#cb24-12"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
-<span id="cb24-13"><a href="measures.html#cb24-13"></a>    LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
-<span id="cb24-14"><a href="measures.html#cb24-14"></a>      ON A.[SchoolNumber] =<span class="st"> </span>B.[SchoolNumber]</span>
-<span id="cb24-15"><a href="measures.html#cb24-15"></a>    INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Regions] AS C</span>
-<span id="cb24-16"><a href="measures.html#cb24-16"></a>      ON B.[RegionID] =<span class="st"> </span>C.[RegionID]</span>
+<span id="cb24-11"><a href="measures.html#cb24-11"></a><span class="co">--join Schools and Regions tables</span></span>
+<span id="cb24-12"><a href="measures.html#cb24-12"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
+<span id="cb24-13"><a href="measures.html#cb24-13"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
+<span id="cb24-14"><a href="measures.html#cb24-14"></a>      <span class="kw">ON</span> A.[SchoolNumber] <span class="op">=</span> B.[SchoolNumber]</span>
+<span id="cb24-15"><a href="measures.html#cb24-15"></a>    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Regions] <span class="kw">AS</span> C</span>
+<span id="cb24-16"><a href="measures.html#cb24-16"></a>      <span class="kw">ON</span> B.[RegionID] <span class="op">=</span> C.[RegionID]</span>
 <span id="cb24-17"><a href="measures.html#cb24-17"></a></span>
-<span id="cb24-18"><a href="measures.html#cb24-18"></a><span class="co">#filter for currently enrolled seniors in 2021-2022</span></span>
-<span id="cb24-19"><a href="measures.html#cb24-19"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2021-2022&#39;</span></span>
-<span id="cb24-20"><a href="measures.html#cb24-20"></a>    AND [GradeLevelID] =<span class="st"> &#39;12&#39;</span></span>
-<span id="cb24-21"><a href="measures.html#cb24-21"></a>    AND [ExitDate] <span class="op">&gt;</span><span class="st"> &#39;2022-05-01&#39;</span></span>
-<span id="cb24-22"><a href="measures.html#cb24-22"></a>    AND [RowIsCurrent] =<span class="st"> &#39;1&#39;</span></span></code></pre></div>
+<span id="cb24-18"><a href="measures.html#cb24-18"></a><span class="co">--filter for currently enrolled seniors in 2021-2022</span></span>
+<span id="cb24-19"><a href="measures.html#cb24-19"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">&#39;2021-2022&#39;</span></span>
+<span id="cb24-20"><a href="measures.html#cb24-20"></a>    <span class="kw">AND</span> [GradeLevelID] <span class="op">=</span> <span class="st">&#39;12&#39;</span></span>
+<span id="cb24-21"><a href="measures.html#cb24-21"></a>    <span class="kw">AND</span> [ExitDate] <span class="op">&gt;</span> <span class="st">&#39;2022-05-01&#39;</span></span>
+<span id="cb24-22"><a href="measures.html#cb24-22"></a>    <span class="kw">AND</span> [RowIsCurrent] <span class="op">=</span> <span class="st">&#39;1&#39;</span></span>
+<span id="cb24-23"><a href="measures.html#cb24-23"></a>    </span></code></pre></div>
 <ul>
 <li>R example:</li>
 </ul>
@@ -658,6 +663,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-16"><a href="measures.html#cb28-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
 <span id="cb28-17"><a href="measures.html#cb28-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
 <span id="cb28-18"><a href="measures.html#cb28-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
+</div>
+<div id="assessment-data" class="section level2">
+<h2><span class="header-section-number">7.5</span> Assessment Data</h2>
+<div id="dibels" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> DIBELS</h3>
+<p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
+<p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
+<p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
+<p><strong>Main metrics:</strong> Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests</p>
+<p><strong>Most important columns:</strong> [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]</p>
+<p><strong>Other useful fields:</strong>
++ <strong>[School Year], [School Name], [Assessment Grade]:</strong> use to filter the table to the appropriate students
++ <strong>[Benchmark Period]:</strong> labeled as BOY, MOY, or EOY
++ <strong>[Student ID (District ID)]:</strong> use to match students back to the Students table.
++ Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by <strong>[Student Last Name]</strong> and <strong>[Student First Name]</strong>. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.</p>
+<p><strong>Context:</strong></p>
+<ul>
+<li><strong>Who is assessed?</strong></li>
+</ul>
+<p>All students in K, 1 and 2 are assessed using DIBELS.</p>
+<ul>
+<li><strong>Which tests/columns are actually used?</strong>
+<ul>
+<li><strong>[Assessment Measure-Composite Score-Levels]:</strong> A <em>composite level</em> is assigned to all students, regardless if they complete all sections. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li><strong>[Assessment Measure-Composite Score-Score]:</strong> A <em>composite score</em> is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).</li>
+<li><strong>[Assessment Measure-LNF-Levels]:</strong> The LNF, or <em>Letter Naming Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
+<li><strong>[Assessment Measure-LNF-Score]:</strong> This is a numerical measure of LNF in the interval [0, 59+).</li>
+<li><strong>[Assessment Measure-PSF-Levels]:</strong> The PSF, or <em>Phonemic Segmentation Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li><strong>[Assessment Measure-PSF-Score]:</strong> This is a numerical measure of PSF in the interval [0, 61+).</li>
+<li><strong>[Assessment Measure-NWF (CLS)-Levels]:</strong> The NWF, or <em>Nonsense Word Fluency</em> test, is administered to K-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li><strong>[Assessment Measure-NWF (CLS)-Score]:</strong> This is a numerical measure of NWF in the interval [0, 46+).</li>
+<li><strong>[Assessment Measure-DORF (Fluency)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li><strong>[Assessment Measure-DORF (Fluency)-Score]:</strong> This is a numerical measure of DORF - Fluency in the interval [0, 164+).</li>
+<li><strong>[Assessment Measure-DORF (Accuracy)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
+<li><strong>[Assessment Measure-DORF (Accuracy)-Score]:</strong> This is a numerical measure of DORF - Accuracy in the interval [0, 96+).</li>
+<li>The remaining assessment measures were used historically but are no longer actively tested.</li>
+</ul></li>
+<li><strong>Why are there NAs for certain tests if the student took the assessment?</strong></li>
+</ul>
+<p>DIBELS has multiple required measures but can be implemented using <em>gating rules</em>, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.</p>
+<ul>
+<li><p><strong>Who can I ask for more context?</strong></p>
+<ul>
+<li>Nkosi Geary-Smith is the Director of Early Literacy. She has context on the DIBELS assessment and how it is used.</li>
+<li>Chris Gonzalez is the VP of Accountability. He pulls the DIBELS data and uploads it to the warehouse.</li>
+<li>The University of Oregon maintains the <a href="https://dibels.uoregon.edu/">DIBELS site</a> and publishes guides on administering and interpreting scores.</li>
+</ul></li>
+</ul>
+</div>
+<div id="renaissance-star-also-renstar-little-star" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Renaissance STAR (also RenStar, Little Star)</h3>
 <p>###Specific Projects</p>
 <p>##Teacher Hiring</p>
 <ol style="list-style-type: decimal">
@@ -669,6 +725,7 @@ This data has columns including Candidate Full Name, Candidate Email (personal e
 <p>##Camp Rio</p>
 <p>##TSLIP</p>
 
+</div>
 </div>
 </div>
             </section>

@@ -69,6 +69,9 @@ student-persistence
 student-persistence-using-attendance-tables-a.k.a.-cohort-persistence
 college-application-matriculation-metrics
 csi
+assessment-data
+dibels
+renaissance-star-also-renstar-little-star
 models-and-methods
 research-design
 causal-inference
