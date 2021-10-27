@@ -426,15 +426,108 @@ DIBELS has multiple required measures but can be implemented using *gating rules
 
 
 ##Teacher Hiring
+Analyzing correlations and predictions between pre-selected hiring measures and teacher performance.
 
 
-1. Jobvite Data
+#A. Jobvite Data
           *Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
-          This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application.
+          This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
           
+  Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for Category = Teaching)
+•	Contains those who are Hired = Yes and Hired = No. 
+   o	“Hired = Yes” means they were offered the position, but does not indicate if they actually accepted it or not. 
+   o	Each person may apply for more than one job opening, and if they do, they will have a unique Requisition ID for each application (even though it is the same candidate applying for each separate position).
+•	Has Personal Email and Full Name
+•	Does NOT have IDEA Work Email, nor EmployeeID
+•	Contains everyone who applied from October to the following July, for the subsequent August Start Date (or start dates after that year).
+•	Most people who applied in Jobvite 19-20 (10/18 to 7/19), started in Fall 2019 (19-20 Academic Year) 
+   o	But a few of those started in Fall 2020 and Fall 2021.
+
+1)	19-20 – 2nd year of Jobvite data (18-19 is first and starting year of Jobvite data)
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column – shows which month/year a new hire started working (doesn’t have to be immediately following that year’s hiring cycle)
+
+2)	20-21 – 3rd year of Jobvite data 
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column
+
+3)	21-22 – 4th year of Jobvite data
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column
+
+#B. TCP/Teacher Export Data
+
+TCP/Teacher Export Data: Teacher Performance data.
+•	Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components). 
+   o	GET (35%)
+      	Manager and Self Guidepost Ratings contain 6 components
+•	Lesson Planning & Delivery
+•	Culture, Etc.
+      	Components 1-5 are counted, and Component 6 (Core Values) is calculated outside of this score (it is 1 of 5 Components of TCP, worth 5% on its own)
+      	Each Guidepost Component has 4-5 items listed under each as 1A, 1B, etc.
+   o	Parent Survey (5%)
+      	Show up as BLANK if <10 surveys were completed per teacher
+   o	Student Survey (5%)
+      	Shows up as BANK if:
+•	 <10 surveys were completed per teacher
+   o	Some campuses encourage students and parents to fill out the surveys, and some do not
+•	Teacher taught SPED, pre-K, K, 1st, or 2nd Grades (those students are not able to take the survey/or too young).
+   o	Student Achievement (50%)
+      	Testing such as STAAR, etc.
+   o	Core Values (5%)
+•	Contains IDEA Work Email and EmployeeID
+•	Contains First Name and Last Name (but not Full Name)
+•	There is a 2 year HOLD for the pandemic (we don’t know who was “held”), meaning someone at a particular level (E.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
+•	If someone got a 4.5+ composite TCP score for 2 consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
+•	For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
+•	If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
+
+1)	18-19  
+•	From Alex, see email
+
+2)	19-20  
+•	(“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
+•	Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
+3)	20-21 – 3rd year of Jobvite data 
+•	from Blanca, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
+•	Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year
+
+4)	21-22 – NO
+•	Not available yet! 
+•	No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.
+
+
+#Data Matching
+Jobvite 19-20 to Teacher Export 19-20
+Jobvite 20-21 to Teacher Export 20-21
+Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT available yet!
+•	Thus, we will be looking at 2 years of data:
+   o	Jobvite 19-20 to Teacher Export 19-20
+   o	Jobvite 20-21 to Teacher Export 20-21
+      	Removing Jobvite 19-20 Hires who did not have a Start Date of Fall 2019
+      	Removing Jobvite 20-21 Hires who did not have a Start Date of Fall 2020
+      	Removing all Teacher Export 19-20 and Teacher Export 20-21, who did not have a Job Title of Teacher
+      	Removing all Teacher Export 19-20 and Teacher Export 20-21, who had Internal Role as:
+•	SPED CP
+•	SPED AC
+•	PE CP
+•	PE CP
+•	(This is due to SPED and PE having state mandated license requirements that are not required for the other subjects, so these should be analyzed separately).
+      	Removing Teacher Export 19-20 Teachers who did not work in 19-20 Academic Year 
+•	(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
+      	Removing Teacher Export 20-21 Teachers who did not work in 20-21 Academic Year
+•	(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
+
+#Join Tables
+How to join? 
+•	Jobvite has no Employee ID & no Work Email and Teacher Export has Employee ID and Work Email.
+•	Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email
+        
           
-2. Teacher Export Data
+
 
 ##Camp Rio
 
 ##TSLIP
+
+Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
