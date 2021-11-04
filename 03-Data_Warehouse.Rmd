@@ -297,43 +297,6 @@ rna_dw_usage %>%
 ```
 
 
-#### IP Addresses of current servers
-
-For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
-
-| IP Adress   | Server Name       |
-|-------------|-------------------|
-|[REDACTED-IP]|   [REDACTED-HOST]     |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP] |   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]   |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP] |   [REDACTED-HOST]    |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST] | 
-|[REDACTED-IP] |   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]        |
-|[REDACTED-IP]|   [REDACTED-HOST] |
-|[REDACTED-IP]|   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST]    |
-|[REDACTED-IP] |   [REDACTED-HOST]  |
-|[REDACTED-IP]|   [REDACTED-HOST]           |
-
-: List of Windows Servers hosting SQL Server Databases and their IP Addresses
-
 
 ### Databases that R&A frquently uses. 
 ```{r echo=FALSE}
