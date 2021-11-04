@@ -416,7 +416,7 @@ All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Appr
 
 * R example:
 ```{r STAAR, echo=TRUE, eval=FALSE}
-```{r}
+
 STAAR <- get_table(.table_name = "STAAR", .database_name = "Dashboard", 
                    .schema = "dbo", .server_name = "RGVPDRA-DASQL") %>%
   filter(TestVersion == "S", ScoreCode == "S", SubjectCode == "Math",
