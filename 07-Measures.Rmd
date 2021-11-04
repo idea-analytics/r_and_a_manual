@@ -368,6 +368,103 @@ WHERE A.AcademicYear = '2020-2021'
 
 ## Assessment Data
 
+### State of Texas Assessments of Academic Readiness (STAAR)
+
+The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:
+
+  + **Grade 3:** Reading and Math
+  + **Grade 4:** Reading, Math, and Writing
+  + **Grade 5:** Reading, Math, and Science
+  + **Grade 6:** Reading and Math
+  + **Grade 7:** Reading, Math, and Writing
+  + **Grade 8:** Reading, Math, Science, and Social Studies
+
+Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
+
+All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Approaches, Meets, and Masters. When the assessments were rolled out the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are **NOT** mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standrad are included in the counts for Satisfactory.
+
+**Database:** [RGVPDRA-DASQL].[Dashboard]
+
+**Tables:**
+
+* **_[dbo].[STAAR]:_** This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to 3 administrations in one year. For example, a fifth grade student will take reading, math and science in one year, so that's 3 rows for each test. Further, if this student doesn't pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn't pass it in May they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in r to get the students best score and de-duplicate to get one row per student.
+
+* **Useful Fields:**
+
+  + **AdminDate:** indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be "0421" and "0521"; for EOC exams the AdminDate for Spring 2021 is "1521".
+  + **GradeLeve:** character values, two digit grade. Ex. "06"
+  + **CountyDistrictCampusNumber:** indicates the School Number
+  + **LastName:** Student's Last Name
+  + **FirstName:** Student's First Name
+  + **StudentID:** Student's testing ID number **Not the IDEA Student Number**
+  + **RaceReportingCategory:** Student's reported race, Ex. "H" = Hispanic
+  + **EcoDisadvantage:** Student's economic disadvantaged status, 0, 1, 2, and 9.
+  + **LEP:** Student's Limited English Proficiency status Codes: C = Current LEP, F = 1st year of monitoring, S = 2nd year of monitoring, T = 3rd year of monitoring, R = 4th year of monitoring,  E = former LEP more than 4 years since reclassification, and 0 = Non-LEP
+  + **SpEd:** 0/1 indicator for receiving special education services
+  + **AtRisk:** 0/1 indicator of at-risk status
+  + **LocalStudentID:** Student's 108 number
+  + **SubjectCode:** tested subject, i.e., Reading, Math, Science, Algebra I, etc.
+  + **TestDate:** equivalent to the AdminDate but **only** for 3-8
+  + **ScoreCode:** indicates whether the test was scored or student was absent. **ALWAYS** filter to ScoreCode == "S" to get the scored tests
+  + **TestVersion:** "S" = STAAR and "T" = STAAR Alt 2
+  + **ScaleScore:** provides the scaled score for that assessment and can be used to find the best score/most recent administration
+  + **LevelII:** 0/1 indicator for the Approaches performance standard
+  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard
+  + **LevelIII:** 0/1 indicator for the Masters performance standard
+  + **SchoolYear:** character value indicating the academic year, Ex. "2020-2021"
+  + **BestRecord:** logical column supposed to indicate if that record is the best for that student for that test **DOES NOT WORK**
+
+* R example:
+```{r STAAR, echo=TRUE, eval=FALSE}
+```{r}
+STAAR <- get_table(.table_name = "STAAR", .database_name = "Dashboard", 
+                   .schema = "dbo", .server_name = "RGVPDRA-DASQL") %>%
+  filter(TestVersion == "S", ScoreCode == "S", SubjectCode == "Math",
+         AdminDate %in% c("0421", "0521")) %>%
+  select(StudentID,
+         LocalStudentID,
+         GradeLevel,
+         SubjectCode,
+         AdminDate,
+         ScoreCode,
+         ScaleScore,
+         Approaches = LevelII,
+         Meets = LevelIIFinal,
+         Masters = LevelIII) %>%
+  mutate(StudentID = as.numeric(StudentID),
+         LocalStudentID = as.numeric(LocalStudentID),
+         StudentNumber = if_else(LocalStudentID %in% c(0, NA), StudentID, LocalStudentID),
+         StudentNumber = as.numeric(StudentNumber)) %>%
+  filter(StudentNumber != 0) %>%
+  select(-StudentID, -LocalStudentID, -ScoreCode) %>%
+  group_by(StudentNumber) %>%
+  distinct() %>%
+  collect()
+
+# To get a count of distinct student numbers to see how much duplication exists
+Count_stus <- STAAR %>%
+  distinct(StudentNumber)
+
+# Getting max score to de-duplicate
+staar_math <- STAAR %>%
+  group_by(StudentNumber) %>%
+  mutate(Best_score = max(ScaleScore),
+         BestScoreFlag = if_else(Best_score == ScaleScore, 1, 0)) %>%
+  filter(BestScoreFlag == 1) %>%
+  select(-BestScoreFlag, -Best_score, -AdminDate, -ScaleScore, -GradeLevel) %>%
+  distinct()
+
+# Calculating the % Approaches and the % Masters
+pct_apprhs_mstrs <- staar_math %>%
+  select(Approaches, Masters) %>%
+  summarize(n_students = n(),
+         n_apprchs = sum(Approaches),
+         n_mstrs = sum(Masters)) %>%
+  mutate(pct_app = n_apprchs/n_students,
+         pct_mst = n_mstrs/n_students)
+
+```
+
 ### DIBELS
 
 Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uoregon.edu/) is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.
