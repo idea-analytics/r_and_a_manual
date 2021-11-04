@@ -66,8 +66,8 @@
 <script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
 <link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="libs/selectize-0.12.0/selectize.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
 <style type="text/css">
@@ -217,8 +217,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="measures.html"><a href="measures.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>7.3</b> College Application &amp; Matriculation Metrics</a></li>
 <li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#csi"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
 <li class="chapter" data-level="7.5" data-path="measures.html"><a href="measures.html#assessment-data"><i class="fa fa-check"></i><b>7.5</b> Assessment Data</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="measures.html"><a href="measures.html#dibels"><i class="fa fa-check"></i><b>7.5.1</b> DIBELS</a></li>
-<li class="chapter" data-level="7.5.2" data-path="measures.html"><a href="measures.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>7.5.2</b> Renaissance STAR (also RenStar, Little Star)</a></li>
+<li class="chapter" data-level="7.5.1" data-path="measures.html"><a href="measures.html#state-of-texas-assessments-of-academic-readiness-staar"><i class="fa fa-check"></i><b>7.5.1</b> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
+<li class="chapter" data-level="7.5.2" data-path="measures.html"><a href="measures.html#dibels"><i class="fa fa-check"></i><b>7.5.2</b> DIBELS</a></li>
+<li class="chapter" data-level="7.5.3" data-path="measures.html"><a href="measures.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>7.5.3</b> Renaissance STAR (also RenStar, Little Star)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>8</b> Models and Methods</a><ul>
@@ -666,8 +667,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="assessment-data" class="section level2">
 <h2><span class="header-section-number">7.5</span> Assessment Data</h2>
+<div id="state-of-texas-assessments-of-academic-readiness-staar" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)</h3>
+<p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:</p>
+<ul>
+<li><strong>Grade 3:</strong> Reading and Math</li>
+<li><strong>Grade 4:</strong> Reading, Math, and Writing</li>
+<li><strong>Grade 5:</strong> Reading, Math, and Science</li>
+<li><strong>Grade 6:</strong> Reading and Math</li>
+<li><strong>Grade 7:</strong> Reading, Math, and Writing</li>
+<li><strong>Grade 8:</strong> Reading, Math, Science, and Social Studies</li>
+</ul>
+<p>Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.</p>
+<p>All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Approaches, Meets, and Masters. When the assessments were rolled out the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are <strong>NOT</strong> mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standrad are included in the counts for Satisfactory.</p>
+<p><strong>Database:</strong> [RGVPDRA-DASQL].[Dashboard]</p>
+<p><strong>Tables:</strong></p>
+<ul>
+<li><p><strong><em>[dbo].[STAAR]:</em></strong> This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to 3 administrations in one year. For example, a fifth grade student will take reading, math and science in one year, so that’s 3 rows for each test. Further, if this student doesn’t pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn’t pass it in May they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in r to get the students best score and de-duplicate to get one row per student.</p></li>
+<li><p><strong>Useful Fields:</strong></p>
+<ul>
+<li><strong>AdminDate:</strong> indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be “0421” and “0521”; for EOC exams the AdminDate for Spring 2021 is “1521”.</li>
+<li><strong>GradeLeve:</strong> character values, two digit grade. Ex. “06”</li>
+<li><strong>CountyDistrictCampusNumber:</strong> indicates the School Number</li>
+<li><strong>LastName:</strong> Student’s Last Name</li>
+<li><strong>FirstName:</strong> Student’s First Name</li>
+<li><strong>StudentID:</strong> Student’s testing ID number <strong>Not the IDEA Student Number</strong></li>
+<li><strong>RaceReportingCategory:</strong> Student’s reported race, Ex. “H” = Hispanic</li>
+<li><strong>EcoDisadvantage:</strong> Student’s economic disadvantaged status, 0, 1, 2, and 9.</li>
+<li><strong>LEP:</strong> Student’s Limited English Proficiency status Codes: C = Current LEP, F = 1st year of monitoring, S = 2nd year of monitoring, T = 3rd year of monitoring, R = 4th year of monitoring, E = former LEP more than 4 years since reclassification, and 0 = Non-LEP</li>
+<li><strong>SpEd:</strong> 0/1 indicator for receiving special education services</li>
+<li><strong>AtRisk:</strong> 0/1 indicator of at-risk status</li>
+<li><strong>LocalStudentID:</strong> Student’s 108 number</li>
+<li><strong>SubjectCode:</strong> tested subject, i.e., Reading, Math, Science, Algebra I, etc.</li>
+<li><strong>TestDate:</strong> equivalent to the AdminDate but <strong>only</strong> for 3-8</li>
+<li><strong>ScoreCode:</strong> indicates whether the test was scored or student was absent. <strong>ALWAYS</strong> filter to ScoreCode == “S” to get the scored tests</li>
+<li><strong>TestVersion:</strong> “S” = STAAR and “T” = STAAR Alt 2</li>
+<li><strong>ScaleScore:</strong> provides the scaled score for that assessment and can be used to find the best score/most recent administration</li>
+<li><strong>LevelII:</strong> 0/1 indicator for the Approaches performance standard</li>
+<li><strong>LevelIIFinal:</strong> 0/1 indicator for the Meets performance standard</li>
+<li><strong>LevelIII:</strong> 0/1 indicator for the Masters performance standard</li>
+<li><strong>SchoolYear:</strong> character value indicating the academic year, Ex. “2020-2021”</li>
+<li><strong>BestRecord:</strong> logical column supposed to indicate if that record is the best for that student for that test <strong>DOES NOT WORK</strong></li>
+</ul></li>
+<li><p>R example:</p></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="measures.html#cb29-1"></a>STAAR &lt;-<span class="st"> </span><span class="kw">get_table</span>(<span class="dt">.table_name =</span> <span class="st">&quot;STAAR&quot;</span>, <span class="dt">.database_name =</span> <span class="st">&quot;Dashboard&quot;</span>, </span>
+<span id="cb29-2"><a href="measures.html#cb29-2"></a>                   <span class="dt">.schema =</span> <span class="st">&quot;dbo&quot;</span>, <span class="dt">.server_name =</span> <span class="st">&quot;RGVPDRA-DASQL&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-3"><a href="measures.html#cb29-3"></a><span class="st">  </span><span class="kw">filter</span>(TestVersion <span class="op">==</span><span class="st"> &quot;S&quot;</span>, ScoreCode <span class="op">==</span><span class="st"> &quot;S&quot;</span>, SubjectCode <span class="op">==</span><span class="st"> &quot;Math&quot;</span>,</span>
+<span id="cb29-4"><a href="measures.html#cb29-4"></a>         AdminDate <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;0421&quot;</span>, <span class="st">&quot;0521&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb29-5"><a href="measures.html#cb29-5"></a><span class="st">  </span><span class="kw">select</span>(StudentID,</span>
+<span id="cb29-6"><a href="measures.html#cb29-6"></a>         LocalStudentID,</span>
+<span id="cb29-7"><a href="measures.html#cb29-7"></a>         GradeLevel,</span>
+<span id="cb29-8"><a href="measures.html#cb29-8"></a>         SubjectCode,</span>
+<span id="cb29-9"><a href="measures.html#cb29-9"></a>         AdminDate,</span>
+<span id="cb29-10"><a href="measures.html#cb29-10"></a>         ScoreCode,</span>
+<span id="cb29-11"><a href="measures.html#cb29-11"></a>         ScaleScore,</span>
+<span id="cb29-12"><a href="measures.html#cb29-12"></a>         <span class="dt">Approaches =</span> LevelII,</span>
+<span id="cb29-13"><a href="measures.html#cb29-13"></a>         <span class="dt">Meets =</span> LevelIIFinal,</span>
+<span id="cb29-14"><a href="measures.html#cb29-14"></a>         <span class="dt">Masters =</span> LevelIII) <span class="op">%&gt;%</span></span>
+<span id="cb29-15"><a href="measures.html#cb29-15"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">StudentID =</span> <span class="kw">as.numeric</span>(StudentID),</span>
+<span id="cb29-16"><a href="measures.html#cb29-16"></a>         <span class="dt">LocalStudentID =</span> <span class="kw">as.numeric</span>(LocalStudentID),</span>
+<span id="cb29-17"><a href="measures.html#cb29-17"></a>         <span class="dt">StudentNumber =</span> <span class="kw">if_else</span>(LocalStudentID <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>), StudentID, LocalStudentID),</span>
+<span id="cb29-18"><a href="measures.html#cb29-18"></a>         <span class="dt">StudentNumber =</span> <span class="kw">as.numeric</span>(StudentNumber)) <span class="op">%&gt;%</span></span>
+<span id="cb29-19"><a href="measures.html#cb29-19"></a><span class="st">  </span><span class="kw">filter</span>(StudentNumber <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-20"><a href="measures.html#cb29-20"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>StudentID, <span class="op">-</span>LocalStudentID, <span class="op">-</span>ScoreCode) <span class="op">%&gt;%</span></span>
+<span id="cb29-21"><a href="measures.html#cb29-21"></a><span class="st">  </span><span class="kw">group_by</span>(StudentNumber) <span class="op">%&gt;%</span></span>
+<span id="cb29-22"><a href="measures.html#cb29-22"></a><span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span></span>
+<span id="cb29-23"><a href="measures.html#cb29-23"></a><span class="st">  </span><span class="kw">collect</span>()</span>
+<span id="cb29-24"><a href="measures.html#cb29-24"></a></span>
+<span id="cb29-25"><a href="measures.html#cb29-25"></a><span class="co"># To get a count of distinct student numbers to see how much duplication exists</span></span>
+<span id="cb29-26"><a href="measures.html#cb29-26"></a>Count_stus &lt;-<span class="st"> </span>STAAR <span class="op">%&gt;%</span></span>
+<span id="cb29-27"><a href="measures.html#cb29-27"></a><span class="st">  </span><span class="kw">distinct</span>(StudentNumber)</span>
+<span id="cb29-28"><a href="measures.html#cb29-28"></a></span>
+<span id="cb29-29"><a href="measures.html#cb29-29"></a><span class="co"># Getting max score to de-duplicate</span></span>
+<span id="cb29-30"><a href="measures.html#cb29-30"></a>staar_math &lt;-<span class="st"> </span>STAAR <span class="op">%&gt;%</span></span>
+<span id="cb29-31"><a href="measures.html#cb29-31"></a><span class="st">  </span><span class="kw">group_by</span>(StudentNumber) <span class="op">%&gt;%</span></span>
+<span id="cb29-32"><a href="measures.html#cb29-32"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Best_score =</span> <span class="kw">max</span>(ScaleScore),</span>
+<span id="cb29-33"><a href="measures.html#cb29-33"></a>         <span class="dt">BestScoreFlag =</span> <span class="kw">if_else</span>(Best_score <span class="op">==</span><span class="st"> </span>ScaleScore, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb29-34"><a href="measures.html#cb29-34"></a><span class="st">  </span><span class="kw">filter</span>(BestScoreFlag <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-35"><a href="measures.html#cb29-35"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>BestScoreFlag, <span class="op">-</span>Best_score, <span class="op">-</span>AdminDate, <span class="op">-</span>ScaleScore, <span class="op">-</span>GradeLevel) <span class="op">%&gt;%</span></span>
+<span id="cb29-36"><a href="measures.html#cb29-36"></a><span class="st">  </span><span class="kw">distinct</span>()</span>
+<span id="cb29-37"><a href="measures.html#cb29-37"></a></span>
+<span id="cb29-38"><a href="measures.html#cb29-38"></a><span class="co"># Calculating the % Approaches and the % Masters</span></span>
+<span id="cb29-39"><a href="measures.html#cb29-39"></a>pct_apprhs_mstrs &lt;-<span class="st"> </span>staar_math <span class="op">%&gt;%</span></span>
+<span id="cb29-40"><a href="measures.html#cb29-40"></a><span class="st">  </span><span class="kw">select</span>(Approaches, Masters) <span class="op">%&gt;%</span></span>
+<span id="cb29-41"><a href="measures.html#cb29-41"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_students =</span> <span class="kw">n</span>(),</span>
+<span id="cb29-42"><a href="measures.html#cb29-42"></a>         <span class="dt">n_apprchs =</span> <span class="kw">sum</span>(Approaches),</span>
+<span id="cb29-43"><a href="measures.html#cb29-43"></a>         <span class="dt">n_mstrs =</span> <span class="kw">sum</span>(Masters)) <span class="op">%&gt;%</span></span>
+<span id="cb29-44"><a href="measures.html#cb29-44"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pct_app =</span> n_apprchs<span class="op">/</span>n_students,</span>
+<span id="cb29-45"><a href="measures.html#cb29-45"></a>         <span class="dt">pct_mst =</span> n_mstrs<span class="op">/</span>n_students)</span></code></pre></div>
+</div>
 <div id="dibels" class="section level3">
-<h3><span class="header-section-number">7.5.1</span> DIBELS</h3>
+<h3><span class="header-section-number">7.5.2</span> DIBELS</h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
 <p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
@@ -713,7 +804,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="renaissance-star-also-renstar-little-star" class="section level3">
-<h3><span class="header-section-number">7.5.2</span> Renaissance STAR (also RenStar, Little Star)</h3>
+<h3><span class="header-section-number">7.5.3</span> Renaissance STAR (also RenStar, Little Star)</h3>
 <p>###Specific Projects</p>
 <p>##Teacher Hiring
 Analyzing correlations and predictions between pre-selected hiring measures and teacher performance.</p>

@@ -69,6 +69,7 @@ student-persistence-using-attendance-tables-a.k.a.-cohort-persistence
 college-application-matriculation-metrics
 csi
 assessment-data
+state-of-texas-assessments-of-academic-readiness-staar
 dibels
 renaissance-star-also-renstar-little-star
 models-and-methods
