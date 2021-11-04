@@ -18,7 +18,6 @@ ds-servers
 prod-servers
 rs-and-hisotrical-data-servers
 server-table-and-field-lookup
-ip-addresses-of-current-servers
 databases-that-ra-frquently-uses.
 accessing-the-data-warehouse-from-r
 installation
