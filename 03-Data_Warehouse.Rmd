@@ -297,43 +297,6 @@ rna_dw_usage %>%
 ```
 
 
-#### IP Addresses of current servers
-
-For the fastest performance when working remotely it is best to directly access a database by using the IP address of the server rather than than the URL, which often has multiple hops over the network when resolving the DSN. Here's a list of known IP Addresses and server names.
-
-| IP Adress   | Server Name       |
-|-------------|-------------------|
-|172.24.16.195|   795184-LOGI     |
-|172.24.16.208|   795198-CUSTAPPS |
-|172.24.16.209|   795199-CUSTAPSV |
-|172.24.16.166|   887192-SQLDS    |
-|172.24.16.193|   795182-SQLCUSAP |
-|172.24.16.125|   795178-DISERVIC |
-|172.24.16.207|   795197-DIONLINE |
-|172.24.16.198|   964592-SQLDS    |
-|172.24.17.56 |   1123130-SDPDTMP |
-|172.24.16.83 |   1064618-SQLDI   |
-|172.24.16.216|   1054148-FINAPP  |
-|172.24.17.111|   1064596-SQLRPT2 |
-|172.24.17.110|   1064599-SQLRPTH |
-|172.24.16.80 |   1064611-SRC4    |
-|172.24.16.206|   795196-HQSTAGIN |
-|172.24.16.196|   795186-HQPROD01 |
-|172.24.16.197|   795187-HQSQA01  |
-|172.24.16.201|   795191-AUTOMATI |
-|172.24.16.82 |   1064615-API1    |
-|172.24.16.110|   1017144-SQLRPT  |
-|172.24.16.205|   795195-HQSQLSA1 | 
-|172.24.16.81 |   1064613-SQLPRD2 |
-|10.255.88.201|   HQVSQLDS        |
-|172.24.17.160|   1065574-SQLPRD1 |
-|172.24.16.210|   1044407-SQLDS3  |
-|10.255.88.176|   HQVSDBACKUPS    |
-|172.24.16.79 |   924794-AUXAUTO  |
-|10.255.88.152|   SQLBI           |
-
-: List of Windows Servers hosting SQL Server Databases and their IP Addresses
-
 
 ### Databases that R&A frquently uses. 
 ```{r echo=FALSE}
