@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-11-04" />
+<meta name="date" content="2021-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -687,7 +687,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Useful Fields:</strong></p>
 <ul>
 <li><strong>AdminDate:</strong> indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be “0421” and “0521”; for EOC exams the AdminDate for Spring 2021 is “1521”.</li>
-<li><strong>GradeLeve:</strong> character values, two digit grade. Ex. “06”</li>
+<li><strong>GradeLevel:</strong> character values, two digit grade. Ex. “06”</li>
 <li><strong>CountyDistrictCampusNumber:</strong> indicates the School Number</li>
 <li><strong>LastName:</strong> Student’s Last Name</li>
 <li><strong>FirstName:</strong> Student’s First Name</li>
@@ -703,9 +703,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>ScoreCode:</strong> indicates whether the test was scored or student was absent. <strong>ALWAYS</strong> filter to ScoreCode == “S” to get the scored tests</li>
 <li><strong>TestVersion:</strong> “S” = STAAR and “T” = STAAR Alt 2</li>
 <li><strong>ScaleScore:</strong> provides the scaled score for that assessment and can be used to find the best score/most recent administration</li>
-<li><strong>LevelII:</strong> 0/1 indicator for the Approaches performance standard</li>
-<li><strong>LevelIIFinal:</strong> 0/1 indicator for the Meets performance standard</li>
-<li><strong>LevelIII:</strong> 0/1 indicator for the Masters performance standard</li>
+<li><strong>LevelII:</strong> 0/1 indicator for the Approaches performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
+<li><strong>LevelIIFinal:</strong> 0/1 indicator for the Meets performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
+<li><strong>LevelIII:</strong> 0/1 indicator for the Masters performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level</li>
 <li><strong>SchoolYear:</strong> character value indicating the academic year, Ex. “2020-2021”</li>
 <li><strong>BestRecord:</strong> logical column supposed to indicate if that record is the best for that student for that test <strong>DOES NOT WORK</strong></li>
 </ul></li>
