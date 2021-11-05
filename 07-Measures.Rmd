@@ -392,7 +392,7 @@ All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Appr
 * **Useful Fields:**
 
   + **AdminDate:** indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be "0421" and "0521"; for EOC exams the AdminDate for Spring 2021 is "1521".
-  + **GradeLeve:** character values, two digit grade. Ex. "06"
+  + **GradeLevel:** character values, two digit grade. Ex. "06"
   + **CountyDistrictCampusNumber:** indicates the School Number
   + **LastName:** Student's Last Name
   + **FirstName:** Student's First Name
@@ -408,9 +408,9 @@ All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Appr
   + **ScoreCode:** indicates whether the test was scored or student was absent. **ALWAYS** filter to ScoreCode == "S" to get the scored tests
   + **TestVersion:** "S" = STAAR and "T" = STAAR Alt 2
   + **ScaleScore:** provides the scaled score for that assessment and can be used to find the best score/most recent administration
-  + **LevelII:** 0/1 indicator for the Approaches performance standard
-  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard
-  + **LevelIII:** 0/1 indicator for the Masters performance standard
+  + **LevelII:** 0/1 indicator for the Approaches performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIII:** 0/1 indicator for the Masters performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level
   + **SchoolYear:** character value indicating the academic year, Ex. "2020-2021"
   + **BestRecord:** logical column supposed to indicate if that record is the best for that student for that test **DOES NOT WORK**
 
