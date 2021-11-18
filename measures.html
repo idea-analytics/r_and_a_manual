@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-11-05" />
+<meta name="date" content="2021-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,10 +58,10 @@
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.19/datatables.js"></script>
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
 <link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
 <script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
 <link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
@@ -242,6 +242,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#data-processing"><i class="fa fa-check"></i><b>9.1</b> Data processing</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#de-duplicating-rows-in-a-table."><i class="fa fa-check"></i><b>9.1.1</b> De-duplicating rows in a table.</a></li>
 <li class="chapter" data-level="9.1.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#creating-scaffolds-when-joining-data."><i class="fa fa-check"></i><b>9.1.2</b> Creating “Scaffolds” when joining data.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#statistical-pitfalls"><i class="fa fa-check"></i><b>9.2</b> Statistical pitfalls</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#simpsons-paradox"><i class="fa fa-check"></i><b>9.2.1</b> Simpson’s Paradox</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -764,11 +767,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
 <p><strong>Main metrics:</strong> Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests</p>
 <p><strong>Most important columns:</strong> [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]</p>
-<p><strong>Other useful fields:</strong>
-+ <strong>[School Year], [School Name], [Assessment Grade]:</strong> use to filter the table to the appropriate students
-+ <strong>[Benchmark Period]:</strong> labeled as BOY, MOY, or EOY
-+ <strong>[Student ID (District ID)]:</strong> use to match students back to the Students table.
-+ Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by <strong>[Student Last Name]</strong> and <strong>[Student First Name]</strong>. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.</p>
+<p><strong>Other useful fields:</strong></p>
+<ul>
+<li><strong>[School Year], [School Name], [Assessment Grade]:</strong> use to filter the table to the appropriate students</li>
+<li><strong>[Benchmark Period]:</strong> labeled as BOY, MOY, or EOY</li>
+<li><strong>[Student ID (District ID)]:</strong> use to match students back to the Students table.</li>
+<li>Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by <strong>[Student Last Name]</strong> and <strong>[Student First Name]</strong>. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.</li>
+</ul>
 <p><strong>Context:</strong></p>
 <ul>
 <li><strong>Who is assessed?</strong></li>
