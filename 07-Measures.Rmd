@@ -478,10 +478,11 @@ Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is 
 **Most important columns:** [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]
 
 **Other useful fields:** 
-  + **[School Year], [School Name], [Assessment Grade]:** use to filter the table to the appropriate students
-  + **[Benchmark Period]:** labeled as BOY, MOY, or EOY
-  + **[Student ID (District ID)]:** use to match students back to the Students table.
-  + Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by **[Student Last Name]** and **[Student First Name]**. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.
+
+* **[School Year], [School Name], [Assessment Grade]:** use to filter the table to the appropriate students
+* **[Benchmark Period]:** labeled as BOY, MOY, or EOY
+* **[Student ID (District ID)]:** use to match students back to the Students table.
+* Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by **[Student Last Name]** and **[Student First Name]**. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.
   
 **Context:**
 
