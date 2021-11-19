@@ -72,6 +72,11 @@ assessment-data
 state-of-texas-assessments-of-academic-readiness-staar
 dibels
 renaissance-star-also-renstar-little-star
+teacher-staff-and-hiring-data
+jobvite-data
+tcpteacher-export-data
+data-matching
+join-tables
 models-and-methods
 research-design
 causal-inference
