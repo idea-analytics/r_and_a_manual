@@ -244,17 +244,49 @@ You'll want to be careful here if you are working with others. If you pulled you
 The best remedy is to checkout and pull main---which gets up to date---and then checkout your branch and run `git merge main`. You may have to resolve conflicts.
 :::
 
+
 ## Project Process
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+When we are working on a project, we need to document not only our analytical work, but also our organization and management. There are multiple tools we use to plan, track, modify and evaluate our progress among our team and with our stakeholders, and as we evolve, we certainly can add to our best practices for each of these tools. Namely, we will discuss how to set up Wrike projects, set up a GRPI/RASI, use operating mechanisms, and other important project structures.
 
-### Onboarding via Wrike
+::: {.tip}
+The key point is that we backwards plan from our final product. The project management tools document these processes in greater detail, in the same way that a teacher might backwards plan from the assessment to the lesson, or a leader might document and follow up with the next steps from a meeting.
+:::
 
-Lorem ipsum dolor sit amet, in, et sed facilisi maximus suspendisse, facilisi in. Finibus in posuere risus, luctus, elit lacus in, rhoncus, ante mollis. In, eu in est curabitur. Sit ante lectus ante curabitur. Ac quis neque amet vel. Sed libero ut sed nisl non donec augue in molestie ut id sed aptent primis. Ligula dui tortor hac tempus cubilia, sapien morbi duis sed. Molestie ac faucibus ultrices. Scelerisque non ut sapien, proin sit odio duis ut aliquam suscipit in duis platea. Phasellus tellus volutpat sed vitae augue a. Ac sit, sociis eget vel sociis. Mus sit in sit erat, turpis, consequat. Mauris, ligula lobortis ac arcu, in magna, nibh pharetra phasellus nascetur. Ligula odio sapien ac eu laoreet rhoncus non netus. Tellus, sagittis dictum lacus vitae tristique.
+
+### Wrike
+
+We use [Wrike](https://login.wrike.com/login/) as our main project management system to track the workflow for our team. All [information requests](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Information-Requests.aspx) (note - this link may change as we transition to the IST team) generate a Wrike task, which will be accepted or rejected from our work. Once we know who will be assigned to the request, we can use Wrike in the following ways to organize the work.
+
+#### Onboarding and setup
+
+1. During tactical or throughout the week, review any new Wrike requests.
+
+2. Determine if the request will be accepted, and if so, determine who will be assigned to the task.
+
+3. Vet the request thoroughly and ask clarifying questions with the requester.
+
+4. If this is an ad-hoc request, keep the request in the original queue and set up tasks (see next section).
+
+5. If this is a medium- to long-term request, then set up a project and related tasks into an appropriate folder:
+  * Evaluation Projects
+  * Impact Analyses
+
+
+#### Goal setting and deadlines
+
+#### Defining tasks and dependencies
+
+
+### GRPI and RASI
+
+### Project operating mechanisms
+
+
 
 ## ProjectTemplate (for analyses) {#section-ProjectTemplate}
 
-[ProjectTempalate](http://projecttemplate.net/) is both an R package and an approach. Simply put, it's a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use `renv` for that), and separating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.
+[ProjectTemplate](http://projecttemplate.net/) is both an R package and an approach. Simply put, it's a package that builds the scaffolding for a project, provides good features for tracking package dependencies (though we also use `renv` for that), and separating data loading and prep from analysis and output, as well as caching of long running processes, which speeds up analytical time.
 
 Is it perfect? No. It has more features than we'll likely ever use (logging, code profiling, and unit testing).
 
