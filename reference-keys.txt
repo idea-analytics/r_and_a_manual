@@ -47,7 +47,12 @@ using-.gitignore
 rstudio-2
 merging-changes.
 project-process
-onboarding-via-wrike
+wrike
+onboarding-and-setup
+goal-setting-and-deadlines
+defining-tasks-and-dependencies
+grpi-and-rasi
+project-operating-mechanisms
 section-ProjectTemplate
 installing-projecttemplate
 creating-a-project-with-projecttemplate
