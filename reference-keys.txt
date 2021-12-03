@@ -51,6 +51,7 @@ wrike
 onboarding-and-setup
 goal-setting-and-deadlines
 defining-tasks-and-dependencies
+documenting-and-evaluating-progress-towards-goal
 grpi-and-rasi
 project-operating-mechanisms
 section-ProjectTemplate
