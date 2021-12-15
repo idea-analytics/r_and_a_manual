@@ -107,3 +107,4 @@ de-duplicating-rows-in-a-table.
 creating-scaffolds-when-joining-data.
 statistical-pitfalls
 simpsons-paradox
+bias-variance-tradeoff
