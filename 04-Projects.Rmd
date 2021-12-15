@@ -253,6 +253,8 @@ When we are working on a project, we need to document not only our analytical wo
 The key point is that we backwards plan from our final product. The project management tools document these processes in greater detail, in the same way that a teacher might backwards plan from the assessment to the lesson, or a leader might document and follow up with the next steps from a meeting.
 :::
 
+Below is an overview of the backwards planning process. ![](img/project_workflow_diagram.png)
+
 
 ### Wrike
 
