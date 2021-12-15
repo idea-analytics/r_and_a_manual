@@ -27,3 +27,5 @@ Coming Soon. . .
 ### Simpson's Paradox
 
 When identifying trends in a distribution, be careful of interpreting those trends, particularly when there is hierarchy involved in the population. The ranking, magnitude, and direction of the trends can reverse when conditioning on a certain level of a hierarchy. For example, STAAR achievement levels as a function of minutes on an individual learning program like Dreambox may not be significant at the district level, but could be significant when at the school or classroom level.
+
+### Bias-variance tradeoff
