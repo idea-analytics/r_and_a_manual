@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2022-01-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,6 +203,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.3" data-path="projects.html"><a href="projects.html#using-renv"><i class="fa fa-check"></i><b>4.4.3</b> Using <code>renv</code></a></li>
 <li class="chapter" data-level="4.4.4" data-path="projects.html"><a href="projects.html#collaborating-with-renv"><i class="fa fa-check"></i><b>4.4.4</b> Collaborating with <code>renv</code></a></li>
 <li class="chapter" data-level="4.4.5" data-path="projects.html"><a href="projects.html#renv-and-rstudio-connect"><i class="fa fa-check"></i><b>4.4.5</b> <code>renv</code> and RStudio Connect</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="projects.html"><a href="projects.html#publishing-projects"><i class="fa fa-check"></i><b>4.5</b> Publishing Projects</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="projects.html"><a href="projects.html#rstudio-connect"><i class="fa fa-check"></i><b>4.5.1</b> RStudio Connect</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="coding-standards.html"><a href="coding-standards.html"><i class="fa fa-check"></i><b>5</b> Coding Standards</a><ul>
@@ -733,6 +736,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="gotcha">
 <p>The <code>renv</code> generated <code>.Rprofile</code> file should <strong>not</strong> be included in deployments to RStudio Connect.</p>
 </div>
+</div>
+</div>
+<div id="publishing-projects" class="section level2">
+<h2><span class="header-section-number">4.5</span> Publishing Projects</h2>
+<p>Our reports can be published for our stakeholders through a variety of sites. The location is up to you, but there are some nice options to do so.</p>
+<div id="rstudio-connect" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> RStudio Connect</h3>
+<p>If your report is written in RMarkdown, then you can directly publish your report from RStudio to <a href="https://www.rstudio.com/products/connect/">RStudio Connect</a> at our <a href="https://analytics.ideapublicschools.org/connect/">team site</a>.</p>
+<p>To publish a report, do the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure your output in the header section is set to <code>output: html_document</code>. You can add other options, like a table of contents and formatting.</p></li>
+<li><p>Knit your .Rmd to find any compiling errors before you publish.</p></li>
+<li><p>Click on the blue Publish button in the upper right hand corner of the html output or in the editor.</p></li>
+<li><p>Select RStudio Connect.</p></li>
+<li><p>Choose if you want to publish with the source code or just publish the finished document. (The source code is useful if your report is recurring and can be updated, while the finished document is appropriate for things like analytical reports.)</p></li>
+<li><p>Select analytics.ideapublicschools.org as the destination. Then, choose an appropriate title for your report. Finally, click Publish.</p></li>
+</ol>
+<div class="gotcha">
+<p>If the .Rmd filename is too long, then the report will not publish. You’ll need to shorten the filename if you get errors.</p>
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>Check your report on RStudio Connect and make adjustments under the Settings gear.</li>
+</ol>
+<p>A detailed guide about publishing can be found in the RStudio Connect <a href="https://docs.rstudio.com/connect/user/publishing/">documentation</a>.</p>
 <p>###Specific Projects</p>
 <p>##Teacher Hiring</p>
 <ol style="list-style-type: decimal">

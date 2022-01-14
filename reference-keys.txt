@@ -64,6 +64,8 @@ setting-up-renv-with-an-existing-project
 using-renv
 collaborating-with-renv
 renv-and-rstudio-connect
+publishing-projects
+rstudio-connect
 coding-standards
 file-naming-standards.
 visualization-standards
