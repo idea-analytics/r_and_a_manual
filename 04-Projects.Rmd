@@ -506,6 +506,38 @@ In short there should be no issues, but there is one important thing to always k
 The `renv` generated `.Rprofile` file should **not** be included in deployments to RStudio Connect.
 :::
 
+
+## Publishing Projects
+
+Our reports can be published for our stakeholders through a variety of sites. The location is up to you, but there are some nice options to do so.
+
+### RStudio Connect
+
+If your report is written in RMarkdown, then you can directly publish your report from RStudio to [RStudio Connect](https://www.rstudio.com/products/connect/) at our [team site](https://analytics.ideapublicschools.org/connect/).
+
+To publish a report, do the following:
+
+1. Make sure your output in the header section is set to `output: html_document`. You can add other options, like a table of contents and formatting.
+
+2. Knit your .Rmd to find any compiling errors before you publish.
+
+3. Click on the blue Publish button in the upper right hand corner of the html output or in the editor. 
+
+4. Select RStudio Connect.
+
+5. Choose if you want to publish with the source code or just publish the finished document. (The source code is useful if your report is recurring and can be updated, while the finished document is appropriate for things like analytical reports.)
+
+6. Select analytics.ideapublicschools.org as the destination. Then, choose an appropriate title for your report. Finally, click Publish.
+
+::: {.gotcha}
+If the .Rmd filename is too long, then the report will not publish. You'll need to shorten the filename if you get errors.
+:::
+
+7. Check your report on RStudio Connect and make adjustments under the Settings gear.
+
+A detailed guide about publishing can be found in the RStudio Connect [documentation](https://docs.rstudio.com/connect/user/publishing/).
+
+
 ###Specific Projects
 
 
