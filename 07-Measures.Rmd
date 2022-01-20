@@ -465,6 +465,164 @@ pct_apprhs_mstrs <- staar_math %>%
 
 ```
 
+
+### District assessments
+
+IDEA produces in-house assessments for each major content area except for national and state EOY assessments. Typically, courses require all teachers and students to administer the same summative assessments and benchmarks, but formative assessments are left to each teacher to create.
+
+Summative assessments evaluate what a student has learned over time and is usually more high-stakes than other types of assignments. Examples of the most common summative assessments we administer include:
+
+* Unit exams
+* End-of-module assessments
+* Mid-unit exams (also mid-unit quizzes)
+* Mid-module assessments
+* Semester exams
+* Final exams
+* Projects, papers, performances, and portfolios
+* Quarterly interim assessments (former)
+* Bi-weekly assessments (former)
+
+Formative assessments are used to reveal student progress in the learning cycle and are usually more low-stakes. A small sample of formative assessments we use are:
+
+* Daily exit tickets
+* Weekly quizzes
+* Progress checks
+* Peer feedback
+* and more...
+
+In this section, we will only consider district assessments that are *centralized*, meaning that most schools must administer and scan in the results into Illuminate ([Texas](https://ideapublicschools.illuminateed.com/) | [Louisiana](https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&prev_page=Main_NotDashboardPage&page=SisLogin)), our main assessment platform.
+
+#### Illuminate data
+
+The IABWA tables (for **I**nterim **A**ssessments and **B**i**w**eekly **A**ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.
+
+The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common).  Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.
+
+Illuminate then stores all data at two different levels:
+
+1. student-level, and
+
+2. item-level by student,
+
+each of which is stored in a different IABWA table. 
+
+##### Naming conventions
+
+Most assessments have a standard naming convention:
+
+**SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT**
+
+For example, a 6th grade ELA semester exam in Fall 2021 may have the name **ELA_6thReading_F21_SE**, or the first AP Spanish Language unit exam may have the name **SPA_APSpanishLanguage_F21_UE1**.
+
+A list of the most common codes used is included below:
+
+  Subject Code | Semester | Assessment
+  -------------|----------|------------
+ ELA - English Language Arts | Fyy - Fall (year) | UE - unit exam
+ MAT - Mathematics | SPyy - Spring (year) | EOM - end of module
+ SCI - Science | | MUE - mid-unit exam
+ HUM or SS - Social Studies | | MM - mid-module
+ TECH - Technology | | SE or SEM - semester exam
+ RTTC - Road to and through College | | FE - final exam
+ SPA - Spanish | | IA - former interim assessment (final exam - IA4)
+  | | BWA - former biweekly assessment
+
+Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment. 
+
+##### IABWA
+
+This table aggregates item-level data for each student and reports a student's performance on a single assessment.
+
+**Table:** [[REDACTED-HOST]].[PROD2].[Assessments].[IABWA]
+
+**Main metrics:** Student-level data describing the assessment taken, the overall score, the performance band, and the mastery level
+
+**Assessment columns:** 
+
+* **[IABWAID]:** This number uniquely links a student to an assessment.
+* **[ExternalTestID]:** This number uniquely identifies an assessment.
+* **[SubjectID]:** This number describes if the subject is math, ELA, etc. 
+* **[Subject]:** Same as SubjectID, but in words. 
+* **[AssessmentDate]:** Date of the assessment.
+* **[AssessmentName]:** Name of the assessment (see naming conventions, above).
+* **[AssessmentReporingName]:** One of two columns to choose a type of assessment.
+* **[AssessmentType]:** One of two columns to choose a type of assessment.
+* **[RawScore]:** Raw number of points earned on the assessment.
+* **[PercentCorrect]:** Percent earned on the assessment.
+* **[PointsPossible]:** Total raw points available on the assessment.
+* **[PerfomanceBand]:** Description of the student's performance (typically "Critical", "Did Not Meet", "Approaches", "Meets", "Masters")
+* **[PerfomanceBandNumber]:** Numeric code for PerformanceBand (typically 1-5).
+* **[PBStartRange]:** Lower bound for a performance band, as a percent.
+* **[PBEndRange]:** Upper bound for a performance band, as a percent.
+* **[Description]:** Description of performance band interval, in words.
+* **[Mastery]:** 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not
+* **[src]:** Source of asssessment data (most are Illuminate, but some are from legacy systems)
+* **[Scope]:** Similar to AssessmentType, but more detailed.
+* **[State]:** Two-letter state code (TX, LA, FL) where the assessment is administered.
+
+**Other useful fields:** 
+
+* **[AcademicYear]:** Use to filter the table to the appropriate school year.
+* **[StudentNumber]:** Use to link to the students table.
+* **[TcpCourseCode]:** This code uniquely links the assessment to the TCP course code.
+
+##### IABWAItems
+
+This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.
+
+**Table:** [[REDACTED-HOST]].[PROD2].[Assessments].[IABWAItems]
+
+**Main metrics:** Item-level data describing the assessment taken, the question and part, the student's response, the correct answer, correctness, the standard, question type, weight, and points
+
+**Assessment columns:** 
+
+* **[IABWAItemID]:** This number uniquely links an assessment item part to a student.
+* **[IABWAID]:** This number uniquely links a student to an assessment.
+* **[ExternalTestID]:** This number uniquely identifies an assessment.
+* **[AssessmentDate]:** Date of the assessment.
+* **[SubjectID]:** This number describes if the subject is math, ELA, etc. 
+* **[Subject]:** Same as SubjectID, but in words. 
+* **[AssessmentReporingName]:** One of two columns to choose a type of assessment.
+* **[AssessmentType]:** One of two columns to choose a type of assessment.
+* **[QuestionNumber]:** Describes the question and part (e.g. 1a, 1b, 2, etc.)
+* **[ItemStudentResponse]:** The response(s) scanned in by the student or teacher
+* **[ItemCorrectResponse]:** The response(s) needed for full credit on the item.
+* **[standard]:** Describes the objective number, TEKS, etc.
+* **[StandardsDescription]:** Description of the objective in words.
+* **[Supporting]:** 1 = is a supporting objective; 0 = not
+* **[Readiness]:** 1 = is a readiness objective; 0 = not
+* **[isCorrect]:** 1 = student earned credit for question number; 0 = not
+* **[Points]:** Total points available for item.
+* **[ReportingGroups]:** Describes the reporting group of objectives.
+* **[IsRubric]:** ?
+* **[State]:** Two-letter state code (TX, LA, FL) where the assessment is administered.
+* **[QuestionTypeName]:** Describes the type of question (Multiple Choice, etc.)
+* **[QuestionType]:** Same as QuestionTypeName but abbr.
+* **[ExtraCredit]:** 1 = extra credit question; 0 = not
+* **[IsAdvanced]:** 1 = advanced question; 0 = not
+* **[Weight]:** 
+* **[Maximum]:** Maximum points available for item.
+* **[ItemWeight]:** Weight of item on question.
+* **[Taught]:** empty
+* **[MultiRubric]:** ?
+* **[Taughtabbr]:** NT = objective not taught; T = objective taught
+* **[PossibleScore]:** Maximum (weighted?) points available for item.
+* **[RawScore]:** Raw points the student earned for this item.
+* **[PointsCorrect]:** Weighted points the student earned for this item.
+* **[PossibleScoreTaught]:** Conditional on taught objective: 0 = not taught; PossibleScore = taught
+* **[RawScoreTaught]:** Conditional on taught objective: 0 = not taught; RawScore = taught
+* **[PointsCorrectTaught]:** Conditional on taught objective: 0 = not taught; PointsCorrect = taught
+
+**Other useful fields:** 
+
+* **[AcademicYear]:** Use to filter the table to the appropriate school year.
+* **[StudentNumber]:** Use to link to the students table.
+
+#### Other sources
+
+As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use [ANet](https://www.achievementnetwork.org/) to house some of their LEAP-aligned assessments. 
+
+
 ### DIBELS
 
 Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uoregon.edu/) is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.
