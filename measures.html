@@ -24,7 +24,7 @@
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal" />
 
 
-<meta name="date" content="2022-01-14" />
+<meta name="date" content="2022-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/viz-1.8.2/viz.js"></script>
 <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/grViz-binding-1.0.7/grViz.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.20/datatables.js"></script>
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -223,8 +223,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="measures.html"><a href="measures.html#csi"><i class="fa fa-check"></i><b>7.4</b> Critical Student Intervention (CSI) Identification</a></li>
 <li class="chapter" data-level="7.5" data-path="measures.html"><a href="measures.html#assessment-data"><i class="fa fa-check"></i><b>7.5</b> Assessment Data</a><ul>
 <li class="chapter" data-level="7.5.1" data-path="measures.html"><a href="measures.html#state-of-texas-assessments-of-academic-readiness-staar"><i class="fa fa-check"></i><b>7.5.1</b> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
-<li class="chapter" data-level="7.5.2" data-path="measures.html"><a href="measures.html#dibels"><i class="fa fa-check"></i><b>7.5.2</b> DIBELS</a></li>
-<li class="chapter" data-level="7.5.3" data-path="measures.html"><a href="measures.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>7.5.3</b> Renaissance STAR (also RenStar, Little Star)</a></li>
+<li class="chapter" data-level="7.5.2" data-path="measures.html"><a href="measures.html#district-assessments"><i class="fa fa-check"></i><b>7.5.2</b> District assessments</a></li>
+<li class="chapter" data-level="7.5.3" data-path="measures.html"><a href="measures.html#dibels"><i class="fa fa-check"></i><b>7.5.3</b> DIBELS</a></li>
+<li class="chapter" data-level="7.5.4" data-path="measures.html"><a href="measures.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>7.5.4</b> Renaissance STAR (also RenStar, Little Star)</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="measures.html"><a href="measures.html#teacher-staff-and-hiring-data"><i class="fa fa-check"></i><b>7.6</b> Teacher, Staff, and Hiring Data</a><ul>
 <li class="chapter" data-level="7.6.1" data-path="measures.html"><a href="measures.html#jobvite-data"><i class="fa fa-check"></i><b>7.6.1</b> Jobvite Data</a></li>
@@ -770,8 +771,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-44"><a href="measures.html#cb29-44"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pct_app =</span> n_apprchs<span class="op">/</span>n_students,</span>
 <span id="cb29-45"><a href="measures.html#cb29-45"></a>         <span class="dt">pct_mst =</span> n_mstrs<span class="op">/</span>n_students)</span></code></pre></div>
 </div>
+<div id="district-assessments" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> District assessments</h3>
+<p>IDEA produces in-house assessments for each major content area except for national and state EOY assessments. Typically, courses require all teachers and students to administer the same summative assessments and benchmarks, but formative assessments are left to each teacher to create.</p>
+<p>Summative assessments evaluate what a student has learned over time and is usually more high-stakes than other types of assignments. Examples of the most common summative assessments we administer include:</p>
+<ul>
+<li>Unit exams</li>
+<li>End-of-module assessments</li>
+<li>Mid-unit exams (also mid-unit quizzes)</li>
+<li>Mid-module assessments</li>
+<li>Semester exams</li>
+<li>Final exams</li>
+<li>Projects, papers, performances, and portfolios</li>
+<li>Quarterly interim assessments (former)</li>
+<li>Bi-weekly assessments (former)</li>
+</ul>
+<p>Formative assessments are used to reveal student progress in the learning cycle and are usually more low-stakes. A small sample of formative assessments we use are:</p>
+<ul>
+<li>Daily exit tickets</li>
+<li>Weekly quizzes</li>
+<li>Progress checks</li>
+<li>Peer feedback</li>
+<li>and more…</li>
+</ul>
+<p>In this section, we will only consider district assessments that are <em>centralized</em>, meaning that most schools must administer and scan in the results into Illuminate (<a href="https://ideapublicschools.illuminateed.com/">Texas</a> | <a href="https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&amp;prev_page=Main_NotDashboardPage&amp;page=SisLogin">Louisiana</a>), our main assessment platform.</p>
+<div id="illuminate-data" class="section level4">
+<h4><span class="header-section-number">7.5.2.1</span> Illuminate data</h4>
+<p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
+<p>The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.</p>
+<p>Illuminate then stores all data at two different levels:</p>
+<ol style="list-style-type: decimal">
+<li><p>student-level, and</p></li>
+<li><p>item-level by student,</p></li>
+</ol>
+<p>each of which is stored in a different IABWA table.</p>
+<div id="naming-conventions" class="section level5">
+<h5><span class="header-section-number">7.5.2.1.1</span> Naming conventions</h5>
+<p>Most assessments have a standard naming convention:</p>
+<p><strong>SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
+<p>For example, a 6th grade ELA semester exam in Fall 2021 may have the name <strong>ELA_6thReading_F21_SE</strong>, or the first AP Spanish Language unit exam may have the name <strong>SPA_APSpanishLanguage_F21_UE1</strong>.</p>
+<p>A list of the most common codes used is included below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Subject Code</th>
+<th>Semester</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ELA - English Language Arts</td>
+<td>Fyy - Fall (year)</td>
+<td>UE - unit exam</td>
+</tr>
+<tr class="even">
+<td>MAT - Mathematics</td>
+<td>SPyy - Spring (year)</td>
+<td>EOM - end of module</td>
+</tr>
+<tr class="odd">
+<td>SCI - Science</td>
+<td></td>
+<td>MUE - mid-unit exam</td>
+</tr>
+<tr class="even">
+<td>HUM or SS - Social Studies</td>
+<td></td>
+<td>MM - mid-module</td>
+</tr>
+<tr class="odd">
+<td>TECH - Technology</td>
+<td></td>
+<td>SE or SEM - semester exam</td>
+</tr>
+<tr class="even">
+<td>RTTC - Road to and through College</td>
+<td></td>
+<td>FE - final exam</td>
+</tr>
+<tr class="odd">
+<td>SPA - Spanish</td>
+<td></td>
+<td>IA - former interim assessment (final exam - IA4)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>BWA - former biweekly assessment</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment.</p>
+</div>
+<div id="iabwa" class="section level5">
+<h5><span class="header-section-number">7.5.2.1.2</span> IABWA</h5>
+<p>This table aggregates item-level data for each student and reports a student’s performance on a single assessment.</p>
+<p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="measures.html#iabwa">IABWA</a></p>
+<p><strong>Main metrics:</strong> Student-level data describing the assessment taken, the overall score, the performance band, and the mastery level</p>
+<p><strong>Assessment columns:</strong></p>
+<ul>
+<li><strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
+<li><strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
+<li><strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
+<li><strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
+<li><strong>[AssessmentDate]:</strong> Date of the assessment.</li>
+<li><strong>[AssessmentName]:</strong> Name of the assessment (see naming conventions, above).</li>
+<li><strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
+<li><strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
+<li><strong>[RawScore]:</strong> Raw number of points earned on the assessment.</li>
+<li><strong>[PercentCorrect]:</strong> Percent earned on the assessment.</li>
+<li><strong>[PointsPossible]:</strong> Total raw points available on the assessment.</li>
+<li><strong>[PerfomanceBand]:</strong> Description of the student’s performance (typically “Critical”, “Did Not Meet”, “Approaches”, “Meets”, “Masters”)</li>
+<li><strong>[PerfomanceBandNumber]:</strong> Numeric code for PerformanceBand (typically 1-5).</li>
+<li><strong>[PBStartRange]:</strong> Lower bound for a performance band, as a percent.</li>
+<li><strong>[PBEndRange]:</strong> Upper bound for a performance band, as a percent.</li>
+<li><strong>[Description]:</strong> Description of performance band interval, in words.</li>
+<li><strong>[Mastery]:</strong> 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not</li>
+<li><strong>[src]:</strong> Source of asssessment data (most are Illuminate, but some are from legacy systems)</li>
+<li><strong>[Scope]:</strong> Similar to AssessmentType, but more detailed.</li>
+<li><strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
+</ul>
+<p><strong>Other useful fields:</strong></p>
+<ul>
+<li><strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
+<li><strong>[StudentNumber]:</strong> Use to link to the students table.</li>
+<li><strong>[TcpCourseCode]:</strong> This code uniquely links the assessment to the TCP course code.</li>
+</ul>
+</div>
+<div id="iabwaitems" class="section level5">
+<h5><span class="header-section-number">7.5.2.1.3</span> IABWAItems</h5>
+<p>This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.</p>
+<p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="measures.html#iabwaitems">IABWAItems</a></p>
+<p><strong>Main metrics:</strong> Item-level data describing the assessment taken, the question and part, the student’s response, the correct answer, correctness, the standard, question type, weight, and points</p>
+<p><strong>Assessment columns:</strong></p>
+<ul>
+<li><strong>[IABWAItemID]:</strong> This number uniquely links an assessment item part to a student.</li>
+<li><strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
+<li><strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
+<li><strong>[AssessmentDate]:</strong> Date of the assessment.</li>
+<li><strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
+<li><strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
+<li><strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
+<li><strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
+<li><strong>[QuestionNumber]:</strong> Describes the question and part (e.g. 1a, 1b, 2, etc.)</li>
+<li><strong>[ItemStudentResponse]:</strong> The response(s) scanned in by the student or teacher</li>
+<li><strong>[ItemCorrectResponse]:</strong> The response(s) needed for full credit on the item.</li>
+<li><strong>[standard]:</strong> Describes the objective number, TEKS, etc.</li>
+<li><strong>[StandardsDescription]:</strong> Description of the objective in words.</li>
+<li><strong>[Supporting]:</strong> 1 = is a supporting objective; 0 = not</li>
+<li><strong>[Readiness]:</strong> 1 = is a readiness objective; 0 = not</li>
+<li><strong>[isCorrect]:</strong> 1 = student earned credit for question number; 0 = not</li>
+<li><strong>[Points]:</strong> Total points available for item.</li>
+<li><strong>[ReportingGroups]:</strong> Describes the reporting group of objectives.</li>
+<li><strong>[IsRubric]:</strong> ?</li>
+<li><strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
+<li><strong>[QuestionTypeName]:</strong> Describes the type of question (Multiple Choice, etc.)</li>
+<li><strong>[QuestionType]:</strong> Same as QuestionTypeName but abbr.</li>
+<li><strong>[ExtraCredit]:</strong> 1 = extra credit question; 0 = not</li>
+<li><strong>[IsAdvanced]:</strong> 1 = advanced question; 0 = not</li>
+<li><strong>[Weight]:</strong></li>
+<li><strong>[Maximum]:</strong> Maximum points available for item.</li>
+<li><strong>[ItemWeight]:</strong> Weight of item on question.</li>
+<li><strong>[Taught]:</strong> empty</li>
+<li><strong>[MultiRubric]:</strong> ?</li>
+<li><strong>[Taughtabbr]:</strong> NT = objective not taught; T = objective taught</li>
+<li><strong>[PossibleScore]:</strong> Maximum (weighted?) points available for item.</li>
+<li><strong>[RawScore]:</strong> Raw points the student earned for this item.</li>
+<li><strong>[PointsCorrect]:</strong> Weighted points the student earned for this item.</li>
+<li><strong>[PossibleScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; PossibleScore = taught</li>
+<li><strong>[RawScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; RawScore = taught</li>
+<li><strong>[PointsCorrectTaught]:</strong> Conditional on taught objective: 0 = not taught; PointsCorrect = taught</li>
+</ul>
+<p><strong>Other useful fields:</strong></p>
+<ul>
+<li><strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
+<li><strong>[StudentNumber]:</strong> Use to link to the students table.</li>
+</ul>
+</div>
+</div>
+<div id="other-sources" class="section level4">
+<h4><span class="header-section-number">7.5.2.2</span> Other sources</h4>
+<p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
+</div>
+</div>
 <div id="dibels" class="section level3">
-<h3><span class="header-section-number">7.5.2</span> DIBELS</h3>
+<h3><span class="header-section-number">7.5.3</span> DIBELS</h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
 <p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
@@ -819,7 +1004,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="renaissance-star-also-renstar-little-star" class="section level3">
-<h3><span class="header-section-number">7.5.3</span> Renaissance STAR (also RenStar, Little Star)</h3>
+<h3><span class="header-section-number">7.5.4</span> Renaissance STAR (also RenStar, Little Star)</h3>
 </div>
 </div>
 <div id="teacher-staff-and-hiring-data" class="section level2">
