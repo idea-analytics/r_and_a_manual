@@ -156,7 +156,33 @@ This code spaces out MedianGrowth if there are multiple schools with the same me
 
 ## Inferential statistics
 
-suggested topics - confidence intervals vs. p-values and communication
+If the goal of the project is to do *inference*, or drawing conclusions about the population from the data, then we should provide context about these conclusions, particularly around variability and likelihood.
+
+### Interval estimates
+
+Suppose we are providing an estimate, like forecasted student persistence rates. A single *point estimate* may give us our best target, but due to variability, we surely will not reach that exact forecast. Thus, we also provide a *confidence interval* (or a *Bayesian credible interval*) to give a lower and upper bound around our estimate. These bounds could be found by computing a margin of error around the point estimate, or could be determined by the bootstrapped quantiles.
+
+It may be instructive for a general audience to interpret these bounds as a
+
+* "worst case scenario" and
+* "best case scenario"
+
+and give a visual around these estimates. For reference, see the [Persistence Dashboard](https://app.powerbi.com/links/OsCFNR7-a2?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&pbi_source=linkShare) (no longer actively updated).
+
+### p-values and hypothesis testing
+
+The term "statistical significance" may carry a lot of weight with an audience, but it should be use with great caution. When using or explaining a p-value, first recall that
+
+*a p-value is the probability of obtaining a result as extreme or greater from repeated sampling under the proposed distribution*
+
+meaning that our probability operates under the assumption that *the proposed model is correct*. Thus, we should look carefully at how our choices in modeling and distribution affected the significance of the result. Furthermore, the choice of *level* (typically, $\alpha = 0.05$) is arbitrary, so we cannot make certain conclusions, such as:
+
+* If a result has a p-value of 0.06, and another has 0.04, then one result is not necessarily "more significant" than the other. 
+* The p-value does not imply how large the effect size is.
+
+> Statistical significance does not necessarily represent practical significance.
+
+For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108). 
 
 ## Modeling and predictive statistics
 
