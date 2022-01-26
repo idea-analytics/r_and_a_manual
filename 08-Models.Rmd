@@ -186,14 +186,20 @@ For reference, see the American Statistical Association's statement on p-values 
 
 ## Modeling and predictive statistics
 
+A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.
+
 ### Linear modeling
 
-suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
+For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
+
+$ {\bf Y = X\beta + \epsilon} \iff y_i = \beta_0 + \beta_1 x_{1i} + ... \beta_n x_{ni} + \epsilon_i $
+
+In R, we use the command `lm()` to generate estimates of the beta coefficients.
+
+Code, diagnostics, communication and limitations coming soon...
 
 ### Generalized linear modeling
 
-suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
-
-multinomial logit, log models, zero-inflated models
+Coming soon...
 
 ### Machine learning
