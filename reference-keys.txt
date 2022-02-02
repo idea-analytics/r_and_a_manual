@@ -100,11 +100,15 @@ regression-discontinuity
 instrumental-variables
 difference-in-differences
 experimental-design
+differences-among-distributions-of-groups
+differences-among-levels-of-variables
 descriptive-statistics
 numerical-summaries---broad-principles
 graphical-summaries---broad-principles
 displaying-variation
 inferential-statistics
+interval-estimates
+p-values-and-hypothesis-testing
 modeling-and-predictive-statistics
 linear-modeling
 generalized-linear-modeling
