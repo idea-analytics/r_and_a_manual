@@ -2,7 +2,7 @@
 
 Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.
 
-We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. However, the design of the program influences how we establish our methods of research.
+We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. The choice of frequentist vs. Bayesian methods is up to you and should always be justified, but choosing the simplest, appropriate tool should be the starting point for analysis But, before we start any analysis, the design of the program influences how we establish our methods of research.
 
 ## Research design
 
@@ -74,7 +74,20 @@ summary(m_att)
 
 ### Experimental design
 
-suggested topics - ANOVA, ANCOVA, MANOVA, nested, mixed effects, crossover design, etc.
+Under ideal conditions, we would test the effect of a program by randomized controlled trials -- this usually does not happen. However, we can still use the tools of design to *structure* our data and variance appropriately.
+
+#### Differences among distributions of groups
+
+ANOVA, ANCOVA, MANOVA, Kruskal-Wallis
+
+Code, diagnostics, communication and limitations coming soon...
+
+#### Differences among levels of variables
+
+Mixed models, nested models, hierarchical linear models
+
+Code, diagnostics, communication and limitations coming soon...
+
 
 ## Descriptive statistics
 
@@ -156,18 +169,73 @@ This code spaces out MedianGrowth if there are multiple schools with the same me
 
 ## Inferential statistics
 
-suggested topics - confidence intervals vs. p-values and communication
+If the goal of the project is to do *inference*, or drawing conclusions about the population from the data, then we should provide context about these conclusions, particularly around variability and likelihood.
+
+### Interval estimates
+
+Suppose we are providing an estimate, like forecasted student persistence rates. A single *point estimate* may give us our best target, but due to variability, we surely will not reach that exact forecast. Thus, we also provide a *confidence interval* (or a *Bayesian credible interval*) to give a lower and upper bound around our estimate. These bounds could be found by computing a margin of error around the point estimate, or could be determined by the bootstrapped quantiles.
+
+It may be instructive for a general audience to interpret these bounds as a
+
+* "worst case scenario" and
+* "best case scenario"
+
+and give a visual around these estimates. For reference, see the [Persistence Dashboard](https://app.powerbi.com/links/OsCFNR7-a2?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&pbi_source=linkShare) (no longer actively updated).
+
+### p-values and hypothesis testing
+
+When deciding if a pattern or relationship even exists, we can choose a model and set of hypotheses to test. Given the type of explanatory and response variables in your model, you should choose an appropriately designed test [(reference for common tests)](https://guides.nyu.edu/quant/choose_test_1DV). Often, the test statistics and p-values are already given when using a package. Note the term "statistical significance" may carry a lot of weight with an audience, but it should be use with great caution. When using or explaining a p-value, first recall that
+
+*a p-value is the probability of obtaining a result as extreme or greater from repeated sampling under the proposed distribution of the null hypothesis*
+
+meaning that our probability operates under the assumption that *the proposed model (the null hypothesis) is correct*. (This means if we change the null hypothesis, then we could get an entirely different p-value with the same data). Thus, we should look carefully at how our choices in modeling and distribution affected the significance of the result. Furthermore, the choice of *level* (typically, $\alpha = 0.05$) is arbitrary, so we cannot make certain conclusions, such as:
+
+* If a result has a p-value of 0.06, and another has 0.04, then one result is not necessarily "more significant" than the other. 
+* The p-value does not imply how large the effect size is.
+
+> Statistical significance does not necessarily represent practical significance.
+
+**When communicating your results, do not merely rely on a p-value.** Supplement a p-value with other explanations of the effect in context, like an interval estimate, graphs, a margin of error, or transformed values.
+
+For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108). 
 
 ## Modeling and predictive statistics
 
+A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.
+
 ### Linear modeling
 
-suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
+For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
+
+$ {\bf Y = X\beta + \epsilon} \iff y_i = \beta_0 + \beta_1 x_{1i} + ... \beta_n x_{ni} + \epsilon_i $
+
+In R, we use the command `lm()` to generate estimates of the beta coefficients.
+
+Code, diagnostics, communication and limitations coming soon...
 
 ### Generalized linear modeling
 
-suggested topics - uses, diagnostics, commands, interpreting, limitations, conclusions, communication
+When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:
 
-multinomial logit, log models, zero-inflated models
+$ {\bf g(\mu) = X\beta + \epsilon} \iff g(\mu_i) = \beta_0 + \beta_1 x_{1i} + ... + \beta_n x_{ni} + \epsilon_i $
+
+where
+
+* $ g(\cdot) $ is a link function to the mean
+* $ \mu $ is the mean response
+
+Note that there are many link functions, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the documentation. However, base R provides the `glm()` function, which gives options to choose a link.
+
+If the response is multinomial (multiple categories), then it is suggested to use a multinomial logistic regression. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an ordinal logistic regression, which improves the power. See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of OLR using various packages.
+
+Code, diagnostics, communication and limitations coming soon...
 
 ### Machine learning
+
+If the goal moves beyond inference towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.
+
+Note that communicating results from these models may be beyond a general audience's reach, so caution should be taken when describing a marginal effect of a variable.
+
+The [ISLR website](https://www.statlearning.com/) and [tidymodels implementation](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) should be consulted for more details about these models.
+
+Code, diagnostics, communication and limitations coming soon...
