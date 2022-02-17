@@ -207,22 +207,24 @@ A large chunk of our statistical work involves developing a model and making pre
 
 For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
 
-$ {\bf Y = X\beta + \epsilon} \iff y_i = \beta_0 + \beta_1 x_{1i} + ... \beta_n x_{ni} + \epsilon_i $
+$\mu_i = \beta_0 + \beta_1 x_{1i} + ... \beta_n x_{ni} + \epsilon_i$
 
-In R, we use the command `lm()` to generate estimates of the beta coefficients.
+* In R, we use the command `lm()` to generate estimates of the beta coefficients. 
+* To obtain the p-values and basic fit statistics, use `summary(lm_object)`. 
+* To obtain the diagnostic plots, use `plot(lm_object)`.
 
-Code, diagnostics, communication and limitations coming soon...
+We can describe the coefficients as an *additional* unit effect on the mean response. If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect. 
 
 ### Generalized linear modeling
 
 When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:
 
-$ {\bf g(\mu) = X\beta + \epsilon} \iff g(\mu_i) = \beta_0 + \beta_1 x_{1i} + ... + \beta_n x_{ni} + \epsilon_i $
+$g(\mu_i) = \beta_0 + \beta_1 x_{1i} + ... + \beta_n x_{ni} + \epsilon_i$
 
 where
 
-* $ g(\cdot) $ is a link function to the mean
-* $ \mu $ is the mean response
+* $g(\cdot)$ is a link function to the mean
+* $\mu$ is the mean response
 
 Note that there are many link functions, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the documentation. However, base R provides the `glm()` function, which gives options to choose a link.
 
