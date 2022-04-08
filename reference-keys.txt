@@ -12,6 +12,8 @@ mishan-jensen-phd
 steven-macapagal
 maura-carter
 aline-orr-phd
+ilissa-madrigal
+marlena-coco-phd
 the-data-warhehouse-and-how-to-access-it
 the-data-warehouse
 core-data-warehouse-server-configuration
