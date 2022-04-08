@@ -84,7 +84,13 @@ Code, diagnostics, communication and limitations coming soon...
 
 #### Differences among levels of variables
 
-Mixed models, nested models, hierarchical linear models
+Educational data can often be described in a hierarchy:
+
+* Level 1: student
+* Level 2: student within a school
+* Level 3: student within a school within a region
+
+A **mixed model** (also, **hierarchical** or **multilevel**) allows for both fixed and random effects, so this nesting will give us different variances at each level. This is ideal for modeling an outcome that can vary by school and regional differences - in other words, we can vary the slope and intercept by each school and region.
 
 Code, diagnostics, communication and limitations coming soon...
 
@@ -207,7 +213,7 @@ A large chunk of our statistical work involves developing a model and making pre
 
 For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
 
-$\mu_i = \beta_0 + \beta_1 x_{1i} + ... \beta_n x_{ni} + \epsilon_i$
+$\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i$
 
 * In R, we use the command `lm()` to generate estimates of the beta coefficients. 
 * To obtain the p-values and basic fit statistics, use `summary(lm_object)`. 
@@ -219,7 +225,7 @@ We can describe the coefficients as an *additional* unit effect on the mean resp
 
 When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:
 
-$g(\mu_i) = \beta_0 + \beta_1 x_{1i} + ... + \beta_n x_{ni} + \epsilon_i$
+$g(\mu_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_n x_{ni} + \epsilon_i$
 
 where
 
