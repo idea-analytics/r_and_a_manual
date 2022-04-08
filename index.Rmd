@@ -1,6 +1,6 @@
 --- 
 title: "IDEA R&A Manual"
-author: "Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal"
+author: "Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
