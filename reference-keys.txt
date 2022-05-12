@@ -72,6 +72,9 @@ rstudio-connect
 coding-standards
 file-naming-standards.
 visualization-standards
+idea-branding
+the-ideacolors-package
+typography
 measures
 the-students-table
 common-queries
