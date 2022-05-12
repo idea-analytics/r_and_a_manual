@@ -1,1 +1,37 @@
 # Visualization Standards
+
+## IDEA branding
+
+When producing a visualization for presentation or publication, use the [Brand Guideline](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx) standards established by the [Marketing team](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx). Many of these guidelines, particularly colors, have already been incorporated into an R package, `ideacolors`.
+
+
+### The `ideacolors` package
+
+The `ideacolors` package is used in conjunction with `ggplot2` to produce graphs and visualizations consistent with the primary and secondary brand color schemes. For more information, consult the `ideacolors` [documentation](https://idea-analytics.github.io/ideacolors/).
+
+To install the package, use the following code:
+
+```{r ideacolors, echo=TRUE, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("idea-analytics/ideacolors")
+```
+
+
+### Typography
+
+The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:
+
+```{r fonts, echo=TRUE, eval=FALSE}
+# install.packages("showtext")
+library(showtext)
+
+showtext_auto()
+font_add("proxima",
+         regular = "proximanova-regular.ttf",
+         bold = "proximanova-extrabold.ttf",
+         italic = "proximanova-regularit.ttf",
+         bolditalic = "proximanova-extraboldit.ttf")
+```
+
+This code will apply the font consistently to all text in any visualization created for that R session.
+
