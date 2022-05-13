@@ -2,7 +2,7 @@
 
 The [first section](#section-the-data-warehouse) that follows provides lots of context about IDEA's data warehouse.
 
-If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section \@ref(#accessing-the-data-warehouse-from-r) on accessing from R below. 
+If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section \@ref(accessing-the-data-warehouse-from-r) on accessing from R below. 
 
 ```{r load_dw, include=FALSE}
 rna_dw_usage <- readxl::read_excel("DataWarehouse Usage.xlsx") %>% 
@@ -33,6 +33,12 @@ The 'data warehouse' is actually a collection of disparate databases hosted by I
 While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only accesses `r n_servers` servers hosting `r n_dbs` databases and `r prettyNum(n_tables, big.mark = ",")` distinct tables. It's a lot, for sure. 
 
 ### Core data warehouse server configuration
+
+::: {.gotcha}
+These facts below are scheduled to change in May-June of 2022.  The IT team is moving all servers from Backspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse. 
+
+Check back here for updates!
+:::
 
 The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.  
 
@@ -312,7 +318,7 @@ rna_dw_usage %>% filter(r_and_a_uses) %>%
 ## Accessing the data warehouse from R
 
 The most straightforward way to access the data warehouse is to use our own, bespoke r package: `ideadata`, which is [maintained on github](https://github.com/idea-analytics/ideadata)
-
+ 
 ### Installation
 
 
