@@ -52,11 +52,11 @@ jobvite-data
 tcpteacher-export-data
 data-matching
 join-tables
-projects
+evaluation-projects
 st-century-afterschool-programs
 camp-rio
 tslip
-projects-1
+projects
 section-github
 getting-started-with-git-github-and-rstudio
 first-steps
