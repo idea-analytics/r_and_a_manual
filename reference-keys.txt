@@ -53,6 +53,10 @@ tcpteacher-export-data
 data-matching
 join-tables
 projects
+st-century-afterschool-programs
+camp-rio
+tslip
+projects-1
 section-github
 getting-started-with-git-github-and-rstudio
 first-steps
