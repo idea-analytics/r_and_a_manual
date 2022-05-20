@@ -1,5 +1,4 @@
 fig:server-graphs
-fig:display-dw-tables
 about
 what-goes-in-this-manual
 how-do-you-contribute-to-this-book
@@ -17,18 +16,16 @@ marlena-coco-phd
 the-data-warhehouse-and-how-to-access-it
 the-data-warehouse
 core-data-warehouse-server-configuration
-ds-servers
+src-servers
 prod-servers
 rs-and-hisotrical-data-servers
 server-table-and-field-lookup
-databases-that-ra-frquently-uses.
 accessing-the-data-warehouse-from-r
 installation
 example
 what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows
 finding-things-in-the-data-warehouse
 where-to-learn-more
-key-tables
 key-tables-measures-and-metrics
 the-students-table
 common-queries

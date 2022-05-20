@@ -1,318 +1,92 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
-  <meta name="description" content="This is IDEA Public Schools’ Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices." />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is IDEA Public Schools’ Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual" />
-  
-  <meta name="twitter:description" content="This is IDEA Public Schools’ Research &amp; Analysis Team’s ever evolving encyclopedia of resources and best practices." />
-  
-
-<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco" />
-
-
-<meta name="date" content="2022-05-19" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="the-data-warhehouse-and-how-to-access-it.html"/>
-<link rel="next" href="projects.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/viz-1.8.2/viz.js"></script>
-<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.23/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
-<link href="libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
-<script src="libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
-<link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
-<script src="libs/selectize-0.12.0/selectize.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-
-
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
+<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
+<meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
+<meta property="og:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> A little about this manual</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-goes-in-this-manual"><i class="fa fa-check"></i><b>1.1</b> What goes in this manual?</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-do-you-contribute-to-this-book"><i class="fa fa-check"></i><b>1.2</b> How do you contribute to this book?</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#adding-tips-and-other-callouts"><i class="fa fa-check"></i><b>1.2.1</b> Adding “Tips” and other callouts</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="who.html"><a href="who.html"><i class="fa fa-check"></i><b>2</b> Who we are</a><ul>
-<li class="chapter" data-level="2.1" data-path="who.html"><a href="who.html#about-research-and-analysis"><i class="fa fa-check"></i><b>2.1</b> About Research and Analysis</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="who.html"><a href="who.html#edison-coronado"><i class="fa fa-check"></i><b>2.1.1</b> Edison Coronado</a></li>
-<li class="chapter" data-level="2.1.2" data-path="who.html"><a href="who.html#chris-haid"><i class="fa fa-check"></i><b>2.1.2</b> Chris Haid</a></li>
-<li class="chapter" data-level="2.1.3" data-path="who.html"><a href="who.html#mishan-jensen-phd"><i class="fa fa-check"></i><b>2.1.3</b> Mishan Jensen, PhD</a></li>
-<li class="chapter" data-level="2.1.4" data-path="who.html"><a href="who.html#steven-macapagal"><i class="fa fa-check"></i><b>2.1.4</b> Steven Macapagal</a></li>
-<li class="chapter" data-level="2.1.5" data-path="who.html"><a href="who.html#maura-carter"><i class="fa fa-check"></i><b>2.1.5</b> Maura Carter</a></li>
-<li class="chapter" data-level="2.1.6" data-path="who.html"><a href="who.html#aline-orr-phd"><i class="fa fa-check"></i><b>2.1.6</b> Aline Orr, PhD</a></li>
-<li class="chapter" data-level="2.1.7" data-path="who.html"><a href="who.html#ilissa-madrigal"><i class="fa fa-check"></i><b>2.1.7</b> Ilissa Madrigal</a></li>
-<li class="chapter" data-level="2.1.8" data-path="who.html"><a href="who.html#marlena-coco-phd"><i class="fa fa-check"></i><b>2.1.8</b> Marlena Coco, PhD</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html"><i class="fa fa-check"></i><b>3</b> The Data Warhehouse and how to access it</a><ul>
-<li class="chapter" data-level="3.1" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#the-data-warehouse"><i class="fa fa-check"></i><b>3.1</b> The Data Warehouse</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#core-data-warehouse-server-configuration"><i class="fa fa-check"></i><b>3.1.1</b> Core data warehouse server configuration</a></li>
-<li class="chapter" data-level="3.1.2" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#server-table-and-field-lookup"><i class="fa fa-check"></i><b>3.1.2</b> Server, Table, and Field Lookup</a></li>
-<li class="chapter" data-level="3.1.3" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#databases-that-ra-frquently-uses."><i class="fa fa-check"></i><b>3.1.3</b> Databases that R&amp;A frquently uses.</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#accessing-the-data-warehouse-from-r"><i class="fa fa-check"></i><b>3.2</b> Accessing the data warehouse from R</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#installation"><i class="fa fa-check"></i><b>3.2.1</b> Installation</a></li>
-<li class="chapter" data-level="3.2.2" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#example"><i class="fa fa-check"></i><b>3.2.2</b> Example</a></li>
-<li class="chapter" data-level="3.2.3" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#finding-things-in-the-data-warehouse"><i class="fa fa-check"></i><b>3.2.3</b> Finding things in the data warehouse</a></li>
-<li class="chapter" data-level="3.2.4" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#where-to-learn-more"><i class="fa fa-check"></i><b>3.2.4</b> Where to learn more</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="the-data-warhehouse-and-how-to-access-it.html"><a href="the-data-warhehouse-and-how-to-access-it.html#key-tables"><i class="fa fa-check"></i><b>3.3</b> Key tables</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html"><i class="fa fa-check"></i><b>4</b> Key Tables, Measures, and Metrics</a><ul>
-<li class="chapter" data-level="4.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#the-students-table"><i class="fa fa-check"></i><b>4.1</b> The Students Table</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#common-queries"><i class="fa fa-check"></i><b>4.1.1</b> Common queries</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#student-persistence"><i class="fa fa-check"></i><b>4.2</b> Student Persistence</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fa fa-check"></i><b>4.2.1</b> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#college-application-matriculation-metrics"><i class="fa fa-check"></i><b>4.3</b> College Application &amp; Matriculation Metrics</a></li>
-<li class="chapter" data-level="4.4" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#csi"><i class="fa fa-check"></i><b>4.4</b> Critical Student Intervention (CSI) Identification</a></li>
-<li class="chapter" data-level="4.5" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#assessment-data"><i class="fa fa-check"></i><b>4.5</b> Assessment Data</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#state-of-texas-assessments-of-academic-readiness-staar"><i class="fa fa-check"></i><b>4.5.1</b> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
-<li class="chapter" data-level="4.5.2" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#district-assessments"><i class="fa fa-check"></i><b>4.5.2</b> District assessments</a></li>
-<li class="chapter" data-level="4.5.3" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#dibels"><i class="fa fa-check"></i><b>4.5.3</b> DIBELS</a></li>
-<li class="chapter" data-level="4.5.4" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#renaissance-star-also-renstar-little-star"><i class="fa fa-check"></i><b>4.5.4</b> Renaissance STAR (also RenStar, Little Star)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#teacher-staff-and-hiring-data"><i class="fa fa-check"></i><b>4.6</b> Teacher, Staff, and Hiring Data</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#jobvite-data"><i class="fa fa-check"></i><b>4.6.1</b> Jobvite Data</a></li>
-<li class="chapter" data-level="4.6.2" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#tcpteacher-export-data"><i class="fa fa-check"></i><b>4.6.2</b> TCP/Teacher Export Data</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#evaluation-projects"><i class="fa fa-check"></i><b>4.7</b> Evaluation Projects</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#st-century-afterschool-programs"><i class="fa fa-check"></i><b>4.7.1</b> 21st Century Afterschool Programs</a></li>
-<li class="chapter" data-level="4.7.2" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#camp-rio"><i class="fa fa-check"></i><b>4.7.2</b> Camp Rio</a></li>
-<li class="chapter" data-level="4.7.3" data-path="key-tables-measures-and-metrics.html"><a href="key-tables-measures-and-metrics.html#tslip"><i class="fa fa-check"></i><b>4.7.3</b> TSLIP</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="projects.html"><a href="projects.html"><i class="fa fa-check"></i><b>5</b> Projects</a><ul>
-<li class="chapter" data-level="5.1" data-path="projects.html"><a href="projects.html#section-github"><i class="fa fa-check"></i><b>5.1</b> Version control with Github</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="projects.html"><a href="projects.html#getting-started-with-git-github-and-rstudio"><i class="fa fa-check"></i><b>5.1.1</b> Getting Started with Git, Github, and RStudio</a></li>
-<li class="chapter" data-level="5.1.2" data-path="projects.html"><a href="projects.html#feature-branch-worklow"><i class="fa fa-check"></i><b>5.1.2</b> Feature Branch Worklow</a></li>
-<li class="chapter" data-level="5.1.3" data-path="projects.html"><a href="projects.html#example-worflow-with-this-manual-or-getting-your-feet-wet"><i class="fa fa-check"></i><b>5.1.3</b> Example worflow with this manual, or getting your feet wet</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="projects.html"><a href="projects.html#project-process"><i class="fa fa-check"></i><b>5.2</b> Project Process</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="projects.html"><a href="projects.html#wrike"><i class="fa fa-check"></i><b>5.2.1</b> Wrike</a></li>
-<li class="chapter" data-level="5.2.2" data-path="projects.html"><a href="projects.html#grpi-and-rasi"><i class="fa fa-check"></i><b>5.2.2</b> GRPI and RASI</a></li>
-<li class="chapter" data-level="5.2.3" data-path="projects.html"><a href="projects.html#project-operating-mechanisms"><i class="fa fa-check"></i><b>5.2.3</b> Project operating mechanisms</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="projects.html"><a href="projects.html#section-ProjectTemplate"><i class="fa fa-check"></i><b>5.3</b> ProjectTemplate (for analyses)</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="projects.html"><a href="projects.html#installing-projecttemplate"><i class="fa fa-check"></i><b>5.3.1</b> Installing ProjectTemplate</a></li>
-<li class="chapter" data-level="5.3.2" data-path="projects.html"><a href="projects.html#creating-a-project-with-projecttemplate"><i class="fa fa-check"></i><b>5.3.2</b> Creating a project with ProjectTemplate</a></li>
-<li class="chapter" data-level="5.3.3" data-path="projects.html"><a href="projects.html#what-goes-where"><i class="fa fa-check"></i><b>5.3.3</b> What goes where</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="projects.html"><a href="projects.html#the-renv-package-ensuring-reproducibility"><i class="fa fa-check"></i><b>5.4</b> The <code>renv</code> package: Ensuring reproducibility</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="projects.html"><a href="projects.html#setting-up-renv-with-a-new-project"><i class="fa fa-check"></i><b>5.4.1</b> Setting up <code>renv</code> with a new project</a></li>
-<li class="chapter" data-level="5.4.2" data-path="projects.html"><a href="projects.html#setting-up-renv-with-an-existing-project"><i class="fa fa-check"></i><b>5.4.2</b> Setting up <code>renv</code> with an existing project</a></li>
-<li class="chapter" data-level="5.4.3" data-path="projects.html"><a href="projects.html#using-renv"><i class="fa fa-check"></i><b>5.4.3</b> Using <code>renv</code></a></li>
-<li class="chapter" data-level="5.4.4" data-path="projects.html"><a href="projects.html#collaborating-with-renv"><i class="fa fa-check"></i><b>5.4.4</b> Collaborating with <code>renv</code></a></li>
-<li class="chapter" data-level="5.4.5" data-path="projects.html"><a href="projects.html#renv-and-rstudio-connect"><i class="fa fa-check"></i><b>5.4.5</b> <code>renv</code> and RStudio Connect</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="projects.html"><a href="projects.html#publishing-projects"><i class="fa fa-check"></i><b>5.5</b> Publishing Projects</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="projects.html"><a href="projects.html#rstudio-connect"><i class="fa fa-check"></i><b>5.5.1</b> RStudio Connect</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="coding-standards.html"><a href="coding-standards.html"><i class="fa fa-check"></i><b>6</b> Coding Standards</a><ul>
-<li class="chapter" data-level="6.1" data-path="coding-standards.html"><a href="coding-standards.html#file-naming-standards."><i class="fa fa-check"></i><b>6.1</b> File naming standards.</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="visualization-standards.html"><a href="visualization-standards.html"><i class="fa fa-check"></i><b>7</b> Visualization Standards</a><ul>
-<li class="chapter" data-level="7.1" data-path="visualization-standards.html"><a href="visualization-standards.html#idea-branding"><i class="fa fa-check"></i><b>7.1</b> IDEA branding</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="visualization-standards.html"><a href="visualization-standards.html#the-ideacolors-package"><i class="fa fa-check"></i><b>7.1.1</b> The <code>ideacolors</code> package</a></li>
-<li class="chapter" data-level="7.1.2" data-path="visualization-standards.html"><a href="visualization-standards.html#typography"><i class="fa fa-check"></i><b>7.1.2</b> Typography</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="models-and-methods.html"><a href="models-and-methods.html"><i class="fa fa-check"></i><b>8</b> Models and Methods</a><ul>
-<li class="chapter" data-level="8.1" data-path="models-and-methods.html"><a href="models-and-methods.html#research-design"><i class="fa fa-check"></i><b>8.1</b> Research design</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="models-and-methods.html"><a href="models-and-methods.html#causal-inference"><i class="fa fa-check"></i><b>8.1.1</b> Causal inference</a></li>
-<li class="chapter" data-level="8.1.2" data-path="models-and-methods.html"><a href="models-and-methods.html#experimental-design"><i class="fa fa-check"></i><b>8.1.2</b> Experimental design</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="models-and-methods.html"><a href="models-and-methods.html#descriptive-statistics"><i class="fa fa-check"></i><b>8.2</b> Descriptive statistics</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="models-and-methods.html"><a href="models-and-methods.html#numerical-summaries---broad-principles"><i class="fa fa-check"></i><b>8.2.1</b> Numerical summaries - broad principles</a></li>
-<li class="chapter" data-level="8.2.2" data-path="models-and-methods.html"><a href="models-and-methods.html#graphical-summaries---broad-principles"><i class="fa fa-check"></i><b>8.2.2</b> Graphical summaries - broad principles</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="models-and-methods.html"><a href="models-and-methods.html#inferential-statistics"><i class="fa fa-check"></i><b>8.3</b> Inferential statistics</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="models-and-methods.html"><a href="models-and-methods.html#interval-estimates"><i class="fa fa-check"></i><b>8.3.1</b> Interval estimates</a></li>
-<li class="chapter" data-level="8.3.2" data-path="models-and-methods.html"><a href="models-and-methods.html#p-values-and-hypothesis-testing"><i class="fa fa-check"></i><b>8.3.2</b> p-values and hypothesis testing</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="models-and-methods.html"><a href="models-and-methods.html#modeling-and-predictive-statistics"><i class="fa fa-check"></i><b>8.4</b> Modeling and predictive statistics</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="models-and-methods.html"><a href="models-and-methods.html#linear-modeling"><i class="fa fa-check"></i><b>8.4.1</b> Linear modeling</a></li>
-<li class="chapter" data-level="8.4.2" data-path="models-and-methods.html"><a href="models-and-methods.html#generalized-linear-modeling"><i class="fa fa-check"></i><b>8.4.2</b> Generalized linear modeling</a></li>
-<li class="chapter" data-level="8.4.3" data-path="models-and-methods.html"><a href="models-and-methods.html#machine-learning"><i class="fa fa-check"></i><b>8.4.3</b> Machine learning</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html"><i class="fa fa-check"></i><b>9</b> Tips and Tricks</a><ul>
-<li class="chapter" data-level="9.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#data-processing"><i class="fa fa-check"></i><b>9.1</b> Data processing</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#de-duplicating-rows-in-a-table."><i class="fa fa-check"></i><b>9.1.1</b> De-duplicating rows in a table.</a></li>
-<li class="chapter" data-level="9.1.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#creating-scaffolds-when-joining-data."><i class="fa fa-check"></i><b>9.1.2</b> Creating “Scaffolds” when joining data.</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#statistical-pitfalls"><i class="fa fa-check"></i><b>9.2</b> Statistical pitfalls</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#simpsons-paradox"><i class="fa fa-check"></i><b>9.2.1</b> Simpson’s Paradox</a></li>
-<li class="chapter" data-level="9.2.2" data-path="tips-and-tricks.html"><a href="tips-and-tricks.html#bias-variance-tradeoff"><i class="fa fa-check"></i><b>9.2.2</b> Bias-variance tradeoff</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IDEA R&amp;A Manual</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IDEA R&amp;A Manual</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
+<li><a class="" href="who.html"><span class="header-section-number">2</span> Who we are</a></li>
+<li><a class="" href="the-data-warhehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warhehouse and how to access it</a></li>
+<li><a class="active" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">7</span> Visualization Standards</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">9</span> Tips and Tricks</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/idea-analytics/r_and_a_manual">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="key-tables-measures-and-metrics" class="section level1 hasAnchor">
-<h1><span class="header-section-number">Chapter 4</span> Key Tables, Measures, and Metrics<a href="key-tables-measures-and-metrics.html#key-tables-measures-and-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="key-tables-measures-and-metrics" class="section level1">
+<h1>
+<span class="header-section-number">4</span> Key Tables, Measures, and Metrics<a class="anchor" aria-label="anchor" href="#key-tables-measures-and-metrics"><i class="fas fa-link"></i></a>
+</h1>
 <p>Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.</p>
-<div id="the-students-table" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.1</span> The Students Table<a href="key-tables-measures-and-metrics.html#the-students-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-students-table" class="section level2">
+<h2>
+<span class="header-section-number">4.1</span> The Students Table<a class="anchor" aria-label="anchor" href="#the-students-table"><i class="fas fa-link"></i></a>
+</h2>
 <p>The Students table is probably the most important table of all. It contains historical student personal data since IDEA’s inception.</p>
 <p>We use this table to know to what subpopulation a student belongs to. Also, we can link this table to other student data using the <em>[StudentNumber]</em> field.</p>
 <p><strong>Table:</strong> [1065574-SQLPRD1].[PROD1].[Schools].[Students]</p>
 <p><strong>Main fields:</strong> [AcademicYear] [StudentNumber] | [SchoolNumber] | [GradeLevelID] | [EnrollmentStatus] | [Gender] | [SPED] | [ELLCode] | [PrimaryDisabilityCode ] | [SecondaryDisabilityCode ] | [TertiaryDisabilityCode ] | [EconomicDisadvantageCode] | [FederalHispanicFlag] | [FederaRaceI] | [FederaRaceA] | [FederaRaceB] | [FederaRaceP] | [FederaRaceW] |[EntryDate] | [ExitDate] | [RowIsCurrent]</p>
 <p><strong>Who is what?:</strong></p>
 <ul>
-<li><p><strong><em>[EnrollmentStatus]:</em></strong></p>
+<li>
+<p><strong><em>[EnrollmentStatus]:</em></strong></p>
 <ul>
 <li>If EnrollmentStatus = 0, it means that the student is/was an active student for the corresponding academic year,</li>
 <li>If EnrollmentStatus = 2, it means the student left the district before completing the academic year,</li>
 <li>If EnrollmentStatus = 3, it means the student graduated from IDEA’s high school.</li>
-</ul></li>
-<li><p><strong><em>[ELLCode]:</em></strong> English Learner (EL) A.K.A. Limited English Proficiency (LEP)</p>
+</ul>
+</li>
+<li>
+<p><strong><em>[ELLCode]:</em></strong> English Learner (EL) A.K.A. Limited English Proficiency (LEP)</p>
 <ul>
 <li>If ELLCode = 0, student <strong>is not</strong> identified as an EL student,</li>
 <li>If ELLCode = 1, the student <strong>is</strong> identified as an EL student,</li>
@@ -322,20 +96,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If ELLCode = 3, the student <strong>is not</strong> identified as an EL student but is in the Third Year of Monitoring status,</li>
 <li>If ELLCode = 4, the student <strong>is not</strong> identified as an EL student but is in the Fourth Year of Monitoring status,</li>
 <li>If ELLCode = 5, the student <strong>is not</strong> identified as an EL student but was at one point more than 4 years ago.</li>
-</ul></li>
+</ul>
+</li>
 <li><p><strong>EL Reclassification</strong> An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5</p></li>
-<li><p><strong><em>[SPED]:</em></strong> SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.</p>
+<li>
+<p><strong><em>[SPED]:</em></strong> SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.</p>
 <ul>
 <li>If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.</li>
-</ul></li>
-<li><p><strong><em>[InstructionalSettingCode]:</em></strong> Students who are classified as SPED may receive additional services. Their services can be found in the <strong>InstructionalSettingDescription</strong> column, which is linked to a specific <a href="http://ritter.tea.state.tx.us/peims/standards/1314/c035.html">PEIMS code</a>:</p>
-<table>
-<thead>
-<tr class="header">
+</ul>
+</li>
+<li>
+<p><strong><em>[InstructionalSettingCode]:</em></strong> Students who are classified as SPED may receive additional services. Their services can be found in the <strong>InstructionalSettingDescription</strong> column, which is linked to a specific <a href="http://ritter.tea.state.tx.us/peims/standards/1314/c035.html">PEIMS code</a>:</p>
+<table class="table table-sm">
+<thead><tr class="header">
 <th>InstructionalSettingCode</th>
 <th>Description</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>0</td>
@@ -369,15 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <ul>
 <li>If InstructionalSettingCode = 43 or 44, the student is typically in RISE.</li>
-</ul></li>
-<li><p><strong><em>[DisabilityCode]</em></strong></p>
-<table>
-<thead>
-<tr class="header">
+</ul>
+</li>
+<li>
+<p><strong><em>[DisabilityCode]</em></strong></p>
+<table class="table table-sm">
+<thead><tr class="header">
 <th>DisabilityCode</th>
 <th>Description</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>0</td>
@@ -432,113 +208,127 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td>Noncategorical early childhood</td>
 </tr>
 </tbody>
-</table></li>
+</table>
+</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="key-tables-measures-and-metrics.html#cb11-1"></a>SELECT DISTINCT </span>
-<span id="cb11-2"><a href="key-tables-measures-and-metrics.html#cb11-2"></a> [StudentNumber], </span>
-<span id="cb11-3"><a href="key-tables-measures-and-metrics.html#cb11-3"></a> [PrimaryDisabilityCode] AS [DisabilityCode], </span>
-<span id="cb11-4"><a href="key-tables-measures-and-metrics.html#cb11-4"></a> [PrimaryDisabilityDescription] AS [DisabilityDescription]</span>
-<span id="cb11-5"><a href="key-tables-measures-and-metrics.html#cb11-5"></a></span>
-<span id="cb11-6"><a href="key-tables-measures-and-metrics.html#cb11-6"></a> <span class="kw">FROM</span> (</span>
-<span id="cb11-7"><a href="key-tables-measures-and-metrics.html#cb11-7"></a></span>
-<span id="cb11-8"><a href="key-tables-measures-and-metrics.html#cb11-8"></a>SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
-<span id="cb11-9"><a href="key-tables-measures-and-metrics.html#cb11-9"></a></span>
-<span id="cb11-10"><a href="key-tables-measures-and-metrics.html#cb11-10"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb11-11"><a href="key-tables-measures-and-metrics.html#cb11-11"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
-<span id="cb11-12"><a href="key-tables-measures-and-metrics.html#cb11-12"></a></span>
-<span id="cb11-13"><a href="key-tables-measures-and-metrics.html#cb11-13"></a> UNION ALL</span>
-<span id="cb11-14"><a href="key-tables-measures-and-metrics.html#cb11-14"></a></span>
-<span id="cb11-15"><a href="key-tables-measures-and-metrics.html#cb11-15"></a>SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
-<span id="cb11-16"><a href="key-tables-measures-and-metrics.html#cb11-16"></a></span>
-<span id="cb11-17"><a href="key-tables-measures-and-metrics.html#cb11-17"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb11-18"><a href="key-tables-measures-and-metrics.html#cb11-18"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span></span>
-<span id="cb11-19"><a href="key-tables-measures-and-metrics.html#cb11-19"></a></span>
-<span id="cb11-20"><a href="key-tables-measures-and-metrics.html#cb11-20"></a> UNION ALL</span>
-<span id="cb11-21"><a href="key-tables-measures-and-metrics.html#cb11-21"></a></span>
-<span id="cb11-22"><a href="key-tables-measures-and-metrics.html#cb11-22"></a>SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
-<span id="cb11-23"><a href="key-tables-measures-and-metrics.html#cb11-23"></a></span>
-<span id="cb11-24"><a href="key-tables-measures-and-metrics.html#cb11-24"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb11-25"><a href="key-tables-measures-and-metrics.html#cb11-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">&#39;2018-2019&#39;</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> &#39;&#39;</span> ORDER BY StudentNumber</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="key-tables-measures-and-metrics.html#cb12-1"></a>SELECT DISTINCT </span>
+<span id="cb12-2"><a href="key-tables-measures-and-metrics.html#cb12-2"></a> [StudentNumber], </span>
+<span id="cb12-3"><a href="key-tables-measures-and-metrics.html#cb12-3"></a> [PrimaryDisabilityCode] AS [DisabilityCode], </span>
+<span id="cb12-4"><a href="key-tables-measures-and-metrics.html#cb12-4"></a> [PrimaryDisabilityDescription] AS [DisabilityDescription]</span>
+<span id="cb12-5"><a href="key-tables-measures-and-metrics.html#cb12-5"></a></span>
+<span id="cb12-6"><a href="key-tables-measures-and-metrics.html#cb12-6"></a> <span class="kw">FROM</span> (</span>
+<span id="cb12-7"><a href="key-tables-measures-and-metrics.html#cb12-7"></a></span>
+<span id="cb12-8"><a href="key-tables-measures-and-metrics.html#cb12-8"></a>SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
+<span id="cb12-9"><a href="key-tables-measures-and-metrics.html#cb12-9"></a></span>
+<span id="cb12-10"><a href="key-tables-measures-and-metrics.html#cb12-10"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb12-11"><a href="key-tables-measures-and-metrics.html#cb12-11"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span></span>
+<span id="cb12-12"><a href="key-tables-measures-and-metrics.html#cb12-12"></a></span>
+<span id="cb12-13"><a href="key-tables-measures-and-metrics.html#cb12-13"></a> UNION ALL</span>
+<span id="cb12-14"><a href="key-tables-measures-and-metrics.html#cb12-14"></a></span>
+<span id="cb12-15"><a href="key-tables-measures-and-metrics.html#cb12-15"></a>SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
+<span id="cb12-16"><a href="key-tables-measures-and-metrics.html#cb12-16"></a></span>
+<span id="cb12-17"><a href="key-tables-measures-and-metrics.html#cb12-17"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb12-18"><a href="key-tables-measures-and-metrics.html#cb12-18"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span></span>
+<span id="cb12-19"><a href="key-tables-measures-and-metrics.html#cb12-19"></a></span>
+<span id="cb12-20"><a href="key-tables-measures-and-metrics.html#cb12-20"></a> UNION ALL</span>
+<span id="cb12-21"><a href="key-tables-measures-and-metrics.html#cb12-21"></a></span>
+<span id="cb12-22"><a href="key-tables-measures-and-metrics.html#cb12-22"></a>SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
+<span id="cb12-23"><a href="key-tables-measures-and-metrics.html#cb12-23"></a></span>
+<span id="cb12-24"><a href="key-tables-measures-and-metrics.html#cb12-24"></a> FROM [PROD1].[Schools].[Students]</span>
+<span id="cb12-25"><a href="key-tables-measures-and-metrics.html#cb12-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> ''</span> ORDER BY StudentNumber</span></code></pre></div>
 <ul>
-<li><strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD
+<li>
+<strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD
 <ul>
 <li>If EconomicDisadvantageCode = 0, then the student is <em>not identified as economically disadvantaged</em>, otherwise the student is identified as <strong>economically disadvantaged</strong>,</li>
 <li>If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,</li>
 <li>If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,</li>
 <li>If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.</li>
-</ul></li>
-<li><strong>ECDFlag</strong> Consolidates the codes above to 0/1 indicator
+</ul>
+</li>
+<li>
+<strong>ECDFlag</strong> Consolidates the codes above to 0/1 indicator
 <ul>
 <li>If ECDFlag = TRUE (1), the student <strong>is</strong> identified as economically disadvantaged,</li>
 <li>If ECDFlag = FALSE (0), the student <strong>is not</strong> identified as economically disadvantaged.</li>
-</ul></li>
-<li><strong><em>Race / Ethnicity:</em></strong> Same like in TX
+</ul>
+</li>
+<li>
+<strong><em>Race / Ethnicity:</em></strong> Same like in TX
 <ul>
 <li>If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,</li>
 <li>If the student <strong>does not</strong> identify as Hispanic or Latino and only selected one race the student is classified as that race,</li>
 <li>If the student <strong>does not</strong> identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.</li>
-</ul></li>
-<li><strong><em>[RowIsCurrent]:</em></strong> Indicates the most current row for a student, <strong>Only to be used on the current school year</strong></li>
 </ul>
-<div id="common-queries" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.1.1</span> Common queries<a href="key-tables-measures-and-metrics.html#common-queries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</li>
+<li>
+<strong><em>[RowIsCurrent]:</em></strong> Indicates the most current row for a student, <strong>Only to be used on the current school year</strong>
+</li>
+</ul>
+<div id="common-queries" class="section level3">
+<h3>
+<span class="header-section-number">4.1.1</span> Common queries<a class="anchor" aria-label="anchor" href="#common-queries"><i class="fas fa-link"></i></a>
+</h3>
 <p>We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:</p>
 <ul>
 <li>SQL example:</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="key-tables-measures-and-metrics.html#cb12-1"></a><span class="kw">SELECT</span> [AcademicYear]</span>
-<span id="cb12-2"><a href="key-tables-measures-and-metrics.html#cb12-2"></a>      ,C.[RegionDescription]  </span>
-<span id="cb12-3"><a href="key-tables-measures-and-metrics.html#cb12-3"></a>      ,B.[SchoolName]</span>
-<span id="cb12-4"><a href="key-tables-measures-and-metrics.html#cb12-4"></a>      ,[GradeLevelID]</span>
-<span id="cb12-5"><a href="key-tables-measures-and-metrics.html#cb12-5"></a>      ,[StudentNumber]</span>
-<span id="cb12-6"><a href="key-tables-measures-and-metrics.html#cb12-6"></a>    ,[StudentFullName]</span>
-<span id="cb12-7"><a href="key-tables-measures-and-metrics.html#cb12-7"></a>    ,[FirstName]</span>
-<span id="cb12-8"><a href="key-tables-measures-and-metrics.html#cb12-8"></a>    ,[MiddleInitial]</span>
-<span id="cb12-9"><a href="key-tables-measures-and-metrics.html#cb12-9"></a>    ,[LastName]</span>
-<span id="cb12-10"><a href="key-tables-measures-and-metrics.html#cb12-10"></a></span>
-<span id="cb12-11"><a href="key-tables-measures-and-metrics.html#cb12-11"></a><span class="co">--join Schools and Regions tables</span></span>
-<span id="cb12-12"><a href="key-tables-measures-and-metrics.html#cb12-12"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
-<span id="cb12-13"><a href="key-tables-measures-and-metrics.html#cb12-13"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
-<span id="cb12-14"><a href="key-tables-measures-and-metrics.html#cb12-14"></a>      <span class="kw">ON</span> A.[SchoolNumber] <span class="op">=</span> B.[SchoolNumber]</span>
-<span id="cb12-15"><a href="key-tables-measures-and-metrics.html#cb12-15"></a>    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Regions] <span class="kw">AS</span> C</span>
-<span id="cb12-16"><a href="key-tables-measures-and-metrics.html#cb12-16"></a>      <span class="kw">ON</span> B.[RegionID] <span class="op">=</span> C.[RegionID]</span>
-<span id="cb12-17"><a href="key-tables-measures-and-metrics.html#cb12-17"></a></span>
-<span id="cb12-18"><a href="key-tables-measures-and-metrics.html#cb12-18"></a><span class="co">--filter for currently enrolled seniors in 2021-2022</span></span>
-<span id="cb12-19"><a href="key-tables-measures-and-metrics.html#cb12-19"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">&#39;2021-2022&#39;</span></span>
-<span id="cb12-20"><a href="key-tables-measures-and-metrics.html#cb12-20"></a>    <span class="kw">AND</span> [GradeLevelID] <span class="op">=</span> <span class="st">&#39;12&#39;</span></span>
-<span id="cb12-21"><a href="key-tables-measures-and-metrics.html#cb12-21"></a>    <span class="kw">AND</span> [ExitDate] <span class="op">&gt;</span> <span class="st">&#39;2022-05-01&#39;</span></span>
-<span id="cb12-22"><a href="key-tables-measures-and-metrics.html#cb12-22"></a>    <span class="kw">AND</span> [RowIsCurrent] <span class="op">=</span> <span class="st">&#39;1&#39;</span></span>
-<span id="cb12-23"><a href="key-tables-measures-and-metrics.html#cb12-23"></a>    </span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb13-1"><a href="key-tables-measures-and-metrics.html#cb13-1"></a><span class="kw">SELECT</span> [AcademicYear]</span>
+<span id="cb13-2"><a href="key-tables-measures-and-metrics.html#cb13-2"></a>      ,C.[RegionDescription]  </span>
+<span id="cb13-3"><a href="key-tables-measures-and-metrics.html#cb13-3"></a>      ,B.[SchoolName]</span>
+<span id="cb13-4"><a href="key-tables-measures-and-metrics.html#cb13-4"></a>      ,[GradeLevelID]</span>
+<span id="cb13-5"><a href="key-tables-measures-and-metrics.html#cb13-5"></a>      ,[StudentNumber]</span>
+<span id="cb13-6"><a href="key-tables-measures-and-metrics.html#cb13-6"></a>    ,[StudentFullName]</span>
+<span id="cb13-7"><a href="key-tables-measures-and-metrics.html#cb13-7"></a>    ,[FirstName]</span>
+<span id="cb13-8"><a href="key-tables-measures-and-metrics.html#cb13-8"></a>    ,[MiddleInitial]</span>
+<span id="cb13-9"><a href="key-tables-measures-and-metrics.html#cb13-9"></a>    ,[LastName]</span>
+<span id="cb13-10"><a href="key-tables-measures-and-metrics.html#cb13-10"></a></span>
+<span id="cb13-11"><a href="key-tables-measures-and-metrics.html#cb13-11"></a><span class="co">--join Schools and Regions tables</span></span>
+<span id="cb13-12"><a href="key-tables-measures-and-metrics.html#cb13-12"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
+<span id="cb13-13"><a href="key-tables-measures-and-metrics.html#cb13-13"></a>    <span class="kw">LEFT</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
+<span id="cb13-14"><a href="key-tables-measures-and-metrics.html#cb13-14"></a>      <span class="kw">ON</span> A.[SchoolNumber] <span class="op">=</span> B.[SchoolNumber]</span>
+<span id="cb13-15"><a href="key-tables-measures-and-metrics.html#cb13-15"></a>    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Regions] <span class="kw">AS</span> C</span>
+<span id="cb13-16"><a href="key-tables-measures-and-metrics.html#cb13-16"></a>      <span class="kw">ON</span> B.[RegionID] <span class="op">=</span> C.[RegionID]</span>
+<span id="cb13-17"><a href="key-tables-measures-and-metrics.html#cb13-17"></a></span>
+<span id="cb13-18"><a href="key-tables-measures-and-metrics.html#cb13-18"></a><span class="co">--filter for currently enrolled seniors in 2021-2022</span></span>
+<span id="cb13-19"><a href="key-tables-measures-and-metrics.html#cb13-19"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2021-2022'</span></span>
+<span id="cb13-20"><a href="key-tables-measures-and-metrics.html#cb13-20"></a>    <span class="kw">AND</span> [GradeLevelID] <span class="op">=</span> <span class="st">'12'</span></span>
+<span id="cb13-21"><a href="key-tables-measures-and-metrics.html#cb13-21"></a>    <span class="kw">AND</span> [ExitDate] <span class="op">&gt;</span> <span class="st">'2022-05-01'</span></span>
+<span id="cb13-22"><a href="key-tables-measures-and-metrics.html#cb13-22"></a>    <span class="kw">AND</span> [RowIsCurrent] <span class="op">=</span> <span class="st">'1'</span></span>
+<span id="cb13-23"><a href="key-tables-measures-and-metrics.html#cb13-23"></a>    </span></code></pre></div>
 <ul>
 <li>R example:</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="key-tables-measures-and-metrics.html#cb13-1"></a><span class="kw">get_students</span>() <span class="op">%&gt;%</span></span>
-<span id="cb13-2"><a href="key-tables-measures-and-metrics.html#cb13-2"></a></span>
-<span id="cb13-3"><a href="key-tables-measures-and-metrics.html#cb13-3"></a><span class="co">#filter for currently enrolled seniors in 2021-2022</span></span>
-<span id="cb13-4"><a href="key-tables-measures-and-metrics.html#cb13-4"></a><span class="st">  </span><span class="kw">filter</span>(AcademicYear <span class="op">==</span><span class="st"> &quot;2021-2022&quot;</span>,</span>
-<span id="cb13-5"><a href="key-tables-measures-and-metrics.html#cb13-5"></a>         GradeLevelID <span class="op">==</span><span class="st"> &quot;12&quot;</span>,</span>
-<span id="cb13-6"><a href="key-tables-measures-and-metrics.html#cb13-6"></a>         ExitDate <span class="op">&gt;</span><span class="st"> &quot;2022-05-01&quot;</span>,</span>
-<span id="cb13-7"><a href="key-tables-measures-and-metrics.html#cb13-7"></a>         RowIsCurrent <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb13-8"><a href="key-tables-measures-and-metrics.html#cb13-8"></a><span class="st">  </span></span>
-<span id="cb13-9"><a href="key-tables-measures-and-metrics.html#cb13-9"></a><span class="co">#join Schools and Regions tables</span></span>
-<span id="cb13-10"><a href="key-tables-measures-and-metrics.html#cb13-10"></a><span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">get_schools</span>(),</span>
-<span id="cb13-11"><a href="key-tables-measures-and-metrics.html#cb13-11"></a>             <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;SchoolNumber&quot;</span> =<span class="st"> &quot;SchoolNumber&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb13-12"><a href="key-tables-measures-and-metrics.html#cb13-12"></a><span class="st">  </span><span class="kw">inner_join</span>(<span class="kw">get_regions</span>(),</span>
-<span id="cb13-13"><a href="key-tables-measures-and-metrics.html#cb13-13"></a>             <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;RegionID&quot;</span> =<span class="st"> &quot;RegionID&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb13-14"><a href="key-tables-measures-and-metrics.html#cb13-14"></a><span class="st">  </span></span>
-<span id="cb13-15"><a href="key-tables-measures-and-metrics.html#cb13-15"></a><span class="st">  </span><span class="kw">select</span>(AcademicYear,</span>
-<span id="cb13-16"><a href="key-tables-measures-and-metrics.html#cb13-16"></a>         RegionDescription,</span>
-<span id="cb13-17"><a href="key-tables-measures-and-metrics.html#cb13-17"></a>         SchoolName,</span>
-<span id="cb13-18"><a href="key-tables-measures-and-metrics.html#cb13-18"></a>         GradeLevelID,</span>
-<span id="cb13-19"><a href="key-tables-measures-and-metrics.html#cb13-19"></a>         StudentNumber,</span>
-<span id="cb13-20"><a href="key-tables-measures-and-metrics.html#cb13-20"></a>         StudentFullName,</span>
-<span id="cb13-21"><a href="key-tables-measures-and-metrics.html#cb13-21"></a>         FirstName,</span>
-<span id="cb13-22"><a href="key-tables-measures-and-metrics.html#cb13-22"></a>         MiddleInitial,</span>
-<span id="cb13-23"><a href="key-tables-measures-and-metrics.html#cb13-23"></a>         LastName)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">get_students</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+
+<span class="co">#filter for currently enrolled seniors in 2021-2022</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AcademicYear</span> <span class="op">==</span> <span class="st">"2021-2022"</span>,
+         <span class="va">GradeLevelID</span> <span class="op">==</span> <span class="st">"12"</span>,
+         <span class="va">ExitDate</span> <span class="op">&gt;</span> <span class="st">"2022-05-01"</span>,
+         <span class="va">RowIsCurrent</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+<span class="co">#join Schools and Regions tables</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span>,
+             by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SchoolNumber"</span> <span class="op">=</span> <span class="st">"SchoolNumber"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_regions</span><span class="op">(</span><span class="op">)</span>,
+             by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RegionID"</span> <span class="op">=</span> <span class="st">"RegionID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">AcademicYear</span>,
+         <span class="va">RegionDescription</span>,
+         <span class="va">SchoolName</span>,
+         <span class="va">GradeLevelID</span>,
+         <span class="va">StudentNumber</span>,
+         <span class="va">StudentFullName</span>,
+         <span class="va">FirstName</span>,
+         <span class="va">MiddleInitial</span>,
+         <span class="va">LastName</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="student-persistence" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.2</span> Student Persistence<a href="key-tables-measures-and-metrics.html#student-persistence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="student-persistence" class="section level2">
+<h2>
+<span class="header-section-number">4.2</span> Student Persistence<a class="anchor" aria-label="anchor" href="#student-persistence"><i class="fas fa-link"></i></a>
+</h2>
 <p>Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the “First Day of Persistence (FDOP)” for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.</p>
 <p>Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn’t return until September, John would not count as a student who persisted.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[Persistence]</p>
@@ -559,63 +349,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a current student.</p>
 <ul>
-<li><strong>Other Useful Fields:</strong>
+<li>
+<strong>Other Useful Fields:</strong>
 <ul>
-<li><strong>AcademicYear:</strong> the academic year</li>
-<li><strong>RegionDescription:</strong> the region the student is in</li>
-<li><strong>SchoolShortName:</strong> the school the student attends</li>
-<li><strong>SchoolType:</strong> Academy of College Prep</li>
-<li><strong>GradeLevelID:</strong> Student’s grade level (integer ranging from -1 = Pre-K to 12)</li>
-<li><strong>NewStudent:</strong> indicates if the student is new (1) or returning (0)</li>
-<li><strong>PersistenceWeek:</strong> the current week of persistence based on the student’s region and school (ranges from 1-52)</li>
-<li><strong>LeaverWeek:</strong> the persistence week the student left the district</li>
-<li><strong>ULeaverWeek:</strong> the persistence week the student left the district if it was after the last day of school</li>
-<li><strong>PersistenceCode:</strong> the reason the student left the district</li>
-<li><strong>PersistenceCategory:</strong> the category that the reason falls into for why the student left the district</li>
-<li><strong>PersistenceComment:</strong> any additional comments the SIS clerk has for why the student left the district</li>
-<li><strong>EnrollmentStatus:</strong> contains the enrollment status, but is not accurate <strong>Do Not Use</strong></li>
-<li><strong>EntryDate:</strong> the date the student entered school for a particular academic year or the date the student started school at a new campus</li>
-<li><strong>ExitDate:</strong> the last day of the academic year (last day of school) or the day the student left the district (summer leavers are sometimes snapped back to the last day of school, beware)</li>
-<li><strong>Recapture:</strong> 0/1 indicator of students that have left and then returned to the district. 1 = recaptured, 0 = not recaptured. <strong>Not to be Trusted</strong></li>
-<li><strong>SummerLeaver:</strong> 0/1 indicator for students that leave during the summer</li>
-<li><strong>StudentGender:</strong> “M”/“F” gender indicator</li>
-<li><strong>Race:</strong> race indicator combined with ethnicity; ex. “WHITE-HISPANIC”</li>
-<li><strong>IsHispanic:</strong> indicates whether the student identifies as Hispanic; values = “HISPANIC” or “NON-HISPANIC”</li>
-<li><strong>Migrant:</strong> 0/1 indicator of student’s migrant status</li>
-<li><strong>LEP:</strong> 0/1 indicator of student’s English Learner status. <strong>Inaccurate Don’t Use</strong></li>
-<li><strong>Sped:</strong> 0/1 indicator of student’s SPED status</li>
-<li><strong>EconDisad:</strong> 0/1 indicator of student’s economic disadvantaged status. <strong>Inaccurate Don’t Use</strong></li>
-<li><strong>IsCSI:</strong> 0/1 indicator for students identified as CSI</li>
-<li><strong>ContinuousEnrollment:</strong> 0/1 indicates whether the student has been continuously enrolled</li>
-</ul></li>
+<li>
+<strong>AcademicYear:</strong> the academic year</li>
+<li>
+<strong>RegionDescription:</strong> the region the student is in</li>
+<li>
+<strong>SchoolShortName:</strong> the school the student attends</li>
+<li>
+<strong>SchoolType:</strong> Academy of College Prep</li>
+<li>
+<strong>GradeLevelID:</strong> Student’s grade level (integer ranging from -1 = Pre-K to 12)</li>
+<li>
+<strong>NewStudent:</strong> indicates if the student is new (1) or returning (0)</li>
+<li>
+<strong>PersistenceWeek:</strong> the current week of persistence based on the student’s region and school (ranges from 1-52)</li>
+<li>
+<strong>LeaverWeek:</strong> the persistence week the student left the district</li>
+<li>
+<strong>ULeaverWeek:</strong> the persistence week the student left the district if it was after the last day of school</li>
+<li>
+<strong>PersistenceCode:</strong> the reason the student left the district</li>
+<li>
+<strong>PersistenceCategory:</strong> the category that the reason falls into for why the student left the district</li>
+<li>
+<strong>PersistenceComment:</strong> any additional comments the SIS clerk has for why the student left the district</li>
+<li>
+<strong>EnrollmentStatus:</strong> contains the enrollment status, but is not accurate <strong>Do Not Use</strong>
+</li>
+<li>
+<strong>EntryDate:</strong> the date the student entered school for a particular academic year or the date the student started school at a new campus</li>
+<li>
+<strong>ExitDate:</strong> the last day of the academic year (last day of school) or the day the student left the district (summer leavers are sometimes snapped back to the last day of school, beware)</li>
+<li>
+<strong>Recapture:</strong> 0/1 indicator of students that have left and then returned to the district. 1 = recaptured, 0 = not recaptured. <strong>Not to be Trusted</strong>
+</li>
+<li>
+<strong>SummerLeaver:</strong> 0/1 indicator for students that leave during the summer</li>
+<li>
+<strong>StudentGender:</strong> “M”/“F” gender indicator</li>
+<li>
+<strong>Race:</strong> race indicator combined with ethnicity; ex. “WHITE-HISPANIC”</li>
+<li>
+<strong>IsHispanic:</strong> indicates whether the student identifies as Hispanic; values = “HISPANIC” or “NON-HISPANIC”</li>
+<li>
+<strong>Migrant:</strong> 0/1 indicator of student’s migrant status</li>
+<li>
+<strong>LEP:</strong> 0/1 indicator of student’s English Learner status. <strong>Inaccurate Don’t Use</strong>
+</li>
+<li>
+<strong>Sped:</strong> 0/1 indicator of student’s SPED status</li>
+<li>
+<strong>EconDisad:</strong> 0/1 indicator of student’s economic disadvantaged status. <strong>Inaccurate Don’t Use</strong>
+</li>
+<li>
+<strong>IsCSI:</strong> 0/1 indicator for students identified as CSI</li>
+<li>
+<strong>ContinuousEnrollment:</strong> 0/1 indicates whether the student has been continuously enrolled</li>
 </ul>
-<div id="student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a href="key-tables-measures-and-metrics.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</li>
+</ul>
+<div id="student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="section level3">
+<h3>
+<span class="header-section-number">4.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a class="anchor" aria-label="anchor" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fas fa-link"></i></a>
+</h3>
 <p>Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to “snapshot” whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the “snapshot” date selected.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1]</p>
 <p><strong>Tables:</strong></p>
 <ul>
 <li><p><strong><em>[Attendance].[Students]:</em></strong> This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.</p></li>
 <li><p><strong><em>[ADA].[StudentDailyMembership]</em></strong> This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.</p></li>
-<li><p><strong>Other Useful Fields:</strong></p>
+<li>
+<p><strong>Other Useful Fields:</strong></p>
 <ul>
-<li><strong>AcademicYear:</strong> the academic year (in both tables)</li>
-<li><strong>SchoolName:</strong> the long school name (in both tables)</li>
-<li><strong>schoolnumber:</strong> the school number (in the StudentDailyMembership (2016-2017 &amp; prior) table it is SchoolNumber)</li>
-<li><strong>SchoolShortName:</strong> the school’s short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)</li>
-<li><strong>SchoolType:</strong> indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)</li>
-<li><strong>RegionDescription:</strong> the region (Only on the Attendance.Students table - 2017-2018 to present)</li>
-<li><strong>GradeLevelID:</strong> student’s grade level (in both tables)</li>
-<li><strong>WeekNumber:</strong> the number of the week in the academic year (in both tables) <strong>Use Cautiously</strong> the weeks are <strong>NOT</strong> numbered properly in 2019-2020 contains in the Attendance.Students table</li>
-<li><strong>AttDate:</strong> the date for the attendance record (format “YYYY-MM-DD”) (in both tables)</li>
-<li><strong>Membership:</strong> indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)</li>
-<li><strong>SchoolTypeOperation:</strong> indicates if the school is “FULL SCALE”, “SCALING”, “or”LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually</li>
-</ul></li>
+<li>
+<strong>AcademicYear:</strong> the academic year (in both tables)</li>
+<li>
+<strong>SchoolName:</strong> the long school name (in both tables)</li>
+<li>
+<strong>schoolnumber:</strong> the school number (in the StudentDailyMembership (2016-2017 &amp; prior) table it is SchoolNumber)</li>
+<li>
+<strong>SchoolShortName:</strong> the school’s short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)</li>
+<li>
+<strong>SchoolType:</strong> indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)</li>
+<li>
+<strong>RegionDescription:</strong> the region (Only on the Attendance.Students table - 2017-2018 to present)</li>
+<li>
+<strong>GradeLevelID:</strong> student’s grade level (in both tables)</li>
+<li>
+<strong>WeekNumber:</strong> the number of the week in the academic year (in both tables) <strong>Use Cautiously</strong> the weeks are <strong>NOT</strong> numbered properly in 2019-2020 contains in the Attendance.Students table</li>
+<li>
+<strong>AttDate:</strong> the date for the attendance record (format “YYYY-MM-DD”) (in both tables)</li>
+<li>
+<strong>Membership:</strong> indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)</li>
+<li>
+<strong>SchoolTypeOperation:</strong> indicates if the school is “FULL SCALE”, “SCALING”, “or”LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="college-application-matriculation-metrics" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.3</span> College Application &amp; Matriculation Metrics<a href="key-tables-measures-and-metrics.html#college-application-matriculation-metrics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="college-application-matriculation-metrics" class="section level2">
+<h2>
+<span class="header-section-number">4.3</span> College Application &amp; Matriculation Metrics<a class="anchor" aria-label="anchor" href="#college-application-matriculation-metrics"><i class="fas fa-link"></i></a>
+</h2>
 <p>To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use <a href="https://www.hobsons.com/solution/naviance/">Naviance</a> information.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Colleges]</p>
 <p><strong>Main metrics:</strong> Percent at least 1 application, Percent at least 1 submission, Percent at least 1 acceptance</p>
@@ -633,27 +472,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p><strong>Who Counts?</strong></p></li>
 <li><p><strong>Who is a 4year 2year?</strong></p></li>
-<li><p><strong>Persistence Rate by:</strong></p>
+<li>
+<p><strong>Persistence Rate by:</strong></p>
 <ul>
-<li><strong>District:</strong> use all data</li>
-<li><strong>Region:</strong> use the [RegionDescription] field</li>
-<li><strong>School:</strong> [SchoolShortName] + [SchoolType]</li>
-<li><strong>Grade Level:</strong> [GradeLevelID]</li>
-<li><strong>Student Type (new or returning):</strong> use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.</li>
-</ul></li>
-<li><p><strong>Other Useful Fields:</strong></p>
+<li>
+<strong>District:</strong> use all data</li>
+<li>
+<strong>Region:</strong> use the [RegionDescription] field</li>
+<li>
+<strong>School:</strong> [SchoolShortName] + [SchoolType]</li>
+<li>
+<strong>Grade Level:</strong> [GradeLevelID]</li>
+<li>
+<strong>Student Type (new or returning):</strong> use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.</li>
+</ul>
+</li>
+<li>
+<p><strong>Other Useful Fields:</strong></p>
 <ul>
 <li>Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.</li>
 <li>[LeaverWeek] to know the week when the student left the district.</li>
-</ul></li>
+</ul>
+</li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="key-tables-measures-and-metrics.html#cb14-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb14-2"><a href="key-tables-measures-and-metrics.html#cb14-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb14-3"><a href="key-tables-measures-and-metrics.html#cb14-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="key-tables-measures-and-metrics.html#cb15-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb15-2"><a href="key-tables-measures-and-metrics.html#cb15-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb15-3"><a href="key-tables-measures-and-metrics.html#cb15-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
-<div id="csi" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.4</span> Critical Student Intervention (CSI) Identification<a href="key-tables-measures-and-metrics.html#csi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="csi" class="section level2">
+<h2>
+<span class="header-section-number">4.4</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
+</h2>
 <p>To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia’s team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Schools]</p>
 <p><strong>Main metrics:</strong> Percent of CSI students by school</p>
@@ -663,50 +513,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="key-tables-measures-and-metrics.html#cb15-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb15-2"><a href="key-tables-measures-and-metrics.html#cb15-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb15-3"><a href="key-tables-measures-and-metrics.html#cb15-3"></a>      ,[ProgramID]</span>
-<span id="cb15-4"><a href="key-tables-measures-and-metrics.html#cb15-4"></a>      ,CASE </span>
-<span id="cb15-5"><a href="key-tables-measures-and-metrics.html#cb15-5"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb15-6"><a href="key-tables-measures-and-metrics.html#cb15-6"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb15-7"><a href="key-tables-measures-and-metrics.html#cb15-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb15-8"><a href="key-tables-measures-and-metrics.html#cb15-8"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2018-2019&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb15-9"><a href="key-tables-measures-and-metrics.html#cb15-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="key-tables-measures-and-metrics.html#cb16-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb16-2"><a href="key-tables-measures-and-metrics.html#cb16-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb16-3"><a href="key-tables-measures-and-metrics.html#cb16-3"></a>      ,[ProgramID]</span>
+<span id="cb16-4"><a href="key-tables-measures-and-metrics.html#cb16-4"></a>      ,CASE </span>
+<span id="cb16-5"><a href="key-tables-measures-and-metrics.html#cb16-5"></a>      WHEN [InterventionType] LIKE <span class="st">'%math%'</span> THEN <span class="st">'Math'</span></span>
+<span id="cb16-6"><a href="key-tables-measures-and-metrics.html#cb16-6"></a>      WHEN [InterventionType] LIKE <span class="st">'%reading%'</span> THEN <span class="st">'Reading'</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb16-7"><a href="key-tables-measures-and-metrics.html#cb16-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb16-8"><a href="key-tables-measures-and-metrics.html#cb16-8"></a>  WHERE [AcademicYear] =<span class="st"> '2018-2019'</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">'%math%'</span> OR InterventionType LIKE <span class="st">'%reading%'</span>)) AS A</span>
+<span id="cb16-9"><a href="key-tables-measures-and-metrics.html#cb16-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
 <ul>
 <li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="key-tables-measures-and-metrics.html#cb16-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb16-2"><a href="key-tables-measures-and-metrics.html#cb16-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
-<span id="cb16-3"><a href="key-tables-measures-and-metrics.html#cb16-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
-<span id="cb16-4"><a href="key-tables-measures-and-metrics.html#cb16-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
-<span id="cb16-5"><a href="key-tables-measures-and-metrics.html#cb16-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
-<span id="cb16-6"><a href="key-tables-measures-and-metrics.html#cb16-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
-<span id="cb16-7"><a href="key-tables-measures-and-metrics.html#cb16-7"></a>LEFT JOIN </span>
-<span id="cb16-8"><a href="key-tables-measures-and-metrics.html#cb16-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb16-9"><a href="key-tables-measures-and-metrics.html#cb16-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb16-10"><a href="key-tables-measures-and-metrics.html#cb16-10"></a>      ,[ProgramID]</span>
-<span id="cb16-11"><a href="key-tables-measures-and-metrics.html#cb16-11"></a>      ,CASE </span>
-<span id="cb16-12"><a href="key-tables-measures-and-metrics.html#cb16-12"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%math%&#39;</span> THEN <span class="st">&#39;Math&#39;</span></span>
-<span id="cb16-13"><a href="key-tables-measures-and-metrics.html#cb16-13"></a>      WHEN [InterventionType] LIKE <span class="st">&#39;%reading%&#39;</span> THEN <span class="st">&#39;Reading&#39;</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb16-14"><a href="key-tables-measures-and-metrics.html#cb16-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb16-15"><a href="key-tables-measures-and-metrics.html#cb16-15"></a>  WHERE [AcademicYear] =<span class="st"> &#39;2020-2021&#39;</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">&#39;%math%&#39;</span> OR InterventionType LIKE <span class="st">&#39;%reading%&#39;</span>)) AS A</span>
-<span id="cb16-16"><a href="key-tables-measures-and-metrics.html#cb16-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
-<span id="cb16-17"><a href="key-tables-measures-and-metrics.html#cb16-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
-<span id="cb16-18"><a href="key-tables-measures-and-metrics.html#cb16-18"></a>WHERE A.AcademicYear =<span class="st"> &#39;2020-2021&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="key-tables-measures-and-metrics.html#cb17-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb17-2"><a href="key-tables-measures-and-metrics.html#cb17-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
+<span id="cb17-3"><a href="key-tables-measures-and-metrics.html#cb17-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
+<span id="cb17-4"><a href="key-tables-measures-and-metrics.html#cb17-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
+<span id="cb17-5"><a href="key-tables-measures-and-metrics.html#cb17-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
+<span id="cb17-6"><a href="key-tables-measures-and-metrics.html#cb17-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
+<span id="cb17-7"><a href="key-tables-measures-and-metrics.html#cb17-7"></a>LEFT JOIN </span>
+<span id="cb17-8"><a href="key-tables-measures-and-metrics.html#cb17-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
+<span id="cb17-9"><a href="key-tables-measures-and-metrics.html#cb17-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
+<span id="cb17-10"><a href="key-tables-measures-and-metrics.html#cb17-10"></a>      ,[ProgramID]</span>
+<span id="cb17-11"><a href="key-tables-measures-and-metrics.html#cb17-11"></a>      ,CASE </span>
+<span id="cb17-12"><a href="key-tables-measures-and-metrics.html#cb17-12"></a>      WHEN [InterventionType] LIKE <span class="st">'%math%'</span> THEN <span class="st">'Math'</span></span>
+<span id="cb17-13"><a href="key-tables-measures-and-metrics.html#cb17-13"></a>      WHEN [InterventionType] LIKE <span class="st">'%reading%'</span> THEN <span class="st">'Reading'</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
+<span id="cb17-14"><a href="key-tables-measures-and-metrics.html#cb17-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb17-15"><a href="key-tables-measures-and-metrics.html#cb17-15"></a>  WHERE [AcademicYear] =<span class="st"> '2020-2021'</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">'%math%'</span> OR InterventionType LIKE <span class="st">'%reading%'</span>)) AS A</span>
+<span id="cb17-16"><a href="key-tables-measures-and-metrics.html#cb17-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
+<span id="cb17-17"><a href="key-tables-measures-and-metrics.html#cb17-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
+<span id="cb17-18"><a href="key-tables-measures-and-metrics.html#cb17-18"></a>WHERE A.AcademicYear =<span class="st"> '2020-2021'</span></span></code></pre></div>
 </div>
-<div id="assessment-data" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.5</span> Assessment Data<a href="key-tables-measures-and-metrics.html#assessment-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="state-of-texas-assessments-of-academic-readiness-staar" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a href="key-tables-measures-and-metrics.html#state-of-texas-assessments-of-academic-readiness-staar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="assessment-data" class="section level2">
+<h2>
+<span class="header-section-number">4.5</span> Assessment Data<a class="anchor" aria-label="anchor" href="#assessment-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="state-of-texas-assessments-of-academic-readiness-staar" class="section level3">
+<h3>
+<span class="header-section-number">4.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
+</h3>
 <p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:</p>
 <ul>
-<li><strong>Grade 3:</strong> Reading and Math</li>
-<li><strong>Grade 4:</strong> Reading, Math, and Writing</li>
-<li><strong>Grade 5:</strong> Reading, Math, and Science</li>
-<li><strong>Grade 6:</strong> Reading and Math</li>
-<li><strong>Grade 7:</strong> Reading, Math, and Writing</li>
-<li><strong>Grade 8:</strong> Reading, Math, Science, and Social Studies</li>
+<li>
+<strong>Grade 3:</strong> Reading and Math</li>
+<li>
+<strong>Grade 4:</strong> Reading, Math, and Writing</li>
+<li>
+<strong>Grade 5:</strong> Reading, Math, and Science</li>
+<li>
+<strong>Grade 6:</strong> Reading and Math</li>
+<li>
+<strong>Grade 7:</strong> Reading, Math, and Writing</li>
+<li>
+<strong>Grade 8:</strong> Reading, Math, Science, and Social Studies</li>
 </ul>
 <p>Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.</p>
 <p>All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Approaches, Meets, and Masters. When the assessments were rolled out the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are <strong>NOT</strong> mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standrad are included in the counts for Satisfactory.</p>
@@ -714,81 +574,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Tables:</strong></p>
 <ul>
 <li><p><strong><em>[dbo].[STAAR]:</em></strong> This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to 3 administrations in one year. For example, a fifth grade student will take reading, math and science in one year, so that’s 3 rows for each test. Further, if this student doesn’t pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn’t pass it in May they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in r to get the students best score and de-duplicate to get one row per student.</p></li>
-<li><p><strong>Useful Fields:</strong></p>
+<li>
+<p><strong>Useful Fields:</strong></p>
 <ul>
-<li><strong>AdminDate:</strong> indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be “0421” and “0521”; for EOC exams the AdminDate for Spring 2021 is “1521”.</li>
-<li><strong>GradeLevel:</strong> character values, two digit grade. Ex. “06”</li>
-<li><strong>CountyDistrictCampusNumber:</strong> indicates the School Number</li>
-<li><strong>LastName:</strong> Student’s Last Name</li>
-<li><strong>FirstName:</strong> Student’s First Name</li>
-<li><strong>StudentID:</strong> Student’s testing ID number <strong>Not the IDEA Student Number</strong></li>
-<li><strong>RaceReportingCategory:</strong> Student’s reported race, Ex. “H” = Hispanic</li>
-<li><strong>EcoDisadvantage:</strong> Student’s economic disadvantaged status, 0, 1, 2, and 9.</li>
-<li><strong>LEP:</strong> Student’s Limited English Proficiency status Codes: C = Current LEP, F = 1st year of monitoring, S = 2nd year of monitoring, T = 3rd year of monitoring, R = 4th year of monitoring, E = former LEP more than 4 years since reclassification, and 0 = Non-LEP</li>
-<li><strong>SpEd:</strong> 0/1 indicator for receiving special education services</li>
-<li><strong>AtRisk:</strong> 0/1 indicator of at-risk status</li>
-<li><strong>LocalStudentID:</strong> Student’s 108 number</li>
-<li><strong>SubjectCode:</strong> tested subject, i.e., Reading, Math, Science, Algebra I, etc.</li>
-<li><strong>TestDate:</strong> equivalent to the AdminDate but <strong>only</strong> for 3-8</li>
-<li><strong>ScoreCode:</strong> indicates whether the test was scored or student was absent. <strong>ALWAYS</strong> filter to ScoreCode == “S” to get the scored tests</li>
-<li><strong>TestVersion:</strong> “S” = STAAR and “T” = STAAR Alt 2</li>
-<li><strong>ScaleScore:</strong> provides the scaled score for that assessment and can be used to find the best score/most recent administration</li>
-<li><strong>LevelII:</strong> 0/1 indicator for the Approaches performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
-<li><strong>LevelIIFinal:</strong> 0/1 indicator for the Meets performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
-<li><strong>LevelIII:</strong> 0/1 indicator for the Masters performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level</li>
-<li><strong>SchoolYear:</strong> character value indicating the academic year, Ex. “2020-2021”</li>
-<li><strong>BestRecord:</strong> logical column supposed to indicate if that record is the best for that student for that test <strong>DOES NOT WORK</strong></li>
-</ul></li>
+<li>
+<strong>AdminDate:</strong> indicates the two digit month and two digit year of administration for grades 3-8, these are character values. Ex. Spring 2021 administration dates for 3-8 would be “0421” and “0521”; for EOC exams the AdminDate for Spring 2021 is “1521”.</li>
+<li>
+<strong>GradeLevel:</strong> character values, two digit grade. Ex. “06”</li>
+<li>
+<strong>CountyDistrictCampusNumber:</strong> indicates the School Number</li>
+<li>
+<strong>LastName:</strong> Student’s Last Name</li>
+<li>
+<strong>FirstName:</strong> Student’s First Name</li>
+<li>
+<strong>StudentID:</strong> Student’s testing ID number <strong>Not the IDEA Student Number</strong>
+</li>
+<li>
+<strong>RaceReportingCategory:</strong> Student’s reported race, Ex. “H” = Hispanic</li>
+<li>
+<strong>EcoDisadvantage:</strong> Student’s economic disadvantaged status, 0, 1, 2, and 9.</li>
+<li>
+<strong>LEP:</strong> Student’s Limited English Proficiency status Codes: C = Current LEP, F = 1st year of monitoring, S = 2nd year of monitoring, T = 3rd year of monitoring, R = 4th year of monitoring, E = former LEP more than 4 years since reclassification, and 0 = Non-LEP</li>
+<li>
+<strong>SpEd:</strong> 0/1 indicator for receiving special education services</li>
+<li>
+<strong>AtRisk:</strong> 0/1 indicator of at-risk status</li>
+<li>
+<strong>LocalStudentID:</strong> Student’s 108 number</li>
+<li>
+<strong>SubjectCode:</strong> tested subject, i.e., Reading, Math, Science, Algebra I, etc.</li>
+<li>
+<strong>TestDate:</strong> equivalent to the AdminDate but <strong>only</strong> for 3-8</li>
+<li>
+<strong>ScoreCode:</strong> indicates whether the test was scored or student was absent. <strong>ALWAYS</strong> filter to ScoreCode == “S” to get the scored tests</li>
+<li>
+<strong>TestVersion:</strong> “S” = STAAR and “T” = STAAR Alt 2</li>
+<li>
+<strong>ScaleScore:</strong> provides the scaled score for that assessment and can be used to find the best score/most recent administration</li>
+<li>
+<strong>LevelII:</strong> 0/1 indicator for the Approaches performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
+<li>
+<strong>LevelIIFinal:</strong> 0/1 indicator for the Meets performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level</li>
+<li>
+<strong>LevelIII:</strong> 0/1 indicator for the Masters performance standard <strong>Note</strong> When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level</li>
+<li>
+<strong>SchoolYear:</strong> character value indicating the academic year, Ex. “2020-2021”</li>
+<li>
+<strong>BestRecord:</strong> logical column supposed to indicate if that record is the best for that student for that test <strong>DOES NOT WORK</strong>
+</li>
+</ul>
+</li>
 <li><p>R example:</p></li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="key-tables-measures-and-metrics.html#cb17-1"></a>STAAR &lt;-<span class="st"> </span><span class="kw">get_table</span>(<span class="dt">.table_name =</span> <span class="st">&quot;STAAR&quot;</span>, <span class="dt">.database_name =</span> <span class="st">&quot;Dashboard&quot;</span>, </span>
-<span id="cb17-2"><a href="key-tables-measures-and-metrics.html#cb17-2"></a>                   <span class="dt">.schema =</span> <span class="st">&quot;dbo&quot;</span>, <span class="dt">.server_name =</span> <span class="st">&quot;RGVPDRA-DASQL&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-3"><a href="key-tables-measures-and-metrics.html#cb17-3"></a><span class="st">  </span><span class="kw">filter</span>(TestVersion <span class="op">==</span><span class="st"> &quot;S&quot;</span>, ScoreCode <span class="op">==</span><span class="st"> &quot;S&quot;</span>, SubjectCode <span class="op">==</span><span class="st"> &quot;Math&quot;</span>,</span>
-<span id="cb17-4"><a href="key-tables-measures-and-metrics.html#cb17-4"></a>         AdminDate <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;0421&quot;</span>, <span class="st">&quot;0521&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb17-5"><a href="key-tables-measures-and-metrics.html#cb17-5"></a><span class="st">  </span><span class="kw">select</span>(StudentID,</span>
-<span id="cb17-6"><a href="key-tables-measures-and-metrics.html#cb17-6"></a>         LocalStudentID,</span>
-<span id="cb17-7"><a href="key-tables-measures-and-metrics.html#cb17-7"></a>         GradeLevel,</span>
-<span id="cb17-8"><a href="key-tables-measures-and-metrics.html#cb17-8"></a>         SubjectCode,</span>
-<span id="cb17-9"><a href="key-tables-measures-and-metrics.html#cb17-9"></a>         AdminDate,</span>
-<span id="cb17-10"><a href="key-tables-measures-and-metrics.html#cb17-10"></a>         ScoreCode,</span>
-<span id="cb17-11"><a href="key-tables-measures-and-metrics.html#cb17-11"></a>         ScaleScore,</span>
-<span id="cb17-12"><a href="key-tables-measures-and-metrics.html#cb17-12"></a>         <span class="dt">Approaches =</span> LevelII,</span>
-<span id="cb17-13"><a href="key-tables-measures-and-metrics.html#cb17-13"></a>         <span class="dt">Meets =</span> LevelIIFinal,</span>
-<span id="cb17-14"><a href="key-tables-measures-and-metrics.html#cb17-14"></a>         <span class="dt">Masters =</span> LevelIII) <span class="op">%&gt;%</span></span>
-<span id="cb17-15"><a href="key-tables-measures-and-metrics.html#cb17-15"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">StudentID =</span> <span class="kw">as.numeric</span>(StudentID),</span>
-<span id="cb17-16"><a href="key-tables-measures-and-metrics.html#cb17-16"></a>         <span class="dt">LocalStudentID =</span> <span class="kw">as.numeric</span>(LocalStudentID),</span>
-<span id="cb17-17"><a href="key-tables-measures-and-metrics.html#cb17-17"></a>         <span class="dt">StudentNumber =</span> <span class="kw">if_else</span>(LocalStudentID <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="ot">NA</span>), StudentID, LocalStudentID),</span>
-<span id="cb17-18"><a href="key-tables-measures-and-metrics.html#cb17-18"></a>         <span class="dt">StudentNumber =</span> <span class="kw">as.numeric</span>(StudentNumber)) <span class="op">%&gt;%</span></span>
-<span id="cb17-19"><a href="key-tables-measures-and-metrics.html#cb17-19"></a><span class="st">  </span><span class="kw">filter</span>(StudentNumber <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-20"><a href="key-tables-measures-and-metrics.html#cb17-20"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>StudentID, <span class="op">-</span>LocalStudentID, <span class="op">-</span>ScoreCode) <span class="op">%&gt;%</span></span>
-<span id="cb17-21"><a href="key-tables-measures-and-metrics.html#cb17-21"></a><span class="st">  </span><span class="kw">group_by</span>(StudentNumber) <span class="op">%&gt;%</span></span>
-<span id="cb17-22"><a href="key-tables-measures-and-metrics.html#cb17-22"></a><span class="st">  </span><span class="kw">distinct</span>() <span class="op">%&gt;%</span></span>
-<span id="cb17-23"><a href="key-tables-measures-and-metrics.html#cb17-23"></a><span class="st">  </span><span class="kw">collect</span>()</span>
-<span id="cb17-24"><a href="key-tables-measures-and-metrics.html#cb17-24"></a></span>
-<span id="cb17-25"><a href="key-tables-measures-and-metrics.html#cb17-25"></a><span class="co"># To get a count of distinct student numbers to see how much duplication exists</span></span>
-<span id="cb17-26"><a href="key-tables-measures-and-metrics.html#cb17-26"></a>Count_stus &lt;-<span class="st"> </span>STAAR <span class="op">%&gt;%</span></span>
-<span id="cb17-27"><a href="key-tables-measures-and-metrics.html#cb17-27"></a><span class="st">  </span><span class="kw">distinct</span>(StudentNumber)</span>
-<span id="cb17-28"><a href="key-tables-measures-and-metrics.html#cb17-28"></a></span>
-<span id="cb17-29"><a href="key-tables-measures-and-metrics.html#cb17-29"></a><span class="co"># Getting max score to de-duplicate</span></span>
-<span id="cb17-30"><a href="key-tables-measures-and-metrics.html#cb17-30"></a>staar_math &lt;-<span class="st"> </span>STAAR <span class="op">%&gt;%</span></span>
-<span id="cb17-31"><a href="key-tables-measures-and-metrics.html#cb17-31"></a><span class="st">  </span><span class="kw">group_by</span>(StudentNumber) <span class="op">%&gt;%</span></span>
-<span id="cb17-32"><a href="key-tables-measures-and-metrics.html#cb17-32"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Best_score =</span> <span class="kw">max</span>(ScaleScore),</span>
-<span id="cb17-33"><a href="key-tables-measures-and-metrics.html#cb17-33"></a>         <span class="dt">BestScoreFlag =</span> <span class="kw">if_else</span>(Best_score <span class="op">==</span><span class="st"> </span>ScaleScore, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb17-34"><a href="key-tables-measures-and-metrics.html#cb17-34"></a><span class="st">  </span><span class="kw">filter</span>(BestScoreFlag <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-35"><a href="key-tables-measures-and-metrics.html#cb17-35"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>BestScoreFlag, <span class="op">-</span>Best_score, <span class="op">-</span>AdminDate, <span class="op">-</span>ScaleScore, <span class="op">-</span>GradeLevel) <span class="op">%&gt;%</span></span>
-<span id="cb17-36"><a href="key-tables-measures-and-metrics.html#cb17-36"></a><span class="st">  </span><span class="kw">distinct</span>()</span>
-<span id="cb17-37"><a href="key-tables-measures-and-metrics.html#cb17-37"></a></span>
-<span id="cb17-38"><a href="key-tables-measures-and-metrics.html#cb17-38"></a><span class="co"># Calculating the % Approaches and the % Masters</span></span>
-<span id="cb17-39"><a href="key-tables-measures-and-metrics.html#cb17-39"></a>pct_apprhs_mstrs &lt;-<span class="st"> </span>staar_math <span class="op">%&gt;%</span></span>
-<span id="cb17-40"><a href="key-tables-measures-and-metrics.html#cb17-40"></a><span class="st">  </span><span class="kw">select</span>(Approaches, Masters) <span class="op">%&gt;%</span></span>
-<span id="cb17-41"><a href="key-tables-measures-and-metrics.html#cb17-41"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_students =</span> <span class="kw">n</span>(),</span>
-<span id="cb17-42"><a href="key-tables-measures-and-metrics.html#cb17-42"></a>         <span class="dt">n_apprchs =</span> <span class="kw">sum</span>(Approaches),</span>
-<span id="cb17-43"><a href="key-tables-measures-and-metrics.html#cb17-43"></a>         <span class="dt">n_mstrs =</span> <span class="kw">sum</span>(Masters)) <span class="op">%&gt;%</span></span>
-<span id="cb17-44"><a href="key-tables-measures-and-metrics.html#cb17-44"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pct_app =</span> n_apprchs<span class="op">/</span>n_students,</span>
-<span id="cb17-45"><a href="key-tables-measures-and-metrics.html#cb17-45"></a>         <span class="dt">pct_mst =</span> n_mstrs<span class="op">/</span>n_students)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">STAAR</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"STAAR"</span>, .database_name <span class="op">=</span> <span class="st">"Dashboard"</span>, 
+                   .schema <span class="op">=</span> <span class="st">"dbo"</span>, .server_name <span class="op">=</span> <span class="st">"RGVPDRA-DASQL"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">TestVersion</span> <span class="op">==</span> <span class="st">"S"</span>, <span class="va">ScoreCode</span> <span class="op">==</span> <span class="st">"S"</span>, <span class="va">SubjectCode</span> <span class="op">==</span> <span class="st">"Math"</span>,
+         <span class="va">AdminDate</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0421"</span>, <span class="st">"0521"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">StudentID</span>,
+         <span class="va">LocalStudentID</span>,
+         <span class="va">GradeLevel</span>,
+         <span class="va">SubjectCode</span>,
+         <span class="va">AdminDate</span>,
+         <span class="va">ScoreCode</span>,
+         <span class="va">ScaleScore</span>,
+         Approaches <span class="op">=</span> <span class="va">LevelII</span>,
+         Meets <span class="op">=</span> <span class="va">LevelIIFinal</span>,
+         Masters <span class="op">=</span> <span class="va">LevelIII</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>StudentID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">StudentID</span><span class="op">)</span>,
+         LocalStudentID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">LocalStudentID</span><span class="op">)</span>,
+         StudentNumber <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">LocalStudentID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>, <span class="va">StudentID</span>, <span class="va">LocalStudentID</span><span class="op">)</span>,
+         StudentNumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">StudentNumber</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">StudentNumber</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">StudentID</span>, <span class="op">-</span><span class="va">LocalStudentID</span>, <span class="op">-</span><span class="va">ScoreCode</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">StudentNumber</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># To get a count of distinct student numbers to see how much duplication exists</span>
+<span class="va">Count_stus</span> <span class="op">&lt;-</span> <span class="va">STAAR</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">StudentNumber</span><span class="op">)</span>
+
+<span class="co"># Getting max score to de-duplicate</span>
+<span class="va">staar_math</span> <span class="op">&lt;-</span> <span class="va">STAAR</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">StudentNumber</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Best_score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">ScaleScore</span><span class="op">)</span>,
+         BestScoreFlag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Best_score</span> <span class="op">==</span> <span class="va">ScaleScore</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">BestScoreFlag</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">BestScoreFlag</span>, <span class="op">-</span><span class="va">Best_score</span>, <span class="op">-</span><span class="va">AdminDate</span>, <span class="op">-</span><span class="va">ScaleScore</span>, <span class="op">-</span><span class="va">GradeLevel</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Calculating the % Approaches and the % Masters</span>
+<span class="va">pct_apprhs_mstrs</span> <span class="op">&lt;-</span> <span class="va">staar_math</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Approaches</span>, <span class="va">Masters</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>n_students <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+         n_apprchs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Approaches</span><span class="op">)</span>,
+         n_mstrs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Masters</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pct_app <span class="op">=</span> <span class="va">n_apprchs</span><span class="op">/</span><span class="va">n_students</span>,
+         pct_mst <span class="op">=</span> <span class="va">n_mstrs</span><span class="op">/</span><span class="va">n_students</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="district-assessments" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.5.2</span> District assessments<a href="key-tables-measures-and-metrics.html#district-assessments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="district-assessments" class="section level3">
+<h3>
+<span class="header-section-number">4.5.2</span> District assessments<a class="anchor" aria-label="anchor" href="#district-assessments"><i class="fas fa-link"></i></a>
+</h3>
 <p>IDEA produces in-house assessments for each major content area except for national and state EOY assessments. Typically, courses require all teachers and students to administer the same summative assessments and benchmarks, but formative assessments are left to each teacher to create.</p>
 <p>Summative assessments evaluate what a student has learned over time and is usually more high-stakes than other types of assignments. Examples of the most common summative assessments we administer include:</p>
 <ul>
@@ -811,8 +701,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>and more…</li>
 </ul>
 <p>In this section, we will only consider district assessments that are <em>centralized</em>, meaning that most schools must administer and scan in the results into Illuminate (<a href="https://ideapublicschools.illuminateed.com/">Texas</a> | <a href="https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&amp;prev_page=Main_NotDashboardPage&amp;page=SisLogin">Louisiana</a>), our main assessment platform.</p>
-<div id="illuminate-data" class="section level4 hasAnchor">
-<h4><span class="header-section-number">4.5.2.1</span> Illuminate data<a href="key-tables-measures-and-metrics.html#illuminate-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="illuminate-data" class="section level4">
+<h4>
+<span class="header-section-number">4.5.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
+</h4>
 <p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
 <p>The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.</p>
 <p>Illuminate then stores all data at two different levels:</p>
@@ -821,20 +713,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>item-level by student,</p></li>
 </ol>
 <p>each of which is stored in a different IABWA table.</p>
-<div id="naming-conventions" class="section level5 hasAnchor">
-<h5><span class="header-section-number">4.5.2.1.1</span> Naming conventions<a href="key-tables-measures-and-metrics.html#naming-conventions" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="naming-conventions" class="section level5">
+<h5>
+<span class="header-section-number">4.5.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
+</h5>
 <p>Most assessments have a standard naming convention:</p>
 <p><strong>SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
 <p>For example, a 6th grade ELA semester exam in Fall 2021 may have the name <strong>ELA_6thReading_F21_SE</strong>, or the first AP Spanish Language unit exam may have the name <strong>SPA_APSpanishLanguage_F21_UE1</strong>.</p>
 <p>A list of the most common codes used is included below:</p>
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th>Subject Code</th>
 <th>Semester</th>
 <th>Assessment</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>ELA - English Language Arts</td>
@@ -877,102 +769,170 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment.</p>
 </div>
-<div id="iabwa" class="section level5 hasAnchor">
-<h5><span class="header-section-number">4.5.2.1.2</span> IABWA<a href="key-tables-measures-and-metrics.html#iabwa" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="iabwa" class="section level5">
+<h5>
+<span class="header-section-number">4.5.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
+</h5>
 <p>This table aggregates item-level data for each student and reports a student’s performance on a single assessment.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwa">IABWA</a></p>
 <p><strong>Main metrics:</strong> Student-level data describing the assessment taken, the overall score, the performance band, and the mastery level</p>
 <p><strong>Assessment columns:</strong></p>
 <ul>
-<li><strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
-<li><strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
-<li><strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
-<li><strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
-<li><strong>[AssessmentDate]:</strong> Date of the assessment.</li>
-<li><strong>[AssessmentName]:</strong> Name of the assessment (see naming conventions, above).</li>
-<li><strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
-<li><strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
-<li><strong>[RawScore]:</strong> Raw number of points earned on the assessment.</li>
-<li><strong>[PercentCorrect]:</strong> Percent earned on the assessment.</li>
-<li><strong>[PointsPossible]:</strong> Total raw points available on the assessment.</li>
-<li><strong>[PerfomanceBand]:</strong> Description of the student’s performance (typically “Critical”, “Did Not Meet”, “Approaches”, “Meets”, “Masters”)</li>
-<li><strong>[PerfomanceBandNumber]:</strong> Numeric code for PerformanceBand (typically 1-5).</li>
-<li><strong>[PBStartRange]:</strong> Lower bound for a performance band, as a percent.</li>
-<li><strong>[PBEndRange]:</strong> Upper bound for a performance band, as a percent.</li>
-<li><strong>[Description]:</strong> Description of performance band interval, in words.</li>
-<li><strong>[Mastery]:</strong> 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not</li>
-<li><strong>[src]:</strong> Source of asssessment data (most are Illuminate, but some are from legacy systems)</li>
-<li><strong>[Scope]:</strong> Similar to AssessmentType, but more detailed.</li>
-<li><strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
+<li>
+<strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
+<li>
+<strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
+<li>
+<strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
+<li>
+<strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
+<li>
+<strong>[AssessmentDate]:</strong> Date of the assessment.</li>
+<li>
+<strong>[AssessmentName]:</strong> Name of the assessment (see naming conventions, above).</li>
+<li>
+<strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
+<li>
+<strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
+<li>
+<strong>[RawScore]:</strong> Raw number of points earned on the assessment.</li>
+<li>
+<strong>[PercentCorrect]:</strong> Percent earned on the assessment.</li>
+<li>
+<strong>[PointsPossible]:</strong> Total raw points available on the assessment.</li>
+<li>
+<strong>[PerfomanceBand]:</strong> Description of the student’s performance (typically “Critical”, “Did Not Meet”, “Approaches”, “Meets”, “Masters”)</li>
+<li>
+<strong>[PerfomanceBandNumber]:</strong> Numeric code for PerformanceBand (typically 1-5).</li>
+<li>
+<strong>[PBStartRange]:</strong> Lower bound for a performance band, as a percent.</li>
+<li>
+<strong>[PBEndRange]:</strong> Upper bound for a performance band, as a percent.</li>
+<li>
+<strong>[Description]:</strong> Description of performance band interval, in words.</li>
+<li>
+<strong>[Mastery]:</strong> 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not</li>
+<li>
+<strong>[src]:</strong> Source of asssessment data (most are Illuminate, but some are from legacy systems)</li>
+<li>
+<strong>[Scope]:</strong> Similar to AssessmentType, but more detailed.</li>
+<li>
+<strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
 </ul>
 <p><strong>Other useful fields:</strong></p>
 <ul>
-<li><strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
-<li><strong>[StudentNumber]:</strong> Use to link to the students table.</li>
-<li><strong>[TcpCourseCode]:</strong> This code uniquely links the assessment to the TCP course code.</li>
+<li>
+<strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
+<li>
+<strong>[StudentNumber]:</strong> Use to link to the students table.</li>
+<li>
+<strong>[TcpCourseCode]:</strong> This code uniquely links the assessment to the TCP course code.</li>
 </ul>
 </div>
-<div id="iabwaitems" class="section level5 hasAnchor">
-<h5><span class="header-section-number">4.5.2.1.3</span> IABWAItems<a href="key-tables-measures-and-metrics.html#iabwaitems" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div id="iabwaitems" class="section level5">
+<h5>
+<span class="header-section-number">4.5.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
+</h5>
 <p>This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwaitems">IABWAItems</a></p>
 <p><strong>Main metrics:</strong> Item-level data describing the assessment taken, the question and part, the student’s response, the correct answer, correctness, the standard, question type, weight, and points</p>
 <p><strong>Assessment columns:</strong></p>
 <ul>
-<li><strong>[IABWAItemID]:</strong> This number uniquely links an assessment item part to a student.</li>
-<li><strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
-<li><strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
-<li><strong>[AssessmentDate]:</strong> Date of the assessment.</li>
-<li><strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
-<li><strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
-<li><strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
-<li><strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
-<li><strong>[QuestionNumber]:</strong> Describes the question and part (e.g. 1a, 1b, 2, etc.)</li>
-<li><strong>[ItemStudentResponse]:</strong> The response(s) scanned in by the student or teacher</li>
-<li><strong>[ItemCorrectResponse]:</strong> The response(s) needed for full credit on the item.</li>
-<li><strong>[standard]:</strong> Describes the objective number, TEKS, etc.</li>
-<li><strong>[StandardsDescription]:</strong> Description of the objective in words.</li>
-<li><strong>[Supporting]:</strong> 1 = is a supporting objective; 0 = not</li>
-<li><strong>[Readiness]:</strong> 1 = is a readiness objective; 0 = not</li>
-<li><strong>[isCorrect]:</strong> 1 = student earned credit for question number; 0 = not</li>
-<li><strong>[Points]:</strong> Total points available for item.</li>
-<li><strong>[ReportingGroups]:</strong> Describes the reporting group of objectives.</li>
-<li><strong>[IsRubric]:</strong> ?</li>
-<li><strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
-<li><strong>[QuestionTypeName]:</strong> Describes the type of question (Multiple Choice, etc.)</li>
-<li><strong>[QuestionType]:</strong> Same as QuestionTypeName but abbr.</li>
-<li><strong>[ExtraCredit]:</strong> 1 = extra credit question; 0 = not</li>
-<li><strong>[IsAdvanced]:</strong> 1 = advanced question; 0 = not</li>
+<li>
+<strong>[IABWAItemID]:</strong> This number uniquely links an assessment item part to a student.</li>
+<li>
+<strong>[IABWAID]:</strong> This number uniquely links a student to an assessment.</li>
+<li>
+<strong>[ExternalTestID]:</strong> This number uniquely identifies an assessment.</li>
+<li>
+<strong>[AssessmentDate]:</strong> Date of the assessment.</li>
+<li>
+<strong>[SubjectID]:</strong> This number describes if the subject is math, ELA, etc.</li>
+<li>
+<strong>[Subject]:</strong> Same as SubjectID, but in words.</li>
+<li>
+<strong>[AssessmentReporingName]:</strong> One of two columns to choose a type of assessment.</li>
+<li>
+<strong>[AssessmentType]:</strong> One of two columns to choose a type of assessment.</li>
+<li>
+<strong>[QuestionNumber]:</strong> Describes the question and part (e.g. 1a, 1b, 2, etc.)</li>
+<li>
+<strong>[ItemStudentResponse]:</strong> The response(s) scanned in by the student or teacher</li>
+<li>
+<strong>[ItemCorrectResponse]:</strong> The response(s) needed for full credit on the item.</li>
+<li>
+<strong>[standard]:</strong> Describes the objective number, TEKS, etc.</li>
+<li>
+<strong>[StandardsDescription]:</strong> Description of the objective in words.</li>
+<li>
+<strong>[Supporting]:</strong> 1 = is a supporting objective; 0 = not</li>
+<li>
+<strong>[Readiness]:</strong> 1 = is a readiness objective; 0 = not</li>
+<li>
+<strong>[isCorrect]:</strong> 1 = student earned credit for question number; 0 = not</li>
+<li>
+<strong>[Points]:</strong> Total points available for item.</li>
+<li>
+<strong>[ReportingGroups]:</strong> Describes the reporting group of objectives.</li>
+<li>
+<strong>[IsRubric]:</strong> ?</li>
+<li>
+<strong>[State]:</strong> Two-letter state code (TX, LA, FL) where the assessment is administered.</li>
+<li>
+<strong>[QuestionTypeName]:</strong> Describes the type of question (Multiple Choice, etc.)</li>
+<li>
+<strong>[QuestionType]:</strong> Same as QuestionTypeName but abbr.</li>
+<li>
+<strong>[ExtraCredit]:</strong> 1 = extra credit question; 0 = not</li>
+<li>
+<strong>[IsAdvanced]:</strong> 1 = advanced question; 0 = not</li>
 <li><strong>[Weight]:</strong></li>
-<li><strong>[Maximum]:</strong> Maximum points available for item.</li>
-<li><strong>[ItemWeight]:</strong> Weight of item on question.</li>
-<li><strong>[Taught]:</strong> empty</li>
-<li><strong>[MultiRubric]:</strong> ?</li>
-<li><strong>[Taughtabbr]:</strong> NT = objective not taught; T = objective taught</li>
-<li><strong>[PossibleScore]:</strong> Maximum (weighted?) points available for item.</li>
-<li><strong>[RawScore]:</strong> Raw points the student earned for this item.</li>
-<li><strong>[PointsCorrect]:</strong> Weighted points the student earned for this item.</li>
-<li><strong>[PossibleScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; PossibleScore = taught</li>
-<li><strong>[RawScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; RawScore = taught</li>
-<li><strong>[PointsCorrectTaught]:</strong> Conditional on taught objective: 0 = not taught; PointsCorrect = taught</li>
+<li>
+<strong>[Maximum]:</strong> Maximum points available for item.</li>
+<li>
+<strong>[ItemWeight]:</strong> Weight of item on question.</li>
+<li>
+<strong>[Taught]:</strong> empty</li>
+<li>
+<strong>[MultiRubric]:</strong> ?</li>
+<li>
+<strong>[Taughtabbr]:</strong> NT = objective not taught; T = objective taught</li>
+<li>
+<strong>[PossibleScore]:</strong> Maximum (weighted?) points available for item.</li>
+<li>
+<strong>[RawScore]:</strong> Raw points the student earned for this item.</li>
+<li>
+<strong>[PointsCorrect]:</strong> Weighted points the student earned for this item.</li>
+<li>
+<strong>[PossibleScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; PossibleScore = taught</li>
+<li>
+<strong>[RawScoreTaught]:</strong> Conditional on taught objective: 0 = not taught; RawScore = taught</li>
+<li>
+<strong>[PointsCorrectTaught]:</strong> Conditional on taught objective: 0 = not taught; PointsCorrect = taught</li>
 </ul>
 <p><strong>Other useful fields:</strong></p>
 <ul>
-<li><strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
-<li><strong>[StudentNumber]:</strong> Use to link to the students table.</li>
+<li>
+<strong>[AcademicYear]:</strong> Use to filter the table to the appropriate school year.</li>
+<li>
+<strong>[StudentNumber]:</strong> Use to link to the students table.</li>
 </ul>
 </div>
 </div>
-<div id="other-sources" class="section level4 hasAnchor">
-<h4><span class="header-section-number">4.5.2.2</span> Other sources<a href="key-tables-measures-and-metrics.html#other-sources" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="other-sources" class="section level4">
+<h4>
+<span class="header-section-number">4.5.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
+</h4>
 <p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
 </div>
 </div>
-<div id="dibels" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.5.3</span> DIBELS<a href="key-tables-measures-and-metrics.html#dibels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dibels" class="section level3">
+<h3>
+<span class="header-section-number">4.5.3</span> DIBELS<a class="anchor" aria-label="anchor" href="#dibels"><i class="fas fa-link"></i></a>
+</h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
 <p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
@@ -980,9 +940,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Most important columns:</strong> [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]</p>
 <p><strong>Other useful fields:</strong></p>
 <ul>
-<li><strong>[School Year], [School Name], [Assessment Grade]:</strong> use to filter the table to the appropriate students</li>
-<li><strong>[Benchmark Period]:</strong> labeled as BOY, MOY, or EOY</li>
-<li><strong>[Student ID (District ID)]:</strong> use to match students back to the Students table.</li>
+<li>
+<strong>[School Year], [School Name], [Assessment Grade]:</strong> use to filter the table to the appropriate students</li>
+<li>
+<strong>[Benchmark Period]:</strong> labeled as BOY, MOY, or EOY</li>
+<li>
+<strong>[Student ID (District ID)]:</strong> use to match students back to the Students table.</li>
 <li>Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by <strong>[Student Last Name]</strong> and <strong>[Student First Name]</strong>. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.</li>
 </ul>
 <p><strong>Context:</strong></p>
@@ -991,49 +954,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>All students in K, 1 and 2 are assessed using DIBELS.</p>
 <ul>
-<li><strong>Which tests/columns are actually used?</strong>
+<li>
+<strong>Which tests/columns are actually used?</strong>
 <ul>
-<li><strong>[Assessment Measure-Composite Score-Levels]:</strong> A <em>composite level</em> is assigned to all students, regardless if they complete all sections. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
-<li><strong>[Assessment Measure-Composite Score-Score]:</strong> A <em>composite score</em> is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).</li>
-<li><strong>[Assessment Measure-LNF-Levels]:</strong> The LNF, or <em>Letter Naming Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
-<li><strong>[Assessment Measure-LNF-Score]:</strong> This is a numerical measure of LNF in the interval [0, 59+).</li>
-<li><strong>[Assessment Measure-PSF-Levels]:</strong> The PSF, or <em>Phonemic Segmentation Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
-<li><strong>[Assessment Measure-PSF-Score]:</strong> This is a numerical measure of PSF in the interval [0, 61+).</li>
-<li><strong>[Assessment Measure-NWF (CLS)-Levels]:</strong> The NWF, or <em>Nonsense Word Fluency</em> test, is administered to K-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
-<li><strong>[Assessment Measure-NWF (CLS)-Score]:</strong> This is a numerical measure of NWF in the interval [0, 46+).</li>
-<li><strong>[Assessment Measure-DORF (Fluency)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
-<li><strong>[Assessment Measure-DORF (Fluency)-Score]:</strong> This is a numerical measure of DORF - Fluency in the interval [0, 164+).</li>
-<li><strong>[Assessment Measure-DORF (Accuracy)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
-<li><strong>[Assessment Measure-DORF (Accuracy)-Score]:</strong> This is a numerical measure of DORF - Accuracy in the interval [0, 96+).</li>
+<li>
+<strong>[Assessment Measure-Composite Score-Levels]:</strong> A <em>composite level</em> is assigned to all students, regardless if they complete all sections. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-Composite Score-Score]:</strong> A <em>composite score</em> is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).</li>
+<li>
+<strong>[Assessment Measure-LNF-Levels]:</strong> The LNF, or <em>Letter Naming Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-LNF-Score]:</strong> This is a numerical measure of LNF in the interval [0, 59+).</li>
+<li>
+<strong>[Assessment Measure-PSF-Levels]:</strong> The PSF, or <em>Phonemic Segmentation Fluency</em> test, is administered to K-1 students only. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-PSF-Score]:</strong> This is a numerical measure of PSF in the interval [0, 61+).</li>
+<li>
+<strong>[Assessment Measure-NWF (CLS)-Levels]:</strong> The NWF, or <em>Nonsense Word Fluency</em> test, is administered to K-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-NWF (CLS)-Score]:</strong> This is a numerical measure of NWF in the interval [0, 46+).</li>
+<li>
+<strong>[Assessment Measure-DORF (Fluency)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, “At Benchmark”, and “Above Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-DORF (Fluency)-Score]:</strong> This is a numerical measure of DORF - Fluency in the interval [0, 164+).</li>
+<li>
+<strong>[Assessment Measure-DORF (Accuracy)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
+<li>
+<strong>[Assessment Measure-DORF (Accuracy)-Score]:</strong> This is a numerical measure of DORF - Accuracy in the interval [0, 96+).</li>
 <li>The remaining assessment measures were used historically but are no longer actively tested.</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>Why are there NAs for certain tests if the student took the assessment?</strong></li>
 </ul>
 <p>DIBELS has multiple required measures but can be implemented using <em>gating rules</em>, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.</p>
 <ul>
-<li><p><strong>Who can I ask for more context?</strong></p>
+<li>
+<p><strong>Who can I ask for more context?</strong></p>
 <ul>
 <li>Nkosi Geary-Smith is the Director of Early Literacy. She has context on the DIBELS assessment and how it is used.</li>
 <li>Chris Gonzalez is the VP of Accountability. He pulls the DIBELS data and uploads it to the warehouse.</li>
 <li>The University of Oregon maintains the <a href="https://dibels.uoregon.edu/">DIBELS site</a> and publishes guides on administering and interpreting scores.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 </div>
-<div id="renaissance-star-also-renstar-little-star" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.5.4</span> Renaissance STAR (also RenStar, Little Star)<a href="key-tables-measures-and-metrics.html#renaissance-star-also-renstar-little-star" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="renaissance-star-also-renstar-little-star" class="section level3">
+<h3>
+<span class="header-section-number">4.5.4</span> Renaissance STAR (also RenStar, Little Star)<a class="anchor" aria-label="anchor" href="#renaissance-star-also-renstar-little-star"><i class="fas fa-link"></i></a>
+</h3>
 <p><a href="https://www.renaissance.com/about-us/">Reinaissance</a> <a href="https://www.renaissance.com/products/star-assessments/">Star Assessments</a> are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of <a href="key-tables-measures-and-metrics.html#csi">CSI support</a>) as well as gauging achievement and growth of students in a way that is agnostics to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).</p>
 <p>It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student’s effort on any given test).</p>
-<div id="where-to-get-renstar-data" class="section level4 hasAnchor">
-<h4><span class="header-section-number">4.5.4.1</span> Where to get RenStar data?<a href="key-tables-measures-and-metrics.html#where-to-get-renstar-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="where-to-get-renstar-data" class="section level4">
+<h4>
+<span class="header-section-number">4.5.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
+</h4>
 <p>Accessessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not freuqently updated. The best best is to use:</p>
 <p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
 </div>
 </div>
 </div>
-<div id="teacher-staff-and-hiring-data" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.6</span> Teacher, Staff, and Hiring Data<a href="key-tables-measures-and-metrics.html#teacher-staff-and-hiring-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="jobvite-data" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.6.1</span> Jobvite Data<a href="key-tables-measures-and-metrics.html#jobvite-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="teacher-staff-and-hiring-data" class="section level2">
+<h2>
+<span class="header-section-number">4.6</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="jobvite-data" class="section level3">
+<h3>
+<span class="header-section-number">4.6.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+</h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
 <p>Here are some more facts about Jobvite data:</p>
@@ -1042,7 +1029,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>This file has columns including <code>Candidate Full Name</code>, <code>Candidate Email</code> (personal email used for the application), and some of the pre-hire selection measures, such as <code>GPA</code>. However, all 5 of the pre-hire selection measures are not included yet (<code>STEM Major</code>, <code>Teach For America status</code>, <code>Experience prior to IDEA</code>, <code>GPA</code>, and <code>Teacher Certification</code>). The data also has no <code>Employee IDs yet</code>, as this is a list of candidates. There is a <code>Hire Yes/No</code> column, which has “Yes” for those candidates who were offered a position and “No” for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.</p>
 <ul>
-<li><p>Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for <code>Category == "Teaching"</code>)</p>
+<li>
+<p>Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for <code>Category == "Teaching"</code>)</p>
 <ul>
 <li>Contains those who are Hired = Yes and Hired = No. “Hired = Yes” means they were offered the position, but does not indicate if they actually accepted it or not.</li>
 <li>Each person may apply for more than one job opening, and if they do, they will have a unique Requisition ID for each application (even though it is the same candidate applying for each separate position).</li>
@@ -1051,7 +1039,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Contains everyone who applied from October to the following July, for the subsequent August Start Date (or start dates after that year).</li>
 <li>Most people who applied in Jobvite 19-20 (10/18 to 7/19), started in Fall 2019 (19-20 Academic Year)</li>
 <li>But a few of those started in Fall 2020 and Fall 2021.</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p><strong>Jobvite File facts</strong>
 1. 19-20 – 2nd year of Jobvite data (18-19 is first and starting year of Jobvite data)
@@ -1067,8 +1056,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </em> Contains Tentative Start Date column</p></li>
 </ol>
 </div>
-<div id="tcpteacher-export-data" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.6.2</span> TCP/Teacher Export Data<a href="key-tables-measures-and-metrics.html#tcpteacher-export-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tcpteacher-export-data" class="section level3">
+<h3>
+<span class="header-section-number">4.6.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+</h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
 + GET (35%): Manager and Self Guidepost Ratings contain 6 components
@@ -1091,14 +1082,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).</li>
 </ul>
 <ol style="list-style-type: decimal">
-<li>18-19<br />
+<li>18-19<br>
 </li>
 </ol>
 <ul>
 <li>From Alex, see email</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
-<li>19-20<br />
+<li>19-20<br>
 </li>
 </ol>
 <ul>
@@ -1115,8 +1106,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Not available yet!</strong></li>
 <li>No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.</li>
 </ul>
-<div id="data-matching" class="section level4 hasAnchor">
-<h4><span class="header-section-number">4.6.2.1</span> Data Matching<a href="key-tables-measures-and-metrics.html#data-matching" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="data-matching" class="section level4">
+<h4>
+<span class="header-section-number">4.6.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+</h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
 <li>Jobvite 20-21 to Teacher Export 20-21
@@ -1129,7 +1122,8 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 + Removing Jobvite 20-21 Hires who did not have a Start Date of Fall 2020
 + Removing all Teacher Export 19-20 and Teacher Export 20-21, who did not have a Job Title of Teacher
 + Removing all Teacher Export 19-20 and Teacher Export 20-21, who had Internal Role as:</li>
-</ul></li>
+</ul>
+</li>
 <li>SPED CP</li>
 <li>SPED AC</li>
 <li>PE CP</li>
@@ -1137,116 +1131,138 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <li>(This is due to SPED and PE having state mandated license requirements that are not required for the other subjects, so these should be analyzed separately).
 <ul>
 <li>Removing Teacher Export 19-20 Teachers who did not work in 19-20 Academic Year</li>
-</ul></li>
+</ul>
+</li>
 <li>(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
 <ul>
 <li>Removing Teacher Export 20-21 Teachers who did not work in 20-21 Academic Year</li>
-</ul></li>
+</ul>
+</li>
 <li>(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)</li>
 </ul>
 </div>
-<div id="join-tables" class="section level4 hasAnchor">
-<h4><span class="header-section-number">4.6.2.2</span> Join Tables<a href="key-tables-measures-and-metrics.html#join-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="join-tables" class="section level4">
+<h4>
+<span class="header-section-number">4.6.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+</h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
 * Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email</p>
 </div>
 </div>
 </div>
-<div id="evaluation-projects" class="section level2 hasAnchor">
-<h2><span class="header-section-number">4.7</span> Evaluation Projects<a href="key-tables-measures-and-metrics.html#evaluation-projects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="st-century-afterschool-programs" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.7.1</span> 21st Century Afterschool Programs<a href="key-tables-measures-and-metrics.html#st-century-afterschool-programs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="evaluation-projects" class="section level2">
+<h2>
+<span class="header-section-number">4.7</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
+</h2>
+<div id="st-century-afterschool-programs" class="section level3">
+<h3>
+<span class="header-section-number">4.7.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
+</h3>
 <p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
 <p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury]</p>
 <p><strong>Tables:</strong></p>
 <ul>
 <li><p><strong><em>[dbo].[Students]</em></strong> This table tracks student program and activity participation.</p></li>
-<li><p><strong>Useful Fields:</strong></p>
+<li>
+<p><strong>Useful Fields:</strong></p>
 <ul>
-<li><strong>FIRST_NAME:</strong> the student’s first name;</li>
-<li><strong>LAST_NAME:</strong> the student’s last name;</li>
-<li><strong>STUDENT_NUMBER:</strong> the student’s 108 number;</li>
-<li><strong>ACADEMIC_SUPPORT:</strong> binary indicator for participation in academic support activities;</li>
-<li><strong>COLLEGE_CAREER_READINESS:</strong> binary indicator for participation in college and career readiness activities;</li>
-<li><strong>FAMILY_ENGAGEMENT:</strong> binary indicator for participation in family engagement activities;</li>
-<li><strong>WHENCREAATED:</strong> a date/time stamp indicating the date of participation;</li>
-<li><strong>WHENMODIFIED:</strong> a date/time stamp indicating the date when the record was modified. Most values are null.</li>
-</ul></li>
+<li>
+<strong>FIRST_NAME:</strong> the student’s first name;</li>
+<li>
+<strong>LAST_NAME:</strong> the student’s last name;</li>
+<li>
+<strong>STUDENT_NUMBER:</strong> the student’s 108 number;</li>
+<li>
+<strong>ACADEMIC_SUPPORT:</strong> binary indicator for participation in academic support activities;</li>
+<li>
+<strong>COLLEGE_CAREER_READINESS:</strong> binary indicator for participation in college and career readiness activities;</li>
+<li>
+<strong>FAMILY_ENGAGEMENT:</strong> binary indicator for participation in family engagement activities;</li>
+<li>
+<strong>WHENCREAATED:</strong> a date/time stamp indicating the date of participation;</li>
+<li>
+<strong>WHENMODIFIED:</strong> a date/time stamp indicating the date when the record was modified. Most values are null.</li>
+</ul>
+</li>
 </ul>
 </div>
-<div id="camp-rio" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.7.2</span> Camp Rio<a href="key-tables-measures-and-metrics.html#camp-rio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="camp-rio" class="section level3">
+<h3>
+<span class="header-section-number">4.7.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
+</h3>
 </div>
-<div id="tslip" class="section level3 hasAnchor">
-<h3><span class="header-section-number">4.7.3</span> TSLIP<a href="key-tables-measures-and-metrics.html#tslip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tslip" class="section level3">
+<h3>
+<span class="header-section-number">4.7.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
+</h3>
 <p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
 
 </div>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="the-data-warhehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warhehouse and how to access it</a></div>
+<div class="next"><a href="projects.html"><span class="header-section-number">5</span> Projects</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#key-tables-measures-and-metrics"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li>
+<a class="nav-link" href="#the-students-table"><span class="header-section-number">4.1</span> The Students Table</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#common-queries"><span class="header-section-number">4.1.1</span> Common queries</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#student-persistence"><span class="header-section-number">4.2</span> Student Persistence</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><span class="header-section-number">4.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li></ul>
+</li>
+<li><a class="nav-link" href="#college-application-matriculation-metrics"><span class="header-section-number">4.3</span> College Application &amp; Matriculation Metrics</a></li>
+<li><a class="nav-link" href="#csi"><span class="header-section-number">4.4</span> Critical Student Intervention (CSI) Identification</a></li>
+<li>
+<a class="nav-link" href="#assessment-data"><span class="header-section-number">4.5</span> Assessment Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#state-of-texas-assessments-of-academic-readiness-staar"><span class="header-section-number">4.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
+<li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.5.2</span> District assessments</a></li>
+<li><a class="nav-link" href="#dibels"><span class="header-section-number">4.5.3</span> DIBELS</a></li>
+<li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.5.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.6</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.6.1</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.6.2</span> TCP/Teacher Export Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.7</span> Evaluation Projects</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.7.1</span> 21st Century Afterschool Programs</a></li>
+<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.7.2</span> Camp Rio</a></li>
+<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.7.3</span> TSLIP</a></li>
+</ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="the-data-warhehouse-and-how-to-access-it.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/04-Tables-Measures-and-Metrics.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/04-Tables-Measures-and-Metrics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-20.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-Tables-Measures-and-Metrics.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -1258,7 +1274,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
