@@ -66,7 +66,7 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  13 | Traumatic brain injury
  14 | Noncategorical early childhood
 
-```{r disability, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT DISTINCT 
  [StudentNumber], 
  [PrimaryDisabilityCode] AS [DisabilityCode], 
@@ -199,7 +199,10 @@ Daily attendance is taken through PowerSchool to see which students are presentl
 * **[Absences]**: Indicates 1.00 for a full-day absence, or 0.50 for a half-day absence.
 * **[VAbsences]**: Unsure if this is different from [Absences].
 * **[SchoolYear]**: Indicates 1 for a new-to-IDEA student, or 2+ for a returning student.
+* **[SchoolTypeOperation]:** DO NOT USE. This information has been found to be inaccurate. We will work on creating a table that has the corrected information by school and academic year, but for now, "Launching", "Scaling", and "Fully Scaled" operation data is stored in an Excel file in the Enrollment GitHub repo.
 
+
+### Common queries
 
 To pull student daily attendance for the current school year at a specific school on a certain date, you can use a few functions to pull the data:
 
@@ -217,7 +220,10 @@ get_student_daily_attendance() %>%  # this is a built-in function for {ideadata}
 
 ```
 
-Attendance can also be used to obtain daily total enrollment at multiple levels, including by grade level at each school.
+
+### Other uses
+
+Attendance can also be used to obtain **daily total enrollment** at multiple levels, including by grade level at each school.
 
 ```{r enrollment_ex, echo=TRUE, eval=FALSE}
 get_student_daily_attendance() %>%
@@ -242,6 +248,9 @@ get_student_daily_attendance() %>%
   summarise(n_enrolled = sum(Membership))
 
 ```
+
+
+The other side of enrollment is **student persistence**. To see how enrollment is used with student persistence, jump to [the student persistence section](https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence).
 
 
 ## Student Persistence
@@ -399,7 +408,7 @@ To address the achievement gap among students, Dolores Gonzalez, our Chief Progr
 
 * **SQL Code Example:**
 
-```{r csi1, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT DISTINCT AcademicYear, [Subject], ProgramID
 FROM (SELECT [AcademicYear]
       ,[ProgramID]
@@ -415,7 +424,7 @@ GROUP BY AcademicYear, [Subject], ProgramID
 
 * **SQL Code Example:**
 
-```{r csi2, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
 FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
 INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
