@@ -1,4 +1,4 @@
-# The Data Warhehouse and how to access it
+# The Data Warehouse and how to access it
 
 The [first section](#section-the-data-warehouse) that follows provides lots of context about IDEA's data warehouse.
 
