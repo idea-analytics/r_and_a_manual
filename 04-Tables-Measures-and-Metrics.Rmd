@@ -66,7 +66,7 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  13 | Traumatic brain injury
  14 | Noncategorical early childhood
 
-```{r disability, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT DISTINCT 
  [StudentNumber], 
  [PrimaryDisabilityCode] AS [DisabilityCode], 
@@ -172,6 +172,85 @@ get_students() %>%
          LastName)
 ```
 
+
+## Student Attendance
+
+Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked *absent (A)* by the teacher, or as *tardy present (TP)* at the school's front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an **Official Attendance-Taking Time or Period (OATT/OATP)**, a roughly 10-minute window for all teachers with a class at that time to submit the day's official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.
+
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
+
+**Main metrics:** Full-day vs. half-day attendance; number of absences; new to IDEA students
+
+**Important columns:**
+
+* **[AcademicYear]**: yyyy-yyyy
+* **[SchoolName]**: IDEA [Campus] [SchoolType]
+* **[schoolnumber]**: Note that the column name is stored in all lowercase.
+* **[SchoolShortName]**: Campus name only
+* **[SchoolType]**: Academy or College Prep
+* **[RegionDescription]**
+* **[GradeLevelID]**: Uses the values -1 and 0 for PK and K, respectively.
+* **[GradeLevel]**: Uses the labels PK and K.
+* **[AttStudentKey]**: Identifying key for each student for each day.
+* **[WeekNumber]**: Gives the week of the school year.
+* **[DateNumber]**: Gives the day number of the school year (1, 2, 3, ..., 180).
+* **[AttDate]**: Gives the actual date of the record.
+* **[Membership]**: Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only).
+* **[Absences]**: Indicates 1.00 for a full-day absence, or 0.50 for a half-day absence.
+* **[VAbsences]**: Unsure if this is different from [Absences].
+* **[SchoolYear]**: Indicates 1 for a new-to-IDEA student, or 2+ for a returning student.
+* **[SchoolTypeOperation]:** DO NOT USE. This information has been found to be inaccurate. We will work on creating a table that has the corrected information by school and academic year, but for now, "Launching", "Scaling", and "Fully Scaled" operation data is stored in an Excel file in the Enrollment GitHub repo.
+
+
+### Common queries
+
+To pull student daily attendance for the current school year at a specific school on a certain date, you can use a few functions to pull the data:
+
+```{r attendance_ex, echo=TRUE, eval=FALSE}
+current_school_year <- "2021-2022"
+our_school <- "IDEA Walzem Academy"
+date <- "2022-04-01"
+
+# gets individual attendance records by student
+
+get_student_daily_attendance() %>%  # this is a built-in function for {ideadata}
+  filter(AcademicYear == current_school_year,
+         SchoolName == our_school,
+         AttDate == date) 
+
+```
+
+
+### Other uses
+
+Attendance can also be used to obtain **daily total enrollment** at multiple levels, including by grade level at each school.
+
+```{r enrollment_ex, echo=TRUE, eval=FALSE}
+get_student_daily_attendance() %>%
+  rename(SchoolNumber = schoolnumber,
+         Region = RegionDescription) %>%
+  
+# pick a specific school and academic year 
+  filter(AcademicYear == current_school_year,
+         SchoolName == our_school) %>%
+  
+# groups by grade level at a school per day  
+  group_by(SchoolNumber,
+           SchoolName,
+           SchoolShortName,
+           SchoolType,
+           GradeLevelID,
+           AttDate,
+           DateNumber) %>%                     
+  distinct() %>%
+  
+# counts total number of students enrolled  
+  summarise(n_enrolled = sum(Membership))
+
+```
+
+
+The other side of enrollment is **student persistence**. To see how enrollment is used with student persistence, jump to [the student persistence section](https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence).
 
 
 ## Student Persistence
@@ -329,7 +408,7 @@ To address the achievement gap among students, Dolores Gonzalez, our Chief Progr
 
 * **SQL Code Example:**
 
-```{r csi1, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT DISTINCT AcademicYear, [Subject], ProgramID
 FROM (SELECT [AcademicYear]
       ,[ProgramID]
@@ -345,7 +424,7 @@ GROUP BY AcademicYear, [Subject], ProgramID
 
 * **SQL Code Example:**
 
-```{r csi2, echo=TRUE, eval=FALSE}
+```{sql, eval=FALSE}
 SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
 FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
 INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
