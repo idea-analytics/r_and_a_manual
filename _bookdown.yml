@@ -1,5 +1,7 @@
-book_filename: "bookdown-demo"
+book_filename: "r-and-a-manual"
+new_session: false
+before_chapter_script: _common.R
+delete_merged_file: true
 language:
   ui:
     chapter_name: "Chapter "
-delete_merged_file: true

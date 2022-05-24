@@ -58,41 +58,43 @@ DiagrammeR::grViz("
           color = '#626363',
           fontcolor = white,
           fontsize=10]
-    DSPS [label=<DS-PS<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
-    DS3  [label=<DS-III<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
-    DSOT [label=<DS-OT<br/><font point-size='6'>[REDACTED-HOST]</font>>] 
+    SRC1 [label=<SRC1<br/><font point-size='6'>RGVPDSD-DWSRC1</font>>]; 
+    SRC2  [label=<SRC2<br/><font point-size='6'>RGVPDSD-DWSRC2	</font>>]; 
+    SRC3 [label=<SRC3<br/><font point-size='6'>RGVPDSD-DWSRC3</font>>];
+    SRC4 [label=<SRC3<br/><font point-size='6'>RGVPDSD-DWSRC4</font>>];
+    SRC5 [label=<SRC3<br/><font point-size='6'>RGVPDSD-DWSRC5</font>>];
   
     node [fillcolor= '#1a4784']
-    PROD1 [label=<PROD1<br/><font point-size='6'>[REDACTED-HOST]</font>>]; 
-    PROD2 [label=<PROD2<br/><font point-size='6'>[REDACTED-HOST]</font>>]
+    PROD1 [label=<PROD1<br/><font point-size='6'>RGVPDSD-DWPRD1</font>>]; 
+    PROD2 [label=<PROD2<br/><font point-size='6'>RGVPDSD-DWPRD2</font>>]
     
     node [fillcolor= '#a4c364']
-    RS2 [label=<RS2<br/><font point-size='6'>[REDACTED-HOST] </font>>];
-    RS1 [label=<RS1<br/><font point-size='6'>[REDACTED-HOST] </font>>]
+    RS2 [label=<RS2<br/><font point-size='6'>RGVPDSD-DWRPT1</font>>];
+    RS1 [label=<RS1<br/><font point-size='6'>RGVPDSD-DWRPT1</font>>]
   
   node [fillcolor= '#53b4cc']
   STHIS [label= <ST-HIS<br/><font point-size='6'> xxxxxx-STHist </font>>]; 
   RSHIS [label=<RS-HIS<br/><font point-size='6'> xxxxxx-SQLRPTHis  </font>>]
  
   node [fillcolor = firebrick]
-  FO1 [label =<FO1<br/><font point-size='6'> Local Failover </font>>]
+  FO1 [label =<FO1<br/><font point-size='6'> San Antonio Failover </font>>]
   
   node [shape = box, fontname = Helvetica, fillcolor= '#ffde75', fontcolor = black]
   LOGI
 
   # subgraph statements
-  subgraph cluster_ds {rank = same; style = dotted; DSPS; DS3; DSOT; label='1. Data Storage'}
+  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label='1. Source Data'}
   subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = '2. Production'}
   subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label='4. Reporting'}
   subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = '3. Historical' }
   
   #edges statement
   edge [color = '#626363', arrowhead=vee]
-  {DSPS DS3} -> PROD1 
-  {DSOT} -> PROD2
-   PROD1 -> {DSOT DS3} [label='Look-ups', color = gray, style=dashed, fontcolor=gray, fontsize=7]
-   PROD1 -> RS2
-   PROD2 -> RS1
+  {SRC1 SRC3 SRC4 SRC5} -> PROD1 
+  {SRC2} -> PROD2
+   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label='Look-ups', color = gray, style=dashed, fontcolor=gray, fontsize=7]
+   PROD1 -> RS1
+   PROD2 -> RS2
   {PROD1 PROD2} -> FO1 [color = firebrick]
   {PROD1 PROD2} -> STHIS
    STHIS -> RSHIS
@@ -109,53 +111,51 @@ Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which 
 
 The following sections provide some details on the what databases might be found on each server.
 
-#### DS Servers
-**NOTE: the DS servers have names that do not correspond the the servers' URLS.  Why this is the case is not clear, but this is something to pay attention to when work with data from these sources**
+#### SRC Servers
+These servers are were source data from various applications is landed. 
 
-* **`DS-PS`** is hosted on  `[REDACTED-HOST]` and serves as a source for `PROD1`.  Most the data hosted on `DS-PS` mirror PowerSchool's Oracle back-end (espececially the `Schools`, `ADA`, and `Enrollment` databases), but it also has data from Teams Insights, staffing, college applications and outcomes, student persistence, among other things. 
+* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX, LA, FL, and OH.
 
   * **Databases**:
 
-    * ADA  
-    * Attendance
-    * BlendedLearning
-    * CNP
-    * Colleges
-    * Enrollment
-    * Finance
-    * Insights: data from Microsoft Teams
-    * Persistence
-    * Schools: key data from PowerSchool
-    * Schools.DL
-    * Staffing
-    * Survey
+    * SRC_Texas_Schools
+    * SRC_Texas_Travis_Schools
+    * SRC_Louisiana_Schools
+    * SRC_Florida_Schools
+    * SRC_Ohio_Schools
+    * SRC_AD
+    * Master_Schools
+    * TravisSnapshotData
     
   * **Sources**:
     
     * PowerSchool
-    * Other undefined sources 
+    * Skyward
+    * Focus
 
   * **Targets**:
     
-    * `Prod1`
+    * `PROD1`
     
 
-* **`DS-III`** is hosted on  `1044407-SQLDS2`  and serves as a source for `PROD2`. (note that this is a bit confusing . . . which makes this writer think we may have this wrong; why would something called `DS-III` have  server named `DS2` that mostly provides source data to `PROD2`?) The data hosted on `DS-III` is almost exclusively source data from testing platforms like Illuminate DnA, AP, IB, ACT, and SAT. 
+* **`SRC2`** is hosted on  `RGVPDSD-DWSRC2`  and serves as a source for `PROD2` and exclusively source data from assessment platforms like Edcite, Illuminate DnA, AP, IB, ACT, and SAT. 
 
   * **Databases**:
-    
-    * SRC_IA 
-    * SRC_IB 
-    * SRC_AP 
-    * SRC_LEAP 
-    * SRC_EA 
-    * SRC_Dibles 
-    * SRC_NWEA 
-    * SRC_Plan 
-    * SRC_SAT 
-    * SRC_Telpas 
-    * SRC_ACT 
-    * SRC_Explorer  
+    * lk_Schools          
+    * SRC_Accountability  
+    * SRC_ACT             
+    * SRC_AP              
+    * SRC_Dibles          
+    * SRC_EA              
+    * SRC_IA              
+    * SRC_IANew           
+    * SRC_IB              
+    * SRC_Ohio_Assessments
+    * SRC_StateAssessments
+    * SRC_EXPLORER        
+    * SRC_NWEA            
+    * SRC_SAT             
+    * SRC_PLAN   
 
     
   * **Sources**:
@@ -165,28 +165,40 @@ The following sections provide some details on the what databases might be found
 
   * **Targets**:
     
-    * `Prod2`
+    * `PROD2`
     
-* **DS-OT** is hosted on `[REDACTED-HOST] `  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learing platforms. 
+* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learing platforms. 
 
   * **Databases**:
+    * lk_Schools
+    * SRC_Alumni
+    * SRC_AssetPanda
+    * SRC_CollegeSuccess
+    * SRC_CornerStoneEvaluations
+    * SRC_DMac
+    * SRC_GetRatings
+    * SRC_HealthOfficeAnywhere
+    * SRC_HR
+    * SRC_Naviance
+    * SRC_OpsCampusRanking
+    * SRC_PanoramaSurveys
+    * SRC_Recruitment
+    * SRC_SchoolMint
+    * SRC_StaffRetention
+    * SRC_STMATH
+    * SRC_Stream
+    * SRC_Teachboost
+    * SRC_TSI
+    * SRC_TylerMunis
+    * SRC_Wrike
+    * SRC_Zendesk
+    * SRC_ZendeskDev
+    * TCPAppDev
+    * SRC_JobVite
+    * SRC_TTM
+    * SRC_FitnessGram
+    * SRC_NationalClearingHouse
     
-      * SRC_Zendesk
-      * SRC_Naviance
-      * SRC_StMath
-      * SRC_DreamBox
-      * SRC_IHT 
-      * SRC_TylerMunis 
-      * SRC_TeachBoost 
-      * SRC_StaffRetention 
-      * SRC_SchoolMint
-      * SRC_Recruitment
-      * SRC_OpsCampusRanking 
-      * SRC_JobVite 
-      * SRC_HR SRC_GetRating 
-      * SRC_ConnerStoneEvaluations 
-      * SRC_BlendedLearning 
-      * IdeaInstructionReporting 
       
       
   * **Sources**:
@@ -196,47 +208,83 @@ The following sections provide some details on the what databases might be found
 
   * **Targets**:
     
-    * `Prod1`
+    * `PROD1`
       
-    
+* **SRC4** is hosted on `RGVPDSD-DWSRC4`  and serves as a source for `PROD1`.  Databases focus on source data from various individualized learning/blended learnng platforms. 
 
+  * **Databases**:
+    * lk_Schools         
+    * SRC_AR             
+    * SRC_BlendedLearning
+    * SRC_IHT    
+    
+      
+  * **Sources**:
+    
+    * See the database names just above
+    * `PROD1` for lookup data about students and schools
+
+  * **Targets**:
+    
+    * `PROD1`    
+
+
+* **SRC5** is hosted on `RGVPDSD-DWSRC5`  and serves as a source for `PROD1`.  Databases focus on source data Microsoft Teams
+
+  * **Databases**:
+    * TeamsAttendance   
+    
+      
+  * **Sources**:
+    
+    * See the database names just above
+    * `PROD1` for lookup data about students and schools
+
+  * **Targets**:
+    
+    * `PROD1`    
 
 #### PROD Servers
 
-* **PROD1** is hosted on ` [REDACTED-HOST]` and contains a variety of data bases sourced from `DS-PS` and `DS-OT`. The key studetns, schools, and regions data is found here and is infact used by `DS-III` and `DS-OT`. Microsoft Insights data is now found here as well. This is the where transformed data is stored that is moved to `RS2 ` (again, it is not clear why the server number doesn't quite line up as we move from initial DS to PROD to RS).
+* **PROD1** is hosted on `RGVPDSD-DWPRD1` and contains a variety of data bases sourced from all `SRC` servers except for `SRC2`. The key students, schools, and regions data is found here and is 
 
   * **Databases**:
-
-    * ADA  
-    * Attendance
-    * BlendedLearning
-    * CNP
-    * Colleges
-    * Enrollment
-    * Finance
-    * Insights: data from Microsoft Teams
-    * Persistence
-    * Schools: key data from PowerSchool
-    * Schools.DL
-    * Staffing
-    * Survey
+    * ADA               
+    * BlendedLearning   
+    * dwSnapshots       
+    * Enrollment        
+    * IT                
+    * Persistence       
+    * PROD1             
+    * ProductDevelopment
+    * CollegeSuccess    
+1   * Matriculation     
+1   * SSISTemp          
+1   * Staffing          
+1   * DashboardSettings 
     
   * **Sources**:
     
-    * `DS-PS`
-    * `DS-OT`
+    * `SRC1`
+    * `SRC3`
+    * `SRC4`
+    * `SRC5`
   
  * **Targets**:
  
-  * `RS2`
+  * `RS1`
   * `ST-HIS`
   * `FO1`
   
-* **PROD2** hosts all other data that is not on `PROD`, which is to say data initially stored in `DS-III`.  This is the source server for `RS1` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
+* **PROD2** hosts all assessement data for all state  This is the source server for `RS2` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
 
   * **Databases**:
-  
-    * Assessments
+    * Assessments  
+    * lk_Schools   
+    * PROD2        
+    * SSISTemp  
+    
+    
     * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
     
 #### RS and Hisotrical data Servers
@@ -294,35 +342,26 @@ R&A tends not to use these tables very often. `RS1`, `RS2`, and `RS-HIS` all hav
 
 ### Server, Table, and Field Lookup
 
-Table \@ref(fig:display-dw-tables) provides details on servers, databases, tables, and fields.  While it is not complete, it does cover the majority of our data infrastucture.
+The easiest way to explore databases and tables available in the data warehouse is to use the [`ideadata`](https://idea-analytics.github.io/ideadata/) packages's `view_warehouse_metadata()` function, which will launch a fiterable table in the RStudio IDEA.  
 
-```{r display-dw-tables, echo=FALSE, warning=FALSE, fig.cap="Data warehouse details"}
-rna_dw_usage %>% 
-  janitor::clean_names("title") %>% 
-  DT::datatable(filter = "top", rownames = FALSE, )
+```{r display-dw-tables, eval=FALSE, echo=TRUE, warning=FALSE, fig.cap="Data warehouse details"}
+library(ideadata)
+
+view_warehouse_metadata()
 ```
 
+![Example from running `view_warehouse_metadata()`](img/view_ware_house_meta_data.png "Example from running `view_warehouse_metadata()")
 
-
-### Databases that R&A frquently uses. 
-```{r echo=FALSE}
-rna_dw_usage %>% filter(r_and_a_uses) %>% 
-  select(server_name, database_name) %>% 
-  distinct() %>% 
-  janitor::clean_names("title") %>% 
-  DT::datatable(filter = "top", rownames = FALSE)
-  
-```
-: List of Windows Servers hosting SQL Server DBs and their IP Addresses
+More details on accessing the data warehouse from R are in the following section.
 
 ## Accessing the data warehouse from R
 
-The most straightforward way to access the data warehouse is to use our own, bespoke r package: `ideadata`, which is [maintained on github](https://github.com/idea-analytics/ideadata)
+The most straightforward way to access the data warehouse is to use our own, bespoke r package: `ideadata`, which is [maintained on github](https://github.com/idea-analytics/ideadata) and has [its own documentation site](https://idea-analytics.github.io/ideadata/).
  
 ### Installation
 
 
-Since `ideadata` is an internal IDEA package there is only a development version, which is installed from [GitHub](https://github.com/) with:
+Since `ideadata` is an internal IDEA package, there is only a development version, which is installed from [GitHub](https://github.com/) with:
 
 ``` {r install, eval=FALSE}
 #install.packages("remotes")
@@ -390,9 +429,7 @@ The `ideadata` package has a function that will open up a sortable, filterable, 
 :::
 
 
-## Key tables
-
-This section details important tables.  In general you want to stick with databases `PROD1` or `PROD2` but your mileage may vary. 
-
+::: {.tip}
 Another important aspect of the warehouse is that the sources system for most student data is our SIS: PowerSchool.  The [PowerSchool Tables Data Dictionary](http://www.albertapsug.ca/uploads/1/5/1/2/15120130/ps10x_data_dictionary_tbl.pdf) is a helpful resource in understanding fields and relationships between tables. 
+:::
 
