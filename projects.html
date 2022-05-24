@@ -47,7 +47,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
 <li><a class="" href="who.html"><span class="header-section-number">2</span> Who we are</a></li>
-<li><a class="" href="the-data-warhehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warhehouse and how to access it</a></li>
+<li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="active" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
 <li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
@@ -174,8 +174,8 @@
 <span class="header-section-number">5.1.3.2.1</span> Comand line<a class="anchor" aria-label="anchor" href="#comand-line"><i class="fas fa-link"></i></a>
 </h5>
 <p>Here I’m saving this to temporary space, by navigating to <code>~/tmp/~</code> and then cloning the data:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="projects.html#cb19-1"></a><span class="bu">cd</span> ~/tmp/</span>
-<span id="cb19-2"><a href="projects.html#cb19-2"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="projects.html#cb21-1"></a><span class="bu">cd</span> ~/tmp/</span>
+<span id="cb21-2"><a href="projects.html#cb21-2"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
 <p>This will pull down all the content of the repo: files, folders, all commits, all branches. Really the whole kit and kaboodle.</p>
 </div>
 <div id="rstudio" class="section level5">
@@ -211,10 +211,10 @@
 <span class="header-section-number">5.1.3.3.1</span> Command line<a class="anchor" aria-label="anchor" href="#command-line"><i class="fas fa-link"></i></a>
 </h5>
 <p>It’s pretty straightforward. You create the branch, by giving a short but meaningful name, and then check it out.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="projects.html#cb20-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
-<span id="cb20-2"><a href="projects.html#cb20-2"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="projects.html#cb22-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
+<span id="cb22-2"><a href="projects.html#cb22-2"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
 <p>Or you can do both of those moves in one line by using <code>git checkout</code> with the <code>-b</code> flag:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="projects.html#cb21-1"></a><span class="fu">git</span> checkout -b update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="projects.html#cb23-1"></a><span class="fu">git</span> checkout -b update-bio-cjh</span></code></pre></div>
 </div>
 <div id="rstudio-1" class="section level5">
 <h5>
@@ -240,16 +240,16 @@
 <span class="header-section-number">5.1.3.5</span> Command line<a class="anchor" aria-label="anchor" href="#command-line-1"><i class="fas fa-link"></i></a>
 </h4>
 <p>after saving you’ll run the <code>git commit</code> command with the <code>-a</code> (adds all changes) and <code>-m</code> (add commit message) flag with a short description of what you did.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="projects.html#cb22-1"></a><span class="fu">git</span> commit -a -m <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="projects.html#cb24-1"></a><span class="fu">git</span> commit -a -m <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
 <p>You should do this often. After a while you’ll want to push your changes up to Github (frequently, but not as often as commits):</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="projects.html#cb23-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="projects.html#cb25-1"></a><span class="fu">git</span> push</span></code></pre></div>
 <p>You’ve likely not yet defined where this remote branch should go, but git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch.:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="projects.html#cb24-1"></a><span class="ex">fatal</span>: The current branch update-bio-cjh has no upstream branch.</span>
-<span id="cb24-2"><a href="projects.html#cb24-2"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
-<span id="cb24-3"><a href="projects.html#cb24-3"></a></span>
-<span id="cb24-4"><a href="projects.html#cb24-4"></a>    <span class="fu">git</span> push --set-upstream origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="projects.html#cb26-1"></a><span class="ex">fatal</span>: The current branch update-bio-cjh has no upstream branch.</span>
+<span id="cb26-2"><a href="projects.html#cb26-2"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
+<span id="cb26-3"><a href="projects.html#cb26-3"></a></span>
+<span id="cb26-4"><a href="projects.html#cb26-4"></a>    <span class="fu">git</span> push --set-upstream origin update-bio-cjh</span></code></pre></div>
 <p>Go ahead and copy and run that command.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="projects.html#cb25-1"></a><span class="fu">git</span> push --set-upstream origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="projects.html#cb27-1"></a><span class="fu">git</span> push --set-upstream origin update-bio-cjh</span></code></pre></div>
 <p>After that you can just use <code>git push</code> and you’ll branch changes will be saved remotely.</p>
 </div>
 <div id="maintaining-large-files" class="section level4">
@@ -271,15 +271,15 @@
 <li>Switch to the repo and branch that has the large file.</li>
 <li>Install the LFS extension in the correct repo and branch using</li>
 </ol>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="projects.html#cb26-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="projects.html#cb28-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Track the file extension (in our scenario, .pbix), using</li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="projects.html#cb27-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="projects.html#cb29-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Track .gitattributes.</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="projects.html#cb28-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="projects.html#cb30-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
 <p>N.B. Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch.
 6. Commit the file and push normally.</p>
 <p>When you commit, you will see a message indicating the LFS extension was used on that file.</p>
@@ -478,7 +478,7 @@
 <span class="header-section-number">5.3.1</span> Installing ProjectTemplate<a class="anchor" aria-label="anchor" href="#installing-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Installing the package is straightforward</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ProjectTemplate"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="creating-a-project-with-projecttemplate" class="section level3">
@@ -486,7 +486,7 @@
 <span class="header-section-number">5.3.2</span> Creating a project with ProjectTemplate<a class="anchor" aria-label="anchor" href="#creating-a-project-with-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Creating a project is pretty simple. Navigate to where you typically save projects vai RStudio and then run the following commands</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span>
 <span class="fu">create.project</span><span class="op">(</span><span class="st">"learning-pt"</span><span class="op">)</span></code></pre></div>
 <p>Doing that bestows upon you the following directory structure:</p>
@@ -721,7 +721,7 @@ This data has columns including Candidate Full Name, Candidate Email (personal e
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-20.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

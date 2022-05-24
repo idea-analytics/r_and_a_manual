@@ -13,7 +13,7 @@ maura-carter
 aline-orr-phd
 ilissa-madrigal
 marlena-coco-phd
-the-data-warhehouse-and-how-to-access-it
+the-data-warehouse-and-how-to-access-it
 the-data-warehouse
 core-data-warehouse-server-configuration
 src-servers
@@ -29,6 +29,9 @@ where-to-learn-more
 key-tables-measures-and-metrics
 the-students-table
 common-queries
+student-attendance
+common-queries-1
+other-uses
 student-persistence
 student-persistence-using-attendance-tables-a.k.a.-cohort-persistence
 college-application-matriculation-metrics

@@ -47,7 +47,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
 <li><a class="" href="who.html"><span class="header-section-number">2</span> Who we are</a></li>
-<li><a class="" href="the-data-warhehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warhehouse and how to access it</a></li>
+<li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="active" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
 <li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
@@ -211,31 +211,31 @@
 </table>
 </li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="key-tables-measures-and-metrics.html#cb12-1"></a>SELECT DISTINCT </span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb12-1"><a href="key-tables-measures-and-metrics.html#cb12-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> </span>
 <span id="cb12-2"><a href="key-tables-measures-and-metrics.html#cb12-2"></a> [StudentNumber], </span>
-<span id="cb12-3"><a href="key-tables-measures-and-metrics.html#cb12-3"></a> [PrimaryDisabilityCode] AS [DisabilityCode], </span>
-<span id="cb12-4"><a href="key-tables-measures-and-metrics.html#cb12-4"></a> [PrimaryDisabilityDescription] AS [DisabilityDescription]</span>
+<span id="cb12-3"><a href="key-tables-measures-and-metrics.html#cb12-3"></a> [PrimaryDisabilityCode] <span class="kw">AS</span> [DisabilityCode], </span>
+<span id="cb12-4"><a href="key-tables-measures-and-metrics.html#cb12-4"></a> [PrimaryDisabilityDescription] <span class="kw">AS</span> [DisabilityDescription]</span>
 <span id="cb12-5"><a href="key-tables-measures-and-metrics.html#cb12-5"></a></span>
 <span id="cb12-6"><a href="key-tables-measures-and-metrics.html#cb12-6"></a> <span class="kw">FROM</span> (</span>
 <span id="cb12-7"><a href="key-tables-measures-and-metrics.html#cb12-7"></a></span>
-<span id="cb12-8"><a href="key-tables-measures-and-metrics.html#cb12-8"></a>SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
+<span id="cb12-8"><a href="key-tables-measures-and-metrics.html#cb12-8"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]</span>
 <span id="cb12-9"><a href="key-tables-measures-and-metrics.html#cb12-9"></a></span>
-<span id="cb12-10"><a href="key-tables-measures-and-metrics.html#cb12-10"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb12-11"><a href="key-tables-measures-and-metrics.html#cb12-11"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span></span>
+<span id="cb12-10"><a href="key-tables-measures-and-metrics.html#cb12-10"></a> <span class="kw">FROM</span> [PROD1].[Schools].[Students]</span>
+<span id="cb12-11"><a href="key-tables-measures-and-metrics.html#cb12-11"></a> <span class="kw">WHERE</span> AcademicYear<span class="op">=</span><span class="st">'2018-2019'</span></span>
 <span id="cb12-12"><a href="key-tables-measures-and-metrics.html#cb12-12"></a></span>
-<span id="cb12-13"><a href="key-tables-measures-and-metrics.html#cb12-13"></a> UNION ALL</span>
+<span id="cb12-13"><a href="key-tables-measures-and-metrics.html#cb12-13"></a> <span class="kw">UNION</span> <span class="kw">ALL</span></span>
 <span id="cb12-14"><a href="key-tables-measures-and-metrics.html#cb12-14"></a></span>
-<span id="cb12-15"><a href="key-tables-measures-and-metrics.html#cb12-15"></a>SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
+<span id="cb12-15"><a href="key-tables-measures-and-metrics.html#cb12-15"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span>  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]</span>
 <span id="cb12-16"><a href="key-tables-measures-and-metrics.html#cb12-16"></a></span>
-<span id="cb12-17"><a href="key-tables-measures-and-metrics.html#cb12-17"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb12-18"><a href="key-tables-measures-and-metrics.html#cb12-18"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span></span>
+<span id="cb12-17"><a href="key-tables-measures-and-metrics.html#cb12-17"></a> <span class="kw">FROM</span> [PROD1].[Schools].[Students]</span>
+<span id="cb12-18"><a href="key-tables-measures-and-metrics.html#cb12-18"></a> <span class="kw">WHERE</span> AcademicYear<span class="op">=</span><span class="st">'2018-2019'</span></span>
 <span id="cb12-19"><a href="key-tables-measures-and-metrics.html#cb12-19"></a></span>
-<span id="cb12-20"><a href="key-tables-measures-and-metrics.html#cb12-20"></a> UNION ALL</span>
+<span id="cb12-20"><a href="key-tables-measures-and-metrics.html#cb12-20"></a> <span class="kw">UNION</span> <span class="kw">ALL</span></span>
 <span id="cb12-21"><a href="key-tables-measures-and-metrics.html#cb12-21"></a></span>
-<span id="cb12-22"><a href="key-tables-measures-and-metrics.html#cb12-22"></a>SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
+<span id="cb12-22"><a href="key-tables-measures-and-metrics.html#cb12-22"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span>  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]</span>
 <span id="cb12-23"><a href="key-tables-measures-and-metrics.html#cb12-23"></a></span>
-<span id="cb12-24"><a href="key-tables-measures-and-metrics.html#cb12-24"></a> FROM [PROD1].[Schools].[Students]</span>
-<span id="cb12-25"><a href="key-tables-measures-and-metrics.html#cb12-25"></a> WHERE <span class="dt">AcademicYear=</span><span class="st">'2018-2019'</span>) A WHERE [PrimaryDisabilityDescription] <span class="op">&lt;</span><span class="er">&gt;</span><span class="st"> ''</span> ORDER BY StudentNumber</span></code></pre></div>
+<span id="cb12-24"><a href="key-tables-measures-and-metrics.html#cb12-24"></a> <span class="kw">FROM</span> [PROD1].[Schools].[Students]</span>
+<span id="cb12-25"><a href="key-tables-measures-and-metrics.html#cb12-25"></a> <span class="kw">WHERE</span> AcademicYear<span class="op">=</span><span class="st">'2018-2019'</span>) A <span class="kw">WHERE</span> [PrimaryDisabilityDescription] <span class="op">&lt;&gt;</span> <span class="st">''</span> <span class="kw">ORDER</span> <span class="kw">BY</span> StudentNumber</span></code></pre></div>
 <ul>
 <li>
 <strong><em>[EconomicDisadvantageCode]:</em></strong> A.K.A ECD
@@ -325,9 +325,98 @@
          <span class="va">LastName</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
+<div id="student-attendance" class="section level2">
+<h2>
+<span class="header-section-number">4.2</span> Student Attendance<a class="anchor" aria-label="anchor" href="#student-attendance"><i class="fas fa-link"></i></a>
+</h2>
+<p>Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked <em>absent (A)</em> by the teacher, or as <em>tardy present (TP)</em> at the school’s front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an <strong>Official Attendance-Taking Time or Period (OATT/OATP)</strong>, a roughly 10-minute window for all teachers with a class at that time to submit the day’s official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]</p>
+<p><strong>Main metrics:</strong> Full-day vs. half-day attendance; number of absences; new to IDEA students</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[AcademicYear]</strong>: yyyy-yyyy</li>
+<li>
+<strong>[SchoolName]</strong>: IDEA [Campus] [SchoolType]</li>
+<li>
+<strong>[schoolnumber]</strong>: Note that the column name is stored in all lowercase.</li>
+<li>
+<strong>[SchoolShortName]</strong>: Campus name only</li>
+<li>
+<strong>[SchoolType]</strong>: Academy or College Prep</li>
+<li><strong>[RegionDescription]</strong></li>
+<li>
+<strong>[GradeLevelID]</strong>: Uses the values -1 and 0 for PK and K, respectively.</li>
+<li>
+<strong>[GradeLevel]</strong>: Uses the labels PK and K.</li>
+<li>
+<strong>[AttStudentKey]</strong>: Identifying key for each student for each day.</li>
+<li>
+<strong>[WeekNumber]</strong>: Gives the week of the school year.</li>
+<li>
+<strong>[DateNumber]</strong>: Gives the day number of the school year (1, 2, 3, …, 180).</li>
+<li>
+<strong>[AttDate]</strong>: Gives the actual date of the record.</li>
+<li>
+<strong>[Membership]</strong>: Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only).</li>
+<li>
+<strong>[Absences]</strong>: Indicates 1.00 for a full-day absence, or 0.50 for a half-day absence.</li>
+<li>
+<strong>[VAbsences]</strong>: Unsure if this is different from [Absences].</li>
+<li>
+<strong>[SchoolYear]</strong>: Indicates 1 for a new-to-IDEA student, or 2+ for a returning student.</li>
+<li>
+<strong>[SchoolTypeOperation]:</strong> DO NOT USE. This information has been found to be inaccurate. We will work on creating a table that has the corrected information by school and academic year, but for now, “Launching”, “Scaling”, and “Fully Scaled” operation data is stored in an Excel file in the Enrollment GitHub repo.</li>
+</ul>
+<div id="common-queries-1" class="section level3">
+<h3>
+<span class="header-section-number">4.2.1</span> Common queries<a class="anchor" aria-label="anchor" href="#common-queries-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>To pull student daily attendance for the current school year at a specific school on a certain date, you can use a few functions to pull the data:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">current_school_year</span> <span class="op">&lt;-</span> <span class="st">"2021-2022"</span>
+<span class="va">our_school</span> <span class="op">&lt;-</span> <span class="st">"IDEA Walzem Academy"</span>
+<span class="va">date</span> <span class="op">&lt;-</span> <span class="st">"2022-04-01"</span>
+
+<span class="co"># gets individual attendance records by student</span>
+
+<span class="fu">get_student_daily_attendance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># this is a built-in function for {ideadata}</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AcademicYear</span> <span class="op">==</span> <span class="va">current_school_year</span>,
+         <span class="va">SchoolName</span> <span class="op">==</span> <span class="va">our_school</span>,
+         <span class="va">AttDate</span> <span class="op">==</span> <span class="va">date</span><span class="op">)</span> </code></pre></div>
+</div>
+<div id="other-uses" class="section level3">
+<h3>
+<span class="header-section-number">4.2.2</span> Other uses<a class="anchor" aria-label="anchor" href="#other-uses"><i class="fas fa-link"></i></a>
+</h3>
+<p>Attendance can also be used to obtain <strong>daily total enrollment</strong> at multiple levels, including by grade level at each school.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">get_student_daily_attendance</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>SchoolNumber <span class="op">=</span> <span class="va">schoolnumber</span>,
+         Region <span class="op">=</span> <span class="va">RegionDescription</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+<span class="co"># pick a specific school and academic year </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AcademicYear</span> <span class="op">==</span> <span class="va">current_school_year</span>,
+         <span class="va">SchoolName</span> <span class="op">==</span> <span class="va">our_school</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+<span class="co"># groups by grade level at a school per day  </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">SchoolNumber</span>,
+           <span class="va">SchoolName</span>,
+           <span class="va">SchoolShortName</span>,
+           <span class="va">SchoolType</span>,
+           <span class="va">GradeLevelID</span>,
+           <span class="va">AttDate</span>,
+           <span class="va">DateNumber</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                     
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  
+<span class="co"># counts total number of students enrolled  </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_enrolled <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Membership</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The other side of enrollment is <strong>student persistence</strong>. To see how enrollment is used with student persistence, jump to <a href="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence">the student persistence section</a>.</p>
+</div>
+</div>
 <div id="student-persistence" class="section level2">
 <h2>
-<span class="header-section-number">4.2</span> Student Persistence<a class="anchor" aria-label="anchor" href="#student-persistence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> Student Persistence<a class="anchor" aria-label="anchor" href="#student-persistence"><i class="fas fa-link"></i></a>
 </h2>
 <p>Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the “First Day of Persistence (FDOP)” for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.</p>
 <p>Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn’t return until September, John would not count as a student who persisted.</p>
@@ -413,7 +502,7 @@
 </ul>
 <div id="student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="section level3">
 <h3>
-<span class="header-section-number">4.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a class="anchor" aria-label="anchor" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a class="anchor" aria-label="anchor" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fas fa-link"></i></a>
 </h3>
 <p>Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to “snapshot” whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the “snapshot” date selected.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1]</p>
@@ -453,7 +542,7 @@
 </div>
 <div id="college-application-matriculation-metrics" class="section level2">
 <h2>
-<span class="header-section-number">4.3</span> College Application &amp; Matriculation Metrics<a class="anchor" aria-label="anchor" href="#college-application-matriculation-metrics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> College Application &amp; Matriculation Metrics<a class="anchor" aria-label="anchor" href="#college-application-matriculation-metrics"><i class="fas fa-link"></i></a>
 </h2>
 <p>To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use <a href="https://www.hobsons.com/solution/naviance/">Naviance</a> information.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Colleges]</p>
@@ -496,13 +585,13 @@
 </li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="key-tables-measures-and-metrics.html#cb15-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
-<span id="cb15-2"><a href="key-tables-measures-and-metrics.html#cb15-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
-<span id="cb15-3"><a href="key-tables-measures-and-metrics.html#cb15-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="key-tables-measures-and-metrics.html#cb17-1"></a>SELECT <span class="dv">1</span> <span class="op">-</span><span class="st">  </span><span class="kw">AVG</span>(<span class="kw">CAST</span>([FDOPLEAVER] AS NUMERIC))</span>
+<span id="cb17-2"><a href="key-tables-measures-and-metrics.html#cb17-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
+<span id="cb17-3"><a href="key-tables-measures-and-metrics.html#cb17-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="csi" class="section level2">
 <h2>
-<span class="header-section-number">4.4</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
 </h2>
 <p>To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia’s team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Schools]</p>
@@ -513,45 +602,45 @@
 <li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="key-tables-measures-and-metrics.html#cb16-1"></a>SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb16-2"><a href="key-tables-measures-and-metrics.html#cb16-2"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb16-3"><a href="key-tables-measures-and-metrics.html#cb16-3"></a>      ,[ProgramID]</span>
-<span id="cb16-4"><a href="key-tables-measures-and-metrics.html#cb16-4"></a>      ,CASE </span>
-<span id="cb16-5"><a href="key-tables-measures-and-metrics.html#cb16-5"></a>      WHEN [InterventionType] LIKE <span class="st">'%math%'</span> THEN <span class="st">'Math'</span></span>
-<span id="cb16-6"><a href="key-tables-measures-and-metrics.html#cb16-6"></a>      WHEN [InterventionType] LIKE <span class="st">'%reading%'</span> THEN <span class="st">'Reading'</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb16-7"><a href="key-tables-measures-and-metrics.html#cb16-7"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb16-8"><a href="key-tables-measures-and-metrics.html#cb16-8"></a>  WHERE [AcademicYear] =<span class="st"> '2018-2019'</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">'%math%'</span> OR InterventionType LIKE <span class="st">'%reading%'</span>)) AS A</span>
-<span id="cb16-9"><a href="key-tables-measures-and-metrics.html#cb16-9"></a>GROUP BY AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="key-tables-measures-and-metrics.html#cb18-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
+<span id="cb18-2"><a href="key-tables-measures-and-metrics.html#cb18-2"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
+<span id="cb18-3"><a href="key-tables-measures-and-metrics.html#cb18-3"></a>      ,[ProgramID]</span>
+<span id="cb18-4"><a href="key-tables-measures-and-metrics.html#cb18-4"></a>      ,<span class="cf">CASE</span> </span>
+<span id="cb18-5"><a href="key-tables-measures-and-metrics.html#cb18-5"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
+<span id="cb18-6"><a href="key-tables-measures-and-metrics.html#cb18-6"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
+<span id="cb18-7"><a href="key-tables-measures-and-metrics.html#cb18-7"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb18-8"><a href="key-tables-measures-and-metrics.html#cb18-8"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2018-2019'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
+<span id="cb18-9"><a href="key-tables-measures-and-metrics.html#cb18-9"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID</span></code></pre></div>
 <ul>
 <li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="key-tables-measures-and-metrics.html#cb17-1"></a>SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb17-2"><a href="key-tables-measures-and-metrics.html#cb17-2"></a>FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] AS A</span>
-<span id="cb17-3"><a href="key-tables-measures-and-metrics.html#cb17-3"></a>INNER JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] AS B</span>
-<span id="cb17-4"><a href="key-tables-measures-and-metrics.html#cb17-4"></a>ON A.SchoolNumber =<span class="st"> </span>B.SchoolNumber</span>
-<span id="cb17-5"><a href="key-tables-measures-and-metrics.html#cb17-5"></a>LEFT JOIN [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C</span>
-<span id="cb17-6"><a href="key-tables-measures-and-metrics.html#cb17-6"></a>ON A.StudentNumber =<span class="st"> </span>C.StudentNumber AND A.AcademicYear =<span class="st"> </span>C.AcademicYear</span>
-<span id="cb17-7"><a href="key-tables-measures-and-metrics.html#cb17-7"></a>LEFT JOIN </span>
-<span id="cb17-8"><a href="key-tables-measures-and-metrics.html#cb17-8"></a>(SELECT DISTINCT AcademicYear, [Subject], ProgramID</span>
-<span id="cb17-9"><a href="key-tables-measures-and-metrics.html#cb17-9"></a><span class="kw">FROM</span> (SELECT [AcademicYear]</span>
-<span id="cb17-10"><a href="key-tables-measures-and-metrics.html#cb17-10"></a>      ,[ProgramID]</span>
-<span id="cb17-11"><a href="key-tables-measures-and-metrics.html#cb17-11"></a>      ,CASE </span>
-<span id="cb17-12"><a href="key-tables-measures-and-metrics.html#cb17-12"></a>      WHEN [InterventionType] LIKE <span class="st">'%math%'</span> THEN <span class="st">'Math'</span></span>
-<span id="cb17-13"><a href="key-tables-measures-and-metrics.html#cb17-13"></a>      WHEN [InterventionType] LIKE <span class="st">'%reading%'</span> THEN <span class="st">'Reading'</span> ELSE <span class="ot">NULL</span> END AS [Subject]</span>
-<span id="cb17-14"><a href="key-tables-measures-and-metrics.html#cb17-14"></a>  FROM [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb17-15"><a href="key-tables-measures-and-metrics.html#cb17-15"></a>  WHERE [AcademicYear] =<span class="st"> '2020-2021'</span> <span class="kw">AND</span> (InterventionType LIKE <span class="st">'%math%'</span> OR InterventionType LIKE <span class="st">'%reading%'</span>)) AS A</span>
-<span id="cb17-16"><a href="key-tables-measures-and-metrics.html#cb17-16"></a>GROUP BY AcademicYear, [Subject], ProgramID) AS D</span>
-<span id="cb17-17"><a href="key-tables-measures-and-metrics.html#cb17-17"></a>ON C.ProgramID =<span class="st"> </span>D.ProgramID</span>
-<span id="cb17-18"><a href="key-tables-measures-and-metrics.html#cb17-18"></a>WHERE A.AcademicYear =<span class="st"> '2020-2021'</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="key-tables-measures-and-metrics.html#cb19-1"></a><span class="kw">SELECT</span> A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb19-2"><a href="key-tables-measures-and-metrics.html#cb19-2"></a><span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
+<span id="cb19-3"><a href="key-tables-measures-and-metrics.html#cb19-3"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
+<span id="cb19-4"><a href="key-tables-measures-and-metrics.html#cb19-4"></a><span class="kw">ON</span> A.SchoolNumber <span class="op">=</span> B.SchoolNumber</span>
+<span id="cb19-5"><a href="key-tables-measures-and-metrics.html#cb19-5"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] <span class="kw">AS</span> C</span>
+<span id="cb19-6"><a href="key-tables-measures-and-metrics.html#cb19-6"></a><span class="kw">ON</span> A.StudentNumber <span class="op">=</span> C.StudentNumber <span class="kw">AND</span> A.AcademicYear <span class="op">=</span> C.AcademicYear</span>
+<span id="cb19-7"><a href="key-tables-measures-and-metrics.html#cb19-7"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
+<span id="cb19-8"><a href="key-tables-measures-and-metrics.html#cb19-8"></a>(<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
+<span id="cb19-9"><a href="key-tables-measures-and-metrics.html#cb19-9"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
+<span id="cb19-10"><a href="key-tables-measures-and-metrics.html#cb19-10"></a>      ,[ProgramID]</span>
+<span id="cb19-11"><a href="key-tables-measures-and-metrics.html#cb19-11"></a>      ,<span class="cf">CASE</span> </span>
+<span id="cb19-12"><a href="key-tables-measures-and-metrics.html#cb19-12"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
+<span id="cb19-13"><a href="key-tables-measures-and-metrics.html#cb19-13"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
+<span id="cb19-14"><a href="key-tables-measures-and-metrics.html#cb19-14"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb19-15"><a href="key-tables-measures-and-metrics.html#cb19-15"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2020-2021'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
+<span id="cb19-16"><a href="key-tables-measures-and-metrics.html#cb19-16"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID) <span class="kw">AS</span> D</span>
+<span id="cb19-17"><a href="key-tables-measures-and-metrics.html#cb19-17"></a><span class="kw">ON</span> C.ProgramID <span class="op">=</span> D.ProgramID</span>
+<span id="cb19-18"><a href="key-tables-measures-and-metrics.html#cb19-18"></a><span class="kw">WHERE</span> A.AcademicYear <span class="op">=</span> <span class="st">'2020-2021'</span></span></code></pre></div>
 </div>
 <div id="assessment-data" class="section level2">
 <h2>
-<span class="header-section-number">4.5</span> Assessment Data<a class="anchor" aria-label="anchor" href="#assessment-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Assessment Data<a class="anchor" aria-label="anchor" href="#assessment-data"><i class="fas fa-link"></i></a>
 </h2>
 <div id="state-of-texas-assessments-of-academic-readiness-staar" class="section level3">
 <h3>
-<span class="header-section-number">4.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
 </h3>
 <p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:</p>
 <ul>
@@ -627,7 +716,7 @@
 </li>
 <li><p>R example:</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">STAAR</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"STAAR"</span>, .database_name <span class="op">=</span> <span class="st">"Dashboard"</span>, 
                    .schema <span class="op">=</span> <span class="st">"dbo"</span>, .server_name <span class="op">=</span> <span class="st">"RGVPDRA-DASQL"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
@@ -677,7 +766,7 @@
 </div>
 <div id="district-assessments" class="section level3">
 <h3>
-<span class="header-section-number">4.5.2</span> District assessments<a class="anchor" aria-label="anchor" href="#district-assessments"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2</span> District assessments<a class="anchor" aria-label="anchor" href="#district-assessments"><i class="fas fa-link"></i></a>
 </h3>
 <p>IDEA produces in-house assessments for each major content area except for national and state EOY assessments. Typically, courses require all teachers and students to administer the same summative assessments and benchmarks, but formative assessments are left to each teacher to create.</p>
 <p>Summative assessments evaluate what a student has learned over time and is usually more high-stakes than other types of assignments. Examples of the most common summative assessments we administer include:</p>
@@ -703,7 +792,7 @@
 <p>In this section, we will only consider district assessments that are <em>centralized</em>, meaning that most schools must administer and scan in the results into Illuminate (<a href="https://ideapublicschools.illuminateed.com/">Texas</a> | <a href="https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&amp;prev_page=Main_NotDashboardPage&amp;page=SisLogin">Louisiana</a>), our main assessment platform.</p>
 <div id="illuminate-data" class="section level4">
 <h4>
-<span class="header-section-number">4.5.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
 <p>The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.</p>
@@ -715,7 +804,7 @@
 <p>each of which is stored in a different IABWA table.</p>
 <div id="naming-conventions" class="section level5">
 <h5>
-<span class="header-section-number">4.5.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Most assessments have a standard naming convention:</p>
 <p><strong>SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
@@ -774,7 +863,7 @@
 </div>
 <div id="iabwa" class="section level5">
 <h5>
-<span class="header-section-number">4.5.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table aggregates item-level data for each student and reports a student’s performance on a single assessment.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwa">IABWA</a></p>
@@ -834,7 +923,7 @@
 </div>
 <div id="iabwaitems" class="section level5">
 <h5>
-<span class="header-section-number">4.5.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwaitems">IABWAItems</a></p>
@@ -924,14 +1013,14 @@
 </div>
 <div id="other-sources" class="section level4">
 <h4>
-<span class="header-section-number">4.5.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
 </h4>
 <p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
 </div>
 </div>
 <div id="dibels" class="section level3">
 <h3>
-<span class="header-section-number">4.5.3</span> DIBELS<a class="anchor" aria-label="anchor" href="#dibels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.3</span> DIBELS<a class="anchor" aria-label="anchor" href="#dibels"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
@@ -1000,13 +1089,13 @@
 </div>
 <div id="renaissance-star-also-renstar-little-star" class="section level3">
 <h3>
-<span class="header-section-number">4.5.4</span> Renaissance STAR (also RenStar, Little Star)<a class="anchor" aria-label="anchor" href="#renaissance-star-also-renstar-little-star"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.4</span> Renaissance STAR (also RenStar, Little Star)<a class="anchor" aria-label="anchor" href="#renaissance-star-also-renstar-little-star"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://www.renaissance.com/about-us/">Reinaissance</a> <a href="https://www.renaissance.com/products/star-assessments/">Star Assessments</a> are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of <a href="key-tables-measures-and-metrics.html#csi">CSI support</a>) as well as gauging achievement and growth of students in a way that is agnostics to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).</p>
 <p>It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student’s effort on any given test).</p>
 <div id="where-to-get-renstar-data" class="section level4">
 <h4>
-<span class="header-section-number">4.5.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>Accessessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not freuqently updated. The best best is to use:</p>
 <p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
@@ -1015,11 +1104,11 @@
 </div>
 <div id="teacher-staff-and-hiring-data" class="section level2">
 <h2>
-<span class="header-section-number">4.6</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
 </h2>
 <div id="jobvite-data" class="section level3">
 <h3>
-<span class="header-section-number">4.6.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -1058,7 +1147,7 @@
 </div>
 <div id="tcpteacher-export-data" class="section level3">
 <h3>
-<span class="header-section-number">4.6.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -1108,7 +1197,7 @@
 </ul>
 <div id="data-matching" class="section level4">
 <h4>
-<span class="header-section-number">4.6.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -1143,7 +1232,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="join-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.6.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
@@ -1153,11 +1242,11 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="evaluation-projects" class="section level2">
 <h2>
-<span class="header-section-number">4.7</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
 </h2>
 <div id="st-century-afterschool-programs" class="section level3">
 <h3>
-<span class="header-section-number">4.7.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
 </h3>
 <p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
 <p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury]</p>
@@ -1189,12 +1278,12 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="camp-rio" class="section level3">
 <h3>
-<span class="header-section-number">4.7.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 <div id="tslip" class="section level3">
 <h3>
-<span class="header-section-number">4.7.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
 </h3>
 <p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
 
@@ -1202,7 +1291,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="the-data-warhehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warhehouse and how to access it</a></div>
+<div class="prev"><a href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></div>
 <div class="next"><a href="projects.html"><span class="header-section-number">5</span> Projects</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -1212,29 +1301,35 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <a class="nav-link" href="#the-students-table"><span class="header-section-number">4.1</span> The Students Table</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#common-queries"><span class="header-section-number">4.1.1</span> Common queries</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#student-persistence"><span class="header-section-number">4.2</span> Student Persistence</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><span class="header-section-number">4.2.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li></ul>
-</li>
-<li><a class="nav-link" href="#college-application-matriculation-metrics"><span class="header-section-number">4.3</span> College Application &amp; Matriculation Metrics</a></li>
-<li><a class="nav-link" href="#csi"><span class="header-section-number">4.4</span> Critical Student Intervention (CSI) Identification</a></li>
-<li>
-<a class="nav-link" href="#assessment-data"><span class="header-section-number">4.5</span> Assessment Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#state-of-texas-assessments-of-academic-readiness-staar"><span class="header-section-number">4.5.1</span> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
-<li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.5.2</span> District assessments</a></li>
-<li><a class="nav-link" href="#dibels"><span class="header-section-number">4.5.3</span> DIBELS</a></li>
-<li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.5.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
+<a class="nav-link" href="#student-attendance"><span class="header-section-number">4.2</span> Student Attendance</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#common-queries-1"><span class="header-section-number">4.2.1</span> Common queries</a></li>
+<li><a class="nav-link" href="#other-uses"><span class="header-section-number">4.2.2</span> Other uses</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.6</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.6.1</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.6.2</span> TCP/Teacher Export Data</a></li>
+<a class="nav-link" href="#student-persistence"><span class="header-section-number">4.3</span> Student Persistence</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><span class="header-section-number">4.3.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li></ul>
+</li>
+<li><a class="nav-link" href="#college-application-matriculation-metrics"><span class="header-section-number">4.4</span> College Application &amp; Matriculation Metrics</a></li>
+<li><a class="nav-link" href="#csi"><span class="header-section-number">4.5</span> Critical Student Intervention (CSI) Identification</a></li>
+<li>
+<a class="nav-link" href="#assessment-data"><span class="header-section-number">4.6</span> Assessment Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#state-of-texas-assessments-of-academic-readiness-staar"><span class="header-section-number">4.6.1</span> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
+<li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.6.2</span> District assessments</a></li>
+<li><a class="nav-link" href="#dibels"><span class="header-section-number">4.6.3</span> DIBELS</a></li>
+<li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.6.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.7</span> Evaluation Projects</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.7.1</span> 21st Century Afterschool Programs</a></li>
-<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.7.2</span> Camp Rio</a></li>
-<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.7.3</span> TSLIP</a></li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.7</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.7.1</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.7.2</span> TCP/Teacher Export Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.8</span> Evaluation Projects</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.8.1</span> 21st Century Afterschool Programs</a></li>
+<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.8.2</span> Camp Rio</a></li>
+<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.8.3</span> TSLIP</a></li>
 </ul>
 </li>
 </ul>
@@ -1254,7 +1349,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-20.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
