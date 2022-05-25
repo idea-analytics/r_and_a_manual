@@ -392,6 +392,23 @@ WHERE [FDOPCOUNTP] = 1
 ```
 
 
+## Lottery Data
+
+IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture information about enrollment applications, lottery, contracts, and enrollment goals. There are three main tables:
+
+**Tables:** 
+
+* [RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotteryDaily]
+* [RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotteryHistorical]
+* [RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotterySnapshot]
+
+**Main metrics:** Number of contracts available / offered, number of contracts submitted / accepted, ratios of submitted / accepted contracts to capacity
+
+**Important columns:**
+
+
+
+
 ## Critical Student Intervention (CSI) Identification {#csi}
 
 To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
