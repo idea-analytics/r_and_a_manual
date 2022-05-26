@@ -394,7 +394,11 @@ WHERE [FDOPCOUNTP] = 1
 
 ## Lottery Data
 
-IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture information about enrollment applications, lottery, contracts, and enrollment goals. There are three main tables:
+IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture information about enrollment applications, lottery, contracts, and enrollment goals. There are three main tables: **Daily, Historical, and Snapshot**. 
+
+* The **Daily** table provides daily application data from the Stream table for the current academic year.
+* The **Historical** table provides the same information as **Daily** but for previous academic years.
+* The **Snapshot** table provides only the submitted, accepted, capacity, and ratios for each school and grade level by day.
 
 **Tables:** 
 
@@ -404,8 +408,38 @@ IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture 
 
 **Main metrics:** Number of contracts available / offered, number of contracts submitted / accepted, ratios of submitted / accepted contracts to capacity
 
-**Important columns:**
+**Important columns in the Daily and Historical tables:**
 
+* **[AcademicYear]**: yyyy-yyyy
+* **[Campus]**: equivalent to school short name
+* **[School]**: labeled as Academy or College Prep
+* **[Grade]**: labeled as PK, K, 1, 2, ...
+* **[ApplicantTarget]**: number of student applications targeted, usually a 2:1 ratio of applications to capacity
+* **[CapacityContract]**: number of seats available in that grade level
+* **[OfferAccepted]**: number of offers accepted (may be higher than capacity)
+* **[NonEnrollment]**: 
+* **[DuplicateTransfer]**:
+* **[TransferStudent]**:
+* **[ReturningStudent]**:
+* **[NewStudent]**:
+* **[UnacceptedApplicant]**:
+* **[Submitted]**:
+* **[RatioAcceptance]**: calculated as [OfferAccepted] $\div$ [CapacityContract]
+* **[RatioSubmission]**: calculated as [Submitted] $\div$ [CapacityContract]
+* **[Active]**: 1 = grade level will have non-zero enrollment for that academic year (i.e. there are students in that grade level, but the school may or may not be accepting applications); 0 = grade level will not be enrolled for that academic year (i.e. there are no students in that grade level, and the school is not accepting applications for that grade level)
+* **[DateStamp] (only in Daily)**: when the data was pulled from Stream
+
+**Important columns in the Snapshot table:**
+
+* **[Date]**: yyyy-mm-dd
+* **[Campus]**: equivalent to school short name
+* **[School]**: labeled as Academy or College Prep
+* **[Grade]**: labeled as Pre-K, Kindergarten, 1st, 2nd, ...
+* **[Submitted]**: 
+* **[AcceptedOffers]**:
+* **[CapacityContract]**: number of seats available in that grade level
+* **[RatioAcceptance]**: calculated as [OfferAccepted] $\div$ [CapacityContract]
+* **[RatioSubmission]**: calculated as [Submitted] $\div$ [CapacityContract]
 
 
 
