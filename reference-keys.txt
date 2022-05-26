@@ -35,6 +35,7 @@ other-uses
 student-persistence
 student-persistence-using-attendance-tables-a.k.a.-cohort-persistence
 college-application-matriculation-metrics
+lottery-data
 csi
 assessment-data
 state-of-texas-assessments-of-academic-readiness-staar

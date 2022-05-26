@@ -589,9 +589,87 @@
 <span id="cb17-2"><a href="key-tables-measures-and-metrics.html#cb17-2"></a>FROM [<span class="st">`</span><span class="dt">1065574-SQLPRD1</span><span class="st">`</span>].[Persistence].[dbo].[PersistenceCode]</span>
 <span id="cb17-3"><a href="key-tables-measures-and-metrics.html#cb17-3"></a>WHERE [FDOPCOUNTP] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 </div>
+<div id="lottery-data" class="section level2">
+<h2>
+<span class="header-section-number">4.5</span> Lottery Data<a class="anchor" aria-label="anchor" href="#lottery-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>IDEA uses <a href="https://stream.ideapublicschools.org/admin/login">Stream</a> to capture information about enrollment applications, lottery, contracts, and enrollment goals. There are three main tables: <strong>Daily, Historical, and Snapshot</strong>.</p>
+<ul>
+<li>The <strong>Daily</strong> table provides daily application data from the Stream table for the current academic year.</li>
+<li>The <strong>Historical</strong> table provides the same information as <strong>Daily</strong> but for previous academic years.</li>
+<li>The <strong>Snapshot</strong> table provides only the submitted, accepted, capacity, and ratios for each school and grade level by day.</li>
+</ul>
+<p><strong>Tables:</strong></p>
+<ul>
+<li>[RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotteryDaily]</li>
+<li>[RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotteryHistorical]</li>
+<li>[RGVPDRA-DASQL].[StreamLotteryEnrollment].[dbo].[StreamLotterySnapshot]</li>
+</ul>
+<p><strong>Main metrics:</strong> Number of contracts available / offered, number of contracts submitted / accepted, ratios of submitted / accepted contracts to capacity</p>
+<p><strong>Important columns in the Daily and Historical tables:</strong></p>
+<ul>
+<li>
+<strong>[AcademicYear]</strong>: yyyy-yyyy</li>
+<li>
+<strong>[Campus]</strong>: equivalent to school short name</li>
+<li>
+<strong>[School]</strong>: labeled as Academy or College Prep</li>
+<li>
+<strong>[Grade]</strong>: labeled as PK, K, 1, 2, …</li>
+<li>
+<strong>[ApplicantTarget]</strong>: number of student applications targeted, usually a 2:1 ratio of applications to capacity</li>
+<li>
+<strong>[CapacityContract]</strong>: number of seats available in that grade level</li>
+<li>
+<strong>[OfferAccepted]</strong>: number of offers accepted (may be higher than capacity)</li>
+<li>
+<strong>[NonEnrollment]</strong>:</li>
+<li>
+<strong>[DuplicateTransfer]</strong>:</li>
+<li>
+<strong>[TransferStudent]</strong>:</li>
+<li>
+<strong>[ReturningStudent]</strong>:</li>
+<li>
+<strong>[NewStudent]</strong>:</li>
+<li>
+<strong>[UnacceptedApplicant]</strong>:</li>
+<li>
+<strong>[Submitted]</strong>:</li>
+<li>
+<strong>[RatioAcceptance]</strong>: calculated as [OfferAccepted] <span class="math inline">\(\div\)</span> [CapacityContract]</li>
+<li>
+<strong>[RatioSubmission]</strong>: calculated as [Submitted] <span class="math inline">\(\div\)</span> [CapacityContract]</li>
+<li>
+<strong>[Active]</strong>: 1 = grade level will have non-zero enrollment for that academic year (i.e. there are students in that grade level, but the school may or may not be accepting applications); 0 = grade level will not be enrolled for that academic year (i.e. there are no students in that grade level, and the school is not accepting applications for that grade level)</li>
+<li>
+<strong>[DateStamp] (only in Daily)</strong>: when the data was pulled from Stream</li>
+</ul>
+<p><strong>Important columns in the Snapshot table:</strong></p>
+<ul>
+<li>
+<strong>[Date]</strong>: yyyy-mm-dd</li>
+<li>
+<strong>[Campus]</strong>: equivalent to school short name</li>
+<li>
+<strong>[School]</strong>: labeled as Academy or College Prep</li>
+<li>
+<strong>[Grade]</strong>: labeled as Pre-K, Kindergarten, 1st, 2nd, …</li>
+<li>
+<strong>[Submitted]</strong>:</li>
+<li>
+<strong>[AcceptedOffers]</strong>:</li>
+<li>
+<strong>[CapacityContract]</strong>: number of seats available in that grade level</li>
+<li>
+<strong>[RatioAcceptance]</strong>: calculated as [OfferAccepted] <span class="math inline">\(\div\)</span> [CapacityContract]</li>
+<li>
+<strong>[RatioSubmission]</strong>: calculated as [Submitted] <span class="math inline">\(\div\)</span> [CapacityContract]</li>
+</ul>
+</div>
 <div id="csi" class="section level2">
 <h2>
-<span class="header-section-number">4.5</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
 </h2>
 <p>To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia’s team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.</p>
 <p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Schools]</p>
@@ -636,11 +714,11 @@
 </div>
 <div id="assessment-data" class="section level2">
 <h2>
-<span class="header-section-number">4.6</span> Assessment Data<a class="anchor" aria-label="anchor" href="#assessment-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> Assessment Data<a class="anchor" aria-label="anchor" href="#assessment-data"><i class="fas fa-link"></i></a>
 </h2>
 <div id="state-of-texas-assessments-of-academic-readiness-staar" class="section level3">
 <h3>
-<span class="header-section-number">4.6.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
 </h3>
 <p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:</p>
 <ul>
@@ -766,7 +844,7 @@
 </div>
 <div id="district-assessments" class="section level3">
 <h3>
-<span class="header-section-number">4.6.2</span> District assessments<a class="anchor" aria-label="anchor" href="#district-assessments"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2</span> District assessments<a class="anchor" aria-label="anchor" href="#district-assessments"><i class="fas fa-link"></i></a>
 </h3>
 <p>IDEA produces in-house assessments for each major content area except for national and state EOY assessments. Typically, courses require all teachers and students to administer the same summative assessments and benchmarks, but formative assessments are left to each teacher to create.</p>
 <p>Summative assessments evaluate what a student has learned over time and is usually more high-stakes than other types of assignments. Examples of the most common summative assessments we administer include:</p>
@@ -792,7 +870,7 @@
 <p>In this section, we will only consider district assessments that are <em>centralized</em>, meaning that most schools must administer and scan in the results into Illuminate (<a href="https://ideapublicschools.illuminateed.com/">Texas</a> | <a href="https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&amp;prev_page=Main_NotDashboardPage&amp;page=SisLogin">Louisiana</a>), our main assessment platform.</p>
 <div id="illuminate-data" class="section level4">
 <h4>
-<span class="header-section-number">4.6.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
 <p>The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.</p>
@@ -804,7 +882,7 @@
 <p>each of which is stored in a different IABWA table.</p>
 <div id="naming-conventions" class="section level5">
 <h5>
-<span class="header-section-number">4.6.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Most assessments have a standard naming convention:</p>
 <p><strong>SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
@@ -863,7 +941,7 @@
 </div>
 <div id="iabwa" class="section level5">
 <h5>
-<span class="header-section-number">4.6.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table aggregates item-level data for each student and reports a student’s performance on a single assessment.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwa">IABWA</a></p>
@@ -923,7 +1001,7 @@
 </div>
 <div id="iabwaitems" class="section level5">
 <h5>
-<span class="header-section-number">4.6.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.</p>
 <p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwaitems">IABWAItems</a></p>
@@ -1013,14 +1091,14 @@
 </div>
 <div id="other-sources" class="section level4">
 <h4>
-<span class="header-section-number">4.6.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
 </h4>
 <p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
 </div>
 </div>
 <div id="dibels" class="section level3">
 <h3>
-<span class="header-section-number">4.6.3</span> DIBELS<a class="anchor" aria-label="anchor" href="#dibels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.3</span> DIBELS<a class="anchor" aria-label="anchor" href="#dibels"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
@@ -1089,13 +1167,13 @@
 </div>
 <div id="renaissance-star-also-renstar-little-star" class="section level3">
 <h3>
-<span class="header-section-number">4.6.4</span> Renaissance STAR (also RenStar, Little Star)<a class="anchor" aria-label="anchor" href="#renaissance-star-also-renstar-little-star"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.4</span> Renaissance STAR (also RenStar, Little Star)<a class="anchor" aria-label="anchor" href="#renaissance-star-also-renstar-little-star"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://www.renaissance.com/about-us/">Reinaissance</a> <a href="https://www.renaissance.com/products/star-assessments/">Star Assessments</a> are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of <a href="key-tables-measures-and-metrics.html#csi">CSI support</a>) as well as gauging achievement and growth of students in a way that is agnostics to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).</p>
 <p>It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student’s effort on any given test).</p>
 <div id="where-to-get-renstar-data" class="section level4">
 <h4>
-<span class="header-section-number">4.6.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>Accessessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not freuqently updated. The best best is to use:</p>
 <p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
@@ -1104,11 +1182,11 @@
 </div>
 <div id="teacher-staff-and-hiring-data" class="section level2">
 <h2>
-<span class="header-section-number">4.7</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
 </h2>
 <div id="jobvite-data" class="section level3">
 <h3>
-<span class="header-section-number">4.7.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -1147,7 +1225,7 @@
 </div>
 <div id="tcpteacher-export-data" class="section level3">
 <h3>
-<span class="header-section-number">4.7.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -1197,7 +1275,7 @@
 </ul>
 <div id="data-matching" class="section level4">
 <h4>
-<span class="header-section-number">4.7.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -1232,7 +1310,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="join-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.7.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
@@ -1242,11 +1320,11 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="evaluation-projects" class="section level2">
 <h2>
-<span class="header-section-number">4.8</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
 </h2>
 <div id="st-century-afterschool-programs" class="section level3">
 <h3>
-<span class="header-section-number">4.8.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
 </h3>
 <p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
 <p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury]</p>
@@ -1278,12 +1356,12 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="camp-rio" class="section level3">
 <h3>
-<span class="header-section-number">4.8.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 <div id="tslip" class="section level3">
 <h3>
-<span class="header-section-number">4.8.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
 </h3>
 <p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
 
@@ -1310,26 +1388,27 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <a class="nav-link" href="#student-persistence"><span class="header-section-number">4.3</span> Student Persistence</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><span class="header-section-number">4.3.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)</a></li></ul>
 </li>
 <li><a class="nav-link" href="#college-application-matriculation-metrics"><span class="header-section-number">4.4</span> College Application &amp; Matriculation Metrics</a></li>
-<li><a class="nav-link" href="#csi"><span class="header-section-number">4.5</span> Critical Student Intervention (CSI) Identification</a></li>
+<li><a class="nav-link" href="#lottery-data"><span class="header-section-number">4.5</span> Lottery Data</a></li>
+<li><a class="nav-link" href="#csi"><span class="header-section-number">4.6</span> Critical Student Intervention (CSI) Identification</a></li>
 <li>
-<a class="nav-link" href="#assessment-data"><span class="header-section-number">4.6</span> Assessment Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#state-of-texas-assessments-of-academic-readiness-staar"><span class="header-section-number">4.6.1</span> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
-<li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.6.2</span> District assessments</a></li>
-<li><a class="nav-link" href="#dibels"><span class="header-section-number">4.6.3</span> DIBELS</a></li>
-<li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.6.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
+<a class="nav-link" href="#assessment-data"><span class="header-section-number">4.7</span> Assessment Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#state-of-texas-assessments-of-academic-readiness-staar"><span class="header-section-number">4.7.1</span> State of Texas Assessments of Academic Readiness (STAAR)</a></li>
+<li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.7.2</span> District assessments</a></li>
+<li><a class="nav-link" href="#dibels"><span class="header-section-number">4.7.3</span> DIBELS</a></li>
+<li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.7.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.7</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.7.1</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.7.2</span> TCP/Teacher Export Data</a></li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.8</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.8.1</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.8.2</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.8</span> Evaluation Projects</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.8.1</span> 21st Century Afterschool Programs</a></li>
-<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.8.2</span> Camp Rio</a></li>
-<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.8.3</span> TSLIP</a></li>
+<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.9</span> Evaluation Projects</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.9.1</span> 21st Century Afterschool Programs</a></li>
+<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.9.2</span> Camp Rio</a></li>
+<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.9.3</span> TSLIP</a></li>
 </ul>
 </li>
 </ul>
@@ -1349,7 +1428,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-24.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-05-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
