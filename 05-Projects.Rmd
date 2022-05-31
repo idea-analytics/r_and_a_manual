@@ -537,11 +537,31 @@ If the .Rmd filename is too long, then the report will not publish. You'll need 
 
 A detailed guide about publishing can be found in the RStudio Connect [documentation](https://docs.rstudio.com/connect/user/publishing/).
 
+### Power BI
+If your dashboard was created in Power BI and you want to directly publish your dashboard to app.powerbi.com (Power BI Online) these are the steps to do so. You can go directly online to view your [Power BI](https://app.powerbi.com).
 
-###Specific Projects
+1. Make sure at the top right you are signed in with your account.
+
+2. Save the report before Publishing.
+
+3. On the Home menu, on the far right click Publish
+
+4. Select the Workspace that you want to Publish the dashboard to, then click "Select"
+  If you want to later post this Published dashboard to the team site (TheHub), select the "Research and Analysis" Workspace or a Premium Content Workspace, noted by a diamond on the Workspace.
+
+5. Go to [Power BI](https://app.powerbi.com) then go to your dahsboard in the Workspace you Published and there will be two items, the dashboard and the data.
+
+6. Click on the dashboard report and then go to File > Embed report > Website or portal and copy the like in "Here's a link you can use to embed this content."
+  Use that like to share out or post to a Team Site
+
+### Team Site (TheHub)
 
 
-##Teacher Hiring
+
+## Specific Projects
+
+
+### Teacher Hiring
 
 
 1. Jobvite Data
@@ -551,6 +571,6 @@ A detailed guide about publishing can be found in the RStudio Connect [documenta
           
 2. Teacher Export Data
 
-##Camp Rio
+### Camp Rio
 
-##TSLIP
+### TSLIP
