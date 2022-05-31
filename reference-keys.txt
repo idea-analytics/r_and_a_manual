@@ -97,6 +97,12 @@ collaborating-with-renv
 renv-and-rstudio-connect
 publishing-projects
 rstudio-connect
+power-bi
+team-site-thehub
+specific-projects
+teacher-hiring
+camp-rio-1
+tslip-1
 coding-standards
 file-naming-standards.
 visualization-standards
