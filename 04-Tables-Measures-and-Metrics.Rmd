@@ -221,6 +221,36 @@ get_student_daily_attendance() %>%  # this is a built-in function for {ideadata}
 ```
 
 
+Average daily attendance (ADA) is computed as the ratio of present students to enrolled students, which can be found using:
+
+```{r ada_ex, echo=TRUE, eval=FALSE}
+enrollment_conn %>%
+  rename(SchoolNumber = schoolnumber,
+         Region = RegionDescription) %>%
+  
+# pick a specific school and academic year 
+  filter(AcademicYear == current_school_year,
+         SchoolName == our_school) %>%
+
+# groups by school for a particular day  
+  group_by(AcademicYear,
+           Region,
+           SchoolNumber,
+           SchoolName,
+           SchoolShortName,
+           SchoolType,
+           AttDate,
+           DateNumber) %>%
+  distinct() %>%
+  summarise(n_enrolled = sum(Membership),
+            n_absent = sum(Absences)) %>%
+
+# computes ADA as 1 - absence ratio
+  mutate(ada_percent = 1 - (n_absent/n_enrolled)) %>% 
+```
+
+
+
 ### Other uses
 
 Attendance can also be used to obtain **daily total enrollment** at multiple levels, including by grade level at each school.
