@@ -311,13 +311,13 @@ We use [Wrike](https://login.wrike.com/login/) as our main project management sy
   * Include links to any completed products.
 
 ::: {.hat}
-Are you taking notes in a notebook, on a OneNote, or in a Teams chat? Capture the links to all your relevant documents, GitHub repos, notes, pictures, etc. in a relevant task, as a commment, or in a description in the Wrike project! You'll be able to find things you forgot about months later.
+Are you taking notes in a notebook, on a OneNote, or in a Teams chat? Capture the links to all your relevant documents, GitHub repos, notes, pictures, etc. in a relevant task, as a comment, or in a description in the Wrike project! You'll be able to find things you forgot about months later.
 :::
 
 2. If you used a GRPI/RASI for the project, be sure to update your stakeholders, as well.
   * Include a link to the GRPI/RASI in the Wrike project.
   * When you update Wrike, update the GRPI/RASI.
-  * Your GRPI/RASI should succintly summarize what you are doing in the project.
+  * Your GRPI/RASI should succinctly summarize what you are doing in the project.
 
 3. Things might change in your project. Each week, ask yourself:
   * Did the scope of the work change?
