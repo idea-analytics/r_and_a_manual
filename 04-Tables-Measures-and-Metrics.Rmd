@@ -224,7 +224,7 @@ get_student_daily_attendance() %>%  # this is a built-in function for {ideadata}
 Average daily attendance (ADA) is computed as the ratio of present students to enrolled students, which can be found using:
 
 ```{r ada_ex, echo=TRUE, eval=FALSE}
-enrollment_conn %>%
+get_student_daily_attendance() %>%
   rename(SchoolNumber = schoolnumber,
          Region = RegionDescription) %>%
   
@@ -407,19 +407,6 @@ To close the opportunity gap, IDEA Public Schools is committed to a vision of Co
   +	**School:** [SchoolShortName] + [SchoolType]
   +	**Grade Level:** [GradeLevelID]
   +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
-
-
-* **Other Useful Fields:**
-  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
-  + [LeaverWeek] to know the week when the student left the district.
-
-* **SQL Code Example:**
-
-```{r example3, echo=TRUE, eval=FALSE}
-SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
-FROM [`1065574-SQLPRD1`].[Persistence].[dbo].[PersistenceCode]
-WHERE [FDOPCOUNTP] = 1
-```
 
 
 ## Lottery Data
@@ -674,6 +661,18 @@ Most assessments have a standard naming convention:
 
 For example, a 6th grade ELA semester exam in Fall 2021 may have the name **ELA_6thReading_F21_SE**, or the first AP Spanish Language unit exam may have the name **SPA_APSpanishLanguage_F21_UE1**.
 
+
+::: {.gotcha}
+Note that as IDEA continues to expand, some, but not all, exams are now coded as
+
+STATEABBR_SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT
+
+For example, the first 6th grade math unit exam administered in Louisiana may be coded as LA_MAT_6thMath_F22_U1, while the first 6th grade math unit exam in Texas (covering different material) may be coded as TX_MAT_6thMath_F22_U1.
+
+Current state abbreviations include TX, LA, FL, and OH, so it may be prudent to filter rows by state FIRST before finding an appropriate exam to analyze.
+:::
+
+
 A list of the most common codes used is included below:
 
   Subject Code | Semester | Assessment
@@ -683,9 +682,10 @@ A list of the most common codes used is included below:
  SCI - Science | | MUE - mid-unit exam
  HUM or SS - Social Studies | | MM - mid-module
  TECH - Technology | | SE or SEM - semester exam
- RTTC - Road to and through College | | FE - final exam
- SPA - Spanish | | IA - former interim assessment (final exam - IA4)
-  | | BWA - former biweekly assessment
+ RTTC - Road to and through College | | FE or FINAL - final exam
+ SPA - Spanish | | MOCK - mock exam
+ CSCI - Computer Science | | IA - former interim assessment (final exam coded as IA4)
+ TELPAS - TELPAS mock| | BWA - biweekly assessment
 
 Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment. 
 
@@ -718,7 +718,7 @@ This table aggregates item-level data for each student and reports a student's p
 * **[Mastery]:** 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not
 * **[src]:** Source of asssessment data (most are Illuminate, but some are from legacy systems)
 * **[Scope]:** Similar to AssessmentType, but more detailed.
-* **[State]:** Two-letter state code (TX, LA, FL) where the assessment is administered.
+* **[State]:** Two-letter state code (TX, LA, FL, OH) where the assessment is administered.
 
 **Other useful fields:** 
 
@@ -780,7 +780,7 @@ This table displays item-level data for each student for each assessment. This i
 
 #### Other sources
 
-As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use [ANet](https://www.achievementnetwork.org/) to house some of their LEAP-aligned assessments. 
+As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use [ANet](https://www.achievementnetwork.org/) to house some of their LEAP-aligned assessments.
 
 
 ### DIBELS
