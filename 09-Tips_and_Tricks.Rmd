@@ -17,6 +17,120 @@ There are two general purpose design patterns for de-duplicating rows in a table
     4. Filter for the maximum row number(with `dplyr::filter()` in R or a `WHERE` clause in SQL)
     5. (optional) Ungroup your data. 
   
+
+### Hierarchical aggregation, or the `list-group_by` trick
+
+Schools data, especially student-level data, is embedded in hierarchical groupings. 
+
+Let's look at the [Zillow Home Value Index](https://www.zillow.com/research/data/) for all homes (i.e, single family homes, condos, and coops),  which is smoothed, seasonally adjusted measure of the typical home value and market changes across a given region It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022. 
+
+It's a very large dataset so we'll use the apache Arrow Project's feather file to read the data into R and subset the housing costs to IDEA metro areas
+
+```{r}
+library(arrow)
+zillow <- read_feather("./zillow.feather")
+
+View(zillow)
+
+idea_metros <- tibble(Metro = c("Austin-Round Rock",
+                                "Dallas-Fort Worth-Arlington",
+                                "San Antonio-New Braunfels",
+                                "Brownsville-Harlingen",
+                                "El Paso",
+                                "Houston-The Woodlands-Sugar Land",
+                                "Baton Rouge",
+                                "Tampa-St. Petersburg-Clearwater",
+                                "Jacksonville",
+                                "Cincinnati"
+                                )
+                      )
+
+
+
+zillow_idea <- zillow %>% 
+  inner_join(idea_metros, by = "Metro") %>% 
+  select(RegionID:CountyName, matches("202*-")) %>% 
+  janitor::clean_names()
+
+zillow_idea
+```
+
+These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we'd like to do aggregations by over these various level.  That is, we'd like to know the mean home price for each neighborhood, city and county.  A typical work flow to achieve this is to write a `{dplyr}` pipeline for one `group_by` combination and then copy-and-paste that pipeline and change the columns in the `group_by` call. While this works in a pinch, its repetitive (violating [the DRY doctrine](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)), prone to copying errors and leaves with a bunch of dataframe that are have increasingly awkward names. 
+
+A more elegant solution is to leverage `{purrr}`'s `map_df` function and to pass it a listy of already grouped data frames. Here's a simple example:
+
+```{r group-by-list-simple}
+library(purrr)
+
+zillow_idea_county_state <- zillow_idea %>% 
+  # create a list of grouped data.frames
+  {list(
+    group_by(., county_name, state), # the . is a  placeholder for the data.frame being piped in 
+    group_by(., state)
+  )} %>% 
+  map_df(., ~{
+    .x %>% # .x is a placeholder for each element of list above passed to map_df
+      # across allows us to apply a function to every column satisfying a condition
+      summarize(across(starts_with("x20"), ~mean(.x, na.rm = TRUE)))
+  })
+  
+
+head(zillow_idea_county_state)
+```
+
+We now have a data frame with county-level *and* state-level means in one data frame.  Notice however that the `county_name` field is `NA` for state level data:
+
+```{r}
+zillow_idea_county_state %>% 
+  filter(is.na(county_name))
+```
+
+This makes sense, since `map_df` uses `bind_rows` to concatonate the aggregated tables together and will fill columns that are missing in data frame with NA values.  With simple example like this we could add an extra step at the end of our pipline to provide more information:
+
+```{r if_na}
+zillow_idea_county_state <- zillow_idea %>% 
+  # create a list of grouped data.frames
+  {list(
+    group_by(., county_name, state), # the . is a  placeholder for the data.frame being piped in 
+    group_by(., state)
+  )} %>% 
+  map_df(., ~{
+    .x %>% # .x is a placeholder for each element of list above passed to map_df
+      # across allows us to apply a function to every column satisfying a condition
+      summarize(across(starts_with("x20"), ~mean(.x, na.rm = TRUE)))
+  }) %>% 
+  replace_na(list(county_name = "State Avg"))
+
+zillow_idea_county_state %>% 
+  filter(is.na(county_name))
+
+zillow_idea_county_state %>% 
+  filter(county_name == "State Avg")
+```
+
+
+Why have all of this one data frame? Because it can now be easily graphed:
+
+```{r zillow_graph}
+
+zillow_idea_county_state %>% 
+  # pivot to a long table by year
+  pivot_longer(cols = starts_with("x"), names_to = "month", values_to = "home_value") %>% 
+  # let's clean up the month column by removing the leading x and casting to a date
+  mutate(month = str_remove(month, "x"), 
+         month = lubridate::ymd(month)) %>% 
+  
+  ggplot(aes(x = month, home_value)) + 
+  geom_line(aes(color = county_name == "State Avg", group=county_name)) +
+  facet_wrap(~state)
+
+
+```
+
+
+
+
+
 ### Creating "Scaffolds" when joining data.  
 
 Coming Soon. . . 
