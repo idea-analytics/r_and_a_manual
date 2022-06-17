@@ -117,6 +117,9 @@ zillow_idea_county_state %>%
 Why have all of this one data frame? Because it can now be easily graphed:
 
 ```{r zillow_graph}
+library(ggrepel)
+library(lubridate)
+
 
 zillow_idea_county_state %>% 
   # pivot to a long table by year
@@ -125,13 +128,63 @@ zillow_idea_county_state %>%
   mutate(month = str_remove(month, "x"), 
          month = lubridate::ymd(month)) %>% 
   
-  ggplot(aes(x = month, home_value)) + 
-  geom_line(aes(color = county_name == "State Avg", group=county_name)) +
-  facet_wrap(~state)
+  ggplot(aes(x = month, home_value, color = county_name == "State Avg")) + 
+  geom_line(aes(group=county_name)) +
+  # geom_dl(aes(color = county_name == "State Avg", label = county_name), 
+  #         method = "maxvar.qp") +
+  geom_text_repel(data = . %>% 
+                    filter(month == max(month)),
+                  aes(label = county_name), 
+                  xlim = c(ymd("2022-05-31"), Inf),
+                  size  = 1.5,
+                  force             = 0.05,
+                  nudge_x           = 5,
+                  direction         = "y",
+                  hjust             = 0, 
+                  vjust = 0.5, 
+                  max.overlaps = Inf, ) +
+  scale_y_continuous(labels = scales::dollar_format()) +
+  ideacolors::scale_color_idea(labels = c("County Avg","State Avg")) +
+  
+  coord_cartesian(clip = FALSE, expand = TRUE, xlim = c(ymd("2020-01-03"), 
+                                                        ymd("2023-12-31"))) +
+  facet_wrap(~state) +
+  ideacolors::theme_idea_min() +
+  labs(y = "Typical home values", 
+       x = "Month",
+       color = "") 
+  
 
 
 ```
 
+#### Saving grouping info
+
+Another trick is to save the group_by info that you are passing with the grouped data.frame into a column.  Here's an example:
+
+```{r grouping-info}
+
+zillow_idea_neighborhood <- zillow_idea %>% 
+  # create a list of grouped data.frames
+  {list(
+    group_by(., region_name, city, metro, county_name, state), 
+    group_by(., city, metro, county_name, state), 
+    group_by(., county_name, state),
+    group_by(., state)
+  )} %>% 
+  map_df(., ~{
+    .x %>% # .x is a placeholder for each element of list above passed to map_df
+      # across allows us to apply a function to every column satisfying a condition
+      summarize(across(starts_with("x20"), ~mean(.x, na.rm = TRUE))) %>% 
+      mutate(groups = paste(group_vars(.x), collapse = "|"))
+  })
+
+
+zillow_idea_neighborhood %>% 
+  filter(groups == "city|metro|county_name|state") %>% 
+  top_n(20) %>% 
+  knitr::kable()
+```
 
 
 
