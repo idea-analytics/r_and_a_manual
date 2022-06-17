@@ -19,7 +19,7 @@ But enough on the **why** let's get to **how** (if you do want to know more on t
 
 Here's a quick overview of what you'll need to do, with details to follow:
 
--   Dedicate a directory (a.k.a "folder") to it.
+-   Dedicate a directory (a.k.a. "folder") to it.
 
 -   Make it an RStudio Project.
 
@@ -71,7 +71,7 @@ This section is going to walk you through how to use git/github by updating this
 But first things first:
 
 1.  Verify you did [the initial set-up steps above](#first-steps)
-2.  Get your bio ready
+2.  Get your bio ready.
 
 \*\*Note that throughout the steps below I'll show you how to each step Ok. Your ready? Great! Here we go.
 
