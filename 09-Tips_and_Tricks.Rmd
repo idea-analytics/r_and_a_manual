@@ -26,11 +26,10 @@ Let's look at the [Zillow Home Value Index](https://www.zillow.com/research/data
 
 It's a very large dataset so we'll use the apache Arrow Project's feather file to read the data into R and subset the housing costs to IDEA metro areas
 
-```{r}
+```{r read-zillow}
 library(arrow)
 zillow <- read_feather("./zillow.feather")
 
-View(zillow)
 
 idea_metros <- tibble(Metro = c("Austin-Round Rock",
                                 "Dallas-Fort Worth-Arlington",
@@ -52,7 +51,7 @@ zillow_idea <- zillow %>%
   select(RegionID:CountyName, matches("202*-")) %>% 
   janitor::clean_names()
 
-zillow_idea
+#zillow_idea
 ```
 
 These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we'd like to do aggregations by over these various level.  That is, we'd like to know the mean home price for each neighborhood, city and county.  A typical work flow to achieve this is to write a `{dplyr}` pipeline for one `group_by` combination and then copy-and-paste that pipeline and change the columns in the `group_by` call. While this works in a pinch, its repetitive (violating [the DRY doctrine](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)), prone to copying errors and leaves with a bunch of dataframe that are have increasingly awkward names. 
@@ -75,19 +74,19 @@ zillow_idea_county_state <- zillow_idea %>%
   })
   
 
-head(zillow_idea_county_state)
+#head(zillow_idea_county_state)
 ```
 
 We now have a data frame with county-level *and* state-level means in one data frame.  Notice however that the `county_name` field is `NA` for state level data:
 
-```{r}
+```{r filter-na}
 zillow_idea_county_state %>% 
   filter(is.na(county_name))
 ```
 
 This makes sense, since `map_df` uses `bind_rows` to concatonate the aggregated tables together and will fill columns that are missing in data frame with NA values.  With simple example like this we could add an extra step at the end of our pipline to provide more information:
 
-```{r if_na}
+```{r replace_na}
 zillow_idea_county_state <- zillow_idea %>% 
   # create a list of grouped data.frames
   {list(
