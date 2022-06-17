@@ -24,7 +24,7 @@ Schools data, especially student-level data, is embedded in hierarchical groupin
 
 Let's look at the [Zillow Home Value Index](https://www.zillow.com/research/data/) for all homes (i.e, single family homes, condos, and coops),  which is smoothed, seasonally adjusted measure of the typical home value and market changes across a given region It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022. 
 
-It's a very large dataset so we'll use the apache Arrow Project's feather file to read the data into R and subset the housing costs to IDEA metro areas
+It's a very large dataset so we'll use the [Apache Arrow Project](https://arrow.apache.org/docs/r/)'s feather file format  to read the data into R and subset the housing costs to IDEA metro areas since 2020. 
 
 ```{r read-zillow}
 library(arrow)
@@ -48,10 +48,14 @@ idea_metros <- tibble(Metro = c("Austin-Round Rock",
 
 zillow_idea <- zillow %>% 
   inner_join(idea_metros, by = "Metro") %>% 
-  select(RegionID:CountyName, matches("202*-")) %>% 
+  select(RegionID:CountyName, matches("202*-")) %>% # matches() selects columns with regular expressions
   janitor::clean_names()
 
-#zillow_idea
+knitr::kable(
+  head(zillow_idea),
+   booktabs = TRUE,
+  caption = 'first 10 rows of Zillow Home Value Index data')
+  
 ```
 
 These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we'd like to do aggregations by over these various level.  That is, we'd like to know the mean home price for each neighborhood, city and county.  A typical work flow to achieve this is to write a `{dplyr}` pipeline for one `group_by` combination and then copy-and-paste that pipeline and change the columns in the `group_by` call. While this works in a pinch, its repetitive (violating [the DRY doctrine](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)), prone to copying errors and leaves with a bunch of dataframe that are have increasingly awkward names. 
@@ -74,14 +78,15 @@ zillow_idea_county_state <- zillow_idea %>%
   })
   
 
-#head(zillow_idea_county_state)
+knitr::kable(zillow_idea_county_state)
 ```
 
 We now have a data frame with county-level *and* state-level means in one data frame.  Notice however that the `county_name` field is `NA` for state level data:
 
 ```{r filter-na}
 zillow_idea_county_state %>% 
-  filter(is.na(county_name))
+  filter(is.na(county_name)) %>% 
+  knitr::kable()
 ```
 
 This makes sense, since `map_df` uses `bind_rows` to concatonate the aggregated tables together and will fill columns that are missing in data frame with NA values.  With simple example like this we could add an extra step at the end of our pipline to provide more information:
@@ -104,7 +109,8 @@ zillow_idea_county_state %>%
   filter(is.na(county_name))
 
 zillow_idea_county_state %>% 
-  filter(county_name == "State Avg")
+  filter(county_name == "State Avg") %>% 
+  knitr::kable()
 ```
 
 
