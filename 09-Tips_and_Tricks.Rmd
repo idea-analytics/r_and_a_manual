@@ -160,7 +160,7 @@ zillow_idea_county_state %>%
 
 #### Saving grouping info
 
-Another trick is to save the group_by info that you are passing with the grouped data.frame into a column.  Here's an example:
+Another trick is to save the `group_by` info that you are passing with the grouped data.frame into a column.  Here's an example:
 
 ```{r grouping-info}
 
@@ -178,6 +178,7 @@ zillow_idea_neighborhood <- zillow_idea %>%
       summarize(across(starts_with("x20"), ~mean(.x, na.rm = TRUE))) %>% 
       mutate(groups = paste(group_vars(.x), collapse = "|"))
   })
+
 
 
 zillow_idea_neighborhood %>% 
