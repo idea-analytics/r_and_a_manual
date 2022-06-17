@@ -134,6 +134,7 @@ machine-learning
 tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
+hierarchical-aggregation-or-the-list-group_by-trick
 creating-scaffolds-when-joining-data.
 statistical-pitfalls
 simpsons-paradox
