@@ -58,7 +58,6 @@ evaluation-projects
 st-century-afterschool-programs
 camp-rio
 tslip
-tcp-levels-and-composite-score-correlations
 projects
 section-github
 getting-started-with-git-github-and-rstudio
