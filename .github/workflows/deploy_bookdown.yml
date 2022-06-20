@@ -19,7 +19,7 @@ jobs:
         run: Rscript -e 'install.packages(c("rmarkdown","bookdown", "tidyverse", "janitor", "DT", "DiagrammeR", "downlit", "arrow", "lubridate", "remotes"))'
       - name: Install remote packages
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
         run: Rscript -e 'remotes::install_github("idea-analytics/ideacolors")'
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
