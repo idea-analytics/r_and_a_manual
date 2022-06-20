@@ -1,4 +1,5 @@
 fig:server-graphs
+tab:read-zillow
 about
 what-goes-in-this-manual
 how-do-you-contribute-to-this-book
@@ -57,6 +58,7 @@ evaluation-projects
 st-century-afterschool-programs
 camp-rio
 tslip
+tcp-retention
 projects
 section-github
 getting-started-with-git-github-and-rstudio
@@ -135,6 +137,7 @@ tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
 hierarchical-aggregation-or-the-list-group_by-trick
+saving-grouping-info
 creating-scaffolds-when-joining-data.
 statistical-pitfalls
 simpsons-paradox
