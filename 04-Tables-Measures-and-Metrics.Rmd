@@ -984,11 +984,3 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
 ### TSLIP
 
 Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
-
-#### TCP Retention
-
-TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. 
-
-Going forward for 21-22 SY TCP, all teachers will supposedly be placed into TCP Placement Levels, regardless of known leaver-status. This should help with the issue of analyzing retention of teachers by TCP Level, as all teachers would have a TCP Level when the October 2022 TCP comes out.
-
-Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys.
