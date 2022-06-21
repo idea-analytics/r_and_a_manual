@@ -558,19 +558,26 @@ If your dashboard was created in Power BI and you want to directly publish your 
 
 
 
-## Specific Projects
+# Specific Projects
 
 
-### Teacher Hiring
+## Teacher Hiring and TCP
 
 
-1. Jobvite Data
-          *Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
-          This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application.
+### Jobvite Data
+Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. 
+
+A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+          
+This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application.
           
           
-2. Teacher Export Data
+### Teacher Export Data
+This is found on the TCP application, a website: www.tcp.ideapublicschools.org. To gain access, contact Nohemi Pizana and request access. Use your IDEA login credentials to access the site. Teacher Export reports have the composite score, placement level, subject, job title, employee ID, and a few pre-selection hiring measures.
 
-### Camp Rio
+### TCP Handbook
+This is the link to the TCP Handbook, which denotes the business rules to advance throught the different TCP Levels, 1 through 5. https://ideapublicschools.org/wp-content/uploads/2021/08/TCP-Revised-Rubrics-2020-2021.Sept_.25.2020.pdf
 
-### TSLIP
+### Teacher Interviews/Teacher Manager Interviews
+A job analysis is being conducted to try to find job-relatedness for functions conducted in the teacher role, as well as to help identify pre-hire selection measures for the HA team to help with the selection process. This involves a series of neutrally-phrased questions to illicit reponses about the teacher role, what a teacher does, what makes a successful IDEA teacher, what characterisitics a teacher needs to succeed at IDEA. Both teachers and teacher-managers (principals, PIRs, and APIs) are being interviewed to collect this qualitative data set. These should be completed by Fall 2022.
+
