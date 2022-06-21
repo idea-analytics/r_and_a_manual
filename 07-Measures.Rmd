@@ -1,0 +1,553 @@
+# Measures
+
+Within this chapter we will find the measures IDEA Public Schools stakeholders are the most interested about.
+
+## The Students Table
+
+The Students table is probably the most important table of all. It contains historical student personal data since IDEA's inception. 
+
+We use this table to know to what subpopulation a student belongs to. Also, we can link this table to other student data using the _[StudentNumber]_ field.
+
+**Table:** [1065574-SQLPRD1].[PROD1].[Schools].[Students]
+
+**Main fields:** [AcademicYear] [StudentNumber] | [SchoolNumber] | [GradeLevelID] | [EnrollmentStatus] | [Gender] | [SPED] | [ELLCode] | [PrimaryDisabilityCode ] | [SecondaryDisabilityCode ] | [TertiaryDisabilityCode ] | [EconomicDisadvantageCode] | [FederalHispanicFlag] | [FederaRaceI] | [FederaRaceA] | [FederaRaceB] | [FederaRaceP] |  [FederaRaceW] |[EntryDate] | [ExitDate] | [RowIsCurrent]
+
+**Who is what?:** 
+
+* **_[EnrollmentStatus]:_** 
+  + If EnrollmentStatus = 0, it means that the student is/was an active student for the corresponding academic year,
+  + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
+  + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
+
+* **_[ELLCode]:_** English Learner (EL) A.K.A. Limited English Proficiency (LEP)
+  + If ELLCode = 0, student **is not** identified as an EL student,
+  + If ELLCode = 1, the student **is** identified as an EL student,
+  + If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,
+  + If ELLCode = "F", the student **is not** identified as an EL student but is in the First Year of Monitoring status,
+  + IF ELLCode = "S", the student **is not** identified as an EL student but is in the Second Year of Monitoring status,
+  + If ELLCode = 3, the student **is not** identified as an EL student but is in the Third Year of Monitoring status,
+  + If ELLCode = 4, the student **is not** identified as an EL student but is in the Fourth Year of Monitoring status,
+  + If ELLCode = 5, the student **is not** identified as an EL student but was at one point more than 4 years ago.
+  
+* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
+
+* **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
+  + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
+  
+* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](http://ritter.tea.state.tx.us/peims/standards/1314/c035.html):
+
+  InstructionalSettingCode | Description
+  -------------------------|-------------
+ 0 | No additional SPED services
+ 1 | Homebound
+ 40 | Mainstream
+ 41 | Resource Room/Services < 21%
+ 42 | Resource Room/Services 21- <50%
+ 43 | Resource Room/Services 50- 60%
+ 44 | Resource Room/Services > 60%
+ 
+  + If InstructionalSettingCode = 43 or 44, the student is typically in RISE.
+
+* **_[DisabilityCode]_**
+
+  DisabilityCode | Description
+  ---------------|-------------
+ 0 | No disability
+ 1 | Orthopedic impairment
+ 2 | Other health impairment
+ 3 | Auditory impairment
+ 4 | Visual impairment
+ 5 | Deaf-Blind
+ 6 | Intellectual Disability
+ 7 | Emotional disturbance
+ 8 | Learning disability
+ 9 | Speech impairment
+ 10 | Autism
+ 13 | Traumatic brain injury
+ 14 | Noncategorical early childhood
+
+```{r disability, echo=TRUE, eval=FALSE}
+SELECT DISTINCT 
+ [StudentNumber], 
+ [PrimaryDisabilityCode] AS [DisabilityCode], 
+ [PrimaryDisabilityDescription] AS [DisabilityDescription]
+
+ FROM (
+
+SELECT DISTINCT [StudentNumber],[PrimaryDisabilityCode], [PrimaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019'
+
+ UNION ALL
+
+SELECT DISTINCT  [StudentNumber], [SecondaryDisabilityCode], [SecondaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019'
+
+ UNION ALL
+
+SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityDescription]
+
+ FROM [PROD1].[Schools].[Students]
+ WHERE AcademicYear='2018-2019') A WHERE [PrimaryDisabilityDescription] <> '' ORDER BY StudentNumber
+
+
+```
+
+* **_[EconomicDisadvantageCode]:_** A.K.A ECD 
+  + If EconomicDisadvantageCode = 0, then the student is _not identified as economically disadvantaged_, otherwise the student is identified as **economically disadvantaged**,
+  + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
+  + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
+  + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+  
+* **ECDFlag** Consolidates the codes above to 0/1 indicator
+  + If ECDFlag = TRUE (1), the student **is** identified as economically disadvantaged,
+  + If ECDFlag = FALSE (0), the student **is not** identified as economically disadvantaged.
+
+
+* **_Race / Ethnicity:_** Same like in TX
+  + If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,
+  + If the student **does not** identify as Hispanic or Latino and only selected one race the student is classified as that race,
+  + If the student **does not** identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.
+
+* **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
+
+### Common queries
+
+We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:
+
+* SQL example:
+```{sql, eval=FALSE}
+SELECT [AcademicYear]
+	  ,C.[RegionDescription]  
+	  ,B.[SchoolName]
+	  ,[GradeLevelID]
+	  ,[StudentNumber]
+    ,[StudentFullName]
+    ,[FirstName]
+    ,[MiddleInitial]
+    ,[LastName]
+
+--join Schools and Regions tables
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
+    LEFT JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
+      ON A.[SchoolNumber] = B.[SchoolNumber]
+    INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Regions] AS C
+      ON B.[RegionID] = C.[RegionID]
+
+--filter for currently enrolled seniors in 2021-2022
+  WHERE [AcademicYear] = '2021-2022'
+    AND [GradeLevelID] = '12'
+    AND [ExitDate] > '2022-05-01'
+    AND [RowIsCurrent] = '1'
+    
+```
+
+* R example:
+```{r r_current_seniors, echo=TRUE, eval=FALSE}
+get_students() %>%
+
+#filter for currently enrolled seniors in 2021-2022
+  filter(AcademicYear == "2021-2022",
+         GradeLevelID == "12",
+         ExitDate > "2022-05-01",
+         RowIsCurrent == 1) %>%
+  
+#join Schools and Regions tables
+  inner_join(get_schools(),
+             by = c("SchoolNumber" = "SchoolNumber")) %>%
+  inner_join(get_regions(),
+             by = c("RegionID" = "RegionID")) %>%
+  
+  select(AcademicYear,
+         RegionDescription,
+         SchoolName,
+         GradeLevelID,
+         StudentNumber,
+         StudentFullName,
+         FirstName,
+         MiddleInitial,
+         LastName)
+```
+
+
+
+## Student Persistence
+
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence (FDOP)" for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+
+Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
+
+**Database:** [1065574-SQLPRD1].[Persistence]
+
+**Main metrics:** District, Regional, School, Sub-population, Grade Level
+
+**General Formula:** 1 – (Leavers/All Students)
+
+**Tables:**
+
+* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).
+
+* **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2020-2021. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
+
+**Context:**
+
+* **Who Counts?** 
+
+To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(EXCLUDE == 0, FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. These two filters should be used when looking at current **or** historical data.
+
+* **Who is a Leaver?**
+
+All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a current student.
+
+* **Other Useful Fields:**
+  + **AcademicYear:** the academic year
+  + **RegionDescription:** the region the student is in
+  + **SchoolShortName:** the school the student attends
+  + **SchoolType:** Academy of College Prep
+  + **GradeLevelID:** Student's grade level (integer ranging from -1 = Pre-K to 12)
+  + **NewStudent:** indicates if the student is new (1) or returning (0)
+  + **PersistenceWeek:** the current week of persistence based on the student's region and school (ranges from 1-52)
+  + **LeaverWeek:** the persistence week the student left the district
+  + **ULeaverWeek:** the persistence week the student left the district if it was after the last day of school
+  + **PersistenceCode:** the reason the student left the district
+  + **PersistenceCategory:** the category that the reason falls into for why the student left the district
+  + **PersistenceComment:** any additional comments the SIS clerk has for why the student left the district
+  + **EnrollmentStatus:** contains the enrollment status, but is not accurate **Do Not Use**
+  + **EntryDate:** the date the student entered school for a particular academic year or the date the student started school at a new campus
+  + **ExitDate:** the last day of the academic year (last day of school) or the day the student left the district (summer leavers are sometimes snapped back to the last day of school, beware)
+  + **Recapture:** 0/1 indicator of students that have left and then returned to the district. 1 = recaptured, 0 = not recaptured. **Not to be Trusted**
+  + **SummerLeaver:** 0/1 indicator for students that leave during the summer
+  + **StudentGender:** "M"/"F" gender indicator
+  + **Race:** race indicator combined with ethnicity; ex. "WHITE-HISPANIC"
+  + **IsHispanic:** indicates whether the student identifies as Hispanic; values = "HISPANIC" or "NON-HISPANIC"
+  + **Migrant:** 0/1 indicator of student's migrant status
+  + **LEP:** 0/1 indicator of student's English Learner status. **Inaccurate Don't Use**
+  + **Sped:** 0/1 indicator of student's SPED status
+  + **EconDisad:** 0/1 indicator of student's economic disadvantaged status. **Inaccurate Don't Use**
+  + **IsCSI:** 0/1 indicator for students identified as CSI
+  + **ContinuousEnrollment:** 0/1 indicates whether the student has been continuously enrolled
+  
+### Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)
+
+Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
+
+**Database:** [1065574-SQLPRD1].[PROD1]
+
+**Tables:**
+
+* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.
+
+* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.
+
+* **Other Useful Fields:**
+  + **AcademicYear:** the academic year (in both tables)
+  + **SchoolName:** the long school name (in both tables)
+  + **schoolnumber:** the school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
+  + **SchoolShortName:** the school's short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)
+  + **SchoolType:** indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)
+  + **RegionDescription:** the region (Only on the Attendance.Students table - 2017-2018 to present)
+  + **GradeLevelID:** student's grade level (in both tables)
+  + **WeekNumber:** the number of the week in the academic year (in both tables) **Use Cautiously** the weeks are **NOT** numbered properly in 2019-2020 contains in the Attendance.Students table
+  + **AttDate:** the date for the attendance record (format "YYYY-MM-DD") (in both tables)
+  + **Membership:** indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)
+  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", "or "LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
+
+
+## College Application & Matriculation Metrics
+
+To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
+
+**Database:** [1065574-SQLPRD1].[PROD1].[Colleges]
+
+**Main metrics:** Percent at least 1 application, Percent at least 1 submission, Percent at least 1 acceptance
+
+**Most important columns:** [Stage] | [ResultCode]
+
+**Tables:**
+
+* **_[Colleges]:_** Here we will find all colleges/universities. What makes this table important is the [CEEB] field which is an ID that can help us connect distinct college related data sources like Naviance with National Student Clearinghouse data!
+
+* **_[CollegeTuition]:_** Besides having in-state tuition and out-of-state tuition data, we can also find two other unique codes ([OPEID] and [ACTCode]), that will aid us to college data across different data sources. 
+
+* **_[EDocs]:_** Details about  application submitted e-documents.
+
+* **_[StudentCollegeApplication]:_** This is the main table. We use it to calculate most of the metrics the College Application & Matriculation dashboard has. We can find data from 2018 up to the current academic year.
+
+* **_[StudentCollegeApplicationsSummary]:_** 
+
+* **_[StudentScholarships]:_** 
+
+
+**Context:**
+
+* **Who Counts?** 
+
+
+
+* **Who is a 4year 2year?**
+
+
+
+* **Persistence Rate by:**
+
+  + **District:** use all data
+  +	**Region:** use the [RegionDescription] field
+  +	**School:** [SchoolShortName] + [SchoolType]
+  +	**Grade Level:** [GradeLevelID]
+  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
+
+
+* **Other Useful Fields:**
+  + Use [PersistenceCode] or [PersistenceCategory] to know student and family reasons on why a student left the district.
+  + [LeaverWeek] to know the week when the student left the district.
+
+* **SQL Code Example:**
+
+```{r example3, echo=TRUE, eval=FALSE}
+SELECT 1 -  AVG(CAST([FDOPLEAVER] AS NUMERIC))
+FROM [`1065574-SQLPRD1`].[Persistence].[dbo].[PersistenceCode]
+WHERE [FDOPCOUNTP] = 1
+```
+
+
+## Critical Student Intervention (CSI) Identification {#csi}
+
+To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
+
+**Database:** [1065574-SQLPRD1].[PROD1].[Schools]
+
+**Main metrics:** Percent of CSI students by school
+
+**Most important columns:** [ProgramID] | [InterventionType]
+
+**Tables:**
+
+* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
+
+* **SQL Code Example:**
+
+```{r csi1, echo=TRUE, eval=FALSE}
+SELECT DISTINCT AcademicYear, [Subject], ProgramID
+FROM (SELECT [AcademicYear]
+      ,[ProgramID]
+      ,CASE 
+	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
+	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI]
+  WHERE [AcademicYear] = '2018-2019' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
+GROUP BY AcademicYear, [Subject], ProgramID
+```
+
+* **_[StudentCSIDetails]:_** Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the **_[StudentCSI]_** table data to the Students table and get the percent of CSI students per school.
+
+* **SQL Code Example:**
+
+```{r csi2, echo=TRUE, eval=FALSE}
+SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
+FROM [1065574-SQLPRD1].[PROD1].[Schools].[Students] AS A
+INNER JOIN [1065574-SQLPRD1].[PROD1].[Schools].[Schools] AS B
+ON A.SchoolNumber = B.SchoolNumber
+LEFT JOIN [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI] AS C
+ON A.StudentNumber = C.StudentNumber AND A.AcademicYear = C.AcademicYear
+LEFT JOIN 
+(SELECT DISTINCT AcademicYear, [Subject], ProgramID
+FROM (SELECT [AcademicYear]
+      ,[ProgramID]
+      ,CASE 
+	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
+	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
+  FROM [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI]
+  WHERE [AcademicYear] = '2020-2021' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
+GROUP BY AcademicYear, [Subject], ProgramID) AS D
+ON C.ProgramID = D.ProgramID
+WHERE A.AcademicYear = '2020-2021'
+```
+
+## Assessment Data
+
+### DIBELS
+
+Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uoregon.edu/) is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.
+
+Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is usually pulled and stored in the warehouse.
+
+**Table:** [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]
+
+**Main metrics:** Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests
+
+**Most important columns:** [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]
+
+**Other useful fields:** 
+  + **[School Year], [School Name], [Assessment Grade]:** use to filter the table to the appropriate students
+  + **[Benchmark Period]:** labeled as BOY, MOY, or EOY
+  + **[Student ID (District ID)]:** use to match students back to the Students table.
+  + Note that data for IDEA Travis in 2021-22 BOY did not have Student IDs. You must match these students (and potentially others) by **[Student Last Name]** and **[Student First Name]**. If a match is not returned, check for misspellings of the names or hyphenated/dual last names. DIBELS data often omits a hyphen or the second last name entirely.
+  
+**Context:**
+
+* **Who is assessed?** 
+
+All students in K, 1 and 2 are assessed using DIBELS. 
+
+* **Which tests/columns are actually used?**
+  + **[Assessment Measure-Composite Score-Levels]:** A *composite level* is assigned to all students, regardless if they complete all sections. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-Composite Score-Score]:** A *composite score* is assigned to all students, regardless if they complete all sections. The interval of composite scores is [200, 467+).
+  + **[Assessment Measure-LNF-Levels]:** The LNF, or *Letter Naming Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
+  + **[Assessment Measure-LNF-Score]:** This is a numerical measure of LNF in the interval [0, 59+).
+  + **[Assessment Measure-PSF-Levels]:** The PSF, or *Phonemic Segmentation Fluency* test, is administered to K-1 students only. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-PSF-Score]:** This is a numerical measure of PSF in the interval [0, 61+).
+  + **[Assessment Measure-NWF (CLS)-Levels]:** The NWF, or *Nonsense Word Fluency* test, is administered to K-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-NWF (CLS)-Score]:** This is a numerical measure of NWF in the interval [0, 46+).
+  + **[Assessment Measure-DORF (Fluency)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
+  + **[Assessment Measure-DORF (Fluency)-Score]:**  This is a numerical measure of DORF - Fluency in the interval [0, 164+).
+  + **[Assessment Measure-DORF (Accuracy)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
+  + **[Assessment Measure-DORF (Accuracy)-Score]:** This is a numerical measure of DORF - Accuracy in the interval [0, 96+).
+  + The remaining assessment measures were used historically but are no longer actively tested.
+
+* **Why are there NAs for certain tests if the student took the assessment?**
+
+DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
+
+* **Who can I ask for more context?**
+
+  + Nkosi Geary-Smith is the Director of Early Literacy. She has context on the DIBELS assessment and how it is used.
+  + Chris Gonzalez is the VP of Accountability. He pulls the DIBELS data and uploads it to the warehouse.
+  + The University of Oregon maintains the [DIBELS site](https://dibels.uoregon.edu/) and publishes guides on administering and interpreting scores.
+  
+
+### Renaissance STAR (also RenStar, Little Star)
+
+  
+
+###Specific Projects
+
+
+##Teacher Hiring
+Analyzing correlations and predictions between pre-selected hiring measures and teacher performance.
+
+
+#A. Jobvite Data
+          *Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+          This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
+          
+  Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for Category = Teaching)
+•	Contains those who are Hired = Yes and Hired = No. 
+   o	“Hired = Yes” means they were offered the position, but does not indicate if they actually accepted it or not. 
+   o	Each person may apply for more than one job opening, and if they do, they will have a unique Requisition ID for each application (even though it is the same candidate applying for each separate position).
+•	Has Personal Email and Full Name
+•	Does NOT have IDEA Work Email, nor EmployeeID
+•	Contains everyone who applied from October to the following July, for the subsequent August Start Date (or start dates after that year).
+•	Most people who applied in Jobvite 19-20 (10/18 to 7/19), started in Fall 2019 (19-20 Academic Year) 
+   o	But a few of those started in Fall 2020 and Fall 2021.
+
+1)	19-20 – 2nd year of Jobvite data (18-19 is first and starting year of Jobvite data)
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column – shows which month/year a new hire started working (doesn’t have to be immediately following that year’s hiring cycle)
+
+2)	20-21 – 3rd year of Jobvite data 
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column
+
+3)	21-22 – 4th year of Jobvite data
+•	(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+•	Contains Tentative Start Date column
+
+#B. TCP/Teacher Export Data
+
+TCP/Teacher Export Data: Teacher Performance data.
+•	Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components). 
+   o	GET (35%)
+      	Manager and Self Guidepost Ratings contain 6 components
+•	Lesson Planning & Delivery
+•	Culture, Etc.
+      	Components 1-5 are counted, and Component 6 (Core Values) is calculated outside of this score (it is 1 of 5 Components of TCP, worth 5% on its own)
+      	Each Guidepost Component has 4-5 items listed under each as 1A, 1B, etc.
+   o	Parent Survey (5%)
+      	Show up as BLANK if <10 surveys were completed per teacher
+   o	Student Survey (5%)
+      	Shows up as BANK if:
+•	 <10 surveys were completed per teacher
+   o	Some campuses encourage students and parents to fill out the surveys, and some do not
+•	Teacher taught SPED, pre-K, K, 1st, or 2nd Grades (those students are not able to take the survey/or too young).
+   o	Student Achievement (50%)
+      	Testing such as STAAR, etc.
+   o	Core Values (5%)
+•	Contains IDEA Work Email and EmployeeID
+•	Contains First Name and Last Name (but not Full Name)
+•	There is a 2 year HOLD for the pandemic (we don’t know who was “held”), meaning someone at a particular level (E.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
+•	If someone got a 4.5+ composite TCP score for 2 consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
+•	For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
+•	If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
+
+1)	18-19  
+•	From Alex, see email
+
+2)	19-20  
+•	(“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
+•	Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
+3)	20-21 – 3rd year of Jobvite data 
+•	from Blanca, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
+•	Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year
+
+4)	21-22 – NO
+•	Not available yet! 
+•	No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.
+
+
+#Data Matching
+Jobvite 19-20 to Teacher Export 19-20
+Jobvite 20-21 to Teacher Export 20-21
+Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT available yet!
+•	Thus, we will be looking at 2 years of data:
+   o	Jobvite 19-20 to Teacher Export 19-20
+   o	Jobvite 20-21 to Teacher Export 20-21
+      	Removing Jobvite 19-20 Hires who did not have a Start Date of Fall 2019
+      	Removing Jobvite 20-21 Hires who did not have a Start Date of Fall 2020
+      	Removing all Teacher Export 19-20 and Teacher Export 20-21, who did not have a Job Title of Teacher
+      	Removing all Teacher Export 19-20 and Teacher Export 20-21, who had Internal Role as:
+•	SPED CP
+•	SPED AC
+•	PE CP
+•	PE CP
+•	(This is due to SPED and PE having state mandated license requirements that are not required for the other subjects, so these should be analyzed separately).
+      	Removing Teacher Export 19-20 Teachers who did not work in 19-20 Academic Year 
+•	(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
+      	Removing Teacher Export 20-21 Teachers who did not work in 20-21 Academic Year
+•	(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
+
+##Join Tables
+How to join? 
+•	Jobvite has no Employee ID & no Work Email and Teacher Export has Employee ID and Work Email.
+•	Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email
+        
+          
+
+
+#Camp Rio
+
+#TSLIP
+
+Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
+
+##TeachBoost Data
+
+TeachBoost is a platform used to collect observations. These are observations of teachers (teachers, co-teachers), and teacher managers (API's, Principals, etc.)
+
+There are 3 key tables in TeachBoost: 
+1) Users
+2) Forms
+3) Templates
+
+Users table is a list of all employees who have access to TeachBoost, whether or not they have ever logged in. The "id" column on Users is a TeachBoost assigned id number. This "id" can be either: 1) an "author id" or 2) a "topic id". An "author id" indicates the person who wrote the form (the observation). The "topic id" indicates who the observation/form is about. If a person from the Users table has an id "123456", and they submitted a Lesson Plan Form, then that "id" from Users matches up with an "author id" on the Forms table. If the same person from Users has id "123456" for GET 1A Form, then that teacher was observed by a manager on a Guidepost rating (GET 1A). The Forms table would have the id "123456" as the "topic id", since the form is about that person. 
+
+In addition, "resource id" on the Users table is the "employee ID" from Tyler Munis (or "NameID" on Employees table), so this column can be used to join to other tables to get more information about the employee. The Users table has a "date last modified" column that shows that last login date and time (or NA if never logged in), it shows the employee's job title (Principal, Math Teacher, SPED Teacher, etc.), their full name, email address.
+
+On the Users table, a person can be listed more than once. For example, some users have 26 rows that have an idential name, work email, and "id" column, but the column called "UserId" is unique, and the numbers increase as the rows increase. This is the number of the times someone has logged in(not that specific user, but from all users of TeachBoost). This poses a problem when joining Users table to Forms table (to see who specifically either authored the Form or the Form was about, since on Forms we only have author id or topic id whic are numbers). Leftjoin adds many, many extra rows, so you first have to take the max(UserId) for each specific user prior to joining the table, in order to be left with one row per person (on the Users table), and not end up with many extra rows after the left join to Forms.
+
+The Forms table is all observation forms ever submitted. These include GET forms (obs of teachers), SLL forms (obs. of teacher leaders), BOY forms, Lesson Plan Submissions forms, and a few more forms. There can be many rows that have the same Form Name, as for example, the GET 1A form (a teacher observation about a Guidepost) can be submitted multiple time for one specific teacher, or many times for different teachers. To get the example name of the Form, you need to join to the Templates table, which is a list of 102 rows (and 101 distinct rows), which means there are 101 different names of Forms. 
+
+
+The Templates table is a list of all Form Names, with specific details. the Forms table will indicate if it is a GET form but not which specific one. Templates will tell you that is it "GET 1A" or "GET 2C", etc. There are 102 rows of names and 101 distinct names on this table. leftjoin Forms table to Templ
