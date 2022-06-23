@@ -985,9 +985,67 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
 
 Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
 
+#### APR Report for June 2022 
+
+##### Promotions
+
+Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.
+
+###### Teacher Promotions
+We are looking at Area = "TEACHER" for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than "TEACHER" on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was "INTERVENTIONIST" which moved from Area = "TEACHER" to Area = "INSTRUCTIONAL SUPPORT". We concluded this was incorrect and should remain as Area = "TEACHER", and so was counted as "no change". The remaining 38 Job Titles that fell outside of Area = "TEACHER" were included as either Promotions or Demotions.
+
+**Promotions**
+
+LICENSED SPECIALIST IN SCHOOL PSYCHOLOGY INTERN
+ASST. PRINCIPAL OF INSTRUCTION
+REGIONAL ATHLETICS MANAGER
+COLLEGE COUNSELOR
+SPECIAL PROGRAMS COACH
+DI PROGRAM MANAGER
+REGIONAL SPECIAL PROGRAMS COACH
+DIRECTOR OF COLLEGE COUNSELING
+
+
+ASSISTANT PRINCIPAL OF INSTRUCTION
+SCHOOL COUNSELOR
+STUDENT SUCCESS ADVISOR
+EDU DIAGNOSTICIAN
+REGIONAL INTERVENTION COACH
+ASST. PRINCIPAL OF OPERATIONS
+TALENT RECRUITER
+PRINCIPAL OF INSTRUCTION
+PUBLIC RELATIONS MANAGER
+
+EDUCATIONAL DIAGNOSTICIAN
+TALENT PARTNER
+MATH CURRICULUM WRITER
+SPANISH LANGUAGE ARTS CURRICULUM MANAGER
+ASSISTANT PRINCIPAL OF OPERATIONS IN RESIDENCE
+ASSISTANT PRINCIPAL OF OPERATIONS
+ELA SECONDARY CURRICULUM MANAGER
+STATE REPORTING COORDINATOR
+
+ASST. PRINCIPAL OF INSTRUCTION IN RESIDENCE
+SOCIAL STUDIES CURRICULUM MANAGER
+K-2 REGIONAL MATH COACH
+MATH CURRICULUM MANAGER
+DIGITAL COMMUNICATIONS MANAGER
+SR. COLLEGE COUNSELOR
+TECHNICAL TRAINER
+PROJECT MANAGER
+JOB COACH
+
+**Demotions**
+FLEX TEACHER
+TESTING COORDINATOR
+SUBSTITUTE TEACHER
+SPECIAL EDUCATION RISE CO-TEACHER
+
+###### Teacher-Leader Promotions
+
 #### TCP Retention and TCP Levels
 
-One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture.
+One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture
 
 ##### Missing TCP Placements
 TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning.  For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.
@@ -1011,7 +1069,7 @@ Not all of the leavers from the TCP Retention project matched up with those who 
 
 #### TCP Levels and Composite Score Correlations
 
-TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of "hold" time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to, for the 22-23 SY.
+TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of "hold" time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
 
 
 
