@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 8 Models and Methods | IDEA R&amp;A Manual</title>
+<title>Chapter 9 Models and Methods | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
 <meta name="generator" content="bookdown 0.27 with bs4_book()">
-<meta property="og:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual">
+<meta property="og:title" content="Chapter 9 Models and Methods | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/models-and-methods.html">
 <meta property="og:description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual">
+<meta name="twitter:title" content="Chapter 9 Models and Methods | IDEA R&amp;A Manual">
 <meta name="twitter:description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -50,10 +50,11 @@
 <li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
-<li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
-<li><a class="" href="visualization-standards.html"><span class="header-section-number">7</span> Visualization Standards</a></li>
-<li><a class="active" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">9</span> Tips and Tricks</a></li>
+<li><a class="" href="specific-projects.html"><span class="header-section-number">6</span> Specific Projects</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">7</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">8</span> Visualization Standards</a></li>
+<li><a class="active" href="models-and-methods.html"><span class="header-section-number">9</span> Models and Methods</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">10</span> Tips and Tricks</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -64,24 +65,24 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="models-and-methods" class="section level1">
 <h1>
-<span class="header-section-number">8</span> Models and Methods<a class="anchor" aria-label="anchor" href="#models-and-methods"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9</span> Models and Methods<a class="anchor" aria-label="anchor" href="#models-and-methods"><i class="fas fa-link"></i></a>
 </h1>
 <p>Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.</p>
 <p>We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. The choice of frequentist vs. Bayesian methods is up to you and should always be justified, but choosing the simplest, appropriate tool should be the starting point for analysis But, before we start any analysis, the design of the program influences how we establish our methods of research.</p>
 <div id="research-design" class="section level2">
 <h2>
-<span class="header-section-number">8.1</span> Research design<a class="anchor" aria-label="anchor" href="#research-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> Research design<a class="anchor" aria-label="anchor" href="#research-design"><i class="fas fa-link"></i></a>
 </h2>
 <p>When our works requires us to assign causation, we must consider how the data were collected before deciding on an appropriate model.</p>
 <div id="causal-inference" class="section level3">
 <h3>
-<span class="header-section-number">8.1.1</span> Causal inference<a class="anchor" aria-label="anchor" href="#causal-inference"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1</span> Causal inference<a class="anchor" aria-label="anchor" href="#causal-inference"><i class="fas fa-link"></i></a>
 </h3>
 <p>Most of our data is observational, so if we want to describe causal relationships in our data, we must appeal to potential outcomes. Thus, we will briefly cover some of relevant causal inference concepts and techniques.</p>
 <p>When a student is marked for inclusion in, say, a tutorial group, we would like to see how much the tutorial increased their score on a test, compared to a scenario where the student did not attend the tutorial. If the student attends the tutorial, we can measure the outcome of the treatment (the tutorial) by seeing what grade they earned after a test; we cannot observe, however, the outcome of the control (no tutorial). Potential outcomes aims to remedy this.</p>
 <div id="potential-outcomes" class="section level4">
 <h4>
-<span class="header-section-number">8.1.1.1</span> Potential outcomes<a class="anchor" aria-label="anchor" href="#potential-outcomes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1.1</span> Potential outcomes<a class="anchor" aria-label="anchor" href="#potential-outcomes"><i class="fas fa-link"></i></a>
 </h4>
 <p>Suppose we have both the treatment and control outcomes for each student. We would like to measure <span class="math inline">\(\delta_i = Y^1_i - Y^0_i\)</span>, the difference in the treatment outcome <span class="math inline">\(Y^1_i\)</span> and control outcome <span class="math inline">\(Y^0_i\)</span> for student <span class="math inline">\(i\)</span>. Then, our main estimators for the tutorial effect are <span class="math inline">\(ATE, ATT\)</span> and <span class="math inline">\(ATU\)</span>, which are defined below:</p>
 <ul>
@@ -100,7 +101,7 @@
 </div>
 <div id="matching-models" class="section level4">
 <h4>
-<span class="header-section-number">8.1.1.2</span> Matching models<a class="anchor" aria-label="anchor" href="#matching-models"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1.2</span> Matching models<a class="anchor" aria-label="anchor" href="#matching-models"><i class="fas fa-link"></i></a>
 </h4>
 <p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
 <p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
@@ -125,35 +126,35 @@
 </div>
 <div id="regression-discontinuity" class="section level4">
 <h4>
-<span class="header-section-number">8.1.1.3</span> Regression discontinuity<a class="anchor" aria-label="anchor" href="#regression-discontinuity"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1.3</span> Regression discontinuity<a class="anchor" aria-label="anchor" href="#regression-discontinuity"><i class="fas fa-link"></i></a>
 </h4>
 </div>
 <div id="instrumental-variables" class="section level4">
 <h4>
-<span class="header-section-number">8.1.1.4</span> Instrumental variables<a class="anchor" aria-label="anchor" href="#instrumental-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1.4</span> Instrumental variables<a class="anchor" aria-label="anchor" href="#instrumental-variables"><i class="fas fa-link"></i></a>
 </h4>
 </div>
 <div id="difference-in-differences" class="section level4">
 <h4>
-<span class="header-section-number">8.1.1.5</span> Difference-in-differences<a class="anchor" aria-label="anchor" href="#difference-in-differences"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.1.5</span> Difference-in-differences<a class="anchor" aria-label="anchor" href="#difference-in-differences"><i class="fas fa-link"></i></a>
 </h4>
 </div>
 </div>
 <div id="experimental-design" class="section level3">
 <h3>
-<span class="header-section-number">8.1.2</span> Experimental design<a class="anchor" aria-label="anchor" href="#experimental-design"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.2</span> Experimental design<a class="anchor" aria-label="anchor" href="#experimental-design"><i class="fas fa-link"></i></a>
 </h3>
 <p>Under ideal conditions, we would test the effect of a program by randomized controlled trials – this usually does not happen. However, we can still use the tools of design to <em>structure</em> our data and variance appropriately.</p>
 <div id="differences-among-distributions-of-groups" class="section level4">
 <h4>
-<span class="header-section-number">8.1.2.1</span> Differences among distributions of groups<a class="anchor" aria-label="anchor" href="#differences-among-distributions-of-groups"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.2.1</span> Differences among distributions of groups<a class="anchor" aria-label="anchor" href="#differences-among-distributions-of-groups"><i class="fas fa-link"></i></a>
 </h4>
 <p>ANOVA, ANCOVA, MANOVA, Kruskal-Wallis</p>
 <p>Code, diagnostics, communication and limitations coming soon…</p>
 </div>
 <div id="differences-among-levels-of-variables" class="section level4">
 <h4>
-<span class="header-section-number">8.1.2.2</span> Differences among levels of variables<a class="anchor" aria-label="anchor" href="#differences-among-levels-of-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1.2.2</span> Differences among levels of variables<a class="anchor" aria-label="anchor" href="#differences-among-levels-of-variables"><i class="fas fa-link"></i></a>
 </h4>
 <p>Educational data can often be described in a hierarchy:</p>
 <ul>
@@ -168,12 +169,12 @@
 </div>
 <div id="descriptive-statistics" class="section level2">
 <h2>
-<span class="header-section-number">8.2</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p>When summarizing a distribution of data, we are usually tasked with describing (1) measures of center, such as counts and proportions for categorical data, or means and medians for quantitative data and then displaying those values for our stakeholders. To provide context and increase the statistical literacy of our team and family, we also describe the (2) spread, (3) shape, and (4) unusual features of the distribution.</p>
 <div id="numerical-summaries---broad-principles" class="section level3">
 <h3>
-<span class="header-section-number">8.2.1</span> Numerical summaries - broad principles<a class="anchor" aria-label="anchor" href="#numerical-summaries---broad-principles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.1</span> Numerical summaries - broad principles<a class="anchor" aria-label="anchor" href="#numerical-summaries---broad-principles"><i class="fas fa-link"></i></a>
 </h3>
 <p>For <strong>categorical data</strong>, consider the distribution of proportions and counts (the sample size) across the various categories. One-way and two-way frequency tables, with marginal and total proportions and counts, are useful for displaying the data.</p>
 <p>For <strong>univariate, quantitative data</strong>, use the shape of the distribution to determine appropriate numerical measures. For symmetric data, the mean <span class="math inline">\(\bar{x}\)</span> <code>mean(x)</code> and standard deviation <span class="math inline">\(s\)</span> <code>sd(x)</code> can be appropriate for reporting and is accessible by a broad audience. For skewed data, consider the median <span class="math inline">\(\tilde{x}\)</span> <code>median(x)</code> (and possibly the MAD - median absolute deviation <code>mad(x)</code>), and provide context for choosing these measures. Note: The median is also a widely accessible statistic to most people, since it describes the midpoint of your distribution. Consider using it alongside the mean.</p>
@@ -187,13 +188,13 @@
 </div>
 <div id="graphical-summaries---broad-principles" class="section level3">
 <h3>
-<span class="header-section-number">8.2.2</span> Graphical summaries - broad principles<a class="anchor" aria-label="anchor" href="#graphical-summaries---broad-principles"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.2</span> Graphical summaries - broad principles<a class="anchor" aria-label="anchor" href="#graphical-summaries---broad-principles"><i class="fas fa-link"></i></a>
 </h3>
 <p>While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways, and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the <a href="https://idea-analytics.github.io/ideacolors/">ideacolors</a> package for aesthetics.</p>
 <p>Selecting an appropriate graphical display depends on the purpose of the analysis and the communication of results. Bar graphs, line graphs, histograms, and scatterplots each have their place in displaying central tendency; however, emphasis should be placed on displaying variation within the data.</p>
 <div id="displaying-variation" class="section level4">
 <h4>
-<span class="header-section-number">8.2.2.1</span> Displaying variation<a class="anchor" aria-label="anchor" href="#displaying-variation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2.2.1</span> Displaying variation<a class="anchor" aria-label="anchor" href="#displaying-variation"><i class="fas fa-link"></i></a>
 </h4>
 <p>Variation can be addressed by the following (non-exhaustive) list:</p>
 <ol style="list-style-type: decimal">
@@ -241,12 +242,12 @@
 </div>
 <div id="inferential-statistics" class="section level2">
 <h2>
-<span class="header-section-number">8.3</span> Inferential statistics<a class="anchor" aria-label="anchor" href="#inferential-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Inferential statistics<a class="anchor" aria-label="anchor" href="#inferential-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p>If the goal of the project is to do <em>inference</em>, or drawing conclusions about the population from the data, then we should provide context about these conclusions, particularly around variability and likelihood.</p>
 <div id="interval-estimates" class="section level3">
 <h3>
-<span class="header-section-number">8.3.1</span> Interval estimates<a class="anchor" aria-label="anchor" href="#interval-estimates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.1</span> Interval estimates<a class="anchor" aria-label="anchor" href="#interval-estimates"><i class="fas fa-link"></i></a>
 </h3>
 <p>Suppose we are providing an estimate, like forecasted student persistence rates. A single <em>point estimate</em> may give us our best target, but due to variability, we surely will not reach that exact forecast. Thus, we also provide a <em>confidence interval</em> (or a <em>Bayesian credible interval</em>) to give a lower and upper bound around our estimate. These bounds could be found by computing a margin of error around the point estimate, or could be determined by the bootstrapped quantiles.</p>
 <p>It may be instructive for a general audience to interpret these bounds as a</p>
@@ -258,7 +259,7 @@
 </div>
 <div id="p-values-and-hypothesis-testing" class="section level3">
 <h3>
-<span class="header-section-number">8.3.2</span> p-values and hypothesis testing<a class="anchor" aria-label="anchor" href="#p-values-and-hypothesis-testing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3.2</span> p-values and hypothesis testing<a class="anchor" aria-label="anchor" href="#p-values-and-hypothesis-testing"><i class="fas fa-link"></i></a>
 </h3>
 <p>When deciding if a pattern or relationship even exists, we can choose a model and set of hypotheses to test. Given the type of explanatory and response variables in your model, you should choose an appropriately designed test <a href="https://guides.nyu.edu/quant/choose_test_1DV">(reference for common tests)</a>. Often, the test statistics and p-values are already given when using a package. Note the term “statistical significance” may carry a lot of weight with an audience, but it should be use with great caution. When using or explaining a p-value, first recall that</p>
 <p><em>a p-value is the probability of obtaining a result as extreme or greater from repeated sampling under the proposed distribution of the null hypothesis</em></p>
@@ -276,12 +277,12 @@
 </div>
 <div id="modeling-and-predictive-statistics" class="section level2">
 <h2>
-<span class="header-section-number">8.4</span> Modeling and predictive statistics<a class="anchor" aria-label="anchor" href="#modeling-and-predictive-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Modeling and predictive statistics<a class="anchor" aria-label="anchor" href="#modeling-and-predictive-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p>A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.</p>
 <div id="linear-modeling" class="section level3">
 <h3>
-<span class="header-section-number">8.4.1</span> Linear modeling<a class="anchor" aria-label="anchor" href="#linear-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1</span> Linear modeling<a class="anchor" aria-label="anchor" href="#linear-modeling"><i class="fas fa-link"></i></a>
 </h3>
 <p>For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:</p>
 <p><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i\)</span></p>
@@ -294,7 +295,7 @@
 </div>
 <div id="generalized-linear-modeling" class="section level3">
 <h3>
-<span class="header-section-number">8.4.2</span> Generalized linear modeling<a class="anchor" aria-label="anchor" href="#generalized-linear-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.2</span> Generalized linear modeling<a class="anchor" aria-label="anchor" href="#generalized-linear-modeling"><i class="fas fa-link"></i></a>
 </h3>
 <p>When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:</p>
 <p><span class="math inline">\(g(\mu_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_n x_{ni} + \epsilon_i\)</span></p>
@@ -311,7 +312,7 @@
 </div>
 <div id="machine-learning" class="section level3">
 <h3>
-<span class="header-section-number">8.4.3</span> Machine learning<a class="anchor" aria-label="anchor" href="#machine-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.3</span> Machine learning<a class="anchor" aria-label="anchor" href="#machine-learning"><i class="fas fa-link"></i></a>
 </h3>
 <p>If the goal moves beyond inference towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.</p>
 <p>Note that communicating results from these models may be beyond a general audience’s reach, so caution should be taken when describing a marginal effect of a variable.</p>
@@ -322,35 +323,35 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="visualization-standards.html"><span class="header-section-number">7</span> Visualization Standards</a></div>
-<div class="next"><a href="tips-and-tricks.html"><span class="header-section-number">9</span> Tips and Tricks</a></div>
+<div class="prev"><a href="visualization-standards.html"><span class="header-section-number">8</span> Visualization Standards</a></div>
+<div class="next"><a href="tips-and-tricks.html"><span class="header-section-number">10</span> Tips and Tricks</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#models-and-methods"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="nav-link" href="#models-and-methods"><span class="header-section-number">9</span> Models and Methods</a></li>
 <li>
-<a class="nav-link" href="#research-design"><span class="header-section-number">8.1</span> Research design</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#causal-inference"><span class="header-section-number">8.1.1</span> Causal inference</a></li>
-<li><a class="nav-link" href="#experimental-design"><span class="header-section-number">8.1.2</span> Experimental design</a></li>
+<a class="nav-link" href="#research-design"><span class="header-section-number">9.1</span> Research design</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#causal-inference"><span class="header-section-number">9.1.1</span> Causal inference</a></li>
+<li><a class="nav-link" href="#experimental-design"><span class="header-section-number">9.1.2</span> Experimental design</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#descriptive-statistics"><span class="header-section-number">8.2</span> Descriptive statistics</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#numerical-summaries---broad-principles"><span class="header-section-number">8.2.1</span> Numerical summaries - broad principles</a></li>
-<li><a class="nav-link" href="#graphical-summaries---broad-principles"><span class="header-section-number">8.2.2</span> Graphical summaries - broad principles</a></li>
+<a class="nav-link" href="#descriptive-statistics"><span class="header-section-number">9.2</span> Descriptive statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#numerical-summaries---broad-principles"><span class="header-section-number">9.2.1</span> Numerical summaries - broad principles</a></li>
+<li><a class="nav-link" href="#graphical-summaries---broad-principles"><span class="header-section-number">9.2.2</span> Graphical summaries - broad principles</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#inferential-statistics"><span class="header-section-number">8.3</span> Inferential statistics</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#interval-estimates"><span class="header-section-number">8.3.1</span> Interval estimates</a></li>
-<li><a class="nav-link" href="#p-values-and-hypothesis-testing"><span class="header-section-number">8.3.2</span> p-values and hypothesis testing</a></li>
+<a class="nav-link" href="#inferential-statistics"><span class="header-section-number">9.3</span> Inferential statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#interval-estimates"><span class="header-section-number">9.3.1</span> Interval estimates</a></li>
+<li><a class="nav-link" href="#p-values-and-hypothesis-testing"><span class="header-section-number">9.3.2</span> p-values and hypothesis testing</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#modeling-and-predictive-statistics"><span class="header-section-number">8.4</span> Modeling and predictive statistics</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#linear-modeling"><span class="header-section-number">8.4.1</span> Linear modeling</a></li>
-<li><a class="nav-link" href="#generalized-linear-modeling"><span class="header-section-number">8.4.2</span> Generalized linear modeling</a></li>
-<li><a class="nav-link" href="#machine-learning"><span class="header-section-number">8.4.3</span> Machine learning</a></li>
+<a class="nav-link" href="#modeling-and-predictive-statistics"><span class="header-section-number">9.4</span> Modeling and predictive statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-modeling"><span class="header-section-number">9.4.1</span> Linear modeling</a></li>
+<li><a class="nav-link" href="#generalized-linear-modeling"><span class="header-section-number">9.4.2</span> Generalized linear modeling</a></li>
+<li><a class="nav-link" href="#machine-learning"><span class="header-section-number">9.4.3</span> Machine learning</a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +371,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-06-20.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-06-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
