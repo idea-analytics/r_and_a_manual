@@ -106,23 +106,23 @@
 <p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
 <p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#use matchit like a glm</span>
-<span class="va">m_out</span> <span class="op">&lt;-</span> <span class="fu">matchit</span><span class="op">(</span><span class="va">ActiveIL</span> <span class="op">~</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Grade</span> <span class="op">+</span>
-                   <span class="va">SPED</span> <span class="op">+</span> <span class="va">LEP</span> <span class="op">+</span> <span class="va">EcoDis</span> <span class="op">+</span> <span class="va">GradeEquivalentBOY</span>, <span class="co">#response specifies control/treatment, covariates specify what to match</span>
-                 data <span class="op">=</span> <span class="va">rs_il_mod</span>,
-                 method <span class="op">=</span> <span class="st">"cem"</span>, <span class="co">#specify matching method</span>
-                 link <span class="op">=</span> <span class="st">"logit"</span>,
-                 estimand <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span>
-
-<span class="co">#produces data frame with needed weights</span>
-<span class="va">m_data</span> <span class="op">&lt;-</span> <span class="fu">match.data</span><span class="op">(</span><span class="va">m_out</span><span class="op">)</span>
-
-<span class="co">#model uses weighted linear model to estimate causal effect of using Imagine Learning</span>
-<span class="va">m_att</span> <span class="op">&lt;-</span> <span class="fu">lm_robust</span><span class="op">(</span><span class="va">GradeEquivalentGrowth</span> <span class="op">~</span> <span class="va">ActiveIL</span>,
-                   data <span class="op">=</span> <span class="va">m_data</span>,
-                   weights <span class="op">=</span> <span class="va">m_data</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m_att</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#use matchit like a glm</span></span>
+<span><span class="va">m_out</span> <span class="op">&lt;-</span> <span class="fu">matchit</span><span class="op">(</span><span class="va">ActiveIL</span> <span class="op">~</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Grade</span> <span class="op">+</span></span>
+<span>                   <span class="va">SPED</span> <span class="op">+</span> <span class="va">LEP</span> <span class="op">+</span> <span class="va">EcoDis</span> <span class="op">+</span> <span class="va">GradeEquivalentBOY</span>, <span class="co">#response specifies control/treatment, covariates specify what to match</span></span>
+<span>                 data <span class="op">=</span> <span class="va">rs_il_mod</span>,</span>
+<span>                 method <span class="op">=</span> <span class="st">"cem"</span>, <span class="co">#specify matching method</span></span>
+<span>                 link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>                 estimand <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#produces data frame with needed weights</span></span>
+<span><span class="va">m_data</span> <span class="op">&lt;-</span> <span class="fu">match.data</span><span class="op">(</span><span class="va">m_out</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#model uses weighted linear model to estimate causal effect of using Imagine Learning</span></span>
+<span><span class="va">m_att</span> <span class="op">&lt;-</span> <span class="fu">lm_robust</span><span class="op">(</span><span class="va">GradeEquivalentGrowth</span> <span class="op">~</span> <span class="va">ActiveIL</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">m_data</span>,</span>
+<span>                   weights <span class="op">=</span> <span class="va">m_data</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m_att</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="regression-discontinuity" class="section level4">
 <h4>
@@ -205,34 +205,34 @@
 </ol>
 <p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="va">MedianGrowth</span><span class="op">)</span>, <span class="co">#jittering of clustered points</span>
-             group <span class="op">=</span> <span class="va">School</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">School</span>, <span class="co">#change color by school</span>
-                 alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, <span class="co">#set transparency level to 0.2</span>
-             size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> <span class="op">+</span> <span class="co">#increases size of point</span>
-  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">MedianGrowthLaunch</span>,
-                 color <span class="op">=</span> <span class="va">LaunchOrder</span><span class="op">)</span>,
-             shape <span class="op">=</span> <span class="fl">3</span>, <span class="co">#changes shape to plus sign +</span>
-             size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_color_idea</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">theme_idea_light</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">LaunchOrder</span>,
-             labeller <span class="op">=</span> <span class="fu">labeller</span><span class="op">(</span>LaunchOrder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"First Year"</span>,
-                                                 <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Second Year"</span>,
-                                                 <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Third Year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Median RenStar Reading Growth"</span>,
-       subtitle <span class="op">=</span> <span class="st">"Results grouped by schools launching in the same year"</span>,
-       caption <span class="op">=</span> <span class="st">"+ represents median RenStar reading growth for that launching cohort"</span>,
-       x <span class="op">=</span> <span class="st">"Launch Year"</span>,
-       y <span class="op">=</span> <span class="st">"Median RenStar Growth"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_discrete</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2017-2018"</span> <span class="op">=</span> <span class="st">"2017-18"</span>,
-                              <span class="st">"2018-2019"</span> <span class="op">=</span> <span class="st">"2018-19"</span>,
-                              <span class="st">"2019-2020"</span> <span class="op">=</span> <span class="st">"2019-20"</span>,
-                              <span class="st">"2020-2021"</span> <span class="op">=</span> <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
+<span>             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="va">MedianGrowth</span><span class="op">)</span>, <span class="co">#jittering of clustered points</span></span>
+<span>             group <span class="op">=</span> <span class="va">School</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">School</span>, <span class="co">#change color by school</span></span>
+<span>                 alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, <span class="co">#set transparency level to 0.2</span></span>
+<span>             size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> <span class="op">+</span> <span class="co">#increases size of point</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">MedianGrowthLaunch</span>,</span>
+<span>                 color <span class="op">=</span> <span class="va">LaunchOrder</span><span class="op">)</span>,</span>
+<span>             shape <span class="op">=</span> <span class="fl">3</span>, <span class="co">#changes shape to plus sign +</span></span>
+<span>             size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_idea</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">theme_idea_light</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">LaunchOrder</span>,</span>
+<span>             labeller <span class="op">=</span> <span class="fu">labeller</span><span class="op">(</span>LaunchOrder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"First Year"</span>,</span>
+<span>                                                 <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Second Year"</span>,</span>
+<span>                                                 <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Third Year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Median RenStar Reading Growth"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Results grouped by schools launching in the same year"</span>,</span>
+<span>       caption <span class="op">=</span> <span class="st">"+ represents median RenStar reading growth for that launching cohort"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Launch Year"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Median RenStar Growth"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_discrete</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2017-2018"</span> <span class="op">=</span> <span class="st">"2017-18"</span>,</span>
+<span>                              <span class="st">"2018-2019"</span> <span class="op">=</span> <span class="st">"2018-19"</span>,</span>
+<span>                              <span class="st">"2019-2020"</span> <span class="op">=</span> <span class="st">"2019-20"</span>,</span>
+<span>                              <span class="st">"2020-2021"</span> <span class="op">=</span> <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
 <div class="figure">
 <img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt=""><p class="caption">This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.</p>
@@ -371,7 +371,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-06-24.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

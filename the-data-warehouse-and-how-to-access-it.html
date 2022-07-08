@@ -86,8 +86,8 @@
 <p>The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.</p>
 <div class="figure">
 <span style="display:block;" id="fig:server-graphs"></span>
-<div id="htmlwidget-df46783ab0b5b4ba7550" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-df46783ab0b5b4ba7550">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\"; \n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  node [fillcolor= \"#53b4cc\"]\n  STHIS [label= <ST-HIS<br/><font point-size=\"6\"> xxxxxx-STHist <\/font>>]; \n  RSHIS [label=<RS-HIS<br/><font point-size=\"6\"> xxxxxx-SQLRPTHis  <\/font>>]\n \n  node [fillcolor = firebrick]\n  FO1 [label =<FO1<br/><font point-size=\"6\"> San Antonio Failover <\/font>>]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n  subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = \"3. Historical\" }\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} -> FO1 [color = firebrick]\n  {PROD1 PROD2} -> STHIS\n   STHIS -> RSHIS\n  {RS2 RS1 RSHIS} -> LOGI\n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-36d4b0dee8e0ccfa0fea" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-36d4b0dee8e0ccfa0fea">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\"; \n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  node [fillcolor= \"#53b4cc\"]\n  STHIS [label= <ST-HIS<br/><font point-size=\"6\"> xxxxxx-STHist <\/font>>]; \n  RSHIS [label=<RS-HIS<br/><font point-size=\"6\"> xxxxxx-SQLRPTHis  <\/font>>]\n \n  node [fillcolor = firebrick]\n  FO1 [label =<FO1<br/><font point-size=\"6\"> San Antonio Failover <\/font>>]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n  subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = \"3. Historical\" }\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} -> FO1 [color = firebrick]\n  {PROD1 PROD2} -> STHIS\n   STHIS -> RSHIS\n  {RS2 RS1 RSHIS} -> LOGI\n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases in ’DS</em>’ servers and flows to the right towads Logi hosted Locus dashboards.
 </p>
 </div>
@@ -443,9 +443,9 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </h3>
 <p>The easiest way to explore databases and tables available in the data warehouse is to use the <a href="https://idea-analytics.github.io/ideadata/"><code>ideadata</code></a> packages’s <code>view_warehouse_metadata()</code> function, which will launch a fiterable table in the RStudio IDEA.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span>
-
-<span class="fu">view_warehouse_metadata</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">view_warehouse_metadata</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="img/view_ware_house_meta_data.png" title="Example from running `view_warehouse_metadata()" alt=""><p class="caption">Example from running <code>view_warehouse_metadata()</code></p>
 </div>
@@ -463,10 +463,10 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </h3>
 <p>Since <code>ideadata</code> is an internal IDEA package, there is only a development version, which is installed from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"idea-analytics/ideadata"</span><span class="op">)</span>
-
-<span class="co">#renv::install("idea-analytics/ideadata@main") also works</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"idea-analytics/ideadata"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#renv::install("idea-analytics/ideadata@main") also works</span></span></code></pre></div>
 </div>
 <div id="example" class="section level3">
 <h3>
@@ -474,21 +474,21 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </h3>
 <p>Here’s how you connect to the <code>Schools</code> table in the warehouse.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span>
-
-<span class="va">schools</span> <span class="op">&lt;-</span> <span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schools</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schools</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>schools</code> object above is <code>tbl</code> object. That means it works with <code>dplyr</code> verbs and functions, but what happens in the background is that <code>dplyr</code> and <code>dbplyr</code> generate SQL that is sent to the database you are connected to and all that computation (e.g., filtering, selecting, joining, calculations, aggregation) are completed on the remote SQL Server instance and <strong>not</strong> on your computer.</p>
 <p>Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python do what they can do (like modeling or graphics) that the database can’t do.</p>
 <p>Pulling that data down is easy with [dplyr::collect()]</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-
-<span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>(Here <code><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">janitor::clean_names()</a></code> snake_cases all the column names).</p>
 <div id="what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows" class="section level4">
 <h4>
@@ -496,10 +496,10 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </h4>
 <p>In this instance the database connection may fail. It’s not ideal, but it happens. One way to deal with this is to pull down the data piecemeal. The <code>collector()</code> function in <code>ideadata</code> makes this task trivial. It takes column names as arguments (unquote) from the table you want to pull down and those columns are used to break up the data into smaller sets of data that are pulled down from the database onto your computer and then recombined into a single table.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">collector</span><span class="op">(</span><span class="va">SchoolState</span>, <span class="va">CountyName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">collector</span><span class="op">(</span><span class="va">SchoolState</span>, <span class="va">CountyName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/janitor/man/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="gotcha">
 <p>The <code>ideadata</code> package is clever in that it updates its knowledge of the data warehouse every time you load the package with <code><a href="https://rdrr.io/r/base/library.html">library(ideadata)</a></code>. However to do that you need to have access to the the warehouse, and that requires that you are on the VPN/behind the firewall. Do makes sure that is true before invoking the package!</p>
 </div>
@@ -564,7 +564,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-06-24.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

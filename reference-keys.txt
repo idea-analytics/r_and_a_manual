@@ -30,6 +30,7 @@ where-to-learn-more
 key-tables-measures-and-metrics
 the-students-table
 common-queries
+schools-and-regions
 student-attendance
 common-queries-1
 other-uses
