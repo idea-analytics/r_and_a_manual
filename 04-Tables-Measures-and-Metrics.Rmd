@@ -172,6 +172,39 @@ get_students() %>%
          LastName)
 ```
 
+## Schools and regions
+
+The Schools table provides essential information about each school, including their contact information, full and short names, and regions, all of which can be connected to other tables via the SchoolNumber.
+
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools]
+
+**Main metrics:** School names, PowerSchool numbers, state IDs, regions
+
+**Important columns:**
+
+* **[SchoolNumber]:** official PowerSchool school ID; most frequently used to link to other tables
+* **[SchoolName]:** full name of the school, e.g. IDEA Frontier College Preparatory
+* **[SchoolShortName]:** campus name, e.g. Frontier
+* **[StateSchoolNumber]:** number used by the campus' respective state for reporting (note: this column may not have correct values for all schools)
+* **[SchoolAbbreviation]:** abbreviation of school name (not commonly used)
+* **[SchoolLowestGrade]:** lowest grade level, where PK = -1, K = 0
+* **[SchoolHighestGrade]:** highest grade level
+* **[SchoolStreet], [SchoolCity], [SchoolState], [SchoolZipCode], [SchoolPhone], [SchoolFax], [PrincipalName], [PrincipalPhone], [PrincipalEmail], [CountyNumber], [CountyName]**: contact information
+* **[RegionID]:** official IDEA region when describing location of school; links to the Regions table
+* **[VPofSchools]:** regional Vice President (VP) who oversees the school; links to Employees table using EmployeeKey
+* **[ExecutiveDirector]:** Executive Director (ED) OR Regional Superintendent who oversees the region; links to Employees table using EmployeeKey
+* **[RegionDirectorOfOperations]:** RDO who oversees the region; links to Employees table using EmployeeKey
+* **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
+* **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
+* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
+
+**Context:**
+
+* The [SchoolName] column is the PowerSchool name for the school, not necessarily its official name. Many high school names in PowerSchool are shortened to "College Prep" instead of "College Preparatory". Some schools may officially be named "IDEA Academy/College Preparatory [ShortName]". 
+* Note that both Middle School and High School are administered under a single College Preparatory; however, they receive separate PowerSchool instances.
+* For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory".
+* IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
+* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
 
 ## Student Attendance
 
