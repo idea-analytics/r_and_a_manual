@@ -878,6 +878,47 @@ Accessessing these data in the warehouse at this juncture is not always obvious.
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
 
+## Student Course Grades
+
+There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
+
+**Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]
+
+**Useful Fields:** 
+
+* **SchoolNumber:** Local school number
+* **SchoolName:** Long school name
+* **CourseName:** Long course name
+* **CourseNumber:** Course number
+* **CreditType:** Abbreviated subject, such as ELA or MA for Math
+* **StudentNumber:** Local student ID number
+* **StudentName:** Last, First Middle name
+* **GradeLevelID:** Grade level (only 8th through 12th)
+* **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter
+* **PercentGrade:** The numerical grade 0-100
+* **LetterGrade:** Wouldn't use this column it is a mix of letter grades and numerical grades
+* **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+
+**Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]
+
+**Useful Fields:**
+
+* **StudentNumber:** Local student ID number
+* **AcademicYear:** The academic year
+* **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+* **SchoolNumber:** Local school number
+* **CourseName:** Long course name
+* **CourseNumber:** Course number
+* **CreditType:** Abbreviated subject, such as ELA or MA for Math
+* **StaffID:** The Staff ID number for the teacher of the course (not sure if this is accurate)
+* **TeacherName:** The teacher's name (Last, First) again not sure if this is accurate
+* **GradeLevelID:** Grade level (only 8th through 12th)
+* **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter (Y1 = end-of-course grade for the year)
+* **PercentageGrade:** The numerical grade 0-100
+* **LetterGrade:** Appears to be all letter grades (Character column)
+* **AbsentCount:** Count of absences
+* **TardyCount:** Count of tardies
+* **State:** 2 letter abbreviation for the student's State 
 
 
 
