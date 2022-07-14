@@ -1259,13 +1259,83 @@
 </div>
 </div>
 </div>
+<div id="student-course-grades" class="section level2">
+<h2>
+<span class="header-section-number">4.9</span> Student Course Grades<a class="anchor" aria-label="anchor" href="#student-course-grades"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are 2 tables in the warehouse that collect student course grades, <code>[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]</code> and <code>[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]</code>. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate <em>On track to Graduate</em> and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]</p>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>SchoolNumber:</strong> Local school number</li>
+<li>
+<strong>SchoolName:</strong> Long school name</li>
+<li>
+<strong>CourseName:</strong> Long course name</li>
+<li>
+<strong>CourseNumber:</strong> Course number</li>
+<li>
+<strong>CreditType:</strong> Abbreviated subject, such as ELA or MA for Math</li>
+<li>
+<strong>StudentNumber:</strong> Local student ID number</li>
+<li>
+<strong>StudentName:</strong> Last, First Middle name</li>
+<li>
+<strong>GradeLevelID:</strong> Grade level (only 8th through 12th)</li>
+<li>
+<strong>StoreCode:</strong> Indicates the whether the grade is for the year-long course, semester, or quarter</li>
+<li>
+<strong>PercentGrade:</strong> The numerical grade 0-100</li>
+<li>
+<strong>LetterGrade:</strong> Wouldn’t use this column it is a mix of letter grades and numerical grades</li>
+<li>
+<strong>SchoolTermID:</strong> Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY</li>
+</ul>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]</p>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>StudentNumber:</strong> Local student ID number</li>
+<li>
+<strong>AcademicYear:</strong> The academic year</li>
+<li>
+<strong>SchoolTermID:</strong> Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY</li>
+<li>
+<strong>SchoolNumber:</strong> Local school number</li>
+<li>
+<strong>CourseName:</strong> Long course name</li>
+<li>
+<strong>CourseNumber:</strong> Course number</li>
+<li>
+<strong>CreditType:</strong> Abbreviated subject, such as ELA or MA for Math</li>
+<li>
+<strong>StaffID:</strong> The Staff ID number for the teacher of the course (not sure if this is accurate)</li>
+<li>
+<strong>TeacherName:</strong> The teacher’s name (Last, First) again not sure if this is accurate</li>
+<li>
+<strong>GradeLevelID:</strong> Grade level (only 8th through 12th)</li>
+<li>
+<strong>StoreCode:</strong> Indicates the whether the grade is for the year-long course, semester, or quarter (Y1 = end-of-course grade for the year)</li>
+<li>
+<strong>PercentageGrade:</strong> The numerical grade 0-100</li>
+<li>
+<strong>LetterGrade:</strong> Appears to be all letter grades (Character column)</li>
+<li>
+<strong>AbsentCount:</strong> Count of absences</li>
+<li>
+<strong>TardyCount:</strong> Count of tardies</li>
+<li>
+<strong>State:</strong> 2 letter abbreviation for the student’s State</li>
+</ul>
+</div>
 <div id="teacher-staff-and-hiring-data" class="section level2">
 <h2>
-<span class="header-section-number">4.9</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
 </h2>
 <div id="jobvite-data" class="section level3">
 <h3>
-<span class="header-section-number">4.9.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -1304,7 +1374,7 @@
 </div>
 <div id="tcpteacher-export-data" class="section level3">
 <h3>
-<span class="header-section-number">4.9.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -1354,7 +1424,7 @@
 </ul>
 <div id="data-matching" class="section level4">
 <h4>
-<span class="header-section-number">4.9.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -1389,7 +1459,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="join-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.9.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
@@ -1399,11 +1469,11 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="evaluation-projects" class="section level2">
 <h2>
-<span class="header-section-number">4.10</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
 </h2>
 <div id="st-century-afterschool-programs" class="section level3">
 <h3>
-<span class="header-section-number">4.10.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.1</span> 21st Century Afterschool Programs<a class="anchor" aria-label="anchor" href="#st-century-afterschool-programs"><i class="fas fa-link"></i></a>
 </h3>
 <p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
 <p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury]</p>
@@ -1435,26 +1505,26 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="camp-rio" class="section level3">
 <h3>
-<span class="header-section-number">4.10.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 <div id="tslip" class="section level3">
 <h3>
-<span class="header-section-number">4.10.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
 </h3>
 <p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
 <div id="apr-report-for-june-2022" class="section level4">
 <h4>
-<span class="header-section-number">4.10.3.1</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.1</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
 </h4>
 <div id="promotions" class="section level5">
 <h5>
-<span class="header-section-number">4.10.3.1.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.1.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.</p>
 <div id="teacher-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.10.3.1.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.1.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
@@ -1500,25 +1570,25 @@ SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
 <div id="teacher-leader-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.10.3.1.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.1.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
 </h6>
 </div>
 </div>
 </div>
 <div id="tcp-retention-and-tcp-levels" class="section level4">
 <h4>
-<span class="header-section-number">4.10.3.2</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.2</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
 </h4>
 <p>One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture</p>
 <div id="missing-tcp-placements" class="section level5">
 <h5>
-<span class="header-section-number">4.10.3.2.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.2.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
 </h5>
 <p>TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.</p>
 </div>
 <div id="leaver-rates" class="section level5">
 <h5>
-<span class="header-section-number">4.10.3.2.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.2.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.</p>
 <p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
@@ -1531,14 +1601,14 @@ Level 5: 334</p>
 </div>
 <div id="exit-surveys-for-teacher-leavers" class="section level5">
 <h5>
-<span class="header-section-number">4.10.3.2.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.2.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
 </h5>
 <p>Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.</p>
 </div>
 </div>
 <div id="tcp-levels-and-composite-score-correlations" class="section level4">
 <h4>
-<span class="header-section-number">4.10.3.3</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.3</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of “hold” time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
 
@@ -1577,17 +1647,18 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.8.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
 </ul>
 </li>
+<li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
 <li>
-<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.9</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.9.1</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.9.2</span> TCP/Teacher Export Data</a></li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.1</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.2</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.10</span> Evaluation Projects</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.10.1</span> 21st Century Afterschool Programs</a></li>
-<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.10.2</span> Camp Rio</a></li>
-<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.10.3</span> TSLIP</a></li>
+<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">4.11</span> Evaluation Projects</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.11.1</span> 21st Century Afterschool Programs</a></li>
+<li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.11.2</span> Camp Rio</a></li>
+<li><a class="nav-link" href="#tslip"><span class="header-section-number">4.11.3</span> TSLIP</a></li>
 </ul>
 </li>
 </ul>
@@ -1607,7 +1678,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-08.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
