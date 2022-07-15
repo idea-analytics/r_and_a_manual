@@ -330,6 +330,10 @@
 <h2>
 <span class="header-section-number">4.2</span> Schools and regions<a class="anchor" aria-label="anchor" href="#schools-and-regions"><i class="fas fa-link"></i></a>
 </h2>
+<div id="schools-table" class="section level3">
+<h3>
+<span class="header-section-number">4.2.1</span> Schools table<a class="anchor" aria-label="anchor" href="#schools-table"><i class="fas fa-link"></i></a>
+</h3>
 <p>The Schools table provides essential information about each school, including their contact information, full and short names, and regions, all of which can be connected to other tables via the SchoolNumber.</p>
 <p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools]</p>
 <p><strong>Main metrics:</strong> School names, PowerSchool numbers, state IDs, regions</p>
@@ -358,7 +362,7 @@
 <li>
 <strong>[ExecutiveDirector]:</strong> Executive Director (ED) OR Regional Superintendent who oversees the region; links to Employees table using EmployeeKey</li>
 <li>
-<strong>[RegionDirectorOfOperations]:</strong> RDO who oversees the region; links to Employees table using EmployeeKey</li>
+<strong>[RegionDirectorOfOperations]:</strong> Regional Director of Operations (RDO) who oversees the region; links to Employees table using EmployeeKey</li>
 <li>
 <strong>[CollegeSuccessDirector]:</strong> Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey</li>
 <li>
@@ -370,10 +374,43 @@
 <ul>
 <li>The [SchoolName] column is the PowerSchool name for the school, not necessarily its official name. Many high school names in PowerSchool are shortened to “College Prep” instead of “College Preparatory”. Some schools may officially be named “IDEA Academy/College Preparatory [ShortName]”.</li>
 <li>Note that both Middle School and High School are administered under a single College Preparatory; however, they receive separate PowerSchool instances.</li>
-<li>For historical reasons, IDEA Academy Donna is labeled as “IDEA Academy Primary”, IDEA Middle School Donna is labeled as “IDEA Academy”, and IDEA College Preparatory Donna is labeled as “IDEA College Preparatory”.</li>
+<li>For historical reasons, IDEA Academy Donna is labeled as “IDEA Academy Primary”, IDEA Middle School Donna is labeled as “IDEA Academy”, and IDEA College Preparatory Donna is labeled as “IDEA College Preparatory”. (It is suggested you rename these to the modern names).</li>
+<li>IDEA San Juan Academy is <a href="https://ideapublicschools.org/our-schools/idea-san-juan/">physically in a different location</a> than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - “San Juan AC” and “San Juan CP”, respectively. (It is suggested you rename these both to be “San Juan” when pulling in data.)</li>
 <li>IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.</li>
 <li>IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.</li>
 </ul>
+</div>
+<div id="regions-table" class="section level3">
+<h3>
+<span class="header-section-number">4.2.2</span> Regions table<a class="anchor" aria-label="anchor" href="#regions-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>The Regions table provides keys for each RegionDescription, which can be connected to other tables via the RegionID.</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools].[Regions]</p>
+<p><strong>Main metrics:</strong> region numbers, region names, state, parent region (if applicable)</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[RegionID]:</strong> region number, used to link back to the [Schools] table</li>
+<li>
+<strong>[RegionDescription]:</strong> full name of the region or subregion</li>
+<li>
+<strong>[State]:</strong> full name of the state</li>
+<li>
+<strong>[ParentRegion]:</strong> link to the region number that contains that subregion; 0 if not usually combined with other regions</li>
+</ul>
+<p><strong>Context:</strong></p>
+<ul>
+<li>IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.</li>
+<li>IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.</li>
+<li>Informally, the RGV “super region” can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director.</li>
+<li>Occasionally, the Central Texas “super region” is used to include the San Antonio and Austin regions, but this is not included in the Regions table.</li>
+<li>An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are “RGV”, “Texas”, and “IPS and SA”, which are included in the [Schools] table (see above entry).</li>
+</ul>
+<div class="gotcha">
+<p>Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.</p>
+<p>If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.</p>
+</div>
+</div>
 </div>
 <div id="student-attendance" class="section level2">
 <h2>
@@ -635,21 +672,6 @@
 <ul>
 <li><p><strong>Who Counts?</strong></p></li>
 <li><p><strong>Who is a 4year 2year?</strong></p></li>
-<li>
-<p><strong>Persistence Rate by:</strong></p>
-<ul>
-<li>
-<strong>District:</strong> use all data</li>
-<li>
-<strong>Region:</strong> use the [RegionDescription] field</li>
-<li>
-<strong>School:</strong> [SchoolShortName] + [SchoolType]</li>
-<li>
-<strong>Grade Level:</strong> [GradeLevelID]</li>
-<li>
-<strong>Student Type (new or returning):</strong> use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.</li>
-</ul>
-</li>
 </ul>
 </div>
 <div id="lottery-data" class="section level2">
@@ -1626,7 +1648,12 @@ Level 5: 334</p>
 <li>
 <a class="nav-link" href="#the-students-table"><span class="header-section-number">4.1</span> The Students Table</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#common-queries"><span class="header-section-number">4.1.1</span> Common queries</a></li></ul>
 </li>
-<li><a class="nav-link" href="#schools-and-regions"><span class="header-section-number">4.2</span> Schools and regions</a></li>
+<li>
+<a class="nav-link" href="#schools-and-regions"><span class="header-section-number">4.2</span> Schools and regions</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#schools-table"><span class="header-section-number">4.2.1</span> Schools table</a></li>
+<li><a class="nav-link" href="#regions-table"><span class="header-section-number">4.2.2</span> Regions table</a></li>
+</ul>
+</li>
 <li>
 <a class="nav-link" href="#student-attendance"><span class="header-section-number">4.3</span> Student Attendance</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#common-queries-1"><span class="header-section-number">4.3.1</span> Common queries</a></li>
@@ -1678,7 +1705,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-14.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-07-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
