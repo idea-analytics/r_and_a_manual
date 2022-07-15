@@ -174,6 +174,8 @@ get_students() %>%
 
 ## Schools and regions
 
+### Schools table
+
 The Schools table provides essential information about each school, including their contact information, full and short names, and regions, all of which can be connected to other tables via the SchoolNumber.
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools]
@@ -193,7 +195,7 @@ The Schools table provides essential information about each school, including th
 * **[RegionID]:** official IDEA region when describing location of school; links to the Regions table
 * **[VPofSchools]:** regional Vice President (VP) who oversees the school; links to Employees table using EmployeeKey
 * **[ExecutiveDirector]:** Executive Director (ED) OR Regional Superintendent who oversees the region; links to Employees table using EmployeeKey
-* **[RegionDirectorOfOperations]:** RDO who oversees the region; links to Employees table using EmployeeKey
+* **[RegionDirectorOfOperations]:** Regional Director of Operations (RDO) who oversees the region; links to Employees table using EmployeeKey
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
 * **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
@@ -202,9 +204,42 @@ The Schools table provides essential information about each school, including th
 
 * The [SchoolName] column is the PowerSchool name for the school, not necessarily its official name. Many high school names in PowerSchool are shortened to "College Prep" instead of "College Preparatory". Some schools may officially be named "IDEA Academy/College Preparatory [ShortName]". 
 * Note that both Middle School and High School are administered under a single College Preparatory; however, they receive separate PowerSchool instances.
-* For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory".
+* For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory". (It is suggested you rename these to the modern names).
+* IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
 * IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
 * IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
+
+
+### Regions table
+
+The Regions table provides keys for each RegionDescription, which can be connected to other tables via the RegionID.
+
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Regions]
+
+**Main metrics:** region numbers, region names, state, parent region (if applicable)
+
+**Important columns:**
+
+* **[RegionID]:** region number, used to link back to the [Schools] table
+* **[RegionDescription]:** full name of the region or subregion
+* **[State]:** full name of the state
+* **[ParentRegion]:** link to the region number that contains that subregion; 0 if not usually combined with other regions
+
+**Context:**
+
+* IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.
+* IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.
+* Informally, the RGV "super region" can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director. 
+* Occasionally, the Central Texas "super region" is used to include the San Antonio and Austin regions, but this is not included in the Regions table.
+* An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are "RGV", "Texas", and "IPS and SA", which are included in the [Schools] table (see above entry).
+
+
+::: {.gotcha}
+Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.
+
+If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.
+:::
+
 
 ## Student Attendance
 
@@ -432,14 +467,6 @@ To close the opportunity gap, IDEA Public Schools is committed to a vision of Co
 * **Who is a 4year 2year?**
 
 
-
-* **Persistence Rate by:**
-
-  + **District:** use all data
-  +	**Region:** use the [RegionDescription] field
-  +	**School:** [SchoolShortName] + [SchoolType]
-  +	**Grade Level:** [GradeLevelID]
-  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
 
 
 ## Lottery Data
