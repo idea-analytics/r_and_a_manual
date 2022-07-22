@@ -905,6 +905,98 @@ Accessessing these data in the warehouse at this juncture is not always obvious.
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
 
+### IB
+
+The [International Baccalaureate](https://ibo.org/), or IB, is an international organization that oversees a rigorous education programme, similar to that of the College Board in the US. They host four different programmes:
+
+1. PYP - Primary Years Programme
+2. MYP - Middle Years Programme
+3. DP - Diploma Programme
+4. CP - Career-related Programme
+
+#### Coursework and scoring
+
+* **Coursework**
+
+Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and South Flores - offer the Diploma Programme. The DP is a series of courses, assessments, and portfolios in six different groups and the Core:
+
+* Group 1: Studies in langauge and literature (primary language)
+* Group 2: Language acquistion (secondary language)
+* Group 3: Individuals and society (social sciences)
+* Group 4: Sciences
+* Group 5: Mathematics
+* Group 6: The arts
+* Core: Theory of knowledge (TOK); Extended essay (EE); Creativity, activity, service (CAS)
+
+At IDEA, students will generally take one course in each group, and Diploma students will also work on the Core. Within IDEA, the Core is also referred to as Group 7.
+
+Futhermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
+
+From the Core, only Theory of Knowledge is a regularly taught course and is not designated as HL or SL. The Extended Essay is an independent research project conducted by each student in a specified subject and can be supervised by any teacher. CAS is a portfolio of a student's creative endeavors, physical activities, and community service throughout the programme.
+
+* **Course grades, predicted grades, and assessment**
+
+A combination of internally and externally assessed components throughout a single course determine the final *course grade* for a student, where grades range from 1 to 7, OR E to A, with incomplete scores marked as N or P. If a course or assessment is given a numeric grade, then 4 and above is considered passing. If a course is given a letter grade, then D, C, B, and A are passing. A grade of N or P in any assessment typically disqualifies a student from earning that course grade and earning an IB Diploma.
+
+Internal assessments are graded by the teacher and then moderated by an IB external reader. External assessments are graded only by an IB external reader. All May papers (examinations) are externally assessed, but not all courses have May papers. Most courses have multiple internally and externally assessed components.
+
+Prior to submitting all coursework for the student, each teacher must also give a *predicted grade*, a single value predicting that student's course grade.
+
+Courses from Groups 1 to 6 are awarded a numeric grade, TOK and EE are awarded a letter grade, and CAS is awarded a satisfactory / non-satisfactory completion.
+
+* **IB Diploma vs. Certificate (Course)**
+
+Not all students are required to take courses in all groups. Students who participate in coursework in all required groups and the Core pursue the [*IB Diploma*](https://www.ibo.org/programmes/diploma-programme/), which is a recognition of exemplary work, somewhat equivalent to the AP Capstone Diploma Program. The business rules are quite complicated for earning a diploma, but students generally need to have a certain combination of HL and SL points with a cumulative course score across all groups of at least 24 and all passing requirements met in the Core.
+
+A student may also opt for the *Bilingual Diploma*, which is usually satisfied by passing scores in at least two courses taken in a secondary language. Most students who have earned the Bilingual Diploma at IDEA will have taken both a Group 1 English course and a Group 1 Spanish course.
+
+Students who do not participate in the Diploma are labeled as *Certificate* or *Course* students.
+
+#### Data
+
+There are two main IB tables: **[IBScores]** and **[IBDiploma]**.
+
+::: {.gotcha}
+The IB tables only offer a snapshot of final course grades. They do not include a breakdown of internal and external assessment scores taken throughout the course.
+
+When reporting IB data, confirm what level of data is needed. Suggested groupings are: all course grades for Groups 1-6 only; all course grades and TOK; and all course grades, TOK and EE. If individual assessments are needed, then consult with the campus' IB Coordinator.
+:::
+
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBScores]
+
+* **Main metrics:** final course grades and predicted grades for each IB course, TOK, and EE
+
+* **Useful Fields:** 
+
+** **StudentNumber:** student ID number
+** **SubjectID:** *do not use!* This does not correspond to IB Groups
+** **CourseName:** Long course name
+** **CourseNumber:** course number
+** **TCPCourseCode:** link to TCP tables
+** **Level:** HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay
+** **Language:** primary language of instruction (either English or Spanish)
+** **Category:** Diploma, Course, or Certificate
+** **PredictedGrade:** teacher's predicted course grade from 1 to 7 or E to A
+** **Grade:** actual course grade from 1 to 7, E to A, N or P
+** **ScaledTotalMarkForSubject:** not used
+** **AcademicYear:** yyyy-yyyy
+
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBDiploma]
+
+* **Main metrics:** description of IB Diploma results for each Diploma candidate
+
+* **Useful Fields:**
+
+** **StudentNumber:** student ID number
+** **EETOKPoints:** number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3
+** **TotalPoints:** cumulative points earned from course grades and bonus points
+** **Result:** description if the IB Diploma or Bilingual Diploma was awarded or not
+** **DiplomaRequirementsCode:** describes why the diploma requirements were not met; blank if all diploma was awarded
+** **AcademicYear:** yyyy-yyyy
+** **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+
+
+
 ## Student Course Grades
 
 There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
