@@ -16,7 +16,7 @@ To install the package, use the following code:
 devtools::install_github("idea-analytics/ideacolors")
 ```
 
-## Race/Ethnicity Colors
+### Race/Ethnicity Colors
 
 When creating visuals of Race/Ethnicity we want to be consistent with the colors chosen for each race/ethnicity. Additionally, we want to ensure that the colors are not offensive to any group. Below are the colors that were used for all of the Diversity, Equity, and Inclusion (DEI) work that has been completed in the last couple of months of 2022.
 
