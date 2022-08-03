@@ -131,6 +131,7 @@ file-naming-standards.
 visualization-standards
 idea-branding
 the-ideacolors-package
+raceethnicity-colors
 typography
 models-and-methods
 research-design
