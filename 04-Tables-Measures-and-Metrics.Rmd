@@ -851,6 +851,68 @@ Accessessing these data in the warehouse at this juncture is not always obvious.
 
 ## Teacher, Staff, and Hiring Data
 
+### Compass data
+
+[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
+
+:::tip
+You'll need to reach out to Chris Haid to access the database. A set of compass functions for `[ideadata](idea-analytics.github.io/ideadata)` is in development.
+:::
+
+#### Key Tables
+
+- 2x2s in TwoByTwos
+  - Employee_ID
+  - Question_ID
+  - Year
+  - SortOrder (specific to year and Reviewer amd ois order displayed in Cornerstone)
+  - Reviewer
+  - IsComplete (completed by Staff and Manager)
+
+- TCPs
+    - EmployeeID
+    - ManagerID
+    - CompositeScore
+    - CoreValues
+    - GETRAtings
+    - ParentSurvey
+    - StudentAchievment
+    - StudentSurvey
+    - TCPPlacementLevel
+- TCPPlacement
+- TalentReviews
+- SkywardPositions 
+    - Historical staffing and positional data not in TylerMunis
+    - Get's merged with Position History data
+- RoadMap
+    - Roadmap Users (crosswalk to roadmap UniqueID, Email address, EmployeeID)
+    - RoadmapPrograms
+    - RoadmapProgramScores
+- QuestionsGPTW (going to be changed) and super wide
+- Profiles
+    - Big primary table
+    - All of tylermunis's active employee data. 
+        - pull most recent active directory data (AD_ fields)
+            - AD_SamAccountName
+            - Personal Email
+    - Positions: Historical Positional Data
+        - ProfileID 
+        - EmployeeID
+        - DataSource (where it comes from )
+- JobVite
+    - similar to Roadmap
+    - JobviteUsers 
+    - app id, 
+    - candidateid 
+    - can link to other JobVite tables
+- GPTW
+    - Pivoted by employee id for performance manager
+    - **This will change** (moving to tidy data)
+- Goals
+- External Position (not ussedd, but for user added data not captured in Jobvite)
+- AnnualPerformanceReviews
+ 
+
 
 
 ### Jobvite Data
