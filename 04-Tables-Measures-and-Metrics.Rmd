@@ -968,18 +968,18 @@ When reporting IB data, confirm what level of data is needed. Suggested grouping
 
 * **Useful Fields:** 
 
-** **StudentNumber:** student ID number
-** **SubjectID:** *do not use!* This does not correspond to IB Groups
-** **CourseName:** Long course name
-** **CourseNumber:** course number
-** **TCPCourseCode:** link to TCP tables
-** **Level:** HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay
-** **Language:** primary language of instruction (either English or Spanish)
-** **Category:** Diploma, Course, or Certificate
-** **PredictedGrade:** teacher's predicted course grade from 1 to 7 or E to A
-** **Grade:** actual course grade from 1 to 7, E to A, N or P
-** **ScaledTotalMarkForSubject:** not used
-** **AcademicYear:** yyyy-yyyy
+  + **StudentNumber:** student ID number
+  + **SubjectID:** *do not use!* This does not correspond to IB Groups
+  + **CourseName:** Long course name
+  + **CourseNumber:** course number
+  + **TCPCourseCode:** link to TCP tables
+  + **Level:** HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay
+  + **Language:** primary language of instruction (either English or Spanish)
+  + **Category:** Diploma, Course, or Certificate
+  + **PredictedGrade:** teacher's predicted course grade from 1 to 7 or E to A
+  + **Grade:** actual course grade from 1 to 7, E to A, N or P
+  + **ScaledTotalMarkForSubject:** not used
+  + **AcademicYear:** yyyy-yyyy
 
 **Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBDiploma]
 
@@ -987,15 +987,22 @@ When reporting IB data, confirm what level of data is needed. Suggested grouping
 
 * **Useful Fields:**
 
-** **StudentNumber:** student ID number
-** **EETOKPoints:** number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3
-** **TotalPoints:** cumulative points earned from course grades and bonus points
-** **Result:** description if the IB Diploma or Bilingual Diploma was awarded or not
-** **DiplomaRequirementsCode:** describes why the diploma requirements were not met; blank if all diploma was awarded
-** **AcademicYear:** yyyy-yyyy
-** **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+  + **StudentNumber:** student ID number
+  + **EETOKPoints:** number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3
+  + **TotalPoints:** cumulative points earned from course grades and bonus points
+  + **Result:** description if the IB Diploma or Bilingual Diploma was awarded or not
+  + **DiplomaRequirementsCode:** describes why the diploma requirements were not met; blank if all diploma was awarded
+  + **AcademicYear:** yyyy-yyyy
+  + **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
 
+**Data collection:**
 
+* Note that IB data must be obtained campus-by-campus, as the IB authorizes the individual campus, not the district, as a World School.
+* There are three files that contain relevant IB data:
+
+1. Candidate Report - this is a summary of the course grades and IB diploma result by student (corresponds to [IBDiploma] table)
+2. Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)
+3. Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)
 
 ## Student Course Grades
 
