@@ -1337,32 +1337,69 @@
 <p><strong>Table:</strong> [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBScores]</p>
 <ul>
 <li><p><strong>Main metrics:</strong> final course grades and predicted grades for each IB course, TOK, and EE</p></li>
-<li><p><strong>Useful Fields:</strong></p></li>
+<li>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>StudentNumber:</strong> student ID number</li>
+<li>
+<strong>SubjectID:</strong> <em>do not use!</em> This does not correspond to IB Groups</li>
+<li>
+<strong>CourseName:</strong> Long course name</li>
+<li>
+<strong>CourseNumber:</strong> course number</li>
+<li>
+<strong>TCPCourseCode:</strong> link to TCP tables</li>
+<li>
+<strong>Level:</strong> HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay</li>
+<li>
+<strong>Language:</strong> primary language of instruction (either English or Spanish)</li>
+<li>
+<strong>Category:</strong> Diploma, Course, or Certificate</li>
+<li>
+<strong>PredictedGrade:</strong> teacher’s predicted course grade from 1 to 7 or E to A</li>
+<li>
+<strong>Grade:</strong> actual course grade from 1 to 7, E to A, N or P</li>
+<li>
+<strong>ScaledTotalMarkForSubject:</strong> not used</li>
+<li>
+<strong>AcademicYear:</strong> yyyy-yyyy</li>
 </ul>
-<p>** <strong>StudentNumber:</strong> student ID number
-** <strong>SubjectID:</strong> <em>do not use!</em> This does not correspond to IB Groups
-** <strong>CourseName:</strong> Long course name
-** <strong>CourseNumber:</strong> course number
-** <strong>TCPCourseCode:</strong> link to TCP tables
-** <strong>Level:</strong> HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay
-** <strong>Language:</strong> primary language of instruction (either English or Spanish)
-** <strong>Category:</strong> Diploma, Course, or Certificate
-** <strong>PredictedGrade:</strong> teacher’s predicted course grade from 1 to 7 or E to A
-** <strong>Grade:</strong> actual course grade from 1 to 7, E to A, N or P
-** <strong>ScaledTotalMarkForSubject:</strong> not used
-** <strong>AcademicYear:</strong> yyyy-yyyy</p>
+</li>
+</ul>
 <p><strong>Table:</strong> [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBDiploma]</p>
 <ul>
 <li><p><strong>Main metrics:</strong> description of IB Diploma results for each Diploma candidate</p></li>
-<li><p><strong>Useful Fields:</strong></p></li>
+<li>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>StudentNumber:</strong> student ID number</li>
+<li>
+<strong>EETOKPoints:</strong> number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3</li>
+<li>
+<strong>TotalPoints:</strong> cumulative points earned from course grades and bonus points</li>
+<li>
+<strong>Result:</strong> description if the IB Diploma or Bilingual Diploma was awarded or not</li>
+<li>
+<strong>DiplomaRequirementsCode:</strong> describes why the diploma requirements were not met; blank if all diploma was awarded</li>
+<li>
+<strong>AcademicYear:</strong> yyyy-yyyy</li>
+<li>
+<strong>SchoolTermID:</strong> Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY</li>
 </ul>
-<p>** <strong>StudentNumber:</strong> student ID number
-** <strong>EETOKPoints:</strong> number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3
-** <strong>TotalPoints:</strong> cumulative points earned from course grades and bonus points
-** <strong>Result:</strong> description if the IB Diploma or Bilingual Diploma was awarded or not
-** <strong>DiplomaRequirementsCode:</strong> describes why the diploma requirements were not met; blank if all diploma was awarded
-** <strong>AcademicYear:</strong> yyyy-yyyy
-** <strong>SchoolTermID:</strong> Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY</p>
+</li>
+</ul>
+<p><strong>Data collection:</strong></p>
+<ul>
+<li>Note that IB data must be obtained campus-by-campus, as the IB authorizes the individual campus, not the district, as a World School.</li>
+<li>There are three files that contain relevant IB data:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Candidate Report - this is a summary of the course grades and IB diploma result by student (corresponds to [IBDiploma] table)</li>
+<li>Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)</li>
+<li>Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1791,7 +1828,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-03.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
