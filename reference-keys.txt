@@ -57,6 +57,8 @@ coursework-and-scoring
 data
 student-course-grades
 teacher-staff-and-hiring-data
+compass-data
+key-tables
 jobvite-data
 tcpteacher-export-data
 data-matching

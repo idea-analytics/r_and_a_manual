@@ -1477,9 +1477,105 @@
 <h2>
 <span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
 </h2>
+<div id="compass-data" class="section level3">
+<h3>
+<span class="header-section-number">4.10.1</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://compass.ideapublicschools.org">Compass</a> is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data <strong>and should be considered the source of truth</strong> for these data</p>
+<div class="tip">
+<p>You’ll need to reach out to Chris Haid to access the database. A set of compass functions for <code>[ideadata](idea-analytics.github.io/ideadata)</code> is in development.</p>
+</div>
+<div id="key-tables" class="section level4">
+<h4>
+<span class="header-section-number">4.10.1.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>2x2s in TwoByTwos
+<ul>
+<li>Employee_ID</li>
+<li>Question_ID</li>
+<li>Year</li>
+<li>SortOrder (specific to year and Reviewer amd ois order displayed in Cornerstone)</li>
+<li>Reviewer</li>
+<li>IsComplete (completed by Staff and Manager)</li>
+</ul>
+</li>
+<li>TCPs
+<ul>
+<li>EmployeeID</li>
+<li>ManagerID</li>
+<li>CompositeScore</li>
+<li>CoreValues</li>
+<li>GETRAtings</li>
+<li>ParentSurvey</li>
+<li>StudentAchievment</li>
+<li>StudentSurvey</li>
+<li>TCPPlacementLevel</li>
+</ul>
+</li>
+<li>TCPPlacement</li>
+<li>TalentReviews</li>
+<li>SkywardPositions
+<ul>
+<li>Historical staffing and positional data not in TylerMunis</li>
+<li>Get’s merged with Position History data</li>
+</ul>
+</li>
+<li>RoadMap
+<ul>
+<li>Roadmap Users (crosswalk to roadmap UniqueID, Email address, EmployeeID)</li>
+<li>RoadmapPrograms</li>
+<li>RoadmapProgramScores</li>
+</ul>
+</li>
+<li>QuestionsGPTW (going to be changed) and super wide</li>
+<li>Profiles
+<ul>
+<li>Big primary table</li>
+<li>All of tylermunis’s active employee data.
+<ul>
+<li>pull most recent active directory data (AD_ fields)
+<ul>
+<li>AD_SamAccountName</li>
+<li>Personal Email</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Positions: Historical Positional Data
+<ul>
+<li>ProfileID</li>
+<li>EmployeeID</li>
+<li>DataSource (where it comes from )</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>JobVite
+<ul>
+<li>similar to Roadmap</li>
+<li>JobviteUsers</li>
+<li>app id,</li>
+<li>candidateid</li>
+<li>can link to other JobVite tables</li>
+</ul>
+</li>
+<li>GPTW
+<ul>
+<li>Pivoted by employee id for performance manager</li>
+<li>
+<strong>This will change</strong> (moving to tidy data)</li>
+</ul>
+</li>
+<li>Goals</li>
+<li>External Position (not ussedd, but for user added data not captured in Jobvite)</li>
+<li>AnnualPerformanceReviews</li>
+</ul>
+</div>
+</div>
 <div id="jobvite-data" class="section level3">
 <h3>
-<span class="header-section-number">4.10.1</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.2</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -1518,7 +1614,7 @@
 </div>
 <div id="tcpteacher-export-data" class="section level3">
 <h3>
-<span class="header-section-number">4.10.2</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.3</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -1568,7 +1664,7 @@
 </ul>
 <div id="data-matching" class="section level4">
 <h4>
-<span class="header-section-number">4.10.2.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.3.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -1603,7 +1699,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="join-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.10.2.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.3.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
@@ -1800,8 +1896,9 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
 <li>
 <a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.1</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.2</span> TCP/Teacher Export Data</a></li>
+<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.10.1</span> Compass data</a></li>
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.2</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.3</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 <li>
