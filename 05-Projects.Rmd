@@ -609,3 +609,23 @@ This project has been transfered over to Ann Heller because Malinda is leaving a
 This project was examining the differences between student achievement for pilot vs. non-pilot schools, for a new math curriculum that is being implemented. The pilot was not set up at-random, and project design was not created by R&A. It was challenging to find meaningful results because it was hard to tease apart the impacts of particular things on student achievement. It was difficult to know if a change in test scores was due to the new curriculum or something else. The results showed that although the test scores may not have been significantly different/better for pilot than the non-pilot schools, the pilot schools lowest scores were not as low as the non-pilot schools. In effect, the pilot schools did not do worse in terms of the lowest scores, so we could likely say the the new math curriculum was not harming the students (although it was hard to say if it was helping). We may revisit this project for AP classes and help our partners design the pilots and project design for the next round, which will hopefully support getting more meaningful results from the analysis.
 
 
+### TSLIP
+
+### Charter School Program (CSP) Grants
+See also Chapter 4.11.4
+
+Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants. The main metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention
+
+CSP grant applications provide general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies.
+
+* **CSP Schools and Regions**
+CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
+
+* **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
+
+* **Schools:** List schools. 
+
+* **CSP Evaluation Question 1:** insert question here. 
+
+To address the first question, the IDEA model and its components needed to be identified. 
+=======
