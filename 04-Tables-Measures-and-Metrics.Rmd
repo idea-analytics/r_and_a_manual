@@ -993,7 +993,7 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 
 See 4.1.1 The Students Table
 See 4.2.1 Schools table
-See 4.2.2 Regions table 
+See 4.2.2 Regions table
 
 **Database:**
 
