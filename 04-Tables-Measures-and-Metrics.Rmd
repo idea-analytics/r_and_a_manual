@@ -984,3 +984,16 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
 ### TSLIP
 
 Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
+
+### Charter School Program Grants
+
+Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and expanding new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis of CSP schools.
+
+**Database:** [RGVPDRA-DASQL].[]
+
+**Tables:**
+
+* **_[dbo].[Students]_** This table tracks xyz. 
+
+* **Useful Fields:**
+
