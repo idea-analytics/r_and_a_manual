@@ -987,11 +987,17 @@ Grant that contains 4 key components/areas for research questions. Main points o
 
 ### Charter School Program Grants
 
-Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and expanding new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis of CSP schools.
+Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis for the CSP evaluations. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants.
 
-**Database:** [RGVPDRA-DASQL].[]
+CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025.It includes the following regions: Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
 
-**Tables:**
+See 4.1.1 The Students Table
+See 4.2.1 Schools table
+See 4.2.2 Regions table 
+
+**Database:**
+
+**Tables:** 
 
 * **_[dbo].[Students]_** This table tracks xyz. 
 
