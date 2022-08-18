@@ -582,13 +582,13 @@ Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Pu
 
 CSP grant applications provide general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies.
 
-* *CSP Schools and Regions
+* **CSP Schools and Regions**
 CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
 
-* **Regions: Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
+* **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
 
-* **Schools: List schools. 
+* **Schools:** List schools. 
 
-* *CSP Evaluation Question 1 is: insert question here. 
+* **CSP Evaluation Question 1:** insert question here. 
 
 To address the first question, the IDEA model and its components needed to be identified. 
