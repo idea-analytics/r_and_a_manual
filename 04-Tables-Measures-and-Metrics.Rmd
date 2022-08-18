@@ -172,6 +172,74 @@ get_students() %>%
          LastName)
 ```
 
+## Schools and regions
+
+### Schools table
+
+The Schools table provides essential information about each school, including their contact information, full and short names, and regions, all of which can be connected to other tables via the SchoolNumber.
+
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools]
+
+**Main metrics:** School names, PowerSchool numbers, state IDs, regions
+
+**Important columns:**
+
+* **[SchoolNumber]:** official PowerSchool school ID; most frequently used to link to other tables
+* **[SchoolName]:** full name of the school, e.g. IDEA Frontier College Preparatory
+* **[SchoolShortName]:** campus name, e.g. Frontier
+* **[StateSchoolNumber]:** number used by the campus' respective state for reporting (note: this column may not have correct values for all schools)
+* **[SchoolAbbreviation]:** abbreviation of school name (not commonly used)
+* **[SchoolLowestGrade]:** lowest grade level, where PK = -1, K = 0
+* **[SchoolHighestGrade]:** highest grade level
+* **[SchoolStreet], [SchoolCity], [SchoolState], [SchoolZipCode], [SchoolPhone], [SchoolFax], [PrincipalName], [PrincipalPhone], [PrincipalEmail], [CountyNumber], [CountyName]**: contact information
+* **[RegionID]:** official IDEA region when describing location of school; links to the Regions table
+* **[VPofSchools]:** regional Vice President (VP) who oversees the school; links to Employees table using EmployeeKey
+* **[ExecutiveDirector]:** Executive Director (ED) OR Regional Superintendent who oversees the region; links to Employees table using EmployeeKey
+* **[RegionDirectorOfOperations]:** Regional Director of Operations (RDO) who oversees the region; links to Employees table using EmployeeKey
+* **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
+* **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
+* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
+
+**Context:**
+
+* The [SchoolName] column is the PowerSchool name for the school, not necessarily its official name. Many high school names in PowerSchool are shortened to "College Prep" instead of "College Preparatory". Some schools may officially be named "IDEA Academy/College Preparatory [ShortName]". 
+* Note that both Middle School and High School are administered under a single College Preparatory; however, they receive separate PowerSchool instances.
+* For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory". (It is suggested you rename these to the modern names).
+* IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
+* IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
+* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
+
+
+### Regions table
+
+The Regions table provides keys for each RegionDescription, which can be connected to other tables via the RegionID.
+
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Regions]
+
+**Main metrics:** region numbers, region names, state, parent region (if applicable)
+
+**Important columns:**
+
+* **[RegionID]:** region number, used to link back to the [Schools] table
+* **[RegionDescription]:** full name of the region or subregion
+* **[State]:** full name of the state
+* **[ParentRegion]:** link to the region number that contains that subregion; 0 if not usually combined with other regions
+
+**Context:**
+
+* IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.
+* IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.
+* Informally, the RGV "super region" can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director. 
+* Occasionally, the Central Texas "super region" is used to include the San Antonio and Austin regions, but this is not included in the Regions table.
+* An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are "RGV", "Texas", and "IPS and SA", which are included in the [Schools] table (see above entry).
+
+
+::: {.gotcha}
+Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.
+
+If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.
+:::
+
 
 ## Student Attendance
 
@@ -399,14 +467,6 @@ To close the opportunity gap, IDEA Public Schools is committed to a vision of Co
 * **Who is a 4year 2year?**
 
 
-
-* **Persistence Rate by:**
-
-  + **District:** use all data
-  +	**Region:** use the [RegionDescription] field
-  +	**School:** [SchoolShortName] + [SchoolType]
-  +	**Grade Level:** [GradeLevelID]
-  +	**Student Type (new or returning):** use [NewStudent] = 1 to identify new students, if zero then the student is considered as a returning student.
 
 
 ## Lottery Data
@@ -845,11 +905,213 @@ Accessessing these data in the warehouse at this juncture is not always obvious.
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
 
+### IB
+
+The [International Baccalaureate](https://ibo.org/), or IB, is an international organization that oversees a rigorous education programme, similar to that of the College Board in the US. They host four different programmes:
+
+1. PYP - Primary Years Programme
+2. MYP - Middle Years Programme
+3. DP - Diploma Programme
+4. CP - Career-related Programme
+
+#### Coursework and scoring
+
+* **Coursework**
+
+Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and South Flores - offer the Diploma Programme. The DP is a series of courses, assessments, and portfolios in six different groups and the Core:
+
+* Group 1: Studies in langauge and literature (primary language)
+* Group 2: Language acquistion (secondary language)
+* Group 3: Individuals and society (social sciences)
+* Group 4: Sciences
+* Group 5: Mathematics
+* Group 6: The arts
+* Core: Theory of knowledge (TOK); Extended essay (EE); Creativity, activity, service (CAS)
+
+At IDEA, students will generally take one course in each group, and Diploma students will also work on the Core. Within IDEA, the Core is also referred to as Group 7.
+
+Futhermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
+
+From the Core, only Theory of Knowledge is a regularly taught course and is not designated as HL or SL. The Extended Essay is an independent research project conducted by each student in a specified subject and can be supervised by any teacher. CAS is a portfolio of a student's creative endeavors, physical activities, and community service throughout the programme.
+
+* **Course grades, predicted grades, and assessment**
+
+A combination of internally and externally assessed components throughout a single course determine the final *course grade* for a student, where grades range from 1 to 7, OR E to A, with incomplete scores marked as N or P. If a course or assessment is given a numeric grade, then 4 and above is considered passing. If a course is given a letter grade, then D, C, B, and A are passing. A grade of N or P in any assessment typically disqualifies a student from earning that course grade and earning an IB Diploma.
+
+Internal assessments are graded by the teacher and then moderated by an IB external reader. External assessments are graded only by an IB external reader. All May papers (examinations) are externally assessed, but not all courses have May papers. Most courses have multiple internally and externally assessed components.
+
+Prior to submitting all coursework for the student, each teacher must also give a *predicted grade*, a single value predicting that student's course grade.
+
+Courses from Groups 1 to 6 are awarded a numeric grade, TOK and EE are awarded a letter grade, and CAS is awarded a satisfactory / non-satisfactory completion.
+
+* **IB Diploma vs. Certificate (Course)**
+
+Not all students are required to take courses in all groups. Students who participate in coursework in all required groups and the Core pursue the [*IB Diploma*](https://www.ibo.org/programmes/diploma-programme/), which is a recognition of exemplary work, somewhat equivalent to the AP Capstone Diploma Program. The business rules are quite complicated for earning a diploma, but students generally need to have a certain combination of HL and SL points with a cumulative course score across all groups of at least 24 and all passing requirements met in the Core.
+
+A student may also opt for the *Bilingual Diploma*, which is usually satisfied by passing scores in at least two courses taken in a secondary language. Most students who have earned the Bilingual Diploma at IDEA will have taken both a Group 1 English course and a Group 1 Spanish course.
+
+Students who do not participate in the Diploma are labeled as *Certificate* or *Course* students.
+
+#### Data
+
+There are two main IB tables: **[IBScores]** and **[IBDiploma]**.
+
+::: {.gotcha}
+The IB tables only offer a snapshot of final course grades. They do not include a breakdown of internal and external assessment scores taken throughout the course.
+
+When reporting IB data, confirm what level of data is needed. Suggested groupings are: all course grades for Groups 1-6 only; all course grades and TOK; and all course grades, TOK and EE. If individual assessments are needed, then consult with the campus' IB Coordinator.
+:::
+
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBScores]
+
+* **Main metrics:** final course grades and predicted grades for each IB course, TOK, and EE
+
+* **Useful Fields:** 
+
+  + **StudentNumber:** student ID number
+  + **SubjectID:** *do not use!* This does not correspond to IB Groups
+  + **CourseName:** Long course name
+  + **CourseNumber:** course number
+  + **TCPCourseCode:** link to TCP tables
+  + **Level:** HL or SL for courses; TK for Theory of Knowledge; EE for Extended Essay
+  + **Language:** primary language of instruction (either English or Spanish)
+  + **Category:** Diploma, Course, or Certificate
+  + **PredictedGrade:** teacher's predicted course grade from 1 to 7 or E to A
+  + **Grade:** actual course grade from 1 to 7, E to A, N or P
+  + **ScaledTotalMarkForSubject:** not used
+  + **AcademicYear:** yyyy-yyyy
+
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IBDiploma]
+
+* **Main metrics:** description of IB Diploma results for each Diploma candidate
+
+* **Useful Fields:**
+
+  + **StudentNumber:** student ID number
+  + **EETOKPoints:** number of bonus points awarded from combination of TOK and EE letter grades; may be missing, 0, 1, 2, or 3
+  + **TotalPoints:** cumulative points earned from course grades and bonus points
+  + **Result:** description if the IB Diploma or Bilingual Diploma was awarded or not
+  + **DiplomaRequirementsCode:** describes why the diploma requirements were not met; blank if all diploma was awarded
+  + **AcademicYear:** yyyy-yyyy
+  + **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+
+**Data collection:**
+
+* Note that IB data must be obtained campus-by-campus, as the IB authorizes the individual campus, not the district, as a World School.
+* There are three files that contain relevant IB data:
+
+1. Candidate Report - this is a summary of the course grades and IB diploma result by student (corresponds to [IBDiploma] table)
+2. Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)
+3. Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)
+
+## Student Course Grades
+
+There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
+
+**Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]
+
+**Useful Fields:** 
+
+* **SchoolNumber:** Local school number
+* **SchoolName:** Long school name
+* **CourseName:** Long course name
+* **CourseNumber:** Course number
+* **CreditType:** Abbreviated subject, such as ELA or MA for Math
+* **StudentNumber:** Local student ID number
+* **StudentName:** Last, First Middle name
+* **GradeLevelID:** Grade level (only 8th through 12th)
+* **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter
+* **PercentGrade:** The numerical grade 0-100
+* **LetterGrade:** Wouldn't use this column it is a mix of letter grades and numerical grades
+* **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+
+**Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]
+
+**Useful Fields:**
+
+* **StudentNumber:** Local student ID number
+* **AcademicYear:** The academic year
+* **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
+* **SchoolNumber:** Local school number
+* **CourseName:** Long course name
+* **CourseNumber:** Course number
+* **CreditType:** Abbreviated subject, such as ELA or MA for Math
+* **StaffID:** The Staff ID number for the teacher of the course (not sure if this is accurate)
+* **TeacherName:** The teacher's name (Last, First) again not sure if this is accurate
+* **GradeLevelID:** Grade level (only 8th through 12th)
+* **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter (Y1 = end-of-course grade for the year)
+* **PercentageGrade:** The numerical grade 0-100
+* **LetterGrade:** Appears to be all letter grades (Character column)
+* **AbsentCount:** Count of absences
+* **TardyCount:** Count of tardies
+* **State:** 2 letter abbreviation for the student's State 
 
 
 
 
 ## Teacher, Staff, and Hiring Data
+
+### Compass data
+
+[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
+
+:::tip
+You'll need to reach out to Chris Haid to access the database. A set of compass functions for `[ideadata](idea-analytics.github.io/ideadata)` is in development.
+:::
+
+#### Key Tables
+
+- 2x2s in TwoByTwos
+  - Employee_ID
+  - Question_ID
+  - Year
+  - SortOrder (specific to year and Reviewer amd ois order displayed in Cornerstone)
+  - Reviewer
+  - IsComplete (completed by Staff and Manager)
+
+- TCPs
+    - EmployeeID
+    - ManagerID
+    - CompositeScore
+    - CoreValues
+    - GETRAtings
+    - ParentSurvey
+    - StudentAchievment
+    - StudentSurvey
+    - TCPPlacementLevel
+- TCPPlacement
+- TalentReviews
+- SkywardPositions 
+    - Historical staffing and positional data not in TylerMunis
+    - Get's merged with Position History data
+- RoadMap
+    - Roadmap Users (crosswalk to roadmap UniqueID, Email address, EmployeeID)
+    - RoadmapPrograms
+    - RoadmapProgramScores
+- QuestionsGPTW (going to be changed) and super wide
+- Profiles
+    - Big primary table
+    - All of tylermunis's active employee data. 
+        - pull most recent active directory data (AD_ fields)
+            - AD_SamAccountName
+            - Personal Email
+    - Positions: Historical Positional Data
+        - ProfileID 
+        - EmployeeID
+        - DataSource (where it comes from )
+- JobVite
+    - similar to Roadmap
+    - JobviteUsers 
+    - app id, 
+    - candidateid 
+    - can link to other JobVite tables
+- GPTW
+    - Pivoted by employee id for performance manager
+    - **This will change** (moving to tidy data)
+- Goals
+- External Position (not ussedd, but for user added data not captured in Jobvite)
+- AnnualPerformanceReviews
+ 
 
 
 
@@ -985,6 +1247,7 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
 
 Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
 
+csp-model-v1
 ### Charter School Program Grants
 
 Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis for the CSP evaluations. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants.
@@ -1002,4 +1265,93 @@ See 4.2.2 Regions table
 * **_[dbo].[Students]_** This table tracks xyz. 
 
 * **Useful Fields:**
+=======
+#### APR Report for June 2022 
+
+##### Promotions
+
+Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.
+
+###### Teacher Promotions
+We are looking at Area = "TEACHER" for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than "TEACHER" on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was "INTERVENTIONIST" which moved from Area = "TEACHER" to Area = "INSTRUCTIONAL SUPPORT". We concluded this was incorrect and should remain as Area = "TEACHER", and so was counted as "no change". The remaining 38 Job Titles that fell outside of Area = "TEACHER" were included as either Promotions or Demotions.
+
+**Promotions**
+
+LICENSED SPECIALIST IN SCHOOL PSYCHOLOGY INTERN
+ASST. PRINCIPAL OF INSTRUCTION
+REGIONAL ATHLETICS MANAGER
+COLLEGE COUNSELOR
+SPECIAL PROGRAMS COACH
+DI PROGRAM MANAGER
+REGIONAL SPECIAL PROGRAMS COACH
+DIRECTOR OF COLLEGE COUNSELING
+
+
+ASSISTANT PRINCIPAL OF INSTRUCTION
+SCHOOL COUNSELOR
+STUDENT SUCCESS ADVISOR
+EDU DIAGNOSTICIAN
+REGIONAL INTERVENTION COACH
+ASST. PRINCIPAL OF OPERATIONS
+TALENT RECRUITER
+PRINCIPAL OF INSTRUCTION
+PUBLIC RELATIONS MANAGER
+
+EDUCATIONAL DIAGNOSTICIAN
+TALENT PARTNER
+MATH CURRICULUM WRITER
+SPANISH LANGUAGE ARTS CURRICULUM MANAGER
+ASSISTANT PRINCIPAL OF OPERATIONS IN RESIDENCE
+ASSISTANT PRINCIPAL OF OPERATIONS
+ELA SECONDARY CURRICULUM MANAGER
+STATE REPORTING COORDINATOR
+
+ASST. PRINCIPAL OF INSTRUCTION IN RESIDENCE
+SOCIAL STUDIES CURRICULUM MANAGER
+K-2 REGIONAL MATH COACH
+MATH CURRICULUM MANAGER
+DIGITAL COMMUNICATIONS MANAGER
+SR. COLLEGE COUNSELOR
+TECHNICAL TRAINER
+PROJECT MANAGER
+JOB COACH
+
+**Demotions**
+FLEX TEACHER
+TESTING COORDINATOR
+SUBSTITUTE TEACHER
+SPECIAL EDUCATION RISE CO-TEACHER
+
+###### Teacher-Leader Promotions
+
+#### TCP Retention and TCP Levels
+
+One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture
+
+##### Missing TCP Placements
+TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning.  For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.
+
+##### Leaver Rates
+
+Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are "New To IDEA" Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of "holding" level for teachers who didn't score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.
+
+Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
+Level 1: 1185
+Level 2: 90
+Level 3: 813
+Level 4: 1010
+Level 5: 334
+
+
+Going forward for 21-22 SY TCP, all teachers will supposedly be placed into TCP Placement Levels, regardless of known leaver-status. This should help with the issue of analyzing retention of teachers by TCP Level, as all teachers would have a TCP Level when the October 2022 TCP comes out. Teachers who left should still be available in the Teacher Export file on the TCP website/application, according to the TCP Team.
+
+##### Exit Surveys for Teacher Leavers
+Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.
+
+#### TCP Levels and Composite Score Correlations
+
+TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of "hold" time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
+
+
+
 
