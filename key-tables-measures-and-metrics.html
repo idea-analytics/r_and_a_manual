@@ -7,7 +7,7 @@
 <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
-<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
@@ -50,11 +50,10 @@
 <li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="active" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
-<li><a class="" href="specific-projects.html"><span class="header-section-number">6</span> Specific Projects</a></li>
-<li><a class="" href="coding-standards.html"><span class="header-section-number">7</span> Coding Standards</a></li>
-<li><a class="" href="visualization-standards.html"><span class="header-section-number">8</span> Visualization Standards</a></li>
-<li><a class="" href="models-and-methods.html"><span class="header-section-number">9</span> Models and Methods</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">10</span> Tips and Tricks</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">7</span> Visualization Standards</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">9</span> Tips and Tricks</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -1753,18 +1752,34 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <span class="header-section-number">4.11.3</span> TSLIP<a class="anchor" aria-label="anchor" href="#tslip"><i class="fas fa-link"></i></a>
 </h3>
 <p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
+</div>
+<div id="csi_tables" class="section level3">
+<h3>
+<span class="header-section-number">4.11.4</span> Charter School Program Grants<a class="anchor" aria-label="anchor" href="#csi_tables"><i class="fas fa-link"></i></a>
+</h3>
+<p>Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&amp;A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis for the CSP evaluations. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants.</p>
+<p>CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025.It includes the following regions: Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.</p>
+<p>See 4.1.1 The Students Table
+See 4.2.1 Schools table
+See 4.2.2 Regions table</p>
+<p><strong>Database:</strong></p>
+<p><strong>Tables:</strong></p>
+<ul>
+<li><p><strong><em>[dbo].[Students]</em></strong> This table tracks xyz.</p></li>
+<li><p><strong>Useful Fields:</strong></p></li>
+</ul>
 <div id="apr-report-for-june-2022" class="section level4">
 <h4>
-<span class="header-section-number">4.11.3.1</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.1</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
 </h4>
 <div id="promotions" class="section level5">
 <h5>
-<span class="header-section-number">4.11.3.1.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.1.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.</p>
 <div id="teacher-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.11.3.1.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.1.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
@@ -1810,25 +1825,25 @@ SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
 <div id="teacher-leader-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.11.3.1.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.1.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
 </h6>
 </div>
 </div>
 </div>
 <div id="tcp-retention-and-tcp-levels" class="section level4">
 <h4>
-<span class="header-section-number">4.11.3.2</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.2</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
 </h4>
 <p>One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture</p>
 <div id="missing-tcp-placements" class="section level5">
 <h5>
-<span class="header-section-number">4.11.3.2.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.2.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
 </h5>
 <p>TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.</p>
 </div>
 <div id="leaver-rates" class="section level5">
 <h5>
-<span class="header-section-number">4.11.3.2.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.2.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.</p>
 <p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
@@ -1841,14 +1856,14 @@ Level 5: 334</p>
 </div>
 <div id="exit-surveys-for-teacher-leavers" class="section level5">
 <h5>
-<span class="header-section-number">4.11.3.2.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.2.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
 </h5>
 <p>Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.</p>
 </div>
 </div>
 <div id="tcp-levels-and-composite-score-correlations" class="section level4">
 <h4>
-<span class="header-section-number">4.11.3.3</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4.3</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of “hold” time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
 
@@ -1906,6 +1921,7 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#st-century-afterschool-programs"><span class="header-section-number">4.11.1</span> 21st Century Afterschool Programs</a></li>
 <li><a class="nav-link" href="#camp-rio"><span class="header-section-number">4.11.2</span> Camp Rio</a></li>
 <li><a class="nav-link" href="#tslip"><span class="header-section-number">4.11.3</span> TSLIP</a></li>
+<li><a class="nav-link" href="#csi_tables"><span class="header-section-number">4.11.4</span> Charter School Program Grants</a></li>
 </ul>
 </li>
 </ul>
@@ -1925,7 +1941,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-05.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -1938,7 +1954,7 @@ Level 5: 334</p>
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

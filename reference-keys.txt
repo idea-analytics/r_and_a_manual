@@ -67,6 +67,7 @@ evaluation-projects
 st-century-afterschool-programs
 camp-rio
 tslip
+csi_tables
 apr-report-for-june-2022
 promotions
 teacher-promotions
@@ -128,6 +129,8 @@ first-year-teacher-project
 years-of-data-used-in-analysis
 project-transfered-to-ann-heller
 math-curriculum-redesign
+tslip-1
+charter-school-program-csp-grants
 coding-standards
 file-naming-standards.
 visualization-standards
