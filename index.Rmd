@@ -22,7 +22,7 @@ csl: chicago-fullnote-bibliography.csl
 The manual is particularly aimed at a technical audience (e.g. statisticians, data analysts, data engineers, data scientists) and most contributions are from technical authors. Indeed, the expectation is that technical members for the R&A team will contribute to this manual regularly (i.e., weekly or daily during the festive (information) harvesting celebration of Doctoberfest)
 
 
-```{r include=FALSE}
+```{r init-setup, include=FALSE}
 library(tidyverse)
 
 
