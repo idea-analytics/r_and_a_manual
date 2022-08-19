@@ -628,4 +628,3 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 * **CSP Evaluation Question 1:** insert question here. 
 
 To address the first question, the IDEA model and its components needed to be identified. 
-=======
