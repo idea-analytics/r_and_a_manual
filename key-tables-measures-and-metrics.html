@@ -1401,6 +1401,123 @@
 </ol>
 </div>
 </div>
+<div id="act" class="section level3">
+<h3>
+<span class="header-section-number">4.8.6</span> ACT<a class="anchor" aria-label="anchor" href="#act"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://www.act.org/">ACT</a> is the main college-entrance exam taken by IDEA students. Students typically start taking the exam in 10th grade, then have multiple attempts in 11th grade while taking their ACT Prep course, and have a final opportunity in 12th grade prior to submitting college applications.</p>
+<p>Note the ACT is handled by the College Success team, not the Assessments team.</p>
+<p><strong>Tables:</strong> [RGVPDSD-DWSRC2].[SRC_ACT].<a href="key-tables-measures-and-metrics.html#act">ACT</a>.[StudentScores]</p>
+<p><strong>Main metrics:</strong> composite and section scores; test date; CEEB code</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[ID_Local]</strong>: student 1080/1081 number</li>
+<li>
+<strong>[F_Name]</strong>: first name</li>
+<li>
+<strong>[M_Initial]</strong>: middle initial</li>
+<li>
+<strong>[L_Name]</strong>: last name</li>
+<li>
+<strong>[HS_GradeLev]</strong>: grade level when the exam was taken, labeled as “11th Grade”, etc. (may also be “6th or 7th Grad”, “8th Grade” for Duke TIP students)</li>
+<li>
+<strong>[HS_Code]</strong>: high school CEEB code (ACT school code)</li>
+<li>
+<strong>[HS_GradYr]</strong>: graduation year</li>
+<li>
+<strong>[Test_Dte]</strong>: month and year of test, labeled as mmyyyy</li>
+<li>
+<strong>[Eng]</strong>: English test score</li>
+<li>
+<strong>[Mth]</strong>: mathematics test score</li>
+<li>
+<strong>[Rdg]</strong>: reading test score</li>
+<li>
+<strong>[Sci]</strong>: science test score</li>
+<li>
+<strong>[Composite]</strong>: composite score (the average of English, Math, Reading, Science, rounded to the nearest integer)</li>
+<li>
+<strong>[Writing]</strong>: writing test score, if taken</li>
+<li>
+<strong>[STEM]</strong>: overall performance on math and science tests</li>
+<li>
+<strong>[ELA]</strong>: overall performance on English, reading, and writing tests</li>
+</ul>
+<p><strong>Important context:</strong></p>
+<ul>
+<li>ACT section and composite scores range from 1 to 36, where 36 is the highest score possible.</li>
+<li>The writing section is scored from 2 to 12. This section is not included in the composite score but is often required by many schools.</li>
+<li>The <strong>[HS_GradeLev]</strong> is not the current [GradeLevelID] - it is the grade level in which the exam was taken.</li>
+<li>The high school CEEB (<em>College Entrance Examination Board</em>) code is not the [SchoolNumber] - it is issued by the ETS (<em>Educational Testing Service</em>) for use in sending test scores to colleges, who also have their own CEEB codes.</li>
+<li>For more information about scoring, refer to this page from the ACT: <a href="https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html">Understanding Your Scores</a>
+</li>
+<li>To filter scores by test date, it is advised to parse the <strong>[Test_Dte]</strong> column into a <strong>[Month]</strong> and <strong>[Year]</strong> column to read the dates correctly.</li>
+</ul>
+<p><strong>Data collection:</strong></p>
+<ul>
+<li>Full access to ACT data belongs to people with a Trusted Agent account on the ACT website. This data is updated in the warehouse on a monthly basis.</li>
+<li>Janna Wiley is the Director of ACT Programming. She has context on ACT administration and data.</li>
+</ul>
+<p><strong>SQL example:</strong></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="key-tables-measures-and-metrics.html#cb21-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
+<span id="cb21-2"><a href="key-tables-measures-and-metrics.html#cb21-2"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
+<span id="cb21-3"><a href="key-tables-measures-and-metrics.html#cb21-3"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
+<span id="cb21-4"><a href="key-tables-measures-and-metrics.html#cb21-4"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
+<span id="cb21-5"><a href="key-tables-measures-and-metrics.html#cb21-5"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
+<span id="cb21-6"><a href="key-tables-measures-and-metrics.html#cb21-6"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
+<span id="cb21-7"><a href="key-tables-measures-and-metrics.html#cb21-7"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
+<span id="cb21-8"><a href="key-tables-measures-and-metrics.html#cb21-8"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
+<span id="cb21-9"><a href="key-tables-measures-and-metrics.html#cb21-9"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
+<span id="cb21-10"><a href="key-tables-measures-and-metrics.html#cb21-10"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
+<span id="cb21-11"><a href="key-tables-measures-and-metrics.html#cb21-11"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
+<span id="cb21-12"><a href="key-tables-measures-and-metrics.html#cb21-12"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
+<span id="cb21-13"><a href="key-tables-measures-and-metrics.html#cb21-13"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
+<span id="cb21-14"><a href="key-tables-measures-and-metrics.html#cb21-14"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
+<span id="cb21-15"><a href="key-tables-measures-and-metrics.html#cb21-15"></a>      ,[Composite]</span>
+<span id="cb21-16"><a href="key-tables-measures-and-metrics.html#cb21-16"></a>      ,[Writing]</span>
+<span id="cb21-17"><a href="key-tables-measures-and-metrics.html#cb21-17"></a>      ,[STEM]</span>
+<span id="cb21-18"><a href="key-tables-measures-and-metrics.html#cb21-18"></a>      ,[ELA]</span>
+<span id="cb21-19"><a href="key-tables-measures-and-metrics.html#cb21-19"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
+<span id="cb21-20"><a href="key-tables-measures-and-metrics.html#cb21-20"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
+<span id="cb21-21"><a href="key-tables-measures-and-metrics.html#cb21-21"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
+<span id="cb21-22"><a href="key-tables-measures-and-metrics.html#cb21-22"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
+<p><strong>R example:</strong></p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"StudentScores"</span>,</span>
+<span>          .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC2"</span>,</span>
+<span>          .database_name <span class="op">=</span> <span class="st">"SRC_ACT"</span>,</span>
+<span>          .schema <span class="op">=</span> <span class="st">"ACT"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  </span>
+<span>  <span class="co"># filter for current high school students and tests taken in high school only</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">HS_GradYr</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2023"</span>, <span class="st">"2024"</span>, <span class="st">"2025"</span>, <span class="st">"2026"</span><span class="op">)</span>,</span>
+<span>         <span class="op">!</span><span class="op">(</span><span class="va">HS_GradeLev</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"6th or 7th Grad"</span>, <span class="st">"8th Grade"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Month <span class="op">=</span> <span class="fu">str_sub</span><span class="op">(</span><span class="va">Test_Dte</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>         Year <span class="op">=</span> <span class="fu">str_sub</span><span class="op">(</span><span class="va">Test_Dte</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  </span>
+<span>  <span class="co"># rename columns for readability, future joins</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>StudentNumber <span class="op">=</span> <span class="va">ID_Local</span>,</span>
+<span>         FirstName <span class="op">=</span> <span class="va">F_Name</span>,</span>
+<span>         MiddleInitial <span class="op">=</span> <span class="va">M_Initial</span>,</span>
+<span>         LastName <span class="op">=</span> <span class="va">L_Name</span>,</span>
+<span>         GradeLevelTaken <span class="op">=</span> <span class="va">HS_GradeLev</span>,</span>
+<span>         CEEBCode <span class="op">=</span> <span class="va">HS_Code</span>,</span>
+<span>         ClassYear <span class="op">=</span> <span class="va">HS_GradYr</span>,</span>
+<span>         TestDate <span class="op">=</span> <span class="va">Test_Dte</span>,</span>
+<span>         <span class="va">Month</span>,</span>
+<span>         <span class="va">Year</span>,</span>
+<span>         English <span class="op">=</span> <span class="va">Eng</span>,</span>
+<span>         Mathematics <span class="op">=</span> <span class="va">Mth</span>,</span>
+<span>         Reading <span class="op">=</span> <span class="va">Rdg</span>,</span>
+<span>         Science <span class="op">=</span> <span class="va">Sci</span>,</span>
+<span>         <span class="va">Composite</span>,</span>
+<span>         <span class="va">Writing</span>,</span>
+<span>         <span class="va">STEM</span>,</span>
+<span>         <span class="va">ELA</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>GradeLevelTaken <span class="op">=</span> <span class="fu">str_replace</span><span class="op">(</span><span class="va">GradeLevelTaken</span>, <span class="st">"th Grade"</span>, <span class="st">""</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">ClassYear</span>, <span class="va">CEEBCode</span>, <span class="va">LastName</span>, <span class="va">Year</span>, <span class="va">Month</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div id="student-course-grades" class="section level2">
 <h2>
@@ -1906,6 +2023,7 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#dibels"><span class="header-section-number">4.8.3</span> DIBELS</a></li>
 <li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.8.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
 <li><a class="nav-link" href="#ib"><span class="header-section-number">4.8.5</span> IB</a></li>
+<li><a class="nav-link" href="#act"><span class="header-section-number">4.8.6</span> ACT</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
@@ -1941,7 +2059,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-19.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-08-26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
