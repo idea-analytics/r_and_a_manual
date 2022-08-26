@@ -1004,6 +1004,117 @@ When reporting IB data, confirm what level of data is needed. Suggested grouping
 2. Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)
 3. Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)
 
+
+### ACT
+
+The [ACT](https://www.act.org/) is the main college-entrance exam taken by IDEA students. Students typically start taking the exam in 10th grade, then have multiple attempts in 11th grade while taking their ACT Prep course, and have a final opportunity in 12th grade prior to submitting college applications. 
+
+Note the ACT is handled by the College Success team, not the Assessments team.
+
+**Tables:** [RGVPDSD-DWSRC2].[SRC_ACT].[ACT].[StudentScores]
+
+**Main metrics:** composite and section scores; test date; CEEB code
+
+**Important columns:**
+
+* **[ID_Local]**: student 1080/1081 number
+* **[F_Name]**: first name
+* **[M_Initial]**: middle initial
+* **[L_Name]**: last name
+* **[HS_GradeLev]**: grade level when the exam was taken, labeled as "11th Grade", etc. (may also be "6th or 7th Grad", "8th Grade" for Duke TIP students)
+* **[HS_Code]**: high school CEEB code (ACT school code)
+* **[HS_GradYr]**: graduation year
+* **[Test_Dte]**: month and year of test, labeled as mmyyyy
+* **[Eng]**: English test score
+* **[Mth]**: mathematics test score
+* **[Rdg]**: reading test score
+* **[Sci]**: science test score
+* **[Composite]**: composite score (the average of English, Math, Reading, Science, rounded to the nearest integer)
+* **[Writing]**: writing test score, if taken
+* **[STEM]**: overall performance on math and science tests
+* **[ELA]**: overall performance on English, reading, and writing tests
+
+**Important context:**
+
+* ACT section and composite scores range from 1 to 36, where 36 is the highest score possible.
+* The writing section is scored from 2 to 12. This section is not included in the composite score but is often required by many schools.
+* The **[HS_GradeLev]** is not the current [GradeLevelID] - it is the grade level in which the exam was taken.
+* The high school CEEB (*College Entrance Examination Board*) code is not the [SchoolNumber] - it is issued by the ETS (*Educational Testing Service*) for use in sending test scores to colleges, who also have their own CEEB codes.
+* For more information about scoring, refer to this page from the ACT: [Understanding Your Scores](https://www.act.org/content/act/en/products-and-services/the-act/scores/understanding-your-scores.html)
+* To filter scores by test date, it is advised to parse the **[Test_Dte]** column into a **[Month]** and **[Year]** column to read the dates correctly.
+
+**Data collection:**
+
+* Full access to ACT data belongs to people with a Trusted Agent account on the ACT website. This data is updated in the warehouse on a monthly basis.
+* Janna Wiley is the Director of ACT Programming. She has context on ACT administration and data.
+
+**SQL example:**
+
+```{sql, eval=FALSE}
+SELECT [ID_Local] AS [StudentNumber]
+      ,[F_Name] AS [FirstName]
+      ,[M_Initial] AS [MiddleInitial]
+      ,[L_Name] AS [LastName]
+	    ,REPLACE([HS_GradeLev], 'th Grade', '') AS [GradeLevelTaken]
+      ,[HS_Code] AS [CEEBCode]
+      ,[HS_GradYr] AS [ClassYear]
+      ,[Test_Dte] AS [TestDate]
+	    ,SUBSTRING([Test_Dte], 1, 2) AS [Month]
+	    ,SUBSTRING([Test_Dte], 3, 6) AS [Year]
+      ,[Eng] AS [English]
+      ,[Mth] AS [Mathematics]
+      ,[Rdg] AS [Reading]
+      ,[Sci] AS [Science]
+      ,[Composite]
+      ,[Writing]
+      ,[STEM]
+      ,[ELA]
+  FROM [RGVPDSD-DWSRC2].[SRC_ACT].[ACT].[StudentScores]
+  WHERE [HS_GradYr] IN ('2023', '2024', '2025', '2026')
+	AND [HS_GradeLev] NOT IN ('8th Grade', '6th or 7th Grad')   
+  ORDER BY [HS_GradYr], [HS_Code], [L_Name], [Year], [Month]
+```
+
+
+**R example:**
+
+```{r act_example, eval=FALSE}
+get_table(.table_name = "StudentScores",
+          .server_name = "RGVPDSD-DWSRC2",
+          .database_name = "SRC_ACT",
+          .schema = "ACT") %>%
+  
+  # filter for current high school students and tests taken in high school only
+  filter(HS_GradYr %in% c("2023", "2024", "2025", "2026"),
+         !(HS_GradeLev %in% c("6th or 7th Grad", "8th Grade"))) %>%
+  mutate(Month = str_sub(Test_Dte, 1, 2),
+         Year = str_sub(Test_Dte, 3, 6)) %>%
+  
+  # rename columns for readability, future joins
+  select(StudentNumber = ID_Local,
+         FirstName = F_Name,
+         MiddleInitial = M_Initial,
+         LastName = L_Name,
+         GradeLevelTaken = HS_GradeLev,
+         CEEBCode = HS_Code,
+         ClassYear = HS_GradYr,
+         TestDate = Test_Dte,
+         Month,
+         Year,
+         English = Eng,
+         Mathematics = Mth,
+         Reading = Rdg,
+         Science = Sci,
+         Composite,
+         Writing,
+         STEM,
+         ELA) %>%
+  collect() %>%
+  mutate(GradeLevelTaken = str_replace(GradeLevelTaken, "th Grade", "")) %>%
+  arrange(ClassYear, CEEBCode, LastName, Year, Month)
+```
+
+
 ## Student Course Grades
 
 There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
