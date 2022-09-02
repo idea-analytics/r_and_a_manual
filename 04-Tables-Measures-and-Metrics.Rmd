@@ -116,7 +116,14 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 ### Common queries
 
-We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. For example, the following are two queries to pull currently enrolled seniors:
+We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. 
+
+Two common queries involving students are 
+
+1. producing a *roster* of all students that fit certain characteristics and
+2. *counting* the number of students that fit certain characteristics.
+
+Suppose we are tracking the number of seniors on track to go to college. The following are two queries to pull a *roster* of currently enrolled seniors:
 
 * SQL example:
 ```{sql, eval=FALSE}
@@ -131,10 +138,10 @@ SELECT [AcademicYear]
     ,[LastName]
 
 --join Schools and Regions tables
-  FROM [[REDACTED-HOST]].[PROD1].[Schools].[Students] AS A
-    LEFT JOIN [[REDACTED-HOST]].[PROD1].[Schools].[Schools] AS B
+  FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students] AS A
+    LEFT JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools] AS B
       ON A.[SchoolNumber] = B.[SchoolNumber]
-    INNER JOIN [[REDACTED-HOST]].[PROD1].[Schools].[Regions] AS C
+    INNER JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Regions] AS C
       ON B.[RegionID] = C.[RegionID]
 
 --filter for currently enrolled seniors in 2021-2022
@@ -142,6 +149,9 @@ SELECT [AcademicYear]
     AND [GradeLevelID] = '12'
     AND [ExitDate] > '2022-05-01'
     AND [RowIsCurrent] = '1'
+
+--optional, filter RISE students
+--  AND [InstructionalSettingCode] NOT IN ('43', '44')
     
 ```
 
@@ -149,13 +159,16 @@ SELECT [AcademicYear]
 ```{r r_current_seniors, echo=TRUE, eval=FALSE}
 get_students() %>%
 
-#filter for currently enrolled seniors in 2021-2022
+# filter for currently enrolled seniors in 2021-2022
   filter(AcademicYear == "2021-2022",
          GradeLevelID == "12",
          ExitDate > "2022-05-01",
          RowIsCurrent == 1) %>%
   
-#join Schools and Regions tables
+# optional, filter RISE students
+# filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+  
+# join Schools and Regions tables
   inner_join(get_schools(),
              by = c("SchoolNumber" = "SchoolNumber")) %>%
   inner_join(get_regions(),
@@ -171,6 +184,86 @@ get_students() %>%
          MiddleInitial,
          LastName)
 ```
+
+However, to *count* the number of seniors by school and region, group the students by those characteristics, and then use an aggregate function to count the number per group.
+
+* SQL example:
+```{sql, eval=FALSE}
+SELECT [AcademicYear]
+    ,CASE
+	     WHEN C.[RegionDescription] IN ('Austin', 'San Antonio') THEN 'Central Texas'
+		   WHEN C.[RegionDescription] IN ('Lower Valley', 'Mid Valley', 'Upper Valley') THEN 'Rio Grande Valley'
+		   ELSE C.[RegionDescription]
+	   END AS [Area]
+	  ,C.[RegionDescription]
+	  ,B.[SchoolName]
+	  ,[GradeLevelID]
+	  
+--count number of student IDs to get total per group
+	  ,COUNT([StudentNumber]) AS [EnrolledSeniors]
+	  
+  FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students] AS A
+	LEFT JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools] AS B  
+		ON A.[SchoolNumber] = B.[SchoolNumber]  
+	INNER JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Regions] AS C 
+		ON B.[RegionAltID] = C.[RegionID]  
+		
+  WHERE [AcademicYear] = '2022-2023' 
+	  AND [ExitDate] > '2022-08-17'
+	  AND [RowIsCurrent] = '1'
+	  AND [GradeLevelID] = '12'
+--  AND [InstructionalSettingCode] NOT IN ('43', '44')
+
+--grouping variables to determine aggregates	
+  GROUP BY [AcademicYear]
+      ,[Area]
+		  ,C.[RegionDescription]
+		  ,B.[SchoolName]
+		  ,[GradeLevelID]
+  ORDER BY [Area]
+		  ,[RegionDescription]
+      ,[SchoolName]
+```
+
+
+* R example:
+```{r count_seniors, eval=FALSE}
+get_students() %>%
+  
+  filter(AcademicYear == "2022-2023",
+         GradeLevelID == "12",
+         ExitDate > lubridate::today(),
+         RowIsCurrent == 1) %>%
+  # filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+  
+  inner_join(get_schools(),
+             by = c("SchoolNumber" = "SchoolNumber")) %>%
+  inner_join(get_regions(),
+             by = c("RegionAltID" = "RegionID")) %>%
+
+  # grouping variables to determine aggregates  
+  group_by(RegionDescription,
+           SchoolName,
+           GradeLevelID) %>%
+  
+  # count number of students to get total per group
+  summarize(EnrolledSeniors = n()) %>%
+  
+  mutate(Area = case_when(
+    RegionDescription %in% c("Lower Valley", "Mid Valley", "Upper Valley") ~ "Rio Grande Valley",
+    RegionDescription %in% c("Austin", "San Antonio") ~ "Central Texas",
+    TRUE ~ RegionDescription
+  )) %>%
+  arrange(Area,
+          RegionDescription,
+          SchoolName)
+```
+
+
+::: {.gotcha}
+As IDEA continues to expand, it is important to reexamine these tables to incorporate differences in demographics coding, nomenclature, etc., to account for states and regional authorizers using different conventions.
+:::
+
 
 ## Schools and regions
 
