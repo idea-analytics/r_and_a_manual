@@ -22,6 +22,10 @@ jobs:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
         run: Rscript -e 'remotes::install_github(c("idea-analytics/ideacolors", "yutannihilation/ggsflabel"))'
       - name: Render Book
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
+          MAPBOX_PUBLIC_TOKEN: ${{ secrets.MAPBOX_PUBLIC_TOKEN }}
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - uses: actions/upload-artifact@v1
         with:
