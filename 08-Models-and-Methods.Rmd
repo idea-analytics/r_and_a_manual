@@ -268,8 +268,9 @@ Let's start by getting schools in Tarrant County.  We can get these schools and 
 
 ```{r get-schools}
 
-library(ideadata)
-library(tidyverse)
+
+#library(tidyverse)
+#library(ideadata)
 
 # schools_conn <- get_schools()
 
