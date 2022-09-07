@@ -16,12 +16,16 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages(c("rmarkdown","bookdown", "tidyverse", "janitor", "DT", "DiagrammeR", "downlit", "arrow", "lubridate", "remotes", "ggrepel", "modelr"))'
+        run: Rscript -e 'install.packages(c("rmarkdown","bookdown", "tidyverse", "janitor", "DT", "DiagrammeR", "downlit", "arrow", "lubridate", "remotes", "ggrepel", "modelr", "tidygeocoder", "sf", "ggmap", "mapboxapi", "tidycensus", "viridis"))'
       - name: Install remote packages
         env:
           GITHUB_PAT: ${{ secrets.GH_PAT }}
-        run: Rscript -e 'remotes::install_github("idea-analytics/ideacolors")'
+        run: Rscript -e 'remotes::install_github(c("idea-analytics/ideacolors", "yutannihilation/ggsflabel"))'
       - name: Render Book
+        env:
+          CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+          GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
+          MAPBOX_PUBLIC_TOKEN: ${{ secrets.MAPBOX_PUBLIC_TOKEN }}
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - uses: actions/upload-artifact@v1
         with:
