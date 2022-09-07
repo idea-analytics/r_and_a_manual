@@ -246,4 +246,330 @@ Note that communicating results from these models may be beyond a general audien
 
 The [ISLR website](https://www.statlearning.com/) and [tidymodels implementation](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) should be consulted for more details about these models.
 
-Code, diagnostics, communication and limitations coming soon...
+
+## Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features
+
+### What is a simple feature?
+
+**Simple Features** is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).
+
+A **feature** is a essentially a thing in the world. In the simple feature specification a feature ha *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names ormetrics like population.
+
+#### How are simple features implemented in R
+
+In a word, simply. A special feature in R is essentially a a row in  `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry.  The image below illustrates the structure of an `sf` `data.frame`
+
+![](img/sf_layout.png)  
+
+
+### Let's look at TACO schools 
+
+Let's start by getting schools in Tarrant County.  We can get these schools and their address from the data warehouse:
+
+```{r get-schools}
+
+
+#library(tidyverse)
+#library(ideadata)
+
+# schools_conn <- get_schools()
+
+# regions_conn <- get_regions() %>% 
+#   filter(RegionDescription == "Tarrant County") %>% 
+#   select(RegionID)
+
+# taco_schools <- schools_conn %>% 
+#   inner_join(regions_conn, by = "RegionID") %>% 
+#   select(SchoolShortName, SchoolStreet, SchoolCity, SchoolState, SchoolZipCode) %>% 
+#   distinct() %>% 
+#   collect() %>% 
+#   janitor::clean_names()  
+
+#taco_schools
+
+#save(taco_schools, file = "./taco_schools.Rda")
+
+load("./taco_schools.Rda")
+
+taco_schools
+```
+#### Geocoding
+
+We've got schools and addresses!  But that isn't sufficient to plot these schools on a map and we certainly don't have simple features data.frame. 
+
+The first stop is **geocoding** these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the `[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)` which provides a great interface to a number of different geocoders (e.g. US Census, OpenStreetMaps, geocod.io, )
+
+```{r geocode_schools}
+library(tidygeocoder)
+
+taco_schools_geocoded <- taco_schools %>% 
+    tidygeocoder::geocode(street = school_street,
+            city = school_city,
+            state = school_state,
+            postalcode = school_zip_code, 
+            method = "osm")
+
+taco_schools_geocoded
+```
+
+Brilliant!  We've got `lat` and `long` variables for those addresses. Super Cool!
+
+Let's transform these now to a `sf` object:
+
+```{r as_sf}
+
+library(sf)
+
+taco_schools_sf <- taco_schools_geocoded %>%  
+  st_as_sf(coords = c("long", "lat"))
+
+
+taco_schools_sf
+```
+
+Notice that the `lat` and `long` variables are replaced by the `geometry` column. 
+
+##### Coordinate Reference System
+Notice in the meta-data above that CRS is `NA`.  CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth's curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates. 
+
+You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
+
+```{r set-crs}
+st_crs(taco_schools_sf) <- "WGS84"
+```
+
+
+#### Plotting
+
+We now have enough information to draw a map!
+
+```{r ggmap}
+
+#renv::install("yutannihilation/ggsflabel")
+
+library(ggmap)
+
+base_google_map <- get_googlemap("76117", zoom = 11)
+
+
+base_google_map %>% 
+  ggmap() +
+  geom_sf(data = taco_schools_sf, color = "hotpink", inherit.aes = FALSE) +
+  ggsflabel::geom_sf_label_repel(data = taco_schools_sf,
+               aes(label = school_short_name), color = "hotpink",
+               inherit.aes = FALSE) 
+
+```
+
+I dont' always love Google Maps look for display purposes on slides, so let's change that up with Stamen Maps:
+
+```{r}
+# Need a bounding box for the get_stamenmap function
+bbox <- bb2bbox(attr(base_google_map, "bb"))
+
+
+base_stamen_map <- get_stamenmap(bbox, zoom=11, maptype = "toner-lite")
+
+base_stamen_map %>% 
+  ggmap() +
+  geom_sf(data = taco_schools_sf, color = "hotpink", inherit.aes = FALSE) +
+  ggsflabel::geom_sf_label_repel(data = taco_schools_sf,
+               aes(label = school_short_name), color = "hotpink",
+               inherit.aes = FALSE) 
+```
+
+#### Getting drive times
+
+This requires the MapBox API, which requries an API key. 
+
+```{r}
+#install.packages("mapboxapi")
+library(mapboxapi)
+
+drive_10min <- mb_isochrone(taco_schools_sf, 
+                            profile = "driving", 
+                            time = 10)
+
+
+schools_drive_10min_sf <-drive_10min  %>%  bind_cols(as_tibble(taco_schools_sf) %>% select(-geometry))
+
+
+base_stamen_map %>% 
+  ggmap() +
+  
+  geom_sf(data = schools_drive_10min_sf, 
+          aes(color = school_short_name,
+              fill = school_short_name),
+          alpha = .2,
+              inherit.aes = FALSE) +
+  
+  geom_sf(data = taco_schools_sf, 
+          aes(color = school_short_name), 
+              inherit.aes = FALSE) +
+  
+  ggsflabel::geom_sf_label_repel(
+        data = taco_schools_sf,
+               aes(label = school_short_name, color = school_short_name),
+               inherit.aes = FALSE) +
+  guides(fill = "none", color = "none")
+
+```
+
+
+#### Some geographic filtering
+
+```{r geo-filtering}
+
+sf_use_s2(FALSE)
+taco_area_of_max_intersection <- schools_drive_10min_sf %>% 
+  filter(school_short_name == "Edgecliff") %>% 
+  st_intersection(schools_drive_10min_sf %>% filter(school_short_name == "Southeast"))
+
+
+
+
+base_stamen_map %>% 
+  ggmap() +
+  geom_sf(data = taco_area_of_max_intersection, 
+          color = "goldenrod",
+          fill = "goldenrod",
+          alpha = .2,
+              inherit.aes = FALSE) +
+  
+  geom_sf(data = taco_schools_sf, 
+          aes(color = school_short_name), 
+              inherit.aes = FALSE) +
+  
+  ggsflabel::geom_sf_label_repel(
+        data = taco_schools_sf,
+               aes(label = school_short_name, color = school_short_name),
+               inherit.aes = FALSE) +
+  guides(fill = "none", color = "none")
+
+```
+And what schools are found in this area?
+
+```{r}
+schools_in_overlap <- st_filter(taco_schools_sf,
+                         taco_area_of_max_intersection, 
+                         join = st_within)
+
+schools_in_overlap
+```
+
+It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.  
+
+### Census Data
+
+Kyle Walker has written the  exceptional `[tidycensus](https://walker-data.com/tidycensus/)`package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey). 
+
+Let's load it up:
+```{r setup-tidycensus}
+#install.packages('tidycensus')
+library(tidycensus)
+
+# NEt command saves Census API key to your .Renviron file
+#census_api_key("YOUR API KEY GOES HERE")
+#census_api_key(Sys.getenv("CENSUS_API_KEY"))
+```
+
+###### Getting Basic Data
+
+There are two major functions implemented in tidycensus: 
+
+* `get_decennial()`, which grants access to the 2000, 2010, and 2020 decennial US Census APIs, and 
+*  `get_acs()`, which grants access to the 1-year and 5-year American Community Survey APIs.
+
+
+Let’s get *median age by state* in 2010:
+```{r}
+age10 <- get_decennial(geography = "state", 
+                       variables = "P013001", 
+                       year = 2010)
+
+age10
+```
+
+Plotting is super duper easy:
+```{r}
+age10 %>%
+  ggplot(aes(x = value, y = reorder(NAME, value))) + 
+  geom_point()
+```
+
+###### Searching for variables:
+
+How, pray tell, does one know that `P013001` is the variable for median age?  Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the `load_variables()` function. There are [more details on in the package's documentation page](https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables). 
+
+To browse these variables, assign the result of `load_variables()` to a variable and use the `View()` function in RStudio. An optional argument `cache = TRUE` will cache the dataset on your computer for future use.
+
+```{r view-vars}
+
+
+v_2020 <- load_variables(2020, "acs5", cache = TRUE)
+
+#View(v_2020)
+```
+
+
+Let's get Tarrant county:
+
+```{r}
+#| message: false
+#| results: false
+
+
+
+tarr <- get_acs(geography = "block group", variables = c( #tpotal pop
+                                                    "B01001_001", 
+                                                   
+                                                    #male
+                                                   "B01001_004", #5-9
+                                                   "B01001_005", #10-14
+                                                   "B01001_006", #15-17
+                                                    
+                                                   #Femaile
+                                                   "B01001_028", #5-9
+                                                   "B01001_029", #10-14
+                                                   "B01001_030"),#15-17
+                state = "TX", county = "Tarrant", geometry = TRUE, year = 2020)
+
+tarr
+```
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+
+library(viridis)
+tarr_5_9<-tarr %>% 
+  filter(variable %in% c("B01001_004", #5-9
+                         "B01001_005", #10-14
+                         "B01001_006",
+                         "B01001_028", 
+                         "B01001_028", 
+                         "B01001_029", #10-14
+                         "B01001_030")) %>% 
+  group_by(GEOID, NAME) %>% 
+  summarise(tot_5_9 = sum(estimate))
+
+
+base_stamen_map %>% 
+  ggmap() +
+  
+  geom_sf(data = tarr_5_9, 
+         aes(fill = tot_5_9), 
+         inherit.aes = FALSE, 
+         alpha  = .82, 
+         color = NA) +
+  geom_sf(data = taco_area_of_max_intersection, 
+          color = "goldenrod",
+          fill = NA,
+          alpha = .2,
+              inherit.aes = FALSE) +
+  geom_sf(data = taco_schools_sf, 
+              inherit.aes = FALSE, 
+          color = "green") +
+  
+  scale_fill_viridis(option = "magma") 
+  #scale_color_viridis(option = "magma")
+
+```
