@@ -392,7 +392,7 @@
 <span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
 <span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.2 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
@@ -742,6 +742,38 @@
 <p>A second issue is that it’s very hard to show heterogenaity in spatial distribtions. The plot above shows estimats of the count of all Children 5-17 years old in each tract. But we may be interested in how differenty distributed those students are.</p>
 <p>A method to remedy both issues is to use <strong>dot-density</strong> plots which simply plot a sample of points wihtin each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It’s pretty straightforward to get what you need by using <a href="https://walker-data.com/tidycensus/reference/as_dot_density.html"><code>sf::as_dot_density()</code></a></p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">acs_ages</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span> <span class="va">variable</span>,     <span class="op">~</span><span class="va">age_range</span>, <span class="op">~</span><span class="va">gender</span>,</span>
+<span>  <span class="st">"B01001_001"</span>,    <span class="st">"All"</span>,      <span class="st">"All"</span>,  </span>
+<span>                                                   </span>
+<span>    <span class="co">#male</span></span>
+<span>   <span class="st">"B01001_004"</span>, <span class="st">"5-9"</span>,   <span class="st">"Male"</span>,</span>
+<span>   <span class="st">"B01001_005"</span>, <span class="st">"10-14"</span>, <span class="st">"Male"</span>,</span>
+<span>   <span class="st">"B01001_006"</span>, <span class="st">"15-17"</span>, <span class="st">"Male"</span>,</span>
+<span>    </span>
+<span>   <span class="co">#Femaile</span></span>
+<span>   <span class="st">"B01001_028"</span>, <span class="st">"5-9"</span>,    <span class="st">"female"</span>,</span>
+<span>   <span class="st">"B01001_029"</span>, <span class="st">"10-14"</span>, <span class="st">"female"</span>,</span>
+<span>   <span class="st">"B01001_030"</span>, <span class="st">"15-17"</span>, <span class="st">"female"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tarr_childs</span> <span class="op">&lt;-</span> <span class="va">tarr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">acs_ages</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gender</span> <span class="op">!=</span> <span class="st">"All"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">variable</span>, <span class="op">-</span><span class="va">moe</span>, <span class="op">-</span><span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">GEOID</span>, <span class="va">NAME</span>, <span class="va">age_range</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n_children <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Joining, by = "variable"</span></span>
+<span></span>
+<span></span>
+<span><span class="va">tarr_dots</span> <span class="op">&lt;-</span> <span class="va">tarr_childs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://walker-data.com/tidycensus/reference/as_dot_density.html">as_dot_density</a></span><span class="op">(</span></span>
+<span>    value <span class="op">=</span> <span class="st">"n_children"</span>,</span>
+<span>    values_per_dot <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>    group <span class="op">=</span> <span class="st">"age_range"</span></span>
+<span>  <span class="op">)</span> </span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
