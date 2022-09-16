@@ -1,4 +1,4 @@
-# Models and Methods 
+# Models and Methods
 
 Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.
 
@@ -20,9 +20,9 @@ Suppose we have both the treatment and control outcomes for each student. We wou
 
 -   $ATE = E[\delta_i]$ represents the **A**verage **T**reatment **E**ffect $E[\delta_i] = E[Y^1_i - Y^0_i]$. In other words, $ATE$ answers the question "What is the additional effect of the treatment?"
 
-  -   $ATT = E[\delta_i \mid \textrm{in treatment group}]$ represents the **A**verage **T**reatment effect of the **T**reatment group, $E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]$. In other words, $ATT$ answers the question "What is the additional effect of the treatment for those in the treatment group?"
-  
-  -   $ATU = E[\delta_i \mid \textrm{in control group}]$ represents the **A**verage **T**reatment effect of the **U**ntreated (control) group, $E[Y^1_i - Y^0_i \mid \textrm{in control group}]$. In other words, $ATU$ answers the question "What is the additional effect of the treatment for those in the control group?"
+-   $ATT = E[\delta_i \mid \textrm{in treatment group}]$ represents the **A**verage **T**reatment effect of the **T**reatment group, $E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]$. In other words, $ATT$ answers the question "What is the additional effect of the treatment for those in the treatment group?"
+
+-   $ATU = E[\delta_i \mid \textrm{in control group}]$ represents the **A**verage **T**reatment effect of the **U**ntreated (control) group, $E[Y^1_i - Y^0_i \mid \textrm{in control group}]$. In other words, $ATU$ answers the question "What is the additional effect of the treatment for those in the control group?"
 
 -   $ATE$ can be decomposed into a weighted average of $ATT, ATU$, such that $ATE = p\times ATT + (1-p)\times ATU$, where $p$ is the weight of the treatment group.
 
@@ -36,7 +36,7 @@ In our scenario,
 
 Estimates may be biased because we do not randomly assign students to tutorials - we select them for each group based on some criteria. Using randomization inference, we can separate assignment bias from the estimates of $ATT, ATU$ to find appropriate estimates and p-values on $ATE$.
 
-#### Matching models 
+#### Matching models
 
 We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate $ATE$ since we have both the treatment and control outcomes.
 
@@ -63,14 +63,11 @@ summary(m_att)
 
 ```
 
-
-
 #### Regression discontinuity
 
 #### Instrumental variables
 
 #### Difference-in-differences
-
 
 ### Experimental design
 
@@ -86,14 +83,13 @@ Code, diagnostics, communication and limitations coming soon...
 
 Educational data can often be described in a hierarchy:
 
-* Level 1: student
-* Level 2: student within a school
-* Level 3: student within a school within a region
+-   Level 1: student
+-   Level 2: student within a school
+-   Level 3: student within a school within a region
 
 A **mixed model** (also, **hierarchical** or **multilevel**) allows for both fixed and random effects, so this nesting will give us different variances at each level. This is ideal for modeling an outcome that can vary by school and regional differences - in other words, we can vary the slope and intercept by each school and region.
 
 Code, diagnostics, communication and limitations coming soon...
-
 
 ## Descriptive statistics
 
@@ -107,9 +103,9 @@ For **univariate, quantitative data**, use the shape of the distribution to dete
 
 For **bivariate data**, use a scatterplot to determine if linear measures can be used appropriately. The Pearson correlation $r$ `cor(x, y)` can be easily understood by a wide audience to describe the linear strength of a bivariate association. However, the Spearman rank correlation `cor(x, y, method = "spearman")` can provide an associative measure for monotonic nonlinear associations, and Kendall's $\tau$ `cor(x, y, method = "kendall")` can describe concordance for ordinal data.
 
-When describing **outliers** in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set. 
+When describing **outliers** in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set.
 
-::: {.tip}
+::: tip
 One heuristic for deciding what to do with an outlier is to ask yourself, "Does this observation *belong* in the sample?"
 
 If you decide that the observation is fundamentally different than the others (e.g. a school is off-model and does not implement the Imagine Learning the same way that other schools do), then you might consider removing that observation. If the observation represents some exceptional case of the proposed model, then you might consider keeping that observation.
@@ -127,13 +123,13 @@ Selecting an appropriate graphical display depends on the purpose of the analysi
 
 Variation can be addressed by the following (non-exhaustive) list:
 
-1. Comparing sample sizes, both for the entire distribution and within each group
+1.  Comparing sample sizes, both for the entire distribution and within each group
 
-2. Comparing variation within and between groups
+2.  Comparing variation within and between groups
 
-3. Displaying variation across time
+3.  Displaying variation across time
 
-4. Clustering of values in a region (and conversely, gaps in data)
+4.  Clustering of values in a region (and conversely, gaps in data)
 
 Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:
 
@@ -183,8 +179,8 @@ Suppose we are providing an estimate, like forecasted student persistence rates.
 
 It may be instructive for a general audience to interpret these bounds as a
 
-* "worst case scenario" and
-* "best case scenario"
+-   "worst case scenario" and
+-   "best case scenario"
 
 and give a visual around these estimates. For reference, see the [Persistence Dashboard](https://app.powerbi.com/links/OsCFNR7-a2?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&pbi_source=linkShare) (no longer actively updated).
 
@@ -196,14 +192,14 @@ When deciding if a pattern or relationship even exists, we can choose a model an
 
 meaning that our probability operates under the assumption that *the proposed model (the null hypothesis) is correct*. (This means if we change the null hypothesis, then we could get an entirely different p-value with the same data). Thus, we should look carefully at how our choices in modeling and distribution affected the significance of the result. Furthermore, the choice of *level* (typically, $\alpha = 0.05$) is arbitrary, so we cannot make certain conclusions, such as:
 
-* If a result has a p-value of 0.06, and another has 0.04, then one result is not necessarily "more significant" than the other. 
-* The p-value does not imply how large the effect size is.
+-   If a result has a p-value of 0.06, and another has 0.04, then one result is not necessarily "more significant" than the other.
+-   The p-value does not imply how large the effect size is.
 
 > Statistical significance does not necessarily represent practical significance.
 
 **When communicating your results, do not merely rely on a p-value.** Supplement a p-value with other explanations of the effect in context, like an interval estimate, graphs, a margin of error, or transformed values.
 
-For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108). 
+For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108).
 
 ## Modeling and predictive statistics
 
@@ -215,11 +211,11 @@ For short-term, ad-hoc models, we usually start with a simple linear regression,
 
 $\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i$
 
-* In R, we use the command `lm()` to generate estimates of the beta coefficients. 
-* To obtain the p-values and basic fit statistics, use `summary(lm_object)`. 
-* To obtain the diagnostic plots, use `plot(lm_object)`.
+-   In R, we use the command `lm()` to generate estimates of the beta coefficients.
+-   To obtain the p-values and basic fit statistics, use `summary(lm_object)`.
+-   To obtain the diagnostic plots, use `plot(lm_object)`.
 
-We can describe the coefficients as an *additional* unit effect on the mean response. If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect. 
+We can describe the coefficients as an *additional* unit effect on the mean response. If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect.
 
 ### Generalized linear modeling
 
@@ -229,8 +225,8 @@ $g(\mu_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_n x_{ni} + \epsilon_i$
 
 where
 
-* $g(\cdot)$ is a link function to the mean
-* $\mu$ is the mean response
+-   $g(\cdot)$ is a link function to the mean
+-   $\mu$ is the mean response
 
 Note that there are many link functions, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the documentation. However, base R provides the `glm()` function, which gives options to choose a link.
 
@@ -246,25 +242,23 @@ Note that communicating results from these models may be beyond a general audien
 
 The [ISLR website](https://www.statlearning.com/) and [tidymodels implementation](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) should be consulted for more details about these models.
 
-
 ## Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features
 
 ### What is a simple feature?
 
 **Simple Features** is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).
 
-A **feature** is a essentially a thing in the world. In the simple feature specification a feature ha *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names ormetrics like population.
+A **feature** is a essentially a thing in the world. In the simple feature specification a feature ha *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names or metrics like population.
 
 #### How are simple features implemented in R
 
-In a word, simply. A special feature in R is essentially a a row in  `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry.  The image below illustrates the structure of an `sf` `data.frame`
+In a word, simply. A special feature in R is essentially a a row in `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an `sf` `data.frame`
 
-![](img/sf_layout.png)  
+![](img/sf_layout.png){width="500"}
 
+### Let's look at TACO schools
 
-### Let's look at TACO schools 
-
-Let's start by getting schools in Tarrant County.  We can get these schools and their address from the data warehouse:
+Let's start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:
 
 ```{r get-schools}
 
@@ -293,9 +287,10 @@ load("./taco_schools.Rda")
 
 taco_schools
 ```
+
 #### Geocoding
 
-We've got schools and addresses!  But that isn't sufficient to plot these schools on a map and we certainly don't have simple features data.frame. 
+We've got schools and addresses! But that isn't sufficient to plot these schools on a map and we certainly don't have simple features data.frame.
 
 The first stop is **geocoding** these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the `[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)` which provides a great interface to a number of different geocoders (e.g. US Census, OpenStreetMaps, geocod.io, )
 
@@ -312,7 +307,7 @@ taco_schools_geocoded <- taco_schools %>%
 taco_schools_geocoded
 ```
 
-Brilliant!  We've got `lat` and `long` variables for those addresses. Super Cool!
+Brilliant! We've got `lat` and `long` variables for those addresses. Super Cool!
 
 Let's transform these now to a `sf` object:
 
@@ -327,17 +322,17 @@ taco_schools_sf <- taco_schools_geocoded %>%
 taco_schools_sf
 ```
 
-Notice that the `lat` and `long` variables are replaced by the `geometry` column. 
+Notice that the `lat` and `long` variables are replaced by the `geometry` column.
 
 ##### Coordinate Reference System
-Notice in the meta-data above that CRS is `NA`.  CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth's curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates. 
+
+Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth's curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.
 
 You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
 
 ```{r set-crs}
 st_crs(taco_schools_sf) <- "WGS84"
 ```
-
 
 #### Plotting
 
@@ -380,7 +375,7 @@ base_stamen_map %>%
 
 #### Getting drive times
 
-This requires the MapBox API, which requries an API key. 
+This requires the MapBox API, which requries an API key.
 
 ```{r}
 #install.packages("mapboxapi")
@@ -415,7 +410,6 @@ base_stamen_map %>%
 
 ```
 
-
 #### Some geographic filtering
 
 ```{r geo-filtering}
@@ -447,6 +441,7 @@ base_stamen_map %>%
   guides(fill = "none", color = "none")
 
 ```
+
 And what schools are found in this area?
 
 ```{r}
@@ -457,13 +452,14 @@ schools_in_overlap <- st_filter(taco_schools_sf,
 schools_in_overlap
 ```
 
-It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.  
+It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.
 
 ### Census Data
 
-Kyle Walker has written the  exceptional `[tidycensus](https://walker-data.com/tidycensus/)`package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey). 
+Kyle Walker has written the exceptional `[tidycensus](https://walker-data.com/tidycensus/)`package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).
 
 Let's load it up:
+
 ```{r setup-tidycensus}
 #install.packages('tidycensus')
 library(tidycensus)
@@ -475,13 +471,13 @@ library(tidycensus)
 
 ###### Getting Basic Data
 
-There are two major functions implemented in tidycensus: 
+There are two major functions implemented in tidycensus:
 
-* `get_decennial()`, which grants access to the 2000, 2010, and 2020 decennial US Census APIs, and 
-*  `get_acs()`, which grants access to the 1-year and 5-year American Community Survey APIs.
+-   `get_decennial()`, which grants access to the 2000, 2010, and 2020 decennial US Census APIs, and
+-   `get_acs()`, which grants access to the 1-year and 5-year American Community Survey APIs.
 
+Let's get *median age by state* in 2010:
 
-Let’s get *median age by state* in 2010:
 ```{r}
 age10 <- get_decennial(geography = "state", 
                        variables = "P013001", 
@@ -491,6 +487,7 @@ age10
 ```
 
 Plotting is super duper easy:
+
 ```{r}
 age10 %>%
   ggplot(aes(x = value, y = reorder(NAME, value))) + 
@@ -499,7 +496,7 @@ age10 %>%
 
 ###### Searching for variables:
 
-How, pray tell, does one know that `P013001` is the variable for median age?  Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the `load_variables()` function. There are [more details on in the package's documentation page](https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables). 
+How, pray tell, does one know that `P013001` is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the `load_variables()` function. There are [more details on in the package's documentation page](https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables).
 
 To browse these variables, assign the result of `load_variables()` to a variable and use the `View()` function in RStudio. An optional argument `cache = TRUE` will cache the dataset on your computer for future use.
 
@@ -510,7 +507,6 @@ v_2020 <- load_variables(2020, "acs5", cache = TRUE)
 
 #View(v_2020)
 ```
-
 
 Let's get Tarrant county:
 
@@ -537,26 +533,30 @@ tarr <- get_acs(geography = "block group", variables = c( #tpotal pop
 tarr
 ```
 
+### Chloropleth
+
+Now we are summing up all school aged children (5-17 year old boy and girls):
+
 ```{r warning=FALSE, message=FALSE, echo=FALSE}
 
 library(viridis)
-tarr_5_9<-tarr %>% 
-  filter(variable %in% c("B01001_004", #5-9
+tarr_school_aged<-tarr %>% 
+  filter(variable %in% c("B01001_004", #5-9 Male
                          "B01001_005", #10-14
-                         "B01001_006",
-                         "B01001_028", 
-                         "B01001_028", 
+                         "B01001_006", #15-17
+                         "B01001_028", #5-9 Female
                          "B01001_029", #10-14
-                         "B01001_030")) %>% 
+                         "B01001_030") #15-17
+         ) %>% 
   group_by(GEOID, NAME) %>% 
-  summarise(tot_5_9 = sum(estimate))
+  summarise(tot_all_ages = sum(estimate))
 
 
 base_stamen_map %>% 
   ggmap() +
   
-  geom_sf(data = tarr_5_9, 
-         aes(fill = tot_5_9), 
+  geom_sf(data = tarr_school_aged, 
+         aes(fill = tot_all_ages), 
          inherit.aes = FALSE, 
          alpha  = .82, 
          color = NA) +
@@ -568,8 +568,73 @@ base_stamen_map %>%
   geom_sf(data = taco_schools_sf, 
               inherit.aes = FALSE, 
           color = "green") +
+  theme_void() +
   
   scale_fill_viridis(option = "magma") 
   #scale_color_viridis(option = "magma")
 
+```
+
+### Dot-density
+
+Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasis those area versus smaller geographies. This distortion is familiar to those that follow elections, where geographically large states with small populations Wyoming loom larger then geographically small, but densely populated states like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal population (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.
+
+A second issue is that it's very hard to show heterogenaity in spatial distribtions. The plot above shows estimats of the count of all Children 5-17 years old in each tract. But we may be interested in how differenty distributed those students are.
+
+A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points wihtin each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It's pretty straightforward to get what you need by using [`sf::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
+
+```{r dot_dentsity_df, warning=FALSE, message=FALSE, echo=FALSE}
+acs_ages <- dplyr::tribble(
+  ~ variable,     ~age_range, ~gender,
+  "B01001_001",    "All",      "All",  
+                                                   
+    #male
+   "B01001_004", "5-9",   "Male",
+   "B01001_005", "10-14", "Male",
+   "B01001_006", "15-17", "Male",
+    
+   #Femaile
+   "B01001_028", "5-9",    "female",
+   "B01001_029", "10-14", "female",
+   "B01001_030", "15-17", "female"
+)
+
+tarr_childs <- tarr %>% inner_join(acs_ages) %>% 
+  filter(gender != "All") %>% 
+  select(-variable, -moe, -gender) %>% 
+  group_by(GEOID, NAME, age_range) %>% 
+  mutate(n_children = sum(estimate))
+
+
+tarr_dots <- tarr_childs %>% 
+  as_dot_density(
+    value = "n_children",
+    values_per_dot = 20,
+    group = "age_range"
+  ) 
+
+
+```
+
+```{r dot_density_map}
+base_stamen_map %>% 
+  ggmap() +
+  
+  geom_sf(data = tarr_dots, 
+         aes(color = age_range), 
+         inherit.aes = FALSE, 
+         alpha  = .25,
+         size=.25) +
+  geom_sf(data = taco_area_of_max_intersection, 
+          color = "goldenrod",
+          fill = "goldenrod",
+          alpha = .2,
+              inherit.aes = FALSE) +
+  geom_sf(data = taco_schools_sf, 
+              inherit.aes = FALSE, 
+          color = "green", 
+          size = 3) +
+  theme_void() +
+  
+  scale_color_viridis(option = "viridis", discrete = TRUE)
 ```
