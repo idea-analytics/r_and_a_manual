@@ -1366,9 +1366,20 @@
 <p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
 </div>
 </div>
+<div id="ap" class="section level3">
+<h3>
+<span class="header-section-number">4.8.5</span> AP<a class="anchor" aria-label="anchor" href="#ap"><i class="fas fa-link"></i></a>
+</h3>
+<p>IDEA’s Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams, however, IB schools offer far fewer options than the non-IB campuses.</p>
+<p>All AP student data is downloaded directly from the College Board’s website. Once downloaded it is imported, cleaned and added to the R&amp;A’s server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.</p>
+<p><strong>Step One:</strong> pull down the 21-22 AP Report project on github.
+<strong>Step Two:</strong> Open the main r project within that folder “21-22 AP Report”. Within that project there are 2 main sub-project folders. Use the AP Requests.
+<strong>Step Three:</strong> Run the 2 scripts in the data folder. First run “1_Load_AP_Data”, this pulls all of the AP tables. Next run “2_Load_Students_Data”, this pulls all of the students and excludes Thrive students at Toros CP which are students with severe cognitive disabilities that are over the age of 18.
+<strong>Step Four:</strong> Run the 3 scripts in the munge folder. First run “1_Clean_AP_Data”, this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and pass both with the same score that they are not counted twice towards the 3 exams passed for AP Scholars classification. Then run “2_Scaffold_AP_Data”, this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call “ap_df”. This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run “3_Scaffold_AP_Scholars_Data”, this is the same script as #2, but ensures that the file that is produced by the script doesn’t include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called “ap_df_scholars”.</p>
+</div>
 <div id="ib" class="section level3">
 <h3>
-<span class="header-section-number">4.8.5</span> IB<a class="anchor" aria-label="anchor" href="#ib"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.6</span> IB<a class="anchor" aria-label="anchor" href="#ib"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <a href="https://ibo.org/">International Baccalaureate</a>, or IB, is an international organization that oversees a rigorous education programme, similar to that of the College Board in the US. They host four different programmes:</p>
 <ol style="list-style-type: decimal">
@@ -1379,7 +1390,7 @@
 </ol>
 <div id="coursework-and-scoring" class="section level4">
 <h4>
-<span class="header-section-number">4.8.5.1</span> Coursework and scoring<a class="anchor" aria-label="anchor" href="#coursework-and-scoring"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.6.1</span> Coursework and scoring<a class="anchor" aria-label="anchor" href="#coursework-and-scoring"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li><strong>Coursework</strong></li>
@@ -1413,7 +1424,7 @@
 </div>
 <div id="data" class="section level4">
 <h4>
-<span class="header-section-number">4.8.5.2</span> Data<a class="anchor" aria-label="anchor" href="#data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.6.2</span> Data<a class="anchor" aria-label="anchor" href="#data"><i class="fas fa-link"></i></a>
 </h4>
 <p>There are two main IB tables: <strong>[IBScores]</strong> and <strong>[IBDiploma]</strong>.</p>
 <div class="gotcha">
@@ -1490,7 +1501,7 @@
 </div>
 <div id="act" class="section level3">
 <h3>
-<span class="header-section-number">4.8.6</span> ACT<a class="anchor" aria-label="anchor" href="#act"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.7</span> ACT<a class="anchor" aria-label="anchor" href="#act"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <a href="https://www.act.org/">ACT</a> is the main college-entrance exam taken by IDEA students. Students typically start taking the exam in 10th grade, then have multiple attempts in 11th grade while taking their ACT Prep course, and have a final opportunity in 12th grade prior to submitting college applications.</p>
 <p>Note the ACT is handled by the College Success team, not the Assessments team.</p>
@@ -2109,8 +2120,9 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#district-assessments"><span class="header-section-number">4.8.2</span> District assessments</a></li>
 <li><a class="nav-link" href="#dibels"><span class="header-section-number">4.8.3</span> DIBELS</a></li>
 <li><a class="nav-link" href="#renaissance-star-also-renstar-little-star"><span class="header-section-number">4.8.4</span> Renaissance STAR (also RenStar, Little Star)</a></li>
-<li><a class="nav-link" href="#ib"><span class="header-section-number">4.8.5</span> IB</a></li>
-<li><a class="nav-link" href="#act"><span class="header-section-number">4.8.6</span> ACT</a></li>
+<li><a class="nav-link" href="#ap"><span class="header-section-number">4.8.5</span> AP</a></li>
+<li><a class="nav-link" href="#ib"><span class="header-section-number">4.8.6</span> IB</a></li>
+<li><a class="nav-link" href="#act"><span class="header-section-number">4.8.7</span> ACT</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
