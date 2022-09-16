@@ -583,7 +583,7 @@ A second issue is that it's very hard to show heterogenaity in spatial distribti
 
 A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points wihtin each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It's pretty straightforward to get what you need by using [`sf::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
 
-```{r dot_dentsity_df, warning=FALSE, message=FALSE, echo=FALSE}
+```{r dot_dentsity_df, warning=FALSE}
 acs_ages <- dplyr::tribble(
   ~ variable,     ~age_range, ~gender,
   "B01001_001",    "All",      "All",  
