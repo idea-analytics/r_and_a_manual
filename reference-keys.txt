@@ -173,6 +173,8 @@ some-geographic-filtering
 census-data
 getting-basic-data
 searching-for-variables
+chloropleth
+dot-density
 tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
