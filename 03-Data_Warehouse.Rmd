@@ -35,7 +35,7 @@ While the IDEA has ~28 servers hosting SQL Server databases, R&A typically only 
 ### Core data warehouse server configuration
 
 ::: {.gotcha}
-These facts below are scheduled to change in May-June of 2022.  The IT team is moving all servers from Backspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse. 
+These facts below are scheduled to change in May-June of 2022.  The IT team is moving all servers from Rackspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse. 
 
 Check back here for updates!
 :::
@@ -46,7 +46,8 @@ The servers are not islands unto themselves, but rather form a small economy of 
 DiagrammeR::grViz("
   digraph data_wh {
     label='Basic Data Flows in Core Data Warehouse';
-    labelloc = 't'; 
+    labelloc = 't';
+    compound=true;
   #graph statement
   graph [overlap = true, layout = dot, rankdir = LR]
   
@@ -72,21 +73,18 @@ DiagrammeR::grViz("
     RS2 [label=<RS2<br/><font point-size='6'>RGVPDSD-DWRPT1</font>>];
     RS1 [label=<RS1<br/><font point-size='6'>RGVPDSD-DWRPT1</font>>]
   
-  node [fillcolor= '#53b4cc']
-  STHIS [label= <ST-HIS<br/><font point-size='6'> xxxxxx-STHist </font>>]; 
-  RSHIS [label=<RS-HIS<br/><font point-size='6'> xxxxxx-SQLRPTHis  </font>>]
- 
-  node [fillcolor = firebrick]
-  FO1 [label =<FO1<br/><font point-size='6'> San Antonio Failover </font>>]
   
   node [shape = box, fontname = Helvetica, fillcolor= '#ffde75', fontcolor = black]
-  LOGI
+  LOGI [label='LOGI/PowerBI']
+  
+  node [shape = box, fontname = Helvetica, fillcolor= '#ee3a80', fontcolor = white]
+  Analysis [label = 'R&A']
 
   # subgraph statements
   subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label='1. Source Data'}
   subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = '2. Production'}
   subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label='4. Reporting'}
-  subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = '3. Historical' }
+
   
   #edges statement
   edge [color = '#626363', arrowhead=vee]
@@ -95,10 +93,14 @@ DiagrammeR::grViz("
    PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label='Look-ups', color = gray, style=dashed, fontcolor=gray, fontsize=7]
    PROD1 -> RS1
    PROD2 -> RS2
-  {PROD1 PROD2} -> FO1 [color = firebrick]
-  {PROD1 PROD2} -> STHIS
-   STHIS -> RSHIS
-  {RS2 RS1 RSHIS} -> LOGI
+  {PROD1 PROD2} 
+   
+  {RS2} -> LOGI [ltail=cluster_rs]
+  
+  {PROD1} -> LOGI [ltail=cluster_prod]
+  {PROD1} -> Analysis [ltail=cluster_prod]
+  
+  
   
   }
 ")
@@ -107,7 +109,7 @@ DiagrammeR::grViz("
 
 ```
 
-Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  Some data is (ostensibly) snapshotted and stored in the two `*-HIS` servers.  To be sure, as of March 2020, R&A doesn't know much about these servers.  The reporting servers---`RS1`, `RS2`, and `RS-HIS`, serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/), which serves up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
+Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  The reporting servers---`RS1` and `RS2` serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/) and PowerBI, which serve up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
 
 The following sections provide some details on the what databases might be found on each server.
 
@@ -258,10 +260,10 @@ These servers are were source data from various applications is landed.
     * PROD1             
     * ProductDevelopment
     * CollegeSuccess    
-1   * Matriculation     
-1   * SSISTemp          
-1   * Staffing          
-1   * DashboardSettings 
+    * Matriculation     
+    * SSISTemp          
+    * Staffing          
+    * DashboardSettings 
     
   * **Sources**:
     
@@ -274,7 +276,7 @@ These servers are were source data from various applications is landed.
  
   * `RS1`
   * `ST-HIS`
-  * `FO1`
+
   
 * **PROD2** hosts all assessement data for all state  This is the source server for `RS2` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
 
@@ -284,27 +286,14 @@ These servers are were source data from various applications is landed.
     * PROD2        
     * SSISTemp  
     
-    
-    * Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
+
+    * Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
     
 #### RS and Hisotrical data Servers
 
-R&A tends not to use these tables very often. `RS1`, `RS2`, and `RS-HIS` all have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. `ST-HIS` ostensibly has snapshots of data from the `PROD` servers, but that is just an unverified hunch 
+R&A tends not to use these tables very often. `RS1`and  `RS2` git  have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. `ST-HIS` ostensibly has snapshots of data from the `PROD` servers, but that is just an unverified hunch 
 
 
-
-* **ST-HIS**
-  
-  * **Databases**: unknown
-    
-  * **Sources**:
-      
-    * `PROD1`
-    * `PROD2`
-    * something called `ST1` and ST2`?
-    
-    * **Targets**
-      * `RS-HIS`
 
 * **RS1** 
   
@@ -328,16 +317,6 @@ R&A tends not to use these tables very often. `RS1`, `RS2`, and `RS-HIS` all hav
   * **Targets**
     * Logi
   
-* **RS-HIS**
-    
-    * **Databases**: unknown
-    * **Sources**:
-    * `ST-HIS`
-    
-  
-  * **Targets**
-    * Logi
-
 
 
 ### Server, Table, and Field Lookup
