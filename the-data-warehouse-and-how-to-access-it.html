@@ -79,18 +79,18 @@
 <span class="header-section-number">3.1.1</span> Core data warehouse server configuration<a class="anchor" aria-label="anchor" href="#core-data-warehouse-server-configuration"><i class="fas fa-link"></i></a>
 </h3>
 <div class="gotcha">
-<p>These facts below are scheduled to change in May-June of 2022. The IT team is moving all servers from Backspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse.</p>
+<p>These facts below are scheduled to change in May-June of 2022. The IT team is moving all servers from Rackspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse.</p>
 <p>Check back here for updates!</p>
 </div>
 <p>The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.</p>
 <div class="figure">
 <span style="display:block;" id="fig:server-graphs"></span>
-<div id="htmlwidget-6672f98d742429271e3f" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6672f98d742429271e3f">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\"; \n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  node [fillcolor= \"#53b4cc\"]\n  STHIS [label= <ST-HIS<br/><font point-size=\"6\"> xxxxxx-STHist <\/font>>]; \n  RSHIS [label=<RS-HIS<br/><font point-size=\"6\"> xxxxxx-SQLRPTHis  <\/font>>]\n \n  node [fillcolor = firebrick]\n  FO1 [label =<FO1<br/><font point-size=\"6\"> San Antonio Failover <\/font>>]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n  subgraph cluster_his {rank = same; style = dotted; STHIS; RSHIS; label = \"3. Historical\" }\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} -> FO1 [color = firebrick]\n  {PROD1 PROD2} -> STHIS\n   STHIS -> RSHIS\n  {RS2 RS1 RSHIS} -> LOGI\n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-d70d790397e3b126df48" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d70d790397e3b126df48">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases in ’DS</em>’ servers and flows to the right towads Logi hosted Locus dashboards.
 </p>
 </div>
-<p>Figure <a href="the-data-warehouse-and-how-to-access-it.html#fig:server-graphs">3.1</a> shows the flows of data in the warehouse, which essentially move from left to right. The<code>DS-*</code> servers host databases holding source data. That data is processed and saved in databases in the two production servers (<code>PROD1</code> and <code>PROD2</code>). <strong>These two production servers host most the data that R&amp;A uses in analysis</strong>, but know where the source data comes from in is often helpful. Some data is (ostensibly) snapshotted and stored in the two <code>*-HIS</code> servers. To be sure, as of March 2020, R&amp;A doesn’t know much about these servers. The reporting servers—<code>RS1</code>, <code>RS2</code>, and <code>RS-HIS</code>, serve transformed flat files that serve as the data layer for <a href="https://www.logianalytics.com/">Logi</a>, which serves up <a href="https://ideapublicschoolsorg.sharepoint.com/sites/dashboards">Locus dashboards on the hub</a>.</p>
+<p>Figure <a href="the-data-warehouse-and-how-to-access-it.html#fig:server-graphs">3.1</a> shows the flows of data in the warehouse, which essentially move from left to right. The<code>DS-*</code> servers host databases holding source data. That data is processed and saved in databases in the two production servers (<code>PROD1</code> and <code>PROD2</code>). <strong>These two production servers host most the data that R&amp;A uses in analysis</strong>, but know where the source data comes from in is often helpful. The reporting servers—<code>RS1</code> and <code>RS2</code> serve transformed flat files that serve as the data layer for <a href="https://www.logianalytics.com/">Logi</a> and PowerBI, which serve up <a href="https://ideapublicschoolsorg.sharepoint.com/sites/dashboards">Locus dashboards on the hub</a>.</p>
 <p>The following sections provide some details on the what databases might be found on each server.</p>
 <div id="src-servers" class="section level4">
 <h4>
@@ -317,10 +317,14 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </li>
 <li>ProductDevelopment</li>
 <li>CollegeSuccess<br>
-1 * Matriculation<br>
-1 * SSISTemp<br>
-1 * Staffing<br>
-1 * DashboardSettings</li>
+</li>
+<li>Matriculation<br>
+</li>
+<li>SSISTemp<br>
+</li>
+<li>Staffing<br>
+</li>
+<li>DashboardSettings</li>
 </ul>
 </li>
 <li>
@@ -337,7 +341,6 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li><p><strong>Targets</strong>:</p></li>
 <li><p><code>RS1</code></p></li>
 <li><p><code>ST-HIS</code></p></li>
-<li><p><code>FO1</code></p></li>
 <li>
 <p><strong>PROD2</strong> hosts all assessement data for all state This is the source server for <code>RS2</code> and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables.</p>
 <ul>
@@ -348,7 +351,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li><p>lk_Schools<br></p></li>
 <li><p>PROD2<br></p></li>
 <li><p>SSISTemp</p></li>
-<li><p>Schools : this actually contains data "inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
+<li><p>Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
 </ul>
 </li>
 </ul>
@@ -359,28 +362,8 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <h4>
 <span class="header-section-number">3.1.1.3</span> RS and Hisotrical data Servers<a class="anchor" aria-label="anchor" href="#rs-and-hisotrical-data-servers"><i class="fas fa-link"></i></a>
 </h4>
-<p>R&amp;A tends not to use these tables very often. <code>RS1</code>, <code>RS2</code>, and <code>RS-HIS</code> all have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. <code>ST-HIS</code> ostensibly has snapshots of data from the <code>PROD</code> servers, but that is just an unverified hunch</p>
+<p>R&amp;A tends not to use these tables very often. <code>RS1</code>and <code>RS2</code> git have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. <code>ST-HIS</code> ostensibly has snapshots of data from the <code>PROD</code> servers, but that is just an unverified hunch</p>
 <ul>
-<li>
-<p><strong>ST-HIS</strong></p>
-<ul>
-<li><p><strong>Databases</strong>: unknown</p></li>
-<li>
-<p><strong>Sources</strong>:</p>
-<ul>
-<li><p><code>PROD1</code></p></li>
-<li><p><code>PROD2</code></p></li>
-<li><p>something called <code>ST1</code> and ST2`?</p></li>
-<li>
-<p><strong>Targets</strong></p>
-<ul>
-<li><code>RS-HIS</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li>
 <p><strong>RS1</strong></p>
 <ul>
@@ -411,20 +394,6 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li>something called <code>ST1</code>?</li>
 </ul>
 </li>
-<li>
-<p><strong>Targets</strong></p>
-<ul>
-<li>Logi</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>RS-HIS</strong></p>
-<ul>
-<li><p><strong>Databases</strong>: unknown</p></li>
-<li><p><strong>Sources</strong>:</p></li>
-<li><p><code>ST-HIS</code></p></li>
 <li>
 <p><strong>Targets</strong></p>
 <ul>
@@ -563,7 +532,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-09-16.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-09-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
