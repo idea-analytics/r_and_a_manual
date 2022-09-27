@@ -185,5 +185,5 @@ creating-scaffolds-when-joining-data.
 statistical-pitfalls
 simpsons-paradox
 bias-variance-tradeoff
-troubleshooting-messags-and-errors
+troubleshooting-messages-and-errors
 connection-to-the-dashboard
