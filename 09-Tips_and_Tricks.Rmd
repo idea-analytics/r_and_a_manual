@@ -203,26 +203,20 @@ When identifying trends in a distribution, be careful of interpreting those tren
 
 ### Bias-variance tradeoff
 
-## Troubleshooting messags and errors
+## Troubleshooting messages and errors
 
 ### Connection to the dashboard
 
-When working on R scripts in RStudio, an issue that may occur involves connecting to the servers and dashboards that host ideadata. Warnings or error messages that may appear include: 
-Resetting connection to conn_Dashboard
-Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53].
-conn_Dashboard may show the ptr as "<pointer: (nil)>
+When working with ideadata in RStudio, issues with connecting to the servers and dashboards that host ideadata may occur. Warnings or error messages that may appear include: Resetting connection to conn_Dashboard, Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53]. Also, conn_Dashboard may show the ptr as "<pointer: (nil)>.
 
-To resolve this issue, consider following the following steps. 
+To resolve this issue, consider the following steps. 
 
-Step 1. The first step upon receiving an error involving connecting to the SQL Servers is always to check VPN connection. VPN may also be referred to as "Global Protect." 
-Check to make sure you are logged in to VPN. 
-If you are not logged in, please enter your IDEA login credentials. 
-If logged in and connected to VPN, please continue to the next step. 
+Step 1. The first step upon receiving an error involving connecting to the SQL Servers is to check VPN connection. VPN may also be referred to as "Global Protect." 
+Check to make sure you are logged in to VPN: If not logged in, please enter your IDEA credentials. When logged in and connected to VPN, please continue to the next step. 
 
-Step 2. The next step is to check your code. Be sure that you have all information listed correctly. If you are trying to connect to a specific table in ideadata, be sure the table name, database name, schema, and server name are correct. 
+Step 2. The next step is to check your code. Be sure that you have all information listed correctly. If you are trying to connect to a specific table, be sure the table name, database name, schema, and server name are accurate based on the most updated information. 
 
 Step 3. If the code is correct, the next step is to remove the connection to the Dashboard. 
 To remove the connection, enter the following code into the script or console: `rm(conn_Dashboard)`
 
-Step 4. After removing the connection to the dashboard, try re-running the script.
-(Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.) 
+Step 4. After removing the connection to the dashboard, try re-running the script. (Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.) 
