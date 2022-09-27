@@ -207,12 +207,11 @@ When identifying trends in a distribution, be careful of interpreting those tren
 
 ### Connection to the dashboard
 
-Insert popout box here with the image or type the code in the code font to display the error messages:
-"Resetting connection to conn_Dashboard" and 
-"Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53]. [Microsoft][ODBC Driver 17 for SQL Server]Login timeout expired. [Microsoft][ODBC Driver 17 for SQL Server]A network-related or instance-specific error has occured while establishing a connection to sQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online."
-conn_Dashboard may show the ptr as "<pointer: (nil)>"
+When working on R scripts in RStudio, an issue that may occur involves connecting to the servers and dashboards that host ideadata. Warnings or error messages that may appear include: 
+Resetting connection to conn_Dashboard
+Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53].
+conn_Dashboard may show the ptr as "<pointer: (nil)>
 
-When working on R scripts in RStudio, an issue that may occur involves connecting to the servers and dashboards that host ideadata.
 To resolve this issue, consider following the following steps. 
 
 Step 1. The first step upon receiving an error involving connecting to the SQL Servers is always to check VPN connection. VPN may also be referred to as "Global Protect." 
@@ -221,19 +220,9 @@ If you are not logged in, please enter your IDEA login credentials.
 If logged in and connected to VPN, please continue to the next step. 
 
 Step 2. The next step is to check your code. Be sure that you have all information listed correctly. If you are trying to connect to a specific table in ideadata, be sure the table name, database name, schema, and server name are correct. 
-For example: 
-```{r check code example}
-
-# For example, check the code below for accuracy. Be sure the .table_name, #.database_name, .schema, and .server_name list the most updated and accurate information. 
-
-df <- get_table(.table_name = "STAAR",
-                      .database_name = "Dashboard",
-                      .schema = "dbo",
-                      .server_name = "RGVPDRA-DASQL")
-```
 
 Step 3. If the code is correct, the next step is to remove the connection to the Dashboard. 
 To remove the connection, enter the following code into the script or console: `rm(conn_Dashboard)`
 
 Step 4. After removing the connection to the dashboard, try re-running the script.
-(Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.)
+(Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.) 
