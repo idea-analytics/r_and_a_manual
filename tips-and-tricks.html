@@ -2528,6 +2528,30 @@
 <h3>
 <span class="header-section-number">9.2.2</span> Bias-variance tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
 </h3>
+</div>
+</div>
+<div id="troubleshooting-messags-and-errors" class="section level2">
+<h2>
+<span class="header-section-number">9.3</span> Troubleshooting messags and errors<a class="anchor" aria-label="anchor" href="#troubleshooting-messags-and-errors"><i class="fas fa-link"></i></a>
+</h2>
+<div id="connection-to-the-dashboard" class="section level3">
+<h3>
+<span class="header-section-number">9.3.1</span> Connection to the dashboard<a class="anchor" aria-label="anchor" href="#connection-to-the-dashboard"><i class="fas fa-link"></i></a>
+</h3>
+<p>When working on R scripts in RStudio, an issue that may occur involves connecting to the servers and dashboards that host ideadata. Warnings or error messages that may appear include:
+Resetting connection to conn_Dashboard
+Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53].
+conn_Dashboard may show the ptr as "&lt;pointer: (nil)&gt;</p>
+<p>To resolve this issue, consider following the following steps.</p>
+<p>Step 1. The first step upon receiving an error involving connecting to the SQL Servers is always to check VPN connection. VPN may also be referred to as “Global Protect.”
+Check to make sure you are logged in to VPN.
+If you are not logged in, please enter your IDEA login credentials.
+If logged in and connected to VPN, please continue to the next step.</p>
+<p>Step 2. The next step is to check your code. Be sure that you have all information listed correctly. If you are trying to connect to a specific table in ideadata, be sure the table name, database name, schema, and server name are correct.</p>
+<p>Step 3. If the code is correct, the next step is to remove the connection to the Dashboard.
+To remove the connection, enter the following code into the script or console: <code>rm(conn_Dashboard)</code></p>
+<p>Step 4. After removing the connection to the dashboard, try re-running the script.
+(Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.)</p>
 
 </div>
 </div>
@@ -2552,6 +2576,9 @@
 <li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">9.2.2</span> Bias-variance tradeoff</a></li>
 </ul>
 </li>
+<li>
+<a class="nav-link" href="#troubleshooting-messags-and-errors"><span class="header-section-number">9.3</span> Troubleshooting messags and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">9.3.1</span> Connection to the dashboard</a></li></ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -2569,7 +2596,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-09-20.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-09-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
