@@ -75,9 +75,32 @@ Under ideal conditions, we would test the effect of a program by randomized cont
 
 #### Differences among distributions of groups
 
-ANOVA, ANCOVA, MANOVA, Kruskal-Wallis
+If we are comparing means from multiple groups, then we first need a procedure to compare all means together. Afterward, we might choose a post-hoc procedure to see which pairs of means are different.
 
-Code, diagnostics, communication and limitations coming soon...
+The most common way of comparing multiple means is an ANOVA (analysis of variance). To perform an ANOVA:
+
+1. construct a linear model and save the object `lm_my_model <- lm()` (see linear modeling below)
+2. compare the variance among the groups using `aov(lm_my_model)`
+
+Suppose we want to use SEL survey results to measure life satisfaction across multiple grade levels. To see if the average `LifeSatisfactionScore` differs at all between grade levels, then we can use the following code:
+
+```{r anova_example, eval=FALSE}
+# linear model, where grade level is treated as a factor, not numeric
+lm_survey_results <- lm(LifeSatisfactionScore ~ as.factor(GradeLevelID))
+
+# perform ANOVA
+aov(lm_survey_results)
+```
+
+Then, if the ANOVA suggests the means are not all the same, then a post-hoc analysis can reveal *which* groups are different.
+
+1. Determine how many tests are being conducted.
+2. Use a Bonferonni correction (or other appropriate correction) to adjust p-values or $\alpha$-level.
+3. Choose an appropriate post-hoc test:
+  a. Tukey HSD - check all pairs of means to see which pairs are significantly different
+  b. Dunnett - compare all means to a control
+  c. Hsu - check which means are the "best", either the lowest or highest of the group
+
 
 #### Differences among levels of variables
 
@@ -207,15 +230,35 @@ A large chunk of our statistical work involves developing a model and making pre
 
 ### Linear modeling
 
-For short-term, ad-hoc models, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
+To measure an association between two or more variables, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:
 
 $\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i$
 
--   In R, we use the command `lm()` to generate estimates of the beta coefficients.
--   To obtain the p-values and basic fit statistics, use `summary(lm_object)`.
--   To obtain the diagnostic plots, use `plot(lm_object)`.
+Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.
 
-We can describe the coefficients as an *additional* unit effect on the mean response. If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect.
+$\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i$
+
+To estimate these coefficients and evaluate the fit, we can use the following workflow:
+
+```{r lm_example, eval=FALSE}
+# df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters
+# all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1
+
+# run the regression (a linear model)
+lm_staar <- lm(STAARQuestionsCorrect ~ SemesterExamQuestionsCorrect + CourseGrade,
+               data = df_staar_scores)
+
+# view the coefficients, std errors, model error, t-statistics, p-values, R^2
+summary(lm_staar)
+
+# view residual plots, Q-Q plots, leverage plot (Cook's D)
+# par(mfrow = c(2, 2)) # use this if you want to view all 4 plots at once
+plot(lm_staar)
+```
+
+We can describe the coefficients as an *additional* unit effect on the number of STAAR questions correct. For example, if the coefficient on `SemesterExamQuestionsCorrect` is 1.34, then we would say that as a student gets an additional correct answer on the semester exam, then on average, the predicted increase in STAAR questions correct is about 1.34.
+
+If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect.
 
 ### Generalized linear modeling
 
@@ -228,11 +271,32 @@ where
 -   $g(\cdot)$ is a link function to the mean
 -   $\mu$ is the mean response
 
-Note that there are many link functions, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the documentation. However, base R provides the `glm()` function, which gives options to choose a link.
+Note that there are many [link functions](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family), so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the [documentation.](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) However, base R provides the `glm()` function, which gives options to choose a link.
 
-If the response is multinomial (multiple categories), then it is suggested to use a multinomial logistic regression. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an ordinal logistic regression, which improves the power. See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of OLR using various packages.
+Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches $P(\textrm{App}_i)$) as a function of their semester exam questions correct and course grade. 
 
-Code, diagnostics, communication and limitations coming soon...
+$\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i$
+
+```{r glm_example, eval=FALSE}
+# logistic regression to determine log odds of passing STAAR
+glm_staar <- glm(Approaches ~ SemesterExamQuestions + CourseGrade,
+                 family = binomial(link = "logit"),
+                 data = df_staar_scores)
+
+# view the coefficients, std errors, model error, z-scores, p-values, deviance
+summary(glm_staar)
+```
+
+Here, we used a logistic regression, which models the *log odds* (which can be converted into a probability), by defining the `binomial` family with a `logit` link. If the coefficient on `SemesterExamQuestions` is 0.04, then as a student gets an additional question correct on the semester exam, then on average, the predicted odds of passing increases by about $e^{0.04}$, or a probability of $\frac{e^{0.04}}{1 + e^{0.04}}$. (Use the `exp()` function for Euler's constant, e.g. $e^{0.04} =$`exp(0.04)`).
+
+If the response is multinomial (multiple categories), then it is suggested to use a **multinomial logistic regression**. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an **ordinal logistic regression**, which improves the power. 
+
+For example, modeling an AP score (which only takes on ordered levels of 1 to 5) as a function of semester exam questions correct and the course grade could be:
+
+$g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i$
+
+See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of ordinal logistic regression using various packages.
+
 
 ### Machine learning
 
