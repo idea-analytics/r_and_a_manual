@@ -292,6 +292,7 @@ The Schools table provides essential information about each school, including th
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
 * **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
+* **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
 
 **Context:**
 
@@ -339,6 +340,11 @@ If the team does NOT use the subregions, then link the Regions and Schools table
 Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked *absent (A)* by the teacher, or as *tardy present (TP)* at the school's front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an **Official Attendance-Taking Time or Period (OATT/OATP)**, a roughly 10-minute window for all teachers with a class at that time to submit the day's official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
+* **Current Year + 3 Past Years** This table currently has data for the current year (2022-2023), and the last three years data (2021-2022, 2020-2021, & 2019-2020). Once the current year is complete and the next year begins, 2019-2020 data will drop off of this table and the new academic year will be added.
+
+**For Attendance data Prior to 2019-2020:**
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
+* **Academic Years: 2021-2022 - 2015-2016** This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.
 
 **Main metrics:** Full-day vs. half-day attendance; number of absences; new to IDEA students
 
@@ -410,6 +416,20 @@ get_student_daily_attendance() %>%
   mutate(ada_percent = 1 - (n_absent/n_enrolled)) %>% 
 ```
 
+If you are needing attendance data for enrollment purposes for years prior to 2015-2016, you will need to use a different table.
+
+**Database** [RGVPDSD-DWPRD1].[PROD1].[ADA].[StudentDailyMembership]
+This table contain daily attendance for 2002-2003 through 2020-2021 Academic Years. However, the data for 2016-2017 through 2018-2019 appears to be incorrect. Only use this table for daily attendance prior to 2015-2016 School Year. There are far fewer columns on this table, but the ones needed for calculating ADA and/or enrollment for years prior to 2015-2016 are there.
+
+**Important columns:**
+
+* **[AcademicYear]:** yyyy-yyyy
+* **[SchoolNumber]:** Local school number
+* **[SchoolName]:** Long school name
+* **[StudentNumber]:** Local student ID number
+* **[GradeLevelID]:** Numeric grade level, where Pre-K == -1 and K == 0
+* **[Membership]:** Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only)
+* **[AttDate]:** Gives the actual date of the record
 
 
 ### Other uses
