@@ -4,6 +4,13 @@ The R&A Team works on all sorts of projects and topics. This section provides mo
 
 Some of our data analysis work is done on an annual basis, such as analyzing academic performance on state standardized tests or student persistence. In other project areas, we analyze data and share updates on a weekly or monthly basis (i.e., senior college applications, ACT test scores). We also conduct in-depth analyses that may involve multiple quantitative, machine learning, and qualitative methods to gain breadth and depth for understanding a particular topic. Grant-funded evaluation work is another example of our specific projects.
 
+## We could move content
+
+Make the current RMD as chapter 6 Specific Projects. 
+Move content in 5.6 (5.6.1 through 5.6.5) to Chapter 6 Specific Projects.
+Have Chapter 5 Projects focus on project applications and Chapter 6 focus on project specifics.
+
+
 ## Evaluations
 
 The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive. 
