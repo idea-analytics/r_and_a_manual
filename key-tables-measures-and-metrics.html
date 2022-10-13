@@ -455,6 +455,8 @@
 <strong>[Area]:</strong> describes if the school is under the division of RGV, Texas, or IPS &amp; SA, i.e. which superintendent oversees the school</li>
 <li>
 <strong>[RegionAltID]:</strong> describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table</li>
+<li>
+<strong>[IsDeprecated]:</strong> 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0.</li>
 </ul>
 <p><strong>Context:</strong></p>
 <ul>
@@ -503,7 +505,11 @@
 <span class="header-section-number">4.3</span> Student Attendance<a class="anchor" aria-label="anchor" href="#student-attendance"><i class="fas fa-link"></i></a>
 </h2>
 <p>Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked <em>absent (A)</em> by the teacher, or as <em>tardy present (TP)</em> at the school’s front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an <strong>Official Attendance-Taking Time or Period (OATT/OATP)</strong>, a roughly 10-minute window for all teachers with a class at that time to submit the day’s official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.</p>
-<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
+* <strong>Current Year + 3 Past Years</strong> This table currently has data for the current year (2022-2023), and the last three years data (2021-2022, 2020-2021, &amp; 2019-2020). Once the current year is complete and the next year begins, 2019-2020 data will drop off of this table and the new academic year will be added.</p>
+<p><strong>For Attendance data Prior to 2019-2020:</strong>
+<strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
+* <strong>Academic Years: 2021-2022 - 2015-2016</strong> This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.</p>
 <p><strong>Main metrics:</strong> Full-day vs. half-day attendance; number of absences; new to IDEA students</p>
 <p><strong>Important columns:</strong></p>
 <ul>
@@ -581,6 +587,26 @@
 <span id="cb18-21"><a href="key-tables-measures-and-metrics.html#cb18-21"></a></span>
 <span id="cb18-22"><a href="key-tables-measures-and-metrics.html#cb18-22"></a><span class="co"># computes ADA as 1 - absence ratio</span></span>
 <span id="cb18-23"><a href="key-tables-measures-and-metrics.html#cb18-23"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ada_percent =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(n_absent<span class="op">/</span>n_enrolled)) <span class="op">%&gt;%</span><span class="st"> </span></span></code></pre></div>
+<p>If you are needing attendance data for enrollment purposes for years prior to 2015-2016, you will need to use a different table.</p>
+<p><strong>Database</strong> [RGVPDSD-DWPRD1].[PROD1].[ADA].[StudentDailyMembership]
+This table contain daily attendance for 2002-2003 through 2020-2021 Academic Years. However, the data for 2016-2017 through 2018-2019 appears to be incorrect. Only use this table for daily attendance prior to 2015-2016 School Year. There are far fewer columns on this table, but the ones needed for calculating ADA and/or enrollment for years prior to 2015-2016 are there.</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[AcademicYear]:</strong> yyyy-yyyy</li>
+<li>
+<strong>[SchoolNumber]:</strong> Local school number</li>
+<li>
+<strong>[SchoolName]:</strong> Long school name</li>
+<li>
+<strong>[StudentNumber]:</strong> Local student ID number</li>
+<li>
+<strong>[GradeLevelID]:</strong> Numeric grade level, where Pre-K == -1 and K == 0</li>
+<li>
+<strong>[Membership]:</strong> Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only)</li>
+<li>
+<strong>[AttDate]:</strong> Gives the actual date of the record</li>
+</ul>
 </div>
 <div id="other-uses" class="section level3">
 <h3>
@@ -2158,7 +2184,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-10-07.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-10-13.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
