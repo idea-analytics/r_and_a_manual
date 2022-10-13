@@ -17,9 +17,9 @@ csl: chicago-fullnote-bibliography.csl
 
 # A little about this manual {#about}
 
-<img src="img/idea_r_and_a_logo_blue.png" height="250"  align="left" alt="" class="cover" /> The *IDEA R&A Manual*  is [IDEA Public Schools'](www.ideapublicschools.org) Research & Analysis Team's ever evolving encyclopedia of resources and best practices.  It's purpose is to make any R&A team member's (or really any other interested reader's) job easier, by sharing how we do our jobs.   
+<img src="img/idea_r_and_a_logo_blue.png" height="250"  align="left" alt="" class="cover" /> The *IDEA R&A Manual*  is [IDEA Public Schools'](www.ideapublicschools.org) Research & Analysis Team's ever evolving encyclopedia of resources and best practices.  Its purpose is to make any R&A team member's (or really any other interested reader's) job easier, by sharing how we do our jobs.   
 
-The manual is particularly aimed at a technical audience (e.g. statisticians, data analysts, data engineers, data scientists) and most contributions are from technical authors. Indeed, the expectation is that technical members for the R&A team will contribute to this manual regularly (i.e., weekly or daily during the festive (information) harvesting celebration of Doctoberfest)
+The manual is particularly aimed at a technical audience (e.g. statisticians, data analysts, data engineers, data scientists) and most contributions are from technical authors. Indeed, the expectation is that technical members of the R&A team will contribute to this manual regularly (i.e., weekly or daily during the festive (information) harvesting celebration of Doctoberfest)
 
 
 ```{r init-setup, include=FALSE}
@@ -59,8 +59,8 @@ The general process is as follows:
 1. Check out a branch `git checkout -b my-manual-update`.
 1.  Make updates.  You can run in R `bookdown::serve_book` to have it recompile the book on save. 
 1. Commit frequently.
-1. Push your changes on yoru branch up to Github.
-1.  Intitiate a pull request to merge your changes.  If they are minor you can do the whole process your self. IF they are major--especially changing the books structure--then have another team member review your pull request before merging. 
+1. Push your changes on your branch up to Github.
+1.  Initiate a pull request to merge your changes.  If they are minor, you can do the whole process your self. IF they are major--especially changing the books structure--then have another team member review your pull request before merging. 
 1. Complete the merge. 
 1. Rinse and repeat!
 
