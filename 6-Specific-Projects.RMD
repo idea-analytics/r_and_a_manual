@@ -1,0 +1,65 @@
+# Specific Projects
+
+The R&A Team works on all sorts of projects and topics. This section provides more information about our specific projects.
+
+Some of our data analysis work is done on an annual basis, such as analyzing academic performance on state standardized tests or student persistence. In other project areas, we analyze data and share updates on a weekly or monthly basis (i.e., senior college applications, ACT test scores). We also conduct in-depth analyses that may involve multiple quantitative, machine learning, and qualitative methods to gain breadth and depth for understanding a particular topic. Grant-funded evaluation work is another example of our specific projects.
+
+## We could move content
+
+Make the current RMD as chapter 6 Specific Projects. 
+Move content in 5.6 (5.6.1 through 5.6.5) to Chapter 6 Specific Projects.
+Have Chapter 5 Projects focus on project applications and Chapter 6 focus on project specifics.
+
+
+## Evaluations
+
+The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. 
+
+### Evaluation Plans 
+
+Evaluation Plans are prepared annually to...be continued. The purpose of evaluation plans are to..be continued from policy and guidelines content files.
+
+Evaluation Plans for the current fiscal year are published to the [Team Site (TheHub)][Team Site (TheHub)]. 
+
+### 21st Century Afterschool Program
+
+TBD things to know about this specific project.
+
+### Camp Rio
+
+TBD things to know about this specific project.
+
+### Charter School Program (CSP) Grants
+
+R&A conducts evaluation work for two CSP grants:
+1) CSP Grants 2019-2024 and 2) CSP Grants 2020-2025. 
+
+CSP Grant 2017-2022 evaluation work was conducted by a contracted agency.
+
+### Teacher and School Leader Incentive Program (TSLIP)
+
+TBD things to know about this specific project.
+
+## Other Specific Projects
+
+### Teacher Hiring and TCP
+
+Copy/paste content here from 5.6.1
+
+#### Jobvite Data
+
+Copy/paste content here from 5.6.1.1
+
+#### Teacher Export Data
+
+Copy/paste content here from 5.6.1.2
+
+#### TCP Handbook
+
+Copy/paste content here from 5.6.1.3
+
+#### Teacher Interviews/Teacher Manager Interviews
+
+Copy/paste content here from 5.6.1.4
+
+
