@@ -1237,6 +1237,22 @@ get_table(.table_name = "StudentScores",
   arrange(ClassYear, CEEBCode, LastName, Year, Month)
 ```
 
+### LEAP
+
+Louisiana Educational Assessment Program (LEAP)
+The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven. 
+Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
+
+English learners from K-12 take the English Language Proficiency test (ELPT).
+
+LEAP test results summarized by school and grade level can be downloaded from the Louisiana Department of Education website (https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance, file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
+
+The downloaded workbook has tabs for each grade level and a tab for high school. Filter the spreadsheet for the IDEA schools in LA. Use the expected number of students to participate and the participation rate columns to calculate the actual number of students who participated. To calculate the percentage of students who passed each subject, add the percentage of students who scored at the Advanced, Mastery, and Basic levels.
+
+If you need to have student level LEAP data, you can access 3-8 assessment results here:
+(To be continued)
+
+
 
 ## Student Course Grades
 
