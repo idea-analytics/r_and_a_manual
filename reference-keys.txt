@@ -57,6 +57,8 @@ ib
 coursework-and-scoring
 data
 act
+leap
+student-level-leap
 student-course-grades
 teacher-staff-and-hiring-data
 compass-data
