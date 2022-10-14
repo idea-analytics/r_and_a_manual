@@ -10,6 +10,16 @@ Make the current RMD as chapter 6 Specific Projects.
 Move content in 5.6 (5.6.1 through 5.6.5) to Chapter 6 Specific Projects.
 Have Chapter 5 Projects focus on project applications and Chapter 6 focus on project specifics.
 
+## File Storage
+
+Our work on specific projects may be stored in different places depending on the project and team member(s). 
+
+### R&A Private Group
+
+The R&A Private Group documents folder provides a convenient and accessible storage place for all R&A team members to access shared folders and documents. Highly useful for projects that require multiple team members, storing and accessing files the private group folder helps to ensure  consistency and continuity of work. 
+
+The R&A Private Group documents folder is not to be confused with the [Team Site (TheHub)][Team Site (TheHub)] or the [Team Site (TheHub)][Team Site (TheHub)] documents folder. 
+
 
 ## Evaluations
 
@@ -20,6 +30,8 @@ The R&A team evaluates four (4) annually funded grants including: 1) 21st Centur
 Evaluation Plans are prepared annually to...be continued. The purpose of evaluation plans are to..be continued from policy and guidelines content files.
 
 Evaluation Plans for the current fiscal year are published to the [Team Site (TheHub)][Team Site (TheHub)]. 
+
+Evaluation planning resources and files are stored in the [R&A Private Group][R&A Private Group] Evaluation folder. 
 
 ### 21st Century Afterschool Program
 
