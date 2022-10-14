@@ -28,6 +28,54 @@ When creating visuals of Race/Ethnicity we want to be consistent with the colors
   + **Other:** idea_colors$yellow (#FFDE75)
   + **Pacific Islander:** idea_colors$darkblue (#1A4789)
   + **White:** idea_colors$coolgray (#626363)
+  
+Suppose your data frame, `df_reading_levels`, contains information about Academy students' grade-level reading equivalents `GradeLevelEquivalent` with race and ethnicity in the `RaceEthnicity` column. To create a visualization of reading levels using the custom palette, you'll need to code the palette in three places:
+
+1. as a vector of colors, outside of the plotting function
+2. as an aesthetic, inside the initial plotting call
+3. as a value, inside a manual scale function
+
+Let's define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.
+
+```{r vector_colors, eval=FALSE}
+# step 1
+race_ethnicity_legend <- c("American Indian" = idea_colors$melon,
+                           "Asian" = idea_colors$cyan,
+                           "Black" = idea_colors$magenta,
+                           "Hispanic" = idea_colors$blue,
+                           "Other" = idea_colors$yellow,
+                           "Pacific Islander" = idea_colors$darkblue,
+                           "Two or more races" = idea_colors$lime,
+                           "White" = idea_colors$coolgray)
+```
+
+Then, inside a `geom_*()` layer, assign the appropriate column `RaceEthnicity` to the appropriate aesthetic `aes()`. (Depending on your visualization, the aesthetic might be `fill`, `shape`, etc.).
+
+```{r geom_aes, eval=FALSE}
+# step 2
+ggplot(df_reading_levels) +
+  geom_boxplot(aes(x = GradeLevelEquivalent,
+                   color = RaceEthnicity))
+```
+
+One additional call is needed to force `ggplot()` to use the palette you specified earlier.
+
+```{r scale_color_manual, eval=FALSE}
+# step 2
+ggplot(df_reading_levels) +
+  geom_boxplot(aes(x = GradeLevelEquivalent,
+                   color = RaceEthnicity)) +
+  # other layers go here... +
+  # step 3
+  scale_color_manual(values = race_ethnicity_legend,
+                     drop = FALSE) +
+  labs(color = "Race / Ethnicity")
+```
+
+The `scale_color_manual()` call will accept the vector of colors specified earlier in `values`, and `drop = FALSE` forces the legend to show all possible values and colors of `race_ethnicity_legend`, regardless if they appear in the `RaceEthnicity` column. (If the aesthetic if `fill`, then use `scale_fill_manual(values = race_ethnicity_legend, drop = FALSE)`, and so on).
+
+The default legend title is to use the column name. However, the `labs()` call *relabels* the legend title for the `color` aesthetic to "Race / Ethnicity". (If the aesthetic is `fill`, then use `labs(fill = "Race / Ethnicity")`, and so on).
+
 
 ### Typography
 
