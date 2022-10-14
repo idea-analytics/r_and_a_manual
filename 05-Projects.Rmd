@@ -556,6 +556,16 @@ If your dashboard was created in Power BI and you want to directly publish your 
 
 ### Team Site (TheHub)
 
+#### Update Team Site Annual Evaluation Plans
+
+The Team Site Documents folder holds files we upload to the Team Site.
+
+For annual evaluation plans published to the [Team Site (TheHub)][Team Site (TheHub)], only the publication files are stored in the Team Site Documents folder > Evaluation > Evaluation Plans > FY 20## for organization and consistency purposes. 
+
+On an annual basis, save a copy of the final evaluation plan to the Team Site Documents folder and select for upload to the R&A Team Site.
+
+The [Team Site (TheHub)][Team Site (TheHub)] and 
+Team Site Documents folder are not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
 
 
 ## Specific Projects
