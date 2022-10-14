@@ -1245,9 +1245,11 @@ Students with significant cognitive disabilities take the LEAP Connect (Alternat
 
 English learners from K-12 take the English Language Proficiency test (ELPT).
 
-LEAP test results summarized by school and grade level can be downloaded from the Louisiana Department of Education website (https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance, file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
+LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
 
 The downloaded workbook has tabs for each grade level and a tab for high school. Filter the spreadsheet for the IDEA schools in LA. Use the expected number of students to participate and the participation rate columns to calculate the actual number of students who participated. To calculate the percentage of students who passed each subject, add the percentage of students who scored at the Advanced, Mastery, and Basic levels.
+
+#### Student level LEAP
 
 If you need to have student level LEAP data, you can access 3-8 assessment results here:
 (To be continued)
