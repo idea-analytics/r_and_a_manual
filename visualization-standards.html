@@ -105,13 +105,49 @@
 <li>
 <strong>White:</strong> idea_colors$coolgray (#626363)</li>
 </ul>
+<p>Suppose your data frame, <code>df_reading_levels</code>, contains information about Academy students’ grade-level reading equivalents <code>GradeLevelEquivalent</code> with race and ethnicity in the <code>RaceEthnicity</code> column. To create a visualization of reading levels using the custom palette, you’ll need to code the palette in three places:</p>
+<ol style="list-style-type: decimal">
+<li>as a vector of colors, outside of the plotting function</li>
+<li>as an aesthetic, inside the initial plotting call</li>
+<li>as a value, inside a manual scale function</li>
+</ol>
+<p>Let’s define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 1</span></span>
+<span><span class="va">race_ethnicity_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"American Indian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">melon</span>,</span>
+<span>                           <span class="st">"Asian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">cyan</span>,</span>
+<span>                           <span class="st">"Black"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">magenta</span>,</span>
+<span>                           <span class="st">"Hispanic"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">blue</span>,</span>
+<span>                           <span class="st">"Other"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">yellow</span>,</span>
+<span>                           <span class="st">"Pacific Islander"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">darkblue</span>,</span>
+<span>                           <span class="st">"Two or more races"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">lime</span>,</span>
+<span>                           <span class="st">"White"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">coolgray</span><span class="op">)</span></span></code></pre></div>
+<p>Then, inside a <code>geom_*()</code> layer, assign the appropriate column <code>RaceEthnicity</code> to the appropriate aesthetic <code>aes()</code>. (Depending on your visualization, the aesthetic might be <code>fill</code>, <code>shape</code>, etc.).</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 2</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
+<span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>One additional call is needed to force <code>ggplot()</code> to use the palette you specified earlier.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 2</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
+<span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># other layers go here... +</span></span>
+<span>  <span class="co"># step 3</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="va">race_ethnicity_legend</span>,</span>
+<span>                     drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Race / Ethnicity"</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>scale_color_manual()</code> call will accept the vector of colors specified earlier in <code>values</code>, and <code>drop = FALSE</code> forces the legend to show all possible values and colors of <code>race_ethnicity_legend</code>, regardless if they appear in the <code>RaceEthnicity</code> column. (If the aesthetic if <code>fill</code>, then use <code>scale_fill_manual(values = race_ethnicity_legend, drop = FALSE)</code>, and so on).</p>
+<p>The default legend title is to use the column name. However, the <code>labs()</code> call <em>relabels</em> the legend title for the <code>color</code> aesthetic to “Race / Ethnicity”. (If the aesthetic is <code>fill</code>, then use <code>labs(fill = "Race / Ethnicity")</code>, and so on).</p>
 </div>
 <div id="typography" class="section level3">
 <h3>
 <span class="header-section-number">7.1.3</span> Typography<a class="anchor" aria-label="anchor" href="#typography"><i class="fas fa-link"></i></a>
 </h3>
 <p>The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("showtext")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span></span>
 <span></span>
