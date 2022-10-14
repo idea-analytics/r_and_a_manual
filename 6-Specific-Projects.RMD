@@ -16,7 +16,10 @@ Our work on specific projects may be stored in different places depending on the
 
 ### R&A Private Group
 
-The R&A Private Group documents folder provides a convenient and accessible storage place for all R&A team members to access shared folders and documents. Highly useful for projects that require multiple team members, Communication and collaboration.  
+The R&A Private Group documents folder provides a convenient and accessible storage place for all R&A team members to access shared folders and documents. Highly useful for projects that require multiple team members, storing and accessing files the private group folder helps to ensure  consistency and continuity of work. 
+
+The R&A Private Group documents folder is not to be confused with the [Team Site (TheHub)][Team Site (TheHub)] or the [Team Site (TheHub)][Team Site (TheHub)] documents folder. 
+
 
 ## Evaluations
 
