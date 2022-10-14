@@ -121,6 +121,7 @@ publishing-projects
 rstudio-connect
 power-bi
 team-site-thehub
+update-team-site-annual-evaluation-plans
 specific-projects
 teacher-hiring-and-tcp
 jobvite-data-1
