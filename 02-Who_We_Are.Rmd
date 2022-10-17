@@ -39,4 +39,20 @@ Before working at IDEA, Ilissa taught high school chemistry in the RGV before ea
 
 
 ### Marlena Coco, PhD
-Dr. Marlena Coco is an Evaluator on the R&A Team with over 15 years of experience in education and higher education. She earned a PhD in Higher Education Leadership and Research Methodology at Florida Atlantic University, MA in College Student Development at St. Edward’s University, and BS in Psychology at UT-Austin. She teaches undergraduate and graduate courses, chairs doctoral students dissertation research, reviews articles for journal publication, provides education consulting services, and conducts strengths-based leadership development. In previous roles, she led research, evaluation, and data support for college and career readiness at a large, urban school district, implemented district wide surveys, and analyzed postsecondary retention and academic support data at multiple universities. She evaluates Charter School Program grants.
+Dr. Marlena Coco is an Evaluator on the R&A Team with over 15 years of experience in education and higher education. She earned a PhD in Higher Education Leadership and Research Methodology at Florida Atlantic University, MA in College Student Development at St. Edward’s University, and BS in Psychology at UT-Austin. She teaches undergraduate and graduate courses, chairs doctoral students dissertation research, reviews articles for journal publication, provides education consulting services, and conducts strengths-based leadership development. In previous roles, she led research, evaluation, and data support for college and career readiness at a large, urban school district, implemented district wide surveys, and analyzed post secondary retention and academic support data at multiple universities. She evaluates Charter School Program grants.
+
+## What we've contributed
+
+Our team has among it's annual goals the following:
+
+> Each R&A Team member will create 6 entries in the R&A Manual between July 1, 2022 and June 30, 2023; entries can include documentation of methods, data access, data definitions, projects, or insights.
+
+The [Shiny app embedded below](https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/) allows us to track those contributions during the year. 
+
+It includes a simple interactive ggplot graph ([made interqactive by the most excellent `{ggiraph}` package ](https://davidgohel.github.io/ggiraph/)) as a well as a table with some more info about about each merged pull request. Note that clicking on the hyperlinked pull request number will take you to the the diff page on Github for the merged pull request. 
+
+
+```{r, out.width="150%", echo=FALSE, fig.align='left'}
+knitr::include_app("https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/")
+```
+
