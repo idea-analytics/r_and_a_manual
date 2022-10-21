@@ -1240,9 +1240,9 @@ get_table(.table_name = "StudentScores",
 ### LEAP
 
 Louisiana Educational Assessment Program (LEAP)
-The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven. 
-Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
+The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
 
+Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
 English learners from K-12 take the English Language Proficiency test (ELPT).
 
 LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
@@ -1251,10 +1251,21 @@ The downloaded workbook has tabs for each grade level and a tab for high school.
 
 #### Student level LEAP
 
-If you need to have student level LEAP data, you can access 3-8 assessment results here:
-(To be continued)
+If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the excel spreadsheet to see the data.
 
-
+Useful Fields:
+•	SchoolNbr
+•	SchoolName
+•	LASID
+•	Grade
+•	ELAVoidFlag
+•	ELAAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	MathVoidFlag
+•	MathAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	SocialVoidFlag
+•	SocialAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	ScienceVoidFlag
+•	ScienceAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
 
 ## Student Course Grades
 
