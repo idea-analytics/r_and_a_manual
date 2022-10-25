@@ -4,17 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 9 Tips and Tricks | IDEA R&amp;A Manual</title>
+<title>Chapter 10 Tips and Tricks | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
-<meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  9.1...">
+<meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
 <meta name="generator" content="bookdown 0.29 with bs4_book()">
-<meta property="og:title" content="Chapter 9 Tips and Tricks | IDEA R&amp;A Manual">
+<meta property="og:title" content="Chapter 10 Tips and Tricks | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/tips-and-tricks.html">
-<meta property="og:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  9.1...">
+<meta property="og:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 9 Tips and Tricks | IDEA R&amp;A Manual">
-<meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  9.1...">
+<meta name="twitter:title" content="Chapter 10 Tips and Tricks | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -50,12 +50,12 @@
 <li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
-<li><a class="" href="coding-standards.html"><span class="header-section-number">6</span> Coding Standards</a></li>
-<li><a class="" href="visualization-standards.html"><span class="header-section-number">7</span> Visualization Standards</a></li>
-<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
-<li><a class="active" href="tips-and-tricks.html"><span class="header-section-number">9</span> Tips and Tricks</a></li>
+<li><a class="" href="specific-projects-1.html"><span class="header-section-number">6</span> Specific Projects</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">7</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">8</span> Visualization Standards</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">9</span> Models and Methods</a></li>
+<li><a class="active" href="tips-and-tricks.html"><span class="header-section-number">10</span> Tips and Tricks</a></li>
 <li><a class="" href="references.html">References</a></li>
-<li><a class="" href="specific-projects-1.html"><span class="header-section-number">10</span> Specific Projects</a></li>
 </ul>
 
         <div class="book-extra">
@@ -65,16 +65,16 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tips-and-tricks" class="section level1">
 <h1>
-<span class="header-section-number">9</span> Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10</span> Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"><i class="fas fa-link"></i></a>
 </h1>
 <p>This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.</p>
 <div id="data-processing" class="section level2">
 <h2>
-<span class="header-section-number">9.1</span> Data processing<a class="anchor" aria-label="anchor" href="#data-processing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> Data processing<a class="anchor" aria-label="anchor" href="#data-processing"><i class="fas fa-link"></i></a>
 </h2>
 <div id="de-duplicating-rows-in-a-table." class="section level3">
 <h3>
-<span class="header-section-number">9.1.1</span> De-duplicating rows in a table.<a class="anchor" aria-label="anchor" href="#de-duplicating-rows-in-a-table."><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.1</span> De-duplicating rows in a table.<a class="anchor" aria-label="anchor" href="#de-duplicating-rows-in-a-table."><i class="fas fa-link"></i></a>
 </h3>
 <p>There are two general purpose design patterns for de-duplicating rows in a table in either R or SQL.</p>
 <ol style="list-style-type: decimal">
@@ -93,7 +93,7 @@
 </div>
 <div id="hierarchical-aggregation-or-the-list-group_by-trick" class="section level3">
 <h3>
-<span class="header-section-number">9.1.2</span> Hierarchical aggregation, or the <code>list-group_by</code> trick<a class="anchor" aria-label="anchor" href="#hierarchical-aggregation-or-the-list-group_by-trick"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.2</span> Hierarchical aggregation, or the <code>list-group_by</code> trick<a class="anchor" aria-label="anchor" href="#hierarchical-aggregation-or-the-list-group_by-trick"><i class="fas fa-link"></i></a>
 </h3>
 <p>Schools data, especially student-level data, is embedded in hierarchical groupings.</p>
 <p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is smoothed, seasonally adjusted measure of the typical home value and market changes across a given region It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
@@ -134,7 +134,7 @@
 <span>  caption <span class="op">=</span> <span class="st">'first 10 rows of Zillow Home Value Index data'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:read-zillow">Table 9.1: </span>first 10 rows of Zillow Home Value Index data</caption>
+<span id="tab:read-zillow">Table 10.1: </span>first 10 rows of Zillow Home Value Index data</caption>
 <colgroup>
 <col width="3%">
 <col width="3%">
@@ -1342,7 +1342,7 @@
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/zillow_graph-1.png" width="672"></div>
 <div id="saving-grouping-info" class="section level4">
 <h4>
-<span class="header-section-number">9.1.2.1</span> Saving grouping info<a class="anchor" aria-label="anchor" href="#saving-grouping-info"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.2.1</span> Saving grouping info<a class="anchor" aria-label="anchor" href="#saving-grouping-info"><i class="fas fa-link"></i></a>
 </h4>
 <p>Another trick is to save the <code>group_by</code> info that you are passing with the grouped data.frame into a column. Here’s an example:</p>
 <div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
@@ -2510,34 +2510,34 @@
 </div>
 <div id="creating-scaffolds-when-joining-data." class="section level3">
 <h3>
-<span class="header-section-number">9.1.3</span> Creating “Scaffolds” when joining data.<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data."><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.3</span> Creating “Scaffolds” when joining data.<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data."><i class="fas fa-link"></i></a>
 </h3>
 <p>Coming Soon. . .</p>
 </div>
 </div>
 <div id="statistical-pitfalls" class="section level2">
 <h2>
-<span class="header-section-number">9.2</span> Statistical pitfalls<a class="anchor" aria-label="anchor" href="#statistical-pitfalls"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2</span> Statistical pitfalls<a class="anchor" aria-label="anchor" href="#statistical-pitfalls"><i class="fas fa-link"></i></a>
 </h2>
 <div id="simpsons-paradox" class="section level3">
 <h3>
-<span class="header-section-number">9.2.1</span> Simpson’s Paradox<a class="anchor" aria-label="anchor" href="#simpsons-paradox"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2.1</span> Simpson’s Paradox<a class="anchor" aria-label="anchor" href="#simpsons-paradox"><i class="fas fa-link"></i></a>
 </h3>
 <p>When identifying trends in a distribution, be careful of interpreting those trends, particularly when there is hierarchy involved in the population. The ranking, magnitude, and direction of the trends can reverse when conditioning on a certain level of a hierarchy. For example, STAAR achievement levels as a function of minutes on an individual learning program like Dreambox may not be significant at the district level, but could be significant when at the school or classroom level.</p>
 </div>
 <div id="bias-variance-tradeoff" class="section level3">
 <h3>
-<span class="header-section-number">9.2.2</span> Bias-variance tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.2.2</span> Bias-variance tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
 </h3>
 </div>
 </div>
 <div id="troubleshooting-messages-and-errors" class="section level2">
 <h2>
-<span class="header-section-number">9.3</span> Troubleshooting messages and errors<a class="anchor" aria-label="anchor" href="#troubleshooting-messages-and-errors"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> Troubleshooting messages and errors<a class="anchor" aria-label="anchor" href="#troubleshooting-messages-and-errors"><i class="fas fa-link"></i></a>
 </h2>
 <div id="connection-to-the-dashboard" class="section level3">
 <h3>
-<span class="header-section-number">9.3.1</span> Connection to the dashboard<a class="anchor" aria-label="anchor" href="#connection-to-the-dashboard"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3.1</span> Connection to the dashboard<a class="anchor" aria-label="anchor" href="#connection-to-the-dashboard"><i class="fas fa-link"></i></a>
 </h3>
 <p>When working with ideadata in RStudio, issues with connecting to the servers and dashboards that host ideadata may occur. For example, warnings or errors may include Resetting connection to conn_Dashboard and/or environment server connections may show ptr as "&lt;pointer: (nil)&gt;.</p>
 <p>To resolve this issue, consider following:</p>
@@ -2564,27 +2564,27 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></div>
+<div class="prev"><a href="models-and-methods.html"><span class="header-section-number">9</span> Models and Methods</a></div>
 <div class="next"><a href="references.html">References</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tips-and-tricks"><span class="header-section-number">9</span> Tips and Tricks</a></li>
+<li><a class="nav-link" href="#tips-and-tricks"><span class="header-section-number">10</span> Tips and Tricks</a></li>
 <li>
-<a class="nav-link" href="#data-processing"><span class="header-section-number">9.1</span> Data processing</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#de-duplicating-rows-in-a-table."><span class="header-section-number">9.1.1</span> De-duplicating rows in a table.</a></li>
-<li><a class="nav-link" href="#hierarchical-aggregation-or-the-list-group_by-trick"><span class="header-section-number">9.1.2</span> Hierarchical aggregation, or the list-group_by trick</a></li>
-<li><a class="nav-link" href="#creating-scaffolds-when-joining-data."><span class="header-section-number">9.1.3</span> Creating “Scaffolds” when joining data.</a></li>
+<a class="nav-link" href="#data-processing"><span class="header-section-number">10.1</span> Data processing</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#de-duplicating-rows-in-a-table."><span class="header-section-number">10.1.1</span> De-duplicating rows in a table.</a></li>
+<li><a class="nav-link" href="#hierarchical-aggregation-or-the-list-group_by-trick"><span class="header-section-number">10.1.2</span> Hierarchical aggregation, or the list-group_by trick</a></li>
+<li><a class="nav-link" href="#creating-scaffolds-when-joining-data."><span class="header-section-number">10.1.3</span> Creating “Scaffolds” when joining data.</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#statistical-pitfalls"><span class="header-section-number">9.2</span> Statistical pitfalls</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#simpsons-paradox"><span class="header-section-number">9.2.1</span> Simpson’s Paradox</a></li>
-<li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">9.2.2</span> Bias-variance tradeoff</a></li>
+<a class="nav-link" href="#statistical-pitfalls"><span class="header-section-number">10.2</span> Statistical pitfalls</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simpsons-paradox"><span class="header-section-number">10.2.1</span> Simpson’s Paradox</a></li>
+<li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">10.2.2</span> Bias-variance tradeoff</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#troubleshooting-messages-and-errors"><span class="header-section-number">9.3</span> Troubleshooting messages and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">9.3.1</span> Connection to the dashboard</a></li></ul>
+<a class="nav-link" href="#troubleshooting-messages-and-errors"><span class="header-section-number">10.3</span> Troubleshooting messages and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">10.3.1</span> Connection to the dashboard</a></li></ul>
 </li>
 </ul>
 
@@ -2603,7 +2603,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-10-21.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-10-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
