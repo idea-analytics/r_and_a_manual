@@ -57,6 +57,14 @@ TBD things to know about this specific project.
 ### Teacher Hiring and TCP
 
 Copy/paste content here from 5.6.1
+Teacher Hiring is a project for the HA team to help inform selection processes for hiring teachers. This is an on-going project that started in Spring 20-21 with Anitra and has transferred over to Martin Winchester and Emily Neilson. There have been multiple rounds of correlations and modeling examining the relationship between 5 pre-determined pre-hire selection measures and teacher performance, as indicated and measured by TCP (level and composite score). The first round looked at regressions models with each separate pre-hire selection measure predicting TCP level/composite score, and then a model using all 5 pre-hire selection measures to predict TCP level/composite score. Next, a selection score was created by allotting points to the different selection measures, in accordance with the HA Team's guidelines on how various selection measures are scored. The models were rerun. In all cases, very little to no correlation or predictive power was found in these relationships. 
+
+
+The scope of this project in initial rounds was limited to only those who were hired, or in the Jobvite data column "Hire Y/N", Hire=Yes. Predictions of TCP scores could not be made for those applicants who were not hired.
+
+Later and current rounds have focused on ML techniques to do the modeling instead of limiting it to only linear regression and correlation matrices. Missingness of the data was a key issue in this decision. Over 50% of the data was not present in Jobvite, as candidates were not required to fill in all the sections nor all the pre-hire selection measures. These were left as optional. One recommendation of the R&A team was to require all sections to be completed by applicants on the Jobvite application and prior to hire, and then to collect and record this data. Another recommendation was to collect and record Writing Task Scores. 99% of those scores were not recorded, but this Writing Task was 12 points of the First Hurdle selection score in the selection process. For the Machine Learning applications, we have included all the missing data and coded it with it's own value, and then it was run through the ML algorithms. We were looking to see if "not filling in" certain information or all one's pre-hire selection measure data on the application had a relationship to poorer outcomes on TCP.
+
+Data was provided originally by Brittany Vasquez from the HA team, and from Alfredo from Tyler Munis.
 
 #### Jobvite Data
 
