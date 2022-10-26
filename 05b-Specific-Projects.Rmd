@@ -81,13 +81,27 @@ This is found on the TCP application, a website: [tcp.ideapublicschools.org]. To
 
 #### TCP Handbook
 
-Copy/paste content here from 5.6.1.3
 This is the link to the TCP Handbook, which denotes the business rules to advance throught the different TCP Levels, 1 through 5. https://ideapublicschools.org/wp-content/uploads/2021/08/TCP-Revised-Rubrics-2020-2021.Sept_.25.2020.pdf
 
 
 #### Teacher Interviews/Teacher Manager Interviews
 
-Copy/paste content here from 5.6.1.4
 A job analysis is being conducted to try to find job-relatedness for functions conducted in the teacher role, as well as to help identify pre-hire selection measures for the HA team to help with the selection process. This involves a series of neutrally-phrased questions to illicit reponses about the teacher role, what a teacher does, what makes a successful IDEA teacher, what characteristics a teacher needs to succeed at IDEA. Both teachers and teacher-managers (principals, PIRs, and APIs) are being interviewed to collect this qualitative data set. These should be completed by Fall 2022 SY.
 
+### First Year Teacher Project
+This was a project for HA. Malinda Hardy and Martin Winchester headed it as our partners in HA. IT was started in Fall 21, for the 21-22 SY. The research question examined was "How do first-year teachers do compared to teachers with other tenure on student achievement?". To examine this question, we obtained the Semester Exam data for 20-21 SY and ran our models. The 21-22 SY data was not out at the time, so we set up the coding and models so that later we could just plug in the 21-22 SY data when it was available. We plugged in this data  in Spring 22, when it was available in late January/early February. Visuals including box plots were created to show the median pass rate per teacher. First, boxes were broken into two categories: 1st year teacher and non-first-year teacher. There was little difference in the median pass rates (pass rates meant the student had achieved Approaches, Meets, or Masters on the semester exam, taken at the end of the 21-22 SY Fall Semester). Next, 6 gropus were created and compared: 1st year, 2nd year, 3rd year, 4th year, and 5th+ year (anyone was 5 years or more in tenure at IDEA). There was also little difference in the median pass rates, for both 20-21 SY and 21-22 SY. One reason could be because everyone, regardless of tenure at IDEA was a "first year teacher online" for remote teaching, during the pandemic. 
 
+#### 3 Years of Data Used in Analysis
+
+In subsequent rounds, the 19-20 SY data was looked at for semester exams and compared to 20-21 SY and 21-22 SY. Since students took their 19-20 SY semester exams in the Fall semester of that academic year, they took them before the pandemic and the lock-down (which happened in Spring 2020). Hence, this is "pre-pandemic" data. This data did show slight differences in the median pass rates between first year and other years of teaching, namely, 3rd, 4th, and 5th years of teaching.
+
+The analysis further looked at individual subjects (ELA, Math, Science, History-Social Studies, Foreign Language, and Technology). Those six subjects were chosen because they all take semester exams. There were individual differences depending on which subject was examined. The analysis also looked at College Prep vs. Academy, and looked at the results by Region (showing the results for each campus within the respective region).
+
+Results were presented to Malinda Hardy via PowerPoint by Maura and for some rounds, Steven. There were 4 rounds and each round was added to the same PowerPoint presentation. 
+
+#### Project Transfered to Ann Heller
+
+This project has been transfered over to Ann Heller because Melinda is leaving and Ann is taking over the New Teacher Institute. This transfer happened in late May/Early June 2022, and Ann has no research questions for us at this time after giving her a short PowerPoint presentation overview of the prior 4 rounds. She may come back in the Fall/October 2022 with more questions.
+
+### Math Curriculum Redesign
+This project was examining the differences between student achievement for pilot vs. non-pilot schools, for a new math curriculum that is being implemented. The pilot was not set up at-random, and project design was not created by R&A. It was challenging to find meaningful results because it was hard to tease apart the impacts of particular things on student achievement. It was difficult to know if a change in test scores was due to the new curriculum or something else. The results showed that although the test scores may not have been significantly different/better for pilot than the non-pilot schools, the pilot schools lowest scores were not as low as the non-pilot schools. In effect, the pilot schools did not do worse in terms of the lowest scores, so we could likely say the the new math curriculum was not harming the students (although it was hard to say if it was helping). We may revisit this project for AP classes and help our partners design the pilots and project design for the next round, which will hopefully support getting more meaningful results from the analysis.
