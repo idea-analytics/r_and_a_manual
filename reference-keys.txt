@@ -154,6 +154,10 @@ jobvite-data-2
 teacher-export-data-1
 tcp-handbook-1
 teacher-interviewsteacher-manager-interviews-1
+first-year-teacher-project-1
+years-of-data-used-in-analysis-1
+project-transfered-to-ann-heller-1
+math-curriculum-redesign-project
 coding-standards
 file-naming-standards.
 visualization-standards
