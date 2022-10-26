@@ -125,7 +125,7 @@ publishing-projects
 rstudio-connect
 power-bi
 team-site-thehub
-update-team-site-annual-evaluation-plans
+published-evaluation-plans
 specific-projects
 we-could-move-content
 file-storage
