@@ -48,6 +48,25 @@ R&A conducts evaluation work for two CSP grants:
 
 CSP Grant 2017-2022 evaluation work was conducted by a contracted agency.
 
+See also Section \@ref{#csi_tables}
+
+Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants. The main metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention
+
+CSP grant applications provide general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies.
+
+* **CSP Schools and Regions**
+CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
+
+* **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
+
+* **Schools:** List schools. 
+
+* **CSP Evaluation Question 1:** insert question here. 
+
+To address the first question, the IDEA model and its components needed to be identified. 
+
+
+
 ### Teacher and School Leader Incentive Program (TSLIP)
 
 TBD things to know about this specific project.
