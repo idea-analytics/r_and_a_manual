@@ -139,5 +139,7 @@ This project has been transferred over to Ann Heller because Melinda is leaving 
 This project was examining the differences between student achievement for pilot vs. non-pilot schools, for a new math curriculum that is being implemented. The pilot was not set up at-random, and project design was not created by R&A. It was challenging to find meaningful results because it was hard to tease apart the impacts of particular things on student achievement. It was difficult to know if a change in test scores was due to the new curriculum or something else. The results showed that although the test scores may not have been significantly different/better for pilot than the non-pilot schools, the pilot schools lowest scores were not as low as the non-pilot schools. In effect, the pilot schools did not do worse in terms of the lowest scores, so we could likely say the the new math curriculum was not harming the students (although it was hard to say if it was helping). We may revisit this project for AP classes and help our partners design the pilots and project design for the next round, which will hopefully support getting more meaningful results from the analysis.
 
 
+### Team Value Proposition Project
 
+August to October 2022, R&A conducted multiple methods of analyses on data collected by the HA team to provide greater understanding about the depth and breadth of employees' attitudes, beliefs, experiences, and perceptions about working at IDEA. 
 
