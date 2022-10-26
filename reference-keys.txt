@@ -135,9 +135,10 @@ annual-evaluation-projects
 st-century-afterschool-program
 camp-rio-1
 charter-school-program-csp-grants
+ad-hoc-evaluation-projects
 teacher-and-school-leader-incentive-program-tslip
 other-specific-projects
-teacher-hiring-and-tcp
+teacher-hiring-and-tcp-project
 jobvite-data-1
 teacher-export-data
 tcp-handbook
@@ -146,6 +147,7 @@ first-year-teacher-project
 years-of-data-used-in-analysis
 project-transfered-to-ann-heller
 math-curriculum-redesign-project
+team-value-proposition-project
 coding-standards
 file-naming-standards.
 visualization-standards
