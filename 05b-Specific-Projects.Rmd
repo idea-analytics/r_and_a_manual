@@ -77,6 +77,8 @@ This data has columns including Candidate Full Name, Candidate Email (personal e
 #### Teacher Export Data
 
 Copy/paste content here from 5.6.1.2
+This is found on the TCP application, a website: [tcp.ideapublicschools.org]. To gain access, contact Nohemi Pizana and request access. Use your IDEA login credentials to access the site. Teacher Export reports have the composite score, placement level, subject, job title, employee ID, and a few pre-selection hiring measures.
+
 
 #### TCP Handbook
 
