@@ -127,11 +127,11 @@ power-bi
 team-site-thehub
 published-evaluation-plans
 specific-projects
-we-could-move-content
-file-storage
+store-and-share
 ra-private-group
-evaluations
+evaluation-projects-1
 evaluation-plans
+annual-evaluation-projects
 st-century-afterschool-program
 camp-rio-1
 charter-school-program-csp-grants
