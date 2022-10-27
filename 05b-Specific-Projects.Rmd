@@ -22,7 +22,7 @@ The R&A Private Group documents folder is not to be confused with the [Team Site
 
 ## Evaluation Projects
 
-The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&A conducts evaluation work for ad hoc evaluations and specific topics and projects as needed and by request. 
+The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&A conducts evaluation work for ad hoc evaluations and specific projects as needed and by request. 
 
 
 ### Evaluation Plans 
@@ -95,7 +95,6 @@ More information to come later.
 ### Teacher Hiring and TCP Project
 
 Teacher Hiring is a project for the HA team to help inform selection processes for hiring teachers. This is an on-going project that started in Spring 20-21 with Anitra and has transferred over to Martin Winchester and Emily Neilson. There have been multiple rounds of correlations and modeling examining the relationship between 5 pre-determined pre-hire selection measures and teacher performance, as indicated and measured by TCP (level and composite score). The first round looked at regressions models with each separate pre-hire selection measure predicting TCP level/composite score, and then a model using all 5 pre-hire selection measures to predict TCP level/composite score. Next, a selection score was created by allotting points to the different selection measures, in accordance with the HA Team's guidelines on how various selection measures are scored. The models were rerun. In all cases, very little to no correlation or predictive power was found in these relationships. 
-
 
 The scope of this project in initial rounds was limited to only those who were hired, or in the Jobvite data column "Hire Y/N", Hire=Yes. Predictions of TCP scores could not be made for those applicants who were not hired.
 
