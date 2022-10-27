@@ -50,6 +50,24 @@ The Afterschool Program evaluation plan for school year 2022-2023 can be found [
 
 More information to come later.
 
+Student participation in the Afterschool program is tracked in PowerSchool and then pulled into the R&A data warehouse server. The program coordinators track the programs that the students participate in and if they have participated for more that 45 days. Students that participate 45 days or more are classified as "Regular Participants". Student that participate for fewer than 45 days are classified as "Non-Regular Participants".
+
+**Database:** [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students]
+
+**Important columns:**
+
+* **[FIRST_NAME]:** Student First Name
+* **[LAST_NAME]:** Student Last Name
+* **[STUDENT_NUMBER]:** Student local ID number (108 number)
+* **[ACADEMIC_SUPPORT]:** Participation in academic support programs (0/1 indicator)
+* **[COLLEGE_CAREER_READINESS]:** Participation in College and Career Readiness programs (0/1 indicator)
+* **[FAMILY_ENGAGEMENT]:** Participation in Family Engagement programs (0/1 indicator)
+* **[ENRICHMENT]:** Participation in Enrichment programs (0/1 indicator)
+* **[WHENCREATED]:** Date when the record was created
+* **[WHENMODIFIED]:** Date when the record was modified
+
+A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.
+
 #### Camp Rio
 
 TBD things to know about this evaluation project.
@@ -72,6 +90,13 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 * **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
 
 * **Schools:** List schools. 
+
+Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
+
+* **School Opening Grade Exceptions:** 
+* Price Hill opened with 6th and 7th at the CP level
+* Converse opened with PK, K, and 1st at the Academy level
+* Hidden Meadow opened with PK, K, and 1st at the Academy level
 
 * **CSP Evaluation Questions:** insert question here. 
 
