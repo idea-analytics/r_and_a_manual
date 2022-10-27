@@ -110,6 +110,30 @@
 <p>During the 2021-2022 school year, the majority of IDEA schools implementing the Afterschool Program were funded by the 10th cycle of the 21st Century grant or by the Elementary and Secondary School Emergency Relief Fund (ESSER). These schools were located in the South Texas and Rio Grande Valley and served students from pre-K through 12th grade. The following campuses were funded by the 21st Century grant: IDEA Alamo, IDEA Donna, IDEA Frontier, IDEA McAllen, IDEA Mission, IDEA Pharr, IDEA Quest, IDEA San Benito, IDEA San Juan, and IDEA Weslaco. The following campuses were covered by ESSER funds: IDEA Brownsville, IDEA Edinburg, IDEA Elsa, IDEA Harlingen, IDEA La Joya, IDEA Los Encinos, IDEA North Mission, IDEA Owassa, IDEA Palmview, IDEA Rio Grande City, IDEA Robindale, IDEA Riverview, IDEA Sports Park, IDEA Toros, IDEA Tres Lagos, IDEA Weslaco Pike. In addition, IDEA Health Professions was funded by the Department of Education and IDEA Innovation was funded by the Louisiana Department of Education.</p>
 <p>The Afterschool Program evaluation plan for school year 2022-2023 can be found <a href="https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/EezZf9Bi5y5MpSGLsz5mzGoBRKe6kiUfvGiHdBpGG7KQzg?e=xMZGZg">here</a>. The 2021-2022 program evaluation annual report can be found <a href="https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/EfjTPNC0hG5ChfbgFsVdILUBEIyWU2KQ252cdCSpb0qNIA?e=0QpEQO">here</a>.</p>
 <p>More information to come later.</p>
+<p>Student participation in the Afterschool program is tracked in PowerSchool and then pulled into the R&amp;A data warehouse server. The program coordinators track the programs that the students participate in and if they have participated for more that 45 days. Students that participate 45 days or more are classified as “Regular Participants”. Student that participate for fewer than 45 days are classified as “Non-Regular Participants”.</p>
+<p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students]</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[FIRST_NAME]:</strong> Student First Name</li>
+<li>
+<strong>[LAST_NAME]:</strong> Student Last Name</li>
+<li>
+<strong>[STUDENT_NUMBER]:</strong> Student local ID number (108 number)</li>
+<li>
+<strong>[ACADEMIC_SUPPORT]:</strong> Participation in academic support programs (0/1 indicator)</li>
+<li>
+<strong>[COLLEGE_CAREER_READINESS]:</strong> Participation in College and Career Readiness programs (0/1 indicator)</li>
+<li>
+<strong>[FAMILY_ENGAGEMENT]:</strong> Participation in Family Engagement programs (0/1 indicator)</li>
+<li>
+<strong>[ENRICHMENT]:</strong> Participation in Enrichment programs (0/1 indicator)</li>
+<li>
+<strong>[WHENCREATED]:</strong> Date when the record was created</li>
+<li>
+<strong>[WHENMODIFIED]:</strong> Date when the record was modified</li>
+</ul>
+<p>A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.</p>
 </div>
 <div id="camp-rio-1" class="section level4">
 <h4>
@@ -132,6 +156,13 @@
 CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions.</p></li>
 <li><p><strong>Regions:</strong> Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.</p></li>
 <li><p><strong>Schools:</strong> List schools.</p></li>
+</ul>
+<p>Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model.</p>
+<ul>
+<li><p><strong>School Opening Grade Exceptions:</strong></p></li>
+<li><p>Price Hill opened with 6th and 7th at the CP level</p></li>
+<li><p>Converse opened with PK, K, and 1st at the Academy level</p></li>
+<li><p>Hidden Meadow opened with PK, K, and 1st at the Academy level</p></li>
 <li><p><strong>CSP Evaluation Question 1:</strong> insert question here.</p></li>
 </ul>
 <p>To address the first question, the IDEA model and its components needed to be identified.</p>
