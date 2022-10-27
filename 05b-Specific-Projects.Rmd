@@ -22,7 +22,7 @@ The R&A Private Group documents folder is not to be confused with the [Team Site
 
 ## Evaluation Projects
 
-The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&A conducts evaluation work for ad hoc evaluations and specific topics and projects as needed and by request. 
+The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&A conducts evaluation work for ad hoc evaluations and specific projects as needed and by request. 
 
 
 ### Evaluation Plans 
@@ -70,21 +70,19 @@ A flag was added at the beginning of the 2022-2023 school year to indicate if th
 
 #### Camp Rio
 
-TBD things to know about this specific project.
+TBD things to know about this evaluation project.
 
 
 #### Charter School Program (CSP) Grants
 
-R&A conducts evaluation work for two CSP grants:
+R&A conducts internal evaluation work for two CSP grants:
 1) CSP Grants 2019-2024 and 2) CSP Grants 2020-2025. 
 
 CSP Grant 2017-2022 evaluation work was conducted by a contracted agency.
 
-See also Section \@ref{#csi_tables}
+Charter School Program (CSP) grants awarded to IDEA Public Schools provide funds for replication and expansion of new IDEA schools. Replication refers to launching new schools. Expansion refers to scaling new schools. 
 
-Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants. The main metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention
-
-CSP grant applications provide general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies.
+CSP grant applications were submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention.
 
 * **CSP Schools and Regions**
 CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
@@ -100,18 +98,21 @@ Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academ
 * Converse opened with PK, K, and 1st at the Academy level
 * Hidden Meadow opened with PK, K, and 1st at the Academy level
 
-* **CSP Evaluation Question 1:** insert question here. 
+* **CSP Evaluation Questions:** insert question here. 
 
 To address the first question, the IDEA model and its components needed to be identified. 
 
+* **CSP IDEA Model:**
 
-### Ad Hoc Evaluation Projects
-
+More information to come later. 
 
 
 #### Teacher and School Leader Incentive Program (TSLIP)
 
-TBD things to know about this specific project.
+More information to come later.
+
+
+### Ad Hoc Evaluation Projects
 
 
 ## Other Specific Projects
@@ -119,7 +120,6 @@ TBD things to know about this specific project.
 ### Teacher Hiring and TCP Project
 
 Teacher Hiring is a project for the HA team to help inform selection processes for hiring teachers. This is an on-going project that started in Spring 20-21 with Anitra and has transferred over to Martin Winchester and Emily Neilson. There have been multiple rounds of correlations and modeling examining the relationship between 5 pre-determined pre-hire selection measures and teacher performance, as indicated and measured by TCP (level and composite score). The first round looked at regressions models with each separate pre-hire selection measure predicting TCP level/composite score, and then a model using all 5 pre-hire selection measures to predict TCP level/composite score. Next, a selection score was created by allotting points to the different selection measures, in accordance with the HA Team's guidelines on how various selection measures are scored. The models were rerun. In all cases, very little to no correlation or predictive power was found in these relationships. 
-
 
 The scope of this project in initial rounds was limited to only those who were hired, or in the Jobvite data column "Hire Y/N", Hire=Yes. Predictions of TCP scores could not be made for those applicants who were not hired.
 
