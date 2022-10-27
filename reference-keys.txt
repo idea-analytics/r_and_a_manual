@@ -191,6 +191,8 @@ getting-basic-data
 searching-for-variables
 chloropleth
 dot-density
+qualitative-tools
+maxqda
 tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
