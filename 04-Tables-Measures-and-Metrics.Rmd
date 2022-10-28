@@ -1303,6 +1303,16 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 
 ## Teacher, Staff, and Hiring Data
 
+### Tyler Munis data
+
+Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's Step, salary, pay rate, pay schedule, lastest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
+
+Currently, this data is being used for the Teacher Tenure project for Martin Winchester and HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
+
+22-23 SY Steps for Teachers range from 0 to 35, consecutively, but skipping 32 and 34. Some teachers have NA for their Step. A Step of "0" indicates no prior experience teaching before being hired at IDEA. A step of "1+" indicates prior experience if it is the teacher's first year at IDEA, or it indicates experience at IDEA, if it is not the teacher's first year at IDEA.
+
+The employee data can be queried and pulled into a csv, excluding direct information about Social Security Numbers and Salary (per the NDA Maura signed).
+
 ### Compass data
 
 [Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
