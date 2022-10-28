@@ -78,7 +78,7 @@
 </h3>
 <p>The <code>ideacolors</code> package is used in conjunction with <code>ggplot2</code> to produce graphs and visualizations consistent with the primary and secondary brand color schemes. For more information, consult the <code>ideacolors</code> <a href="https://idea-analytics.github.io/ideacolors/">documentation</a>.</p>
 <p>To install the package, use the following code:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"idea-analytics/ideacolors"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -112,7 +112,7 @@
 <li>as a value, inside a manual scale function</li>
 </ol>
 <p>Let’s define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 1</span></span>
 <span><span class="va">race_ethnicity_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"American Indian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">melon</span>,</span>
 <span>                           <span class="st">"Asian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">cyan</span>,</span>
@@ -123,13 +123,13 @@
 <span>                           <span class="st">"Two or more races"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">lime</span>,</span>
 <span>                           <span class="st">"White"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">coolgray</span><span class="op">)</span></span></code></pre></div>
 <p>Then, inside a <code>geom_*()</code> layer, assign the appropriate column <code>RaceEthnicity</code> to the appropriate aesthetic <code>aes()</code>. (Depending on your visualization, the aesthetic might be <code>fill</code>, <code>shape</code>, etc.).</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 2</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
 <span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>One additional call is needed to force <code>ggplot()</code> to use the palette you specified earlier.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 2</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
@@ -147,7 +147,7 @@
 <span class="header-section-number">8.1.3</span> Typography<a class="anchor" aria-label="anchor" href="#typography"><i class="fas fa-link"></i></a>
 </h3>
 <p>The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("showtext")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span></span>
 <span></span>

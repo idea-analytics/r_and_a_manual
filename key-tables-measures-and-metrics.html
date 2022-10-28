@@ -1525,6 +1525,34 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <li>Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)</li>
 </ol>
 </div>
+<div id="useful-queries" class="section level4">
+<h4>
+<span class="header-section-number">4.8.6.3</span> Useful queries<a class="anchor" aria-label="anchor" href="#useful-queries"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose we wanted to retreive the most recent IB scores.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ACADEMIC_YEAR</span> <span class="op">&lt;-</span> <span class="st">"2021-2022"</span></span>
+<span></span>
+<span><span class="va">df_ib</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"IBScores"</span>,</span>
+<span>          .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWPRD2"</span>,</span>
+<span>          .database_name <span class="op">=</span> <span class="st">"PROD2"</span>,</span>
+<span>          .schema <span class="op">=</span> <span class="st">"Assessments"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AcademicYear</span> <span class="op">==</span> <span class="va">ACADEMIC_YEAR</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>CourseName <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Level</span> <span class="op">==</span> <span class="st">"EE"</span>, <span class="st">"Extended Essay"</span>, <span class="va">CourseName</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Note that Extended Essay is not a course, but has course names printed in the [CourseName] column. This will prevent unintentional aggregation if grouping by [CourseName].</p>
+<p>To aggregate final IB scores, note the grading scheme:</p>
+<ul>
+<li>Groups 1-6 subjects use a numeric grade.</li>
+<li>TOK and EE use a letter grade.</li>
+</ul>
+<p>Thus, the [Grade] column is <em>character</em>, not numeric.</p>
+<p>The code below will provide the distribution of numerical and letter grades.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df_ib</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TCPCourseCode</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Grade</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div id="act" class="section level3">
 <h3>
@@ -1585,30 +1613,30 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <li>Janna Wiley is the Director of ACT Programming. She has context on ACT administration and data.</li>
 </ul>
 <p><strong>SQL example:</strong></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="key-tables-measures-and-metrics.html#cb23-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
-<span id="cb23-2"><a href="key-tables-measures-and-metrics.html#cb23-2"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
-<span id="cb23-3"><a href="key-tables-measures-and-metrics.html#cb23-3"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
-<span id="cb23-4"><a href="key-tables-measures-and-metrics.html#cb23-4"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
-<span id="cb23-5"><a href="key-tables-measures-and-metrics.html#cb23-5"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
-<span id="cb23-6"><a href="key-tables-measures-and-metrics.html#cb23-6"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
-<span id="cb23-7"><a href="key-tables-measures-and-metrics.html#cb23-7"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
-<span id="cb23-8"><a href="key-tables-measures-and-metrics.html#cb23-8"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
-<span id="cb23-9"><a href="key-tables-measures-and-metrics.html#cb23-9"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
-<span id="cb23-10"><a href="key-tables-measures-and-metrics.html#cb23-10"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
-<span id="cb23-11"><a href="key-tables-measures-and-metrics.html#cb23-11"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
-<span id="cb23-12"><a href="key-tables-measures-and-metrics.html#cb23-12"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
-<span id="cb23-13"><a href="key-tables-measures-and-metrics.html#cb23-13"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
-<span id="cb23-14"><a href="key-tables-measures-and-metrics.html#cb23-14"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
-<span id="cb23-15"><a href="key-tables-measures-and-metrics.html#cb23-15"></a>      ,[Composite]</span>
-<span id="cb23-16"><a href="key-tables-measures-and-metrics.html#cb23-16"></a>      ,[Writing]</span>
-<span id="cb23-17"><a href="key-tables-measures-and-metrics.html#cb23-17"></a>      ,[STEM]</span>
-<span id="cb23-18"><a href="key-tables-measures-and-metrics.html#cb23-18"></a>      ,[ELA]</span>
-<span id="cb23-19"><a href="key-tables-measures-and-metrics.html#cb23-19"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
-<span id="cb23-20"><a href="key-tables-measures-and-metrics.html#cb23-20"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
-<span id="cb23-21"><a href="key-tables-measures-and-metrics.html#cb23-21"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
-<span id="cb23-22"><a href="key-tables-measures-and-metrics.html#cb23-22"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="key-tables-measures-and-metrics.html#cb25-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
+<span id="cb25-2"><a href="key-tables-measures-and-metrics.html#cb25-2"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
+<span id="cb25-3"><a href="key-tables-measures-and-metrics.html#cb25-3"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
+<span id="cb25-4"><a href="key-tables-measures-and-metrics.html#cb25-4"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
+<span id="cb25-5"><a href="key-tables-measures-and-metrics.html#cb25-5"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
+<span id="cb25-6"><a href="key-tables-measures-and-metrics.html#cb25-6"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
+<span id="cb25-7"><a href="key-tables-measures-and-metrics.html#cb25-7"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
+<span id="cb25-8"><a href="key-tables-measures-and-metrics.html#cb25-8"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
+<span id="cb25-9"><a href="key-tables-measures-and-metrics.html#cb25-9"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
+<span id="cb25-10"><a href="key-tables-measures-and-metrics.html#cb25-10"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
+<span id="cb25-11"><a href="key-tables-measures-and-metrics.html#cb25-11"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
+<span id="cb25-12"><a href="key-tables-measures-and-metrics.html#cb25-12"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
+<span id="cb25-13"><a href="key-tables-measures-and-metrics.html#cb25-13"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
+<span id="cb25-14"><a href="key-tables-measures-and-metrics.html#cb25-14"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
+<span id="cb25-15"><a href="key-tables-measures-and-metrics.html#cb25-15"></a>      ,[Composite]</span>
+<span id="cb25-16"><a href="key-tables-measures-and-metrics.html#cb25-16"></a>      ,[Writing]</span>
+<span id="cb25-17"><a href="key-tables-measures-and-metrics.html#cb25-17"></a>      ,[STEM]</span>
+<span id="cb25-18"><a href="key-tables-measures-and-metrics.html#cb25-18"></a>      ,[ELA]</span>
+<span id="cb25-19"><a href="key-tables-measures-and-metrics.html#cb25-19"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
+<span id="cb25-20"><a href="key-tables-measures-and-metrics.html#cb25-20"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
+<span id="cb25-21"><a href="key-tables-measures-and-metrics.html#cb25-21"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
+<span id="cb25-22"><a href="key-tables-measures-and-metrics.html#cb25-22"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
 <p><strong>R example:</strong></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"StudentScores"</span>,</span>
 <span>          .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC2"</span>,</span>
 <span>          .database_name <span class="op">=</span> <span class="st">"SRC_ACT"</span>,</span>
