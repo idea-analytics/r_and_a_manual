@@ -115,7 +115,7 @@ Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academ
 * Hidden Meadow opened with PK, K, and 1st at the Academy level
 
 * **Changes to School Numbers & Names**
-Below is a tables documenting the changes to School Numbers and School Names.
+Below is a tables documenting the changes to School Numbers:
 
 | School Name | School Short Name | School Number | Academic Year |
 | :------- | :------- | -------: | :-------: |
@@ -131,6 +131,9 @@ Below is a tables documenting the changes to School Numbers and School Names.
 | IDEA Victory Academy | Victory | 78350 | 2022-2023 |
 | IDEA Victory Middle School | Victory | 78351 | 2022-2023 |
 | IDEA Victory College Prep | Victory | 78352 | 2022-2023 |
+
+
+And this table has changes to school Names (specifically, Amber Creek to Robinson)
 
 | School Name | School Number | State School Number | Academic Year |
 | :------- | -------: | -------: | :-------: |
