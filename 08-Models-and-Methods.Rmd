@@ -79,8 +79,8 @@ If we are comparing means from multiple groups, then we first need a procedure t
 
 The most common way of comparing multiple means is an ANOVA (analysis of variance). To perform an ANOVA:
 
-1. construct a linear model and save the object `lm_my_model <- lm()` (see linear modeling below)
-2. compare the variance among the groups using `aov(lm_my_model)`
+1.  construct a linear model and save the object `lm_my_model <- lm()` (see linear modeling below)
+2.  compare the variance among the groups using `aov(lm_my_model)`
 
 Suppose we want to use SEL survey results to measure life satisfaction across multiple grade levels. To see if the average `LifeSatisfactionScore` differs at all between grade levels, then we can use the following code:
 
@@ -94,13 +94,15 @@ aov(lm_survey_results)
 
 Then, if the ANOVA suggests the means are not all the same, then a post-hoc analysis can reveal *which* groups are different.
 
-1. Determine how many tests are being conducted.
-2. Use a Bonferonni correction (or other appropriate correction) to adjust p-values or $\alpha$-level.
-3. Choose an appropriate post-hoc test:
-  a. Tukey HSD - check all pairs of means to see which pairs are significantly different
-  b. Dunnett - compare all means to a control
-  c. Hsu - check which means are the "best", either the lowest or highest of the group
+1.  Determine how many tests are being conducted.
+2.  Use a Bonferonni correction (or other appropriate correction) to adjust p-values or $\alpha$-level.
+3.  Choose an appropriate post-hoc test:
 
+<!-- -->
+
+a.  Tukey HSD - check all pairs of means to see which pairs are significantly different
+b.  Dunnett - compare all means to a control
+c.  Hsu - check which means are the "best", either the lowest or highest of the group
 
 #### Differences among levels of variables
 
@@ -224,6 +226,59 @@ meaning that our probability operates under the assumption that *the proposed mo
 
 For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108).
 
+## Inferential methods with the `{infer}` package
+
+The [`{infer}`](https://infer.tidymodels.org/) package provides `tidyverse` grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which are excellent. This section will simply provide some examples to get you started.
+
+`{infer}` implements a straightforward inferential workflow, which is encapsulated by five verbs:
+
+-   `specify()` a relationship between variables
+-   `hytpothesize()` the null relationship (i.e., *declare* the null hypothesis)
+-   `generate()` data that holds if the null hypothesis is true (i.e, draws form the null distribution)
+-   `calculate()`the distribution of statistics from null distributions data
+
+Additionally the package provides tools for visualizing the relationship between the null distributions and your observed data. The workflow is illustrated below:
+
+![The infer packages hypothesis testing workflow.](https://raw.githubusercontent.com/tidymodels/infer/main/figs/ht-diagram.png){width="500"}
+
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+| Data                                                    | Null Hypothesis                                                                                                 | Test Type                    | `Code`                                                                |
++=========================================================+=================================================================================================================+==============================+=======================================================================+
+| Sample mean                                             | hypothesized true mean                                                                                          | 1-sample *t*-test            | ``` R                                                                 |
+|                                                         |                                                                                                                 |                              |  hypothesize(null = "point", mu = hypothesized_value)                 |
+| 1 continuous variable                                   |                                                                                                                 |                              | ```                                                                   |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+| means of paired values                                  | difference in pairs of 0                                                                                        | paired *t-*test              | ``` R                                                                 |
+|                                                         |                                                                                                                 |                              |  hypothesize(null = "point", mu = 0)                                  |
+| 1 continuous variable, measured twice                   |                                                                                                                 |                              | ```                                                                   |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+| means of two populations                                | difference in means is 0                                                                                        | 2-sample *t*-test            | ``` R                                                                 |
+|                                                         |                                                                                                                 |                              | gss %>%                                                               |
+| 2 continuous variable                                   |                                                                                                                 |                              |   specify(hours ~ college) %>%                                        |
+|                                                         |                                                                                                                 |                              |   hypothesize(null = "independence") %>%                              |
+|                                                         |                                                                                                                 |                              |   generate(reps = 1000, type = "permute") %>%                         |
+|                                                         |                                                                                                                 |                              |   calculate(stat = "diff in means", order = c("degree", "no degree")) |
+|                                                         |                                                                                                                 |                              | ```                                                                   |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+| Differences in means across groups                      | Means across populations are the same (i.e., categorical variable has no relationship with continuous variable) | Analysis of Variance (ANOVA) | ``` R                                                                 |
+|                                                         |                                                                                                                 |                              | gss %>%                                                               |
+| 1 continuous variable grouped by a categorical variable |                                                                                                                 | F-test                       |   specify(age ~ partyid) %>%                                          |
+|                                                         |                                                                                                                 |                              |   hypothesize(null = "independence") %>%                              |
+|                                                         |                                                                                                                 |                              |   generate(reps = 1000, type = "permute") %>%                         |
+|                                                         |                                                                                                                 |                              |   calculate(stat = "F")                                               |
+|                                                         |                                                                                                                 |                              | ```                                                                   |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+| Association between two categorical variables           | No relationship between both categorical variables                                                              | $\chi^2$ test                | ``` R                                                                 |
+|                                                         |                                                                                                                 |                              | null_dist_sim <- gss %>%                                              |
+|                                                         |                                                                                                                 |                              |   specify(college ~ finrela) %>%                                      |
+|                                                         |                                                                                                                 |                              |   hypothesize(null = "independence") %>%                              |
+|                                                         |                                                                                                                 |                              |   generate(reps = 1000, type = "permute") %>%                         |
+|                                                         |                                                                                                                 |                              |   calculate(stat = "Chisq")                                           |
+|                                                         |                                                                                                                 |                              | ```                                                                   |
++---------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+------------------------------+-----------------------------------------------------------------------+
+
+: Infernetial methods based on observed variable types and numbers
+
 ## Modeling and predictive statistics
 
 A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.
@@ -273,7 +328,7 @@ where
 
 Note that there are many [link functions](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family), so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the [documentation.](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm) However, base R provides the `glm()` function, which gives options to choose a link.
 
-Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches $P(\textrm{App}_i)$) as a function of their semester exam questions correct and course grade. 
+Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches $P(\textrm{App}_i)$) as a function of their semester exam questions correct and course grade.
 
 $\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i$
 
@@ -289,14 +344,13 @@ summary(glm_staar)
 
 Here, we used a logistic regression, which models the *log odds* (which can be converted into a probability), by defining the `binomial` family with a `logit` link. If the coefficient on `SemesterExamQuestions` is 0.04, then as a student gets an additional question correct on the semester exam, then on average, the predicted odds of passing increases by about $e^{0.04}$, or a probability of $\frac{e^{0.04}}{1 + e^{0.04}}$. (Use the `exp()` function for Euler's constant, e.g. $e^{0.04} =$`exp(0.04)`).
 
-If the response is multinomial (multiple categories), then it is suggested to use a **multinomial logistic regression**. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an **ordinal logistic regression**, which improves the power. 
+If the response is multinomial (multiple categories), then it is suggested to use a **multinomial logistic regression**. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an **ordinal logistic regression**, which improves the power.
 
 For example, modeling an AP score (which only takes on ordered levels of 1 to 5) as a function of semester exam questions correct and the course grade could be:
 
 $g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i$
 
 See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of ordinal logistic regression using various packages.
-
 
 ### Machine learning
 
@@ -707,21 +761,10 @@ base_stamen_map %>%
 
 ### MaxQDA
 
-The R&A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.  
+The R&A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.
 
+One tool used for thematic analyses is [MaxQDA](www.maxqda.com), which is a software program that is used to assist in analysis of qualitative and mixed-methods data.
 
+Data that can be imported are: \* survey data, \* interview and focus group data, and \* media (texts, images, audio, and video) files.
 
-One tool used for thematic analyses is [MaxQDA](www.maxqda.com), which is a software program that is used to assist in analysis of qualitative and mixed-methods data.  
-
-
-Data that can be imported are: 
-* survey data,
-* interview and focus group data, and 
-* media (texts, images, audio, and video) files.  
-
-MaxQDA is mainly used by the R&A Evaluation team. Qualitative analyses that have used MaxQDA include: 
-* GPTW Annual OER Survey Analysis
-* CNP May Survey Analysis
-* EVP Analysis (Interviews, Focus Groups, Staff Survey)
-* GPTW Pulse Check OER Survey Analysis
-* Core Values 2x2 Analysis 
+MaxQDA is mainly used by the R&A Evaluation team. Qualitative analyses that have used MaxQDA include: \* GPTW Annual OER Survey Analysis \* CNP May Survey Analysis \* EVP Analysis (Interviews, Focus Groups, Staff Survey) \* GPTW Pulse Check OER Survey Analysis \* Core Values 2x2 Analysis
