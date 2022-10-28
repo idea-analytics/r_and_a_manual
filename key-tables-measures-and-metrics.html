@@ -1785,9 +1785,73 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 <p>22-23 SY Steps for Teachers range from 0 to 35, consecutively, but skipping 32 and 34. Some teachers have NA for their Step. A Step of “0” indicates no prior experience teaching before being hired at IDEA. A step of “1+” indicates prior experience if it is the teacher’s first year at IDEA, or it indicates experience at IDEA, if it is not the teacher’s first year at IDEA.</p>
 <p>The employee data can be queried and pulled into a csv, excluding direct information about Social Security Numbers and Salary (per the NDA Maura signed).</p>
 </div>
+<div id="teach-boost-data" class="section level3">
+<h3>
+<span class="header-section-number">4.10.2</span> Teach Boost Data<a class="anchor" aria-label="anchor" href="#teach-boost-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders.</p>
+<p>TB contains the Forms table and Users table.</p>
+<div id="forms" class="section level4">
+<h4>
+<span class="header-section-number">4.10.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
+</h4>
+<p>This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.</p>
+<p>forms_try &lt;- get_table(.table_name = “Forms”, .database_name = “SRC_Teachboost”, .schema = “dbo”, .server_name = “RGVPDSD-DWSRC3”) %&gt;%
+select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %&gt;%
+filter(type_label == “GET Row Rating”) %&gt;%
+filter(date == “2022-08-01” |
+date == “2022-08-02” |
+date == “2022-08-03” |
+date == “2022-08-04” |
+date == “2022-08-05” |
+date == “2022-08-06” |
+date == “2022-08-07” |
+date == “2022-08-08” |
+date == “2022-08-09” |
+date == “2022-08-10” |
+date == “2022-08-11” |
+date == “2022-08-12” |
+date == “2022-08-13” |
+date == “2022-08-14” |
+date == “2022-08-15” |
+date == “2022-08-16” |
+date == “2022-08-17” |
+date == “2022-08-18” |
+date == “2022-08-19” |
+date == “2022-08-20” |
+date == “2022-08-21” |
+date == “2022-08-22” |
+date == “2022-08-23” |
+date == “2022-08-24” |
+date == “2022-08-25” |
+date == “2022-08-26” |
+date == “2022-08-27” |
+date == “2022-08-28” |
+date == “2022-08-29” |
+date == “2022-08-30” |
+date == “2022-08-31” |
+date == “2022-09-01” |
+date == “2022-09-02” ) %&gt;%
+collect()
+forms_try</p>
+<p>Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the “ID” number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.</p>
+</div>
+<div id="users" class="section level4">
+<h4>
+<span class="header-section-number">4.10.2.2</span> Users<a class="anchor" aria-label="anchor" href="#users"><i class="fas fa-link"></i></a>
+</h4>
+<p>UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column “ID” on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.</p>
+</div>
+<div id="templates" class="section level4">
+<h4>
+<span class="header-section-number">4.10.2.3</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
+</h4>
+<p>This table no longer exists and the data has been moved to the forms table.</p>
+</div>
+</div>
 <div id="compass-data" class="section level3">
 <h3>
-<span class="header-section-number">4.10.2</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.3</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://compass.ideapublicschools.org">Compass</a> is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data <strong>and should be considered the source of truth</strong> for these data</p>
 <div class="tip">
@@ -1795,7 +1859,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 </div>
 <div id="key-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.10.2.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.3.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>2x2s in TwoByTwos
@@ -1883,7 +1947,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 </div>
 <div id="jobvite-data" class="section level3">
 <h3>
-<span class="header-section-number">4.10.3</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.4</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -1922,7 +1986,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 </div>
 <div id="tcpteacher-export-data" class="section level3">
 <h3>
-<span class="header-section-number">4.10.4</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -1972,7 +2036,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 </ul>
 <div id="data-matching" class="section level4">
 <h4>
-<span class="header-section-number">4.10.4.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -2007,7 +2071,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="join-tables" class="section level4">
 <h4>
-<span class="header-section-number">4.10.4.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
@@ -2015,16 +2079,16 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </div>
 <div id="apr-report-for-june-2022" class="section level4">
 <h4>
-<span class="header-section-number">4.10.4.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
 </h4>
 <div id="promotions" class="section level5">
 <h5>
-<span class="header-section-number">4.10.4.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.</p>
 <div id="teacher-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.10.4.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
@@ -2070,25 +2134,25 @@ SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
 <div id="teacher-leader-promotions" class="section level6">
 <h6>
-<span class="header-section-number">4.10.4.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
 </h6>
 </div>
 </div>
 </div>
 <div id="tcp-retention-and-tcp-levels" class="section level4">
 <h4>
-<span class="header-section-number">4.10.4.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
 </h4>
 <p>One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture</p>
 <div id="missing-tcp-placements" class="section level5">
 <h5>
-<span class="header-section-number">4.10.4.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
 </h5>
 <p>TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.</p>
 </div>
 <div id="leaver-rates" class="section level5">
 <h5>
-<span class="header-section-number">4.10.4.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.</p>
 <p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
@@ -2101,14 +2165,14 @@ Level 5: 334</p>
 </div>
 <div id="exit-surveys-for-teacher-leavers" class="section level5">
 <h5>
-<span class="header-section-number">4.10.4.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
 </h5>
 <p>Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.</p>
 </div>
 </div>
 <div id="tcp-levels-and-composite-score-correlations" class="section level4">
 <h4>
-<span class="header-section-number">4.10.4.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of “hold” time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
 
@@ -2160,9 +2224,10 @@ Level 5: 334</p>
 <li>
 <a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.10.1</span> Tyler Munis data</a></li>
-<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.10.2</span> Compass data</a></li>
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.3</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.4</span> TCP/Teacher Export Data</a></li>
+<li><a class="nav-link" href="#teach-boost-data"><span class="header-section-number">4.10.2</span> Teach Boost Data</a></li>
+<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.10.3</span> Compass data</a></li>
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.4</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.5</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 </ul>

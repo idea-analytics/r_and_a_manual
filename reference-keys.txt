@@ -65,6 +65,10 @@ student-level-leap
 student-course-grades
 teacher-staff-and-hiring-data
 tyler-munis-data
+teach-boost-data
+forms
+users
+templates
 compass-data
 key-tables
 jobvite-data
