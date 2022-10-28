@@ -101,29 +101,29 @@ Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academ
 * **Changes to School Numbers & Names**
 Below is a tables documenting the changes to School Numbers and School Names.
 
-School Name | School Short Name | School Number | Academic Year
-: ------- : | : ------- : | : ------- : | : ------- : |
-IDEA Hope Academy | Hope | 12001 | 2021-2022
-IDEA Hope Middle School | Hope | 12002 | 2021-2022
-IDEA Hope College Prep | Hope | 12003 | 2021-2022
-IDEA Victory Academy | Victory | 12004 | 2021-2022
-IDEA Victory Middle School | Victory | 12005 | 2021-2022
-IDEA Victory College Prep | Victory | 12006 | 2021-2022
-IDEA Hope Academy | Hope | 78400 | 2022-2023
-IDEA Hope Middle School | Hope | 78401 | 2022-2023
-IDEA Hope College Prep | Hope | 78402 | 2022-2023
-IDEA Victory Academy | Victory | 78350 | 2022-2023
-IDEA Victory Middle School | Victory | 78351 | 2022-2023
-IDEA Victory College Prep | Victory | 78352 | 2022-2023
+| School Name | School Short Name | School Number | Academic Year |
+| : ------- : | : ------- : | : ------- : | : ------- : |
+| IDEA Hope Academy | Hope | 12001 | 2021-2022 |
+| IDEA Hope Middle School | Hope | 12002 | 2021-2022 |
+| IDEA Hope College Prep | Hope | 12003 | 2021-2022 |
+| IDEA Victory Academy | Victory | 12004 | 2021-2022 |
+| IDEA Victory Middle School | Victory | 12005 | 2021-2022 |
+| IDEA Victory College Prep | Victory | 12006 | 2021-2022 |
+| IDEA Hope Academy | Hope | 78400 | 2022-2023 |
+| IDEA Hope Middle School | Hope | 78401 | 2022-2023 |
+| IDEA Hope College Prep | Hope | 78402 | 2022-2023 |
+| IDEA Victory Academy | Victory | 78350 | 2022-2023 |
+| IDEA Victory Middle School | Victory | 78351 | 2022-2023 |
+| IDEA Victory College Prep | Victory | 78352 | 2022-2023 |
 
-School Name | School Number | State School Number | Academic Year
-: ------- : | : ------- : | : ------- : | : ------- : |
-IDEA Amber Creek Academy | 108807304 | 108807304 | 2021-2022
-IDEA Amber Creek Middle School | 109907026 | 108807204 | 2021-2022
-IDEA Amber Creek College Prep | 108807204 | 108807204 | 2021-2022
-IDEA Robinson Academy | 108807304 | 108807304 | 2022-2023
-IDEA Robinson Middle School | 109907026 | 108807204 | 2022-2023
-IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023
+| School Name | School Number | State School Number | Academic Year |
+| : ------- : | : ------- : | : ------- : | : ------- : |
+| IDEA Amber Creek Academy | 108807304 | 108807304 | 2021-2022 |
+| IDEA Amber Creek Middle School | 109907026 | 108807204 | 2021-2022 |
+| IDEA Amber Creek College Prep | 108807204 | 108807204 | 2021-2022 |
+| IDEA Robinson Academy | 108807304 | 108807304 | 2022-2023 |
+| IDEA Robinson Middle School | 109907026 | 108807204 | 2022-2023 |
+| IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
 * **CSP Evaluation Questions:** insert question here. 
