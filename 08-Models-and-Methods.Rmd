@@ -765,6 +765,17 @@ The R&A team engages in qualitative analyses using several approaches (i.e., Nat
 
 One tool used for thematic analyses is [MaxQDA](www.maxqda.com), which is a software program that is used to assist in analysis of qualitative and mixed-methods data.
 
-Data that can be imported are: \* survey data, \* interview and focus group data, and \* media (texts, images, audio, and video) files.
+Data that can be imported are: 
 
-MaxQDA is mainly used by the R&A Evaluation team. Qualitative analyses that have used MaxQDA include: \* GPTW Annual OER Survey Analysis \* CNP May Survey Analysis \* EVP Analysis (Interviews, Focus Groups, Staff Survey) \* GPTW Pulse Check OER Survey Analysis \* Core Values 2x2 Analysis
+-   Survey data,
+-   Interview and focus group data, and
+-   Media (texts, images, audio, and video) files.
+
+
+MaxQDA is mainly used by the R&A Evaluation team. Qualitative analyses that have used MaxQDA include: 
+
+-   GPTW Annual OER Survey Analysis
+-   CNP May Survey Analysis
+-   EVP Analysis (Interviews, Focus Groups, Staff Survey) 
+-   GPTW Pulse Check OER Survey Analysis
+-   Core Values 2x2 Analysis
