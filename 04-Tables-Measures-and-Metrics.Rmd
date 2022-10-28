@@ -360,8 +360,8 @@ Daily attendance is taken through PowerSchool to see which students are presentl
 * **[GradeLevel]**: Uses the labels PK and K.
 * **[AttStudentKey]**: Identifying key for each student for each day.
 * **[WeekNumber]**: Gives the week of the school year.
-* **[DateNumber]**: Gives the day number of the school year (1, 2, 3, ..., 180).
-* **[AttDate]**: Gives the actual date of the record.
+* **[DateNumber]**: Gives the day number of the school year (1, 2, 3, ..., 180). Note that some schools have different start dates and DateNumber begins counting on the school's FDOS for the year. 
+* **[AttDate]**: Gives the actual date of the record. 
 * **[Membership]**: Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only).
 * **[Absences]**: Indicates 1.00 for a full-day absence, or 0.50 for a half-day absence.
 * **[VAbsences]**: Unsure if this is different from [Absences].
