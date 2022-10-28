@@ -117,7 +117,7 @@ Below is a tables documenting the changes to School Numbers and School Names.
 | IDEA Victory College Prep | Victory | 78352 | 2022-2023 |
 
 | School Name | School Number | State School Number | Academic Year |
-| :------- | -------: | -------: | :------- : |
+| :------- | -------: | -------: | :-------: |
 | IDEA Amber Creek Academy | 108807304 | 108807304 | 2021-2022 |
 | IDEA Amber Creek Middle School | 109907026 | 108807204 | 2021-2022 |
 | IDEA Amber Creek College Prep | 108807204 | 108807204 | 2021-2022 |
