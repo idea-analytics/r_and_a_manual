@@ -69,7 +69,7 @@
 </h1>
 <p>The R&amp;A Team works on all sorts of projects and topics. This section provides more information about our specific projects.</p>
 <p>Some of our data analysis and evaluation work is done on an annual basis, such as annual performance reporting (APR) on grant-funded evaluations and analyzing academic performance on state standardized tests or student persistence data. In some project areas, we analyze data and share updates on a weekly or monthly basis (i.e., senior college applications, ACT test scores). We also conduct in-depth analyses that may involve multiple methods including quantitative, machine learning, and qualitative methods to gain breadth and depth for understanding a particular topic.</p>
-<p>This chapter briefly describes where we <a href="specific-projects.html#store-and-share">Store and Share</a>, annual and related <a href="specific-projects.html#evaluation-projects-1">Evaluation Projects</a>, and other specific projects such as <a href="specific-projects.html#first-year-teacher-project">First Year Teacher Project</a> and [Math Curriculum Redesign][Math Curriculum Redesign].</p>
+<p>This chapter briefly describes where we <a href="specific-projects.html#store-and-share">Store and Share</a>, annual and related <a href="specific-projects.html#evaluation-projects">Evaluation Projects</a>, and other specific projects such as <a href="specific-projects.html#first-year-teacher-project">First Year Teacher Project</a> and [Math Curriculum Redesign][Math Curriculum Redesign].</p>
 <div id="store-and-share" class="section level2">
 <h2>
 <span class="header-section-number">6.1</span> Store and Share<a class="anchor" aria-label="anchor" href="#store-and-share"><i class="fas fa-link"></i></a>
@@ -84,9 +84,9 @@
 <p>The R&amp;A Private Group documents folder is not to be confused with the <a href="projects.html#team-site-thehub">Team Site (TheHub)</a> or the <a href="projects.html#team-site-thehub">Team Site (TheHub)</a> documents folder.</p>
 </div>
 </div>
-<div id="evaluation-projects-1" class="section level2">
+<div id="evaluation-projects" class="section level2">
 <h2>
-<span class="header-section-number">6.2</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2</span> Evaluation Projects<a class="anchor" aria-label="anchor" href="#evaluation-projects"><i class="fas fa-link"></i></a>
 </h2>
 <p>The R&amp;A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&amp;A conducts evaluation work for ad hoc evaluations and specific projects as needed and by request.</p>
 <div id="evaluation-plans" class="section level3">
@@ -112,6 +112,10 @@
 <p>More information to come later.</p>
 <p>Student participation in the Afterschool program is tracked in PowerSchool and then pulled into the R&amp;A data warehouse server. The program coordinators track the programs that the students participate in and if they have participated for more that 45 days. Students that participate 45 days or more are classified as “Regular Participants”. Student that participate for fewer than 45 days are classified as “Non-Regular Participants”.</p>
 <p><strong>Database:</strong> [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students]</p>
+<ul>
+<li>
+<strong><em>[dbo].[Students]</em></strong> This table tracks student program and activity participation.</li>
+</ul>
 <p><strong>Important columns:</strong></p>
 <ul>
 <li>
@@ -134,12 +138,32 @@
 <strong>[WHENMODIFIED]:</strong> Date when the record was modified</li>
 </ul>
 <p>A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.</p>
+<p>From Chapter 4 (Temporary Insert):</p>
+<p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
+<ul>
+<li>
+<strong>FIRST_NAME:</strong> the student’s first name;</li>
+<li>
+<strong>LAST_NAME:</strong> the student’s last name;</li>
+<li>
+<strong>STUDENT_NUMBER:</strong> the student’s 108 number;</li>
+<li>
+<strong>ACADEMIC_SUPPORT:</strong> binary indicator for participation in academic support activities;</li>
+<li>
+<strong>COLLEGE_CAREER_READINESS:</strong> binary indicator for participation in college and career readiness activities;</li>
+<li>
+<strong>FAMILY_ENGAGEMENT:</strong> binary indicator for participation in family engagement activities;</li>
+<li>
+<strong>WHENCREAATED:</strong> a date/time stamp indicating the date of participation;</li>
+<li>
+<strong>WHENMODIFIED:</strong> a date/time stamp indicating the date when the record was modified. Most values are null.</li>
+</ul>
 </div>
-<div id="camp-rio-1" class="section level4">
+<div id="camp-rio" class="section level4">
 <h4>
-<span class="header-section-number">6.2.2.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.2.2.2</span> Camp Rio<a class="anchor" aria-label="anchor" href="#camp-rio"><i class="fas fa-link"></i></a>
 </h4>
-<p>TBD things to know about this evaluation project.</p>
+<p>More information to come soon.</p>
 </div>
 <div id="charter-school-program-csp-grants" class="section level4">
 <h4>
@@ -263,13 +287,14 @@ IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |</div>
 <ul>
 <li><strong>CSP IDEA Model:</strong></li>
 </ul>
-<p>More information to come later.</p>
+<p>More information to come soon.</p>
 </div>
 <div id="teacher-and-school-leader-incentive-program-tslip" class="section level4">
 <h4>
 <span class="header-section-number">6.2.2.4</span> Teacher and School Leader Incentive Program (TSLIP)<a class="anchor" aria-label="anchor" href="#teacher-and-school-leader-incentive-program-tslip"><i class="fas fa-link"></i></a>
 </h4>
-<p>More information to come later.</p>
+<p>Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and “Best Practices” library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.</p>
+<p>More information to come soon.</p>
 </div>
 </div>
 <div id="ad-hoc-evaluation-projects" class="section level3">
@@ -363,7 +388,7 @@ IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |</div>
 <a class="nav-link" href="#store-and-share"><span class="header-section-number">6.1</span> Store and Share</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ra-private-group"><span class="header-section-number">6.1.1</span> R&amp;A Private Group</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#evaluation-projects-1"><span class="header-section-number">6.2</span> Evaluation Projects</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#evaluation-projects"><span class="header-section-number">6.2</span> Evaluation Projects</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#evaluation-plans"><span class="header-section-number">6.2.1</span> Evaluation Plans</a></li>
 <li><a class="nav-link" href="#annual-evaluation-projects"><span class="header-section-number">6.2.2</span> Annual Evaluation Projects</a></li>
 <li><a class="nav-link" href="#ad-hoc-evaluation-projects"><span class="header-section-number">6.2.3</span> Ad Hoc Evaluation Projects</a></li>

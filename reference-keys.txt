@@ -69,11 +69,6 @@ jobvite-data
 tcpteacher-export-data
 data-matching
 join-tables
-evaluation-projects
-st-century-afterschool-programs
-camp-rio
-tslip
-csi_tables
 apr-report-for-june-2022
 promotions
 teacher-promotions
@@ -129,11 +124,11 @@ published-evaluation-plans
 specific-projects
 store-and-share
 ra-private-group
-evaluation-projects-1
+evaluation-projects
 evaluation-plans
 annual-evaluation-projects
 st-century-afterschool-program
-camp-rio-1
+camp-rio
 charter-school-program-csp-grants
 teacher-and-school-leader-incentive-program-tslip
 ad-hoc-evaluation-projects
