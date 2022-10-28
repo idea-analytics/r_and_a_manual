@@ -118,7 +118,7 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. 
 
-Two common queries involving students are 
+Two common queries involving students include: 
 
 1. producing a *roster* of all students that fit certain characteristics and
 2. *counting* the number of students that fit certain characteristics.
@@ -466,7 +466,7 @@ The other side of enrollment is **student persistence**. To see how enrollment i
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence (FDOP)" for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
 
 Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
 
@@ -1043,8 +1043,8 @@ The [International Baccalaureate](https://ibo.org/), or IB, is an international 
 
 Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and South Flores - offer the Diploma Programme. The DP is a series of courses, assessments, and portfolios in six different groups and the Core:
 
-* Group 1: Studies in langauge and literature (primary language)
-* Group 2: Language acquistion (secondary language)
+* Group 1: Studies in language and literature (primary language)
+* Group 2: Language acquisition (secondary language)
 * Group 3: Individuals and society (social sciences)
 * Group 4: Sciences
 * Group 5: Mathematics
@@ -1053,7 +1053,7 @@ Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and 
 
 At IDEA, students will generally take one course in each group, and Diploma students will also work on the Core. Within IDEA, the Core is also referred to as Group 7.
 
-Futhermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
+Furthermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
 
 From the Core, only Theory of Knowledge is a regularly taught course and is not designated as HL or SL. The Extended Essay is an independent research project conducted by each student in a specified subject and can be supervised by any teacher. CAS is a portfolio of a student's creative endeavors, physical activities, and community service throughout the programme.
 
