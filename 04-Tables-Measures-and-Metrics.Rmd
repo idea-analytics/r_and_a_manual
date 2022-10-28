@@ -1357,6 +1357,64 @@ Currently, this data is being used for the Teacher Tenure project for Martin Win
 
 The employee data can be queried and pulled into a csv, excluding direct information about Social Security Numbers and Salary (per the NDA Maura signed).
 
+### Teach Boost Data
+
+Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders. 
+
+TB contains the Forms table and Users table. 
+
+#### Forms
+This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.
+
+forms_try <- get_table(.table_name = "Forms", .database_name = "SRC_Teachboost", .schema = "dbo", .server_name = "RGVPDSD-DWSRC3") %>%
+   select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %>%
+  filter(type_label == "GET Row Rating") %>%
+   filter(date == "2022-08-01" |
+            date  == "2022-08-02" |
+            date == "2022-08-03" |
+            date  == "2022-08-04" |
+            date == "2022-08-05" |
+            date  == "2022-08-06" |
+            date == "2022-08-07" |
+            date  == "2022-08-08" |
+            date == "2022-08-09" |
+            date  == "2022-08-10" |
+            date == "2022-08-11" |
+            date  == "2022-08-12" |
+            date == "2022-08-13" |
+            date  == "2022-08-14" |
+            date == "2022-08-15" |
+            date  == "2022-08-16" |
+            date == "2022-08-17" |
+            date  == "2022-08-18" |
+            date == "2022-08-19" |
+            date  == "2022-08-20" |
+            date == "2022-08-21" |
+            date  == "2022-08-22" |
+            date == "2022-08-23" |
+            date  == "2022-08-24" |
+            date == "2022-08-25" |
+            date  == "2022-08-26" |
+            date == "2022-08-27" |
+            date  == "2022-08-28" |
+            date == "2022-08-29" |
+            date  == "2022-08-30" |
+            date == "2022-08-31" |
+            date  == "2022-09-01" |
+            date == "2022-09-02" ) %>%
+  collect()
+ forms_try
+
+Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
+
+#### Users
+
+UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.
+
+#### Templates
+
+This table no longer exists and the data has been moved to the forms table.
+
 ### Compass data
 
 [Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
