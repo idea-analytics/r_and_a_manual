@@ -1480,55 +1480,6 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 How to join? 
 *	Jobvite has no Employee ID & no Work Email and Teacher Export has Employee ID and Work Email.
 *	Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email
-        
-## Evaluation Projects
-
-### 21st Century Afterschool Programs
-
-The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana. 
-
-**Database:** [RGVPDRA-DASQL].[Program21stCentury]
-
-**Tables:**
-
-* **_[dbo].[Students]_** This table tracks student program and activity participation. 
-
-* **Useful Fields:**
-
-  + **FIRST_NAME:** the student's first name;
-  + **LAST_NAME:** the student's last name;
-  + **STUDENT_NUMBER:** the student's 108 number;
-  + **ACADEMIC_SUPPORT:** binary indicator for participation in academic support activities;
-  + **COLLEGE_CAREER_READINESS:** binary indicator for participation in college and career readiness activities;
-  + **FAMILY_ENGAGEMENT:** binary indicator for participation in family engagement activities;
-  + **WHENCREAATED:** a date/time stamp indicating the date of participation;
-  + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
-
-### Camp Rio
-
-### TSLIP
-
-Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
-
-
-### Charter School Program Grants {#csi_tables}
-
-Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis for the CSP evaluations. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants.
-
-CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025.It includes the following regions: Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
-
-See 4.1.1 The Students Table
-See 4.2.1 Schools table
-See 4.2.2 Regions table
-
-**Database:**
-
-**Tables:** 
-
-* **_[dbo].[Students]_** This table tracks xyz. 
-
-* **Useful Fields:**
-
 
 #### APR Report for June 2022 
 
