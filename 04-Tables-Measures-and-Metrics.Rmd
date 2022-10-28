@@ -1127,6 +1127,39 @@ When reporting IB data, confirm what level of data is needed. Suggested grouping
 2. Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)
 3. Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)
 
+#### Useful queries
+
+Suppose we wanted to retreive the most recent IB scores.
+
+```{r ib_query, eval=FALSE}
+ACADEMIC_YEAR <- "2021-2022"
+
+df_ib <- get_table(.table_name = "IBScores",
+          .server_name = "RGVPDSD-DWPRD2",
+          .database_name = "PROD2",
+          .schema = "Assessments") %>%
+  filter(AcademicYear == ACADEMIC_YEAR) %>%
+  mutate(CourseName = if_else(Level == "EE", "Extended Essay", CourseName)) %>%
+  collect()
+```
+
+Note that Extended Essay is not a course, but has course names printed in the [CourseName] column. This will prevent unintentional aggregation if grouping by [CourseName].
+
+To aggregate final IB scores, note the grading scheme: 
+
+* Groups 1-6 subjects use a numeric grade.
+* TOK and EE use a letter grade.
+
+Thus, the [Grade] column is *character*, not numeric.
+
+The code below will provide the distribution of numerical and letter grades.
+
+```{r ib_summary, eval=FALSE}
+df_ib %>%
+  group_by(TCPCourseCode) %>%
+  count(Grade)
+```
+
 
 ### ACT
 
