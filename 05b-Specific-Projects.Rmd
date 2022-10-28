@@ -48,7 +48,6 @@ During the 2021-2022 school year, the majority of IDEA schools implementing the 
 
 The Afterschool Program evaluation plan for school year 2022-2023 can be found [here](https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/EezZf9Bi5y5MpSGLsz5mzGoBRKe6kiUfvGiHdBpGG7KQzg?e=xMZGZg). The 2021-2022 program evaluation annual report can be found [here](https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/EfjTPNC0hG5ChfbgFsVdILUBEIyWU2KQ252cdCSpb0qNIA?e=0QpEQO).
 
-More information to come later.
 
 Student participation in the Afterschool program is tracked in PowerSchool and then pulled into the R&A data warehouse server. The program coordinators track the programs that the students participate in and if they have participated for more that 45 days. Students that participate 45 days or more are classified as "Regular Participants". Student that participate for fewer than 45 days are classified as "Non-Regular Participants".
 
