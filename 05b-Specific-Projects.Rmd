@@ -54,6 +54,8 @@ Student participation in the Afterschool program is tracked in PowerSchool and t
 
 **Database:** [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students]
 
+* **_[dbo].[Students]_**  This table tracks student program and activity participation. 
+
 **Important columns:**
 
 * **[FIRST_NAME]:** Student First Name
@@ -68,9 +70,23 @@ Student participation in the Afterschool program is tracked in PowerSchool and t
 
 A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.
 
+
+From Chapter 4 (Temporary Insert):
+
+The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana. 
+
+  + **FIRST_NAME:** the student's first name;
+  + **LAST_NAME:** the student's last name;
+  + **STUDENT_NUMBER:** the student's 108 number;
+  + **ACADEMIC_SUPPORT:** binary indicator for participation in academic support activities;
+  + **COLLEGE_CAREER_READINESS:** binary indicator for participation in college and career readiness activities;
+  + **FAMILY_ENGAGEMENT:** binary indicator for participation in family engagement activities;
+  + **WHENCREAATED:** a date/time stamp indicating the date of participation;
+  + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
+
 #### Camp Rio
 
-TBD things to know about this evaluation project.
+More information to come soon.
 
 
 #### Charter School Program (CSP) Grants
@@ -135,12 +151,17 @@ To address the first question, the IDEA model and its components needed to be id
 
 * **CSP IDEA Model:**
 
-More information to come later. 
+More information to come soon. 
+
+
 
 
 #### Teacher and School Leader Incentive Program (TSLIP)
 
-More information to come later.
+Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
+
+
+More information to come soon.
 
 
 ### Ad Hoc Evaluation Projects
