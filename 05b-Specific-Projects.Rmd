@@ -98,9 +98,6 @@ Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academ
 * Converse opened with PK, K, and 1st at the Academy level
 * Hidden Meadow opened with PK, K, and 1st at the Academy level
 
-<<<<<<< Updated upstream
-* **CSP Evaluation Questions:** insert question here. 
-=======
 * **Changes to School Numbers & Names**
 Below is a tables documenting the changes to School Numbers and School Names.
 
@@ -128,8 +125,11 @@ IDEA Robinson Academy | 108807304 | 108807304 | 2022-2023
 IDEA Robinson Middle School | 109907026 | 108807204 | 2022-2023
 IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023
 
+
+* **CSP Evaluation Questions:** insert question here. 
+
 * **CSP Evaluation Question 1:** insert question here. 
->>>>>>> Stashed changes
+
 
 To address the first question, the IDEA model and its components needed to be identified. 
 
