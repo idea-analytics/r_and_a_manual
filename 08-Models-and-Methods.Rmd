@@ -757,9 +757,32 @@ base_stamen_map %>%
   scale_color_viridis(option = "viridis", discrete = TRUE)
 ```
 
-## Qualitative Tools
+## Qualitative Methods
 
-### MaxQDA
+### Qualitative Research
+
+Qualitative Research provides IDEA Public Schools rich, contextual information through various data collection and analysis techniques that are aimed to understand the meaning of the information collected. While qualitative research can be used for both exploratory and confirmatory research, it is most useful when context is important, a rich description is needed, and when participant interpretation and meaning of experiences need to be considered.
+
+
+The R&A team, specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.
+
+
+Common methods used to collect data include:
+-   Individual Interviews
+-   Focus Groups
+-   Review of archival documents.
+
+
+Common methods used to analyze data include:
+-   Thematic analysis
+-   Triangulation
+-   Linguistic analysis –emotions (including Natural Language Processing).
+
+
+
+### Qualitative Tools
+
+#### MaxQDA
 
 The R&A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.
 
