@@ -1,9 +1,44 @@
 # Coding Standards
 
-We will be writing more here in the coming weeks, months, and years. But for all intents and purposes, we should follow the [Tidyverse Style Guide](https://style.tidyverse.org/index.html), which is was originally derived from Google's R Style guide, but in a an amazing case of an [Ouroboros](https://en.wikipedia.org/wiki/Ouroboros), is now informed by the Tidyverse Style Guide.
+There is no naming convention that is "standard" in r and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work. 
 
-[![ouroboros: A Snake Eating it's Tail](https://media.istockphoto.com/vectors/uroboros-snake-coiled-in-a-ring-biting-its-tail-scratch-board-black-vector-id1216824086?k=20&m=1216824086&s=612x612&w=0&h=C4GD_7_z3Ma8v3Z9GRSPEkHlbx9cLQ0R7IkBdOl9RuM= "A Snake Eating it's Tail")](https://en.wikipedia.org/wiki/Ouroboros)
+**General**
 
-## File naming standards. 
+  + Introduction header – State the purpose or goal of the code. Your name and any other information that can help anyone get up to speed on the code. Maintaining a log of changes with a date to indicated what was last changed, this isn’t always necessary, but this is good for projects will be continued to be reused.
 
-We will also come up with more here soon, but in the meantime, Jenny Bryan's guidance is pretty excellent.  [You can read more here](http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf)
+  + Use informative names – In naming variables or functions it is always good to make informative names to help make sense of the code. Not too short and not too long, just enough to be concise and informative. 
+
+## Language R
+### Projects
+There are three general approaches we use for our work for a r project, the more methodic approach is project template which can be found in the project section of this manual. A report style approach which good for short and quick assignments. A shiny project which has UI controls and is used for scenarios where the information needs to be absorbed in multiple perspectives.   
+
+  + projectTemplate
+  + rmd
+  + shiny
+
+### Variables 
+  + Use underscore_separated a.k.a. snake_case: e.g. my_data_set
+  + Being descriptive and specific: e.g. raw_act_2022_2023
+
+### Functions
+  + The use case for a function is for reuse ability. Don’t copy paste code, create a function.
+  + When naming your function use lowerCamelCase: e.g. addTaskCallback <- function()
+  + Start with a verb when naming your function. e.i. add, make, create, populate, do..
+  + Stay in scope
+  + Avoid Global Variables at all costs - Think of a function as a receipt, the function should take in all the items you need to make your outcome.
+
+### dplyr
+Use dplyr from tidyverse as it is designed to enable dataframe manipulation in an intuitive, user-friendly way.
+
+
+
+## Language SQL 
+
+### Hard bracket encapsulation
+  + SELECT [FirstName] FROM [Students] WHERE [AcademicYear] =  ‘2021-2022’
+
+### Variables
+  + Use Camel Case: DECLARE &#64;AcademicYear VARCHAR(9) 
+
+### Joins
+  + Know your joins and know your data.
