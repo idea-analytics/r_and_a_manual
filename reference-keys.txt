@@ -150,7 +150,15 @@ project-transfered-to-ann-heller
 math-curriculum-redesign-project
 team-value-proposition-project
 coding-standards
-file-naming-standards.
+language-r
+projects-1
+variables
+functions
+dplyr
+language-sql
+hard-bracket-encapsulation
+variables-1
+joins
 visualization-standards
 idea-branding
 the-ideacolors-package
