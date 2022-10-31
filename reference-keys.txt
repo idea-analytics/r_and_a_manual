@@ -201,6 +201,8 @@ getting-basic-data
 searching-for-variables
 chloropleth
 dot-density
+qualitative-methods
+qualitative-research
 qualitative-tools
 maxqda
 tips-and-tricks
