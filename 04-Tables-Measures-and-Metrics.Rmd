@@ -34,19 +34,23 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
   + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
   
-* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](http://ritter.tea.state.tx.us/peims/standards/1314/c035.html):
+* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](https://tealprod.tea.state.tx.us/TWEDS/98/0/0/0/CodeTable/List/14562):
 
   InstructionalSettingCode | Description
   -------------------------|-------------
  0 | No additional SPED services
  1 | Homebound
+ 8 | Vocational Adjustment Class/Program
  40 | Mainstream
  41 | Resource Room/Services < 21%
  42 | Resource Room/Services 21- <50%
  43 | Resource Room/Services 50- 60%
  44 | Resource Room/Services > 60%
+ 96 | Off Home Campus - Separate Campus
  
-  + If InstructionalSettingCode = 43 or 44, the student is typically in RISE.
+  + If [InstructionalSettingCode] = 43 or 44, the student is typically in RISE.
+  + If [InstructionalSettingCode] = 8 or 96, the student is typically in Thrive.
+  + Note that in 2022-2023, Thrive students were recoded to reflect their home campuses, which is not necessarily the campus that provides services.
 
 * **_[DisabilityCode]_**
 
