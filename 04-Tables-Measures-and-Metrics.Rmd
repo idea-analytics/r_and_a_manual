@@ -154,8 +154,8 @@ SELECT [AcademicYear]
     AND [ExitDate] > '2022-05-01'
     AND [RowIsCurrent] = '1'
 
---optional, filter RISE students
---  AND [InstructionalSettingCode] NOT IN ('43', '44')
+--optional, filter RISE (43, 44) and Thrive students (8, 96)
+--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')
     
 ```
 
@@ -169,8 +169,8 @@ get_students() %>%
          ExitDate > "2022-05-01",
          RowIsCurrent == 1) %>%
   
-# optional, filter RISE students
-# filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+# optional, filter RISE (43, 44) and Thrive students (8, 96)
+# filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %>%
   
 # join Schools and Regions tables
   inner_join(get_schools(),
@@ -195,7 +195,7 @@ However, to *count* the number of seniors by school and region, group the studen
 ```{sql, eval=FALSE}
 SELECT [AcademicYear]
     ,CASE
-	     WHEN C.[RegionDescription] IN ('Austin', 'San Antonio') THEN 'Central Texas'
+	     WHEN C.[RegionDescription] IN ('Austin', 'West San Antonio', 'East San Antonio') THEN 'Central Texas'
 		   WHEN C.[RegionDescription] IN ('Lower Valley', 'Mid Valley', 'Upper Valley') THEN 'Rio Grande Valley'
 		   ELSE C.[RegionDescription]
 	   END AS [Area]
@@ -216,7 +216,7 @@ SELECT [AcademicYear]
 	  AND [ExitDate] > '2022-08-17'
 	  AND [RowIsCurrent] = '1'
 	  AND [GradeLevelID] = '12'
---  AND [InstructionalSettingCode] NOT IN ('43', '44')
+--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')
 
 --grouping variables to determine aggregates	
   GROUP BY [AcademicYear]
@@ -238,7 +238,7 @@ get_students() %>%
          GradeLevelID == "12",
          ExitDate > lubridate::today(),
          RowIsCurrent == 1) %>%
-  # filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+  # filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %>%
   
   inner_join(get_schools(),
              by = c("SchoolNumber" = "SchoolNumber")) %>%
@@ -255,7 +255,7 @@ get_students() %>%
   
   mutate(Area = case_when(
     RegionDescription %in% c("Lower Valley", "Mid Valley", "Upper Valley") ~ "Rio Grande Valley",
-    RegionDescription %in% c("Austin", "San Antonio") ~ "Central Texas",
+    RegionDescription %in% c("Austin", "West San Antonio", "East San Antonio") ~ "Central Texas",
     TRUE ~ RegionDescription
   )) %>%
   arrange(Area,
@@ -295,7 +295,7 @@ The Schools table provides essential information about each school, including th
 * **[RegionDirectorOfOperations]:** Regional Director of Operations (RDO) who oversees the region; links to Employees table using EmployeeKey
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
-* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
+* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley, and San Antonio schools into East and West; links to the Regions table
 * **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
 
 **Context:**
@@ -306,6 +306,7 @@ The Schools table provides essential information about each school, including th
 * IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
 * IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
 * IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
+* IDEA Amber Creek was renamed as IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
 
 
 ### Regions table
@@ -328,12 +329,12 @@ The Regions table provides keys for each RegionDescription, which can be connect
 * IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.
 * IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.
 * Informally, the RGV "super region" can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director. 
-* Occasionally, the Central Texas "super region" is used to include the San Antonio and Austin regions, but this is not included in the Regions table.
+* Occasionally, the Central Texas "super region" is used to include the West San Antonio, East San Antonio and Austin regions, but this is not included in the Regions table.
 * An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are "RGV", "Texas", and "IPS and SA", which are included in the [Schools] table (see above entry).
 
 
 ::: {.gotcha}
-Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.
+Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions or East/West San Antonio. Before assigning regions to RGV or San Antonio schools, check with the partnering team to see how they categorize RGV or San Antonio schools.
 
 If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.
 :::
