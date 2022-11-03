@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.9/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -107,7 +107,7 @@
 </ul>
 </li>
 <li>
-<p><strong><em>[InstructionalSettingCode]:</em></strong> Students who are classified as SPED may receive additional services. Their services can be found in the <strong>InstructionalSettingDescription</strong> column, which is linked to a specific <a href="http://ritter.tea.state.tx.us/peims/standards/1314/c035.html">PEIMS code</a>:</p>
+<p><strong><em>[InstructionalSettingCode]:</em></strong> Students who are classified as SPED may receive additional services. Their services can be found in the <strong>InstructionalSettingDescription</strong> column, which is linked to a specific <a href="https://tealprod.tea.state.tx.us/TWEDS/98/0/0/0/CodeTable/List/14562">PEIMS code</a>:</p>
 <table class="table table-sm">
 <thead><tr class="header">
 <th>InstructionalSettingCode</th>
@@ -123,29 +123,39 @@
 <td>Homebound</td>
 </tr>
 <tr class="odd">
+<td>8</td>
+<td>Vocational Adjustment Class/Program</td>
+</tr>
+<tr class="even">
 <td>40</td>
 <td>Mainstream</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>41</td>
 <td>Resource Room/Services &lt; 21%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>42</td>
 <td>Resource Room/Services 21- &lt;50%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>43</td>
 <td>Resource Room/Services 50- 60%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>44</td>
 <td>Resource Room/Services &gt; 60%</td>
+</tr>
+<tr class="odd">
+<td>96</td>
+<td>Off Home Campus - Separate Campus</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>If InstructionalSettingCode = 43 or 44, the student is typically in RISE.</li>
+<li>If [InstructionalSettingCode] = 43 or 44, the student is typically in RISE.</li>
+<li>If [InstructionalSettingCode] = 8 or 96, the student is typically in Thrive.</li>
+<li>Note that in 2022-2023, Thrive students were recoded to reflect their home campuses, which is not necessarily the campus that provides services.</li>
 </ul>
 </li>
 <li>
@@ -304,8 +314,8 @@
 <span id="cb13-21"><a href="key-tables-measures-and-metrics.html#cb13-21"></a>    <span class="kw">AND</span> [ExitDate] <span class="op">&gt;</span> <span class="st">'2022-05-01'</span></span>
 <span id="cb13-22"><a href="key-tables-measures-and-metrics.html#cb13-22"></a>    <span class="kw">AND</span> [RowIsCurrent] <span class="op">=</span> <span class="st">'1'</span></span>
 <span id="cb13-23"><a href="key-tables-measures-and-metrics.html#cb13-23"></a></span>
-<span id="cb13-24"><a href="key-tables-measures-and-metrics.html#cb13-24"></a><span class="co">--optional, filter RISE students</span></span>
-<span id="cb13-25"><a href="key-tables-measures-and-metrics.html#cb13-25"></a><span class="co">--  AND [InstructionalSettingCode] NOT IN ('43', '44')</span></span>
+<span id="cb13-24"><a href="key-tables-measures-and-metrics.html#cb13-24"></a><span class="co">--optional, filter RISE (43, 44) and Thrive students (8, 96)</span></span>
+<span id="cb13-25"><a href="key-tables-measures-and-metrics.html#cb13-25"></a><span class="co">--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')</span></span>
 <span id="cb13-26"><a href="key-tables-measures-and-metrics.html#cb13-26"></a>    </span></code></pre></div>
 <ul>
 <li>R example:</li>
@@ -319,8 +329,8 @@
 <span>         <span class="va">ExitDate</span> <span class="op">&gt;</span> <span class="st">"2022-05-01"</span>,</span>
 <span>         <span class="va">RowIsCurrent</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  </span>
-<span><span class="co"># optional, filter RISE students</span></span>
-<span><span class="co"># filter(!(InstructionalSettingCode %in% c("43", "44"))) %&gt;%</span></span>
+<span><span class="co"># optional, filter RISE (43, 44) and Thrive students (8, 96)</span></span>
+<span><span class="co"># filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %&gt;%</span></span>
 <span>  </span>
 <span><span class="co"># join Schools and Regions tables</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -343,7 +353,7 @@
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb15-1"><a href="key-tables-measures-and-metrics.html#cb15-1"></a><span class="kw">SELECT</span> [AcademicYear]</span>
 <span id="cb15-2"><a href="key-tables-measures-and-metrics.html#cb15-2"></a>    ,<span class="cf">CASE</span></span>
-<span id="cb15-3"><a href="key-tables-measures-and-metrics.html#cb15-3"></a>         <span class="cf">WHEN</span> C.[RegionDescription] <span class="kw">IN</span> (<span class="st">'Austin'</span>, <span class="st">'San Antonio'</span>) <span class="cf">THEN</span> <span class="st">'Central Texas'</span></span>
+<span id="cb15-3"><a href="key-tables-measures-and-metrics.html#cb15-3"></a>         <span class="cf">WHEN</span> C.[RegionDescription] <span class="kw">IN</span> (<span class="st">'Austin'</span>, <span class="st">'West San Antonio'</span>, <span class="st">'East San Antonio'</span>) <span class="cf">THEN</span> <span class="st">'Central Texas'</span></span>
 <span id="cb15-4"><a href="key-tables-measures-and-metrics.html#cb15-4"></a>           <span class="cf">WHEN</span> C.[RegionDescription] <span class="kw">IN</span> (<span class="st">'Lower Valley'</span>, <span class="st">'Mid Valley'</span>, <span class="st">'Upper Valley'</span>) <span class="cf">THEN</span> <span class="st">'Rio Grande Valley'</span></span>
 <span id="cb15-5"><a href="key-tables-measures-and-metrics.html#cb15-5"></a>           <span class="cf">ELSE</span> C.[RegionDescription]</span>
 <span id="cb15-6"><a href="key-tables-measures-and-metrics.html#cb15-6"></a>       <span class="cf">END</span> <span class="kw">AS</span> [Area]</span>
@@ -364,7 +374,7 @@
 <span id="cb15-21"><a href="key-tables-measures-and-metrics.html#cb15-21"></a>      <span class="kw">AND</span> [ExitDate] <span class="op">&gt;</span> <span class="st">'2022-08-17'</span></span>
 <span id="cb15-22"><a href="key-tables-measures-and-metrics.html#cb15-22"></a>      <span class="kw">AND</span> [RowIsCurrent] <span class="op">=</span> <span class="st">'1'</span></span>
 <span id="cb15-23"><a href="key-tables-measures-and-metrics.html#cb15-23"></a>      <span class="kw">AND</span> [GradeLevelID] <span class="op">=</span> <span class="st">'12'</span></span>
-<span id="cb15-24"><a href="key-tables-measures-and-metrics.html#cb15-24"></a><span class="co">--  AND [InstructionalSettingCode] NOT IN ('43', '44')</span></span>
+<span id="cb15-24"><a href="key-tables-measures-and-metrics.html#cb15-24"></a><span class="co">--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')</span></span>
 <span id="cb15-25"><a href="key-tables-measures-and-metrics.html#cb15-25"></a></span>
 <span id="cb15-26"><a href="key-tables-measures-and-metrics.html#cb15-26"></a><span class="co">--grouping variables to determine aggregates    </span></span>
 <span id="cb15-27"><a href="key-tables-measures-and-metrics.html#cb15-27"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> [AcademicYear]</span>
@@ -385,7 +395,7 @@
 <span>         <span class="va">GradeLevelID</span> <span class="op">==</span> <span class="st">"12"</span>,</span>
 <span>         <span class="va">ExitDate</span> <span class="op">&gt;</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/now.html">today</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>         <span class="va">RowIsCurrent</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="co"># filter(!(InstructionalSettingCode %in% c("43", "44"))) %&gt;%</span></span>
+<span>  <span class="co"># filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %&gt;%</span></span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>             by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SchoolNumber"</span> <span class="op">=</span> <span class="st">"SchoolNumber"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -402,7 +412,7 @@
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Area <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>    <span class="va">RegionDescription</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lower Valley"</span>, <span class="st">"Mid Valley"</span>, <span class="st">"Upper Valley"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Rio Grande Valley"</span>,</span>
-<span>    <span class="va">RegionDescription</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Austin"</span>, <span class="st">"San Antonio"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Central Texas"</span>,</span>
+<span>    <span class="va">RegionDescription</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Austin"</span>, <span class="st">"West San Antonio"</span>, <span class="st">"East San Antonio"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Central Texas"</span>,</span>
 <span>    <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">RegionDescription</span></span>
 <span>  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">Area</span>,</span>
@@ -455,7 +465,7 @@
 <li>
 <strong>[Area]:</strong> describes if the school is under the division of RGV, Texas, or IPS &amp; SA, i.e. which superintendent oversees the school</li>
 <li>
-<strong>[RegionAltID]:</strong> describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table</li>
+<strong>[RegionAltID]:</strong> describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley, and San Antonio schools into East and West; links to the Regions table</li>
 <li>
 <strong>[IsDeprecated]:</strong> 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0.</li>
 </ul>
@@ -467,6 +477,7 @@
 <li>IDEA San Juan Academy is <a href="https://ideapublicschools.org/our-schools/idea-san-juan/">physically in a different location</a> than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - “San Juan AC” and “San Juan CP”, respectively. (It is suggested you rename these both to be “San Juan” when pulling in data.)</li>
 <li>IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.</li>
 <li>IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.</li>
+<li>IDEA Amber Creek was renamed as IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.</li>
 </ul>
 </div>
 <div id="regions-table" class="section level3">
@@ -492,11 +503,11 @@
 <li>IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.</li>
 <li>IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.</li>
 <li>Informally, the RGV “super region” can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director.</li>
-<li>Occasionally, the Central Texas “super region” is used to include the San Antonio and Austin regions, but this is not included in the Regions table.</li>
+<li>Occasionally, the Central Texas “super region” is used to include the West San Antonio, East San Antonio and Austin regions, but this is not included in the Regions table.</li>
 <li>An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are “RGV”, “Texas”, and “IPS and SA”, which are included in the [Schools] table (see above entry).</li>
 </ul>
 <div class="gotcha">
-<p>Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.</p>
+<p>Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions or East/West San Antonio. Before assigning regions to RGV or San Antonio schools, check with the partnering team to see how they categorize RGV or San Antonio schools.</p>
 <p>If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.</p>
 </div>
 </div>
@@ -2247,7 +2258,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-10-31.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
