@@ -543,7 +543,7 @@
 <span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
 <span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 5.3 seconds</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
@@ -604,8 +604,8 @@
 <span><span class="co">#renv::install("yutannihilation/ggsflabel")</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dkahle/ggmap">ggmap</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Google's Terms of Service: https://cloud.google.com/maps-platform/terms/.</span></span>
-<span><span class="co">#&gt; Please cite ggmap if you use it! See citation("ggmap") for details.</span></span>
+<span><span class="co">#&gt; ℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;</span></span>
+<span><span class="co">#&gt; ℹ Please cite ggmap if you use it! Use `citation("ggmap")` for details.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'ggmap'</span></span>
 <span><span class="co">#&gt; The following object is masked from 'package:tidygeocoder':</span></span>
@@ -613,8 +613,8 @@
 <span><span class="co">#&gt;     geocode</span></span>
 <span></span>
 <span><span class="va">base_google_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/get_googlemap.html">get_googlemap</a></span><span class="op">(</span><span class="st">"76117"</span>, zoom <span class="op">=</span> <span class="fl">11</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Source : https://maps.googleapis.com/maps/api/staticmap?center=76117&amp;zoom=11&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;key=xxx</span></span>
-<span><span class="co">#&gt; Source : https://maps.googleapis.com/maps/api/geocode/json?address=76117&amp;key=xxx</span></span>
+<span><span class="co">#&gt; ℹ &lt;https://maps.googleapis.com/maps/api/staticmap?center=76117&amp;zoom=11&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;key=xxx&gt;</span></span>
+<span><span class="co">#&gt; ℹ &lt;https://maps.googleapis.com/maps/api/geocode/json?address=76117&amp;key=xxx&gt;</span></span>
 <span></span>
 <span></span>
 <span><span class="va">base_google_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -635,18 +635,7 @@
 <span></span>
 <span></span>
 <span><span class="va">base_stamen_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/get_stamenmap.html">get_stamenmap</a></span><span class="op">(</span><span class="va">bbox</span>, zoom<span class="op">=</span><span class="fl">11</span>, maptype <span class="op">=</span> <span class="st">"toner-lite"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/469/824.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/470/824.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/471/824.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/469/825.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/470/825.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/471/825.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/469/826.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/470/826.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/471/826.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/469/827.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/470/827.png</span></span>
-<span><span class="co">#&gt; Source : http://tile.stamen.com/toner-lite/11/471/827.png</span></span>
+<span><span class="co">#&gt; ℹ Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</span></span>
 <span></span>
 <span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1061,7 +1050,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-03.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
