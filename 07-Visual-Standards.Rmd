@@ -76,6 +76,22 @@ The `scale_color_manual()` call will accept the vector of colors specified earli
 
 The default legend title is to use the column name. However, the `labs()` call *relabels* the legend title for the `color` aesthetic to "Race / Ethnicity". (If the aesthetic is `fill`, then use `labs(fill = "Race / Ethnicity")`, and so on).
 
+### Grade Level colors
+
+If your visualization or reporting requires grouping across grade levels, using the IDEA polo color for that grade level is a familiar palette for IDEA schools. For more information about uniforms, refer to the [parent guide](https://ideapublicschools.org/parents/uniform-guides/).
+
+The following are the current polo colors for each grade level:
+
+  Grade Level | Color 
+  ------------|-------
+ PK-5th, 8th | Blue
+ 6th, 10th | Red
+ 7th, 11th | Orange
+ 9th | Green
+ 12th | Black
+ 
+Clearly, if all grade levels are present on one plot and cannot be individually labeled (say, a scatterplot), then using one color for multiple grade levels is not advised. However, if color coding a document or table where colors can be repeated, then this palette can provide visual cues to contextualize the report.
+
 
 ### Typography
 
