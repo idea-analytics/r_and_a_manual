@@ -7,7 +7,7 @@
 <title>Chapter 9 Models and Methods | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
-<meta name="generator" content="bookdown 0.29 with bs4_book()">
+<meta name="generator" content="bookdown 0.30 with bs4_book()">
 <meta property="og:title" content="Chapter 9 Models and Methods | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/models-and-methods.html">
@@ -543,7 +543,7 @@
 <span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
 <span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 5.3 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.4 seconds</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
@@ -561,7 +561,8 @@
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2() is TRUE</span></span>
+<span><span class="co">#&gt; Linking to GEOS 3.10.2, GDAL 3.4.2, PROJ 8.2.1; sf_use_s2()</span></span>
+<span><span class="co">#&gt; is TRUE</span></span>
 <span></span>
 <span><span class="va">taco_schools_sf</span> <span class="op">&lt;-</span> <span class="va">taco_schools_geocoded</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"long"</span>, <span class="st">"lat"</span><span class="op">)</span><span class="op">)</span></span>
@@ -623,7 +624,8 @@
 <span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
 <span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
 <span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span>
+<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
+<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
@@ -643,7 +645,8 @@
 <span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
 <span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
 <span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span>
+<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
+<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
@@ -686,7 +689,8 @@
 <span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span>, color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>,</span>
 <span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span>
+<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
+<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span>
@@ -715,7 +719,8 @@
 <span><span class="va">taco_area_of_max_intersection</span> <span class="op">&lt;-</span> <span class="va">schools_drive_10min_sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">school_short_name</span> <span class="op">==</span> <span class="st">"Edgecliff"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">st_intersection</a></span><span class="op">(</span><span class="va">schools_drive_10min_sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">school_short_name</span> <span class="op">==</span> <span class="st">"Southeast"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersection assumes that they are planar</span></span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude,</span></span>
+<span><span class="co">#&gt; st_intersection assumes that they are planar</span></span>
 <span><span class="co">#&gt; Warning: attribute variables are assumed to be spatially</span></span>
 <span><span class="co">#&gt; constant throughout all geometries</span></span>
 <span></span>
@@ -739,7 +744,8 @@
 <span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span>, color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>,</span>
 <span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span>
+<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
+<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span>
@@ -760,8 +766,10 @@
 <code class="sourceCode R"><span><span class="va">schools_in_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter</a></span><span class="op">(</span><span class="va">taco_schools_sf</span>,</span>
 <span>                         <span class="va">taco_area_of_max_intersection</span>, </span>
 <span>                         join <span class="op">=</span> <span class="va">st_within</span><span class="op">)</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
+<span><span class="co">#&gt; assumes that they are planar</span></span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
+<span><span class="co">#&gt; assumes that they are planar</span></span>
 <span></span>
 <span><span class="va">schools_in_overlap</span></span>
 <span><span class="co">#&gt; Simple feature collection with 2 features and 5 fields</span></span>
@@ -911,8 +919,10 @@
 <span>    values_per_dot <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"age_range"</span></span>
 <span>  <span class="op">)</span> </span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects assumes that they are planar</span></span></code></pre></div>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
+<span><span class="co">#&gt; assumes that they are planar</span></span>
+<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
+<span><span class="co">#&gt; assumes that they are planar</span></span></code></pre></div>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -934,7 +944,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="fu">scale_color_viridis</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"viridis"</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></span></code></pre></div>
+<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
+<span><span class="co">#&gt; system, which will replace the existing one.</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/dot_density_map-1.png" width="672"></div>
 </div>
 </div>
@@ -1050,7 +1061,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-04.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
