@@ -19,6 +19,8 @@ Evaluation plans are created with program and grant managers. Evaluation plans a
 
 #### Evaluation Plan Guidelines
 
+The content below is an excerpt from a working document providing information about each component that may be included in an evaluation plan. Because evaluation plans are customized to each project, not all components will be included in every evaluation plan. Generally, the following components are included as standard in most evaluation plans. 
+
 **Fiscal Year:**  2022-2023    
 **Program/Grant Name:**    
 **Program Manager/Partner:**    
@@ -45,7 +47,7 @@ Includes methods by which relevant data will be collected and analyzed.
 Mandatory reporting requirements (for funding agency and other entities) and planned deliverables.  
 
 **Program/Project Support**  
-Types of ongoing support that will be provided to the program staff over the course of the year. Ex: Recurring meetings, data requests, etc.
+Types of ongoing support that will be provided to the program staff over the course of the year. For example, recurring meetings, data requests, etc.
 
 **Timeline**  
 Lists and organizes tasks, activities, and focus areas as planned for the year. The timeline may combine months or list month-by-month as appropriate to the project. The timeline serves to communicate plans throughout the year and guide expectations among stakeholders interested in the evaluation work. Evaluators are held accountable to milestones highlighted in the timeline and overall evaluation plan.
