@@ -9,13 +9,47 @@ How do we organize and guide our work on evaluation projects? Evaluation plans a
 
 ### About Evaluation Plans
 
-About Annual Evaluation Plans
+About Annual Evaluation Plans  
 
-The annual evaluation plan provides a summary of the plan of work for a specific program, grant, or service during a fiscal year. Evaluation plans adhere to American Evaluation Association (AEA) guidelines and standards for high quality evaluation. Individual plans may be customized to best reflect the work appropriate to the project. 
+The annual evaluation plan provides a summary of the plan of work for a specific program, grant, or service during a fiscal year. Evaluation plans adhere to [American Evaluation Association (AEA) guidelines and standards](https://www.eval.org/About/Guiding-Principles#:~:text=The%20Guiding%20Principles%20reflect%20the,Principles%20are%20interdependent%20and%20interconnected.) for high quality evaluation. Individual plans may be customized to best reflect the work appropriate to the project. 
 
-Evaluation plans serve to communicate the plan of work and guide expectations among stakeholders interested in the evaluation work. Evaluation plans may include the following components: a program description; evaluation purpose, objectives, and evaluation or research questions; methods and scope of the evaluation, data collection, and data analysis; timeline; required reporting and deliverables; and program support. 
+Evaluation plans serve to communicate the plan of work and guide expectations among stakeholders interested in the evaluation work. Evaluation plans may include the following components: a program description; evaluation purpose, objectives, and evaluation or research questions; methods and scope of the evaluation, data collection, and data analysis; timeline; required reporting and deliverables; and program support. Components are described in more detail in [Evaluation Plan Guidelines][Evaluation Plan Guidelines]. 
 
 Evaluation plans are created with program and grant managers. Evaluation plans are drafted by evaluation staff and shared with program managers and partners for review, feedback, and approval. Annual evaluation plans must be finalized and approved by September 30. Although the annual evaluation plan is agreed upon at the beginning of the year, unexpected events, challenges, or circumstances may necessitate changes to the plan. The evaluation plan is subject to change through agreed upon decision making between the program manager and evaluation staff. Evaluators are held accountable to producing evaluation plans and meeting the milestone requirements included in the timeline and overall evaluation plan.
+
+#### Evaluation Plan Guidelines
+
+**Fiscal Year:**  2022-2023    
+**Program/Grant Name:**    
+**Program Manager/Partner:**    
+**Grant/Fund Contact Person:**    
+**Research and Analysis Team Staff:** (R&A team members who will be responsible for the work)
+
+**Program Description**  
+General information about the program. May include program goals, objectives, and other pertinent information to understanding its importance to IDEA Public Schools (e.g., organizational goals, strategic plan, key action steps supported by the program).
+
+**Fiscal Considerations**  
+Cost-Effectiveness or Cost-Benefit  Measures (to be included by the evaluation)
+
+**Evaluation Purpose**  
+May include a purpose statement, primary objectives, and evaluation or research questions to be addressed by the evaluation.  
+*Evaluation Objectives*  
+*Evaluation or Research Questions*
+
+**Methods and Scope**  
+Includes methods by which relevant data will be collected and analyzed.  
+*Data Collection*  
+*Data Analysis*  
+
+**Required Reporting, Deliverables**  
+Mandatory reporting requirements (for funding agency and other entities) and planned deliverables.  
+
+**Program/Project Support**  
+Types of ongoing support that will be provided to the program staff over the course of the year. Ex: Recurring meetings, data requests, etc.
+
+**Timeline**  
+Lists and organizes tasks, activities, and focus areas as planned for the year. The timeline may combine months or list month-by-month as appropriate to the project. The timeline serves to communicate plans throughout the year and guide expectations among stakeholders interested in the evaluation work. Evaluators are held accountable to milestones highlighted in the timeline and overall evaluation plan.
+
 
 ### Published Evaluation Plans
 
