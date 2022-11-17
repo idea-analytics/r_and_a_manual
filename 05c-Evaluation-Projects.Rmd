@@ -1,9 +1,9 @@
 # Evaluation Projects
 
-The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program, and Teacher and School Leader Incentive Program. In addition to annual grant-funded evaluations, R&A conducts evaluation work for ad hoc evaluations and specific projects as needed and by request. 
+The R&A team conducts evaluations for annual grant-funded projects and specific or ad hoc projects as needed and by request. 
 
 
-### Evaluation Plans 
+## Evaluation Plans 
 
 How do we organize and guide our work on evaluation projects? Evaluation plans are prepared for each annually funded grant and published to our Team Site. Annual evaluation projects may include several specific projects that directly inform the ongoing evaluation work. Evaluation plans are also developed for ad hoc and specific evaluation needs, topics, and projects.
 
@@ -14,11 +14,11 @@ Evaluation Plans for the current fiscal year are published to the [Team Site (Th
 Evaluation planning resources and files are stored in the [R&A Private Group][R&A Private Group] Evaluation folder.
 
 
-### Annual Evaluation Projects
+## Annual Evaluation Projects
 
+The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program (CSP), and Teacher and School Leader Incentive Program (TSLIP).
 
-
-#### 21st Century Afterschool Program
+### 21st Century Afterschool Program
 
 IDEA Public Schools’ 21st Century Afterschool program provides high quality programming for students in the hours before and after the traditional school day has ended. The afterschool program allows IDEA schools to make a positive difference in the lives of students with greatest needs, as the program aims to provide additional support and ensure that all students are receiving the guidance and assistance they need to successfully progress towards college completion. The 21st Century program is centered around four main goals for students: increasing achievement scores, improving student behavior and attendance, and increasing rates of graduation or grade promotion towards timely graduation. 
 
@@ -61,7 +61,7 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
   + **WHENCREAATED:** a date/time stamp indicating the date of participation;
   + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
 
-#### Camp Rio
+### Camp Rio
 
 Camp RIO has been in operation since 2015 as a year-round outdoor education and summer camp facility. It is located on 85-acres of predominantly untouched wildlife preserve in Brownsville, Texas and is accessible to all regardless of school district, ability, or age. Camp RIO is a facility designed for outdoor discovery and adventure with a mission of promoting healthy lifestyles by exposing children to the benefits of exploration, land stewardship, and staying active through various hands-on activities. 
 
@@ -75,7 +75,7 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 
 
-#### Charter School Program (CSP) Grants
+### Charter School Program (CSP) Grants
 
 R&A conducts internal evaluation work for two CSP grants:
 1) CSP Grants 2019-2024 and 2) CSP Grants 2020-2025. 
@@ -145,7 +145,7 @@ More information to come soon.
 
 
 
-#### Teacher and School Leader Incentive Program (TSLIP)
+### Teacher and School Leader Incentive Program (TSLIP)
 
 Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
 
@@ -153,4 +153,4 @@ Grant that contains 4 key components/areas for research questions. Main points o
 More information to come soon.
 
 
-### Ad Hoc Evaluation Projects
+## Ad Hoc Evaluation Projects
