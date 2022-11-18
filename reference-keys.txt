@@ -143,6 +143,9 @@ math-curriculum-redesign-project
 team-value-proposition-project
 evaluation-projects
 evaluation-plans
+about-evaluation-plans
+evaluation-plan-guidelines
+published-evaluation-plans-1
 annual-evaluation-projects
 st-century-afterschool-program
 camp-rio
