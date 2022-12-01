@@ -1328,7 +1328,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </h3>
 <p>Dynamic Indicators of Basic Early Literacy Skills, or <a href="https://dibels.uoregon.edu/">DIBELS</a> is a series of short literacy tests for early grade levels (K-2) originally developed by the University of Oregon Center on Teaching and Learning (CTL). We use these tests to inform us on reading outcomes for our youngest scholars at BOY, MOY, and EOY.</p>
 <p>Data can be viewed through <a href="https://mclass.amplify.com/portal/">Amplify</a> but is usually pulled and stored in the warehouse.</p>
-<p><strong>Table:</strong> [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
+<p><strong>Table:</strong> [RGVPDRA-DASQL].[Dashboard].[dbo].[DIBELS_MCLASS]</p>
 <p><strong>Main metrics:</strong> Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests</p>
 <p><strong>Most important columns:</strong> [Assessment Measure-Composite Score-Levels] | [Assessment Measure-Composite Score-Score] | [Assessment Measure-FSF-Levels] | [Assessment Measure-FSF-Score] | [Assessment Measure-LNF-Levels] | [Assessment Measure-LNF-Score] | [Assessment Measure-PSF-Levels] | [Assessment Measure-PSF-Score] | [Assessment Measure-NWF (CLS)-Levels] | [Assessment Measure-NWF (CLS)-Score] | [Assessment Measure-NWF (WWR)-Levels] | [Assessment Measure-NWF (WWR)-Score] | [Assessment Measure-DORF (Fluency)-Levels] | [Assessment Measure-DORF (Fluency)-Score] | [Assessment Measure-DORF (Accuracy)-Levels] | [Assessment Measure-DORF (Accuracy)-Score] | [Assessment Measure-DORF (Retell)-Levels] | [Assessment Measure-DORF (Retell)-Score] | [Assessment Measure-DORF (Retell Quality)-Levels] | [Assessment Measure-DORF (Retell Quality)-Score] | [Assessment Measure-DORF (Errors)-Score] | [Assessment Measure-Daze-Levels] | [Assessment Measure-Daze-Score] | [Assessment Measure-Daze (Correct)-Score] | [Assessment Measure-Daze (Incorrect)-Score]</p>
 <p><strong>Other useful fields:</strong></p>
@@ -1345,7 +1345,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <ul>
 <li><strong>Who is assessed?</strong></li>
 </ul>
-<p>All students in K, 1 and 2 are assessed using DIBELS.</p>
+<p>All students in K, 1, and 2 are assessed using DIBELS.</p>
 <ul>
 <li>
 <strong>Which tests/columns are actually used?</strong>
@@ -1374,12 +1374,12 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <strong>[Assessment Measure-DORF (Accuracy)-Levels]:</strong> The DORF, or <em>DIBELS Oral Reading Fluency</em> test, is administered to 1-2 students. Levels include “Well Below Benchmark”, “Below Benchmark”, and “At Benchmark”.</li>
 <li>
 <strong>[Assessment Measure-DORF (Accuracy)-Score]:</strong> This is a numerical measure of DORF - Accuracy in the interval [0, 96+).</li>
-<li>The remaining assessment measures were used historically but are no longer actively tested.</li>
+<li>The remaining assessment measures were used historically, but are no longer actively tested.</li>
 </ul>
 </li>
 <li><strong>Why are there NAs for certain tests if the student took the assessment?</strong></li>
 </ul>
-<p>DIBELS has multiple required measures but can be implemented using <em>gating rules</em>, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.</p>
+<p>DIBELS has multiple required measures but can be implemented using <em>gating rules</em> which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.</p>
 <ul>
 <li>
 <p><strong>Who can I ask for more context?</strong></p>
@@ -2259,7 +2259,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-11-18.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2022-12-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
