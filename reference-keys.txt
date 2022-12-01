@@ -209,6 +209,13 @@ qualitative-methods
 qualitative-research
 qualitative-tools
 maxqda
+surveys
+about-surveys
+surveys-at-idea
+survey-best-practices
+survey-purpose
+survey-design
+survey-items
 tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
