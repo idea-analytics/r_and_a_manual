@@ -967,7 +967,7 @@ Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uo
 
 Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is usually pulled and stored in the warehouse.
 
-**Table:** [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]
+**Table:** [RGVPDRA-DASQL].[Dashboard].[dbo].[DIBELS_MCLASS]
 
 **Main metrics:** Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests
 
@@ -984,7 +984,7 @@ Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is 
 
 * **Who is assessed?** 
 
-All students in K, 1 and 2 are assessed using DIBELS. 
+All students in K, 1, and 2 are assessed using DIBELS. 
 
 * **Which tests/columns are actually used?**
   + **[Assessment Measure-Composite Score-Levels]:** A *composite level* is assigned to all students, regardless if they complete all sections. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
@@ -999,11 +999,11 @@ All students in K, 1 and 2 are assessed using DIBELS.
   + **[Assessment Measure-DORF (Fluency)-Score]:**  This is a numerical measure of DORF - Fluency in the interval [0, 164+).
   + **[Assessment Measure-DORF (Accuracy)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
   + **[Assessment Measure-DORF (Accuracy)-Score]:** This is a numerical measure of DORF - Accuracy in the interval [0, 96+).
-  + The remaining assessment measures were used historically but are no longer actively tested.
+  + The remaining assessment measures were used historically, but are no longer actively tested.
 
 * **Why are there NAs for certain tests if the student took the assessment?**
 
-DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
+DIBELS has multiple required measures but can be implemented using *gating rules* which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
 
 * **Who can I ask for more context?**
 
