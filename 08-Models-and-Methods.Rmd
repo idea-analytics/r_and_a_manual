@@ -352,6 +352,36 @@ $g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i +
 
 See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of ordinal logistic regression using various packages.
 
+### Generalized additive modeling
+
+If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses *splines*, which are more flexible and somewhat less restrictive than fitting polynomials.
+
+Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.
+
+```{r}
+library(mgcv) # widely used for fitting different types of GAMs
+
+# model enrolled students using a GAM
+# fit a linear relationship with years_open
+# fit a spline with date
+gam_enrollment <- gam(enrolled ~ years_open + s(date),
+                      data = df_enrollment) # use s() to enclose variables with a nonlinear relationship
+
+# check fitted coefficient on years_open, degrees of freedom on s(date)
+summary(gam_enrollment)
+
+# plot fitted splines against response variable
+plot(gam_enrollment)
+```
+
+Note that splines only fit relationships within the domain of the data. In other words, do not extrapolate 2021-22 enrollment splines to 2022-23, unless you believe the relationship will hold again. Splines also may overfit data if the relationship is unclear, so use great caution before choosing to model nonlinear relationships with a spline.
+
+More resources for learning about GAMs are listed below:
+
+1. Wood, S. N. (2017). *Generalized Additive Models: An Introduction with R* (2nd ed.). Chapman and Hall/CRC. (Comprehensive introduction by author of `mgcv` package)
+2. [GAMs in R](https://noamross.github.io/gams-in-r-course/) (Short course by Noam Ross)
+3. [Generalized Additive Models](https://m-clark.github.io/generalized-additive-models/) (Short book by Michael Clark)
+
 ### Machine learning
 
 If the goal moves beyond inference towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.
