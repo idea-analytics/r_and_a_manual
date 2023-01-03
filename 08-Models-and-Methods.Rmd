@@ -300,6 +300,8 @@ To estimate these coefficients and evaluate the fit, we can use the following wo
 # all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1
 
 # run the regression (a linear model)
+# lm(formula = response ~ explanatory_1 + explanatory_2 + ..., 
+#    data = data.frame)
 lm_staar <- lm(STAARQuestionsCorrect ~ SemesterExamQuestionsCorrect + CourseGrade,
                data = df_staar_scores)
 
@@ -358,7 +360,7 @@ If the relationship between the explanatory and response variables cannot be spe
 
 Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.
 
-```{r}
+```{r gams_example, eval=FALSE}
 library(mgcv) # widely used for fitting different types of GAMs
 
 # model enrolled students using a GAM
@@ -374,7 +376,7 @@ summary(gam_enrollment)
 plot(gam_enrollment)
 ```
 
-Note that splines only fit relationships within the domain of the data. In other words, do not extrapolate 2021-22 enrollment splines to 2022-23, unless you believe the relationship will hold again. Splines also may overfit data if the relationship is unclear, so use great caution before choosing to model nonlinear relationships with a spline.
+Note that splines only fit relationships within the domain of the data. In other words, do not extrapolate 2021-22 enrollment splines to 2022-23, unless you believe the relationship will hold again. Splines also may overfit data if the relationship is unclear, so use caution before choosing to model nonlinear relationships with a spline.
 
 More resources for learning about GAMs are listed below:
 
@@ -384,7 +386,7 @@ More resources for learning about GAMs are listed below:
 
 ### Machine learning
 
-If the goal moves beyond inference towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.
+If the goal moves beyond inference (describing and estimating relationships) towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.
 
 Note that communicating results from these models may be beyond a general audience's reach, so caution should be taken when describing a marginal effect of a variable.
 
