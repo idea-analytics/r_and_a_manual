@@ -190,6 +190,7 @@ inferential-methods-with-the-infer-package
 modeling-and-predictive-statistics
 linear-modeling
 generalized-linear-modeling
+generalized-additive-modeling
 machine-learning
 geospatial-methods-or-a-gentle-introduction-to-gis-in-r-with-simple-features
 what-is-a-simple-feature
