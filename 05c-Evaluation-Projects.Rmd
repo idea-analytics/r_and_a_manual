@@ -135,14 +135,25 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
+Charter School Program (CSP) grant awards to IDEA Public Schools provide funds for replication and expansion of new IDEA schools. Replication refers to launching new schools. Expansion refers to scaling existing schools.
+
+***CSP Grant Applications*** 
+
+CSP grant applications are submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
+
+#### CSP 2017 
+
+Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency.
+Copia Consulting provided reports for CSP in 2020 and 2021. In 2021, the contract with Copia was not continued for ongoing or future CSP evaluation work. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report for the CSP 2017 grant. 
+
+#### CSP 2019 and 2020
+
 R&A conducts internal evaluation work for two CSP grants:
-1) CSP Grants 2019-2024 and 2) CSP Grants 2020-2025. 
+1) CSP Grant 2019-2024 and 2) CSP Grant 2020-2025. 
 
-CSP Grant 2017-2022 evaluation work was conducted by a contracted agency.
 
-Charter School Program (CSP) grants awarded to IDEA Public Schools provide funds for replication and expansion of new IDEA schools. Replication refers to launching new schools. Expansion refers to scaling new schools. 
 
-CSP grant applications were submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention.
+##### CSP Schools
 
 * **CSP Schools and Regions**
 CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
@@ -189,10 +200,15 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
+
+##### CSP Evaluation Questions
+
 * **CSP Evaluation Questions:** insert question here. 
 
 * **CSP Evaluation Question 1:** insert question here. 
 
+
+##### CSP IDEA Model
 
 To address the first question, the IDEA model and its components needed to be identified. 
 
