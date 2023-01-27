@@ -244,19 +244,28 @@ To move forward with the evaluation, a draft model needed to be created and deve
 What are the essential components to launch and scale schools in alignment with the IDEA model?
 
 There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
-[insert graphic here]
+
+![This image shows the CSP Model Version 1 with essential components of the IDEA model.](img/CSP_Model-1_original_filesize-small.png "CSP IDEA Model Version 1 Key Components of the IDEA Model")
+* **The visual representation organized three columns:** 1) key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
+
+* **Five key components included:** 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics.
+
+    + **Structure** included 1 campus and 2 schools, grade levels, and staffing. By region, year, and maturity; enrollment and persistence, and roles and retention. (Onboarding Handbook; SY 21-22)
+
+    + **Operations** included facilities, safety, transportation, and academic services. Buildings and utilities, maintenance, buses and riders, and enrollment. (Operations Playbook SY 21-22)
+
+    + **Academics** included rigorous core content, data-driven instruction, student support, and individualized learning (4-component academic model). Curriculum and test scores, move this world and SEL survey, critical student intervention, and hotspots. (Academic Book SY 21-22)
+
+    + **Teaching** included teacher performance and training and development. Guide to excellent teaching (GET) guideposts, rubrics, and power 8 rows, teacher career pathway, and roadmap and best practices. (TCP Handbook SY 21-22, GET Guidebook and Rubrics SY 21-22)
+
+    + **Climate and Culture** included mission and vision, core values, build relationships, and school culture components. Core values survey, GET guidepost #6, SEL survey TSR (teacher-student relationships), GPTW survey (3 items), and family and student surveys. (IDEA website, School Culture Components Document and Rubrics, GPTW instrument, SEL instrument, GET Rubrics)
 
 
+###### Model 1 Validation 
 
-IDEA Model v. 1
-There were 5 key components in our CSP IDEA Model. These components may look different by region and school maturity, but the essential elements may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
+More information to come soon.
 
-A visual representation organized key component information in three columns: 1) the key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
-
-Five key components included: 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics. 
-
-
-* **CSP IDEA Model:**
+###### CSP IDEA Model (v.2)
 
 More information to come soon. 
 
