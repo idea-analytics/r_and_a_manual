@@ -225,25 +225,35 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 
 Research and evaluation work aimed to answer the following question, "What is the IDEA model for launching and scaling new schools?"
 
-* **CSP IDEA Model Development**
+**CSP IDEA Model Development**
 
-**Why did we develop a model?** 
-After preliminary research and discussion, an existing, comprehensive model for launching and/or scaling new IDEA schools was not found.
+  * **Why did we develop a model?** After preliminary research and discussion, an existing, comprehensive model for launching and/or scaling new IDEA schools was not found.
 
-* **How did we develop the initial model?** 
-We reviewed accessible content online and held a series of weekly discussions focused on CSP.
+  * **How did we develop the initial model?** We reviewed accessible content online and held a series of weekly discussions focused on CSP.
 
-* **Research** was conducted to locate and review the IDEA model for launching and scaling new schools. Contents available online via the Hub and web were reviewed and analyzed. Specific examples included Academic Books, APO Playbooks, GET Rubrics, TCP Handbooks, Onboarding Guides, School Culture Components, Team Sites, IDEA Schools, and Year 0.
+    + **Research** was conducted to locate and review the IDEA model for launching and scaling new schools. Contents available online via the Hub and web were reviewed and analyzed. Specific examples included Academic Books, APO Playbooks, GET Rubrics, TCP Handbooks, Onboarding Guides, School Culture Components, Team Sites, IDEA Schools, and Year 0.
 
-* **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 3) sustaining new schools; 4) roles of leaders and teams; 5) regions, new regions, and new states; and 6) viable metrics and measures. 
+    + **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 3) sustaining new schools; 4) roles of leaders and teams; 5) regions, new regions, and new states; and 6) viable metrics and measures. 
 
-As part of the evaluation process, evaluators reviewed information, recorded notes, and synthesized the content into three areas for investigation: 1) What is the IDEA model for launching and scaling new schools?; 2) What are the challenges, needs, and supports provided to launching and scaling schools?; and 3) What sustainability strategies have been implemented to support the launch and expansion of new schools?
+    + **As part of the evaluation process,** evaluators collected information, recorded notes, and synthesized the content into three areas for investigation: 1) What is the IDEA model for launching and scaling new schools?; 2) What are the challenges, needs, and supports provided to launching and scaling schools?; and 3) What sustainability strategies have been implemented to support the launch and expansion of new schools?
 
-###### **CSP IDEA Model Components (v.1)
+To move forward with the evaluation, a draft model needed to be created and developed to showcase the main elements of the IDEA Model for opening new schools based on the review of information and discussions. As notes were reviewed, discussed, and documented, content informing the IDEA Model was organized into 5 key components. 
+
+###### CSP IDEA Model Components (v.1)
+
+What are the essential components to launch and scale schools in alignment with the IDEA model?
+
 There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
 [insert graphic here]
 
 
+
+IDEA Model v. 1
+There were 5 key components in our CSP IDEA Model. These components may look different by region and school maturity, but the essential elements may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
+
+A visual representation organized key component information in three columns: 1) the key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
+
+Five key components included: 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics. 
 
 
 * **CSP IDEA Model:**
