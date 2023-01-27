@@ -135,9 +135,9 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
-Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. ***Replication*** refers to launching new schools. ***Expansion*** refers to scaling existing schools.
+Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
 
-***CSP Grant Applications*** 
+* **CSP Grant Applications*** 
 
 CSP grant applications are submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
 
@@ -217,11 +217,34 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 
 ##### Evaluation Questions
 
-* **CSP Evaluation Question 1:** insert question here. 
+* **CSP Evaluation Question 1:** To what extent do replication and expansion schools consistently implement key model elements as defined by IDEA leadership? How, if at all, does implementation of noted elements differ between Academy and College Prep campuses, by school maturity (years in operation) and region? 
+
+* **CSP Evaluation Question 2:** 
 
 ##### CSP IDEA Model
 
-To address the first question, the IDEA model and its components needed to be identified. 
+Research and evaluation work aimed to answer the following question, "What is the IDEA model for launching and scaling new schools?"
+
+* **CSP IDEA Model Development**
+
+**Why did we develop a model?** 
+After preliminary research and discussion, an existing, comprehensive model for launching and/or scaling new IDEA schools was not found.
+
+* **How did we develop the initial model?** 
+We reviewed accessible content online and held a series of weekly discussions focused on CSP.
+
+* **Research** was conducted to locate and review the IDEA model for launching and scaling new schools. Contents available online via the Hub and web were reviewed and analyzed. Specific examples included Academic Books, APO Playbooks, GET Rubrics, TCP Handbooks, Onboarding Guides, School Culture Components, Team Sites, IDEA Schools, and Year 0.
+
+* **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 3) sustaining new schools; 4) roles of leaders and teams; 5) regions, new regions, and new states; and 6) viable metrics and measures. 
+
+As part of the evaluation process, evaluators reviewed information, recorded notes, and synthesized the content into three areas for investigation: 1) What is the IDEA model for launching and scaling new schools?; 2) What are the challenges, needs, and supports provided to launching and scaling schools?; and 3) What sustainability strategies have been implemented to support the launch and expansion of new schools?
+
+###### **CSP IDEA Model Components (v.1)
+There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
+[insert graphic here]
+
+
+
 
 * **CSP IDEA Model:**
 
