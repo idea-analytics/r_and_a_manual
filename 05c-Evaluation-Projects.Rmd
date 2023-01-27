@@ -135,14 +135,40 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
+Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
+
+* **CSP Grant Applications*** 
+
+CSP grant applications are submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
+
+#### CSP 2017 
+
+Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency, Copia Consulting, who provided reports during 2020 and 2021. In 2021, the contract with Copia was discontinued. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report.
+
+* **CSP 2017 Final Evaluation Report Overview**
+
+The 2017 CSP grant was dedicated to expanding IDEA schools in Austin, San Antonio, and Rio Grande Valley, and launching new schools in Tarrant County/Fort Worth. IDEA was awarded CSP 2017 funds with specific focus on Department of Education priorities to serve a low-income demographic and promote diversity. As stated in the approved grant application, aims of this five-year study were two-fold: 1) to understand whether the support in place for new schools was effective, and 2) to evaluate whether school model adaptations were done with fidelity. A firm, Copia Consulting, was hired to conduct the evaluation of the CSP 2017 grant during the grant cycle in partnership with IDEA Public Schools. Consistent with objectives outlined in the grant for evaluation, an internal evaluation team within the IDEA Division of Research and Analysis was established by the end of the grant.
+
+The report described the performance of IDEA schools receiving funds from the CSP 2017 grant in terms of school characteristics, student demographics, and key outcomes associated with organizational goals and priorities. Key outcomes reported include student persistence, student average daily attendance (ADA), academic performance on state assessments, and staff retention.
+
+* **CSP 2017 Data Collection and Analysis** 
+
+Data collected was analyzed using R and Excel.  
+
+Data sources included: 
+
+Documentation was stored in the R&A Private Group folder for CSP Grants, CSP_2017 R Project, and Idea Analytics Team Github repository for CSP 2017. 
+
+#### CSP 2019 and 2020
+
 R&A conducts internal evaluation work for two CSP grants:
-1) CSP Grants 2019-2024 and 2) CSP Grants 2020-2025. 
+1) CSP Grant 2019-2024 and 2) CSP Grant 2020-2025. 
 
-CSP Grant 2017-2022 evaluation work was conducted by a contracted agency.
+The evaluation work for each CSP Grant is guided by annual CSP Grant Evaluation Plan. 
+For more details, see [Evaluation Plans][Evaluation Plans].
 
-Charter School Program (CSP) grants awarded to IDEA Public Schools provide funds for replication and expansion of new IDEA schools. Replication refers to launching new schools. Expansion refers to scaling new schools. 
 
-CSP grant applications were submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention.
+##### CSP Schools
 
 * **CSP Schools and Regions**
 CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
@@ -150,13 +176,6 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 * **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
 
 * **Schools:** List schools. 
-
-Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
-
-* **School Opening Grade Exceptions:** 
-* Price Hill opened with 6th and 7th at the CP level
-* Converse opened with PK, K, and 1st at the Academy level
-* Hidden Meadow opened with PK, K, and 1st at the Academy level
 
 * **Changes to School Numbers & Names**
 Below is a tables documenting the changes to School Numbers:
@@ -189,14 +208,64 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
-* **CSP Evaluation Questions:** insert question here. 
+* **Grade Levels: ** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
 
-* **CSP Evaluation Question 1:** insert question here. 
+* **School Opening Grade Exceptions:** 
+* Price Hill opened with 6th and 7th at the CP level
+* Converse opened with PK, K, and 1st at the Academy level
+* Hidden Meadow opened with PK, K, and 1st at the Academy level 
+
+##### Evaluation Questions
+
+* **CSP Evaluation Question 1:** To what extent do replication and expansion schools consistently implement key model elements as defined by IDEA leadership? How, if at all, does implementation of noted elements differ between Academy and College Prep campuses, by school maturity (years in operation) and region? 
+
+* **CSP Evaluation Question 2:** 
+
+##### CSP IDEA Model
+
+Research and evaluation work aimed to answer the following question, "What is the IDEA model for launching and scaling new schools?"
+
+**CSP IDEA Model Development**
+
+  * **Why did we develop a model?** After preliminary research and discussion, an existing, comprehensive model for launching and/or scaling new IDEA schools was not found.
+
+  * **How did we develop the initial model?** We reviewed accessible content online and held a series of weekly discussions focused on CSP.
+
+    + **Research** was conducted to locate and review the IDEA model for launching and scaling new schools. Contents available online via the Hub and web were reviewed and analyzed. Specific examples included Academic Books, APO Playbooks, GET Rubrics, TCP Handbooks, Onboarding Guides, School Culture Components, Team Sites, IDEA Schools, and Year 0.
+
+    + **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 3) sustaining new schools; 4) roles of leaders and teams; 5) regions, new regions, and new states; and 6) viable metrics and measures. 
+
+    + **As part of the evaluation process,** evaluators collected information, recorded notes, and synthesized the content into three areas for investigation: 1) What is the IDEA model for launching and scaling new schools?; 2) What are the challenges, needs, and supports provided to launching and scaling schools?; and 3) What sustainability strategies have been implemented to support the launch and expansion of new schools?
+
+To move forward with the evaluation, a draft model needed to be created and developed to showcase the main elements of the IDEA Model for opening new schools based on the review of information and discussions. As notes were reviewed, discussed, and documented, content informing the IDEA Model was organized into 5 key components. 
+
+###### CSP IDEA Model Components (v.1)
+
+What are the essential components to launch and scale schools in alignment with the IDEA model?
+
+There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
+
+![This image shows the CSP Model Version 1 with essential components of the IDEA model.](img/CSP_Model-1_original_filesize-small.png "CSP IDEA Model Version 1 Key Components of the IDEA Model")
+* **The visual representation organized three columns:** 1) key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
+
+* **Five key components included:** 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics.
+
+    + **Structure** included 1 campus and 2 schools, grade levels, and staffing. By region, year, and maturity; enrollment and persistence, and roles and retention. (Onboarding Handbook; SY 21-22)
+
+    + **Operations** included facilities, safety, transportation, and academic services. Buildings and utilities, maintenance, buses and riders, and enrollment. (Operations Playbook SY 21-22)
+
+    + **Academics** included rigorous core content, data-driven instruction, student support, and individualized learning (4-component academic model). Curriculum and test scores, move this world and SEL survey, critical student intervention, and hotspots. (Academic Book SY 21-22)
+
+    + **Teaching** included teacher performance and training and development. Guide to excellent teaching (GET) guideposts, rubrics, and power 8 rows, teacher career pathway, and roadmap and best practices. (TCP Handbook SY 21-22, GET Guidebook and Rubrics SY 21-22)
+
+    + **Climate and Culture** included mission and vision, core values, build relationships, and school culture components. Core values survey, GET guidepost #6, SEL survey TSR (teacher-student relationships), GPTW survey (3 items), and family and student surveys. (IDEA website, School Culture Components Document and Rubrics, GPTW instrument, SEL instrument, GET Rubrics)
 
 
-To address the first question, the IDEA model and its components needed to be identified. 
+###### Model 1 Validation 
 
-* **CSP IDEA Model:**
+More information to come soon.
+
+###### CSP IDEA Model (v.2)
 
 More information to come soon. 
 
