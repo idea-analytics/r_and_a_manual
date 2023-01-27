@@ -135,7 +135,7 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
-Charter School Program (CSP) grant awards to IDEA Public Schools provide funds for replication and expansion of new IDEA schools. Replication refers to launching new schools. Expansion refers to scaling existing schools.
+Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. ***Replication*** refers to launching new schools. ***Expansion*** refers to scaling existing schools.
 
 ***CSP Grant Applications*** 
 
@@ -143,8 +143,21 @@ CSP grant applications are submitted and approved for funding. The grant applica
 
 #### CSP 2017 
 
-Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency.
-Copia Consulting provided reports for CSP in 2020 and 2021. In 2021, the contract with Copia was not continued for ongoing or future CSP evaluation work. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report for the CSP 2017 grant. 
+Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency, Copia Consulting, who provided reports during 2020 and 2021. In 2021, the contract with Copia was not continued for ongoing or future CSP evaluation work. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report for the CSP 2017 grant.
+
+***CSP 2017 Final Evaluation Report**
+
+The 2017 CSP grant was dedicated to expanding IDEA schools in Austin, San Antonio, and Rio Grande Valley, and launching new schools in Tarrant County/Fort Worth. IDEA was awarded CSP 2017 funds with specific focus on Department of Education priorities to serve a low-income demographic and promote diversity. As stated in the approved grant application, aims of this five-year study were two-fold: 1) to understand whether the support in place for new schools was effective, and 2) to evaluate whether school model adaptations were done with fidelity. A firm, Copia Consulting, was hired to conduct the evaluation of the CSP 2017 grant during the grant cycle in partnership with IDEA Public Schools. Consistent with objectives outlined in the grant for evaluation, an internal evaluation team within the IDEA Division of Research and Analysis was established by the end of the grant.
+
+The report described the performance of IDEA schools receiving funds from the CSP 2017 grant in terms of school characteristics, student demographics, and key outcomes associated with organizational goals and priorities. Key outcomes reported include student persistence, student average daily attendance (ADA), academic performance on state assessments, and staff retention.
+
+***CSP 2017 Data Collection and Analysis** 
+
+Data collected was analyzed using R and Excel.  
+
+Data sources included: 
+
+Documentation was stored in the R&A Private Group folder for CSP Grants, CSP_2017 R Project, and Idea Analytics Team Github repository for CSP 2017. 
 
 #### CSP 2019 and 2020
 
@@ -199,13 +212,6 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson Middle School | 109907026 | 108807204 | 2022-2023 |
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
-
-
-##### CSP Evaluation Questions
-
-* **CSP Evaluation Questions:** insert question here. 
-
-* **CSP Evaluation Question 1:** insert question here. 
 
 
 ##### CSP IDEA Model
