@@ -143,15 +143,15 @@ CSP grant applications are submitted and approved for funding. The grant applica
 
 #### CSP 2017 
 
-Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency, Copia Consulting, who provided reports during 2020 and 2021. In 2021, the contract with Copia was not continued for ongoing or future CSP evaluation work. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report for the CSP 2017 grant.
+Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agency, Copia Consulting, who provided reports during 2020 and 2021. In 2021, the contract with Copia was discontinued. In fall 2022, R&A staff conducted analyses and prepared the final evaluation report.
 
-***CSP 2017 Final Evaluation Report**
+* **CSP 2017 Final Evaluation Report Overview**
 
 The 2017 CSP grant was dedicated to expanding IDEA schools in Austin, San Antonio, and Rio Grande Valley, and launching new schools in Tarrant County/Fort Worth. IDEA was awarded CSP 2017 funds with specific focus on Department of Education priorities to serve a low-income demographic and promote diversity. As stated in the approved grant application, aims of this five-year study were two-fold: 1) to understand whether the support in place for new schools was effective, and 2) to evaluate whether school model adaptations were done with fidelity. A firm, Copia Consulting, was hired to conduct the evaluation of the CSP 2017 grant during the grant cycle in partnership with IDEA Public Schools. Consistent with objectives outlined in the grant for evaluation, an internal evaluation team within the IDEA Division of Research and Analysis was established by the end of the grant.
 
 The report described the performance of IDEA schools receiving funds from the CSP 2017 grant in terms of school characteristics, student demographics, and key outcomes associated with organizational goals and priorities. Key outcomes reported include student persistence, student average daily attendance (ADA), academic performance on state assessments, and staff retention.
 
-***CSP 2017 Data Collection and Analysis** 
+* **CSP 2017 Data Collection and Analysis** 
 
 Data collected was analyzed using R and Excel.  
 
@@ -164,6 +164,8 @@ Documentation was stored in the R&A Private Group folder for CSP Grants, CSP_201
 R&A conducts internal evaluation work for two CSP grants:
 1) CSP Grant 2019-2024 and 2) CSP Grant 2020-2025. 
 
+The evaluation work for each CSP Grant is guided by annual CSP Grant Evaluation Plan. 
+For more details, see [Evaluation Plans][Evaluation Plans].
 
 
 ##### CSP Schools
