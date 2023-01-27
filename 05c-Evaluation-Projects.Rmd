@@ -177,13 +177,6 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 
 * **Schools:** List schools. 
 
-Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
-
-* **School Opening Grade Exceptions:** 
-* Price Hill opened with 6th and 7th at the CP level
-* Converse opened with PK, K, and 1st at the Academy level
-* Hidden Meadow opened with PK, K, and 1st at the Academy level
-
 * **Changes to School Numbers & Names**
 Below is a tables documenting the changes to School Numbers:
 
@@ -215,6 +208,16 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
+* **Grade Levels: ** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
+
+* **School Opening Grade Exceptions:** 
+* Price Hill opened with 6th and 7th at the CP level
+* Converse opened with PK, K, and 1st at the Academy level
+* Hidden Meadow opened with PK, K, and 1st at the Academy level 
+
+##### Evaluation Questions
+
+* **CSP Evaluation Question 1:** insert question here. 
 
 ##### CSP IDEA Model
 
