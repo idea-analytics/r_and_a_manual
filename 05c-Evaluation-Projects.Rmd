@@ -137,9 +137,7 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
 
-* **CSP Grant Applications*** 
-
-CSP grant applications are submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
+**CSP grant applications** are submitted and approved for funding by the Department of Education (DOE). The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary measures and metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
 
 #### CSP 2017 
 
@@ -167,7 +165,6 @@ R&A conducts internal evaluation work for two CSP grants:
 The evaluation work for each CSP Grant is guided by annual CSP Grant Evaluation Plan. 
 For more details, see [Evaluation Plans][Evaluation Plans].
 
-
 ##### CSP Schools
 
 * **CSP Schools and Regions**
@@ -177,8 +174,9 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 
 * **Schools:** List schools. 
 
-* **Changes to School Numbers & Names**
-Below is a tables documenting the changes to School Numbers:
+* **Changes to School Numbers & Names** 
+
+Table below documents the changes to **School Numbers**
 
 | School Name | School Short Name | School Number | Academic Year |
 | :------- | :------- | -------: | :-------: |
@@ -196,7 +194,7 @@ Below is a tables documenting the changes to School Numbers:
 | IDEA Victory College Prep | Victory | 78352 | 2022-2023 |
 
 
-And this table has changes to school Names (specifically, Amber Creek to Robinson)
+Table below documents the changes to **School Names** (specifically, Amber Creek to Robinson)
 
 | School Name | School Number | State School Number | Academic Year |
 | :------- | -------: | -------: | :-------: |
@@ -208,18 +206,16 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
-* **Grade Levels: ** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
+* **Grade Levels:** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
 
 * **School Opening Grade Exceptions:** 
-* Price Hill opened with 6th and 7th at the CP level
-* Converse opened with PK, K, and 1st at the Academy level
-* Hidden Meadow opened with PK, K, and 1st at the Academy level 
+  * Price Hill opened with 6th and 7th at the CP level.
+  * Converse opened with PK, K, and 1st at the Academy level.
+  * Hidden Meadow opened with PK, K, and 1st at the Academy level. 
 
 ##### Evaluation Questions
 
 * **CSP Evaluation Question 1:** To what extent do replication and expansion schools consistently implement key model elements as defined by IDEA leadership? How, if at all, does implementation of noted elements differ between Academy and College Prep campuses, by school maturity (years in operation) and region? 
-
-* **CSP Evaluation Question 2:** 
 
 ##### CSP IDEA Model
 
@@ -245,31 +241,38 @@ What are the essential components to launch and scale schools in alignment with 
 
 There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
 
-![This image shows the CSP Model Version 1 with essential components of the IDEA model.](img/CSP_Model-1_original_filesize-small.png "CSP IDEA Model Version 1 Key Components of the IDEA Model")
-* **The visual representation organized three columns:** 1) key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
+![This image shows the CSP Model Version 1 with essential components of the IDEA model.](img/CSP_Model-1_original_filesize-small.png "CSP IDEA Model Version 1 Key Components of the IDEA Model"){width="500"}
+  
+  * **The visual representation was organized into 3 columns:** 1) key component; 2) specific examples or areas within the component; and 3) potential data, measures, or metrics for the component. 
+  
+  * **5 key components included:** 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics.
 
-* **Five key components included:** 1) structure, 2) operations, 3) academics, 4) teaching, and 5) climate and culture. Each key component was further defined with a few specific areas and potential measures or metrics.
+    + **Structure** included 1 campus and 2 schools, grade levels, and staffing. By region, year, and maturity; enrollment and persistence, and roles and retention (Onboarding Handbook; SY 21-22).
 
-    + **Structure** included 1 campus and 2 schools, grade levels, and staffing. By region, year, and maturity; enrollment and persistence, and roles and retention. (Onboarding Handbook; SY 21-22)
+    + **Operations** included facilities, safety, transportation, and academic services. Buildings and utilities, maintenance, buses and riders, and enrollment (Operations Playbook SY 21-22).
 
-    + **Operations** included facilities, safety, transportation, and academic services. Buildings and utilities, maintenance, buses and riders, and enrollment. (Operations Playbook SY 21-22)
+    + **Academics** included rigorous core content, data-driven instruction, student support, and individualized learning (4-component academic model). Curriculum and test scores, move this world and SEL survey, critical student intervention, and hotspots (Academic Book SY 21-22).
 
-    + **Academics** included rigorous core content, data-driven instruction, student support, and individualized learning (4-component academic model). Curriculum and test scores, move this world and SEL survey, critical student intervention, and hotspots. (Academic Book SY 21-22)
+    + **Teaching** included teacher performance and training and development. Guide to excellent teaching (GET) guideposts, rubrics, and power 8 rows, teacher career pathway, and roadmap and best practices (TCP Handbook SY 21-22, GET Guidebook and Rubrics SY 21-22).
 
-    + **Teaching** included teacher performance and training and development. Guide to excellent teaching (GET) guideposts, rubrics, and power 8 rows, teacher career pathway, and roadmap and best practices. (TCP Handbook SY 21-22, GET Guidebook and Rubrics SY 21-22)
-
-    + **Climate and Culture** included mission and vision, core values, build relationships, and school culture components. Core values survey, GET guidepost #6, SEL survey TSR (teacher-student relationships), GPTW survey (3 items), and family and student surveys. (IDEA website, School Culture Components Document and Rubrics, GPTW instrument, SEL instrument, GET Rubrics)
-
-
-###### Model 1 Validation 
-
-More information to come soon.
-
-###### CSP IDEA Model (v.2)
-
-More information to come soon. 
+    + **Climate and Culture** included mission and vision, core values, build relationships, and school culture components. Core values survey, GET guidepost #6, SEL survey TSR (teacher-student relationships), GPTW survey (3 items), and family and student surveys (IDEA website, School Culture Components Document and Rubrics, GPTW instrument, SEL instrument, GET Rubrics).
 
 
+###### CSP Model v.1 Methods (Model Feedback and Validation)
+
+* **Qualitative approach with narrative study design:** Because we aimed to gain insight on the perspectives of leaders based on their knowledge and experience, we conducted semi-structured interviews with leaders who were willing to participate. 
+ 
+ * **Pilot Data Collection:** To seek feedback, verify, and improve on the draft model, organizational leaders who represented different areas of the model were identified and invited to provide their perspectives. Interviews, aka model conversation meetings, were held with each leader individually and lasted 30-60 minutes. A total of 10 meetings were conducted. Evaluators recorded notes from meeting discussions and met to debrief to discuss observations and notes. 
+ 
+ * **Pilot Data Analysis:** We adapted narrative and phenomenological data analytic techniques. We identified main points each leader shared, looked for alignment and contradiction, compared model conversation notes and themes with the draft model drawing (CSP Model v.1). Findings were summarized in tables and figures. 
+ 
+ * **Pilot Findings:** After 10 interviews were conducted, themes emerging included enrollment, staffing, curriculum and training, new region research, finance, and college-going culture.
+ 
+The most important factors for implementing the IDEA model successfully (as would be indicated by opening new schools that are successful within the first 4 years) seemed to include: full enrollment, teacher and staff training, establishing a relationship with families, and knowing the new region where the new school is being opened. 
+
+![This image shows most emphasized components of CSP Model Version 1 based on model conversations with leaders.](img/CSP_Model-2_title_filesize-small.png "CSP IDEA Model Version 1 Most Emphasized Key Components of the CSP IDEA Model"){width="500"}
+ 
+ * **Implications:** Knowing what factors help new schools be successful will help us open and support new schools.
 
 
 ### Teacher and School Leader Incentive Program (TSLIP)
