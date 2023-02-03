@@ -729,9 +729,9 @@ base_stamen_map %>%
 
 Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasis those area versus smaller geographies. This distortion is familiar to those that follow elections, where geographically large states with small populations Wyoming loom larger then geographically small, but densely populated states like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal population (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.
 
-A second issue is that it's very hard to show heterogenaity in spatial distribtions. The plot above shows estimats of the count of all Children 5-17 years old in each tract. But we may be interested in how differenty distributed those students are.
+A second issue is that it's very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all Children 5-17 years old in each tract. But we may be interested in how differently distributed those students are.
 
-A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points wihtin each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It's pretty straightforward to get what you need by using [`sf::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
+A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It's pretty straightforward to get what you need by using [`sf::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
 
 ```{r dot_dentsity_df, warning=FALSE}
 acs_ages <- dplyr::tribble(
