@@ -137,9 +137,7 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
 
-* **CSP Grant Applications*** 
-
-CSP grant applications are submitted and approved for funding. The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
+**CSP grant applications** are submitted and approved for funding by the Department of Education (DOE). The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary measures and metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
 
 #### CSP 2017 
 
@@ -167,7 +165,6 @@ R&A conducts internal evaluation work for two CSP grants:
 The evaluation work for each CSP Grant is guided by annual CSP Grant Evaluation Plan. 
 For more details, see [Evaluation Plans][Evaluation Plans].
 
-
 ##### CSP Schools
 
 * **CSP Schools and Regions**
@@ -178,7 +175,8 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 * **Schools:** List schools. 
 
 * **Changes to School Numbers & Names** 
-Table below documents the changes to School Numbers:**
+
+Table below documents the changes to **School Numbers**
 
 | School Name | School Short Name | School Number | Academic Year |
 | :------- | :------- | -------: | :-------: |
@@ -196,7 +194,7 @@ Table below documents the changes to School Numbers:**
 | IDEA Victory College Prep | Victory | 78352 | 2022-2023 |
 
 
-And this table has changes to school Names (specifically, Amber Creek to Robinson)
+Table below documents the changes to **School Names** (specifically, Amber Creek to Robinson)
 
 | School Name | School Number | State School Number | Academic Year |
 | :------- | -------: | -------: | :-------: |
@@ -208,7 +206,7 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 | IDEA Robinson College Prep | 108807204 | 108807204 | 2022-2023 |
 
 
-* **Grade Levels: ** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
+* **Grade Levels:** Most schools open or launch with Kindergarten, 1st, and 2nd grades at the Academy level and 6th grade at the College Prep level. However there are exceptions to this model. 
 
 * **School Opening Grade Exceptions:** 
   * Price Hill opened with 6th and 7th at the CP level.
@@ -218,8 +216,6 @@ And this table has changes to school Names (specifically, Amber Creek to Robinso
 ##### Evaluation Questions
 
 * **CSP Evaluation Question 1:** To what extent do replication and expansion schools consistently implement key model elements as defined by IDEA leadership? How, if at all, does implementation of noted elements differ between Academy and College Prep campuses, by school maturity (years in operation) and region? 
-
-* **CSP Evaluation Question 2:** 
 
 ##### CSP IDEA Model
 
