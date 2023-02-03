@@ -156,8 +156,7 @@ csp-schools
 evaluation-questions
 csp-idea-model
 csp-idea-model-components-v.1
-model-1-validation
-csp-idea-model-v.2
+csp-model-v.1-methods-model-feedback-and-validation
 teacher-and-school-leader-incentive-program-tslip
 ad-hoc-evaluation-projects
 coding-standards
