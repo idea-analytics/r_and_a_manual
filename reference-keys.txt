@@ -229,6 +229,7 @@ data-processing
 de-duplicating-rows-in-a-table.
 hierarchical-aggregation-or-the-list-group_by-trick
 saving-grouping-info
+duplicating-rows
 creating-scaffolds-when-joining-data.
 statistical-pitfalls
 simpsons-paradox

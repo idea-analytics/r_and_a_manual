@@ -2510,9 +2510,151 @@
 </table></div>
 </div>
 </div>
+<div id="duplicating-rows" class="section level3">
+<h3>
+<span class="header-section-number">12.1.3</span> Duplicating rows<a class="anchor" aria-label="anchor" href="#duplicating-rows"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span> <span class="va">state</span>, <span class="op">~</span> <span class="va">region</span>, <span class="op">~</span> <span class="va">n_campuses</span>,</span>
+<span>  <span class="st">"FL"</span>, <span class="st">"Jacksonville"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"FL"</span>, <span class="st">"Tampa"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"LA"</span>, <span class="st">"East Baton Rouge"</span>, <span class="fl">3</span>,</span>
+<span>  <span class="st">"OH"</span>, <span class="st">"Cincinnati"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Austin"</span>, <span class="fl">9</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"El Paso"</span>, <span class="fl">5</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Greater Houston Area"</span>, <span class="fl">3</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Permian Basin"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Rio Grande Valley"</span>, <span class="fl">26</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"San Antonio"</span>, <span class="fl">15</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Tarrant County"</span>, <span class="fl">4</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">grouped_data</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">region</th>
+<th align="right">n_campuses</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Austin</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">El Paso</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Greater Houston Area</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">Permian Basin</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Rio Grande Valley</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">San Antonio</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Tarrant County</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table></div>
+<p>To do so, we could simply use <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> to duplicate the rows. The first 10 rows are printed as an example:</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">uncount</span><span class="op">(</span><span class="va">n_campuses</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">region</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="even">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="even">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+</tr>
+<tr class="odd">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">Austin</td>
+</tr>
+</tbody>
+</table></div>
+<p>The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a <code>ggplot</code> call. Check the <a href="https://tidyr.tidyverse.org/reference/uncount.html">documentation</a> for other useful arguments.</p>
+</div>
 <div id="creating-scaffolds-when-joining-data." class="section level3">
 <h3>
-<span class="header-section-number">12.1.3</span> Creating “Scaffolds” when joining data.<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data."><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1.4</span> Creating “Scaffolds” when joining data.<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data."><i class="fas fa-link"></i></a>
 </h3>
 <p>Coming Soon. . .</p>
 </div>
@@ -2576,7 +2718,8 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <a class="nav-link" href="#data-processing"><span class="header-section-number">12.1</span> Data processing</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#de-duplicating-rows-in-a-table."><span class="header-section-number">12.1.1</span> De-duplicating rows in a table.</a></li>
 <li><a class="nav-link" href="#hierarchical-aggregation-or-the-list-group_by-trick"><span class="header-section-number">12.1.2</span> Hierarchical aggregation, or the list-group_by trick</a></li>
-<li><a class="nav-link" href="#creating-scaffolds-when-joining-data."><span class="header-section-number">12.1.3</span> Creating “Scaffolds” when joining data.</a></li>
+<li><a class="nav-link" href="#duplicating-rows"><span class="header-section-number">12.1.3</span> Duplicating rows</a></li>
+<li><a class="nav-link" href="#creating-scaffolds-when-joining-data."><span class="header-section-number">12.1.4</span> Creating “Scaffolds” when joining data.</a></li>
 </ul>
 </li>
 <li>
@@ -2605,7 +2748,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-02-03.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-02-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
