@@ -188,7 +188,39 @@ zillow_idea_neighborhood %>%
 ```
 
 
+### Duplicating rows
 
+Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.
+
+```{r wide-table-counts}
+grouped_data <- tribble(
+  ~ state, ~ region, ~ n_campuses,
+  "FL", "Jacksonville", 2,
+  "FL", "Tampa", 2,
+  "LA", "East Baton Rouge", 3,
+  "OH", "Cincinnati", 2,
+  "TX", "Austin", 9,
+  "TX", "El Paso", 5,
+  "TX", "Greater Houston Area", 3,
+  "TX", "Permian Basin", 2,
+  "TX", "Rio Grande Valley", 26,
+  "TX", "San Antonio", 15,
+  "TX", "Tarrant County", 4
+)
+
+knitr::kable(grouped_data)
+```
+
+To do so, we could simply use `tidyr::uncount()` to duplicate the rows. The first 10 rows are printed as an example:
+
+```{r long-table-duplicates}
+grouped_data %>%
+  uncount(n_campuses) %>%
+  slice_head(n = 10) %>%
+  knitr::kable()
+```
+
+The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a `ggplot` call. Check the [documentation](https://tidyr.tidyverse.org/reference/uncount.html) for other useful arguments.
 
 ### Creating "Scaffolds" when joining data.  
 
