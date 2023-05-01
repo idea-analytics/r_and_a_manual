@@ -172,6 +172,7 @@ joins
 visualization-standards
 idea-branding
 the-ideacolors-package
+ideacolors-themes-and-scales
 raceethnicity-colors
 grade-level-colors
 typography
@@ -236,3 +237,4 @@ simpsons-paradox
 bias-variance-tradeoff
 troubleshooting-messages-and-errors
 connection-to-the-dashboard
+platforms
