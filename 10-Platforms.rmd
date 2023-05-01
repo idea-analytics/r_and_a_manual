@@ -1,1 +1,3 @@
 # Platforms
+
+This section of the R&A Manual concerns details on the various software platforms we use: General purpose of the software, some details on how to use for your project, and useful links.
