@@ -16,6 +16,45 @@ To install the package, use the following code:
 devtools::install_github("idea-analytics/ideacolors")
 ```
 
+#### `ideacolors` themes and scales
+
+Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has: 
+```{r}
+p <- ggplot(mtcars, aes(x=disp, y=mpg)) +
+  geom_point(aes(color=as_factor(cyl)))
+
+p
+```
+
+You can quickly apply IDEA brand compliant colors by using for the `scale_color_idea()` function:
+
+```{r}
+library(ideacolors)
+p +
+  scale_color_idea()
+```
+**Super easy!**.  We can also easily change the the palate and even reverse it:
+```{r}
+p +
+  scale_color_idea(palette = "blueorange", reverse = TRUE)
+```
+Available palette's are given in the `idea_palettes` variable adn can be seen here
+
+```{r}
+colorspace::swatchplot(idea_palettes)
+```
+### Color Blindness
+
+Note that IDEA's brand colors are not completley safe for color blindness.  Here's each pallete with adjustments to check for the predominant types of color blindness in the population:
+
+```{r}
+colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
+```
+
+
+
+
+
 ### Race/Ethnicity Colors
 
 When creating visuals of Race/Ethnicity we want to be consistent with the colors chosen for each race/ethnicity. Additionally, we want to ensure that the colors are not offensive to any group. Below are the colors that were used for all of the Diversity, Equity, and Inclusion (DEI) work that has been completed in the last couple of months of 2022.
