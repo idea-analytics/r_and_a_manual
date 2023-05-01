@@ -33,19 +33,19 @@ library(ideacolors)
 p +
   scale_color_idea()
 ```
-**Super easy!**.  We can also easily change the the palate and even reverse it:
+**Super easy!**.  We can also easily change the the palatte and even reverse it:
 ```{r}
 p +
   scale_color_idea(palette = "blueorange", reverse = TRUE)
 ```
-Available palette's are given in the `idea_palettes` variable adn can be seen here
+Available palette's are given in the `idea_palettes` variable and can be seen here
 
 ```{r}
 colorspace::swatchplot(idea_palettes)
 ```
 ### Color Blindness
 
-Note that IDEA's brand colors are not completley safe for color blindness.  Here's each pallete with adjustments to check for the predominant types of color blindness in the population:
+Note that IDEA's brand colors are not completley safe for color blindness.  Here's each palatte with adjustments to check for the predominant types of color blindness in the population:
 
 ```{r}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
