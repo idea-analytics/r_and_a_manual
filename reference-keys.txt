@@ -173,9 +173,11 @@ visualization-standards
 idea-branding
 the-ideacolors-package
 ideacolors-themes-and-scales
+color-blindness
 raceethnicity-colors
 grade-level-colors
 typography
+visualizing-hierarchical-data
 models-and-methods
 research-design
 causal-inference
