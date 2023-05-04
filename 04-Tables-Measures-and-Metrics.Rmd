@@ -34,19 +34,23 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
   + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
   
-* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](http://ritter.tea.state.tx.us/peims/standards/1314/c035.html):
+* **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](https://tealprod.tea.state.tx.us/TWEDS/98/0/0/0/CodeTable/List/14562):
 
   InstructionalSettingCode | Description
   -------------------------|-------------
  0 | No additional SPED services
  1 | Homebound
+ 8 | Vocational Adjustment Class/Program
  40 | Mainstream
  41 | Resource Room/Services < 21%
  42 | Resource Room/Services 21- <50%
  43 | Resource Room/Services 50- 60%
  44 | Resource Room/Services > 60%
+ 96 | Off Home Campus - Separate Campus
  
-  + If InstructionalSettingCode = 43 or 44, the student is typically in RISE.
+  + If [InstructionalSettingCode] = 43 or 44, the student is typically in RISE.
+  + If [InstructionalSettingCode] = 8 or 96, the student is typically in Thrive.
+  + Note that in 2022-2023, Thrive students were recoded to reflect their home campuses, which is not necessarily the campus that provides services.
 
 * **_[DisabilityCode]_**
 
@@ -118,7 +122,7 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 We frequently need to disaggregate data by year, region, school, and so on, while retaining basic information about a student. The Students table does not directly contain the school or region names, so we need to join the Schools table and Regions table. 
 
-Two common queries involving students are 
+Two common queries involving students include: 
 
 1. producing a *roster* of all students that fit certain characteristics and
 2. *counting* the number of students that fit certain characteristics.
@@ -150,8 +154,8 @@ SELECT [AcademicYear]
     AND [ExitDate] > '2022-05-01'
     AND [RowIsCurrent] = '1'
 
---optional, filter RISE students
---  AND [InstructionalSettingCode] NOT IN ('43', '44')
+--optional, filter RISE (43, 44) and Thrive students (8, 96)
+--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')
     
 ```
 
@@ -165,8 +169,8 @@ get_students() %>%
          ExitDate > "2022-05-01",
          RowIsCurrent == 1) %>%
   
-# optional, filter RISE students
-# filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+# optional, filter RISE (43, 44) and Thrive students (8, 96)
+# filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %>%
   
 # join Schools and Regions tables
   inner_join(get_schools(),
@@ -191,7 +195,7 @@ However, to *count* the number of seniors by school and region, group the studen
 ```{sql, eval=FALSE}
 SELECT [AcademicYear]
     ,CASE
-	     WHEN C.[RegionDescription] IN ('Austin', 'San Antonio') THEN 'Central Texas'
+	     WHEN C.[RegionDescription] IN ('Austin', 'West San Antonio', 'East San Antonio') THEN 'Central Texas'
 		   WHEN C.[RegionDescription] IN ('Lower Valley', 'Mid Valley', 'Upper Valley') THEN 'Rio Grande Valley'
 		   ELSE C.[RegionDescription]
 	   END AS [Area]
@@ -212,7 +216,7 @@ SELECT [AcademicYear]
 	  AND [ExitDate] > '2022-08-17'
 	  AND [RowIsCurrent] = '1'
 	  AND [GradeLevelID] = '12'
---  AND [InstructionalSettingCode] NOT IN ('43', '44')
+--  AND [InstructionalSettingCode] NOT IN ('43', '44', '8', '96')
 
 --grouping variables to determine aggregates	
   GROUP BY [AcademicYear]
@@ -234,7 +238,7 @@ get_students() %>%
          GradeLevelID == "12",
          ExitDate > lubridate::today(),
          RowIsCurrent == 1) %>%
-  # filter(!(InstructionalSettingCode %in% c("43", "44"))) %>%
+  # filter(!(InstructionalSettingCode %in% c("43", "44", "8", "96"))) %>%
   
   inner_join(get_schools(),
              by = c("SchoolNumber" = "SchoolNumber")) %>%
@@ -251,7 +255,7 @@ get_students() %>%
   
   mutate(Area = case_when(
     RegionDescription %in% c("Lower Valley", "Mid Valley", "Upper Valley") ~ "Rio Grande Valley",
-    RegionDescription %in% c("Austin", "San Antonio") ~ "Central Texas",
+    RegionDescription %in% c("Austin", "West San Antonio", "East San Antonio") ~ "Central Texas",
     TRUE ~ RegionDescription
   )) %>%
   arrange(Area,
@@ -291,7 +295,7 @@ The Schools table provides essential information about each school, including th
 * **[RegionDirectorOfOperations]:** Regional Director of Operations (RDO) who oversees the region; links to Employees table using EmployeeKey
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
-* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley; links to the Regions table
+* **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley, and San Antonio schools into East and West; links to the Regions table
 * **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
 
 **Context:**
@@ -302,6 +306,7 @@ The Schools table provides essential information about each school, including th
 * IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
 * IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
 * IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
+* IDEA Amber Creek was renamed as IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
 
 
 ### Regions table
@@ -324,12 +329,12 @@ The Regions table provides keys for each RegionDescription, which can be connect
 * IDEA originally started as a single school in Donna, TX in 2000, and made its first expansions to Quest and Frontier in 2006. The notion of a regional structure outside of the Rio Grande Valley (RGV) did not start until IDEA expanded in 2012, when Allan (now Montopolis) opened in Austin, and Carver, in San Antonio.
 * IDEA did not open outside of Texas until the Southern Louisiana (SOLA) region opened its first schools, Bridge and Innovation, in 2018.
 * Informally, the RGV "super region" can be divided into Lower, Mid, and Upper Valley, and these subregions all have the same parent region (RGV). At some point, IDEA formally divided RGV schools into Lower and Upper Valley regions, each with a separate Executive Director, but the Lower/Upper distinction is no longer officially used. The RGV may also be considered an Area, governed by the Area Superintendent rather than an Executive Director. 
-* Occasionally, the Central Texas "super region" is used to include the San Antonio and Austin regions, but this is not included in the Regions table.
+* Occasionally, the Central Texas "super region" is used to include the West San Antonio, East San Antonio and Austin regions, but this is not included in the Regions table.
 * An Area is the portfolio of a superintendent, which includes multiple regions. The three Areas are "RGV", "Texas", and "IPS and SA", which are included in the [Schools] table (see above entry).
 
 
 ::: {.gotcha}
-Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions. Before assigning regions to RGV schools, check with the partnering team to see how they categorize RGV schools.
+Different teams across IDEA may or may not split their portfolios using the Lower/Upper or the Lower/Mid/Upper subregions or East/West San Antonio. Before assigning regions to RGV or San Antonio schools, check with the partnering team to see how they categorize RGV or San Antonio schools.
 
 If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.
 :::
@@ -360,8 +365,8 @@ Daily attendance is taken through PowerSchool to see which students are presentl
 * **[GradeLevel]**: Uses the labels PK and K.
 * **[AttStudentKey]**: Identifying key for each student for each day.
 * **[WeekNumber]**: Gives the week of the school year.
-* **[DateNumber]**: Gives the day number of the school year (1, 2, 3, ..., 180).
-* **[AttDate]**: Gives the actual date of the record.
+* **[DateNumber]**: Gives the day number of the school year (1, 2, 3, ..., 180). Note that some schools have different start dates and DateNumber begins counting on the school's FDOS for the year. 
+* **[AttDate]**: Gives the actual date of the record. 
 * **[Membership]**: Indicates 1.00 for a full-day student (nearly everyone) and 0.50 for a half-day student (Pre-K only).
 * **[Absences]**: Indicates 1.00 for a full-day absence, or 0.50 for a half-day absence.
 * **[VAbsences]**: Unsure if this is different from [Absences].
@@ -466,7 +471,7 @@ The other side of enrollment is **student persistence**. To see how enrollment i
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence (FDOP)" for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
 
 Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
 
@@ -962,7 +967,7 @@ Dynamic Indicators of Basic Early Literacy Skills, or [DIBELS](https://dibels.uo
 
 Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is usually pulled and stored in the warehouse.
 
-**Table:** [791150-HQVRA].[Dashboard].[dbo].[DIBELS_MCLASS]
+**Table:** [RGVPDRA-DASQL].[Dashboard].[dbo].[DIBELS_MCLASS]
 
 **Main metrics:** Counts of students meeting the standard, below or above the standard overall and for individual tests; Scores for individual tests
 
@@ -979,7 +984,7 @@ Data can be viewed through [Amplify](https://mclass.amplify.com/portal/) but is 
 
 * **Who is assessed?** 
 
-All students in K, 1 and 2 are assessed using DIBELS. 
+All students in K, 1, and 2 are assessed using DIBELS. 
 
 * **Which tests/columns are actually used?**
   + **[Assessment Measure-Composite Score-Levels]:** A *composite level* is assigned to all students, regardless if they complete all sections. Levels include "Well Below Benchmark", "Below Benchmark", "At Benchmark", and "Above Benchmark".
@@ -994,11 +999,11 @@ All students in K, 1 and 2 are assessed using DIBELS.
   + **[Assessment Measure-DORF (Fluency)-Score]:**  This is a numerical measure of DORF - Fluency in the interval [0, 164+).
   + **[Assessment Measure-DORF (Accuracy)-Levels]:** The DORF, or *DIBELS Oral Reading Fluency* test, is administered to 1-2 students. Levels include "Well Below Benchmark", "Below Benchmark", and "At Benchmark".
   + **[Assessment Measure-DORF (Accuracy)-Score]:** This is a numerical measure of DORF - Accuracy in the interval [0, 96+).
-  + The remaining assessment measures were used historically but are no longer actively tested.
+  + The remaining assessment measures were used historically, but are no longer actively tested.
 
 * **Why are there NAs for certain tests if the student took the assessment?**
 
-DIBELS has multiple required measures but can be implemented using *gating rules*, which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
+DIBELS has multiple required measures but can be implemented using *gating rules* which stop the assessment if a rule is met. If a student (1) scores below a minimum threshold or (2) tests out by scoring above the highest benchmark on a specified gating measure, then the remaining assessments are not administered, and the measure is left blank. The gating measure changes, depending on the grade level and benchmark period.
 
 * **Who can I ask for more context?**
 
@@ -1043,8 +1048,8 @@ The [International Baccalaureate](https://ibo.org/), or IB, is an international 
 
 Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and South Flores - offer the Diploma Programme. The DP is a series of courses, assessments, and portfolios in six different groups and the Core:
 
-* Group 1: Studies in langauge and literature (primary language)
-* Group 2: Language acquistion (secondary language)
+* Group 1: Studies in language and literature (primary language)
+* Group 2: Language acquisition (secondary language)
 * Group 3: Individuals and society (social sciences)
 * Group 4: Sciences
 * Group 5: Mathematics
@@ -1053,7 +1058,7 @@ Currently, five IDEA college preps - Donna, Frontier, Brownsville, McAllen, and 
 
 At IDEA, students will generally take one course in each group, and Diploma students will also work on the Core. Within IDEA, the Core is also referred to as Group 7.
 
-Futhermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
+Furthermore, each IB course is usually offered at both the Higher Level (HL) and Standard Level (SL). Due to graduation requirements, IDEA only offers Group 1 (English) and Group 3 (History of the Americas) courses at HL. However, the remaining coursework can be selected at either HL or SL, depending on the student's preferences, goals, and school offerings.
 
 From the Core, only Theory of Knowledge is a regularly taught course and is not designated as HL or SL. The Extended Essay is an independent research project conducted by each student in a specified subject and can be supervised by any teacher. CAS is a portfolio of a student's creative endeavors, physical activities, and community service throughout the programme.
 
@@ -1126,6 +1131,39 @@ When reporting IB data, confirm what level of data is needed. Suggested grouping
 1. Candidate Report - this is a summary of the course grades and IB diploma result by student (corresponds to [IBDiploma] table)
 2. Subject Report - this is a summary of the course grades by subject (corresponds to [IBScores] table)
 3. Candidate-Subject-Component Report - this is a detailed list of all assessments and results for each student (not currently captured in the warehouse)
+
+#### Useful queries
+
+Suppose we wanted to retreive the most recent IB scores.
+
+```{r ib_query, eval=FALSE}
+ACADEMIC_YEAR <- "2021-2022"
+
+df_ib <- get_table(.table_name = "IBScores",
+          .server_name = "RGVPDSD-DWPRD2",
+          .database_name = "PROD2",
+          .schema = "Assessments") %>%
+  filter(AcademicYear == ACADEMIC_YEAR) %>%
+  mutate(CourseName = if_else(Level == "EE", "Extended Essay", CourseName)) %>%
+  collect()
+```
+
+Note that Extended Essay is not a course, but has course names printed in the [CourseName] column. This will prevent unintentional aggregation if grouping by [CourseName].
+
+To aggregate final IB scores, note the grading scheme: 
+
+* Groups 1-6 subjects use a numeric grade.
+* TOK and EE use a letter grade.
+
+Thus, the [Grade] column is *character*, not numeric.
+
+The code below will provide the distribution of numerical and letter grades.
+
+```{r ib_summary, eval=FALSE}
+df_ib %>%
+  group_by(TCPCourseCode) %>%
+  count(Grade)
+```
 
 
 ### ACT
@@ -1240,9 +1278,9 @@ get_table(.table_name = "StudentScores",
 ### LEAP
 
 Louisiana Educational Assessment Program (LEAP)
-The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven. 
-Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
+The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
 
+Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
 English learners from K-12 take the English Language Proficiency test (ELPT).
 
 LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
@@ -1251,10 +1289,21 @@ The downloaded workbook has tabs for each grade level and a tab for high school.
 
 #### Student level LEAP
 
-If you need to have student level LEAP data, you can access 3-8 assessment results here:
-(To be continued)
+If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the excel spreadsheet to see the data.
 
-
+Useful Fields:
+•	SchoolNbr
+•	SchoolName
+•	LASID
+•	Grade
+•	ELAVoidFlag
+•	ELAAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	MathVoidFlag
+•	MathAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	SocialVoidFlag
+•	SocialAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
+•	ScienceVoidFlag
+•	ScienceAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
 
 ## Student Course Grades
 
@@ -1302,6 +1351,74 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 
 
 ## Teacher, Staff, and Hiring Data
+
+### Tyler Munis data
+
+Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's Step, salary, pay rate, pay schedule, lastest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
+
+Currently, this data is being used for the Teacher Tenure project for Martin Winchester and HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
+
+22-23 SY Steps for Teachers range from 0 to 35, consecutively, but skipping 32 and 34. Some teachers have NA for their Step. A Step of "0" indicates no prior experience teaching before being hired at IDEA. A step of "1+" indicates prior experience if it is the teacher's first year at IDEA, or it indicates experience at IDEA, if it is not the teacher's first year at IDEA.
+
+The employee data can be queried and pulled into a csv, excluding direct information about Social Security Numbers and Salary (per the NDA Maura signed).
+
+### Teach Boost Data
+
+Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders. 
+
+TB contains the Forms table and Users table. 
+
+#### Forms
+This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.
+
+forms_try <- get_table(.table_name = "Forms", .database_name = "SRC_Teachboost", .schema = "dbo", .server_name = "RGVPDSD-DWSRC3") %>%
+   select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %>%
+  filter(type_label == "GET Row Rating") %>%
+   filter(date == "2022-08-01" |
+            date  == "2022-08-02" |
+            date == "2022-08-03" |
+            date  == "2022-08-04" |
+            date == "2022-08-05" |
+            date  == "2022-08-06" |
+            date == "2022-08-07" |
+            date  == "2022-08-08" |
+            date == "2022-08-09" |
+            date  == "2022-08-10" |
+            date == "2022-08-11" |
+            date  == "2022-08-12" |
+            date == "2022-08-13" |
+            date  == "2022-08-14" |
+            date == "2022-08-15" |
+            date  == "2022-08-16" |
+            date == "2022-08-17" |
+            date  == "2022-08-18" |
+            date == "2022-08-19" |
+            date  == "2022-08-20" |
+            date == "2022-08-21" |
+            date  == "2022-08-22" |
+            date == "2022-08-23" |
+            date  == "2022-08-24" |
+            date == "2022-08-25" |
+            date  == "2022-08-26" |
+            date == "2022-08-27" |
+            date  == "2022-08-28" |
+            date == "2022-08-29" |
+            date  == "2022-08-30" |
+            date == "2022-08-31" |
+            date  == "2022-09-01" |
+            date == "2022-09-02" ) %>%
+  collect()
+ forms_try
+
+Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
+
+#### Users
+
+UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.
+
+#### Templates
+
+This table no longer exists and the data has been moved to the forms table.
 
 ### Compass data
 
@@ -1469,55 +1586,6 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 How to join? 
 *	Jobvite has no Employee ID & no Work Email and Teacher Export has Employee ID and Work Email.
 *	Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email
-        
-## Evaluation Projects
-
-### 21st Century Afterschool Programs
-
-The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana. 
-
-**Database:** [RGVPDRA-DASQL].[Program21stCentury]
-
-**Tables:**
-
-* **_[dbo].[Students]_** This table tracks student program and activity participation. 
-
-* **Useful Fields:**
-
-  + **FIRST_NAME:** the student's first name;
-  + **LAST_NAME:** the student's last name;
-  + **STUDENT_NUMBER:** the student's 108 number;
-  + **ACADEMIC_SUPPORT:** binary indicator for participation in academic support activities;
-  + **COLLEGE_CAREER_READINESS:** binary indicator for participation in college and career readiness activities;
-  + **FAMILY_ENGAGEMENT:** binary indicator for participation in family engagement activities;
-  + **WHENCREAATED:** a date/time stamp indicating the date of participation;
-  + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
-
-### Camp Rio
-
-### TSLIP
-
-Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
-
-
-### Charter School Program Grants {#csi_tables}
-
-Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Multiple tables are used in data analysis for the CSP evaluations. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants.
-
-CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025.It includes the following regions: Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
-
-See 4.1.1 The Students Table
-See 4.2.1 Schools table
-See 4.2.2 Regions table
-
-**Database:**
-
-**Tables:** 
-
-* **_[dbo].[Students]_** This table tracks xyz. 
-
-* **Useful Fields:**
-
 
 #### APR Report for June 2022 
 
