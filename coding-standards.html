@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 9 Coding Standards | IDEA R&amp;A Manual</title>
+<title>Chapter 8 Coding Standards | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="There is no naming convention that is “standard” in r and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work....">
 <meta name="generator" content="bookdown 0.33 with bs4_book()">
-<meta property="og:title" content="Chapter 9 Coding Standards | IDEA R&amp;A Manual">
+<meta property="og:title" content="Chapter 8 Coding Standards | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/coding-standards.html">
 <meta property="og:description" content="There is no naming convention that is “standard” in r and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work....">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 9 Coding Standards | IDEA R&amp;A Manual">
+<meta name="twitter:title" content="Chapter 8 Coding Standards | IDEA R&amp;A Manual">
 <meta name="twitter:description" content="There is no naming convention that is “standard” in r and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work....">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -50,15 +50,14 @@
 <li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
-<li><a class="" href="to-address-the-first-question-the-idea-model-and-its-components-needed-to-be-identified..html"><span class="header-section-number">6</span> To address the first question, the IDEA model and its components needed to be identified.</a></li>
-<li><a class="" href="specific-projects-1.html"><span class="header-section-number">7</span> Specific Projects</a></li>
-<li><a class="" href="evaluation-projects.html"><span class="header-section-number">8</span> Evaluation Projects</a></li>
-<li><a class="active" href="coding-standards.html"><span class="header-section-number">9</span> Coding Standards</a></li>
-<li><a class="" href="visualization-standards.html"><span class="header-section-number">10</span> Visualization Standards</a></li>
-<li><a class="" href="models-and-methods.html"><span class="header-section-number">11</span> Models and Methods</a></li>
-<li><a class="" href="surveys.html"><span class="header-section-number">12</span> Surveys</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">13</span> Tips and Tricks</a></li>
-<li><a class="" href="platforms.html"><span class="header-section-number">14</span> Platforms</a></li>
+<li><a class="" href="specific-projects-1.html"><span class="header-section-number">6</span> Specific Projects</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">7</span> Evaluation Projects</a></li>
+<li><a class="active" href="coding-standards.html"><span class="header-section-number">8</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">10</span> Models and Methods</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">11</span> Surveys</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">12</span> Tips and Tricks</a></li>
+<li><a class="" href="platforms.html"><span class="header-section-number">13</span> Platforms</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -67,9 +66,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="coding-standards" class="section level1" number="9">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="coding-standards" class="section level1" number="8">
 <h1>
-<span class="header-section-number">9</span> Coding Standards<a class="anchor" aria-label="anchor" href="#coding-standards"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8</span> Coding Standards<a class="anchor" aria-label="anchor" href="#coding-standards"><i class="fas fa-link"></i></a>
 </h1>
 <p>There is no naming convention that is “standard” in r and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work.</p>
 <p><strong>General</strong></p>
@@ -77,13 +76,13 @@
 <li><p>Introduction header – State the purpose or goal of the code. Your name and any other information that can help anyone get up to speed on the code. Maintaining a log of changes with a date to indicated what was last changed, this isn’t always necessary, but this is good for projects will be continued to be reused.</p></li>
 <li><p>Use informative names – In naming variables or functions it is always good to make informative names to help make sense of the code. Not too short and not too long, just enough to be concise and informative.</p></li>
 </ul>
-<div id="language-r" class="section level2" number="9.1">
+<div id="language-r" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">9.1</span> Language R<a class="anchor" aria-label="anchor" href="#language-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> Language R<a class="anchor" aria-label="anchor" href="#language-r"><i class="fas fa-link"></i></a>
 </h2>
-<div id="projects-1" class="section level3" number="9.1.1">
+<div id="projects-1" class="section level3" number="8.1.1">
 <h3>
-<span class="header-section-number">9.1.1</span> Projects<a class="anchor" aria-label="anchor" href="#projects-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.1</span> Projects<a class="anchor" aria-label="anchor" href="#projects-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are three general approaches we use for our work for a r project, the more methodic approach is project template which can be found in the project section of this manual. A report style approach which good for short and quick assignments. A shiny project which has UI controls and is used for scenarios where the information needs to be absorbed in multiple perspectives.</p>
 <ul>
@@ -92,18 +91,18 @@
 <li>shiny</li>
 </ul>
 </div>
-<div id="variables" class="section level3" number="9.1.2">
+<div id="variables" class="section level3" number="8.1.2">
 <h3>
-<span class="header-section-number">9.1.2</span> Variables<a class="anchor" aria-label="anchor" href="#variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.2</span> Variables<a class="anchor" aria-label="anchor" href="#variables"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Use underscore_separated a.k.a. snake_case: e.g. my_data_set</li>
 <li>Being descriptive and specific: e.g. raw_act_2022_2023</li>
 </ul>
 </div>
-<div id="functions" class="section level3" number="9.1.3">
+<div id="functions" class="section level3" number="8.1.3">
 <h3>
-<span class="header-section-number">9.1.3</span> Functions<a class="anchor" aria-label="anchor" href="#functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.3</span> Functions<a class="anchor" aria-label="anchor" href="#functions"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>The use case for a function is for reuse ability. Don’t copy paste code, create a function.</li>
@@ -113,36 +112,36 @@
 <li>Avoid Global Variables at all costs - Think of a function as a receipt, the function should take in all the items you need to make your outcome.</li>
 </ul>
 </div>
-<div id="dplyr" class="section level3" number="9.1.4">
+<div id="dplyr" class="section level3" number="8.1.4">
 <h3>
-<span class="header-section-number">9.1.4</span> dplyr<a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.4</span> dplyr<a class="anchor" aria-label="anchor" href="#dplyr"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use dplyr from tidyverse as it is designed to enable dataframe manipulation in an intuitive, user-friendly way.</p>
 </div>
 </div>
-<div id="language-sql" class="section level2" number="9.2">
+<div id="language-sql" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">9.2</span> Language SQL<a class="anchor" aria-label="anchor" href="#language-sql"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> Language SQL<a class="anchor" aria-label="anchor" href="#language-sql"><i class="fas fa-link"></i></a>
 </h2>
-<div id="hard-bracket-encapsulation" class="section level3" number="9.2.1">
+<div id="hard-bracket-encapsulation" class="section level3" number="8.2.1">
 <h3>
-<span class="header-section-number">9.2.1</span> Hard bracket encapsulation<a class="anchor" aria-label="anchor" href="#hard-bracket-encapsulation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.1</span> Hard bracket encapsulation<a class="anchor" aria-label="anchor" href="#hard-bracket-encapsulation"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>SELECT [FirstName] FROM [Students] WHERE [AcademicYear] = ‘2021-2022’</li>
 </ul>
 </div>
-<div id="variables-1" class="section level3" number="9.2.2">
+<div id="variables-1" class="section level3" number="8.2.2">
 <h3>
-<span class="header-section-number">9.2.2</span> Variables<a class="anchor" aria-label="anchor" href="#variables-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.2</span> Variables<a class="anchor" aria-label="anchor" href="#variables-1"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Use Camel Case: DECLARE @AcademicYear VARCHAR(9)</li>
 </ul>
 </div>
-<div id="joins" class="section level3" number="9.2.3">
+<div id="joins" class="section level3" number="8.2.3">
 <h3>
-<span class="header-section-number">9.2.3</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.3</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Know your joins and know your data.</li>
@@ -151,25 +150,25 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="evaluation-projects.html"><span class="header-section-number">8</span> Evaluation Projects</a></div>
-<div class="next"><a href="visualization-standards.html"><span class="header-section-number">10</span> Visualization Standards</a></div>
+<div class="prev"><a href="evaluation-projects.html"><span class="header-section-number">7</span> Evaluation Projects</a></div>
+<div class="next"><a href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#coding-standards"><span class="header-section-number">9</span> Coding Standards</a></li>
+<li><a class="nav-link" href="#coding-standards"><span class="header-section-number">8</span> Coding Standards</a></li>
 <li>
-<a class="nav-link" href="#language-r"><span class="header-section-number">9.1</span> Language R</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#projects-1"><span class="header-section-number">9.1.1</span> Projects</a></li>
-<li><a class="nav-link" href="#variables"><span class="header-section-number">9.1.2</span> Variables</a></li>
-<li><a class="nav-link" href="#functions"><span class="header-section-number">9.1.3</span> Functions</a></li>
-<li><a class="nav-link" href="#dplyr"><span class="header-section-number">9.1.4</span> dplyr</a></li>
+<a class="nav-link" href="#language-r"><span class="header-section-number">8.1</span> Language R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#projects-1"><span class="header-section-number">8.1.1</span> Projects</a></li>
+<li><a class="nav-link" href="#variables"><span class="header-section-number">8.1.2</span> Variables</a></li>
+<li><a class="nav-link" href="#functions"><span class="header-section-number">8.1.3</span> Functions</a></li>
+<li><a class="nav-link" href="#dplyr"><span class="header-section-number">8.1.4</span> dplyr</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#language-sql"><span class="header-section-number">9.2</span> Language SQL</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#hard-bracket-encapsulation"><span class="header-section-number">9.2.1</span> Hard bracket encapsulation</a></li>
-<li><a class="nav-link" href="#variables-1"><span class="header-section-number">9.2.2</span> Variables</a></li>
-<li><a class="nav-link" href="#joins"><span class="header-section-number">9.2.3</span> Joins</a></li>
+<a class="nav-link" href="#language-sql"><span class="header-section-number">8.2</span> Language SQL</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#hard-bracket-encapsulation"><span class="header-section-number">8.2.1</span> Hard bracket encapsulation</a></li>
+<li><a class="nav-link" href="#variables-1"><span class="header-section-number">8.2.2</span> Variables</a></li>
+<li><a class="nav-link" href="#joins"><span class="header-section-number">8.2.3</span> Joins</a></li>
 </ul>
 </li>
 </ul>
