@@ -562,11 +562,14 @@ The [Team Site (TheHub)][Team Site (TheHub)] Documents folder is not to be confu
 
 #### Published Evaluation Plans
 
-<<<<<<< HEAD:05-Projects.Rmd
 On an annual basis, save a copy of the final evaluation plan to the Team Site Documents folder and select for upload to the R&A Team Site.
 
 The [Team Site (TheHub)][Team Site (TheHub)] and 
 Team Site Documents folder are not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
+
+Evaluation plans are published annually to the [Team Site (TheHub)][Team Site (TheHub)]. Published evaluation plan files are stored in the Team Site `Documents folder > Evaluation > Evaluation Plans > FY 20##` for accessibility, consistency, and organization purposes.
+
+On an annual basis, save copy of each final, approved, ready-for-publication evaluation plan to the appropriate Team Site Documents folder. Select files for upload to the R&A Team Site.
 
 
 ## Specific Projects
@@ -697,10 +700,4 @@ CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019
 * **CSP Evaluation Question 1:** insert question here. 
 
 To address the first question, the IDEA model and its components needed to be identified. 
-=======
-Evaluation plans are published annually to the [Team Site (TheHub)][Team Site (TheHub)]. Published evaluation plan files are stored in the Team Site Documents folder > Evaluation > Evaluation Plans > FY 20## for accessibility, consistency, and organization purposes.
->>>>>>> 895e0494fc03b56d421d3df7ed40ae9c87712857:05a-Projects.Rmd
-
-On an annual basis, save copy of each final, approved, ready-for-publication evaluation plan to the appropriate Team Site Documents folder. Select files for upload to the R&A Team Site.
-
 
