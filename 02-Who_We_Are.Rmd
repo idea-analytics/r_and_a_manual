@@ -1,8 +1,24 @@
-# Who we are {#who}
+# Contributors {#who}
 
 ## About Research and Analysis
 
-We are the research and analysis team at IDEA Public Schools.  We are evaluators, statisticians, data scientists, and engineers, seeking above all to generate insight.
+IDEA's Research and Analysis Team (R&A) provides leaders at all levels in IDEA the insights, findings, and tools required to make the best short- and long-term decisions on behalf of students and families.  R&A finds opportunities for improvement and investments, locates exemplars and best-practices, and embeds analyses and insights in tools and reports. 
+
+Succinctly, the R&A team separates and communicates signal from noise which has the following impacts on the organization:
+
+* **Actionable decision support**: Leaders are as informed as quickly possible when making decisions and can draw clear, correct inferences; they know that all our data has been utilized to the best extent possible and they will be well informed to make decisions.
+
+* **Strategic support**: Long-term investments with high ROI are pursued; strategies that are ineffective are adjusted so they are or are replaced by activities that move us closer to our goal of college for all. 
+
+* **Tactical guidance**: Nimbly surmise what is working in pilots or across region(s) and communicate these findings clearly; Ensure that decisions are not pushed from one school year to the next.
+
+*	**Short Cycle Improvements**: Analyze and understand short-to-medium term impacts of program choices and with business partners provide actionable recommendations in a cycle of continuous improvement.
+
+* **Educate our partners**: Assist our team in family in understanding what is and what is not possible with data, that is what analyses can be performed, what nuggets of wisdom can be mined, and where we face limitation and need to bring substantive expertise from outside R&A.   
+
+
+
+## Who we are
 
 ### Edison Coronado
 
@@ -10,7 +26,7 @@ Edison supports IDEA by making sure our stakeholders have access to the highest 
 
 
 ### Chris Haid 
-Chris Haid is VP of Data Analytics at IDEA Public Schools, where leads research, evaluation, and data analysis across 160 schools in Texas and Louisiana.
+Chris Haid is VP of Data Analytics at IDEA Public Schools, where leads research, evaluation, and data analysis across 180+ schools in Texas, Louisiana, Florida, and Ohio.
 
 Previously he was KIPP Chicago’s Chief of Staff, leading progress monitoring, strategic planning, data analysis, and technology planning. He also supported external affairs, growth strategy, communications, and development. Other roles he held at KIPP Chicago included Chief Information Officer and the Director of Research and Analysis.
 
@@ -39,4 +55,24 @@ Before working at IDEA, Ilissa taught high school chemistry in the RGV before ea
 
 
 ### Marlena Coco, PhD
-Dr. Marlena Coco is an Evaluator on the R&A Team with over 15 years of experience in education and higher education. She earned a PhD in Higher Education Leadership and Research Methodology at Florida Atlantic University, MA in College Student Development at St. Edward’s University, and BS in Psychology at UT-Austin. She teaches undergraduate and graduate courses, chairs doctoral students dissertation research, reviews articles for journal publication, provides education consulting services, and conducts strengths-based leadership development. In previous roles, she led research, evaluation, and data support for college and career readiness at a large, urban school district, implemented district wide surveys, and analyzed postsecondary retention and academic support data at multiple universities. She evaluates Charter School Program grants.
+Dr. Marlena Coco is an Evaluator on the R&A Team with over 15 years of experience in education and higher education. She earned a PhD in Higher Education Leadership and Research Methodology at Florida Atlantic University, MA in College Student Development at St. Edward’s University, and BS in Psychology at UT-Austin. She teaches undergraduate and graduate courses, chairs doctoral students dissertation research, reviews articles for journal publication, provides education consulting services, and conducts strengths-based leadership development. In previous roles, she led research, evaluation, and data support for college and career readiness at a large, urban school district, implemented district wide surveys, and analyzed post secondary retention and academic support data at multiple universities. She evaluates Charter School Program grants.
+
+## What we've contributed
+
+Our team has among it's annual goals the following:
+
+> Each R&A Team member will create 6 entries in the R&A Manual between July 1, 2022 and June 30, 2023; entries can include documentation of methods, data access, data definitions, projects, or insights.
+
+The [Shiny app embedded below](https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/) allows us to track those contributions during the year. 
+
+It includes a simple interactive ggplot graph ([made interqactive by the most excellent `{ggiraph}` package ](https://davidgohel.github.io/ggiraph/)) as a well as a table with some more info about about each merged pull request. 
+
+Note that clicking on the hyperlinked pull request number will take you to the the diff page on Github for the merged pull request. 
+
+
+
+
+```{r, out.width="110%", echo=FALSE, fig.align='left'}
+knitr::include_app("https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/")
+```
+

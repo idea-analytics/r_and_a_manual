@@ -188,7 +188,39 @@ zillow_idea_neighborhood %>%
 ```
 
 
+### Duplicating rows
 
+Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.
+
+```{r wide-table-counts}
+grouped_data <- tribble(
+  ~ state, ~ region, ~ n_campuses,
+  "FL", "Jacksonville", 2,
+  "FL", "Tampa", 2,
+  "LA", "East Baton Rouge", 3,
+  "OH", "Cincinnati", 2,
+  "TX", "Austin", 9,
+  "TX", "El Paso", 5,
+  "TX", "Greater Houston Area", 3,
+  "TX", "Permian Basin", 2,
+  "TX", "Rio Grande Valley", 26,
+  "TX", "San Antonio", 15,
+  "TX", "Tarrant County", 4
+)
+
+knitr::kable(grouped_data)
+```
+
+To do so, we could simply use `tidyr::uncount()` to duplicate the rows. The first 10 rows are printed as an example:
+
+```{r long-table-duplicates}
+grouped_data %>%
+  uncount(n_campuses) %>%
+  slice_head(n = 10) %>%
+  knitr::kable()
+```
+
+The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a `ggplot` call. Check the [documentation](https://tidyr.tidyverse.org/reference/uncount.html) for other useful arguments.
 
 ### Creating "Scaffolds" when joining data.  
 
@@ -207,16 +239,31 @@ When identifying trends in a distribution, be careful of interpreting those tren
 
 ### Connection to the dashboard
 
-When working with ideadata in RStudio, issues with connecting to the servers and dashboards that host ideadata may occur. Warnings or error messages that may appear include: Resetting connection to conn_Dashboard, Error: nanodbc/nanodbc.cpp:1021: 08001: [Microsoft][ODBC Driver 17 for SQL Server]Named Pipes Provider: Could not open a connection to SQL Server [53]. Also, conn_Dashboard may show the ptr as "<pointer: (nil)>.
+When working with ideadata in RStudio, issues with connecting to the servers and dashboards that host ideadata may occur. For example, warnings or errors may include Resetting connection to conn_Dashboard and/or environment server connections may show ptr as "<pointer: (nil)>.
 
-To resolve this issue, consider the following steps. 
+To resolve this issue, consider following:
 
-Step 1. The first step upon receiving an error involving connecting to the SQL Servers is to check VPN connection. VPN may also be referred to as "Global Protect." 
-Check to make sure you are logged in to VPN: If not logged in, please enter your IDEA credentials. When logged in and connected to VPN, please continue to the next step. 
+Check your VPN status, code accuracy, environment, connections, and config settings if using ProjectTemplate [What goes where][What goes where].
 
-Step 2. The next step is to check your code. Be sure that you have all information listed correctly. If you are trying to connect to a specific table, be sure the table name, database name, schema, and server name are accurate based on the most updated information. 
+VPN (aka Global Protect)
+VPN connection is required for server access.
+Check to make sure you are logged in to VPN. 
+If you are not logged in, please enter your IDEA login credentials. 
+When logged in and connected to VPN, please continue to next steps. 
 
-Step 3. If the code is correct, the next step is to remove the connection to the Dashboard. 
-To remove the connection, enter the following code into the script or console: `rm(conn_Dashboard)`
+Code Accuracy:
+Check your code for accuracy. 
+If you are trying to connect to a specific table, be sure the information for table, database, schema, and server names are listed correctly based on the most updated information.
 
-Step 4. After removing the connection to the dashboard, try re-running the script. (Note. If you entered the remove command into the R script, be sure to comment out before re-running the script.) 
+Environment and Connections: 
+Review your environment and connections.
+For example, check your environment for the server connections. If "null pointer" (<pointer: (nil)>), then you will need to reset the connection and try reloading the project.
+
+Depending on the issue, select from the following command to enter in the console:
+restart R session (CTRL + Shift + F10): to clear objects and libraries
+`rm()`:to remove one or more objects from a specified environment, example`rm(conn_Dashboard)`
+`disconnect()`: to close a connection, example `disconnect(conn_PROD1)`
+`clear.cache()`: to clear the cache, example: `clear.cache(conn_PROD1)`
+
+Then try reloading the project and running the script. 
+ 
