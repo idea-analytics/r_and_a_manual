@@ -562,7 +562,144 @@ The [Team Site (TheHub)][Team Site (TheHub)] Documents folder is not to be confu
 
 #### Published Evaluation Plans
 
+<<<<<<< HEAD:05-Projects.Rmd
+On an annual basis, save a copy of the final evaluation plan to the Team Site Documents folder and select for upload to the R&A Team Site.
+
+The [Team Site (TheHub)][Team Site (TheHub)] and 
+Team Site Documents folder are not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
+
+
+## Specific Projects
+
+
+### Teacher Hiring and TCP
+
+Teacher Hiring is a project for the HA team to help inform selection processes for hiring teachers. This is an on-going project that started in Spring 20-21 with Anitra and has transferred over to Martin Winchester and Emily Neilson. There have been multiple rounds of correlations and modeling examining the relationship between 5 pre-determined pre-hire selection measures and teacher performance, as indicated and measured by TCP (level and composite score). The first round looked at regressions models with each separate pre-hire selection measure predicting TCP level/composite score, and then a model using all 5 pre-hire selection measures to predict TCP level/composite score. Next, a selection score was created by allotting points to the different selection measures, in accordance with the HA Team's guidelines on how various selection measures are scored. The models were rerun. In all cases, very little to no correlation or predictive power was found in these relationships. 
+
+
+The scope of this project in initial rounds was limited to only those who were hired, or in the Jobvite data column "Hire Y/N", Hire=Yes. Predictions of TCP scores could not be made for those applicants who were not hired.
+
+Later and current rounds have focused on ML techniques to do the modeling instead of limiting it to only linear regression and correlation matrices. Missingness of the data was a key issue in this decision. Over 50% of the data was not present in Jobvite, as candidates were not required to fill in all the sections nor all the pre-hire selection measures. These were left as optional. One recommendation of the R&A team was to require all sections to be completed by applicants on the Jobvite application and prior to hire, and then to collect and record this data. Another recommendation was to collect and record Writing Task Scores. 99% of those scores were not recorded, but this Writing Task was 12 points of the First Hurdle selection score in the selection process. For the Machine Learning applications, we have included all the missing data and coded it with it's own value, and then it was run through the ML algorithms. We were looking to see if "not filling in" certain information or all one's pre-hire selection measure data on the application had a relationship to poorer outcomes on TCP.
+
+Data was provided originally by Brittany Vasquez from the HA team, and from Alfredo from Tyler Munis.
+
+
+#### Jobvite Data
+Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through a central system, which is Jobvite. 
+
+A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have column "Candidate Submit Date", which is a range from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+          
+This data has columns including Candidate Full Name, Candidate Email (personal email used for the application), and some of the pre-hire selection measures, such as GPA. However, all 5 of the pre-hire selection measures are not included yet (Stem Major, Teach For America status, Experience prior to IDEA, GPA, and Teacher Certification). The data also has no Employee IDs yet, as this is a list of candidates. There is a Hire Yes/No column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application.
+          
+          
+#### Teacher Export Data
+This is found on the TCP application, a website: [tcp.ideapublicschools.org]. To gain access, contact Nohemi Pizana and request access. Use your IDEA login credentials to access the site. Teacher Export reports have the composite score, placement level, subject, job title, employee ID, and a few pre-selection hiring measures.
+
+#### TCP Handbook
+This is the link to the TCP Handbook, which denotes the business rules to advance throught the different TCP Levels, 1 through 5. https://ideapublicschools.org/wp-content/uploads/2021/08/TCP-Revised-Rubrics-2020-2021.Sept_.25.2020.pdf
+
+#### Teacher Interviews/Teacher Manager Interviews
+A job analysis is being conducted to try to find job-relatedness for functions conducted in the teacher role, as well as to help identify pre-hire selection measures for the HA team to help with the selection process. This involves a series of neutrally-phrased questions to illicit reponses about the teacher role, what a teacher does, what makes a successful IDEA teacher, what characteristics a teacher needs to succeed at IDEA. Both teachers and teacher-managers (principals, PIRs, and APIs) are being interviewed to collect this qualitative data set. These should be completed by Fall 2022 SY.
+
+### First Year Teacher Project
+
+This was a project for HA. Malinda Hardy and Martin Winchester headed it as our partners in HA. IT was started in Fall 21, for the 21-22 SY. The research question examined was "How do first-year teachers do compared to teachers with other tenure on student achievement?". To examine this question, we obtained the Semester Exam data for 20-21 SY and ran our models. The 21-22 SY data was not out at the time, so we set up the coding and models so that later we could just plug in the 21-22 SY data when it was available. We plugged in this data  in Spring 22, when it was available in late January/early February. Visuals including box plots were created to show the median pass rate per teacher. First, boxes were broken into two categories: 1st year teacher and non-first-year teacher. There was little difference in the median pass rates (pass rates meant the student had achieved Approaches, Meets, or Masters on the semester exam, taken at the end of the 21-22 SY Fall Semester). Next, 6 gropus were created and compared: 1st year, 2nd year, 3rd year, 4th year, and 5th+ year (anyone was 5 years or more in tenure at IDEA). There was also little difference in the median pass rates, for both 20-21 SY and 21-22 SY. One reason could be because everyone, regardless of tenure at IDEA was a "first year teacher online" for remote teaching, during the pandemic. 
+
+#### 3 Years of Data Used in Analysis
+
+In subsequent rounds, the 19-20 SY data was looked at for semester exams and compared to 20-21 SY and 21-22 SY. Since students took their 19-20 SY semester exams in the Fall semester of that academic year, they took them before the pandemic and the lock-down (which happened in Spring 2020). Hence, this is "pre-pandemic" data. This data did show slight differences in the median pass rates between first year and other years of teaching, namely, 3rd, 4th, and 5th years of teaching.
+
+The analysis further looked at individual subjects (ELA, Math, Science, History-Social Studies, Foreign Language, and Technology). Those six subjects were chosen because they all take semester exams. There were individual differences depending on which subject was examined. The analysis also looked at College Prep vs. Academy, and looked at the results by Region (showing the results for each campus within the respective region).
+
+Results were presented to Malinda Hardy via PowerPoint by Maura and for some rounds, Steven. There were 4 rounds and each round was added to the same PowerPoint presentation. 
+
+#### Project Transfered to Ann Heller
+
+This project has been transfered over to Ann Heller because Melinda is leaving and Ann is taking over the New Teacher Institute. This transfer happened in late May/Early June 2022, and Ann has no research questions for us at this time after giving her a short PowerPoint presentation overview of the prior 4 rounds. She may come back in the Fall/October 2022 with more questions.
+
+### Math Curriculum Redesign
+
+This project was examining the differences between student achievement for pilot vs. non-pilot schools, for a new math curriculum that is being implemented. The pilot was not set up at-random, and project design was not created by R&A. It was challenging to find meaningful results because it was hard to tease apart the impacts of particular things on student achievement. It was difficult to know if a change in test scores was due to the new curriculum or something else. The results showed that although the test scores may not have been significantly different/better for pilot than the non-pilot schools, the pilot schools lowest scores were not as low as the non-pilot schools. In effect, the pilot schools did not do worse in terms of the lowest scores, so we could likely say the the new math curriculum was not harming the students (although it was hard to say if it was helping). We may revisit this project for AP classes and help our partners design the pilots and project design for the next round, which will hopefully support getting more meaningful results from the analysis.
+
+
+### TSLIP
+
+Ongoing TSLIP activities include TeachBoost counts (cumulative counts of the number of observations for GET rubrics submitted to evaluate teachers, and SLL rubrics submitted to evaluate leaders).
+
+#### Focus Group Interviews
+
+We are interviewing students at 10 College Preps and 10 Academies and asking several questions to find out "what is working" and "what is not working" at schools. The samples was carefully created using a model that fits Most Different Systems Design (MDSD). We considered using Most Similar Systems Design, but ran into the issue of finding schools that scored similarly acorss the independent variables.
+
+For Most Similar
+•	Keep all x’s the same except for one xn; that particular xn can vary on different levels or bins
+•	Expect to see different y values (outcome variable)
+•	Then we can say xn caused changes in y (dependent variable varies with xn)
+o	Can eliminate other x’s as the causes for change/variation in y
+
+
+For Most Different Systems Design:
+•	All x’s are different, or better yet “random” (we don’t care if they are the same or different), except for one xn is the same (xn is the only thing that is the same across subjects)
+•	Expect to see same/similar y (no differences in outcome variable)
+•	Then we can say regardless of all the different values for the various x’s, that the same value of xn caused same/similar values of y (the independent variable xn – which was the same for all subjects – caused the outcome variable to be the same for all subjects)
+
+
+Variables
+•	x’s (independent/predictor variable)
+o	x1 = School Maturity (Scaling vs. Fully Scaled)
+o	x2 = Econ Dis
+o	x3 = Overall rating
+o	x4 = Domain 1/student achievement
+o	x5 = Domain 2/ growth
+o	x6 = Domain 3/other
+o	x7 = Unknown variable (similar across schools, hoping to extract during interview process)
+•	y (dependent/outcome variable)
+o	y = Teacher Retention Rate
+
+
+1.	Most Similar Systems Design (MSSD)   
+               (NOTE: We would have 2 of these MSSD designs: one for AC, one for CP; not comparing AC to CP)
+*Different x1 + same x2 + same x3 + same x4 = Different y
+*Different maturity + same econ  dis + same overall rating + same Domain1 = Different Retention Rate
+o	*can substitute another xi for the “different” x (It doesn’t have to be Maturity that is the x with different levels/bins); if wanting to see if another particular xi predicts variation in y (retention). For example, can hold Maturity constant and have differences on EconDis.
+
+2.	Most Different Systems Design (MDSD)
+               (NOTE: We would have 2 of these MDSD designs: one for AC, one for CP; not comparing AC to CP)
+*Same x1 + different x2 + different x3 + different x4 = Same y
+*Same unknown variable + different maturity + different econ dis + different overall rating + different Domain1/student achievement = Same Retention Rate
+o	*can substitute another xi for the “same” x (It doesn’t have to be Maturity that is the x with same values across subjects); if wanting to see if another particular xi predicts sameness/lack of variation in values of y (retention). For example, can have differences on Maturity, but hold EconDis constant/same across subjects.
+
+We are using #2 Most Different Systems Design, with the above model. Focus group interviews are in the process of being scheduled. 8-12 students spanning STAAR tested subjects/grades will be selected at each AC or CP (3rd-5th at Academy, 6th-12th at College Prep), for a total of 20 focus groups.
+
+#### TSLIP Continuance/ Year 4 of the Grant
+
+Blanca Carillo applied for the extension of the grant into Year 4. All departments and teams involved in the grant submitted a requested budget for Year 4 (October 1, 2023 to September 30, 2024), for Supplies, Equipment, Training and Professional Development, Travel, Stipends (such as for teacher or leaders in pilot groups), and contractor hours/work. 
+
+Ilissa and Maura submitted a budget during the last week of April 2023 that included requests for funds for a contractor analyst for up to 20 hours per week for 32 weeks (2 semesters for the SY 23-24), as well as for contractor services for transcription for 20 hours of focus group interviews with students and teachers (and possibly teacher leaders). The analyst would provide high level technical service in analyzing grant data and possibly synthesizing all cumulative years of the grant into a product to help school leaders with decision making.
+
+Funds were also requested for audio recorders, travel to conduct the interviews, travel to NLI and NTI for observations, travel for 1-2 professional conferences per teammate, and additional training for professional development (such as technical or qualitative training that would help further our analysis for the grant work to help inform leaders of information to improve metrics such as teacher retention. Budget fund requests will be processed and Blanca will let our team know what has been approved. There are still close to $4M in the TSLIP grant and the budget requests will come from this funding for the 4th year (continuance year). 
+
+The usual supplies funding that is provided each year of the grant is for office supplies for items such as pencils, planners, printers, paper, etc., that aid in the work for the TSLIP grant.
+
+### Charter School Program (CSP) Grants
+See also Section \@ref{#csi_tables}
+
+Charter School Program (CSP) Replication and Expansion grants awarded to IDEA Public Schools provide funds for launching and scaling new schools. R&A Team evaluators conduct the internal evaluations for the following CSP Grants: 2019-2024 and 2020-2025. Evaluation reporting will be combined for CSP 2019-2024 and 2020-2025 grants. The main metrics for reporting outcomes include student enrollment, student persistence, student academic performance, and employee retention
+
+CSP grant applications provide general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies.
+
+* **CSP Schools and Regions**
+CSP evaluation focuses on schools launching or scaling during SY 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, and 2024-2025 in 12 regions. 
+
+* **Regions:** Rio Grande Valley, San Antonio, Austin, El Paso, Baton Rouge, Tarrant County, Permian Basin, Houston, Tampa, Jacksonville, Cincinnati, and Headquarters.
+
+* **Schools:** List schools. 
+
+* **CSP Evaluation Question 1:** insert question here. 
+
+To address the first question, the IDEA model and its components needed to be identified. 
+=======
 Evaluation plans are published annually to the [Team Site (TheHub)][Team Site (TheHub)]. Published evaluation plan files are stored in the Team Site Documents folder > Evaluation > Evaluation Plans > FY 20## for accessibility, consistency, and organization purposes.
+>>>>>>> 895e0494fc03b56d421d3df7ed40ae9c87712857:05a-Projects.Rmd
 
 On an annual basis, save copy of each final, approved, ready-for-publication evaluation plan to the appropriate Team Site Documents folder. Select files for upload to the R&A Team Site.
 
