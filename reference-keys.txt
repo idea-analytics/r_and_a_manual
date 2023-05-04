@@ -254,3 +254,7 @@ bias-variance-tradeoff
 troubleshooting-messages-and-errors
 connection-to-the-dashboard
 platforms
+qualtrics
+creating-a-survey
+creating-and-uploading-a-participant-list
+exporting-survey-response-data
