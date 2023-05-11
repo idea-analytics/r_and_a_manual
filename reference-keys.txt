@@ -234,6 +234,7 @@ qualitative-methods
 qualitative-research
 qualitative-tools
 maxqda
+importing-files
 surveys
 about-surveys
 surveys-at-idea
