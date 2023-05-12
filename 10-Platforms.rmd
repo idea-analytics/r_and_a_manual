@@ -1,6 +1,6 @@
 # Platforms
 
-This section of the R&A Manual concerns details on the various software platforms we use: General purpose of the software, some details on how to use for your project, and useful links.
+This section of the R&A Manual concerns details on the various software platforms we use: General purpose of the software, some steps for using the software, and useful links for learning more about it.
 
 ## Qualtrics
 
@@ -8,14 +8,49 @@ Qualtrics is a survey and data collection platform. It allows for survey buildin
 
 The following sessions outline how to create a survey, upload and list of email addresses to surveyed, and create a basic live report for your survey. 
 
-### Creating a Survey
+### Creating a New Survey
+
+You can start a new survey from a blank survey form or by copying and modifying an existing survey. Either way, when you log into Qualtrics, you will have an option for what you want to do next. Assuming you have a user license, to log into Qualtrics go to IDEAps.Qualtrics.com and select the single sign-on (SSO) option. Any projects that you have created or that have been shared with you will be listed on the left side of the window and right below this list you will find a button for creating a new survey.
+
+![This image shows the front page in Qualtrics, after logging in.](img/Qualtrics_front_page.png "First view after logging into Qualtrics"){width="500"}
+ 
+On the next page, you will have the option to create a project as a survey. Select that option and press get started.
+On the next page, you will name your survey and will be allowed to start a survey from a blank project, copy a survey from an existing project, or use a survey previously stored in your library. If you are starting from a black project the next sections in this manual discuss types of items and next steps in building your survey.
+
+
+### Item Types
 
 More to come
 
-### Creating and Uploading a Participant List
+### Survey Flow
 
 More to come
 
-### Exporting Survey Response Data
+#### Survey Logic
 
 More to come
+
+#### Survey Blocks
+
+More to Come
+
+### Survey Participant lists
+
+More to come
+
+#### Embeded Data
+
+More to come
+
+### Live Summary Reports
+
+More to come
+
+### Exporting Survey Data
+
+More to come
+
+### Where Can You Learn More?
+
+Links to be added
+
