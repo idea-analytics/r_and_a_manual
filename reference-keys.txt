@@ -241,6 +241,7 @@ survey-best-practices
 survey-purpose
 survey-design
 survey-items
+survey-planning
 tips-and-tricks
 data-processing
 de-duplicating-rows-in-a-table.
