@@ -135,9 +135,13 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
-Charter School Program (CSP) grant awards to IDEA Public Schools funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
+Charter School Program (CSP) Replication and Expansion grant awarded to IDEA Public Schools provide funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
 
-**CSP grant applications** are submitted and approved for funding by the Department of Education (DOE). The grant application provides general guidance for evaluation. CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, supports, and sustainability strategies. Primary measures and metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
+**CSP grant applications** are submitted and approved for funding by the Department of Education (DOE). The grant application provides general guidance for evaluation. 
+
+CSP evaluation work is informed by evaluation questions and aims to address the following areas: implementation of the IDEA model, needs and challenges, organizational supports, and sustainability strategies. 
+
+The main measures and metrics for reporting outcomes include student enrollment, student persistence, student average daily attendance, student academic performance, and employee retention.
 
 #### CSP 2017 
 
