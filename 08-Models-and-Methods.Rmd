@@ -841,7 +841,9 @@ There are various types of text file formats that can be used in MaxQDA for anal
 
  1) Create folders to store original data, MaxQDA analysis, description visualizations, and project deliverables.  
 
-- **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
+    + **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
+    
+    + ![This image shows the folder structure for a MaxQDA project.](img/maxqda_folder_organization.png){width="500"}     
 
  2) Open MaxQDA software and select 'New' project. Create a file name for the project and save in the analysis folder created in step 1 (e.g., 'OER Analysis'). 
 
@@ -852,5 +854,7 @@ There are various types of text file formats that can be used in MaxQDA for anal
     + Identify columns for 'Document Group' and 'Document name.' Document group may describe certain characteristics of groups (i.e., students, regions). Document name refers to the individual documents (i.e., participant #). 
 
     + Select columns that you want to be imported as 'Code' and/or 'Variable'. Code reflects text data for OER analysis. Variable reflects data (i.e., Likert responses, demographics) that will not be coded for via OER analysis. 
+    
+    + ![This image shows the import process for a new MaxQDA project.](img/maxqda_excel_import.png){width="500"}     
 
     + Click 'Ok', review the data field, and then Click 'Import'. 
