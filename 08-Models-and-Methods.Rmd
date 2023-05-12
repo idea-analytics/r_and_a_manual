@@ -799,16 +799,16 @@ Qualitative Research provides IDEA Public Schools rich, contextual information t
 The R&A team, specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.
 
 
-Common methods used to collect data include:
--   Individual Interviews
--   Focus Groups
--   Review of archival documents.
+Common methods used to collect data include: 
+-   Individual Interviews 
+-   Focus Groups 
+-   Review of archival documents. 
 
 
-Common methods used to analyze data include:
--   Thematic analysis
--   Triangulation
--   Linguistic analysis –emotions (including Natural Language Processing).
+Common methods used to analyze data include: 
+-   Thematic analysis 
+-   Triangulation 
+-   Linguistic analysis –emotions (including Natural Language Processing). 
 
 
 
@@ -822,18 +822,18 @@ One tool used for thematic analyses is [MaxQDA](www.maxqda.com), which is a soft
 
 Data that can be imported are: 
 
--     Survey data, 
--     Interview and focus group data, and 
--     Media (texts, images, audio, and video) files. 
+- Survey data, 
+- Interview and focus group data, and 
+- Media (texts, images, audio, and video) files. 
 
 
 MaxQDA is mainly used by the R&A Evaluation team. Qualitative analyses that have used MaxQDA include: 
 
--     GPTW Annual OER Survey Analysis 
--     CNP May Survey Analysis 
--     EVP Analysis (Interviews, Focus Groups, Staff Survey) 
--     GPTW Pulse Check OER Survey Analysis 
--     Core Values 2x2 Analysis 
+- GPTW Annual OER Survey Analysis 
+- CNP May Survey Analysis 
+- EVP Analysis (Interviews, Focus Groups, Staff Survey) 
+- GPTW Pulse Check OER Survey Analysis 
+- Core Values 2x2 Analysis 
 
 ##### Importing Files
 
@@ -841,7 +841,7 @@ There are various types of text file formats that can be used in MaxQDA for anal
 
  1) Create folders to store original data, MaxQDA analysis, description visualizations, and project deliverables.  
 
--     **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
+- **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
 
  2) Open MaxQDA software and select 'New' project. Create a file name for the project and save in the analysis folder created in step 1 (e.g., 'OER Analysis'). 
 
@@ -849,8 +849,8 @@ There are various types of text file formats that can be used in MaxQDA for anal
 
  4) Select the data file that will be used for analysis.  
 
--     Identify columns for 'Document Group' and 'Document name.' Document group may describe certain characteristics of groups (i.e., students, regions). Document name refers to the individual documents (i.e., participant #). 
+    + Identify columns for 'Document Group' and 'Document name.' Document group may describe certain characteristics of groups (i.e., students, regions). Document name refers to the individual documents (i.e., participant #). 
 
--     Select columns that you want to be imported as 'Code' and/or 'Variable'. Code reflects text data for OER analysis. Variable reflects data (i.e., Likert responses, demographics) that will not be coded for via OER analysis. 
+    + Select columns that you want to be imported as 'Code' and/or 'Variable'. Code reflects text data for OER analysis. Variable reflects data (i.e., Likert responses, demographics) that will not be coded for via OER analysis. 
 
--     Click 'Ok', review the data field, and then Click 'Import'. 
+    + Click 'Ok', review the data field, and then Click 'Import'. 
