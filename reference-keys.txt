@@ -128,10 +128,6 @@ power-bi
 team-site-thehub
 published-evaluation-plans
 specific-projects
-tslip
-focus-group-interviews
-tslip-continuance-year-4-of-the-grant
-specific-projects-1
 store-and-share
 ra-private-group
 other-specific-projects
@@ -162,6 +158,8 @@ csp-idea-model
 csp-idea-model-components-v.1
 csp-model-v.1-methods-model-feedback-and-validation
 teacher-and-school-leader-incentive-program-tslip
+focus-group-interviews-sampling-and-models
+tslip-continuance-year-4-of-the-grant
 ad-hoc-evaluation-projects
 coding-standards
 language-r
