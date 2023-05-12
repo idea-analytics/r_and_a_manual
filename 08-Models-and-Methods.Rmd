@@ -854,5 +854,7 @@ There are various types of text file formats that can be used in MaxQDA for anal
     + Identify columns for 'Document Group' and 'Document name.' Document group may describe certain characteristics of groups (i.e., students, regions). Document name refers to the individual documents (i.e., participant #). 
 
     + Select columns that you want to be imported as 'Code' and/or 'Variable'. Code reflects text data for OER analysis. Variable reflects data (i.e., Likert responses, demographics) that will not be coded for via OER analysis. 
+    
+    + ![This image shows the import process for a new MaxQDA project.](img/maxqda_excel_import.png){width="500"}     
 
     + Click 'Ok', review the data field, and then Click 'Import'. 
