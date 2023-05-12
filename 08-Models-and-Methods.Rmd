@@ -841,7 +841,9 @@ There are various types of text file formats that can be used in MaxQDA for anal
 
  1) Create folders to store original data, MaxQDA analysis, description visualizations, and project deliverables.  
 
-- **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
+    + **Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.** 
+    
+    + ![This image shows the folder structure for a MaxQDA project.](img/maxqda_folder_organization.png){width="500"}     
 
  2) Open MaxQDA software and select 'New' project. Create a file name for the project and save in the analysis folder created in step 1 (e.g., 'OER Analysis'). 
 
