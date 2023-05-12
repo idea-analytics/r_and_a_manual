@@ -243,6 +243,13 @@ troubleshooting-messages-and-errors
 connection-to-the-dashboard
 platforms
 qualtrics
-creating-a-survey
-creating-and-uploading-a-participant-list
-exporting-survey-response-data
+creating-a-new-survey
+item-types
+survey-flow
+survey-logic
+survey-blocks
+survey-participant-lists
+embeded-data
+live-summary-reports
+exporting-survey-data
+where-can-you-learn-more
