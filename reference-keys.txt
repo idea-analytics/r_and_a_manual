@@ -140,7 +140,6 @@ math-curriculum-redesign
 tslip
 focus-group-interviews
 tslip-continuance-year-4-of-the-grant
-charter-school-program-csp-grants
 specific-projects-1
 store-and-share
 ra-private-group
@@ -163,7 +162,7 @@ published-evaluation-plans-1
 annual-evaluation-projects
 st-century-afterschool-program
 camp-rio
-charter-school-program-csp-grants-1
+charter-school-program-csp-grants
 csp-2017
 csp-2019-and-2020
 csp-schools
