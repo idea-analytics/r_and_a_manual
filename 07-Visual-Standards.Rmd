@@ -51,7 +51,7 @@ Note that IDEA's brand colors are not completely safe for color blindness.  Here
 ```{r}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
 ```
-::: {.tip}
+:::{.tip}
 
 The chart above includes the following types of colorblindness:
 
