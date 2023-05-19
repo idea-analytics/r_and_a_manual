@@ -51,8 +51,9 @@ Note that IDEA's brand colors are not completely safe for color blindness.  Here
 ```{r}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
 ```
-:::{.tip}
 
+
+::: {.tip}
 The chart above includes the following types of colorblindness:
 
 * Deuteranopia: Deuteranopia is a type of color blindness that primarily affects the perception of the green color spectrum. People with deuteranopia have a deficiency or absence of the green cone cells in their eyes, which are responsible for perceiving green light. As a result, they have **difficulty distinguishing between green and red hues**. The red and green colors may appear more similar or indistinguishable to individuals with deuteranopia.
@@ -60,6 +61,7 @@ The chart above includes the following types of colorblindness:
 * Protanopia: Protanopia is a type of color blindness that primarily affects the perception of the red color spectrum. Individuals with protanopia lack or have a reduced number of functional red cone cells in their eyes. Consequently, they **struggle to differentiate between red and green colors**. They may perceive these colors as muted or similar in appearance.
 
 * Tritanopia: Tritanopia, also known as blue-yellow color blindness, is a rarer form of color blindness that affects the perception of the blue and yellow color spectrum. People with tritanopia have a deficiency or absence of the blue cone cells in their eyes, leading to **difficulty in distinguishing between blue and yellow colors**. 
+
 :::
 
 
