@@ -1546,19 +1546,25 @@ TCP/Teacher Export Data: Teacher Performance data.
 * For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
 * If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
 
-1. 18-19  
- * From Alex, see email
+1. SY 18-19  
+ * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Stephen, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
 
-2. 19-20  
+2. SY 19-20  
   * (“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
   * Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
   * 20-21 – 3rd year of Jobvite data 
   * from Blanca Carillo, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
-  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year
+  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year.
+  
+  If you would like to download your own TCP Export data for SY 19-20, please go to the TCP Application Website: www.tcp.ideapublicschools.org.
 
-3. 21-22 – NO
+3. SY 21-22 – please download export from www.tcp.ideapublicschools.org.
+
+4. SY 22-23
   * **Not available yet!**
-  * No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.
+  * No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October. 
+  
+For all School Years, an "appeals" process takes place in the fall after the original placements are submitted in October. There has been a roughly 50% appeal rate (50% of teachers or their managers appealing the placements) each year. Appeals go before the appeals committee, where some appeals are denied (the given placement holds), and some appeals are approved (so the placement changes). This can alter the TCP Export report, which is not static. The export report changes depending on the current day and month; if you would like to know the "original" placements prior to appeals, you need to download the TCP Export data directly from the tcp application website prior to the appeals and any changes that will be made to placement levels. It is a good idea to download the TCP Export each year in the beginning of October when it is first posted so that you have that data, in case it changes as time goes on.
 
 
 #### Data Matching
