@@ -858,3 +858,24 @@ There are various types of text file formats that can be used in MaxQDA for anal
     + ![This image shows the import process for a new MaxQDA project.](img/maxqda_excel_import.png){width="500"}     
 
     + Click 'Ok', review the data field, and then Click 'Import'. 
+    
+    
+##### Randomly Selecting Files
+
+Depending on the purposes of your analysis and the total number of responses, you may want to randomly select responses for analysis. 
+
+After importing files into the Document System of MaxQDA,responses can be randomly selected using the following steps. 
+
+ 1) Select the document group of interest.   
+
+ 2) Right click the highlighted document group.  
+
+ 3) Under the 'Activation' section, select the 'More...' option.   
+
+ 4) Select 'Activate Documents by Random'.   
+ 
+ 5) A small window will then pop-up. Enter the desired n, and click 'Ok'.   
+
+The randomly selected documents will appear in the Code System section of MaxQDA. You may need to alter the display frequency to display only the 'Coded segments in all activated documents'.   
+
+Note: This does not save the randomly selected documents. We suggest applying a code to all of the randomly selected documents (i.e., "random_sample).  
