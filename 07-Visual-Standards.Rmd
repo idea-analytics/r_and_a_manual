@@ -215,7 +215,7 @@ df_gapminder_sample %>%
 
 ```
 
-![This graph displays changes in life expectancy arranged alphabetically by country.](img/gapminder_unnested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by country"){width=25%}
+![This graph displays changes in life expectancy arranged alphabetically by country.](img/gapminder_unnested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by country"){width="500"}
 
 where the line graphs are arranged alphabetically by country. However, it might be more visually appealing and intuitive to a reader if the graphs were arranged by continent, and *then* country. To do this, we can use the `{ggh4x}` package [(documentation here)](https://teunbrand.github.io/ggh4x/articles/ggh4x.html), and switch from `facet_grid()` or `facet_wrap()` in `ggplot2` to `facet_nested()` or `facet_nested_wrap()` in `ggh4x`.
 
@@ -245,4 +245,4 @@ df_gapminder_sample %>%
        title = "Life expectancy vs. per capita GDP")
 ```
 
-![This graph displays changes in life expectancy arranged alphabetically by continent first, then country.](img/gapminder_nested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country"){width=25%}
+![This graph displays changes in life expectancy arranged alphabetically by continent first, then country.](img/gapminder_nested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country"){width="500"}
