@@ -5,7 +5,7 @@ what-goes-in-this-manual
 how-do-you-contribute-to-this-book
 adding-tips-and-other-callouts
 who
-about-research-and-analysis
+about-research-and-analytics
 who-we-are
 edison-coronado
 chris-haid
@@ -223,6 +223,7 @@ qualitative-research
 qualitative-tools
 maxqda
 importing-files
+randomly-selecting-files
 surveys
 about-survey-research
 surveys-at-idea
