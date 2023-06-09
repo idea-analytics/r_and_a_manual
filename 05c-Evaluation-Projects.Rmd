@@ -27,7 +27,7 @@ Because evaluation plans are customized to each project, not all components may 
 **Program/Grant Name:**    
 **Program Manager/Partner:**    
 **Grant/Fund Contact Person:**    
-**Research and Analysis Team Staff:** (R&A team members who will be responsible for the work)
+**Research and Analytics Team Staff:** (R&A team members who will be responsible for the work)
 
 **Program Description**  
 General information about the program. May include program goals, objectives, and other pertinent information to understanding its importance to IDEA Public Schools (e.g., organizational goals, strategic plan, key action steps supported by the program).
@@ -149,7 +149,7 @@ Evaluation work for CSP Grants 2016 and 2017 was conducted by a contracted agenc
 
 * **CSP 2017 Final Evaluation Report Overview**
 
-The 2017 CSP grant was dedicated to expanding IDEA schools in Austin, San Antonio, and Rio Grande Valley, and launching new schools in Tarrant County/Fort Worth. IDEA was awarded CSP 2017 funds with specific focus on Department of Education priorities to serve a low-income demographic and promote diversity. As stated in the approved grant application, aims of this five-year study were two-fold: 1) to understand whether the support in place for new schools was effective, and 2) to evaluate whether school model adaptations were done with fidelity. A firm, Copia Consulting, was hired to conduct the evaluation of the CSP 2017 grant during the grant cycle in partnership with IDEA Public Schools. Consistent with objectives outlined in the grant for evaluation, an internal evaluation team within the IDEA Division of Research and Analysis was established by the end of the grant.
+The 2017 CSP grant was dedicated to expanding IDEA schools in Austin, San Antonio, and Rio Grande Valley, and launching new schools in Tarrant County/Fort Worth. IDEA was awarded CSP 2017 funds with specific focus on Department of Education priorities to serve a low-income demographic and promote diversity. As stated in the approved grant application, aims of this five-year study were two-fold: 1) to understand whether the support in place for new schools was effective, and 2) to evaluate whether school model adaptations were done with fidelity. A firm, Copia Consulting, was hired to conduct the evaluation of the CSP 2017 grant during the grant cycle in partnership with IDEA Public Schools. Consistent with objectives outlined in the grant for evaluation, an internal evaluation team within the IDEA Division of Research and Analytics was established by the end of the grant.
 
 The report described the performance of IDEA schools receiving funds from the CSP 2017 grant in terms of school characteristics, student demographics, and key outcomes associated with organizational goals and priorities. Key outcomes reported include student persistence, student average daily attendance (ADA), academic performance on state assessments, and staff retention.
 
