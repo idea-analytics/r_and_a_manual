@@ -91,8 +91,9 @@ Student participation in the Afterschool program is tracked in PowerSchool and t
 
 * **_[dbo].[Students]_**  This table tracks student program and activity participation. 
 
-**Important columns:**
-
+**Columns:**
+* **[AcademicYear]:** Academic Year .i.e. 2022-2023
+* **[Summer]:** Summer data Indicator (0/1 indicator) 
 * **[FIRST_NAME]:** Student First Name
 * **[LAST_NAME]:** Student Last Name
 * **[STUDENT_NUMBER]:** Student local ID number (108 number)
@@ -100,8 +101,10 @@ Student participation in the Afterschool program is tracked in PowerSchool and t
 * **[COLLEGE_CAREER_READINESS]:** Participation in College and Career Readiness programs (0/1 indicator)
 * **[FAMILY_ENGAGEMENT]:** Participation in Family Engagement programs (0/1 indicator)
 * **[ENRICHMENT]:** Participation in Enrichment programs (0/1 indicator)
+* **[DAY45]:** 45 days of participation in one of the 21st Century programs (0/1 indicator)
 * **[WHENCREATED]:** Date when the record was created
 * **[WHENMODIFIED]:** Date when the record was modified
+* **[WHENInserted]:** Date when the record was inserted
 
 A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.
 
@@ -118,6 +121,48 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
   + **FAMILY_ENGAGEMENT:** binary indicator for participation in family engagement activities;
   + **WHENCREAATED:** a date/time stamp indicating the date of participation;
   + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
+
+#### 21st Century Afterschool Program Data Life Cycle
+
+21st Century Afterschool Program data that is found in [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students] is pulled nightly at 12am. The initial process deletes the current data only with the same current school session of data such as (2022-2023 Summer) so that once the new Academic Year changes or no longer in summer, that data is not deleted but left as the last update. Below is the query that is ran in Power School so that in the [U_IDEA_STUDENTS_OSS] table we receive that latest records for 21st Century Aferschool Programs.
+
+```{sql, eval=FALSE}
+SELECT   
+  FIRST_NAME, 
+  LAST_NAME,
+  a.STUDENT_NUMBER,
+  b.ACADEMIC_SUPPORT, 
+  b.COLLEGE_CAREER_READINESS, 
+  b.FAMILY_ENGAGEMENT, 
+  b.ENRICHMENT,  
+  b.DAY45, 
+  b.WHENCREATED, 
+  b.WHENMODIFIED 
+FROM  STUDENTS a
+INNER JOIN 
+(SELECT a.* FROM U_IDEA_STUDENTS_OSS a 
+  INNER JOIN 
+  (SELECT STUDENTSDCID, MAX(WHENCREATED) AS WHENCREATED 
+    FROM U_IDEA_STUDENTS_OSS 
+    WHERE YEARID = (SELECT 
+  CASE WHEN (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'MM') - 0 FROM DUAL) > 7 
+  THEN (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'YYYY') - 1990 FROM DUAL) 
+ELSE (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'YYYY') - 1991 FROM DUAL) 
+END FROM DUAL) 
+    GROUP BY STUDENTSDCID ) b 
+  ON a.STUDENTSDCID = b.STUDENTSDCID 
+  AND a.WHENCREATED = b.WHENCREATED 
+  WHERE a.YEARID = (SELECT 
+  CASE WHEN (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'MM') - 0 FROM DUAL) > 7 
+  THEN (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'YYYY') - 1990 FROM DUAL) 
+ELSE (SELECT TO_CHAR((SELECT CURRENT_DATE FROM DUAL), 'YYYY') - 1991 FROM DUAL) 
+END FROM DUAL) )  b
+ON a.DCID = b.STUDENTSDCID
+ORDER BY  a.STUDENT_NUMBER
+
+
+```
+
 
 ### Camp Rio
 
