@@ -21,7 +21,6 @@ the-data-warehouse
 core-data-warehouse-server-configuration
 src-servers
 prod-servers
-rs-and-hisotrical-data-servers
 server-table-and-field-lookup
 accessing-the-data-warehouse-from-r
 installation

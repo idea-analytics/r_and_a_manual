@@ -77,7 +77,7 @@
 <span class="header-section-number">3.1</span> The Data Warehouse<a class="anchor" aria-label="anchor" href="#the-data-warehouse"><i class="fas fa-link"></i></a>
 </h2>
 <p>The ‘data warehouse’ is actually a collection of disparate databases hosted by IDEA Public Schools. Some databases are used to host the original source data, some are used as the data model for production applications, while others site between those two points.</p>
-<p>While the IDEA has ~28 servers hosting SQL Server databases, R&amp;A typically only accesses 9 servers hosting 96 databases and 2,718 distinct tables. It’s a lot, for sure.</p>
+<p>While the IDEA has ~28 servers hosting SQL Server databases, R&amp;A typically only accesses 13 servers hosting 126 databases and 313 distinct tables. It’s a lot, for sure.</p>
 <div id="core-data-warehouse-server-configuration" class="section level3" number="3.1.1">
 <h3>
 <span class="header-section-number">3.1.1</span> Core data warehouse server configuration<a class="anchor" aria-label="anchor" href="#core-data-warehouse-server-configuration"><i class="fas fa-link"></i></a>
@@ -89,8 +89,8 @@
 <p>The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.</p>
 <div class="figure">
 <span style="display:block;" id="fig:server-graphs"></span>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-48371e5238f9885bb6bd" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-48371e5238f9885bb6bd">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-faac9e49d4b9a2f0bab5" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-faac9e49d4b9a2f0bab5">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases in ’DS</em>’ servers and flows to the right towads Logi hosted Locus dashboards.
 </p>
 </div>
@@ -103,33 +103,24 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <p>These servers are were source data from various applications is landed.</p>
 <ul>
 <li>
-<p><strong><code>SRC1</code></strong> is hosted on <code>RGVPDSD-DWSRC1</code> and serves as a source for <code>PROD1</code>. Most the data hosted on <code>RGVPDSD-DWSRC1</code> mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX, LA, FL, and OH.</p>
+<p><strong><code>SRC1</code></strong> is hosted on <code>RGVPDSD-DWSRC1</code> and serves as a source for <code>PROD1</code>. Most the data hosted on <code>RGVPDSD-DWSRC1</code> mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
 <ul>
+<li>lk_Schools</li>
+<li>Master_Schools</li>
+<li>NewSchoolsSetup</li>
+<li>Schools_YearlySnapShot</li>
+<li>SRC_AD</li>
+<li>SRC_Florida_Schools</li>
+<li>SRC_Florida_Schools_Focus</li>
+<li>SRC_Louisiana_Schools</li>
+<li>SRC_Ohio_Schools</li>
 <li>SRC_Texas_Schools</li>
 <li>SRC_Texas_Travis_Schools</li>
-<li>SRC_Louisiana_Schools</li>
-<li>SRC_Florida_Schools</li>
-<li>SRC_Ohio_Schools</li>
-<li>SRC_AD</li>
-<li>Master_Schools</li>
+<li>SSISTemp</li>
 <li>TravisSnapshotData</li>
-</ul>
-</li>
-<li>
-<p><strong>Sources</strong>:</p>
-<ul>
-<li>PowerSchool</li>
-<li>Skyward</li>
-<li>Focus</li>
-</ul>
-</li>
-<li>
-<p><strong>Targets</strong>:</p>
-<ul>
-<li><code>PROD1</code></li>
 </ul>
 </li>
 </ul>
@@ -140,33 +131,23 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li>
 <p><strong>Databases</strong>:</p>
 <ul>
-<li>lk_Schools<br>
-</li>
-<li>SRC_Accountability<br>
-</li>
-<li>SRC_ACT<br>
-</li>
-<li>SRC_AP<br>
-</li>
-<li>SRC_Dibles<br>
-</li>
-<li>SRC_EA<br>
-</li>
-<li>SRC_IA<br>
-</li>
-<li>SRC_IANew<br>
-</li>
-<li>SRC_IB<br>
-</li>
-<li>SRC_Ohio_Assessments</li>
-<li>SRC_StateAssessments</li>
-<li>SRC_EXPLORER<br>
-</li>
-<li>SRC_NWEA<br>
-</li>
-<li>SRC_SAT<br>
-</li>
+<li>lk_Schools</li>
+<li>SRC_Accountability</li>
+<li>SRC_ACT</li>
+<li>SRC_AP</li>
+<li>SRC_Dibles</li>
+<li>SRC_EA</li>
+<li>SRC_Edcite</li>
+<li>SRC_Edulastic</li>
+<li>SRC_EXPLORER</li>
+<li>SRC_IB</li>
+<li>SRC_Illuminate_LA</li>
+<li>SRC_NWEA</li>
 <li>SRC_PLAN</li>
+<li>SRC_SAT</li>
+<li>SRC_SchoolCity</li>
+<li>SRC_StateAssessments</li>
+<li>SRC_TSIAccuplacer</li>
 </ul>
 </li>
 <li>
@@ -186,7 +167,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </ul>
 </li>
 <li>
-<p><strong>SRC3</strong> is hosted on <code>RGVPDSD-DWSRC3</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learing platforms.</p>
+<p><strong>SRC3</strong> is hosted on <code>RGVPDSD-DWSRC3</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learning platforms.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
@@ -197,9 +178,13 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li>SRC_CollegeSuccess</li>
 <li>SRC_CornerStoneEvaluations</li>
 <li>SRC_DMac</li>
+<li>SRC_FitnessGram</li>
 <li>SRC_GetRatings</li>
+<li>SRC_GoodsideHealth</li>
 <li>SRC_HealthOfficeAnywhere</li>
 <li>SRC_HR</li>
+<li>SRC_JobVite</li>
+<li>SRC_NationalClearingHouse</li>
 <li>SRC_Naviance</li>
 <li>SRC_OpsCampusRanking</li>
 <li>SRC_PanoramaSurveys</li>
@@ -210,15 +195,12 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li>SRC_Stream</li>
 <li>SRC_Teachboost</li>
 <li>SRC_TSI</li>
+<li>SRC_TTM</li>
 <li>SRC_TylerMunis</li>
 <li>SRC_Wrike</li>
 <li>SRC_Zendesk</li>
 <li>SRC_ZendeskDev</li>
 <li>TCPAppDev</li>
-<li>SRC_JobVite</li>
-<li>SRC_TTM</li>
-<li>SRC_FitnessGram</li>
-<li>SRC_NationalClearingHouse</li>
 </ul>
 </li>
 <li>
@@ -238,17 +220,16 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </ul>
 </li>
 <li>
-<p><strong>SRC4</strong> is hosted on <code>RGVPDSD-DWSRC4</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from various individualized learning/blended learnng platforms.</p>
+<p><strong>SRC4</strong> is hosted on <code>RGVPDSD-DWSRC4</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from various individualized learning/blended learning platforms.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
 <ul>
-<li>lk_Schools<br>
-</li>
-<li>SRC_AR<br>
-</li>
+<li>lk_Schools</li>
+<li>SRC_AR</li>
 <li>SRC_BlendedLearning</li>
 <li>SRC_IHT</li>
+<li>SRC_IReady</li>
 </ul>
 </li>
 <li>
@@ -305,103 +286,54 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li>
 <p><strong>Databases</strong>:</p>
 <ul>
-<li>ADA<br>
-</li>
-<li>BlendedLearning<br>
-</li>
-<li>dwSnapshots<br>
-</li>
-<li>Enrollment<br>
-</li>
-<li>IT<br>
-</li>
-<li>Persistence<br>
-</li>
-<li>PROD1<br>
-</li>
-<li>ProductDevelopment</li>
-<li>CollegeSuccess<br>
-</li>
-<li>Matriculation<br>
-</li>
-<li>SSISTemp<br>
-</li>
-<li>Staffing<br>
-</li>
+<li>ADA</li>
+<li>BlendedLearning</li>
+<li>CollegeSuccess</li>
 <li>DashboardSettings</li>
+<li>dwSnapshots</li>
+<li>Enrollment</li>
+<li>GoodSideHealth</li>
+<li>HealthOfficeAnywhere</li>
+<li>Individualized Learning</li>
+<li>IT</li>
+<li>Matriculation</li>
+<li>Persistence</li>
+<li>PROD1</li>
+<li>PROD1New</li>
+<li>ProductDevelopment</li>
+<li>SSISDeprecation</li>
+<li>SSISTemp</li>
+<li>Staffing</li>
+<li>StudentPersistence</li>
 </ul>
 </li>
 <li>
 <p><strong>Sources</strong>:</p>
 <ul>
-<li><code>SRC1</code></li>
-<li><code>SRC3</code></li>
-<li><code>SRC4</code></li>
-<li><code>SRC5</code></li>
+<li><code>RGVPDSD-DWSRC1</code></li>
+<li><code>RGVPDSD-DWSRC2</code></li>
+<li><code>RGVPDSD-DWSRC3</code></li>
+<li><code>RGVPDSD-DWSRC4</code></li>
+<li><code>RGVPDSD-DWSRC5</code></li>
+<li><code>RGVPDSD-SQLCSI</code></li>
+<li><code>RGVPDSD-SQLDI</code></li>
+<li><code>RGVPDSD-TCPSQL</code></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>Targets</strong>:</p></li>
-<li><p><code>RS1</code></p></li>
-<li><p><code>ST-HIS</code></p></li>
 <li>
 <p><strong>PROD2</strong> hosts all assessement data for all state This is the source server for <code>RS2</code> and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables.</p>
 <ul>
 <li>
 <strong>Databases</strong>:
 <ul>
-<li><p>Assessments<br></p></li>
-<li><p>lk_Schools<br></p></li>
-<li><p>PROD2<br></p></li>
+<li><p>Assessments</p></li>
+<li><p>lk_Schools</p></li>
+<li><p>PROD2</p></li>
+<li><p>SSISDeprecation</p></li>
 <li><p>SSISTemp</p></li>
 <li><p>Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="rs-and-hisotrical-data-servers" class="section level4" number="3.1.1.3">
-<h4>
-<span class="header-section-number">3.1.1.3</span> RS and Hisotrical data Servers<a class="anchor" aria-label="anchor" href="#rs-and-hisotrical-data-servers"><i class="fas fa-link"></i></a>
-</h4>
-<p>R&amp;A tends not to use these tables very often. <code>RS1</code>and <code>RS2</code> git have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. <code>ST-HIS</code> ostensibly has snapshots of data from the <code>PROD</code> servers, but that is just an unverified hunch</p>
-<ul>
-<li>
-<p><strong>RS1</strong></p>
-<ul>
-<li><p><strong>Databases</strong>: unknown</p></li>
-<li>
-<p><strong>Sources</strong>:</p>
-<ul>
-<li><code>PROD2</code></li>
-<li>something called <code>ST2</code>?</li>
-</ul>
-</li>
-<li>
-<p><strong>Targets</strong></p>
-<ul>
-<li>Logi</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>RS2</strong></p>
-<ul>
-<li><p><strong>Databases</strong>: unknown</p></li>
-<li>
-<p><strong>Sources</strong>:</p>
-<ul>
-<li><code>PROD1</code></li>
-<li>something called <code>ST1</code>?</li>
-</ul>
-</li>
-<li>
-<p><strong>Targets</strong></p>
-<ul>
-<li>Logi</li>
 </ul>
 </li>
 </ul>
