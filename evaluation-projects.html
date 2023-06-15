@@ -138,27 +138,20 @@ Readers of this document are encouraged to direct their comments and questions a
 <li>
 <strong><em>[dbo].[Students]</em></strong> This table tracks student program and activity participation.</li>
 </ul>
-<p><strong>Important columns:</strong></p>
-<ul>
-<li>
-<strong>[FIRST_NAME]:</strong> Student First Name</li>
-<li>
-<strong>[LAST_NAME]:</strong> Student Last Name</li>
-<li>
-<strong>[STUDENT_NUMBER]:</strong> Student local ID number (108 number)</li>
-<li>
-<strong>[ACADEMIC_SUPPORT]:</strong> Participation in academic support programs (0/1 indicator)</li>
-<li>
-<strong>[COLLEGE_CAREER_READINESS]:</strong> Participation in College and Career Readiness programs (0/1 indicator)</li>
-<li>
-<strong>[FAMILY_ENGAGEMENT]:</strong> Participation in Family Engagement programs (0/1 indicator)</li>
-<li>
-<strong>[ENRICHMENT]:</strong> Participation in Enrichment programs (0/1 indicator)</li>
-<li>
-<strong>[WHENCREATED]:</strong> Date when the record was created</li>
-<li>
-<strong>[WHENMODIFIED]:</strong> Date when the record was modified</li>
-</ul>
+<p><strong>Columns:</strong>
+* <strong>[AcademicYear]:</strong> Academic Year .i.e. 2022-2023
+* <strong>[Summer]:</strong> Summer data Indicator (0/1 indicator)
+* <strong>[FIRST_NAME]:</strong> Student First Name
+* <strong>[LAST_NAME]:</strong> Student Last Name
+* <strong>[STUDENT_NUMBER]:</strong> Student local ID number (108 number)
+* <strong>[ACADEMIC_SUPPORT]:</strong> Participation in academic support programs (0/1 indicator)
+* <strong>[COLLEGE_CAREER_READINESS]:</strong> Participation in College and Career Readiness programs (0/1 indicator)
+* <strong>[FAMILY_ENGAGEMENT]:</strong> Participation in Family Engagement programs (0/1 indicator)
+* <strong>[ENRICHMENT]:</strong> Participation in Enrichment programs (0/1 indicator)
+* <strong>[DAY45]:</strong> 45 days of participation in one of the 21st Century programs (0/1 indicator)
+* <strong>[WHENCREATED]:</strong> Date when the record was created
+* <strong>[WHENMODIFIED]:</strong> Date when the record was modified
+* <strong>[WHENInserted]:</strong> Date when the record was inserted</p>
 <p>A flag was added at the beginning of the 2022-2023 school year to indicate if the student participated 45 days or more.</p>
 <p>From Chapter 4 (Temporary Insert):</p>
 <p>The 21st Century Afterschool Programs provide students with afterschool opportunities to get academic support, college and career guidance, as well as family engagement activities. These programs are funded through several avenues, such as a grant from the Texas Education Agency, federal ESSER funds, the Department of Education, and the Louisiana Department of Education. The programs are offered at 26 campuses in the RGV, Health Professions in Austin, and Innovation in Louisiana.</p>
@@ -180,6 +173,44 @@ Readers of this document are encouraged to direct their comments and questions a
 <li>
 <strong>WHENMODIFIED:</strong> a date/time stamp indicating the date when the record was modified. Most values are null.</li>
 </ul>
+<div id="st-century-afterschool-program-data-life-cycle" class="section level4" number="7.2.1.1">
+<h4>
+<span class="header-section-number">7.2.1.1</span> 21st Century Afterschool Program Data Life Cycle<a class="anchor" aria-label="anchor" href="#st-century-afterschool-program-data-life-cycle"><i class="fas fa-link"></i></a>
+</h4>
+<p>21st Century Afterschool Program data that is found in [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students] is pulled nightly at 12am. The initial process deletes the current data only with the same current school session of data such as (2022-2023 Summer) so that once the new Academic Year changes or no longer in summer, that data is not deleted but left as the last update. Below is the query that is ran in Power School so that in the [U_IDEA_STUDENTS_OSS] table we receive that latest records for 21st Century Aferschool Programs.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb39-1"><a href="evaluation-projects.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>   </span>
+<span id="cb39-2"><a href="evaluation-projects.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  FIRST_NAME, </span>
+<span id="cb39-3"><a href="evaluation-projects.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  LAST_NAME,</span>
+<span id="cb39-4"><a href="evaluation-projects.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  a.STUDENT_NUMBER,</span>
+<span id="cb39-5"><a href="evaluation-projects.html#cb39-5" aria-hidden="true" tabindex="-1"></a>  b.ACADEMIC_SUPPORT, </span>
+<span id="cb39-6"><a href="evaluation-projects.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  b.COLLEGE_CAREER_READINESS, </span>
+<span id="cb39-7"><a href="evaluation-projects.html#cb39-7" aria-hidden="true" tabindex="-1"></a>  b.FAMILY_ENGAGEMENT, </span>
+<span id="cb39-8"><a href="evaluation-projects.html#cb39-8" aria-hidden="true" tabindex="-1"></a>  b.ENRICHMENT,  </span>
+<span id="cb39-9"><a href="evaluation-projects.html#cb39-9" aria-hidden="true" tabindex="-1"></a>  b.DAY45, </span>
+<span id="cb39-10"><a href="evaluation-projects.html#cb39-10" aria-hidden="true" tabindex="-1"></a>  b.WHENCREATED, </span>
+<span id="cb39-11"><a href="evaluation-projects.html#cb39-11" aria-hidden="true" tabindex="-1"></a>  b.WHENMODIFIED </span>
+<span id="cb39-12"><a href="evaluation-projects.html#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span>  STUDENTS a</span>
+<span id="cb39-13"><a href="evaluation-projects.html#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
+<span id="cb39-14"><a href="evaluation-projects.html#cb39-14" aria-hidden="true" tabindex="-1"></a>(<span class="kw">SELECT</span> a.<span class="op">*</span> <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS a </span>
+<span id="cb39-15"><a href="evaluation-projects.html#cb39-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
+<span id="cb39-16"><a href="evaluation-projects.html#cb39-16" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">SELECT</span> STUDENTSDCID, <span class="fu">MAX</span>(WHENCREATED) <span class="kw">AS</span> WHENCREATED </span>
+<span id="cb39-17"><a href="evaluation-projects.html#cb39-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS </span>
+<span id="cb39-18"><a href="evaluation-projects.html#cb39-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
+<span id="cb39-19"><a href="evaluation-projects.html#cb39-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
+<span id="cb39-20"><a href="evaluation-projects.html#cb39-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb39-21"><a href="evaluation-projects.html#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb39-22"><a href="evaluation-projects.html#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb39-23"><a href="evaluation-projects.html#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> STUDENTSDCID ) b </span>
+<span id="cb39-24"><a href="evaluation-projects.html#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> a.STUDENTSDCID <span class="op">=</span> b.STUDENTSDCID </span>
+<span id="cb39-25"><a href="evaluation-projects.html#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">AND</span> a.WHENCREATED <span class="op">=</span> b.WHENCREATED </span>
+<span id="cb39-26"><a href="evaluation-projects.html#cb39-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> a.YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
+<span id="cb39-27"><a href="evaluation-projects.html#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
+<span id="cb39-28"><a href="evaluation-projects.html#cb39-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb39-29"><a href="evaluation-projects.html#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb39-30"><a href="evaluation-projects.html#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) )  b</span>
+<span id="cb39-31"><a href="evaluation-projects.html#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> a.DCID <span class="op">=</span> b.STUDENTSDCID</span>
+<span id="cb39-32"><a href="evaluation-projects.html#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  a.STUDENT_NUMBER</span></code></pre></div>
+</div>
 </div>
 <div id="camp-rio" class="section level3" number="7.2.2">
 <h3>

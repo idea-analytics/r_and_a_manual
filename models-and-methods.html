@@ -108,7 +108,7 @@
 </h4>
 <p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
 <p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#use matchit like a glm</span></span>
 <span><span class="va">m_out</span> <span class="op">&lt;-</span> <span class="fu">matchit</span><span class="op">(</span><span class="va">ActiveIL</span> <span class="op">~</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Grade</span> <span class="op">+</span></span>
 <span>                   <span class="va">SPED</span> <span class="op">+</span> <span class="va">LEP</span> <span class="op">+</span> <span class="va">EcoDis</span> <span class="op">+</span> <span class="va">GradeEquivalentBOY</span>, <span class="co">#response specifies control/treatment, covariates specify what to match</span></span>
@@ -160,7 +160,7 @@
 </li>
 </ol>
 <p>Suppose we want to use SEL survey results to measure life satisfaction across multiple grade levels. To see if the average <code>LifeSatisfactionScore</code> differs at all between grade levels, then we can use the following code:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># linear model, where grade level is treated as a factor, not numeric</span></span>
 <span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">LifeSatisfactionScore</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">GradeLevelID</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -230,7 +230,7 @@
 <li><p>Clustering of values in a region (and conversely, gaps in data)</p></li>
 </ol>
 <p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
@@ -343,7 +343,7 @@
 </td>
 <td>hypothesized true mean</td>
 <td>1-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="va">hypothesized_value</span><span class="op">)</span></span></code></pre></div></td>
 </tr>
 <tr class="even">
@@ -353,7 +353,7 @@
 </td>
 <td>difference in pairs of 0</td>
 <td>paired <em>t-</em>test</td>
-<td><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div></td>
 </tr>
 <tr class="odd">
@@ -363,7 +363,7 @@
 </td>
 <td>difference in means is 0</td>
 <td>2-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">hours</span> <span class="op">~</span> <span class="va">college</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -380,7 +380,7 @@
 <p>Analysis of Variance (ANOVA)</p>
 <p>F-test</p>
 </td>
-<td><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">partyid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -392,7 +392,7 @@
 <td>No relationship between both categorical variables</td>
 <td>
 <span class="math inline">\(\chi^2\)</span> test</td>
-<td><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">null_dist_sim</span> <span class="op">&lt;-</span> <span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">college</span> <span class="op">~</span> <span class="va">finrela</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -416,7 +416,7 @@
 <p>Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.</p>
 <p><span class="math inline">\(\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>To estimate these coefficients and evaluate the fit, we can use the following workflow:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters</span></span>
 <span><span class="co"># all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1</span></span>
 <span></span>
@@ -451,7 +451,7 @@
 <p>Note that there are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family">link functions</a>, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm">documentation.</a> However, base R provides the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, which gives options to choose a link.</p>
 <p>Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
 <p><span class="math inline">\(\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># logistic regression to determine log odds of passing STAAR</span></span>
 <span><span class="va">glm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Approaches</span> <span class="op">~</span> <span class="va">SemesterExamQuestions</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
 <span>                 family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
@@ -471,7 +471,7 @@
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
 <span></span>
 <span><span class="co"># model enrolled students using a GAM</span></span>
@@ -527,7 +527,7 @@
 <span class="header-section-number">10.6.2</span> Let’s look at TACO schools<a class="anchor" aria-label="anchor" href="#lets-look-at-taco-schools"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="co">#library(tidyverse)</span></span>
@@ -567,7 +567,7 @@
 </h4>
 <p>We’ve got schools and addresses! But that isn’t sufficient to plot these schools on a map and we certainly don’t have simple features data.frame.</p>
 <p>The first stop is <strong>geocoding</strong> these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the <code>[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)</code> which provides a great interface to a number of different geocoders (e.g. US Census, OpenStreetMaps, geocod.io, )</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span> <span class="op">&lt;-</span> <span class="va">taco_schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -591,7 +591,7 @@
 <span><span class="co">#&gt; #   long &lt;dbl&gt;</span></span></code></pre></div>
 <p>Brilliant! We’ve got <code>lat</code> and <code>long</code> variables for those addresses. Super Cool!</p>
 <p>Let’s transform these now to a <code>sf</code> object:</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2()</span></span>
@@ -623,7 +623,7 @@
 </h5>
 <p>Notice in the meta-data above that CRS is <code>NA</code>. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth’s curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.</p>
 <p>You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string <code>"+init=epsg:4326"</code> as a formal identifier, but also more simply by its name:</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">taco_schools_sf</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"WGS84"</span></span></code></pre></div>
 </div>
 </div>
@@ -632,7 +632,7 @@
 <span class="header-section-number">10.6.2.2</span> Plotting<a class="anchor" aria-label="anchor" href="#plotting"><i class="fas fa-link"></i></a>
 </h4>
 <p>We now have enough information to draw a map!</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#renv::install("yutannihilation/ggsflabel")</span></span>
 <span></span>
@@ -669,7 +669,7 @@
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/ggmap-1.png" width="672"></div>
 <p>I dont’ always love Google Maps look for display purposes on slides, so let’s change that up with Stamen Maps:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Need a bounding box for the get_stamenmap function</span></span>
 <span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/bb2bbox.html">bb2bbox</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">base_google_map</span>, <span class="st">"bb"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -688,14 +688,14 @@
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-31-1.png" width="672"></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
 </div>
 <div id="getting-drive-times" class="section level4" number="10.6.2.3">
 <h4>
 <span class="header-section-number">10.6.2.3</span> Getting drive times<a class="anchor" aria-label="anchor" href="#getting-drive-times"><i class="fas fa-link"></i></a>
 </h4>
 <p>This requires the MapBox API, which requries an API key.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages("mapboxapi")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mapboxapi</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Usage of the Mapbox APIs is governed by the Mapbox Terms of Service.</span></span>
@@ -744,13 +744,13 @@
 <span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-33-1.png" width="672"></div>
 </div>
 <div id="some-geographic-filtering" class="section level4" number="10.6.2.4">
 <h4>
 <span class="header-section-number">10.6.2.4</span> Some geographic filtering<a class="anchor" aria-label="anchor" href="#some-geographic-filtering"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
@@ -800,7 +800,7 @@
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/geo-filtering-1.png" width="672"></div>
 <p>And what schools are found in this area?</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">schools_in_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter</a></span><span class="op">(</span><span class="va">taco_schools_sf</span>,</span>
 <span>                         <span class="va">taco_area_of_max_intersection</span>, </span>
 <span>                         join <span class="op">=</span> <span class="va">st_within</span><span class="op">)</span></span>
@@ -827,7 +827,7 @@
 </h3>
 <p>Kyle Walker has written the exceptional <code>[tidycensus](https://walker-data.com/tidycensus/)</code>package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).</p>
 <p>Let’s load it up:</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages('tidycensus')</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://walker-data.com/tidycensus/">tidycensus</a></span><span class="op">)</span></span>
 <span></span>
@@ -846,7 +846,7 @@
 <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code>, which grants access to the 1-year and 5-year American Community Survey APIs.</li>
 </ul>
 <p>Let’s get <em>median age by state</em> in 2010:</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"state"</span>, </span>
 <span>                       variables <span class="op">=</span> <span class="st">"P013001"</span>, </span>
 <span>                       year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
@@ -869,11 +869,11 @@
 <span><span class="co">#&gt; 10 10    Delaware    P013001   38.8</span></span>
 <span><span class="co">#&gt; # ℹ 42 more rows</span></span></code></pre></div>
 <p>Plotting is super duper easy:</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">NAME</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-35-1.png" width="672"></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
 </div>
 <div id="searching-for-variables" class="section level6" number="10.6.3.0.0.2">
 <h6>
@@ -881,14 +881,14 @@
 </h6>
 <p>How, pray tell, does one know that <code>P013001</code> is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> function. There are <a href="https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables">more details on in the package’s documentation page</a>.</p>
 <p>To browse these variables, assign the result of <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> to a variable and use the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function in RStudio. An optional argument <code>cache = TRUE</code> will cache the dataset on your computer for future use.</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">v_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"acs5"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#View(v_2020)</span></span></code></pre></div>
 <p>Let’s get Tarrant county:</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">tarr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"block group"</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="co">#tpotal pop</span></span>
@@ -913,7 +913,7 @@
 <span class="header-section-number">10.6.4</span> Chloropleth<a class="anchor" aria-label="anchor" href="#chloropleth"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now we are summing up all school aged children (5-17 year old boy and girls):</p>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-37-1.png" width="672"></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
 </div>
 <div id="dot-density" class="section level3" number="10.6.5">
 <h3>
@@ -922,7 +922,7 @@
 <p>Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasis those area versus smaller geographies. This distortion is familiar to those that follow elections, where geographically large states with small populations Wyoming loom larger then geographically small, but densely populated states like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal population (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.</p>
 <p>A second issue is that it’s very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all Children 5-17 years old in each tract. But we may be interested in how differently distributed those students are.</p>
 <p>A method to remedy both issues is to use <strong>dot-density</strong> plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It’s pretty straightforward to get what you need by using <a href="https://walker-data.com/tidycensus/reference/as_dot_density.html"><code>sf::as_dot_density()</code></a></p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_ages</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span> <span class="va">variable</span>,     <span class="op">~</span><span class="va">age_range</span>, <span class="op">~</span><span class="va">gender</span>,</span>
 <span>  <span class="st">"B01001_001"</span>,    <span class="st">"All"</span>,      <span class="st">"All"</span>,  </span>
@@ -956,7 +956,7 @@
 <span><span class="co">#&gt; assumes that they are planar</span></span>
 <span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
 <span><span class="co">#&gt; assumes that they are planar</span></span></code></pre></div>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
