@@ -116,48 +116,46 @@ The following sections provide some details on the what databases might be found
 #### SRC Servers
 These servers are were source data from various applications is landed. 
 
-* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX, LA, FL, and OH.
+* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.
 
   * **Databases**:
 
+    * lk_Schools
+    * Master_Schools
+    * NewSchoolsSetup
+    * Schools_YearlySnapShot
+    * SRC_AD
+    * SRC_Florida_Schools
+    * SRC_Florida_Schools_Focus
+    * SRC_Louisiana_Schools
+    * SRC_Ohio_Schools
     * SRC_Texas_Schools
     * SRC_Texas_Travis_Schools
-    * SRC_Louisiana_Schools
-    * SRC_Florida_Schools
-    * SRC_Ohio_Schools
-    * SRC_AD
-    * Master_Schools
+    * SSISTemp
     * TravisSnapshotData
-    
-  * **Sources**:
-    
-    * PowerSchool
-    * Skyward
-    * Focus
 
-  * **Targets**:
-    
-    * `PROD1`
     
 
 * **`SRC2`** is hosted on  `RGVPDSD-DWSRC2`  and serves as a source for `PROD2` and exclusively source data from assessment platforms like Edcite, Illuminate DnA, AP, IB, ACT, and SAT. 
 
   * **Databases**:
-    * lk_Schools          
-    * SRC_Accountability  
-    * SRC_ACT             
-    * SRC_AP              
-    * SRC_Dibles          
-    * SRC_EA              
-    * SRC_IA              
-    * SRC_IANew           
-    * SRC_IB              
-    * SRC_Ohio_Assessments
+    * lk_Schools
+    * SRC_Accountability
+    * SRC_ACT
+    * SRC_AP
+    * SRC_Dibles
+    * SRC_EA
+    * SRC_Edcite
+    * SRC_Edulastic
+    * SRC_EXPLORER
+    * SRC_IB
+    * SRC_Illuminate_LA
+    * SRC_NWEA
+    * SRC_PLAN
+    * SRC_SAT
+    * SRC_SchoolCity
     * SRC_StateAssessments
-    * SRC_EXPLORER        
-    * SRC_NWEA            
-    * SRC_SAT             
-    * SRC_PLAN   
+    * SRC_TSIAccuplacer
 
     
   * **Sources**:
@@ -169,7 +167,7 @@ These servers are were source data from various applications is landed.
     
     * `PROD2`
     
-* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learing platforms. 
+* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learning platforms. 
 
   * **Databases**:
     * lk_Schools
@@ -178,9 +176,13 @@ These servers are were source data from various applications is landed.
     * SRC_CollegeSuccess
     * SRC_CornerStoneEvaluations
     * SRC_DMac
+    * SRC_FitnessGram
     * SRC_GetRatings
+    * SRC_GoodsideHealth
     * SRC_HealthOfficeAnywhere
     * SRC_HR
+    * SRC_JobVite
+    * SRC_NationalClearingHouse
     * SRC_Naviance
     * SRC_OpsCampusRanking
     * SRC_PanoramaSurveys
@@ -191,15 +193,12 @@ These servers are were source data from various applications is landed.
     * SRC_Stream
     * SRC_Teachboost
     * SRC_TSI
+    * SRC_TTM
     * SRC_TylerMunis
     * SRC_Wrike
     * SRC_Zendesk
     * SRC_ZendeskDev
     * TCPAppDev
-    * SRC_JobVite
-    * SRC_TTM
-    * SRC_FitnessGram
-    * SRC_NationalClearingHouse
     
       
       
@@ -212,13 +211,14 @@ These servers are were source data from various applications is landed.
     
     * `PROD1`
       
-* **SRC4** is hosted on `RGVPDSD-DWSRC4`  and serves as a source for `PROD1`.  Databases focus on source data from various individualized learning/blended learnng platforms. 
+* **SRC4** is hosted on `RGVPDSD-DWSRC4`  and serves as a source for `PROD1`.  Databases focus on source data from various individualized learning/blended learning platforms. 
 
   * **Databases**:
-    * lk_Schools         
-    * SRC_AR             
+    * lk_Schools
+    * SRC_AR
     * SRC_BlendedLearning
-    * SRC_IHT    
+    * SRC_IHT
+    * SRC_IReady
     
       
   * **Sources**:
@@ -251,72 +251,52 @@ These servers are were source data from various applications is landed.
 * **PROD1** is hosted on `RGVPDSD-DWPRD1` and contains a variety of data bases sourced from all `SRC` servers except for `SRC2`. The key students, schools, and regions data is found here and is 
 
   * **Databases**:
-    * ADA               
-    * BlendedLearning   
-    * dwSnapshots       
-    * Enrollment        
-    * IT                
-    * Persistence       
-    * PROD1             
+
+    * ADA
+    * BlendedLearning
+    * CollegeSuccess
+    * DashboardSettings
+    * dwSnapshots
+    * Enrollment
+    * GoodSideHealth
+    * HealthOfficeAnywhere
+    * Individualized Learning
+    * IT
+    * Matriculation
+    * Persistence
+    * PROD1
+    * PROD1New
     * ProductDevelopment
-    * CollegeSuccess    
-    * Matriculation     
-    * SSISTemp          
-    * Staffing          
-    * DashboardSettings 
+    * SSISDeprecation
+    * SSISTemp
+    * Staffing
+    * StudentPersistence
     
   * **Sources**:
     
-    * `SRC1`
-    * `SRC3`
-    * `SRC4`
-    * `SRC5`
+    * `RGVPDSD-DWSRC1`
+    * `RGVPDSD-DWSRC2`
+    * `RGVPDSD-DWSRC3`
+    * `RGVPDSD-DWSRC4`
+    * `RGVPDSD-DWSRC5`
+    * `RGVPDSD-SQLCSI`
+    * `RGVPDSD-SQLDI`
+    * `RGVPDSD-TCPSQL`
   
- * **Targets**:
- 
-  * `RS1`
-  * `ST-HIS`
 
-  
 * **PROD2** hosts all assessement data for all state  This is the source server for `RS2` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
 
   * **Databases**:
-    * Assessments  
-    * lk_Schools   
-    * PROD2        
-    * SSISTemp  
+    * Assessments
+    * lk_Schools
+    * PROD2
+    * SSISDeprecation
+    * SSISTemp
     
 
     * Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
     
-#### RS and Hisotrical data Servers
 
-R&A tends not to use these tables very often. `RS1`and  `RS2` git  have flat tables that utilized by by Logi for Locus Dashboards that are developed by Software Development. `ST-HIS` ostensibly has snapshots of data from the `PROD` servers, but that is just an unverified hunch 
-
-
-
-* **RS1** 
-  
-  * **Databases**: unknown
-  * **Sources**:
-    
-    * `PROD2`
-    * something called `ST2`?
-  
-  * **Targets**
-    * Logi
-    
-* **RS2**
-  
-  * **Databases**: unknown
-  * **Sources**:
-    
-    * `PROD1`
-    * something called `ST1`?
-  
-  * **Targets**
-    * Logi
-  
 
 
 ### Server, Table, and Field Lookup
@@ -338,7 +318,6 @@ More details on accessing the data warehouse from R are in the following section
 The most straightforward way to access the data warehouse is to use our own, bespoke r package: `ideadata`, which is [maintained on github](https://github.com/idea-analytics/ideadata) and has [its own documentation site](https://idea-analytics.github.io/ideadata/).
  
 ### Installation
-
 
 Since `ideadata` is an internal IDEA package, there is only a development version, which is installed from [GitHub](https://github.com/) with:
 
