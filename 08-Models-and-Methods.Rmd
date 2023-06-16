@@ -392,6 +392,25 @@ Note that communicating results from these models may be beyond a general audien
 
 The [ISLR website](https://www.statlearning.com/) and [tidymodels implementation](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) should be consulted for more details about these models.
 
+
+### Natural Language Processing (Sentiment Analysis)
+Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into 5 parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent). 
+
+With NLP our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:
+
+```{r sentiment_example, eval=FALSE}
+library(tidyverse)
+library(tidytext)
+
+ps_tb <- tibble(statment = "The R&A manual is awesome and I love to working with it") %>%
+  unnest_tokens(word, statment)
+
+# we can get overall positive vs. negative with the Bing lexicon **
+ps_tb %>%
+  inner_join(get_sentiments("bing"))
+
+```
+
 ## Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features
 
 ### What is a simple feature?
