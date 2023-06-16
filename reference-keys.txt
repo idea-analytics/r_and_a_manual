@@ -204,6 +204,7 @@ linear-modeling
 generalized-linear-modeling
 generalized-additive-modeling
 machine-learning
+natural-language-processing-sentiment-analysis
 geospatial-methods-or-a-gentle-introduction-to-gis-in-r-with-simple-features
 what-is-a-simple-feature
 how-are-simple-features-implemented-in-r
