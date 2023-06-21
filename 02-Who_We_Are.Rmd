@@ -26,7 +26,7 @@ Edison is a Data Science and Analytics Engineer who supports IDEA by making sure
 
 His previous position was with the Software Development Team as a Senior Developer working on data integration and software development. One of the software’s led by Edison was TCP (Teacher Career Pathway) in where he developed and designed the system to absorb numerous data points to be transformed into a TCP Level for all teacher across IDEA.
 
-My background stems from Computer Science as I hold a BBA in Computer Information Systems and MS in Business Analytics. Ask me about Power BI, Excel, R, DAX, Power Query, Statistical methods/models. 
+His background stems from Computer Science as he holds a BBA in Computer Information Systems and MS in Business Analytics. Ask him about Power BI, Excel, R, DAX, Power Query, Statistical methods/models. 
 
 ### Chris Haid 
 Chris Haid is VP of Data Analytics at IDEA Public Schools, where leads research, evaluation, and data analysis across 180+ schools in Texas, Louisiana, Florida, and Ohio.
