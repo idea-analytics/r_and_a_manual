@@ -594,7 +594,7 @@
 <span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
 <span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4 seconds</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
@@ -827,14 +827,17 @@
 <span><span class="co">#&gt; assumes that they are planar</span></span>
 <span></span>
 <span><span class="va">schools_in_overlap</span></span>
-<span><span class="co">#&gt; Simple feature collection with 0 features and 5 fields</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA</span></span>
+<span><span class="co">#&gt; Simple feature collection with 1 feature and 5 fields</span></span>
+<span><span class="co">#&gt; Geometry type: POINT</span></span>
+<span><span class="co">#&gt; Dimension:     XY</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -97.28824 ymin: 32.68475 xmax: -97.28824 ymax: 32.68475</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt; # A tibble: 0 × 6</span></span>
-<span><span class="co">#&gt; # ℹ 6 variables: school_short_name &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   school_street &lt;chr&gt;, school_city &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   school_state &lt;chr&gt;, school_zip_code &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   geometry &lt;GEOMETRY [°]&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
+<span><span class="co">#&gt;   school_short_name school_street   school_city school_state</span></span>
+<span><span class="co">#&gt; * &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;       </span></span>
+<span><span class="co">#&gt; 1 Southeast         2935 E Seminar… Fort Worth  TX          </span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: school_zip_code &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
 <p>It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.</p>
 </div>
 </div>
@@ -1160,7 +1163,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-06-16.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-06-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
