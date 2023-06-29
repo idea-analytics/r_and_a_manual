@@ -83,3 +83,40 @@ This project was examining the differences between student achievement for pilot
 
 August to October 2022, R&A conducted multiple methods of analyses on data collected by the HA team to provide greater understanding about the depth and breadth of employees' attitudes, beliefs, experiences, and perceptions about working at IDEA. 
 
+
+#### GET Observations for teachers
+
+Teachboost data has users (all of those in the Teachboost System, including those being observed and those doing the observing, as well as teachers who submit lesson plans. Teachers are observed with GET forms and Revised GET forms, and teacher-leaders are observed with SLL forms. The Users table includes all of these individuals). The Forms table is a list of all observations (forms) that have been submitted. Joining these tables together provides a list of all GET observations (after filtering for forms with the category of GET Ratings) and a user id number for those that form is written about (as well as for who wrote the form). The ID number for the employee is a separate number than the User ID for Teachboost. The employee id can than be use to join to HRIS employee data from Tyler Munis views, tables, or reports. Joining the HRIS data will then give us the Region, School, Area, and other information about the employee who received the GET rating. When conducting this for the SY 22-23, Teachboost data was gathered on May 10, 2023, which is 2 weeks prior to the last day of school for many Texas regions and schools. HRIS data corresponded to this, to ensure that people were captured in this data who might be leaving at the end of the school year (and thus no longer captured on HRIS once they are no longer active at IDEA). 
+
+When looking at Texas only (as is done for the TSLIP grant), the Texas regions are compared with "All-Texas-District", which is is organizational-wide for all regions in Texas (but does not include regions outside of Texas, such as Tampa Bay). 
+
+The EOY rates of teachers with at least one observation per teacher, exclusively in Texas regions, were as follows:
+
+1. Austin	                (58.07%); teachers with observations = 295,  total teachers = 508.	
+2. El Paso	              (47.81%); teachers with observations = 131,  total teachers = 274.	
+3. Greater Houston Area	  (23.20%); teachers with observations = 29,   total teachers =	125.	
+4. Lower RGV	            (70.35%); teachers with observations = 548,  total teachers =	779.	
+5. Permian Basin	        (15.85%); teachers with observations = 13;   total teachers =	82.	
+6. San Antonio	          (58.64%); teachers with observations = 509,  total teachers =	868.	
+7. Tarrant County	        (48.40%); teachers with observations = 91,   total teachers =	188.	
+8. Upper RGV	            (71.40%); teachers with observations = 729,  total teachers =	1021.	
+9. All-Texas-District	    (60.99%); teachers with observations = 2345, total teachers =	3845.
+
+The EOY rates of teachers with at least one observation per teacher, in all IDEA regions (inside and outside of Texas), were as follows:
+
+
+1. Austin	                (58.07%); teachers with observations = 295,  total teachers = 508.	
+2. Cincinnati	            (77.14%); teachers with observations = 27;   total teachers =	35.
+3. El Paso	              (47.81%); teachers with observations = 131,  total teachers = 274.	
+4. Greater Houston Area	  (23.20%); teachers with observations = 29,   total teachers =	125.	
+5. Jacksonville         	(91.94%); teachers with observations = 57,   total teachers =	62.
+6. Lower RGV	            (70.35%); teachers with observations = 548,  total teachers =	779.	
+7. Permian Basin	        (15.85%); teachers with observations = 13;   total teachers =	82.	
+8. San Antonio	          (58.64%); teachers with observations = 509,  total teachers =	868.	
+9. Southern Louisiana	    (83.20%); teachers with observations = 104,  total teachers =	125.
+10. Tampa Bay	            (80.85%); teachers with observations = 76,   total teachers =	94.
+11. Tarrant County	      (48.40%); teachers with observations = 91,   total teachers =	188.	
+12. Upper RGV	            (71.40%); teachers with observations = 729,  total teachers =	1021.	
+13. IDEA District	        (62.70%); teachers with observations = 2609; total teachers =	4161.
+
+In general, the non-Texas regions are doing very well especially compared to some of the Texas regions. Permian Basin is struggling the most, followed by Greater Houston Area. Jacksonville, Tampa Bay, Southern Louisiana, and Cincinnati are doing the best, follwed by Upper RGV and Lower RGV. Austin, El Paso, Tarrant County, and San Antonio are doing moderatly well. The IDEA District as a whole increased nearly 3 percentage points with total rates of teachers with 1+ observations in Teachboost when compared with All-Texas-District (the IDEA dicstrict with only the Texas regions). 
