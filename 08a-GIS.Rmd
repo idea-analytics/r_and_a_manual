@@ -1,4 +1,6 @@
-# Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features
+# Geospatial Methods and GIS
+
+This chapter provides a gentle introduction to GIS in R with simple features. 
 
 ## What is a simple feature?
 
