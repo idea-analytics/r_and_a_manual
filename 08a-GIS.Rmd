@@ -1,18 +1,18 @@
 # Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features
 
-### What is a simple feature?
+## What is a simple feature?
 
 **Simple Features** is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).
 
 A **feature** is a essentially a thing in the world. In the simple feature specification a feature ha *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names or metrics like population.
 
-#### How are simple features implemented in R
+### How are simple features implemented in R
 
 In a word, simply. A special feature in R is essentially a a row in `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an `sf` `data.frame`
 
 ![](img/sf_layout.png){width="500"}
 
-### Let's look at TACO schools
+## Let's look at TACO schools
 
 Let's start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:
 
@@ -44,7 +44,7 @@ load("./taco_schools.Rda")
 taco_schools
 ```
 
-#### Geocoding
+### Geocoding
 
 We've got schools and addresses! But that isn't sufficient to plot these schools on a map and we certainly don't have simple features data.frame.
 
@@ -80,7 +80,7 @@ taco_schools_sf
 
 Notice that the `lat` and `long` variables are replaced by the `geometry` column.
 
-##### Coordinate Reference System
+#### Coordinate Reference System
 
 Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth's curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.
 
@@ -90,7 +90,7 @@ You should always set this and the most common CRS in latitude and longitude is 
 st_crs(taco_schools_sf) <- "WGS84"
 ```
 
-#### Plotting
+### Plotting
 
 We now have enough information to draw a map!
 
@@ -129,7 +129,7 @@ base_stamen_map %>%
                inherit.aes = FALSE) 
 ```
 
-#### Getting drive times
+### Getting drive times
 
 This requires the MapBox API, which requries an API key.
 
@@ -166,7 +166,7 @@ base_stamen_map %>%
 
 ```
 
-#### Some geographic filtering
+### Some geographic filtering
 
 ```{r geo-filtering}
 
@@ -210,7 +210,7 @@ schools_in_overlap
 
 It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.
 
-### Census Data
+## Census Data
 
 Kyle Walker has written the exceptional `[tidycensus](https://walker-data.com/tidycensus/)`package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).
 
@@ -225,7 +225,7 @@ library(tidycensus)
 #census_api_key(Sys.getenv("CENSUS_API_KEY"))
 ```
 
-###### Getting Basic Data
+##### Getting Basic Data
 
 There are two major functions implemented in tidycensus:
 
@@ -250,7 +250,7 @@ age10 %>%
   geom_point()
 ```
 
-###### Searching for variables:
+##### Searching for variables:
 
 How, pray tell, does one know that `P013001` is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the `load_variables()` function. There are [more details on in the package's documentation page](https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables).
 
@@ -289,7 +289,7 @@ tarr <- get_acs(geography = "block group", variables = c( #tpotal pop
 tarr
 ```
 
-### Chloropleth
+## Chloropleth
 
 Now we are summing up all school aged children (5-17 year old boy and girls):
 
@@ -331,7 +331,7 @@ base_stamen_map %>%
 
 ```
 
-### Dot-density
+## Dot-density
 
 Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasis those area versus smaller geographies. This distortion is familiar to those that follow elections, where geographically large states with small populations Wyoming loom larger then geographically small, but densely populated states like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal population (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.
 
