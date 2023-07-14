@@ -1362,6 +1362,33 @@ Currently, this data is being used for the Teacher Tenure project for Martin Win
 
 The employee data can be queried and pulled into a csv, excluding direct information about Social Security Numbers and Salary (per the NDA Maura signed).
 
+#prempmst table in Tyler Munis
+
+The prempmst table is one of the primary sources of employee data and information. It has the employee ID number, the step level (for salary), the social security number (which is why the data is deemed more sensitive), start date at IDEA, work start date for that school year, gender, race, ethnicity, and other pertinent employee information and data (much of which has been captured in the HRIS data reports that are sent out weekly). It also includes employee full name, marital status, home phone number, spouse, bank account, supervisor, IDEA email address, alternate email address (the personal email the employee used likely to apply to IDEA), pay type, pay frequency, sick bank.
+
+Prempmst is one of hundreds of tables. It is accessed via this path on MSSQL: RGVPDEIS-TMTXDB\TYLERCI -> Databases -> munprod -> Tables -> dbo.prempmst_orig
+
+Here are some specific columns or how to format them:
+
+##Work Start Date:
+FORMAT(premppay_all.prep_work_st_dt,'d','en-us')  AS 'Work Start Date'
+
+##Job Status (NLE vs Active)
+,CASE WHEN prempmst.prem_term_date < GETDATE() THEN 'NLE'  
+ELSE 'Active' END AS [JobPaySkill]  
+
+It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports, that could be filtered for NLE or Active, in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).
+
+##Start Date
+
+,FORMAT(prempmst.prem_hire,'d','en-us')   [StartDate] 
+
+Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, they person doesn't have to switch roles, and the Work Start Date is the start date for their current school year's job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.
+
+###New Teacher at IDEA
+Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
+To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher's Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee's role was "TEACHER" in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA. 
+
 ### Teach Boost Data
 
 Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders. 
@@ -1546,19 +1573,25 @@ TCP/Teacher Export Data: Teacher Performance data.
 * For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
 * If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
 
-1. 18-19  
- * From Alex, see email
+1. SY 18-19  
+ * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Stephen, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
 
-2. 19-20  
+2. SY 19-20  
   * (“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
   * Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
   * 20-21 – 3rd year of Jobvite data 
   * from Blanca Carillo, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
-  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year
+  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year.
+  
+  If you would like to download your own TCP Export data for SY 19-20, please go to the TCP Application Website: www.tcp.ideapublicschools.org.
 
-3. 21-22 – NO
+3. SY 21-22 – please download export from www.tcp.ideapublicschools.org.
+
+4. SY 22-23
   * **Not available yet!**
-  * No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.
+  * No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October. 
+  
+For all School Years, an "appeals" process takes place in the fall after the original placements are submitted in October. There has been a roughly 50% appeal rate (50% of teachers or their managers appealing the placements) each year. Appeals go before the appeals committee, where some appeals are denied (the given placement holds), and some appeals are approved (so the placement changes). This can alter the TCP Export report, which is not static. The export report changes depending on the current day and month; if you would like to know the "original" placements prior to appeals, you need to download the TCP Export data directly from the tcp application website prior to the appeals and any changes that will be made to placement levels. It is a good idea to download the TCP Export each year in the beginning of October when it is first posted so that you have that data, in case it changes as time goes on.
 
 
 #### Data Matching
