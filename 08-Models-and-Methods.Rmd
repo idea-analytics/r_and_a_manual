@@ -82,11 +82,12 @@ The most common way of comparing multiple means is an ANOVA (analysis of varianc
 1.  construct a linear model and save the object `lm_my_model <- lm()` (see linear modeling below)
 2.  compare the variance among the groups using `aov(lm_my_model)`
 
-Suppose we want to use SEL survey results to measure life satisfaction across multiple grade levels. To see if the average `LifeSatisfactionScore` differs at all between grade levels, then we can use the following code:
+Suppose we want to use SEL survey results to measure emotion regulation (a quantitative variable) across multiple grade levels. To see if the average `EmotionRegulationScore` differs at all between grade levels, then we can use the following code:
 
 ```{r anova_example, eval=FALSE}
 # linear model, where grade level is treated as a factor, not numeric
-lm_survey_results <- lm(LifeSatisfactionScore ~ as.factor(GradeLevelID))
+lm_survey_results <- lm(EmotionRegulationScore ~ as.factor(GradeLevelID),
+                        data = df_sel_survey)
 
 # perform ANOVA
 aov(lm_survey_results)
@@ -97,12 +98,9 @@ Then, if the ANOVA suggests the means are not all the same, then a post-hoc anal
 1.  Determine how many tests are being conducted.
 2.  Use a Bonferonni correction (or other appropriate correction) to adjust p-values or $\alpha$-level.
 3.  Choose an appropriate post-hoc test:
-
-<!-- -->
-
-a.  Tukey HSD - check all pairs of means to see which pairs are significantly different
-b.  Dunnett - compare all means to a control
-c.  Hsu - check which means are the "best", either the lowest or highest of the group
+    a.  Tukey HSD - check all pairs of means to see which pairs are significantly different
+    b.  Dunnett - compare all means to a control
+    c.  Hsu - check which means are the "best", either the lowest or highest of the group
 
 #### Differences among levels of variables
 
@@ -114,7 +112,71 @@ Educational data can often be described in a hierarchy:
 
 A **mixed model** (also, **hierarchical** or **multilevel**) allows for both fixed and random effects, so this nesting will give us different variances at each level. This is ideal for modeling an outcome that can vary by school and regional differences - in other words, we can vary the slope and intercept by each school and region.
 
-Code, diagnostics, communication and limitations coming soon...
+**Case 1: level 1 model**
+
+A model where the error term does not account for any grouping, such as modeling the response of student $i$, would look like:
+
+$\textrm{EmotionRegulationScore}_i = \beta_0 + \beta_1 \times \textrm{AvgDailyAttendance}_i + \epsilon_i$
+
+and can be estimated using `lm()`:
+
+```{r level_1_model, eval=FALSE}
+lm_survey_results <- lm(EmotionRegulationScore ~ AvgDailyAttendance,
+                        data = df_sel_survey)
+
+summary(lm_survey_results)
+```
+
+
+**Case 2: level 2 model**
+
+A mixed model where the error term accounts for the grouping of student $i$ in school $j$, and the slope and intercept are dependent on each school, would look like
+
+$\textrm{LifeSatisfactionScore}_{ij} = \beta_{0j} + \beta_{1j} \times \textrm{AvgDailyAttendance}_{ij} + \epsilon_{ij}$
+
+and can be estimated using `lme4::lmer()`:
+
+```{r level_2_model, eval=FALSE}
+# install.packages("lme4")
+# library(lme4)
+mm_survey_results <- lmer(EmotionRegulationScore ~ (1 + AvgDailyAttendance | SchoolName),
+                          data = df_sel_survey)
+
+summary(mm_survey_results) # get all effects, correlations between fixed effects, ANOVA
+fixef(mm_survey_results) # get inference on fixed effects coefficients
+ranef(mm_survey_results) # get estimates of random effects coefficients
+```
+
+Note that if only the intercept needs to vary, then the code would change to
+
+```{r level_2_model_int, eval=FALSE}
+mm_random_intercept <- lmer(EmotionRegulationScore ~ (1 | SchoolName) + AvgDailyAttendance,
+                            data = df_sel_survey)
+```
+
+while if only the slope needs to vary, then the code would change to
+
+```{r level_2_model_slope, eval=FALSE}
+mm_random_slope <- lmer(EmotionRegulationScore ~ (AvgDailyAttendance | SchoolName),
+                        data = df_sel_survey)
+```
+
+
+**Case 3: level 3+ model**
+
+A mixed model with three or more nested levels would account for, say a student $i$ within a school $j$ within a region $k$. Such a model would look like
+
+$\textrm{EmotionRegulationScore}_{ijk} = \beta_{0jk} + \beta_{1jk} \times \textrm{AvgDailyAttendance}_{ijk} + \epsilon_{ijk}$
+
+and could be coded as
+
+```{r level_3_model, eval=FALSE}
+mm_level_3 <- lmer(EmotionRegulationScore ~ (1 + AvgDailyAttendance | Region / SchoolName),
+                   data = df_sel_survey)
+```
+
+Note: The initial level of nesting is coded using a vertical pipe `|` and all subsequent levels of nesting is coded using a backslash `/`.
+
 
 ## Descriptive statistics
 
