@@ -143,6 +143,7 @@ team-value-proposition-project
 typing.com-project
 teachboost-data-and-observations-counts
 get-observations-for-teachers
+sll-observations-for-leaders
 evaluation-projects
 evaluation-plans
 about-evaluation-plans
