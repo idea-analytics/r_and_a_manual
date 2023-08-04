@@ -55,9 +55,10 @@
 <li><a class="" href="coding-standards.html"><span class="header-section-number">8</span> Coding Standards</a></li>
 <li><a class="" href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></li>
 <li><a class="active" href="models-and-methods.html"><span class="header-section-number">10</span> Models and Methods</a></li>
-<li><a class="" href="surveys.html"><span class="header-section-number">11</span> Surveys</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">12</span> Tips and Tricks</a></li>
-<li><a class="" href="platforms.html"><span class="header-section-number">13</span> Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">11</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">12</span> Surveys</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">13</span> Tips and Tricks</a></li>
+<li><a class="" href="platforms.html"><span class="header-section-number">14</span> Platforms</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -159,10 +160,11 @@
 <li>compare the variance among the groups using <code>aov(lm_my_model)</code>
 </li>
 </ol>
-<p>Suppose we want to use SEL survey results to measure life satisfaction across multiple grade levels. To see if the average <code>LifeSatisfactionScore</code> differs at all between grade levels, then we can use the following code:</p>
+<p>Suppose we want to use SEL survey results to measure emotion regulation (a quantitative variable) across multiple grade levels. To see if the average <code>EmotionRegulationScore</code> differs at all between grade levels, then we can use the following code:</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># linear model, where grade level is treated as a factor, not numeric</span></span>
-<span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">LifeSatisfactionScore</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">GradeLevelID</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">GradeLevelID</span><span class="op">)</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># perform ANOVA</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">lm_survey_results</span><span class="op">)</span></span></code></pre></div>
@@ -170,12 +172,13 @@
 <ol style="list-style-type: decimal">
 <li>Determine how many tests are being conducted.</li>
 <li>Use a Bonferonni correction (or other appropriate correction) to adjust p-values or <span class="math inline">\(\alpha\)</span>-level.</li>
-<li>Choose an appropriate post-hoc test:</li>
-</ol>
-<!-- --><ol style="list-style-type: lower-alpha">
+<li>Choose an appropriate post-hoc test:
+<ol style="list-style-type: lower-alpha">
 <li>Tukey HSD - check all pairs of means to see which pairs are significantly different</li>
 <li>Dunnett - compare all means to a control</li>
 <li>Hsu - check which means are the “best”, either the lowest or highest of the group</li>
+</ol>
+</li>
 </ol>
 </div>
 <div id="differences-among-levels-of-variables" class="section level4" number="10.1.2.2">
@@ -189,7 +192,44 @@
 <li>Level 3: student within a school within a region</li>
 </ul>
 <p>A <strong>mixed model</strong> (also, <strong>hierarchical</strong> or <strong>multilevel</strong>) allows for both fixed and random effects, so this nesting will give us different variances at each level. This is ideal for modeling an outcome that can vary by school and regional differences - in other words, we can vary the slope and intercept by each school and region.</p>
-<p>Code, diagnostics, communication and limitations coming soon…</p>
+<p><strong>Case 1: level 1 model</strong></p>
+<p>A model where the error term does not account for any grouping, such as modeling the response of student <span class="math inline">\(i\)</span>, would look like:</p>
+<p><span class="math inline">\(\textrm{EmotionRegulationScore}_i = \beta_0 + \beta_1 \times \textrm{AvgDailyAttendance}_i + \epsilon_i\)</span></p>
+<p>and can be estimated using <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="va">AvgDailyAttendance</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_survey_results</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Case 2: level 2 model</strong></p>
+<p>A mixed model where the error term accounts for the grouping of student <span class="math inline">\(i\)</span> in school <span class="math inline">\(j\)</span>, and the slope and intercept are dependent on each school, would look like</p>
+<p><span class="math inline">\(\textrm{LifeSatisfactionScore}_{ij} = \beta_{0j} + \beta_{1j} \times \textrm{AvgDailyAttendance}_{ij} + \epsilon_{ij}\)</span></p>
+<p>and can be estimated using <code>lme4::lmer()</code>:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("lme4")</span></span>
+<span><span class="co"># library(lme4)</span></span>
+<span><span class="va">mm_survey_results</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                          data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get all effects, correlations between fixed effects, ANOVA</span></span>
+<span><span class="fu">fixef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get inference on fixed effects coefficients</span></span>
+<span><span class="fu">ranef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get estimates of random effects coefficients</span></span></code></pre></div>
+<p>Note that if only the intercept needs to vary, then the code would change to</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_random_intercept</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span>,</span>
+<span>                            data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p>while if only the slope needs to vary, then the code would change to</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_random_slope</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Case 3: level 3+ model</strong></p>
+<p>A mixed model with three or more nested levels would account for, say a student <span class="math inline">\(i\)</span> within a school <span class="math inline">\(j\)</span> within a region <span class="math inline">\(k\)</span>. Such a model would look like</p>
+<p><span class="math inline">\(\textrm{EmotionRegulationScore}_{ijk} = \beta_{0jk} + \beta_{1jk} \times \textrm{AvgDailyAttendance}_{ijk} + \epsilon_{ijk}\)</span></p>
+<p>and could be coded as</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_level_3</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">Region</span> <span class="op">/</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p>Note: The initial level of nesting is coded using a vertical pipe <code>|</code> and all subsequent levels of nesting is coded using a backslash <code>/</code>.</p>
 </div>
 </div>
 </div>
@@ -230,7 +270,7 @@
 <li><p>Clustering of values in a region (and conversely, gaps in data)</p></li>
 </ol>
 <p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
@@ -343,7 +383,7 @@
 </td>
 <td>hypothesized true mean</td>
 <td>1-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="va">hypothesized_value</span><span class="op">)</span></span></code></pre></div></td>
 </tr>
 <tr class="even">
@@ -353,7 +393,7 @@
 </td>
 <td>difference in pairs of 0</td>
 <td>paired <em>t-</em>test</td>
-<td><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div></td>
 </tr>
 <tr class="odd">
@@ -363,7 +403,7 @@
 </td>
 <td>difference in means is 0</td>
 <td>2-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">hours</span> <span class="op">~</span> <span class="va">college</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -380,7 +420,7 @@
 <p>Analysis of Variance (ANOVA)</p>
 <p>F-test</p>
 </td>
-<td><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">partyid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -392,7 +432,7 @@
 <td>No relationship between both categorical variables</td>
 <td>
 <span class="math inline">\(\chi^2\)</span> test</td>
-<td><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">null_dist_sim</span> <span class="op">&lt;-</span> <span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">college</span> <span class="op">~</span> <span class="va">finrela</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -416,7 +456,7 @@
 <p>Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.</p>
 <p><span class="math inline">\(\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>To estimate these coefficients and evaluate the fit, we can use the following workflow:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters</span></span>
 <span><span class="co"># all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1</span></span>
 <span></span>
@@ -451,7 +491,7 @@
 <p>Note that there are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family">link functions</a>, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm">documentation.</a> However, base R provides the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, which gives options to choose a link.</p>
 <p>Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
 <p><span class="math inline">\(\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># logistic regression to determine log odds of passing STAAR</span></span>
 <span><span class="va">glm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Approaches</span> <span class="op">~</span> <span class="va">SemesterExamQuestions</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
 <span>                 family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
@@ -471,7 +511,7 @@
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
 <span></span>
 <span><span class="co"># model enrolled students using a GAM</span></span>
@@ -509,7 +549,7 @@
 </h3>
 <p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into 5 parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
 <p>With NLP our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
 <span></span>
@@ -521,494 +561,13 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_sentiments</span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="geospatial-methods-or-a-gentle-introduction-to-gis-in-r-with-simple-features" class="section level2" number="10.6">
+<div id="qualitative-methods" class="section level2" number="10.6">
 <h2>
-<span class="header-section-number">10.6</span> Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features<a class="anchor" aria-label="anchor" href="#geospatial-methods-or-a-gentle-introduction-to-gis-in-r-with-simple-features"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6</span> Qualitative Methods<a class="anchor" aria-label="anchor" href="#qualitative-methods"><i class="fas fa-link"></i></a>
 </h2>
-<div id="what-is-a-simple-feature" class="section level3" number="10.6.1">
+<div id="qualitative-research" class="section level3" number="10.6.1">
 <h3>
-<span class="header-section-number">10.6.1</span> What is a simple feature?<a class="anchor" aria-label="anchor" href="#what-is-a-simple-feature"><i class="fas fa-link"></i></a>
-</h3>
-<p><strong>Simple Features</strong> is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).</p>
-<p>A <strong>feature</strong> is a essentially a thing in the world. In the simple feature specification a feature ha <em>a geometry</em> describing where on Earth the feature is located, <strong>and they have attributes</strong>, which describe other properties, like names or metrics like population.</p>
-<div id="how-are-simple-features-implemented-in-r" class="section level4" number="10.6.1.1">
-<h4>
-<span class="header-section-number">10.6.1.1</span> How are simple features implemented in R<a class="anchor" aria-label="anchor" href="#how-are-simple-features-implemented-in-r"><i class="fas fa-link"></i></a>
-</h4>
-<p>In a word, simply. A special feature in R is essentially a a row in <code>data.frame</code> with class <strong>sf</strong>. This <code>data.frame</code> will have the normal suspects—names of things, metrics you care about—in columns and then a special column named <strong>geometry</strong> or <strong>geom</strong>. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an <code>sf</code> <code>data.frame</code></p>
-<div class="inline-figure"><img src="img/sf_layout.png" width="500"></div>
-</div>
-</div>
-<div id="lets-look-at-taco-schools" class="section level3" number="10.6.2">
-<h3>
-<span class="header-section-number">10.6.2</span> Let’s look at TACO schools<a class="anchor" aria-label="anchor" href="#lets-look-at-taco-schools"><i class="fas fa-link"></i></a>
-</h3>
-<p>Let’s start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span></span>
-<span><span class="co">#library(tidyverse)</span></span>
-<span><span class="co">#library(ideadata)</span></span>
-<span></span>
-<span><span class="co"># schools_conn &lt;- get_schools()</span></span>
-<span></span>
-<span><span class="co"># regions_conn &lt;- get_regions() %&gt;% </span></span>
-<span><span class="co">#   filter(RegionDescription == "Tarrant County") %&gt;% </span></span>
-<span><span class="co">#   select(RegionID)</span></span>
-<span></span>
-<span><span class="co"># taco_schools &lt;- schools_conn %&gt;% </span></span>
-<span><span class="co">#   inner_join(regions_conn, by = "RegionID") %&gt;% </span></span>
-<span><span class="co">#   select(SchoolShortName, SchoolStreet, SchoolCity, SchoolState, SchoolZipCode) %&gt;% </span></span>
-<span><span class="co">#   distinct() %&gt;% </span></span>
-<span><span class="co">#   collect() %&gt;% </span></span>
-<span><span class="co">#   janitor::clean_names()  </span></span>
-<span></span>
-<span><span class="co">#taco_schools</span></span>
-<span></span>
-<span><span class="co">#save(taco_schools, file = "./taco_schools.Rda")</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"./taco_schools.Rda"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">taco_schools</span></span>
-<span><span class="co">#&gt; # A tibble: 4 × 5</span></span>
-<span><span class="co">#&gt;   school_short_name school_street   school_city school_state</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1 Achieve           1900 Thomas Rd  Haltom City TX          </span></span>
-<span><span class="co">#&gt; 2 Edgecliff         1640 Altamesa … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 3 Rise              3000 S Cherry … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 4 Southeast         2935 E Seminar… Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; # ℹ 1 more variable: school_zip_code &lt;dbl&gt;</span></span></code></pre></div>
-<div id="geocoding" class="section level4" number="10.6.2.1">
-<h4>
-<span class="header-section-number">10.6.2.1</span> Geocoding<a class="anchor" aria-label="anchor" href="#geocoding"><i class="fas fa-link"></i></a>
-</h4>
-<p>We’ve got schools and addresses! But that isn’t sufficient to plot these schools on a map and we certainly don’t have simple features data.frame.</p>
-<p>The first stop is <strong>geocoding</strong> these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the <code>[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)</code> which provides a great interface to a number of different geocoders (e.g. US Census, OpenStreetMaps, geocod.io, )</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">taco_schools_geocoded</span> <span class="op">&lt;-</span> <span class="va">taco_schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu">tidygeocoder</span><span class="fu">::</span><span class="fu"><a href="https://jessecambon.github.io/tidygeocoder/reference/geocode.html">geocode</a></span><span class="op">(</span>street <span class="op">=</span> <span class="va">school_street</span>,</span>
-<span>            city <span class="op">=</span> <span class="va">school_city</span>,</span>
-<span>            state <span class="op">=</span> <span class="va">school_state</span>,</span>
-<span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
-<span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4 seconds</span></span>
-<span></span>
-<span><span class="va">taco_schools_geocoded</span></span>
-<span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
-<span><span class="co">#&gt;   school_short_name school_street   school_city school_state</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1 Achieve           1900 Thomas Rd  Haltom City TX          </span></span>
-<span><span class="co">#&gt; 2 Edgecliff         1640 Altamesa … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 3 Rise              3000 S Cherry … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 4 Southeast         2935 E Seminar… Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; # ℹ 3 more variables: school_zip_code &lt;dbl&gt;, lat &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   long &lt;dbl&gt;</span></span></code></pre></div>
-<p>Brilliant! We’ve got <code>lat</code> and <code>long</code> variables for those addresses. Super Cool!</p>
-<p>Let’s transform these now to a <code>sf</code> object:</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2()</span></span>
-<span><span class="co">#&gt; is TRUE</span></span>
-<span></span>
-<span><span class="va">taco_schools_sf</span> <span class="op">&lt;-</span> <span class="va">taco_schools_geocoded</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  </span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"long"</span>, <span class="st">"lat"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va">taco_schools_sf</span></span>
-<span><span class="co">#&gt; Simple feature collection with 4 features and 5 fields</span></span>
-<span><span class="co">#&gt; Geometry type: POINT</span></span>
-<span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -97.45178 ymin: 32.64811 xmax: -97.26259 ymax: 32.79013</span></span>
-<span><span class="co">#&gt; CRS:           NA</span></span>
-<span><span class="co">#&gt; # A tibble: 4 × 6</span></span>
-<span><span class="co">#&gt;   school_short_name school_street   school_city school_state</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1 Achieve           1900 Thomas Rd  Haltom City TX          </span></span>
-<span><span class="co">#&gt; 2 Edgecliff         1640 Altamesa … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 3 Rise              3000 S Cherry … Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; 4 Southeast         2935 E Seminar… Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: school_zip_code &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   geometry &lt;POINT&gt;</span></span></code></pre></div>
-<p>Notice that the <code>lat</code> and <code>long</code> variables are replaced by the <code>geometry</code> column.</p>
-<div id="coordinate-reference-system" class="section level5" number="10.6.2.1.1">
-<h5>
-<span class="header-section-number">10.6.2.1.1</span> Coordinate Reference System<a class="anchor" aria-label="anchor" href="#coordinate-reference-system"><i class="fas fa-link"></i></a>
-</h5>
-<p>Notice in the meta-data above that CRS is <code>NA</code>. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth’s curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.</p>
-<p>You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string <code>"+init=epsg:4326"</code> as a formal identifier, but also more simply by its name:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">taco_schools_sf</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"WGS84"</span></span></code></pre></div>
-</div>
-</div>
-<div id="plotting" class="section level4" number="10.6.2.2">
-<h4>
-<span class="header-section-number">10.6.2.2</span> Plotting<a class="anchor" aria-label="anchor" href="#plotting"><i class="fas fa-link"></i></a>
-</h4>
-<p>We now have enough information to draw a map!</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co">#renv::install("yutannihilation/ggsflabel")</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dkahle/ggmap">ggmap</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; The legacy packages maptools, rgdal, and rgeos, underpinning this package</span></span>
-<span><span class="co">#&gt; will retire shortly. Please refer to R-spatial evolution reports on</span></span>
-<span><span class="co">#&gt; https://r-spatial.org/r/2023/05/15/evolution4.html for details.</span></span>
-<span><span class="co">#&gt; This package is now running under evolution status 0</span></span>
-<span><span class="co">#&gt; ℹ Google's Terms of Service: &lt;https://mapsplatform.google.com&gt;</span></span>
-<span><span class="co">#&gt; ℹ Please cite ggmap if you use it! Use `citation("ggmap")` for details.</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'ggmap'</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:tidygeocoder':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     geocode</span></span>
-<span></span>
-<span><span class="va">base_google_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/get_googlemap.html">get_googlemap</a></span><span class="op">(</span><span class="st">"76117"</span>, zoom <span class="op">=</span> <span class="fl">11</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ &lt;https://maps.googleapis.com/maps/api/staticmap?center=76117&amp;zoom=11&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;key=xxx&gt;</span></span>
-<span><span class="co">#&gt; ℹ &lt;https://maps.googleapis.com/maps/api/geocode/json?address=76117&amp;key=xxx&gt;</span></span>
-<span></span>
-<span></span>
-<span><span class="va">base_google_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>, inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
-<span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
-<span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
-<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/ggmap-1.png" width="672"></div>
-<p>I dont’ always love Google Maps look for display purposes on slides, so let’s change that up with Stamen Maps:</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Need a bounding box for the get_stamenmap function</span></span>
-<span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/bb2bbox.html">bb2bbox</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">base_google_map</span>, <span class="st">"bb"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va">base_stamen_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/get_stamenmap.html">get_stamenmap</a></span><span class="op">(</span><span class="va">bbox</span>, zoom<span class="op">=</span><span class="fl">11</span>, maptype <span class="op">=</span> <span class="st">"toner-lite"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ℹ Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</span></span>
-<span></span>
-<span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>, inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
-<span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
-<span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
-<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-32-1.png" width="672"></div>
-</div>
-<div id="getting-drive-times" class="section level4" number="10.6.2.3">
-<h4>
-<span class="header-section-number">10.6.2.3</span> Getting drive times<a class="anchor" aria-label="anchor" href="#getting-drive-times"><i class="fas fa-link"></i></a>
-</h4>
-<p>This requires the MapBox API, which requries an API key.</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#install.packages("mapboxapi")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mapboxapi</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Usage of the Mapbox APIs is governed by the Mapbox Terms of Service.</span></span>
-<span><span class="co">#&gt; Please visit https://www.mapbox.com/legal/tos/ for more information.</span></span>
-<span></span>
-<span><span class="va">drive_10min</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mapboxapi/man/mb_isochrone.html">mb_isochrone</a></span><span class="op">(</span><span class="va">taco_schools_sf</span>, </span>
-<span>                            profile <span class="op">=</span> <span class="st">"driving"</span>, </span>
-<span>                            time <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va">schools_drive_10min_sf</span> <span class="op">&lt;-</span><span class="va">drive_10min</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">taco_schools_sf</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">schools_drive_10min_sf</span>, </span>
-<span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">school_short_name</span>,</span>
-<span>              fill <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>,</span>
-<span>          alpha <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>, </span>
-<span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, </span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span></span>
-<span>        data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
-<span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span>, color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>,</span>
-<span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
-<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-33-1.png" width="672"></div>
-</div>
-<div id="some-geographic-filtering" class="section level4" number="10.6.2.4">
-<h4>
-<span class="header-section-number">10.6.2.4</span> Some geographic filtering<a class="anchor" aria-label="anchor" href="#some-geographic-filtering"><i class="fas fa-link"></i></a>
-</h4>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
-<span><span class="va">taco_area_of_max_intersection</span> <span class="op">&lt;-</span> <span class="va">schools_drive_10min_sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">school_short_name</span> <span class="op">==</span> <span class="st">"Edgecliff"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_ops.html">st_intersection</a></span><span class="op">(</span><span class="va">schools_drive_10min_sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">school_short_name</span> <span class="op">==</span> <span class="st">"Southeast"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude,</span></span>
-<span><span class="co">#&gt; st_intersection assumes that they are planar</span></span>
-<span><span class="co">#&gt; Warning: attribute variables are assumed to be spatially</span></span>
-<span><span class="co">#&gt; constant throughout all geometries</span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_area_of_max_intersection</span>, </span>
-<span>          color <span class="op">=</span> <span class="st">"goldenrod"</span>,</span>
-<span>          fill <span class="op">=</span> <span class="st">"goldenrod"</span>,</span>
-<span>          alpha <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>, </span>
-<span>          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>, </span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu">ggsflabel</span><span class="fu">::</span><span class="fu"><a href="https://yutannihilation.github.io/ggsflabel/reference/geom_sf_label.html">geom_sf_label_repel</a></span><span class="op">(</span></span>
-<span>        data <span class="op">=</span> <span class="va">taco_schools_sf</span>,</span>
-<span>               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">school_short_name</span>, color <span class="op">=</span> <span class="va">school_short_name</span><span class="op">)</span>,</span>
-<span>               inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
-<span><span class="co">#&gt; system, which will replace the existing one.</span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in st_point_on_surface.sfc(data$geometry):</span></span>
-<span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
-<span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/geo-filtering-1.png" width="672"></div>
-<p>And what schools are found in this area?</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">schools_in_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter</a></span><span class="op">(</span><span class="va">taco_schools_sf</span>,</span>
-<span>                         <span class="va">taco_area_of_max_intersection</span>, </span>
-<span>                         join <span class="op">=</span> <span class="va">st_within</span><span class="op">)</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
-<span><span class="co">#&gt; assumes that they are planar</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
-<span><span class="co">#&gt; assumes that they are planar</span></span>
-<span></span>
-<span><span class="va">schools_in_overlap</span></span>
-<span><span class="co">#&gt; Simple feature collection with 1 feature and 5 fields</span></span>
-<span><span class="co">#&gt; Geometry type: POINT</span></span>
-<span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -97.28824 ymin: 32.68475 xmax: -97.28824 ymax: 32.68475</span></span>
-<span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 6</span></span>
-<span><span class="co">#&gt;   school_short_name school_street   school_city school_state</span></span>
-<span><span class="co">#&gt; * &lt;chr&gt;             &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;       </span></span>
-<span><span class="co">#&gt; 1 Southeast         2935 E Seminar… Fort Worth  TX          </span></span>
-<span><span class="co">#&gt; # ℹ 2 more variables: school_zip_code &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   geometry &lt;POINT [°]&gt;</span></span></code></pre></div>
-<p>It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.</p>
-</div>
-</div>
-<div id="census-data" class="section level3" number="10.6.3">
-<h3>
-<span class="header-section-number">10.6.3</span> Census Data<a class="anchor" aria-label="anchor" href="#census-data"><i class="fas fa-link"></i></a>
-</h3>
-<p>Kyle Walker has written the exceptional <code>[tidycensus](https://walker-data.com/tidycensus/)</code>package, which fantastic documentation, that allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).</p>
-<p>Let’s load it up:</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#install.packages('tidycensus')</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://walker-data.com/tidycensus/">tidycensus</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># NEt command saves Census API key to your .Renviron file</span></span>
-<span><span class="co">#census_api_key("YOUR API KEY GOES HERE")</span></span>
-<span><span class="co">#census_api_key(Sys.getenv("CENSUS_API_KEY"))</span></span></code></pre></div>
-<div id="getting-basic-data" class="section level6" number="10.6.3.0.0.1">
-<h6>
-<span class="header-section-number">10.6.3.0.0.1</span> Getting Basic Data<a class="anchor" aria-label="anchor" href="#getting-basic-data"><i class="fas fa-link"></i></a>
-</h6>
-<p>There are two major functions implemented in tidycensus:</p>
-<ul>
-<li>
-<code><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial()</a></code>, which grants access to the 2000, 2010, and 2020 decennial US Census APIs, and</li>
-<li>
-<code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code>, which grants access to the 1-year and 5-year American Community Survey APIs.</li>
-</ul>
-<p>Let’s get <em>median age by state</em> in 2010:</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">age10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"state"</span>, </span>
-<span>                       variables <span class="op">=</span> <span class="st">"P013001"</span>, </span>
-<span>                       year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Getting data from the 2010 decennial Census</span></span>
-<span><span class="co">#&gt; Using Census Summary File 1</span></span>
-<span></span>
-<span><span class="va">age10</span></span>
-<span><span class="co">#&gt; # A tibble: 52 × 4</span></span>
-<span><span class="co">#&gt;    GEOID NAME        variable value</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 01    Alabama     P013001   37.9</span></span>
-<span><span class="co">#&gt;  2 02    Alaska      P013001   33.8</span></span>
-<span><span class="co">#&gt;  3 04    Arizona     P013001   35.9</span></span>
-<span><span class="co">#&gt;  4 05    Arkansas    P013001   37.4</span></span>
-<span><span class="co">#&gt;  5 06    California  P013001   35.2</span></span>
-<span><span class="co">#&gt;  6 22    Louisiana   P013001   35.8</span></span>
-<span><span class="co">#&gt;  7 21    Kentucky    P013001   38.1</span></span>
-<span><span class="co">#&gt;  8 08    Colorado    P013001   36.1</span></span>
-<span><span class="co">#&gt;  9 09    Connecticut P013001   40  </span></span>
-<span><span class="co">#&gt; 10 10    Delaware    P013001   38.8</span></span>
-<span><span class="co">#&gt; # ℹ 42 more rows</span></span></code></pre></div>
-<p>Plotting is super duper easy:</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">age10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">NAME</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-36-1.png" width="672"></div>
-</div>
-<div id="searching-for-variables" class="section level6" number="10.6.3.0.0.2">
-<h6>
-<span class="header-section-number">10.6.3.0.0.2</span> Searching for variables:<a class="anchor" aria-label="anchor" href="#searching-for-variables"><i class="fas fa-link"></i></a>
-</h6>
-<p>How, pray tell, does one know that <code>P013001</code> is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> function. There are <a href="https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables">more details on in the package’s documentation page</a>.</p>
-<p>To browse these variables, assign the result of <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> to a variable and use the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function in RStudio. An optional argument <code>cache = TRUE</code> will cache the dataset on your computer for future use.</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span></span>
-<span><span class="va">v_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"acs5"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">#View(v_2020)</span></span></code></pre></div>
-<p>Let’s get Tarrant county:</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span></span>
-<span><span class="va">tarr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"block group"</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="co">#tpotal pop</span></span>
-<span>                                                    <span class="st">"B01001_001"</span>, </span>
-<span>                                                   </span>
-<span>                                                    <span class="co">#male</span></span>
-<span>                                                   <span class="st">"B01001_004"</span>, <span class="co">#5-9</span></span>
-<span>                                                   <span class="st">"B01001_005"</span>, <span class="co">#10-14</span></span>
-<span>                                                   <span class="st">"B01001_006"</span>, <span class="co">#15-17</span></span>
-<span>                                                    </span>
-<span>                                                   <span class="co">#Femaile</span></span>
-<span>                                                   <span class="st">"B01001_028"</span>, <span class="co">#5-9</span></span>
-<span>                                                   <span class="st">"B01001_029"</span>, <span class="co">#10-14</span></span>
-<span>                                                   <span class="st">"B01001_030"</span><span class="op">)</span>,<span class="co">#15-17</span></span>
-<span>                state <span class="op">=</span> <span class="st">"TX"</span>, county <span class="op">=</span> <span class="st">"Tarrant"</span>, geometry <span class="op">=</span> <span class="cn">TRUE</span>, year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tarr</span></span></code></pre></div>
-</div>
-</div>
-<div id="chloropleth" class="section level3" number="10.6.4">
-<h3>
-<span class="header-section-number">10.6.4</span> Chloropleth<a class="anchor" aria-label="anchor" href="#chloropleth"><i class="fas fa-link"></i></a>
-</h3>
-<p>Now we are summing up all school aged children (5-17 year old boy and girls):</p>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-38-1.png" width="672"></div>
-</div>
-<div id="dot-density" class="section level3" number="10.6.5">
-<h3>
-<span class="header-section-number">10.6.5</span> Dot-density<a class="anchor" aria-label="anchor" href="#dot-density"><i class="fas fa-link"></i></a>
-</h3>
-<p>Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasis those area versus smaller geographies. This distortion is familiar to those that follow elections, where geographically large states with small populations Wyoming loom larger then geographically small, but densely populated states like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal population (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.</p>
-<p>A second issue is that it’s very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all Children 5-17 years old in each tract. But we may be interested in how differently distributed those students are.</p>
-<p>A method to remedy both issues is to use <strong>dot-density</strong> plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot)). It’s pretty straightforward to get what you need by using <a href="https://walker-data.com/tidycensus/reference/as_dot_density.html"><code>sf::as_dot_density()</code></a></p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">acs_ages</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span> <span class="va">variable</span>,     <span class="op">~</span><span class="va">age_range</span>, <span class="op">~</span><span class="va">gender</span>,</span>
-<span>  <span class="st">"B01001_001"</span>,    <span class="st">"All"</span>,      <span class="st">"All"</span>,  </span>
-<span>                                                   </span>
-<span>    <span class="co">#male</span></span>
-<span>   <span class="st">"B01001_004"</span>, <span class="st">"5-9"</span>,   <span class="st">"Male"</span>,</span>
-<span>   <span class="st">"B01001_005"</span>, <span class="st">"10-14"</span>, <span class="st">"Male"</span>,</span>
-<span>   <span class="st">"B01001_006"</span>, <span class="st">"15-17"</span>, <span class="st">"Male"</span>,</span>
-<span>    </span>
-<span>   <span class="co">#Femaile</span></span>
-<span>   <span class="st">"B01001_028"</span>, <span class="st">"5-9"</span>,    <span class="st">"female"</span>,</span>
-<span>   <span class="st">"B01001_029"</span>, <span class="st">"10-14"</span>, <span class="st">"female"</span>,</span>
-<span>   <span class="st">"B01001_030"</span>, <span class="st">"15-17"</span>, <span class="st">"female"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">tarr_childs</span> <span class="op">&lt;-</span> <span class="va">tarr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">acs_ages</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">gender</span> <span class="op">!=</span> <span class="st">"All"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">variable</span>, <span class="op">-</span><span class="va">moe</span>, <span class="op">-</span><span class="va">gender</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">GEOID</span>, <span class="va">NAME</span>, <span class="va">age_range</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n_children <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(variable)`</span></span>
-<span></span>
-<span></span>
-<span><span class="va">tarr_dots</span> <span class="op">&lt;-</span> <span class="va">tarr_childs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://walker-data.com/tidycensus/reference/as_dot_density.html">as_dot_density</a></span><span class="op">(</span></span>
-<span>    value <span class="op">=</span> <span class="st">"n_children"</span>,</span>
-<span>    values_per_dot <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>    group <span class="op">=</span> <span class="st">"age_range"</span></span>
-<span>  <span class="op">)</span> </span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
-<span><span class="co">#&gt; assumes that they are planar</span></span>
-<span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
-<span><span class="co">#&gt; assumes that they are planar</span></span></code></pre></div>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tarr_dots</span>, </span>
-<span>         <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">age_range</span><span class="op">)</span>, </span>
-<span>         inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>         alpha  <span class="op">=</span> <span class="fl">.25</span>,</span>
-<span>         size<span class="op">=</span><span class="fl">.25</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_area_of_max_intersection</span>, </span>
-<span>          color <span class="op">=</span> <span class="st">"goldenrod"</span>,</span>
-<span>          fill <span class="op">=</span> <span class="st">"goldenrod"</span>,</span>
-<span>          alpha <span class="op">=</span> <span class="fl">.2</span>,</span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">taco_schools_sf</span>, </span>
-<span>              inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>          color <span class="op">=</span> <span class="st">"green"</span>, </span>
-<span>          size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  </span>
-<span>  <span class="fu">scale_color_viridis</span><span class="op">(</span>option <span class="op">=</span> <span class="st">"viridis"</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Coordinate system already present. Adding new coordinate</span></span>
-<span><span class="co">#&gt; system, which will replace the existing one.</span></span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/dot_density_map-1.png" width="672"></div>
-</div>
-</div>
-<div id="qualitative-methods" class="section level2" number="10.7">
-<h2>
-<span class="header-section-number">10.7</span> Qualitative Methods<a class="anchor" aria-label="anchor" href="#qualitative-methods"><i class="fas fa-link"></i></a>
-</h2>
-<div id="qualitative-research" class="section level3" number="10.7.1">
-<h3>
-<span class="header-section-number">10.7.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
 </h3>
 <p>Qualitative Research provides IDEA Public Schools rich, contextual information through various data collection and analysis techniques that are aimed to understand the meaning of the information collected. While qualitative research can be used for both exploratory and confirmatory research, it is most useful when context is important, a rich description is needed, and when participant interpretation and meaning of experiences need to be considered.</p>
 <p>The R&amp;A team, specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.</p>
@@ -1021,13 +580,13 @@
 - Triangulation
 - Linguistic analysis –emotions (including Natural Language Processing).</p>
 </div>
-<div id="qualitative-tools" class="section level3" number="10.7.2">
+<div id="qualitative-tools" class="section level3" number="10.6.2">
 <h3>
-<span class="header-section-number">10.7.2</span> Qualitative Tools<a class="anchor" aria-label="anchor" href="#qualitative-tools"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.2</span> Qualitative Tools<a class="anchor" aria-label="anchor" href="#qualitative-tools"><i class="fas fa-link"></i></a>
 </h3>
-<div id="maxqda" class="section level4" number="10.7.2.1">
+<div id="maxqda" class="section level4" number="10.6.2.1">
 <h4>
-<span class="header-section-number">10.7.2.1</span> MaxQDA<a class="anchor" aria-label="anchor" href="#maxqda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.2.1</span> MaxQDA<a class="anchor" aria-label="anchor" href="#maxqda"><i class="fas fa-link"></i></a>
 </h4>
 <p>The R&amp;A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.</p>
 <p>One tool used for thematic analyses is <a href="www.maxqda.com">MaxQDA</a>, which is a software program that is used to assist in analysis of qualitative and mixed-methods data.</p>
@@ -1045,9 +604,9 @@
 <li>GPTW Pulse Check OER Survey Analysis</li>
 <li>Core Values 2x2 Analysis</li>
 </ul>
-<div id="importing-files" class="section level5" number="10.7.2.1.1">
+<div id="importing-files" class="section level5" number="10.6.2.1.1">
 <h5>
-<span class="header-section-number">10.7.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
 </h5>
 <p>There are various types of text file formats that can be used in MaxQDA for analysis, such as Word, PDF, Excel documents. The following section provides a walk through for creating a new project and importing excel documents into MaxQDA.</p>
 <ol style="list-style-type: decimal">
@@ -1075,9 +634,9 @@
 </li>
 </ol>
 </div>
-<div id="randomly-selecting-files" class="section level5" number="10.7.2.1.2">
+<div id="randomly-selecting-files" class="section level5" number="10.6.2.1.2">
 <h5>
-<span class="header-section-number">10.7.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.6.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
 </h5>
 <p>Depending on the purposes of your analysis and the total number of responses, you may want to randomly select responses for analysis.</p>
 <p>After importing files into the Document System of MaxQDA,responses can be randomly selected using the following steps.</p>
@@ -1098,7 +657,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></div>
-<div class="next"><a href="surveys.html"><span class="header-section-number">11</span> Surveys</a></div>
+<div class="next"><a href="geospatial-methods-and-gis.html"><span class="header-section-number">11</span> Geospatial Methods and GIS</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -1132,18 +691,9 @@
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#geospatial-methods-or-a-gentle-introduction-to-gis-in-r-with-simple-features"><span class="header-section-number">10.6</span> Geospatial Methods, or A Gentle Introduction to GIS in R with Simple Features</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#what-is-a-simple-feature"><span class="header-section-number">10.6.1</span> What is a simple feature?</a></li>
-<li><a class="nav-link" href="#lets-look-at-taco-schools"><span class="header-section-number">10.6.2</span> Let’s look at TACO schools</a></li>
-<li><a class="nav-link" href="#census-data"><span class="header-section-number">10.6.3</span> Census Data</a></li>
-<li><a class="nav-link" href="#chloropleth"><span class="header-section-number">10.6.4</span> Chloropleth</a></li>
-<li><a class="nav-link" href="#dot-density"><span class="header-section-number">10.6.5</span> Dot-density</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#qualitative-methods"><span class="header-section-number">10.7</span> Qualitative Methods</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#qualitative-research"><span class="header-section-number">10.7.1</span> Qualitative Research</a></li>
-<li><a class="nav-link" href="#qualitative-tools"><span class="header-section-number">10.7.2</span> Qualitative Tools</a></li>
+<a class="nav-link" href="#qualitative-methods"><span class="header-section-number">10.6</span> Qualitative Methods</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#qualitative-research"><span class="header-section-number">10.6.1</span> Qualitative Research</a></li>
+<li><a class="nav-link" href="#qualitative-tools"><span class="header-section-number">10.6.2</span> Qualitative Tools</a></li>
 </ul>
 </li>
 </ul>
@@ -1163,7 +713,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-06-21.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

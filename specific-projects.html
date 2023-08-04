@@ -55,9 +55,10 @@
 <li><a class="" href="coding-standards.html"><span class="header-section-number">8</span> Coding Standards</a></li>
 <li><a class="" href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></li>
 <li><a class="" href="models-and-methods.html"><span class="header-section-number">10</span> Models and Methods</a></li>
-<li><a class="" href="surveys.html"><span class="header-section-number">11</span> Surveys</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">12</span> Tips and Tricks</a></li>
-<li><a class="" href="platforms.html"><span class="header-section-number">13</span> Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">11</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">12</span> Surveys</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">13</span> Tips and Tricks</a></li>
+<li><a class="" href="platforms.html"><span class="header-section-number">14</span> Platforms</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -157,7 +158,71 @@
 <span class="header-section-number">6.2.4</span> Team Value Proposition Project<a class="anchor" aria-label="anchor" href="#team-value-proposition-project"><i class="fas fa-link"></i></a>
 </h3>
 <p>August to October 2022, R&amp;A conducted multiple methods of analyses on data collected by the HA team to provide greater understanding about the depth and breadth of employees’ attitudes, beliefs, experiences, and perceptions about working at IDEA.</p>
+</div>
+<div id="typing.com-project" class="section level3" number="6.2.5">
+<h3>
+<span class="header-section-number">6.2.5</span> Typing.com Project<a class="anchor" aria-label="anchor" href="#typing.com-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>This past Spring 2023, our team completed an ad hoc request for a project to evaluate the effectiveness and impact of the Typing.com program on students’ exam and writing evaluation scores. Decision makers were interested in seeing if those who used the Typing.com program improved their typing skills, speed, and accuracy, and if using the program resulted in an increase in writing exam and assessment scores. This project look at independent variables typing speed, average typing speed, typing accuracy, average accuracy, amount of time logged into Typing.com, first typing score minus the average for speed, first typing score minus the average for accuracy, and grade level. First, the data was located, brought in, joined and cleaned.</p>
+<p>Next, descriptive statistics were conducted to see a breakdown of typing speed and accuracy by grade level. There was a trend that showed a possible strong correlation between increased grade level and increased typing speed. Increased typing speed could be from having more practice typing, being older and having more dexterity, or possibly from the program itself (although the descriptive statistics were in inferential, so a definite conclusion could not be made at this stage of the analysis). Other descriptive statistics, which mainly included box plots with gitter, displayed data related to grade level, time using the Typing.com program, and test scores. Other demographics were included such as ELL, SPED, and IsCSI. Grade level seemed to matter the most in showing the possibly the strongest relationships and trends.</p>
+<p>Next, modeling was conducted, starting out with linear regression models, where CSI and grade level seemed to be important. Logistic modeling was then used to predict passing or not passing the writing assessment (binary outcomes), and finally we moved into the matching algorithm. We wanted to dive deeper into the modeling to investigate if there was something more going on besides trends (trends are not necessarily casual). After conducting the matching algorthm that paired students, there was a clear result that students who used Typing.com for the longer amount of time and met the metrics had significantly higher test scores on the assessments. This went for meeting the metrics for both typing speed and typing accuracy.</p>
+<p>A research paper/report was written that included the pertinent visualizations and labeled all tables, walked the reader through the different types of analyses with explanations, discussed the modeling and what it implied, discussing conclusions, and making concreate recommendations. This report was used to decide if IDEA will pay to implement the Typing.com program more widely among IDEA regions and, and it looks like IDEA will move forward.</p>
+</div>
+<div id="teachboost-data-and-observations-counts" class="section level3" number="6.2.6">
+<h3>
+<span class="header-section-number">6.2.6</span> Teachboost Data and Observations Counts<a class="anchor" aria-label="anchor" href="#teachboost-data-and-observations-counts"><i class="fas fa-link"></i></a>
+</h3>
+<div id="get-observations-for-teachers" class="section level4" number="6.2.6.1">
+<h4>
+<span class="header-section-number">6.2.6.1</span> GET Observations for teachers<a class="anchor" aria-label="anchor" href="#get-observations-for-teachers"><i class="fas fa-link"></i></a>
+</h4>
+<p>Teachboost data has users (all of those in the Teachboost System, including those being observed and those doing the observing, as well as teachers who submit lesson plans. Teachers are observed with GET forms and Revised GET forms, and teacher-leaders are observed with SLL forms. The Users table includes all of these individuals). The Forms table is a list of all observations (forms) that have been submitted. Joining these tables together provides a list of all GET observations (after filtering for forms with the category of GET Ratings) and a user id number for those that form is written about (as well as for who wrote the form). The ID number for the employee is a separate number than the User ID for Teachboost. The employee id can than be use to join to HRIS employee data from Tyler Munis views, tables, or reports. Joining the HRIS data will then give us the Region, School, Area, and other information about the employee who received the GET rating. When conducting this for the SY 22-23, Teachboost data was gathered on May 10, 2023, which is 2 weeks prior to the last day of school for many Texas regions and schools. HRIS data corresponded to this, to ensure that people were captured in this data who might be leaving at the end of the school year (and thus no longer captured on HRIS once they are no longer active at IDEA).</p>
+<p>When looking at Texas only (as is done for the TSLIP grant), the Texas regions are compared with “All-Texas-District”, which is is organizational-wide for all regions in Texas (but does not include regions outside of Texas, such as Tampa Bay).</p>
+<p>The EOY rates of teachers with at least one observation per teacher, exclusively in Texas regions, were as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Austin (58.07%); teachers with observations = 295, total teachers = 508.<br>
+</li>
+<li>El Paso (47.81%); teachers with observations = 131, total teachers = 274.<br>
+</li>
+<li>Greater Houston Area (23.20%); teachers with observations = 29, total teachers = 125.<br>
+</li>
+<li>Lower RGV (70.35%); teachers with observations = 548, total teachers = 779.<br>
+</li>
+<li>Permian Basin (15.85%); teachers with observations = 13; total teachers = 82.</li>
+<li>San Antonio (58.64%); teachers with observations = 509, total teachers = 868.<br>
+</li>
+<li>Tarrant County (48.40%); teachers with observations = 91, total teachers = 188.<br>
+</li>
+<li>Upper RGV (71.40%); teachers with observations = 729, total teachers = 1021.<br>
+</li>
+<li>All-Texas-District (60.99%); teachers with observations = 2345, total teachers = 3845.</li>
+</ol>
+<p>The EOY rates of teachers with at least one observation per teacher, in all IDEA regions (inside and outside of Texas), were as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Austin (58.07%); teachers with observations = 295, total teachers = 508.<br>
+</li>
+<li>Cincinnati (77.14%); teachers with observations = 27; total teachers = 35.</li>
+<li>El Paso (47.81%); teachers with observations = 131, total teachers = 274.<br>
+</li>
+<li>Greater Houston Area (23.20%); teachers with observations = 29, total teachers = 125.<br>
+</li>
+<li>Jacksonville (91.94%); teachers with observations = 57, total teachers = 62.</li>
+<li>Lower RGV (70.35%); teachers with observations = 548, total teachers = 779.<br>
+</li>
+<li>Permian Basin (15.85%); teachers with observations = 13; total teachers = 82.</li>
+<li>San Antonio (58.64%); teachers with observations = 509, total teachers = 868.<br>
+</li>
+<li>Southern Louisiana (83.20%); teachers with observations = 104, total teachers = 125.</li>
+<li>Tampa Bay (80.85%); teachers with observations = 76, total teachers = 94.</li>
+<li>Tarrant County (48.40%); teachers with observations = 91, total teachers = 188.<br>
+</li>
+<li>Upper RGV (71.40%); teachers with observations = 729, total teachers = 1021.<br>
+</li>
+<li>IDEA District (62.70%); teachers with observations = 2609; total teachers = 4161.</li>
+</ol>
+<p>In general, the non-Texas regions are doing very well especially compared to some of the Texas regions. Permian Basin is struggling the most, followed by Greater Houston Area. Jacksonville, Tampa Bay, Southern Louisiana, and Cincinnati are doing the best, followed by Upper RGV and Lower RGV. Austin, El Paso, Tarrant County, and San Antonio are doing moderately well. The IDEA District as a whole increased nearly 3 percentage points with total rates of teachers with 1+ observations in Teachboost when compared with All-Texas-District (the IDEA dicstrict with only the Texas regions).</p>
 
+</div>
 </div>
 </div>
 </div>
@@ -177,6 +242,8 @@
 <li><a class="nav-link" href="#first-year-teacher-project"><span class="header-section-number">6.2.2</span> First Year Teacher Project</a></li>
 <li><a class="nav-link" href="#math-curriculum-redesign-project"><span class="header-section-number">6.2.3</span> Math Curriculum Redesign Project</a></li>
 <li><a class="nav-link" href="#team-value-proposition-project"><span class="header-section-number">6.2.4</span> Team Value Proposition Project</a></li>
+<li><a class="nav-link" href="#typing.com-project"><span class="header-section-number">6.2.5</span> Typing.com Project</a></li>
+<li><a class="nav-link" href="#teachboost-data-and-observations-counts"><span class="header-section-number">6.2.6</span> Teachboost Data and Observations Counts</a></li>
 </ul>
 </li>
 </ul>
@@ -196,7 +263,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-06-21.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
