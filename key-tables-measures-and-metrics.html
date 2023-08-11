@@ -7,7 +7,7 @@
 <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.  4.1 The Students Table The Students table is probably the most important...">
-<meta name="generator" content="bookdown 0.34 with bs4_book()">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
@@ -78,7 +78,7 @@
 </h2>
 <p>The Students table is probably the most important table of all. It contains historical student personal data since IDEA’s inception.</p>
 <p>We use this table to know to what subpopulation a student belongs to. Also, we can link this table to other student data using the <em>[StudentNumber]</em> field.</p>
-<p><strong>Table:</strong> [1065574-SQLPRD1].[PROD1].[Schools].[Students]</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]</p>
 <p><strong>Main fields:</strong> [AcademicYear] [StudentNumber] | [SchoolNumber] | [GradeLevelID] | [EnrollmentStatus] | [Gender] | [SPED] | [ELLCode] | [PrimaryDisabilityCode ] | [SecondaryDisabilityCode ] | [TertiaryDisabilityCode ] | [EconomicDisadvantageCode] | [FederalHispanicFlag] | [FederaRaceI] | [FederaRaceA] | [FederaRaceB] | [FederaRaceP] | [FederaRaceW] |[EntryDate] | [ExitDate] | [RowIsCurrent]</p>
 <p><strong>Who is what?:</strong></p>
 <ul>
@@ -522,7 +522,7 @@
 </h2>
 <p>Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked <em>absent (A)</em> by the teacher, or as <em>tardy present (TP)</em> at the school’s front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an <strong>Official Attendance-Taking Time or Period (OATT/OATP)</strong>, a roughly 10-minute window for all teachers with a class at that time to submit the day’s official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.</p>
 <p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
-* <strong>Current Year + 3 Past Years</strong> This table currently has data for the current year (2022-2023), and the last three years data (2021-2022, 2020-2021, &amp; 2019-2020). Once the current year is complete and the next year begins, 2019-2020 data will drop off of this table and the new academic year will be added.</p>
+* <strong>Current Year + 3 Past Years</strong> This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, &amp; 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.</p>
 <p><strong>For Attendance data Prior to 2019-2020:</strong>
 <strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
 * <strong>Academic Years: 2021-2022 - 2015-2016</strong> This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.</p>
@@ -659,13 +659,13 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </h2>
 <p>Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the “First Day of Persistence” (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.</p>
 <p>Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn’t return until September, John would not count as a student who persisted.</p>
-<p><strong>Database:</strong> [1065574-SQLPRD1].[Persistence]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[Persistence]</p>
 <p><strong>Main metrics:</strong> District, Regional, School, Sub-population, Grade Level</p>
 <p><strong>General Formula:</strong> 1 – (Leavers/All Students)</p>
 <p><strong>Tables:</strong></p>
 <ul>
 <li><p><strong><em>[dbo].[PersistenceCode]:</em></strong> This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).</p></li>
-<li><p><strong><em>[dbo].[PersistenceHistorical]:</em></strong> This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2020-2021. This table is updated with the previous years’ data after that year is closed out and the next persistence year has started.</p></li>
+<li><p><strong><em>[dbo].[PersistenceHistorical]:</em></strong> This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years’ data after that year is closed out and the next persistence year has started.</p></li>
 </ul>
 <p><strong>Context:</strong></p>
 <ul>
@@ -744,7 +744,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.4.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a class="anchor" aria-label="anchor" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fas fa-link"></i></a>
 </h3>
 <p>Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to “snapshot” whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the “snapshot” date selected.</p>
-<p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1]</p>
 <p><strong>Tables:</strong></p>
 <ul>
 <li><p><strong><em>[Attendance].[Students]:</em></strong> This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.</p></li>
@@ -784,7 +784,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.5</span> College Application &amp; Matriculation Metrics<a class="anchor" aria-label="anchor" href="#college-application-matriculation-metrics"><i class="fas fa-link"></i></a>
 </h2>
 <p>To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use <a href="https://www.hobsons.com/solution/naviance/">Naviance</a> information.</p>
-<p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Colleges]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Colleges]</p>
 <p><strong>Main metrics:</strong> Percent at least 1 application, Percent at least 1 submission, Percent at least 1 acceptance</p>
 <p><strong>Most important columns:</strong> [Stage] | [ResultCode]</p>
 <p><strong>Tables:</strong></p>
@@ -885,7 +885,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.7</span> Critical Student Intervention (CSI) Identification<a class="anchor" aria-label="anchor" href="#csi"><i class="fas fa-link"></i></a>
 </h2>
 <p>To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia’s team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.</p>
-<p><strong>Database:</strong> [1065574-SQLPRD1].[PROD1].[Schools]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Schools]</p>
 <p><strong>Main metrics:</strong> Percent of CSI students by school</p>
 <p><strong>Most important columns:</strong> [ProgramID] | [InterventionType]</p>
 <p><strong>Tables:</strong></p>
@@ -907,10 +907,10 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
 <div class="sourceCode" id="cb21"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="key-tables-measures-and-metrics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb21-2"><a href="key-tables-measures-and-metrics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
-<span id="cb21-3"><a href="key-tables-measures-and-metrics.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
+<span id="cb21-2"><a href="key-tables-measures-and-metrics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
+<span id="cb21-3"><a href="key-tables-measures-and-metrics.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
 <span id="cb21-4"><a href="key-tables-measures-and-metrics.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.SchoolNumber <span class="op">=</span> B.SchoolNumber</span>
-<span id="cb21-5"><a href="key-tables-measures-and-metrics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI] <span class="kw">AS</span> C</span>
+<span id="cb21-5"><a href="key-tables-measures-and-metrics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI] <span class="kw">AS</span> C</span>
 <span id="cb21-6"><a href="key-tables-measures-and-metrics.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.StudentNumber <span class="op">=</span> C.StudentNumber <span class="kw">AND</span> A.AcademicYear <span class="op">=</span> C.AcademicYear</span>
 <span id="cb21-7"><a href="key-tables-measures-and-metrics.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
 <span id="cb21-8"><a href="key-tables-measures-and-metrics.html#cb21-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
@@ -919,7 +919,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span id="cb21-11"><a href="key-tables-measures-and-metrics.html#cb21-11" aria-hidden="true" tabindex="-1"></a>      ,<span class="cf">CASE</span> </span>
 <span id="cb21-12"><a href="key-tables-measures-and-metrics.html#cb21-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
 <span id="cb21-13"><a href="key-tables-measures-and-metrics.html#cb21-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
-<span id="cb21-14"><a href="key-tables-measures-and-metrics.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb21-14"><a href="key-tables-measures-and-metrics.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI]</span>
 <span id="cb21-15"><a href="key-tables-measures-and-metrics.html#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2020-2021'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
 <span id="cb21-16"><a href="key-tables-measures-and-metrics.html#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID) <span class="kw">AS</span> D</span>
 <span id="cb21-17"><a href="key-tables-measures-and-metrics.html#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> C.ProgramID <span class="op">=</span> D.ProgramID</span>
@@ -933,18 +933,18 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <h3>
 <span class="header-section-number">4.8.1</span> State of Texas Assessments of Academic Readiness (STAAR)<a class="anchor" aria-label="anchor" href="#state-of-texas-assessments-of-academic-readiness-staar"><i class="fas fa-link"></i></a>
 </h3>
-<p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:</p>
+<p>The STAAR assessments are Texas’ standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:</p>
 <ul>
 <li>
 <strong>Grade 3:</strong> Reading and Math</li>
 <li>
-<strong>Grade 4:</strong> Reading, Math, and Writing</li>
+<strong>Grade 4:</strong> Reading and Math</li>
 <li>
 <strong>Grade 5:</strong> Reading, Math, and Science</li>
 <li>
 <strong>Grade 6:</strong> Reading and Math</li>
 <li>
-<strong>Grade 7:</strong> Reading, Math, and Writing</li>
+<strong>Grade 7:</strong> Reading and Math</li>
 <li>
 <strong>Grade 8:</strong> Reading, Math, Science, and Social Studies</li>
 </ul>
@@ -1173,7 +1173,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.8.2.1.2</span> IABWA<a class="anchor" aria-label="anchor" href="#iabwa"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table aggregates item-level data for each student and reports a student’s performance on a single assessment.</p>
-<p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwa">IABWA</a></p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwa">IABWA</a></p>
 <p><strong>Main metrics:</strong> Student-level data describing the assessment taken, the overall score, the performance band, and the mastery level</p>
 <p><strong>Assessment columns:</strong></p>
 <ul>
@@ -1233,7 +1233,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.8.2.1.3</span> IABWAItems<a class="anchor" aria-label="anchor" href="#iabwaitems"><i class="fas fa-link"></i></a>
 </h5>
 <p>This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.</p>
-<p><strong>Table:</strong> [1064613-SQLPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwaitems">IABWAItems</a></p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD2].[PROD2].[Assessments].<a href="key-tables-measures-and-metrics.html#iabwaitems">IABWAItems</a></p>
 <p><strong>Main metrics:</strong> Item-level data describing the assessment taken, the question and part, the student’s response, the correct answer, correctness, the standard, question type, weight, and points</p>
 <p><strong>Assessment columns:</strong></p>
 <ul>
@@ -1404,7 +1404,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <h4>
 <span class="header-section-number">4.8.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
 </h4>
-<p>Accessessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not freuqently updated. The best best is to use:</p>
+<p>Accessessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not frequently updated. The best best is to use:</p>
 <p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
 </div>
 </div>
@@ -1414,9 +1414,9 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </h3>
 <p>IDEA’s Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams, however, IB schools offer far fewer options than the non-IB campuses.</p>
 <p>All AP student data is downloaded directly from the College Board’s website. Once downloaded it is imported, cleaned and added to the R&amp;A’s server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.</p>
-<p><strong>Step One:</strong> pull down the 21-22 AP Report project on github.
-<strong>Step Two:</strong> Open the main r project within that folder “21-22 AP Report”. Within that project there are 2 main sub-project folders. Use the AP Requests.
-<strong>Step Three:</strong> Run the 2 scripts in the data folder. First run “1_Load_AP_Data”, this pulls all of the AP tables. Next run “2_Load_Students_Data”, this pulls all of the students and excludes Thrive students at Toros CP which are students with severe cognitive disabilities that are over the age of 18.
+<p><strong>Step One:</strong> pull down the most recent year’s project on github.
+<strong>Step Two:</strong> Open the main r project within that folder, for example, “22-23 AP Report &amp; Requests”. Within that project there are 2 main sub-project folders. Use the AP Requests.
+<strong>Step Three:</strong> Run the 2 scripts in the data folder. First run “1_Load_AP_Data”, this pulls all of the AP tables. Next run “2_Load_Students_Data”, this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
 <strong>Step Four:</strong> Run the 3 scripts in the munge folder. First run “1_Clean_AP_Data”, this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and pass both with the same score that they are not counted twice towards the 3 exams passed for AP Scholars classification. Then run “2_Scaffold_AP_Data”, this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call “ap_df”. This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run “3_Scaffold_AP_Scholars_Data”, this is the same script as #2, but ensures that the file that is produced by the script doesn’t include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called “ap_df_scholars”.</p>
 </div>
 <div id="ib" class="section level3" number="4.8.6">
@@ -1787,13 +1787,90 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 <strong>State:</strong> 2 letter abbreviation for the student’s State</li>
 </ul>
 </div>
-<div id="teacher-staff-and-hiring-data" class="section level2" number="4.10">
+<div id="staff-retention" class="section level2" number="4.10">
 <h2>
-<span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10</span> Staff Retention<a class="anchor" aria-label="anchor" href="#staff-retention"><i class="fas fa-link"></i></a>
 </h2>
-<div id="tyler-munis-data" class="section level3" number="4.10.1">
+<div id="teacher-and-all-staff-retention" class="section level3" number="4.10.1">
 <h3>
-<span class="header-section-number">4.10.1</span> Tyler Munis data<a class="anchor" aria-label="anchor" href="#tyler-munis-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.1</span> Teacher and All Staff Retention<a class="anchor" aria-label="anchor" href="#teacher-and-all-staff-retention"><i class="fas fa-link"></i></a>
+</h3>
+<p>During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -&gt; Quick Links -&gt; Dashboards -&gt; Locus -&gt; Staff Retention). If you can’t find what you need in the dashboard, below are the tables that store the Staff Retention data.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year’s staff retention data.</p>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>NameID:</strong> Employee ID</li>
+<li>
+<strong>HireDate:</strong> The date the employee was hired</li>
+<li>
+<strong>StartDate:</strong> The date the employee started work</li>
+<li>
+<strong>EmployeeName:</strong> The employees full name</li>
+<li>
+<strong>Campus:</strong> Abbreviated Campus long name (very dirty)</li>
+<li>
+<strong>Region:</strong> Abbreviated region name (very dirty)</li>
+<li>
+<strong>Job Title:</strong> Employee’s Job Title</li>
+<li>
+<strong>JobRole:</strong> Employee’s Job Role</li>
+<li>
+<strong>JobGroup:</strong> Short list of categories that employee’s job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.</li>
+<li>
+<strong>AcademicYear:</strong> The current academic year</li>
+<li>
+<strong>PositionEndDate:</strong> The position end date, for teachers it is the last day of the previous academic year, such as 2023-06-30</li>
+<li>
+<strong>TerminatedDate:</strong> The date the employee was terminated else is NULL</li>
+<li>
+<strong>Ethnicity:</strong> The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option</li>
+<li>
+<strong>Tenure:</strong> The number of year the employee has worked at IDEA</li>
+<li>
+<strong>EmpStatus:</strong> 0 == No Longer Employeed (NLE), 1 == Active</li>
+<li>
+<strong>TermReason:</strong> Termination Reason</li>
+<li>
+<strong>TermReasonDescription:</strong> Longer description of reason</li>
+<li>
+<strong>Manager:</strong> Employee’s Manager</li>
+<li>
+<strong>RowIsCurrent:</strong> Indicates that is the most current row of data for that employee</li>
+<li>
+<strong>FunctionalGroup:</strong> The division the employee is in</li>
+<li>
+<strong>SubFunctionalGroup:</strong> Indicates if the employee is National, Campus based, Regional, etc. (Some missingness in this column)</li>
+<li>
+<strong>ChiefName:</strong> The abbreviated chief (Cso)</li>
+<li>
+<strong>DeptRename:</strong> Department name (Instructional, Campus Operations, etc.)</li>
+<li>
+<strong>JobPaySkill:</strong> Same as EmpStatus but character (Nle, Active)</li>
+<li>
+<strong>ManagerID:</strong> Manager’s Employee ID</li>
+<li>
+<strong>Gender:</strong> M == Male, F == Female</li>
+<li>
+<strong>TeacherStep:</strong> The step level of the teacher</li>
+<li>
+<strong>DOB:</strong> Employee’s Date of Birth</li>
+</ul>
+<p>For Prior Year’s Data there are other tables with the same columns as above</p>
+<p><strong>2018-2019</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819]
+<strong>2019-2020</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920]
+<strong>2020-2021</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021]
+<strong>2021-2022</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]</p>
+<p>Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.</p>
+</div>
+</div>
+<div id="teacher-staff-and-hiring-data" class="section level2" number="4.11">
+<h2>
+<span class="header-section-number">4.11</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="tyler-munis-data" class="section level3" number="4.11.1">
+<h3>
+<span class="header-section-number">4.11.1</span> Tyler Munis data<a class="anchor" aria-label="anchor" href="#tyler-munis-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee’s Step, salary, pay rate, pay schedule, lastest step “date” (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.</p>
 <p>Currently, this data is being used for the Teacher Tenure project for Martin Winchester and HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher’s Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.</p>
@@ -1816,15 +1893,15 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
 To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher’s Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee’s role was “TEACHER” in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA.</p>
 </div>
-<div id="teach-boost-data" class="section level3" number="4.10.2">
+<div id="teach-boost-data" class="section level3" number="4.11.2">
 <h3>
-<span class="header-section-number">4.10.2</span> Teach Boost Data<a class="anchor" aria-label="anchor" href="#teach-boost-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2</span> Teach Boost Data<a class="anchor" aria-label="anchor" href="#teach-boost-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders.</p>
 <p>TB contains the Forms table and Users table.</p>
-<div id="forms" class="section level4" number="4.10.2.1">
+<div id="forms" class="section level4" number="4.11.2.1">
 <h4>
-<span class="header-section-number">4.10.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.</p>
 <p>forms_try &lt;- get_table(.table_name = “Forms”, .database_name = “SRC_Teachboost”, .schema = “dbo”, .server_name = “RGVPDSD-DWSRC3”) %&gt;%
@@ -1867,30 +1944,30 @@ collect()
 forms_try</p>
 <p>Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the “ID” number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.</p>
 </div>
-<div id="users" class="section level4" number="4.10.2.2">
+<div id="users" class="section level4" number="4.11.2.2">
 <h4>
-<span class="header-section-number">4.10.2.2</span> Users<a class="anchor" aria-label="anchor" href="#users"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2.2</span> Users<a class="anchor" aria-label="anchor" href="#users"><i class="fas fa-link"></i></a>
 </h4>
 <p>UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column “ID” on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.</p>
 </div>
-<div id="templates" class="section level4" number="4.10.2.3">
+<div id="templates" class="section level4" number="4.11.2.3">
 <h4>
-<span class="header-section-number">4.10.2.3</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2.3</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
 </h4>
 <p>This table no longer exists and the data has been moved to the forms table.</p>
 </div>
 </div>
-<div id="compass-data" class="section level3" number="4.10.3">
+<div id="compass-data" class="section level3" number="4.11.3">
 <h3>
-<span class="header-section-number">4.10.3</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://compass.ideapublicschools.org">Compass</a> is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data <strong>and should be considered the source of truth</strong> for these data</p>
 <div class="tip">
 <p>You’ll need to reach out to Chris Haid to access the database. A set of compass functions for <code>[ideadata](idea-analytics.github.io/ideadata)</code> is in development.</p>
 </div>
-<div id="key-tables" class="section level4" number="4.10.3.1">
+<div id="key-tables" class="section level4" number="4.11.3.1">
 <h4>
-<span class="header-section-number">4.10.3.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.3.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>2x2s in TwoByTwos
@@ -1976,9 +2053,9 @@ forms_try</p>
 </ul>
 </div>
 </div>
-<div id="jobvite-data" class="section level3" number="4.10.4">
+<div id="jobvite-data" class="section level3" number="4.11.4">
 <h3>
-<span class="header-section-number">4.10.4</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.4</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -2015,9 +2092,9 @@ forms_try</p>
 </em> Contains Tentative Start Date column</p></li>
 </ol>
 </div>
-<div id="tcpteacher-export-data" class="section level3" number="4.10.5">
+<div id="tcpteacher-export-data" class="section level3" number="4.11.5">
 <h3>
-<span class="header-section-number">4.10.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data.
 * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
@@ -2068,9 +2145,9 @@ forms_try</p>
 <li>No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.</li>
 </ul>
 <p>For all School Years, an “appeals” process takes place in the fall after the original placements are submitted in October. There has been a roughly 50% appeal rate (50% of teachers or their managers appealing the placements) each year. Appeals go before the appeals committee, where some appeals are denied (the given placement holds), and some appeals are approved (so the placement changes). This can alter the TCP Export report, which is not static. The export report changes depending on the current day and month; if you would like to know the “original” placements prior to appeals, you need to download the TCP Export data directly from the tcp application website prior to the appeals and any changes that will be made to placement levels. It is a good idea to download the TCP Export each year in the beginning of October when it is first posted so that you have that data, in case it changes as time goes on.</p>
-<div id="data-matching" class="section level4" number="4.10.5.1">
+<div id="data-matching" class="section level4" number="4.11.5.1">
 <h4>
-<span class="header-section-number">4.10.5.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -2103,26 +2180,26 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <li>(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)</li>
 </ul>
 </div>
-<div id="join-tables" class="section level4" number="4.10.5.2">
+<div id="join-tables" class="section level4" number="4.11.5.2">
 <h4>
-<span class="header-section-number">4.10.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join?
 * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
 * Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email</p>
 </div>
-<div id="apr-report-for-june-2022" class="section level4" number="4.10.5.3">
+<div id="apr-report-for-june-2022" class="section level4" number="4.11.5.3">
 <h4>
-<span class="header-section-number">4.10.5.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
 </h4>
-<div id="promotions" class="section level5" number="4.10.5.3.1">
+<div id="promotions" class="section level5" number="4.11.5.3.1">
 <h5>
-<span class="header-section-number">4.10.5.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.</p>
-<div id="teacher-promotions" class="section level6" number="4.10.5.3.1.1">
+<div id="teacher-promotions" class="section level6" number="4.11.5.3.1.1">
 <h6>
-<span class="header-section-number">4.10.5.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
@@ -2166,27 +2243,27 @@ TESTING COORDINATOR
 SUBSTITUTE TEACHER
 SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
-<div id="teacher-leader-promotions" class="section level6" number="4.10.5.3.1.2">
+<div id="teacher-leader-promotions" class="section level6" number="4.11.5.3.1.2">
 <h6>
-<span class="header-section-number">4.10.5.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
 </h6>
 </div>
 </div>
 </div>
-<div id="tcp-retention-and-tcp-levels" class="section level4" number="4.10.5.4">
+<div id="tcp-retention-and-tcp-levels" class="section level4" number="4.11.5.4">
 <h4>
-<span class="header-section-number">4.10.5.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
 </h4>
 <p>One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture</p>
-<div id="missing-tcp-placements" class="section level5" number="4.10.5.4.1">
+<div id="missing-tcp-placements" class="section level5" number="4.11.5.4.1">
 <h5>
-<span class="header-section-number">4.10.5.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
 </h5>
 <p>TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.</p>
 </div>
-<div id="leaver-rates" class="section level5" number="4.10.5.4.2">
+<div id="leaver-rates" class="section level5" number="4.11.5.4.2">
 <h5>
-<span class="header-section-number">4.10.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.</p>
 <p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
@@ -2197,16 +2274,16 @@ Level 4: 1010
 Level 5: 334</p>
 <p>Going forward for 21-22 SY TCP, all teachers will supposedly be placed into TCP Placement Levels, regardless of known leaver-status. This should help with the issue of analyzing retention of teachers by TCP Level, as all teachers would have a TCP Level when the October 2022 TCP comes out. Teachers who left should still be available in the Teacher Export file on the TCP website/application, according to the TCP Team.</p>
 </div>
-<div id="exit-surveys-for-teacher-leavers" class="section level5" number="4.10.5.4.3">
+<div id="exit-surveys-for-teacher-leavers" class="section level5" number="4.11.5.4.3">
 <h5>
-<span class="header-section-number">4.10.5.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
 </h5>
 <p>Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.</p>
 </div>
 </div>
-<div id="tcp-levels-and-composite-score-correlations" class="section level4" number="4.10.5.5">
+<div id="tcp-levels-and-composite-score-correlations" class="section level4" number="4.11.5.5">
 <h4>
-<span class="header-section-number">4.10.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of “hold” time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
 
@@ -2256,12 +2333,15 @@ Level 5: 334</p>
 </li>
 <li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
 <li>
-<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.10</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.10.1</span> Tyler Munis data</a></li>
-<li><a class="nav-link" href="#teach-boost-data"><span class="header-section-number">4.10.2</span> Teach Boost Data</a></li>
-<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.10.3</span> Compass data</a></li>
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.10.4</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.10.5</span> TCP/Teacher Export Data</a></li>
+<a class="nav-link" href="#staff-retention"><span class="header-section-number">4.10</span> Staff Retention</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#teacher-and-all-staff-retention"><span class="header-section-number">4.10.1</span> Teacher and All Staff Retention</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.11</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.11.1</span> Tyler Munis data</a></li>
+<li><a class="nav-link" href="#teach-boost-data"><span class="header-section-number">4.11.2</span> Teach Boost Data</a></li>
+<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.11.3</span> Compass data</a></li>
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.11.4</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.11.5</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 </ul>
@@ -2281,7 +2361,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-04.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
