@@ -8,7 +8,7 @@ The Students table is probably the most important table of all. It contains hist
 
 We use this table to know to what subpopulation a student belongs to. Also, we can link this table to other student data using the _[StudentNumber]_ field.
 
-**Table:** [[REDACTED-HOST]].[PROD1].[Schools].[Students]
+**Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]
 
 **Main fields:** [AcademicYear] [StudentNumber] | [SchoolNumber] | [GradeLevelID] | [EnrollmentStatus] | [Gender] | [SPED] | [ELLCode] | [PrimaryDisabilityCode ] | [SecondaryDisabilityCode ] | [TertiaryDisabilityCode ] | [EconomicDisadvantageCode] | [FederalHispanicFlag] | [FederaRaceI] | [FederaRaceA] | [FederaRaceB] | [FederaRaceP] |  [FederaRaceW] |[EntryDate] | [ExitDate] | [RowIsCurrent]
 
@@ -345,7 +345,7 @@ If the team does NOT use the subregions, then link the Regions and Schools table
 Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked *absent (A)* by the teacher, or as *tardy present (TP)* at the school's front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an **Official Attendance-Taking Time or Period (OATT/OATP)**, a roughly 10-minute window for all teachers with a class at that time to submit the day's official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
-* **Current Year + 3 Past Years** This table currently has data for the current year (2022-2023), and the last three years data (2021-2022, 2020-2021, & 2019-2020). Once the current year is complete and the next year begins, 2019-2020 data will drop off of this table and the new academic year will be added.
+* **Current Year + 3 Past Years** This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, & 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.
 
 **For Attendance data Prior to 2019-2020:**
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
@@ -475,7 +475,7 @@ Student Persistence is one of the most important measures that Chiefs, VPs, and 
 
 Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
 
-**Database:** [[REDACTED-HOST]].[Persistence]
+**Database:** [RGVPDSD-DWPRD1].[Persistence]
 
 **Main metrics:** District, Regional, School, Sub-population, Grade Level
 
@@ -485,7 +485,7 @@ Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended s
 
 * **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).
 
-* **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2020-2021. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
+* **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
 **Context:**
 
@@ -529,7 +529,7 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
 
 Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
 
-**Database:** [[REDACTED-HOST]].[PROD1]
+**Database:** [RGVPDSD-DWPRD1].[PROD1]
 
 **Tables:**
 
@@ -555,7 +555,7 @@ Occasionally student persistence is requested for school years that are not capt
 
 To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
 
-**Database:** [[REDACTED-HOST]].[PROD1].[Colleges]
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Colleges]
 
 **Main metrics:** Percent at least 1 application, Percent at least 1 submission, Percent at least 1 acceptance
 
@@ -642,7 +642,7 @@ IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture 
 
 To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
 
-**Database:** [[REDACTED-HOST]].[PROD1].[Schools]
+**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools]
 
 **Main metrics:** Percent of CSI students by school
 
@@ -672,10 +672,10 @@ GROUP BY AcademicYear, [Subject], ProgramID
 
 ```{sql, eval=FALSE}
 SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
-FROM [[REDACTED-HOST]].[PROD1].[Schools].[Students] AS A
-INNER JOIN [[REDACTED-HOST]].[PROD1].[Schools].[Schools] AS B
+FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students] AS A
+INNER JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools] AS B
 ON A.SchoolNumber = B.SchoolNumber
-LEFT JOIN [[REDACTED-HOST]].[PROD1].[Schools].[StudentCSI] AS C
+LEFT JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI] AS C
 ON A.StudentNumber = C.StudentNumber AND A.AcademicYear = C.AcademicYear
 LEFT JOIN 
 (SELECT DISTINCT AcademicYear, [Subject], ProgramID
@@ -684,7 +684,7 @@ FROM (SELECT [AcademicYear]
       ,CASE 
 	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
 	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
-  FROM [[REDACTED-HOST]].[PROD1].[Schools].[StudentCSI]
+  FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI]
   WHERE [AcademicYear] = '2020-2021' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
 GROUP BY AcademicYear, [Subject], ProgramID) AS D
 ON C.ProgramID = D.ProgramID
@@ -695,13 +695,13 @@ WHERE A.AcademicYear = '2020-2021'
 
 ### State of Texas Assessments of Academic Readiness (STAAR)
 
-The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. Testing schedule is as follows:
+The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:
 
   + **Grade 3:** Reading and Math
-  + **Grade 4:** Reading, Math, and Writing
+  + **Grade 4:** Reading and Math
   + **Grade 5:** Reading, Math, and Science
   + **Grade 6:** Reading and Math
-  + **Grade 7:** Reading, Math, and Writing
+  + **Grade 7:** Reading and Math
   + **Grade 8:** Reading, Math, Science, and Social Studies
 
 Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
@@ -871,7 +871,7 @@ Note that each assessment, except for semester and final exams, is typically num
 
 This table aggregates item-level data for each student and reports a student's performance on a single assessment.
 
-**Table:** [[REDACTED-HOST]].[PROD2].[Assessments].[IABWA]
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
 
 **Main metrics:** Student-level data describing the assessment taken, the overall score, the performance band, and the mastery level
 
@@ -908,7 +908,7 @@ This table aggregates item-level data for each student and reports a student's p
 
 This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.
 
-**Table:** [[REDACTED-HOST]].[PROD2].[Assessments].[IABWAItems]
+**Table:** [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWAItems]
 
 **Main metrics:** Item-level data describing the assessment taken, the question and part, the student's response, the correct answer, correctness, the standard, question type, weight, and points
 
@@ -1018,7 +1018,7 @@ DIBELS has multiple required measures but can be implemented using *gating rules
 It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student's effort on any given test).
 
 #### Where to get RenStar data?
-Accessessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not freuqently updated. The best best is to use:
+Accessessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best best is to use:
 
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
@@ -1028,9 +1028,9 @@ IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grad
 
 All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned and added to the R&A's server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
 
-**Step One:** pull down the 21-22 AP Report project on github.
-**Step Two:** Open the main r project within that folder "21-22 AP Report". Within that project there are 2 main sub-project folders. Use the AP Requests.
-**Step Three:** Run the 2 scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive students at Toros CP which are students with severe cognitive disabilities that are over the age of 18.
+**Step One:** pull down the most recent year's project on github.
+**Step Two:** Open the main r project within that folder, for example, "22-23 AP Report & Requests". Within that project there are 2 main sub-project folders. Use the AP Requests.
+**Step Three:** Run the 2 scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
 **Step Four:** Run the 3 scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and pass both with the same score that they are not counted twice towards the 3 exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
 
 ### IB
@@ -1348,6 +1348,53 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 * **State:** 2 letter abbreviation for the student's State 
 
 
+## Staff Retention
+
+### Teacher and All Staff Retention
+
+During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -> Quick Links -> Dashboards -> Locus -> Staff Retention). If you can't find what you need in the dashboard, below are the tables that store the Staff Retention data.
+
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year's staff retention data.
+
+**Useful Fields:** 
+
+* **NameID:** Employee ID
+* **HireDate:** The date the employee was hired
+* **StartDate:** The date the employee started work
+* **EmployeeName:** The employees full name
+* **Campus:** Abbreviated Campus long name (very dirty)
+* **Region:** Abbreviated region name (very dirty)
+* **Job Title:** Employee's Job Title
+* **JobRole:** Employee's Job Role
+* **JobGroup:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
+* **AcademicYear:** The current academic year
+* **PositionEndDate:** The position end date, for teachers it is the last day of the previous academic year, such as 2023-06-30
+* **TerminatedDate:** The date the employee was terminated else is NULL
+* **Ethnicity:** The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option
+* **Tenure:** The number of year the employee has worked at IDEA
+* **EmpStatus:** 0 == No Longer Employeed (NLE), 1 == Active
+* **TermReason:** Termination Reason
+* **TermReasonDescription:** Longer description of reason
+* **Manager:** Employee's Manager
+* **RowIsCurrent:** Indicates that is the most current row of data for that employee
+* **FunctionalGroup:** The division the employee is in
+* **SubFunctionalGroup:** Indicates if the employee is National, Campus based, Regional, etc. (Some missingness in this column)
+* **ChiefName:** The abbreviated chief (Cso)
+* **DeptRename:** Department name (Instructional, Campus Operations, etc.)
+* **JobPaySkill:** Same as EmpStatus but character (Nle, Active)
+* **ManagerID:** Manager's Employee ID
+* **Gender:** M == Male, F == Female
+* **TeacherStep:** The step level of the teacher
+* **DOB:** Employee's Date of Birth
+
+For Prior Year's Data there are other tables with the same columns as above
+
+**2018-2019** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819]
+**2019-2020** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920]
+**2020-2021** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021]
+**2021-2022** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]
+
+Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.
 
 
 ## Teacher, Staff, and Hiring Data
