@@ -246,3 +246,70 @@ df_gapminder_sample %>%
 ```
 
 ![This graph displays changes in life expectancy arranged alphabetically by continent first, then country.](img/gapminder_nested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country"){width="500"}
+
+
+## Saving and publishing visualizations
+
+Data visualization can also communicate our findings effectively to external (to R&A) audiences. Often, the graphs or tables we publish are included in slide decks or products around the organization. Thus, it is important to consider both the **quality** (i.e. plot resolution and size) and **device output** (e.g. .png, .pdf, .svg, etc.) of the visualization produced.
+
+Often, clicking on `Plots -> Export -> Save as image...` produces a *low-resolution bitmap* (.bmp) that does not resize appropriately. It is suggested you use one of the following methods instead:
+
+### Using device functions
+
+To save a plot directly to a specified device, use the "output sandwich" method.
+
+1. Open the device using a device function like `png()`, `pdf()`, `jpeg()`, etc.
+2. Include the code to produce the output.
+3. Close the device using `dev.off()`.
+
+Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename `01-my-high-quality-graph.pdf`. Then, the output sandwich would look like this:
+
+```{r output_sandwich, eval=FALSE}
+# 1. open the device
+pdf(file = here::here("graphs", "01-my-high-quality-graph.pdf"),
+    width = 3,
+    height = 4)
+
+# 2. include the code to produce the output
+ggplot(my_data_frame) +
+  geom_histogram(aes(x = my_continuous_var)) +
+  
+  # other layers as needed
+  labs(title = "My high quality graph")
+
+# 3. close the device
+dev.off()
+```
+
+
+
+### Using `ggsave()`
+
+The function `ggsave()` provides a wrapper around multiple device functions, like `png()` or `pdf()`, but gives nice defaults for saving a high quality plot object to a device of your choice. It is suggested to use the function like this:
+
+1. Build your plot and assign the plot object (`<-`).
+2. Determine the dimensions, resolution, and output needed for the final product.
+3. Use `ggsave()` with the specifications identified in step 2. Note: the file name MUST include the extension of the device.
+4. Revise specifications as needed.
+
+Suppose you need to include a plot (.png) that takes up about $\frac{1}{4}$ of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). Then, the code would look like this:
+
+```{r ggsave, eval=FALSE}
+my_plot <- ggplot(my_data_frame) +
+  geom_histogram(aes(x = my_continuous_var)) +
+  
+  # other layers as needed
+  labs(title = "My high quality graph")
+
+ggsave(filename = here::here("graphs", "01-my-high-quality-graph.png"),
+       plot = my_plot,
+       scale = 1.5,
+       width = 6.5,
+       height = 6.5,
+       units = "in",
+       dpi = 320)
+```
+
+
+
+
