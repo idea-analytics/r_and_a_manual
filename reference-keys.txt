@@ -186,6 +186,9 @@ raceethnicity-colors
 grade-level-colors
 typography
 visualizing-hierarchical-data
+saving-and-publishing-visualizations
+using-device-functions
+using-ggsave
 models-and-methods
 research-design
 causal-inference

@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="9.1 IDEA branding When producing a visualization for presentation or publication, use the Brand Guideline standards established by the Marketing team. Many of these guidelines, particularly...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.0/transition.js"></script><script src="libs/bs3compat-0.5.0/tabs.js"></script><script src="libs/bs3compat-0.5.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.10/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
@@ -492,7 +492,68 @@ Available palette’s are given in the <code>idea_palettes</code> variable and c
 <div class="figure">
 <img src="img/gapminder_nested.png" title="Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country" width="500" alt=""><p class="caption">This graph displays changes in life expectancy arranged alphabetically by continent first, then country.</p>
 </div>
+</div>
+<div id="saving-and-publishing-visualizations" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Saving and publishing visualizations<a class="anchor" aria-label="anchor" href="#saving-and-publishing-visualizations"><i class="fas fa-link"></i></a>
+</h2>
+<p>Data visualization can also communicate our findings effectively to external (to R&amp;A) audiences. Often, the graphs or tables we publish are included in slide decks or products around the organization. Thus, it is important to consider both the <strong>quality</strong> (i.e. plot resolution and size) and <strong>device output</strong> (e.g. .png, .pdf, .svg, etc.) of the visualization produced.</p>
+<p>Often, clicking on <code>Plots -&gt; Export -&gt; Save as image...</code> produces a <em>low-resolution bitmap</em> (.bmp) that does not resize appropriately. It is suggested you use one of the following methods instead:</p>
+<div id="using-device-functions" class="section level3" number="9.3.1">
+<h3>
+<span class="header-section-number">9.3.1</span> Using device functions<a class="anchor" aria-label="anchor" href="#using-device-functions"><i class="fas fa-link"></i></a>
+</h3>
+<p>To save a plot directly to a specified device, use the “output sandwich” method.</p>
+<ol style="list-style-type: decimal">
+<li>Open the device using a device function like <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code>, <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code>, <code><a href="https://rdrr.io/r/grDevices/png.html">jpeg()</a></code>, etc.</li>
+<li>Include the code to produce the output.</li>
+<li>Close the device using <code><a href="https://rdrr.io/r/grDevices/dev.html">dev.off()</a></code>.</li>
+</ol>
+<p>Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename <code>01-my-high-quality-graph.pdf</code>. Then, the output sandwich would look like this:</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. open the device</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/pdf.html">pdf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"graphs"</span>, <span class="st">"01-my-high-quality-graph.pdf"</span><span class="op">)</span>,</span>
+<span>    width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. include the code to produce the output</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">my_data_frame</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_histogram</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_continuous_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># other layers as needed</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My high quality graph"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. close the device</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="using-ggsave" class="section level3" number="9.3.2">
+<h3>
+<span class="header-section-number">9.3.2</span> Using <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#using-ggsave"><i class="fas fa-link"></i></a>
+</h3>
+<p>The function <code>ggsave()</code> provides a wrapper around multiple device functions, like <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code> or <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code>, but gives nice defaults for saving a high quality plot object to a device of your choice. It is suggested to use the function like this:</p>
+<ol style="list-style-type: decimal">
+<li>Build your plot and assign the plot object (<code>&lt;-</code>).</li>
+<li>Determine the dimensions, resolution, and output needed for the final product.</li>
+<li>Use <code>ggsave()</code> with the specifications identified in step 2. Note: the file name MUST include the extension of the device.</li>
+<li>Revise specifications as needed.</li>
+</ol>
+<p>Suppose you need to include a plot (.png) that takes up about <span class="math inline">\(\frac{1}{4}\)</span> of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). Then, the code would look like this:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">my_data_frame</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_histogram</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_continuous_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># other layers as needed</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My high quality graph"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span>filename <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"graphs"</span>, <span class="st">"01-my-high-quality-graph.png"</span><span class="op">)</span>,</span>
+<span>       plot <span class="op">=</span> <span class="va">my_plot</span>,</span>
+<span>       scale <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>       width <span class="op">=</span> <span class="fl">6.5</span>,</span>
+<span>       height <span class="op">=</span> <span class="fl">6.5</span>,</span>
+<span>       units <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>       dpi <span class="op">=</span> <span class="fl">320</span><span class="op">)</span></span></code></pre></div>
 
+</div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -512,6 +573,12 @@ Available palette’s are given in the <code>idea_palettes</code> variable and c
 </ul>
 </li>
 <li><a class="nav-link" href="#visualizing-hierarchical-data"><span class="header-section-number">9.2</span> Visualizing hierarchical data</a></li>
+<li>
+<a class="nav-link" href="#saving-and-publishing-visualizations"><span class="header-section-number">9.3</span> Saving and publishing visualizations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#using-device-functions"><span class="header-section-number">9.3.1</span> Using device functions</a></li>
+<li><a class="nav-link" href="#using-ggsave"><span class="header-section-number">9.3.2</span> Using ggsave()</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -529,7 +596,7 @@ Available palette’s are given in the <code>idea_palettes</code> variable and c
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-11.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
