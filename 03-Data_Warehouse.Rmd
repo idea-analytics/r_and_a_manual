@@ -1,4 +1,4 @@
-# The Data Warehouse and how to access it
+# The Data Warehouse and How to Access It
 
 The [first section](#section-the-data-warehouse) that follows provides lots of context about IDEA's data warehouse.
 
@@ -111,12 +111,12 @@ DiagrammeR::grViz("
 
 Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  The reporting servers---`RS1` and `RS2` serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/) and PowerBI, which serve up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
 
-The following sections provide some details on the what databases might be found on each server.
+The following sections provide some details on what databases might be found on each server.
 
 #### SRC Servers
 These servers are were source data from various applications is landed. 
 
-* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.
+* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e., Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.
 
   * **Databases**:
 
@@ -167,7 +167,7 @@ These servers are were source data from various applications is landed.
     
     * `PROD2`
     
-* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learning platforms. 
+* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew of individualized learning/blended learning platforms. 
 
   * **Databases**:
     * lk_Schools
