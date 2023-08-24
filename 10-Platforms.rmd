@@ -1,12 +1,12 @@
 # Platforms
 
-This section of the R&A Manual concerns details on the various software platforms we use: General purpose of the software, some steps for using the software, and useful links for learning more about it.
+This section of the R&A Manual concerns details on the various software platforms we use: general purpose of the software, some steps for using the software, and useful links for learning more about it.
 
 ## Qualtrics
 
-Qualtrics is a survey and data collection platform. It allows for survey building, distribution of links via email or text, response analysis and reporting. A particularly useful feature of Qualtrics is the ability to upload a list of emails address with information associated with each email address and then send a personalized survey link to each email address selected from the list. For example, in surveying district teachers one may want their responses disaggregated by race/ethnicity, school of employment, and grade level. This information can be linked to each teacher’s email address and uploaded into Qualtrics prior to surveying the teachers. As data is collected, each response will have the uploaded pieces of information associated to it.
+Qualtrics is a survey and data collection platform. It allows for survey building, distribution of links via email or text, response analysis, and reporting. A particularly useful feature of Qualtrics is the ability to upload a list of email addresses with information associated with each email address and then send a personalized survey link to each email address selected from the list. For example, in surveying district teachers one may want their responses disaggregated by race/ethnicity, school of employment, and grade level. This information can be linked to each teacher’s email address and uploaded into Qualtrics prior to surveying the teachers. As data is collected, each response will have the uploaded pieces of information associated to it.
 
-The following sessions outline how to create a survey, upload and list of email addresses to surveyed, and create a basic live report for your survey. 
+The following sessions outline how to create a survey, upload a list of email addresses to survey, and create a basic live report for your survey. 
 
 ### Creating a New Survey
 
@@ -15,7 +15,7 @@ You can start a new survey from a blank survey form or by copying and modifying 
 ![This image shows the front page in Qualtrics, after logging in.](img/Qualtrics_front_page.png "First view after logging into Qualtrics"){width="500"}
  
 On the next page, you will have the option to create a project as a survey. Select that option and press get started.
-On the next page, you will name your survey and will be allowed to start a survey from a blank project, copy a survey from an existing project, or use a survey previously stored in your library. If you are starting from a black project the next sections in this manual discuss types of items and next steps in building your survey.
+On the next page, you will name your survey and will be allowed to start a survey from a blank project, copy a survey from an existing project, or use a survey previously stored in your library. If you are starting from a blank project, the next sections in this manual discuss types of items and next steps in building your survey.
 
 
 ### Item Types
