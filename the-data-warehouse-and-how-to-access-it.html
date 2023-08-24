@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 3 The Data Warehouse and how to access it | IDEA R&amp;A Manual</title>
+<title>Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
 <meta name="generator" content="bookdown 0.35 with bs4_book()">
-<meta property="og:title" content="Chapter 3 The Data Warehouse and how to access it | IDEA R&amp;A Manual">
+<meta property="og:title" content="Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/the-data-warehouse-and-how-to-access-it.html">
 <meta property="og:description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 3 The Data Warehouse and how to access it | IDEA R&amp;A Manual">
+<meta name="twitter:title" content="Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual">
 <meta name="twitter:description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
 <li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
-<li><a class="active" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
+<li><a class="active" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
 <li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
 <li><a class="" href="specific-projects.html"><span class="header-section-number">6</span> Specific Projects</a></li>
@@ -69,7 +69,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="the-data-warehouse-and-how-to-access-it" class="section level1" number="3">
 <h1>
-<span class="header-section-number">3</span> The Data Warehouse and how to access it<a class="anchor" aria-label="anchor" href="#the-data-warehouse-and-how-to-access-it"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3</span> The Data Warehouse and How to Access It<a class="anchor" aria-label="anchor" href="#the-data-warehouse-and-how-to-access-it"><i class="fas fa-link"></i></a>
 </h1>
 <p>The <a href="#section-the-data-warehouse">first section</a> that follows provides lots of context about IDEA’s data warehouse.</p>
 <p>If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section <a href="the-data-warehouse-and-how-to-access-it.html#accessing-the-data-warehouse-from-r">3.2</a> on accessing from R below.</p>
@@ -90,13 +90,13 @@
 <p>The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.</p>
 <div class="figure">
 <span style="display:block;" id="fig:server-graphs"></span>
-<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-cb4552a4feaa83c946c4" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-cb4552a4feaa83c946c4">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-046ff8e155714a8adef9" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-046ff8e155714a8adef9">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases in ’DS</em>’ servers and flows to the right towads Logi hosted Locus dashboards.
 </p>
 </div>
 <p>Figure <a href="the-data-warehouse-and-how-to-access-it.html#fig:server-graphs">3.1</a> shows the flows of data in the warehouse, which essentially move from left to right. The<code>DS-*</code> servers host databases holding source data. That data is processed and saved in databases in the two production servers (<code>PROD1</code> and <code>PROD2</code>). <strong>These two production servers host most the data that R&amp;A uses in analysis</strong>, but know where the source data comes from in is often helpful. The reporting servers—<code>RS1</code> and <code>RS2</code> serve transformed flat files that serve as the data layer for <a href="https://www.logianalytics.com/">Logi</a> and PowerBI, which serve up <a href="https://ideapublicschoolsorg.sharepoint.com/sites/dashboards">Locus dashboards on the hub</a>.</p>
-<p>The following sections provide some details on the what databases might be found on each server.</p>
+<p>The following sections provide some details on what databases might be found on each server.</p>
 <div id="src-servers" class="section level4" number="3.1.1.1">
 <h4>
 <span class="header-section-number">3.1.1.1</span> SRC Servers<a class="anchor" aria-label="anchor" href="#src-servers"><i class="fas fa-link"></i></a>
@@ -104,7 +104,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <p>These servers are were source data from various applications is landed.</p>
 <ul>
 <li>
-<p><strong><code>SRC1</code></strong> is hosted on <code>RGVPDSD-DWSRC1</code> and serves as a source for <code>PROD1</code>. Most the data hosted on <code>RGVPDSD-DWSRC1</code> mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.</p>
+<p><strong><code>SRC1</code></strong> is hosted on <code>RGVPDSD-DWSRC1</code> and serves as a source for <code>PROD1</code>. Most the data hosted on <code>RGVPDSD-DWSRC1</code> mirrors the various SISes (i.e., Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
@@ -168,7 +168,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </ul>
 </li>
 <li>
-<p><strong>SRC3</strong> is hosted on <code>RGVPDSD-DWSRC3</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learning platforms.</p>
+<p><strong>SRC3</strong> is hosted on <code>RGVPDSD-DWSRC3</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew of individualized learning/blended learning platforms.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
@@ -250,7 +250,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </ul>
 </li>
 <li>
-<p><strong>SRC5</strong> is hosted on <code>RGVPDSD-DWSRC5</code> and serves as a source for <code>PROD1</code>. Databases focus on source data Microsoft Teams</p>
+<p><strong>SRC5</strong> is hosted on <code>RGVPDSD-DWSRC5</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from Microsoft Teams.</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
@@ -282,7 +282,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </h4>
 <ul>
 <li>
-<p><strong>PROD1</strong> is hosted on <code>RGVPDSD-DWPRD1</code> and contains a variety of data bases sourced from all <code>SRC</code> servers except for <code>SRC2</code>. The key students, schools, and regions data is found here and is</p>
+<p><strong>PROD1</strong> is hosted on <code>RGVPDSD-DWPRD1</code> and contains a variety of databases sourced from all <code>SRC</code> servers except for <code>SRC2</code>. The key students, schools, and regions data is found here and is</p>
 <ul>
 <li>
 <p><strong>Databases</strong>:</p>
@@ -324,7 +324,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </ul>
 </li>
 <li>
-<p><strong>PROD2</strong> hosts all assessement data for all state This is the source server for <code>RS2</code> and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables.</p>
+<p><strong>PROD2</strong> hosts all assessment data for all states. This is the source server for <code>RS2</code> and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables.</p>
 <ul>
 <li>
 <strong>Databases</strong>:
@@ -334,7 +334,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <li><p>PROD2</p></li>
 <li><p>SSISDeprecation</p></li>
 <li><p>SSISTemp</p></li>
-<li><p>Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
+<li><p>Schools: this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
 </ul>
 </li>
 </ul>
@@ -346,7 +346,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <h3>
 <span class="header-section-number">3.1.2</span> Server, Table, and Field Lookup<a class="anchor" aria-label="anchor" href="#server-table-and-field-lookup"><i class="fas fa-link"></i></a>
 </h3>
-<p>The easiest way to explore databases and tables available in the data warehouse is to use the <a href="https://idea-analytics.github.io/ideadata/"><code>ideadata</code></a> packages’s <code>view_warehouse_metadata()</code> function, which will launch a fiterable table in the RStudio IDEA.</p>
+<p>The easiest way to explore databases and tables available in the data warehouse is to use the <a href="https://idea-analytics.github.io/ideadata/"><code>ideadata</code></a> packages’ <code>view_warehouse_metadata()</code> function, which will launch a filterable table in the RStudio IDEA.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
 <span></span>
@@ -386,7 +386,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schools</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>schools</code> object above is <code>tbl</code> object. That means it works with <code>dplyr</code> verbs and functions, but what happens in the background is that <code>dplyr</code> and <code>dbplyr</code> generate SQL that is sent to the database you are connected to and all that computation (e.g., filtering, selecting, joining, calculations, aggregation) are completed on the remote SQL Server instance and <strong>not</strong> on your computer.</p>
-<p>Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python do what they can do (like modeling or graphics) that the database can’t do.</p>
+<p>Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python to do what they can do (like modeling or graphics) that the database can’t do.</p>
 <p>Pulling that data down is easy with [dplyr::collect()]</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
@@ -406,7 +406,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <span>  <span class="fu">collector</span><span class="op">(</span><span class="va">SchoolState</span>, <span class="va">CountyName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="gotcha">
-<p>The <code>ideadata</code> package is clever in that it updates its knowledge of the data warehouse every time you load the package with <code><a href="https://rdrr.io/r/base/library.html">library(ideadata)</a></code>. However to do that you need to have access to the the warehouse, and that requires that you are on the VPN/behind the firewall. Do makes sure that is true before invoking the package!</p>
+<p>The <code>ideadata</code> package is clever in that it updates its knowledge of the data warehouse every time you load the package with <code><a href="https://rdrr.io/r/base/library.html">library(ideadata)</a></code>. However to do that you need to have access to the warehouse, and that requires that you are on the VPN/behind the firewall. Do make sure that is true before invoking the package!</p>
 </div>
 </div>
 </div>
@@ -437,7 +437,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#the-data-warehouse-and-how-to-access-it"><span class="header-section-number">3</span> The Data Warehouse and how to access it</a></li>
+<li><a class="nav-link" href="#the-data-warehouse-and-how-to-access-it"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
 <li>
 <a class="nav-link" href="#the-data-warehouse"><span class="header-section-number">3.1</span> The Data Warehouse</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#core-data-warehouse-server-configuration"><span class="header-section-number">3.1.1</span> Core data warehouse server configuration</a></li>
@@ -469,7 +469,7 @@ Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-14.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
