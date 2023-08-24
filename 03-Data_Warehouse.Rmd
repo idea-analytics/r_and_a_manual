@@ -1,4 +1,4 @@
-# The Data Warehouse and how to access it
+# The Data Warehouse and How to Access It
 
 The [first section](#section-the-data-warehouse) that follows provides lots of context about IDEA's data warehouse.
 
@@ -111,12 +111,12 @@ DiagrammeR::grViz("
 
 Figure \@ref(fig:server-graphs) shows the flows of data in the warehouse, which essentially move from left to right.  The` DS-*` servers host databases holding source data.  That data is processed and saved in databases in the two production servers (`PROD1` and `PROD2`).  **These two production servers host most the data that R&A uses in analysis**, but know where the source data comes from in is often helpful.  The reporting servers---`RS1` and `RS2` serve transformed flat files that serve as the data layer for [Logi](https://www.logianalytics.com/) and PowerBI, which serve up [Locus dashboards on the hub](https://ideapublicschoolsorg.sharepoint.com/sites/dashboards).  
 
-The following sections provide some details on the what databases might be found on each server.
+The following sections provide some details on what databases might be found on each server.
 
 #### SRC Servers
 These servers are were source data from various applications is landed. 
 
-* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e. Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.
+* **`SRC1`** is hosted on  `RGVPDSD-DWSRC1` and serves as a source for `PROD1`.  Most the data hosted on `RGVPDSD-DWSRC1` mirrors the various SISes (i.e., Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.
 
   * **Databases**:
 
@@ -167,7 +167,7 @@ These servers are were source data from various applications is landed.
     
     * `PROD2`
     
-* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew if individualized learning/blended learning platforms. 
+* **SRC3** is hosted on `RGVPDSD-DWSRC3`  and serves as a source for `PROD1`.  Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew of individualized learning/blended learning platforms. 
 
   * **Databases**:
     * lk_Schools
@@ -231,7 +231,7 @@ These servers are were source data from various applications is landed.
     * `PROD1`    
 
 
-* **SRC5** is hosted on `RGVPDSD-DWSRC5`  and serves as a source for `PROD1`.  Databases focus on source data Microsoft Teams
+* **SRC5** is hosted on `RGVPDSD-DWSRC5`  and serves as a source for `PROD1`.  Databases focus on source data from Microsoft Teams.
 
   * **Databases**:
     * TeamsAttendance   
@@ -248,7 +248,7 @@ These servers are were source data from various applications is landed.
 
 #### PROD Servers
 
-* **PROD1** is hosted on `RGVPDSD-DWPRD1` and contains a variety of data bases sourced from all `SRC` servers except for `SRC2`. The key students, schools, and regions data is found here and is 
+* **PROD1** is hosted on `RGVPDSD-DWPRD1` and contains a variety of databases sourced from all `SRC` servers except for `SRC2`. The key students, schools, and regions data is found here and is 
 
   * **Databases**:
 
@@ -284,7 +284,7 @@ These servers are were source data from various applications is landed.
     * `RGVPDSD-TCPSQL`
   
 
-* **PROD2** hosts all assessement data for all state  This is the source server for `RS2` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
+* **PROD2** hosts all assessment data for all states.  This is the source server for `RS2` and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables. 
 
   * **Databases**:
     * Assessments
@@ -294,14 +294,14 @@ These servers are were source data from various applications is landed.
     * SSISTemp
     
 
-    * Schools : this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
+    * Schools: this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students. 
     
 
 
 
 ### Server, Table, and Field Lookup
 
-The easiest way to explore databases and tables available in the data warehouse is to use the [`ideadata`](https://idea-analytics.github.io/ideadata/) packages's `view_warehouse_metadata()` function, which will launch a fiterable table in the RStudio IDEA.  
+The easiest way to explore databases and tables available in the data warehouse is to use the [`ideadata`](https://idea-analytics.github.io/ideadata/) packages' `view_warehouse_metadata()` function, which will launch a filterable table in the RStudio IDEA.  
 
 ```{r display-dw-tables, eval=FALSE, echo=TRUE, warning=FALSE, fig.cap="Data warehouse details"}
 library(ideadata)
@@ -343,7 +343,7 @@ glimpse(schools)
 
 The `schools` object above is `tbl` object.  That means it works with `dplyr` verbs and functions, but  what  happens in the background is that `dplyr` and `dbplyr` generate SQL that is sent to the database you are connected to and  all that computation (e.g., filtering, selecting, joining, calculations, aggregation) are completed on the remote SQL Server instance and **not** on your computer.  
 
-Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python do what they can do (like modeling or graphics) that the database can't do. 
+Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python to do what they can do (like modeling or graphics) that the database can't do. 
 
 Pulling that data down is easy with [dplyr::collect()]
 
@@ -369,7 +369,7 @@ schools_df <- schools %>%
 ```
 
 ::: {.gotcha}
-The `ideadata` package is clever in that it updates its knowledge of the data warehouse every time you load the package with `library(ideadata)`.  However to do that you need to have access to the the warehouse, and that requires that you are on the VPN/behind the firewall. Do makes sure that is true before invoking the package!
+The `ideadata` package is clever in that it updates its knowledge of the data warehouse every time you load the package with `library(ideadata)`.  However to do that you need to have access to the warehouse, and that requires that you are on the VPN/behind the firewall. Do make sure that is true before invoking the package!
 :::
 
 
