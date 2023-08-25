@@ -342,9 +342,9 @@ If the team does NOT use the subregions, then link the Regions and Schools table
 
 ### School Launch Year
 
-IDEA opened new schools in four states over the last 20+ years. (link to Regions table Context)
+IDEA opened new schools in four states over the last 20+ years. IDEA Academy and IDEA College Preparatory in Donna were the first two schools to open in 2000-2001 [see also regions context] (https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#regions-table).
 
-Need to know what year a school was opened? See the **LaunchSchoolYear** column in the Schools table, Dashboard database.
+Need to know what year a school was opened? See the **LaunchSchoolYear** column in the Schools table, Dashboard database. As of fall 2023, this table includes 164 schools with LaunchSchoolYear ranging between 2000-2001 and 2021-2022-2023.
 
 **Table:** [RGVPDRA-DASQL].[Dashboard].[dbo].[Schools]
 
