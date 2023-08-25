@@ -340,6 +340,24 @@ If the team does NOT use the subregions, then link the Regions and Schools table
 :::
 
 
+### School Launch Year
+
+IDEA opened new schools in four states over the last 20+ years. IDEA Academy and IDEA College Preparatory in Donna were the first two schools to open in 2000-2001 [see also regions context] (https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#regions-table).
+
+Need to know what year a school was opened? See the **LaunchSchoolYear** column in the Schools table, Dashboard database. As of fall 2023, this table includes 164 schools with LaunchSchoolYear ranging between 2000-2001 and 2021-2022-2023.
+
+**Table:** [RGVPDRA-DASQL].[Dashboard].[dbo].[Schools]
+
+**Important columns:**
+
+* **[Name]:** full name of the school, e.g., IDEA Achieve Academy
+* **[DisplayName]:** campus name, like SchoolShortName, e.g., Achieve
+* **[RegionID]:** IDEA region number describing the location of school; links to the Regions table
+* **[CampusTypeID]:** uses values 1 and 2 to indicate campus as Academy or College Prep, respectively
+* **[CountyDistrictCampusNumber]:** number combining the County, District, and Campus numbers, like SchoolNumber 
+* **[LaunchSchoolYear]:** school year the school was first opened; ranges from 2000-2001 to 2022-2023
+
+
 ## Student Attendance
 
 Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked *absent (A)* by the teacher, or as *tardy present (TP)* at the school's front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an **Official Attendance-Taking Time or Period (OATT/OATP)**, a roughly 10-minute window for all teachers with a class at that time to submit the day's official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.
