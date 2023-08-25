@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 13 Tips and Tricks | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
-<meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
+<meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  13.1...">
 <meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="Chapter 13 Tips and Tricks | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/tips-and-tricks.html">
-<meta property="og:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
+<meta property="og:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  13.1...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 13 Tips and Tricks | IDEA R&amp;A Manual">
-<meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game. ...">
+<meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  13.1...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -71,14 +71,14 @@
 <h1>
 <span class="header-section-number">13</span> Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"><i class="fas fa-link"></i></a>
 </h1>
-<p>This section of the R&amp;A Manual is for sharing various tricks that are will make you life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.</p>
+<p>This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.</p>
 <div id="data-processing" class="section level2" number="13.1">
 <h2>
 <span class="header-section-number">13.1</span> Data processing<a class="anchor" aria-label="anchor" href="#data-processing"><i class="fas fa-link"></i></a>
 </h2>
-<div id="de-duplicating-rows-in-a-table." class="section level3" number="13.1.1">
+<div id="de-duplicating-rows-in-a-table" class="section level3" number="13.1.1">
 <h3>
-<span class="header-section-number">13.1.1</span> De-duplicating rows in a table.<a class="anchor" aria-label="anchor" href="#de-duplicating-rows-in-a-table."><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.1.1</span> De-duplicating rows in a table<a class="anchor" aria-label="anchor" href="#de-duplicating-rows-in-a-table"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are two general purpose design patterns for de-duplicating rows in a table in either R or SQL.</p>
 <ol style="list-style-type: decimal">
@@ -86,7 +86,7 @@
 <li>
 <p>If you are trying to de-duplicate where you may have <strong>non-identical</strong> rows (e.g., a student has taken the same assessment multiple times in a testing window and you’d like to get the latest date) then you can use a <code>group_by-arrange-row_number-filter</code> pattern:</p>
 <ol style="list-style-type: decimal">
-<li>Group you data by the columns that uniquely identify your object of inquiry (e.g., student number)</li>
+<li>Group your data by the columns that uniquely identify your object of inquiry (e.g., student number)</li>
 <li>Arrange or sort the data by a column that puts an ordering you care about within the grouped data (e.g., assessment date)</li>
 <li>Create a new column that contains the row number <em>within the group</em> (e.g, a student with 5 assessments in a window would have <code>row_number = 1</code> for the first date and <code>row_number = 5</code> for the last date).</li>
 <li>Filter for the maximum row number(with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> in R or a <code>WHERE</code> clause in SQL)</li>
@@ -100,7 +100,7 @@
 <span class="header-section-number">13.1.2</span> Hierarchical aggregation, or the <code>list-group_by</code> trick<a class="anchor" aria-label="anchor" href="#hierarchical-aggregation-or-the-list-group_by-trick"><i class="fas fa-link"></i></a>
 </h3>
 <p>Schools data, especially student-level data, is embedded in hierarchical groupings.</p>
-<p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is smoothed, seasonally adjusted measure of the typical home value and market changes across a given region It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
+<p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is a smoothed, seasonally adjusted measure of the typical home value and market changes across a given region. It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
 <p>It’s a very large dataset so we’ll use the <a href="https://arrow.apache.org/docs/r/">Apache Arrow Project</a>’s feather file format to read the data into R and subset the housing costs to IDEA metro areas since 2020.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
@@ -369,8 +369,8 @@
 </tr>
 </tbody>
 </table></div>
-<p>These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we’d like to do aggregations by over these various level. That is, we’d like to know the mean home price for each neighborhood, city and county. A typical work flow to achieve this is to write a <a href="https://dplyr.tidyverse.org">dplyr</a> pipeline for one <code>group_by</code> combination and then copy-and-paste that pipeline and change the columns in the <code>group_by</code> call. While this works in a pinch, its repetitive (violating <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">the DRY doctrine</a>), prone to copying errors and leaves with a bunch of dataframe that are have increasingly awkward names.</p>
-<p>A more elegant solution is to leverage <a href="https://purrr.tidyverse.org/">purrr</a>’s <code>map_df</code> function and to pass it a listy of already grouped data frames. Here’s a simple example:</p>
+<p>These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we’d like to do aggregations over these various levels. That is, we’d like to know the mean home price for each neighborhood, city, and county. A typical work flow to achieve this is to write a <a href="https://dplyr.tidyverse.org">dplyr</a> pipeline for one <code>group_by</code> combination and then copy-and-paste that pipeline and change the columns in the <code>group_by</code> call. While this works in a pinch, its repetitive (violating <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">the DRY doctrine</a>), prone to copying errors and leaves with a bunch of dataframe that have increasingly awkward names.</p>
+<p>A more elegant solution is to leverage <a href="https://purrr.tidyverse.org/">purrr</a>’s <code>map_df</code> function and to pass it a list of already grouped data frames. Here’s a simple example:</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
 <span></span>
@@ -1138,7 +1138,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>This makes sense, since <code>map_df</code> uses <code>bind_rows</code> to concatonate the aggregated tables together and will fill columns that are missing in data frame with NA values. With simple example like this we could add an extra step at the end of our pipline to provide more information:</p>
+<p>This makes sense, since <code>map_df</code> uses <code>bind_rows</code> to concatenate the aggregated tables together and will fill columns that are missing in a data frame with NA values. With a simple example like this we could add an extra step at the end of our pipeline to provide more information:</p>
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># create a list of grouped data.frames</span></span>
@@ -1300,7 +1300,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>Why have all of this one data frame? Because it can now be easily graphed:</p>
+<p>Why have all of this in one data frame? Because it can now be easily graphed:</p>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
@@ -2649,9 +2649,9 @@
 </table></div>
 <p>The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a <code>ggplot</code> call. Check the <a href="https://tidyr.tidyverse.org/reference/uncount.html">documentation</a> for other useful arguments.</p>
 </div>
-<div id="creating-scaffolds-when-joining-data." class="section level3" number="13.1.4">
+<div id="creating-scaffolds-when-joining-data" class="section level3" number="13.1.4">
 <h3>
-<span class="header-section-number">13.1.4</span> Creating “Scaffolds” when joining data.<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data."><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.1.4</span> Creating “Scaffolds” when joining data<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Coming Soon. . .</p>
 </div>
@@ -2694,7 +2694,7 @@ If you are trying to connect to a specific table, be sure the information for ta
 <p>Environment and Connections:
 Review your environment and connections.
 For example, check your environment for the server connections. If “null pointer” (&lt;pointer: (nil)&gt;), then you will need to reset the connection and try reloading the project.</p>
-<p>Depending on the issue, select from the following command to enter in the console:
+<p>Depending on the issue, select from the following commands to enter in the console:
 restart R session (CTRL + Shift + F10): to clear objects and libraries
 <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>:to remove one or more objects from a specified environment, example<code>rm(conn_Dashboard)</code>
 <code>disconnect()</code>: to close a connection, example <code>disconnect(conn_PROD1)</code>
@@ -2713,10 +2713,10 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <li><a class="nav-link" href="#tips-and-tricks"><span class="header-section-number">13</span> Tips and Tricks</a></li>
 <li>
 <a class="nav-link" href="#data-processing"><span class="header-section-number">13.1</span> Data processing</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#de-duplicating-rows-in-a-table."><span class="header-section-number">13.1.1</span> De-duplicating rows in a table.</a></li>
+<li><a class="nav-link" href="#de-duplicating-rows-in-a-table"><span class="header-section-number">13.1.1</span> De-duplicating rows in a table</a></li>
 <li><a class="nav-link" href="#hierarchical-aggregation-or-the-list-group_by-trick"><span class="header-section-number">13.1.2</span> Hierarchical aggregation, or the list-group_by trick</a></li>
 <li><a class="nav-link" href="#duplicating-rows"><span class="header-section-number">13.1.3</span> Duplicating rows</a></li>
-<li><a class="nav-link" href="#creating-scaffolds-when-joining-data."><span class="header-section-number">13.1.4</span> Creating “Scaffolds” when joining data.</a></li>
+<li><a class="nav-link" href="#creating-scaffolds-when-joining-data"><span class="header-section-number">13.1.4</span> Creating “Scaffolds” when joining data</a></li>
 </ul>
 </li>
 <li>
