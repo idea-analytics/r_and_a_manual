@@ -515,6 +515,29 @@
 <p>If the team does NOT use the subregions, then link the Regions and Schools table using [Regions].[RegionID] = [Schools].[RegionID]. If the team uses the Lower/Mid/Upper subregions, then link using [Regions].[RegionID] = [Schools].[RegionAltID]. If the team uses the Lower/Upper subregions, you will need to ask the team how they divide their portfolio of schools.</p>
 </div>
 </div>
+<div id="school-launch-year" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> School Launch Year<a class="anchor" aria-label="anchor" href="#school-launch-year"><i class="fas fa-link"></i></a>
+</h3>
+<p>IDEA opened new schools in four states over the last 20+ years. IDEA Academy and IDEA College Preparatory in Donna were the first two schools to open in 2000-2001 [see also regions context] (<a href="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#regions-table" class="uri">https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html#regions-table</a>).</p>
+<p>Need to know what year a school was opened? See the <strong>LaunchSchoolYear</strong> column in the Schools table, Dashboard database. As of fall 2023, this table includes 164 schools with LaunchSchoolYear ranging between 2000-2001 and 2021-2022-2023.</p>
+<p><strong>Table:</strong> [RGVPDRA-DASQL].[Dashboard].[dbo].[Schools]</p>
+<p><strong>Important columns:</strong></p>
+<ul>
+<li>
+<strong>[Name]:</strong> full name of the school, e.g., IDEA Achieve Academy</li>
+<li>
+<strong>[DisplayName]:</strong> campus name, like SchoolShortName, e.g., Achieve</li>
+<li>
+<strong>[RegionID]:</strong> IDEA region number describing the location of school; links to the Regions table</li>
+<li>
+<strong>[CampusTypeID]:</strong> uses values 1 and 2 to indicate campus as Academy or College Prep, respectively</li>
+<li>
+<strong>[CountyDistrictCampusNumber]:</strong> number combining the County, District, and Campus numbers, like SchoolNumber</li>
+<li>
+<strong>[LaunchSchoolYear]:</strong> school year the school was first opened; ranges from 2000-2001 to 2022-2023</li>
+</ul>
+</div>
 </div>
 <div id="student-attendance" class="section level2" number="4.3">
 <h2>
@@ -2305,6 +2328,7 @@ Level 5: 334</p>
 <a class="nav-link" href="#schools-and-regions"><span class="header-section-number">4.2</span> Schools and regions</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#schools-table"><span class="header-section-number">4.2.1</span> Schools table</a></li>
 <li><a class="nav-link" href="#regions-table"><span class="header-section-number">4.2.2</span> Regions table</a></li>
+<li><a class="nav-link" href="#school-launch-year"><span class="header-section-number">4.2.3</span> School Launch Year</a></li>
 </ul>
 </li>
 <li>
@@ -2361,7 +2385,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-24.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
