@@ -1,17 +1,17 @@
 # Tips and Tricks
 
-This section of the R&A Manual is for sharing various tricks that are will make you life easier.  Rules of thumb, explanations of how things work, and useful design patterns are all fair game. 
+This section of the R&A Manual is for sharing various tricks that will make your life easier.  Rules of thumb, explanations of how things work, and useful design patterns are all fair game. 
 
 ## Data processing 
 
-### De-duplicating rows in a table. 
+### De-duplicating rows in a table 
 
 There are two general purpose design patterns for de-duplicating rows in a table in either R or SQL.
 
 1. In R use the `dplyr::distinct()` function and in SQL use a DISTINCT clause.  This is pretty simple and robust, with the typical use case of wanting to reduce many **identical** rows to a single row. 
 2. If you are trying to de-duplicate where you may have **non-identical** rows (e.g., a student has taken the same assessment multiple times in a testing window and you'd like to get the latest date) then you can use a `group_by-arrange-row_number-filter` pattern:
 
-    1. Group you data by the columns that uniquely identify your object of inquiry (e.g., student number)
+    1. Group your data by the columns that uniquely identify your object of inquiry (e.g., student number)
     2. Arrange or sort the data by a column that puts an ordering you care about within the grouped data (e.g., assessment date)
     3. Create a new column that contains the row number *within the group* (e.g, a student with 5 assessments in a window would have `row_number = 1` for the first date and `row_number = 5` for the last date).
     4. Filter for the maximum row number(with `dplyr::filter()` in R or a `WHERE` clause in SQL)
@@ -22,7 +22,7 @@ There are two general purpose design patterns for de-duplicating rows in a table
 
 Schools data, especially student-level data, is embedded in hierarchical groupings. 
 
-Let's look at the [Zillow Home Value Index](https://www.zillow.com/research/data/) for all homes (i.e, single family homes, condos, and coops),  which is smoothed, seasonally adjusted measure of the typical home value and market changes across a given region It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022. 
+Let's look at the [Zillow Home Value Index](https://www.zillow.com/research/data/) for all homes (i.e, single family homes, condos, and coops),  which is a smoothed, seasonally adjusted measure of the typical home value and market changes across a given region. It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022. 
 
 It's a very large dataset so we'll use the [Apache Arrow Project](https://arrow.apache.org/docs/r/)'s feather file format  to read the data into R and subset the housing costs to IDEA metro areas since 2020. 
 
@@ -58,9 +58,9 @@ knitr::kable(
   
 ```
 
-These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we'd like to do aggregations by over these various level.  That is, we'd like to know the mean home price for each neighborhood, city and county.  A typical work flow to achieve this is to write a `{dplyr}` pipeline for one `group_by` combination and then copy-and-paste that pipeline and change the columns in the `group_by` call. While this works in a pinch, its repetitive (violating [the DRY doctrine](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)), prone to copying errors and leaves with a bunch of dataframe that are have increasingly awkward names. 
+These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we'd like to do aggregations over these various levels.  That is, we'd like to know the mean home price for each neighborhood, city, and county.  A typical work flow to achieve this is to write a `{dplyr}` pipeline for one `group_by` combination and then copy-and-paste that pipeline and change the columns in the `group_by` call. While this works in a pinch, its repetitive (violating [the DRY doctrine](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)), prone to copying errors and leaves with a bunch of dataframe that have increasingly awkward names. 
 
-A more elegant solution is to leverage `{purrr}`'s `map_df` function and to pass it a listy of already grouped data frames. Here's a simple example:
+A more elegant solution is to leverage `{purrr}`'s `map_df` function and to pass it a list of already grouped data frames. Here's a simple example:
 
 ```{r group-by-list-simple}
 library(purrr)
@@ -89,7 +89,7 @@ zillow_idea_county_state %>%
   knitr::kable()
 ```
 
-This makes sense, since `map_df` uses `bind_rows` to concatonate the aggregated tables together and will fill columns that are missing in data frame with NA values.  With simple example like this we could add an extra step at the end of our pipline to provide more information:
+This makes sense, since `map_df` uses `bind_rows` to concatenate the aggregated tables together and will fill columns that are missing in a data frame with NA values.  With a simple example like this we could add an extra step at the end of our pipeline to provide more information:
 
 ```{r replace_na}
 zillow_idea_county_state <- zillow_idea %>% 
@@ -114,7 +114,7 @@ zillow_idea_county_state %>%
 ```
 
 
-Why have all of this one data frame? Because it can now be easily graphed:
+Why have all of this in one data frame? Because it can now be easily graphed:
 
 ```{r zillow_graph}
 library(ggrepel)
@@ -222,7 +222,7 @@ grouped_data %>%
 
 The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a `ggplot` call. Check the [documentation](https://tidyr.tidyverse.org/reference/uncount.html) for other useful arguments.
 
-### Creating "Scaffolds" when joining data.  
+### Creating "Scaffolds" when joining data  
 
 Coming Soon. . . 
 
@@ -259,7 +259,7 @@ Environment and Connections:
 Review your environment and connections.
 For example, check your environment for the server connections. If "null pointer" (<pointer: (nil)>), then you will need to reset the connection and try reloading the project.
 
-Depending on the issue, select from the following command to enter in the console:
+Depending on the issue, select from the following commands to enter in the console:
 restart R session (CTRL + Shift + F10): to clear objects and libraries
 `rm()`:to remove one or more objects from a specified environment, example`rm(conn_Dashboard)`
 `disconnect()`: to close a connection, example `disconnect(conn_PROD1)`
