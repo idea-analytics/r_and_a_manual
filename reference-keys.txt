@@ -140,7 +140,7 @@ tcp-handbook
 teacher-interviewsteacher-manager-interviews
 first-year-teacher-project
 years-of-data-used-in-analysis
-project-transfered-to-ann-heller
+project-transferred-to-ann-heller
 math-curriculum-redesign-project
 team-value-proposition-project
 typing.com-project
