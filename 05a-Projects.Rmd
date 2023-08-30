@@ -2,20 +2,20 @@
 
 Some *significant* applications are demonstrated in this chapter.
 
-## Version control with Github {#section-github}
+## Version control with GitHub {#section-github}
 
-All analysis projects need to be saved via Git (on your local computer) and pushed to Github. Doing so has several benefits to both you, to your future self, and to your teammates:
+All analysis projects need to be saved via Git (on your local computer) and pushed to GitHub. Doing so has several benefits to both you, to your future self, and to your teammates:
 
 -   Since Git is a version control system, you get to save and track changes in your work (data, source code, reports, PowerPoint decks, Shiny dashboards) incrementally.
--   Incremental saving means you can recover from any accidental plunders. It's like Track Changes in Word, but for multiple files and folders. Spill a Diet Coke on your laptop in the middle of a big analysis? No big deal (if you've been pushing commits to Github, it'll all be there!)
+-   Incremental saving means you can recover from any accidental plunders. It's like Track Changes in Word, but for multiple files and folders. Spill a Diet Coke on your laptop in the middle of a big analysis? No big deal (if you've been pushing commits to GitHub, it'll all be there!)
 -   Collaboration is much more structured, with powerful tools for asynchronous work and managing versions.
 -   Referencing and reviewing code, tracking issues, and sharing what you've done is seamless, which means ...
--   Your work will be reproducible: anyone from R&A can pull your repo from Github, run your analyses, add to or edit what you've done, and share those changes back in a way that is communicative and documented.
--   setting up web documentation for any R packages you build become seamless.
+-   Your work will be reproducible: anyone from R&A can pull your repo from GitHub, run your analyses, add to or edit what you've done, and share those changes back in a way that is communicative and documented.
+-   setting up web documentation for any R packages you build becomes seamless.
 
 But enough on the **why** let's get to **how** (if you do want to know more on the why, [check out this excellent article by Jenny Bryan](https://doi.org/10.7287/peerj.preprints.3159v2))
 
-### Getting Started with Git, Github, and RStudio
+### Getting Started with Git, GitHub, and RStudio
 
 Here's a quick overview of what you'll need to do, with details to follow:
 
@@ -33,7 +33,7 @@ Here's a quick overview of what you'll need to do, with details to follow:
 
 #### First steps {#first-steps}
 
-**These steps are borrowed with some light editing from [Happy git with R](https://happygitwithr.com/) by Jenny Bryan.**
+**These steps are borrowed with some light editing from [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan.**
 
 1.  [Register for GitHub account.](https://happygitwithr.com/github-acct.html#github-acct)
 2.  [Install or update R and RStudio](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio)
@@ -45,15 +45,15 @@ Here's a quick overview of what you'll need to do, with details to follow:
 8.  Create and save a [GitHub Personal Access Token (PAT)](https://happygitwithr.com/credential-caching.html#credential-caching).
 9.  [Prove RStudio can find local Git and, therefore, can talk to GitHub](https://happygitwithr.com/rstudio-git-github.html#rstudio-git-github).
 
-### Feature Branch Worklow
+### Feature Branch Workflow
 
-There are [many workflows using Git and remote repositories like Github](https://www.atlassian.com/git/tutorials/comparing-workflows). All of thenm boil down to the following steps:
+There are [many workflows using Git and remote repositories like GitHub](https://www.atlassian.com/git/tutorials/comparing-workflows). All of them boil down to the following steps:
 
 1.  Pull or fetch or clone a repo on Github to your local machine. If you are starting a new project, then you'll need to create a new repo on Github (but you can also start one on your machine). **This is usually called the main (formerly master) branch.**
 2.  Create a new branch that you will work on.\
 3.  Do some analysis, coding, writing.
 4.  Periodically save a snapshot of your entire project (all the files and folders, except those that you explicitly ignore). This is called \*committing changes\*\*.
-5.  Every once ins while **push your commits** to the remote repo. Congrats! You've just backed up your remotely and made it easy to share.
+5.  Every once in while **push your commits** to the remote repo. Congrats! You've just backed up your project remotely and made it easy to share.
 6.  **Merge** your new analysis and code back into the main branch. This is usually initiated by something called a *pull request* (which is admittedly a little confusing).
 
 The specific workflow we use on IDEA's R&A team is the [Feature Branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow), which has the benefit of being both simple, while minimizing merge conflicts. The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the main branch. This encapsulation makes it easy for multiple analysts to work on a particular analysis without disturbing the main codebase. It also means the main branch will never contain broken code. Moreover, it means you'll be more likely to get a second or third set of eyes on our analysis. This makes your work more transparent, helps enforce coding standards, and helps spread all the cool new techniques you've implemented in your analysis.
@@ -62,18 +62,18 @@ So what does this look like? Well, here's a picture of the feature branch workfl
 
 [![This image shows the network diagram from Github and is an illustration of the feature branch workflow.](img/feature_branch_example.png "Feature Branch Workflow Network Chart for this manual")](https://github.com/idea-analytics/r_and_a_manual/network)
 
-This picture shows the development of this manual over time (from left to right) [as rendered by Github's network diagram](https://github.com/idea-analytics/r_and_a_manual/network): it includes new branches being created, commits being made and merges back into the main branch. The black line is the main branch and includes the most up-to-date, "official" version of this book. The green and blue lines are feature branches, which diverge from the main when you checkout a new branch. The dots represent commits. Colored lines returning to the main branch indicate a merge: the new code is now part of of the main branch. You might be wondering what the unmerged yellow line labeld `gh-page` represents. That is a special branch that is used by [Githbub Actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) that uses the concept of continuous integration/continuous to build the website that hosts this manual. You don't need to worry about that one; it's simply used to build out the site magically.
+This picture shows the development of this manual over time (from left to right) [as rendered by GitHub's network diagram](https://github.com/idea-analytics/r_and_a_manual/network): it includes new branches being created, commits being made and merges back into the main branch. The black line is the main branch and includes the most up-to-date, "official" version of this book. The green and blue lines are feature branches, which diverge from the main when you checkout a new branch. The dots represent commits. Colored lines returning to the main branch indicate a merge: the new code is now part of of the main branch. You might be wondering what the unmerged yellow line labeld `gh-page` represents. That is a special branch that is used by [GitHub Actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) that uses the concept of continuous integration/continuous delivery to build the website that hosts this manual. You don't need to worry about that one; it's simply used to build out the site magically.
 
-### Example worflow with this manual, or getting your feet wet
+### Example workflow with this manual, or getting your feet wet
 
-This section is going to walk you through how to use git/github by updating this manual. You'll (i) clone the Github repo locally on your laptop, (ii) create a feature branch, (iii) make some changes to this documentation, save those changes, and then commit those changes git (i.e., locally take a snapshot), (iv) push those changes (including all of your commits) up to the Github repo, (v) initiate a pull request (i.e., ask to merge your branch into the main branch), and finally (vi) merge your changes into the master branch.
+This section is going to walk you through how to use git/github by updating this manual. You'll (i) clone the GitHub repo locally on your laptop, (ii) create a feature branch, (iii) make some changes to this documentation, save those changes, and then commit those changes git (i.e., locally take a snapshot), (iv) push those changes (including all of your commits) up to the GitHub repo, (v) initiate a pull request (i.e., ask to merge your branch into the main branch), and finally (vi) merge your changes into the master branch.
 
 But first things first:
 
 1.  Verify you did [the initial set-up steps above](#first-steps)
 2.  Get your bio ready.
 
-\*\*Note that throughout the steps below I'll show you how to each step Ok. Your ready? Great! Here we go.
+\*\*Note that throughout the steps below I'll show you how to each step. Ok. You ready? Great! Here we go.
 
 #### Get the [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
 
@@ -85,9 +85,9 @@ But first things first:
 
 #### Clone the repo {.tabset}
 
-Now you'll pull the remote repo from Github onto you computer. You'll want to think about where you want to save this. For example I save data analysis projects in seperate folders under a `Data_Analysis/` folder. I save the manual just on my one drive.
+Now you'll pull the remote repo from GitHub onto you computer. You'll want to think about where you want to save this. For example, I save data analysis projects in separate folders under a `Data_Analysis/` folder. I save the manual just on my OneDrive.
 
-##### Comand line
+##### Command line
 
 Here I'm saving this to temporary space, by navigating to `~/tmp/~` and then cloning the data:
 
@@ -102,7 +102,7 @@ This will pull down all the content of the repo: files, folders, all commits, al
 
 Here's how you do it from RStudio:
 
-1.  In RStudio, start a new Project: **File \> New Project \> Version Control \> Git**, or click on project icon in the upper right-hand corner of the IDE and select **New Project...**. ![](img/new_project_selection.png "Creating a new project")
+1.  In RStudio, start a new Project: **File \> New Project \> Version Control \> Git**, or click on the project icon in the upper right-hand corner of the IDE and select **New Project...**. ![](img/new_project_selection.png "Creating a new project")
 2.  In the "repository URL" paste the URL of your new GitHub repository. That is: <https://github.com/idea-analytics/r_and_a_manual.git>
 3.  Be intentional about where you create this project.
 4.  You should click "Open in new session". ![](img/new_session_checkbox.png "Making sure you create a new session")
@@ -114,9 +114,9 @@ Here's how you do it from RStudio:
 
 Cool. You should now have the R&A Manual files on repo history on your computer!
 
-#### Checkout a branch
+#### Check out a branch
 
-*Before you start doing anything* you should check out a branch. A branch is like your own, tempory, disposable workspace. When you checkout a branch you create a new copy of the the repo and changes you make only happen on the branch. When your happy with the changes and are ready to share them you'll to a pull request. But we'll get to that below.
+*Before you start doing anything* you should check out a branch. A branch is like your own, temporary, disposable workspace. When you checkout a branch you create a new copy of the repo and changes you make only happen on the branch. When you're happy with the changes and are ready to share them you'll create a pull request. But we'll get to that below.
 
 ##### Command line
 
@@ -135,31 +135,31 @@ git checkout -b update-bio-cjh
 
 ##### RStudio
 
-1.  Click on the *Git* panel (usually in the upper right on that standard RStudio layout, but YMMV if you've customized your layouts).
+1.  Click on the *Git* panel (usually in the upper right on the standard RStudio layout, but YMMV if you've customized your layouts).
 2.  Click on the purple "branch" icon (it kinda looks like a piece of a flowchart). ![](img/rstduio_create_branch.png "Creating a branch in RStudio")
-3.  Giving a short but meaningful name (something like, `update-bio-cjh`). Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.
+3.  Give a short but meaningful name (something like, `update-bio-cjh`). Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.
 
 #### Making changes and saving them
 
-You now on a new branch and go go makes some changes. Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would
+You are now on a new branch and ready to make some changes. Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would.
 
 Now you'll want to commit those changes, which takes a snapshot of the current state on the branch you are working on.
 
 #### Command line
 
-after saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
+After saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
 
 ```{bash commit, eval=FALSE}
 git commit -a -m "Updated Chris's bio"
 ```
 
-You should do this often. After a while you'll want to push your changes up to Github (frequently, but not as often as commits):
+You should do this often. After awhile you'll want to push your changes up to GitHub (frequently, but not as often as commits):
 
 ```{bash push, eval = FALSE}
 git push
 ```
 
-You've likely not yet defined where this remote branch should go, but git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch.:
+You've likely not yet defined where this remote branch should go, but Git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch:
 
 ```{bash, eval=FALSE}
 fatal: The current branch update-bio-cjh has no upstream branch.
@@ -174,18 +174,18 @@ Go ahead and copy and run that command.
 git push --set-upstream origin update-bio-cjh
 ```
 
-After that you can just use `git push` and you'll branch changes will be saved remotely.
+After that you can just use `git push` and your branch changes will be saved remotely.
 
 #### Maintaining large files
 
-If you have a file that is over 100 MB in size (e.g. a PowerBI dashboard), GitHub will block your commit (or at least send you a warning). There are two ways of approaching this issue:
+If you have a file that is over 100 MB in size (e.g., a PowerBI dashboard), GitHub will block your commit (or at least send you a warning). There are two ways of approaching this issue:
 
 1.  Use the large file storage (LFS) extension to commit the file.
 2.  Add the file to .gitignore so the file is not committed.
 
 ##### Large file storage (LFS)
 
-Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 137 MB in size, so it cannot be handled through normal a Git workflow. You will need to download the LFS extension from this site: <https://git-lfs.github.com/>. Once you download, then you will follow these steps:
+Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 137 MB in size, so it cannot be handled through a normal Git workflow. You will need to download the LFS extension from this site: <https://git-lfs.github.com/>. Once you download, then you will follow these steps:
 
 1.  Open the Git command line. (I have not found a solution through RStudio or GitHub Desktop).
 2.  Switch to the repo and branch that has the large file.
@@ -201,7 +201,7 @@ git lfs install
 git lfs track "*.pbix"
 ```
 
-5.  Track .gitattributes.
+5.  Track .gitattributes
 
 ```{bash add gitattributes, eval = FALSE}
 git add .gitattributes
@@ -215,31 +215,31 @@ When you commit, you will see a message indicating the LFS extension was used on
 Alternatively, you could choose not to commit the file and just keep the large file locally. (This is a good option if the file can be generated through code, like a `.csv` output). You will follow these steps:
 
 1.  If the file does not already exist, create a text file called `.gitignore` in your repo.
-2.  Add the name of the file you wish to ignore in the `.gitignore` file (e.g. `.Rdata` is ignored when using ProjectTemplate).
+2.  Add the name of the file you wish to ignore in the `.gitignore` file (e.g., `.Rdata` is ignored when using ProjectTemplate).
 3.  Save `.gitignore` and commit.
 
 
 #### RStudio
 
-1.  In your git panel you see changed (or new) files show up. You'll want to select the check box for any file that's been modified (indicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit: ![](img/rstudio_git_staged.png)
-2.  Click the commit button and new dialog box will open, which will show any changes you've made in an y file. Select the check box for staged, if isn't already selected, add a commit message and click **Commit** ![](img/rstudio_commit.png)
-3.  When your ready to save those to the repo, simply press the *Push* button.
+1.  In your Git panel you see changed (or new) files show up. You'll want to select the check box for any file that's been modified (indicated by an M) or that needs to be added (indicated by an A). Doing so readies the file to be updated in the commit: ![](img/rstudio_git_staged.png)
+2.  Click the commit button and new dialog box will open, which will show any changes you've made in any file. Select the check box for staged, if isn't already selected, add a commit message and click **Commit** ![](img/rstudio_commit.png)
+3.  When you're ready to save those to the repo, simply press the *Push* button.
 
-#### Merging changes.
+#### Merging changes
 
-Merging changes in your feature branch with the main branch requires you go to Github and to a *pull request*. A pull request is essential asking the main branch to "pull" in your changes and is technically known as a merge.. So here are the steps.
+Merging changes in your feature branch with the main branch requires you go to GitHub and to a *pull request*. A pull request is essentially asking the main branch to "pull" in your changes and is technically known as a merge. So here are the steps:
 
 1.  Go to the repo (<https://github.com/idea-analytics/r_and_a_manual>).\
 2.  You may see an info box suggesting you can merge your branch. If so, click on the **Compare & pull request** button. If not select your branch and click the Pull Request icon.
 3.  If you are able to merge (you'll know) click the **Create pull request** button.
-4.  Ask someone to review you request (ideally)
+4.  Ask someone to review your request (ideally)
 5.  Click the **Merge pull request button** and confirm the merge.
-6.  If you are done with our feature branch feel free to delete it.
+6.  If you are done with your feature branch feel free to delete it.
 
-You done!
+You're done!
 
 ::: {.gotcha}
-You'll want to be careful here if you are working with others. If you pulled your main branch down a while ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
+You'll want to be careful here if you are working with others. If you pulled your main branch down awhile ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
 
 The best remedy is to checkout and pull main---which gets up to date---and then checkout your branch and run `git merge main`. You may have to resolve conflicts.
 :::
@@ -247,7 +247,7 @@ The best remedy is to checkout and pull main---which gets up to date---and then 
 
 ## Project Process
 
-When we are working on a project, we need to document not only our analytical work, but also our organization and management. There are multiple tools we use to plan, track, modify and evaluate our progress among our team and with our stakeholders, and as we evolve, we certainly can add to our best practices for each of these tools. Namely, we will discuss how to set up Wrike projects, set up a GRPI/RASI, use operating mechanisms, and other important project structures.
+When we are working on a project, we need to document not only our analytical work, but also our organization and management. There are multiple tools we use to plan, track, modify, and evaluate our progress among our team and with our stakeholders, and as we evolve, we certainly can add to our best practices for each of these tools. Namely, we will discuss how to set up Wrike projects, set up a GRPI/RASI, use operating mechanisms, and other important project structures.
 
 ::: {.tip}
 The key point is that we backwards plan from our final product. The project management tools document these processes in greater detail, in the same way that a teacher might backwards plan from the assessment to the lesson, or a leader might document and follow up with the next steps from a meeting.
@@ -299,7 +299,7 @@ We use [Wrike](https://login.wrike.com/login/) as our main project management sy
   * Ex. "Make visualizations of data" could be the task, and "Make time series plot of AP Spanish Language scores at Mission CP" could be the subtask.
 
 3. Create dependencies for relevant steps.
-  * Link the *predecessors* (i.e. the steps before) and the *successors* (i.e. the steps after) to the task/subtask.
+  * Link the *predecessors* (i.e., the steps before) and the *successors* (i.e., the steps after) to the task/subtask.
 
 4. Establish due dates for ALL steps, including dependencies, subtasks, etc.
 
@@ -340,7 +340,7 @@ If you need to modify the project, carve out time to do so. Evaluating your prog
 Is it perfect? No. It has more features than we'll likely ever use (logging, code profiling, and unit testing).
 
 ::: {.tip}
-IF you are new to ProjectTemplate the [Getting Started Tutorial is great](http://projecttemplate.net/getting_started.html). Indeed, it's always good to [read the docs](https://tyk.io/wp-content/webp-express/webp-images/uploads/2017/06/documentation_matrix.jpg.webp)
+If you are new to ProjectTemplate the [Getting Started Tutorial is great](http://projecttemplate.net/getting_started.html). Indeed, it's always good to [read the docs](https://tyk.io/wp-content/webp-express/webp-images/uploads/2017/06/documentation_matrix.jpg.webp)
 :::
 
 Seriously, though. The [ProjectTemplate documentation](http://projecttemplate.net/) is great and you should really set aside an hour to read through it. This manual will provide a very abbreviated overview of how to use ProjectTemplate at IDEA, but will not be a stand in for the official documentation.
@@ -355,7 +355,7 @@ install.packages("ProjectTemplate")
 
 ### Creating a project with ProjectTemplate
 
-Creating a project is pretty simple. Navigate to where you typically save projects vai RStudio and then run the following commands
+Creating a project is pretty simple. Navigate to where you typically save projects via RStudio and then run the following commands:
 
 ```{r create-poject, eval=FALSE}
 library(ProjectTemplate)
@@ -367,7 +367,7 @@ Doing that bestows upon you the following directory structure:
 ![ProjectTemplate Directory Structure](img/learning-pt-directory-structure.png "ProjectTemplate Directory Structure")
 
 ::: {.gotcha}
-You'll notice in the image above that there is `.Rproj` file, which isn't added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following
+You'll notice in the image above that there is `.Rproj` file, which isn't added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following:
 
 `create.project("../learning-pt/", merge.strategy = "allow.non.conflict")`,
 
@@ -376,36 +376,36 @@ which allows you to scaffold ProjectTemplate in an existing directory while igno
 
 ### What goes where
 
-We only use about half of the directories that ProjectTemplate Scaffolds. Here's what we use ,in the order it's evaluated by ProjectTemplate when you run `load.project()`:
+We only use about half of the directories that ProjectTemplate Scaffolds. Here's what we use, in the order it's evaluated by ProjectTemplate when you run `load.project()`:
 
-**config** This directory contains the configuration file `global.dcf`. This is the first thing that `load.project()` looks at. The [fill list of what each setting does is here](http://projecttemplate.net/configuring.html). Here are a few highlights, in thier order of importance.
+**config** This directory contains the configuration file `global.dcf`. This is the first thing that `load.project()` looks at. The full list of what each setting does is [here](http://projecttemplate.net/configuring.html). Here are a few highlights, in their order of importance.
 
--   `load_libraries`: This can be set to 'on' or 'off'. If `load_libraries` is on, the system will load all of the R packages listed in the libraries field described below. By default, `load_libraries` is off. *I highly recommend that you turn this on*
--   'libraries': This is a comma separated list of all the R packages that the user wants to automatically load when `load.project()` is called. These packages must already be installed before calling `load.project()`. By default, the reshape2, plyr, tidyverse, stringr and lubridate packages are included in this list. *I recommend dropping these and only adding packages you are using for the project*.
+-   `load_libraries`: This can be set to 'on' or 'off'. If `load_libraries` is on, the system will load all of the R packages listed in the libraries field described below. By default, `load_libraries` is off. *I highly recommend that you turn this on*.
+-   'libraries': This is a comma separated list of all the R packages that the user wants to automatically load when `load.project()` is called. These packages must already be installed before calling `load.project()`. By default, the reshape2, plyr, tidyverse, stringr, and lubridate packages are included in this list. *I recommend dropping these and only adding packages you are using for the project*.
 -   `data_loading`: This can be set to 'on' or 'off'. If data_loading is on, the system will load data from both the cache and data directories with cache taking precedence in the case of name conflict. By default, `data_loading` is on.
 -   `cache_loading`: This can be set to 'on' or 'off'. If `cache_loading` is on, the system will load data from the cache directory before any attempt to load from the data directory. By default, `cache_loading` is on.
 -   `munging`: This can be set to 'on' or 'off'. If `munging` is on, the system will execute the files in the `munge` directory sequentially using the order implied by the `sort()` function. If `munging` is off, none of the files in the `munge` directory will be executed. By default, `munging` is on.
 -   `as_factors`: This can be set to 'on' or 'off'. If `as_factors` is on, the system will convert every character vector into a factor when creating data frames; most importantly, this automatic conversion occurs when reading in data automatically. If 'off', character vectors will remain character vectors. By default, `as_factors` is off. \*This is a very good default, and the opposite of base R.
 
-**lib**: this directory is used to house helper functions. You can store them in an `*.R` file (like the included `helpers.R` file). \*\* As a general rule of thumb, if you've copied-and-pasted a block of code twice, don't do it a third time; rather, abstract that block into a function and save it in this directory. `load.project` sources the files in this directory after readying `global.dcf`.
+**lib**: This directory is used to house helper functions. You can store them in an `*.R` file (like the included `helpers.R` file). \*\* As a general rule of thumb, if you've copied-and-pasted a block of code twice, don't do it a third time; rather, abstract that block into a function and save it in this directory. `load.project` sources the files in this directory after readying `global.dcf`.
 
-**cache**: Here you'll store any data sets that (i) are generated during a preprocessing step and (ii) don't need to be regenerated every single time you analyze your data. You can use the `cache()` function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate's priority rules. ProjectTemplate always checks this before running code in the `data/` and `munge/`. directories. You can [learn more about caching here](http://projecttemplate.net/caching.html).
+**cache**: Here you'll store any data sets that (i) are generated during a preprocessing step and (ii) don't need to be regenerated every single time you analyze your data. You can use the `cache()` function to store data to this directory automatically. Any data set found in both the cache and data directories will be drawn from cache instead of data based on ProjectTemplate's priority rules. ProjectTemplate always checks this before running code in the `data/` and `munge/` directories. You can [learn more about caching here](http://projecttemplate.net/caching.html).
 
 **data**: You store your raw data files here. If they are encoded [in a supported file format](http://projecttemplate.net/file_formats.html), they'll automatically be loaded when you call `load.project()`, \*unless cached versions of their output exist in the `cache/` directory.
 
-**munge**: Here you can store any preprocessing or "data munging" code for your project. For example, if you need to add columns at runtime, merge normalized data set,s or globally censor any data points, that code should be stored in the `munge` directory. The preprocessing scripts stored in `munge` will be executed in alphabetical order when you call `load.project()`, *so you should prepend numbers (to digit like `01-aggregate_schools`, `02-calc-means`, ...) to the filenames to indicate their sequential order.*. Files in here are run after those in `cache/` and `data/` are loaded.
+**munge**: Here you can store any preprocessing or "data munging" code for your project. For example, if you need to add columns at runtime, merge normalized data sets, or globally censor any data points, that code should be stored in the `munge` directory. The preprocessing scripts stored in `munge` will be executed in alphabetical order when you call `load.project()`, *so you should prepend numbers (to digit like `01-aggregate_schools`, `02-calc-means`, ...) to the filenames to indicate their sequential order.* Files in here are run after those in `cache/` and `data/` are loaded.
 
-**reports**: Here you can store any output reports, especially RMarkdown reports, that you produce. This is where final reports live
+**reports**: Here you can store any output reports, especially RMarkdown reports, that you produce. This is where final reports live.
 
 ::: {.gotcha}
-ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`. The biggest issue is running `load.project()` inside of RMarkdown. ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying. It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
+ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`). The biggest issue is running `load.project()` inside of RMarkdown. ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying. It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
 
 `setwd(here::here()); load.project()`
 
 This will change the working directory to the top of project and then run `load.project`. After the project is loaded `knitr` will set the working directory back to `reports/`, so all other file references should be relative to `reports/`
 :::
 
-**src**: Here you'll store your statistical analysis and mahcine scripts. You should add the following piece of code to the start of each analysis script: `library('ProjectTemplate); load.project()` (you don't need the tip above here). You should also do your best to ensure that any code that's shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel. You may want to `cache()` your results here as well.
+**src**: Here you'll store your statistical analysis and machine scripts. You should add the following piece of code to the start of each analysis script: `library('ProjectTemplate); load.project()` (you don't need the tip above here). You should also do your best to ensure that any code that's shared between the analyses in src is moved into the munge directory; if you do that, you can execute all of the analyses in the src directory in parallel. A future release of ProjectTemplate will provide tools to automatically execute every individual analysis from src in parallel. You may want to `cache()` your results here as well.
 
 **graphs**: Here you can store any graphs or PowerPoints that you produce, with the exception of those already contained in RMarkdown files.
 
@@ -415,15 +415,15 @@ The [`renv` package](https://rstudio.github.io/renv/) goes a long way to solving
 
 [![Definition of dependency hell](img/dependency_hell.jpeg "renv helps avoid this"){width="447"}](https://arxiv.org/pdf/1410.0846.pdf)
 
-This problem most manifest when you revisit a recurring project a year later. You updated some year variables in your code and rerun your code and ready to pat yourself on the back and then BAM! Your code breaks. It breaks because over the previous 12 months the packages you relied upon a year ago have been updated over time and don't work with other packages. Sometimes all you need to to is update all of your packages and everything is hunky-dory; but other times this brute force process doesn't work. You are left trying to understand whats changed over multiple packages, what your need to change in your code and something you thought would take you an hour takes a a week, with most days feeling like your just banging your heard against the wall.
+This problem mostly manifests when you revisit a recurring project a year later. You updated some year variables in your code and rerun your code and ready to pat yourself on the back and then BAM! your code breaks. It breaks because over the previous 12 months the packages you relied upon a year ago have been updated over time and don't work with other packages. Sometimes all you need to do is update all of your packages and everything is hunky-dory; but other times this brute force process doesn't work. You are left trying to understand what has changed over multiple packages, what you need to change in your code and something you thought would take you an hour takes a week, with most days feeling like you're just banging your head against the wall.
 
-This issues alone should be enough to convince you that your need to create **re**producible **env**ironments.
+This issue alone should be enough to convince you that you need to create **re**producible **env**ironments.
 
-Another reason is related and often very immediate: working on the same analysis with someone else. Perhaps you are are fastidious and only use the most current version of every package and your partner is risk averse and only updates packages after they've been out in the wild for at least a year. If you are in this boat your going to have problems.
+Another reason is related and often very immediate: working on the same analysis with someone else. Perhaps you are fastidious and only use the most current version of every package and your partner is risk averse and only updates packages after they've been out in the wild for at least a year. If you are in this boat you're going to have problems.
 
 Again, you need to create **re**producible **env**ironments.
 
-This is a common technique in Python and there it goes by the name of virtual environments. `renv` is an R implementation of the concept that is pretty elegant Along with [ProjectTemplate](#section-ProjectTemplate) we use the [`renv` package](https://rstudio.github.io/renv/) to ensure that our analysis projects are:
+This is a common technique in Python and there it goes by the name of virtual environments. `renv` is an R implementation of the concept that is pretty elegant. Along with [ProjectTemplate](#section-ProjectTemplate), we use the [`renv` package](https://rstudio.github.io/renv/) to ensure that our analysis projects are:
 
 1.  **Isolated**: Each project gets its own library of R packages, so you can feel free to upgrade and change package versions in one project without worrying about breaking your other projects.
 
@@ -431,7 +431,7 @@ This is a common technique in Python and there it goes by the name of virtual en
 
 3.  **Reproducible**: Use `renv::snapshot()` to save the state of your R library to the lockfile `renv.lock`. You can later use `renv::restore()` to restore your R library exactly as specified in the lockfile.
 
-These three points are crucial for working well with others and protection your future self.
+These three points are crucial for working well with others and protection for your future self.
 
 ::: {.tip}
 As usual, you really should [read the docs for `renv`](https://rstudio.github.io/renv/articles/renv.html). They are thorough and clear.
@@ -445,11 +445,11 @@ If you are starting a new project in RStudio then setting up `renv` is easy: jus
 
 ![Definition of dependency hell](img/renv-new-Project.png "Be sure to click the "Use renv with this project" checkbok"){width="447"}
 
-Checking that box will add the bootstrap `renv`, installing the package if necessary as well as a few folders and files that serve as infrastructure
+Checking that box will add the bootstrap `renv`, installing the package if necessary as well as a few folders and files that serve as infrastructure.
 
 ### Setting up `renv` with an existing project
 
-If you've got a project that you want to starting using `renv` it's pretty straightforward:.
+If you've got a project that you want to starting using `renv`, it's pretty straightforward.
 
 1.  Install `renv` if you don't have it: `install.packages('renv')`
 2.  Use `renv::init()` to initialize a project. `renv` will discover the R packages used in your project, and install those packages into a private project library.
@@ -458,14 +458,14 @@ It's really that simple!
 
 ### Using `renv`
 
-The `renv` workflow is super, duper simple, after you've set it up:
+The `renv` workflow is super duper simple, after you've set it up:
 
 1.  Work in your project as usual, installing and upgrading R packages as required as your project evolves.
 2.  Use `renv::snapshot()` to save the state of your project library. The project state will be serialized into a file called `renv.lock`.
 3.  If you want to revert to the previous state of your project---i.e., you installed a new version of a package and it's wreaking havoc on your project---simply use `renv::restore()`.
 
 ::: {.hat}
-Following these simple steps isolates your projects environment from the rest of your other projects. So downloading a bleeding-edge, dev version of package from GitHub b/c you need a new feature won't pollute your other projects that are running just fine. This is the isolation bit mentioned in the three points above
+Following these simple steps isolates your project's environment from the rest of your other projects. So downloading a bleeding-edge, dev version of package from GitHub because you need a new feature won't pollute your other projects that are running just fine. This is the isolation bit mentioned in the three points above.
 :::
 
 ### Collaborating with `renv`
@@ -500,7 +500,7 @@ For more information on collaboration strategies, please visit [environments.rst
 
 ### `renv` and RStudio Connect
 
-In short there should be no issues, but there is one important thing to always keep in mind when publishing to RStudio connect:
+In short, there should be no issues, but there is one important thing to always keep in mind when publishing to RStudio connect:
 
 ::: {.gotcha}
 The `renv` generated `.Rprofile` file should **not** be included in deployments to RStudio Connect.
@@ -546,13 +546,13 @@ If your dashboard was created in Power BI and you want to directly publish your 
 
 3. On the Home menu, on the far right click Publish
 
-4. Select the Workspace that you want to Publish the dashboard to, then click "Select"
+4. Select the Workspace that you want to Publish the dashboard to, then click "Select".
   If you want to later post this Published dashboard to the team site (TheHub), select the "Research and Analysis" Workspace or a Premium Content Workspace, noted by a diamond on the Workspace.
 
-5. Go to [Power BI](https://app.powerbi.com) then go to your dahsboard in the Workspace you Published and there will be two items, the dashboard and the data.
+5. Go to [Power BI](https://app.powerbi.com) then go to your dashboard in the Workspace you Published and there will be two items, the dashboard and the data.
 
-6. Click on the dashboard report and then go to File > Embed report > Website or portal and copy the like in "Here's a link you can use to embed this content."
-  Use that like to share out or post to a Team Site
+6. Click on the dashboard report and then go to File > Embed report > Website or portal and copy the link in "Here's a link you can use to embed this content."
+  Use that link to share out or post to a Team Site.
 
 ### Team Site (TheHub)
 
