@@ -1,6 +1,6 @@
 # Key Tables, Measures, and Metrics
 
-Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.
+Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.
 
 ## The Students Table
 
@@ -15,24 +15,24 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
 **Who is what?:** 
 
 * **_[EnrollmentStatus]:_** 
-  + If EnrollmentStatus = 0, it means that the student is/was an active student for the corresponding academic year,
-  + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
-  + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
+  + If EnrollmentStatus = 0, the student is/was an active student for the corresponding academic year,
+  + If EnrollmentStatus = 2, the student left the district before completing the academic year,
+  + If EnrollmentStatus = 3, the student graduated from IDEA's high school.
 
 * **_[ELLCode]:_** English Learner (EL) A.K.A. Limited English Proficiency (LEP)
-  + If ELLCode = 0, student **is not** identified as an EL student,
+  + If ELLCode = 0, the student **is not** identified as an EL student,
   + If ELLCode = 1, the student **is** identified as an EL student,
-  + If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,
+  + If ELLCode not in (0,1), the student is not currently identified as an EL but was identified before as one,
   + If ELLCode = "F", the student **is not** identified as an EL student but is in the First Year of Monitoring status,
   + IF ELLCode = "S", the student **is not** identified as an EL student but is in the Second Year of Monitoring status,
   + If ELLCode = 3, the student **is not** identified as an EL student but is in the Third Year of Monitoring status,
   + If ELLCode = 4, the student **is not** identified as an EL student but is in the Fourth Year of Monitoring status,
   + If ELLCode = 5, the student **is not** identified as an EL student but was at one point more than 4 years ago.
   
-* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
+* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification, the student's ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
 
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
-  + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
+  + If SPED = 0, the student is not identified as a SPED student, otherwise SPED = 1.
   
 * **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](https://tealprod.tea.state.tx.us/TWEDS/98/0/0/0/CodeTable/List/14562):
 
@@ -43,8 +43,8 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  8 | Vocational Adjustment Class/Program
  40 | Mainstream
  41 | Resource Room/Services < 21%
- 42 | Resource Room/Services 21- <50%
- 43 | Resource Room/Services 50- 60%
+ 42 | Resource Room/Services 21 - <50%
+ 43 | Resource Room/Services 50-60%
  44 | Resource Room/Services > 60%
  96 | Off Home Campus - Separate Campus
  
@@ -62,7 +62,7 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  3 | Auditory impairment
  4 | Visual impairment
  5 | Deaf-Blind
- 6 | Intellectual Disability
+ 6 | Intellectual disability
  7 | Emotional disturbance
  8 | Learning disability
  9 | Speech impairment
@@ -102,19 +102,19 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 * **_[EconomicDisadvantageCode]:_** A.K.A ECD 
   + If EconomicDisadvantageCode = 0, then the student is _not identified as economically disadvantaged_, otherwise the student is identified as **economically disadvantaged**,
-  + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
-  + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
-  + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+  + If EconomicDisadvantageCode = 1, then the student is identified as economically disadvantaged and eligible for free meals,
+  + If EconomicDisadvantageCode = 2, the student is also identified as economically disadvantaged but only eligible for reduced-price meals,
+  + If EconomicDisadvantageCode = 99, it means the student is identified as economically disadvantaged but has another economic disadvantage.
   
-* **ECDFlag** Consolidates the codes above to 0/1 indicator
+* **ECDFlag** consolidates the codes above to 0/1 indicator
   + If ECDFlag = TRUE (1), the student **is** identified as economically disadvantaged,
   + If ECDFlag = FALSE (0), the student **is not** identified as economically disadvantaged.
 
 
 * **_Race / Ethnicity:_** Same like in TX
-  + If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,
-  + If the student **does not** identify as Hispanic or Latino and only selected one race the student is classified as that race,
-  + If the student **does not** identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.
+  + If the student identifies as Hispanic or Latino, the student is classified as Hispanic/Latino,
+  + If the student **does not** identify as Hispanic or Latino and only selected one race, the student is classified as that race,
+  + If the student **does not** identify as Hispanic or Latino and selected more than one race, the student is classified as two or more races.
 
 * **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
 
@@ -282,8 +282,8 @@ The Schools table provides essential information about each school, including th
 **Important columns:**
 
 * **[SchoolNumber]:** official PowerSchool school ID; most frequently used to link to other tables
-* **[SchoolName]:** full name of the school, e.g. IDEA Frontier College Preparatory
-* **[SchoolShortName]:** campus name, e.g. Frontier
+* **[SchoolName]:** full name of the school (e.g., IDEA Frontier College Preparatory)
+* **[SchoolShortName]:** campus name (e.g., Frontier)
 * **[StateSchoolNumber]:** number used by the campus' respective state for reporting (note: this column may not have correct values for all schools)
 * **[SchoolAbbreviation]:** abbreviation of school name (not commonly used)
 * **[SchoolLowestGrade]:** lowest grade level, where PK = -1, K = 0
@@ -296,7 +296,7 @@ The Schools table provides essential information about each school, including th
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
 * **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley, and San Antonio schools into East and West; links to the Regions table
-* **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
+* **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022, you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
 
 **Context:**
 
@@ -305,8 +305,8 @@ The Schools table provides essential information about each school, including th
 * For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory". (It is suggested you rename these to the modern names).
 * IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
 * IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
-* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
-* IDEA Amber Creek was renamed as IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
+* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable since values may reflect coding choices at Midland ISD.
+* IDEA Amber Creek was renamed IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
 
 
 ### Regions table
@@ -365,7 +365,7 @@ Daily attendance is taken through PowerSchool to see which students are presentl
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
 * **Current Year + 3 Past Years** This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, & 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.
 
-**For Attendance data Prior to 2019-2020:**
+**For Attendance Data Prior to 2019-2020:**
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
 * **Academic Years: 2021-2022 - 2015-2016** This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.
 
@@ -489,9 +489,9 @@ The other side of enrollment is **student persistence**. To see how enrollment i
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA, the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence, FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for two consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
 
-Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
+Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on the FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on the FDOP because he didn't return until September, John would not count as a student who persisted.
 
 **Database:** [RGVPDSD-DWPRD1].[Persistence]
 
@@ -501,7 +501,7 @@ Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended s
 
 **Tables:**
 
-* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).
+* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).
 
 * **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
@@ -519,8 +519,8 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   + **AcademicYear:** the academic year
   + **RegionDescription:** the region the student is in
   + **SchoolShortName:** the school the student attends
-  + **SchoolType:** Academy of College Prep
-  + **GradeLevelID:** Student's grade level (integer ranging from -1 = Pre-K to 12)
+  + **SchoolType:** Academy or College Prep
+  + **GradeLevelID:** student's grade level (integer ranging from -1 = Pre-K to 12)
   + **NewStudent:** indicates if the student is new (1) or returning (0)
   + **PersistenceWeek:** the current week of persistence based on the student's region and school (ranges from 1-52)
   + **LeaverWeek:** the persistence week the student left the district
@@ -545,33 +545,33 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   
 ### Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)
 
-Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
+Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students over time. When this occurs, the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1]
 
 **Tables:**
 
-* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.
+* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table (contains a row for every school day every student attended for all years contained in the table).
 
-* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.
+* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same process described above.
 
 * **Other Useful Fields:**
-  + **AcademicYear:** the academic year (in both tables)
-  + **SchoolName:** the long school name (in both tables)
-  + **schoolnumber:** the school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
-  + **SchoolShortName:** the school's short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)
-  + **SchoolType:** indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)
-  + **RegionDescription:** the region (Only on the Attendance.Students table - 2017-2018 to present)
+  + **AcademicYear:** academic year (in both tables)
+  + **SchoolName:** long school name (in both tables)
+  + **schoolnumber:** school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
+  + **SchoolShortName:** school's short name (ex. Donna; only in the Attendance.Students table - 2017-2018 to present)
+  + **SchoolType:** indicates Academy or College Prep (only in the Attendance.Students table - 2017-2018 to present)
+  + **RegionDescription:** region (only on the Attendance.Students table - 2017-2018 to present)
   + **GradeLevelID:** student's grade level (in both tables)
   + **WeekNumber:** the number of the week in the academic year (in both tables) **Use Cautiously** the weeks are **NOT** numbered properly in 2019-2020 contains in the Attendance.Students table
   + **AttDate:** the date for the attendance record (format "YYYY-MM-DD") (in both tables)
   + **Membership:** indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)
-  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", "or "LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
+  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", or "LAUNCHING" (only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
 
 
 ## College Application & Matriculation Metrics
 
-To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
+To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) leads the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Colleges]
 
@@ -658,7 +658,7 @@ IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture 
 
 ## Critical Student Intervention (CSI) Identification {#csi}
 
-To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
+To address the achievement gap among students, Dolores Gonzalez, our Chief Program Officer introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools]
 
@@ -668,7 +668,7 @@ To address the achievement gap among students, Dolores Gonzalez, our Chief Progr
 
 **Tables:**
 
-* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
+* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
 
 * **SQL Code Example:**
 
@@ -713,7 +713,7 @@ WHERE A.AcademicYear = '2020-2021'
 
 ### State of Texas Assessments of Academic Readiness (STAAR)
 
-The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:
+The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science, and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:
 
   + **Grade 3:** Reading and Math
   + **Grade 4:** Reading and Math
@@ -722,15 +722,15 @@ The STAAR assessments are Texas' standardized tests administered every year, exc
   + **Grade 7:** Reading and Math
   + **Grade 8:** Reading, Math, Science, and Social Studies
 
-Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
+Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas, a student must have taken and passed five EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
 
-All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Approaches, Meets, and Masters. When the assessments were rolled out the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are **NOT** mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standrad are included in the counts for Satisfactory.
+All STAAR assessments, excluding STAAR Alt 2, have three performance standards: Approaches, Meets, and Masters. When the assessments were rolled out, the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are **NOT** mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standard are included in the counts for Satisfactory.
 
 **Database:** [RGVPDRA-DASQL].[Dashboard]
 
 **Tables:**
 
-* **_[dbo].[STAAR]:_** This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to 3 administrations in one year. For example, a fifth grade student will take reading, math and science in one year, so that's 3 rows for each test. Further, if this student doesn't pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn't pass it in May they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in r to get the students best score and de-duplicate to get one row per student.
+* **_[dbo].[STAAR]:_** This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to three administrations in one year. For example, a fifth grade student will take reading, math, and science in one year, so that's three rows for each test. Further, if this student doesn't pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn't pass it in May, they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in R to get the student's best score and de-duplicate to get one row per student.
 
 * **Useful Fields:**
 
@@ -751,9 +751,9 @@ All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Appr
   + **ScoreCode:** indicates whether the test was scored or student was absent. **ALWAYS** filter to ScoreCode == "S" to get the scored tests
   + **TestVersion:** "S" = STAAR and "T" = STAAR Alt 2
   + **ScaleScore:** provides the scaled score for that assessment and can be used to find the best score/most recent administration
-  + **LevelII:** 0/1 indicator for the Approaches performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
-  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
-  + **LevelIII:** 0/1 indicator for the Masters performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level
+  + **LevelII:** 0/1 indicator for the Approaches performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIII:** 0/1 indicator for the Masters performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Accomplished performance level
   + **SchoolYear:** character value indicating the academic year, Ex. "2020-2021"
   + **BestRecord:** logical column supposed to indicate if that record is the best for that student for that test **DOES NOT WORK**
 
@@ -911,7 +911,7 @@ This table aggregates item-level data for each student and reports a student's p
 * **[PBStartRange]:** Lower bound for a performance band, as a percent.
 * **[PBEndRange]:** Upper bound for a performance band, as a percent.
 * **[Description]:** Description of performance band interval, in words.
-* **[Mastery]:** 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not
+* **[Mastery]:** 1 = demonstrated mastery (passed, approaches+, etc.); 0 = did not
 * **[src]:** Source of asssessment data (most are Illuminate, but some are from legacy systems)
 * **[Scope]:** Similar to AssessmentType, but more detailed.
 * **[State]:** Two-letter state code (TX, LA, FL, OH) where the assessment is administered.
@@ -922,7 +922,7 @@ This table aggregates item-level data for each student and reports a student's p
 * **[StudentNumber]:** Use to link to the students table.
 * **[TcpCourseCode]:** This code uniquely links the assessment to the TCP course code.
 
-##### IABWAItems
+##### IABWA Items
 
 This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.
 
@@ -940,7 +940,7 @@ This table displays item-level data for each student for each assessment. This i
 * **[Subject]:** Same as SubjectID, but in words. 
 * **[AssessmentReporingName]:** One of two columns to choose a type of assessment.
 * **[AssessmentType]:** One of two columns to choose a type of assessment.
-* **[QuestionNumber]:** Describes the question and part (e.g. 1a, 1b, 2, etc.)
+* **[QuestionNumber]:** Describes the question and part (1a, 1b, 2, etc.)
 * **[ItemStudentResponse]:** The response(s) scanned in by the student or teacher
 * **[ItemCorrectResponse]:** The response(s) needed for full credit on the item.
 * **[standard]:** Describes the objective number, TEKS, etc.
@@ -951,7 +951,7 @@ This table displays item-level data for each student for each assessment. This i
 * **[Points]:** Total points available for item.
 * **[ReportingGroups]:** Describes the reporting group of objectives.
 * **[IsRubric]:** ?
-* **[State]:** Two-letter state code (TX, LA, FL) where the assessment is administered.
+* **[State]:** Two-letter state code (TX, LA, FL, OH) where the assessment is administered.
 * **[QuestionTypeName]:** Describes the type of question (Multiple Choice, etc.)
 * **[QuestionType]:** Same as QuestionTypeName but abbr.
 * **[ExtraCredit]:** 1 = extra credit question; 0 = not
@@ -1031,25 +1031,25 @@ DIBELS has multiple required measures but can be implemented using *gating rules
   
 
 ### Renaissance STAR (also RenStar, Little Star)
-[Reinaissance](https://www.renaissance.com/about-us/) [Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostics to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
+[Renaissance](https://www.renaissance.com/about-us/) [Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostic to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
 
 It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student's effort on any given test).
 
 #### Where to get RenStar data?
-Accessessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best best is to use:
+Accessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best is to use:
 
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
 ### AP
 
-IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams, however, IB schools offer far fewer options than the non-IB campuses. 
+IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams; however, IB schools offer far fewer options than the non-IB campuses. 
 
-All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned and added to the R&A's server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
+All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned, and added to the R&A server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
 
 **Step One:** pull down the most recent year's project on github.
-**Step Two:** Open the main r project within that folder, for example, "22-23 AP Report & Requests". Within that project there are 2 main sub-project folders. Use the AP Requests.
-**Step Three:** Run the 2 scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
-**Step Four:** Run the 3 scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and pass both with the same score that they are not counted twice towards the 3 exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
+**Step Two:** Open the main R project within that folder, for example, "22-23 AP Report & Requests". Within that project there are two main sub-project folders. Use the AP Requests.
+**Step Three:** Run the two scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
+**Step Four:** Run the three scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and passes both with the same score that they are not counted twice towards the three exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
 
 ### IB
 
@@ -1295,19 +1295,19 @@ get_table(.table_name = "StudentScores",
 
 ### LEAP
 
-Louisiana Educational Assessment Program (LEAP)
+Louisiana Educational Assessment Program (LEAP) 
 The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
 
 Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
 English learners from K-12 take the English Language Proficiency test (ELPT).
 
-LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
+LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least three tests and need to score Approaching Basic or higher in the fourth test.
 
 The downloaded workbook has tabs for each grade level and a tab for high school. Filter the spreadsheet for the IDEA schools in LA. Use the expected number of students to participate and the participation rate columns to calculate the actual number of students who participated. To calculate the percentage of students who passed each subject, add the percentage of students who scored at the Advanced, Mastery, and Basic levels.
 
-#### Student level LEAP
+#### Student Level LEAP
 
-If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the excel spreadsheet to see the data.
+If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the Excel spreadsheet to see the data.
 
 Useful Fields:
 •	SchoolNbr
@@ -1325,7 +1325,7 @@ Useful Fields:
 
 ## Student Course Grades
 
-There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
+There are two tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
 
 **Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]
 
@@ -1341,7 +1341,7 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 * **GradeLevelID:** Grade level (only 8th through 12th)
 * **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter
 * **PercentGrade:** The numerical grade 0-100
-* **LetterGrade:** Wouldn't use this column it is a mix of letter grades and numerical grades
+* **LetterGrade:** Wouldn't use this column, it is a mix of letter grades and numerical grades
 * **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
 
 **Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]
@@ -1356,14 +1356,14 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 * **CourseNumber:** Course number
 * **CreditType:** Abbreviated subject, such as ELA or MA for Math
 * **StaffID:** The Staff ID number for the teacher of the course (not sure if this is accurate)
-* **TeacherName:** The teacher's name (Last, First) again not sure if this is accurate
+* **TeacherName:** The teacher's name (Last, First), again not sure if this is accurate
 * **GradeLevelID:** Grade level (only 8th through 12th)
 * **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter (Y1 = end-of-course grade for the year)
 * **PercentageGrade:** The numerical grade 0-100
 * **LetterGrade:** Appears to be all letter grades (Character column)
 * **AbsentCount:** Count of absences
 * **TardyCount:** Count of tardies
-* **State:** 2 letter abbreviation for the student's State 
+* **State:** two letter abbreviation for the student's state 
 
 
 ## Staff Retention
@@ -1419,9 +1419,9 @@ Data has varied across the years and the naming conventions (or lack there of) i
 
 ### Tyler Munis data
 
-Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's Step, salary, pay rate, pay schedule, lastest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
+Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's step, salary, pay rate, pay schedule, latest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
 
-Currently, this data is being used for the Teacher Tenure project for Martin Winchester and HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
+Currently, this data is being used for the Teacher Tenure project for Martin Winchester and the HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
 
 22-23 SY Steps for Teachers range from 0 to 35, consecutively, but skipping 32 and 34. Some teachers have NA for their Step. A Step of "0" indicates no prior experience teaching before being hired at IDEA. A step of "1+" indicates prior experience if it is the teacher's first year at IDEA, or it indicates experience at IDEA, if it is not the teacher's first year at IDEA.
 
@@ -1442,13 +1442,13 @@ FORMAT(premppay_all.prep_work_st_dt,'d','en-us')  AS 'Work Start Date'
 ,CASE WHEN prempmst.prem_term_date < GETDATE() THEN 'NLE'  
 ELSE 'Active' END AS [JobPaySkill]  
 
-It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports, that could be filtered for NLE or Active, in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).
+It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports that could be filtered for NLE or Active in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).
 
 ##Start Date
 
 ,FORMAT(prempmst.prem_hire,'d','en-us')   [StartDate] 
 
-Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, they person doesn't have to switch roles, and the Work Start Date is the start date for their current school year's job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.
+Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, that person doesn't have to switch roles, and the Work Start Date is the start date for their current school year's job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.
 
 ###New Teacher at IDEA
 Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
@@ -1502,11 +1502,11 @@ forms_try <- get_table(.table_name = "Forms", .database_name = "SRC_Teachboost",
   collect()
  forms_try
 
-Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
+Forms table has the topic_id, which is the TB ID of the person about whom the form is written. The author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is not the employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
 
 #### Users
 
-UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.
+UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in Teachboost such as Region or School.
 
 #### Templates
 
@@ -1514,7 +1514,7 @@ This table no longer exists and the data has been moved to the forms table.
 
 ### Compass data
 
-[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
+[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data. 
 
 :::tip
 You'll need to reach out to Chris Haid to access the database. A set of compass functions for `[ideadata](idea-analytics.github.io/ideadata)` is in development.
@@ -1526,7 +1526,7 @@ You'll need to reach out to Chris Haid to access the database. A set of compass 
   - Employee_ID
   - Question_ID
   - Year
-  - SortOrder (specific to year and Reviewer amd ois order displayed in Cornerstone)
+  - SortOrder (specific to year and Reviewer and is order displayed in Cornerstone)
   - Reviewer
   - IsComplete (completed by Staff and Manager)
 
@@ -1570,7 +1570,7 @@ You'll need to reach out to Chris Haid to access the database. A set of compass 
     - Pivoted by employee id for performance manager
     - **This will change** (moving to tidy data)
 - Goals
-- External Position (not ussedd, but for user added data not captured in Jobvite)
+- External Position (not used, but for user added data not captured in Jobvite)
 - AnnualPerformanceReviews
  
 
@@ -1584,9 +1584,9 @@ R&A has used data from Jobvite to analyze pre-hiring measures of hired teachers.
 
 Here are some more facts about Jobvite data:
 
-* Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have  `Candidate Submit Date` column , which ranges from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+* Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have  `Candidate Submit Date` column , which ranges from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following Fall after the application cycle). 
 
-This file has columns including `Candidate Full Name`, `Candidate Email` (personal email used for the application), and some of the pre-hire selection measures, such as `GPA`. However, all 5 of the pre-hire selection measures are not included yet (`STEM Major`, `Teach For America status`, `Experience prior to IDEA`, `GPA`, and `Teacher Certification`). The data also has no `Employee IDs yet`, as this is a list of candidates. There is a `Hire Yes/No` column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
+This file has columns including `Candidate Full Name`, `Candidate Email` (personal email used for the application), and some of the pre-hire selection measures, such as `GPA`. However, all five of the pre-hire selection measures are not included yet (`STEM Major`, `Teach For America status`, `Experience prior to IDEA`, `GPA`, and `Teacher Certification`). The data also has no `Employee IDs yet`, as this is a list of candidates. There is a `Hire Yes/No` column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
           
 * Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for `Category == "Teaching"`)
 
@@ -1610,7 +1610,7 @@ This file has columns including `Candidate Full Name`, `Candidate Email` (person
     * Contains Tentative Start Date column
 
   3. 21-22 – 4th year of Jobvite data
-    *(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+    * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
     * Contains Tentative Start Date column
 
 ### TCP/Teacher Export Data
@@ -1631,22 +1631,22 @@ TCP/Teacher Export Data: Teacher Performance data.
   + Contains IDEA Work Email and EmployeeID
   + Contains First Name and Last Name (but not Full Name)
   
-**There is a 2 year HOLD for the pandemic** (we don’t know who was “held”), meaning someone at a particular level (E.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
+**There is a 2 year HOLD for the pandemic** (we don’t know who was “held”), meaning someone at a particular level (e.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
 
 
-* If someone got a 4.5+ composite TCP score for 2 consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
+* If someone got a 4.5+ composite TCP score for two consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
 * For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
-* If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
+* If a person is missing one of the other four TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights are the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage four equal ways).
 
 1. SY 18-19  
- * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Stephen, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
+ * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Steven, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
 
 2. SY 19-20  
   * (“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
   * Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
   * 20-21 – 3rd year of Jobvite data 
   * from Blanca Carillo, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
-  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year.
+  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year).
   
   If you would like to download your own TCP Export data for SY 19-20, please go to the TCP Application Website: www.tcp.ideapublicschools.org.
 
@@ -1673,7 +1673,6 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 *	SPED CP
 *	SPED AC
 *	PE CP
-*	PE CP
 *	(This is due to SPED and PE having state mandated license requirements that are not required for the other subjects, so these should be analyzed separately).
       + Removing Teacher Export 19-20 Teachers who did not work in 19-20 Academic Year 
 *	(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)
@@ -1692,7 +1691,7 @@ How to join?
 Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.
 
 ###### Teacher Promotions
-We are looking at Area = "TEACHER" for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both schools years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than "TEACHER" on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was "INTERVENTIONIST" which moved from Area = "TEACHER" to Area = "INSTRUCTIONAL SUPPORT". We concluded this was incorrect and should remain as Area = "TEACHER", and so was counted as "no change". The remaining 38 Job Titles that fell outside of Area = "TEACHER" were included as either Promotions or Demotions.
+We are looking at Area = "TEACHER" for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both school years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than "TEACHER" on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was "INTERVENTIONIST" which moved from Area = "TEACHER" to Area = "INSTRUCTIONAL SUPPORT". We concluded this was incorrect and should remain as Area = "TEACHER", and so was counted as "no change". The remaining 38 Job Titles that fell outside of Area = "TEACHER" were included as either Promotions or Demotions.
 
 **Promotions**
 
@@ -1745,14 +1744,14 @@ SPECIAL EDUCATION RISE CO-TEACHER
 
 #### TCP Retention and TCP Levels
 
-One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture
+One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture.
 
 ##### Missing TCP Placements
 TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning.  For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.
 
 ##### Leaver Rates
 
-Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are "New To IDEA" Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of "holding" level for teachers who didn't score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is the promote straight from Level 1 after the first year, to Level 3.
+Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are "New To IDEA" Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of "holding" level for teachers who didn't score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is to promote straight from Level 1 after the first year, to Level 3.
 
 Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
 Level 1: 1185
@@ -1769,7 +1768,7 @@ Not all of the leavers from the TCP Retention project matched up with those who 
 
 #### TCP Levels and Composite Score Correlations
 
-TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of 5 components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). Teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has 1 academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given 2 years (and then now, indefinite years of pandemic holds) of "hold" time instead of 1. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for 1 year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
+TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of five components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). For teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has one academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given two years (and then now, indefinite years of pandemic holds) of "hold" time instead of one. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for one year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
 
 
 
