@@ -2,20 +2,20 @@
 
 Some *significant* applications are demonstrated in this chapter.
 
-## Version control with Github {#section-github}
+## Version control with GitHub {#section-github}
 
-All analysis projects need to be saved via Git (on your local computer) and pushed to Github. Doing so has several benefits to both you, to your future self, and to your teammates:
+All analysis projects need to be saved via Git (on your local computer) and pushed to GitHub. Doing so has several benefits to both you, to your future self, and to your teammates:
 
 -   Since Git is a version control system, you get to save and track changes in your work (data, source code, reports, PowerPoint decks, Shiny dashboards) incrementally.
--   Incremental saving means you can recover from any accidental plunders. It's like Track Changes in Word, but for multiple files and folders. Spill a Diet Coke on your laptop in the middle of a big analysis? No big deal (if you've been pushing commits to Github, it'll all be there!)
+-   Incremental saving means you can recover from any accidental plunders. It's like Track Changes in Word, but for multiple files and folders. Spill a Diet Coke on your laptop in the middle of a big analysis? No big deal (if you've been pushing commits to GitHub, it'll all be there!)
 -   Collaboration is much more structured, with powerful tools for asynchronous work and managing versions.
 -   Referencing and reviewing code, tracking issues, and sharing what you've done is seamless, which means ...
--   Your work will be reproducible: anyone from R&A can pull your repo from Github, run your analyses, add to or edit what you've done, and share those changes back in a way that is communicative and documented.
--   setting up web documentation for any R packages you build become seamless.
+-   Your work will be reproducible: anyone from R&A can pull your repo from GitHub, run your analyses, add to or edit what you've done, and share those changes back in a way that is communicative and documented.
+-   setting up web documentation for any R packages you build becomes seamless.
 
 But enough on the **why** let's get to **how** (if you do want to know more on the why, [check out this excellent article by Jenny Bryan](https://doi.org/10.7287/peerj.preprints.3159v2))
 
-### Getting Started with Git, Github, and RStudio
+### Getting Started with Git, GitHub, and RStudio
 
 Here's a quick overview of what you'll need to do, with details to follow:
 
@@ -33,7 +33,7 @@ Here's a quick overview of what you'll need to do, with details to follow:
 
 #### First steps {#first-steps}
 
-**These steps are borrowed with some light editing from [Happy git with R](https://happygitwithr.com/) by Jenny Bryan.**
+**These steps are borrowed with some light editing from [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan.**
 
 1.  [Register for GitHub account.](https://happygitwithr.com/github-acct.html#github-acct)
 2.  [Install or update R and RStudio](https://happygitwithr.com/install-r-rstudio.html#install-r-rstudio)
@@ -45,15 +45,15 @@ Here's a quick overview of what you'll need to do, with details to follow:
 8.  Create and save a [GitHub Personal Access Token (PAT)](https://happygitwithr.com/credential-caching.html#credential-caching).
 9.  [Prove RStudio can find local Git and, therefore, can talk to GitHub](https://happygitwithr.com/rstudio-git-github.html#rstudio-git-github).
 
-### Feature Branch Worklow
+### Feature Branch Workflow
 
-There are [many workflows using Git and remote repositories like Github](https://www.atlassian.com/git/tutorials/comparing-workflows). All of thenm boil down to the following steps:
+There are [many workflows using Git and remote repositories like GitHub](https://www.atlassian.com/git/tutorials/comparing-workflows). All of them boil down to the following steps:
 
 1.  Pull or fetch or clone a repo on Github to your local machine. If you are starting a new project, then you'll need to create a new repo on Github (but you can also start one on your machine). **This is usually called the main (formerly master) branch.**
 2.  Create a new branch that you will work on.\
 3.  Do some analysis, coding, writing.
 4.  Periodically save a snapshot of your entire project (all the files and folders, except those that you explicitly ignore). This is called \*committing changes\*\*.
-5.  Every once ins while **push your commits** to the remote repo. Congrats! You've just backed up your remotely and made it easy to share.
+5.  Every once in while **push your commits** to the remote repo. Congrats! You've just backed up your project remotely and made it easy to share.
 6.  **Merge** your new analysis and code back into the main branch. This is usually initiated by something called a *pull request* (which is admittedly a little confusing).
 
 The specific workflow we use on IDEA's R&A team is the [Feature Branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow), which has the benefit of being both simple, while minimizing merge conflicts. The core idea behind the Feature Branch Workflow is that all feature development should take place in a dedicated branch instead of the main branch. This encapsulation makes it easy for multiple analysts to work on a particular analysis without disturbing the main codebase. It also means the main branch will never contain broken code. Moreover, it means you'll be more likely to get a second or third set of eyes on our analysis. This makes your work more transparent, helps enforce coding standards, and helps spread all the cool new techniques you've implemented in your analysis.
@@ -62,18 +62,18 @@ So what does this look like? Well, here's a picture of the feature branch workfl
 
 [![This image shows the network diagram from Github and is an illustration of the feature branch workflow.](img/feature_branch_example.png "Feature Branch Workflow Network Chart for this manual")](https://github.com/idea-analytics/r_and_a_manual/network)
 
-This picture shows the development of this manual over time (from left to right) [as rendered by Github's network diagram](https://github.com/idea-analytics/r_and_a_manual/network): it includes new branches being created, commits being made and merges back into the main branch. The black line is the main branch and includes the most up-to-date, "official" version of this book. The green and blue lines are feature branches, which diverge from the main when you checkout a new branch. The dots represent commits. Colored lines returning to the main branch indicate a merge: the new code is now part of of the main branch. You might be wondering what the unmerged yellow line labeld `gh-page` represents. That is a special branch that is used by [Githbub Actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) that uses the concept of continuous integration/continuous to build the website that hosts this manual. You don't need to worry about that one; it's simply used to build out the site magically.
+This picture shows the development of this manual over time (from left to right) [as rendered by GitHub's network diagram](https://github.com/idea-analytics/r_and_a_manual/network): it includes new branches being created, commits being made and merges back into the main branch. The black line is the main branch and includes the most up-to-date, "official" version of this book. The green and blue lines are feature branches, which diverge from the main when you checkout a new branch. The dots represent commits. Colored lines returning to the main branch indicate a merge: the new code is now part of of the main branch. You might be wondering what the unmerged yellow line labeld `gh-page` represents. That is a special branch that is used by [GitHub Actions](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) that uses the concept of continuous integration/continuous delivery to build the website that hosts this manual. You don't need to worry about that one; it's simply used to build out the site magically.
 
-### Example worflow with this manual, or getting your feet wet
+### Example workflow with this manual, or getting your feet wet
 
-This section is going to walk you through how to use git/github by updating this manual. You'll (i) clone the Github repo locally on your laptop, (ii) create a feature branch, (iii) make some changes to this documentation, save those changes, and then commit those changes git (i.e., locally take a snapshot), (iv) push those changes (including all of your commits) up to the Github repo, (v) initiate a pull request (i.e., ask to merge your branch into the main branch), and finally (vi) merge your changes into the master branch.
+This section is going to walk you through how to use git/github by updating this manual. You'll (i) clone the GitHub repo locally on your laptop, (ii) create a feature branch, (iii) make some changes to this documentation, save those changes, and then commit those changes git (i.e., locally take a snapshot), (iv) push those changes (including all of your commits) up to the GitHub repo, (v) initiate a pull request (i.e., ask to merge your branch into the main branch), and finally (vi) merge your changes into the master branch.
 
 But first things first:
 
 1.  Verify you did [the initial set-up steps above](#first-steps)
 2.  Get your bio ready.
 
-\*\*Note that throughout the steps below I'll show you how to each step Ok. Your ready? Great! Here we go.
+\*\*Note that throughout the steps below I'll show you how to each step. Ok. You ready? Great! Here we go.
 
 #### Get the [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
 
@@ -85,9 +85,9 @@ But first things first:
 
 #### Clone the repo {.tabset}
 
-Now you'll pull the remote repo from Github onto you computer. You'll want to think about where you want to save this. For example I save data analysis projects in seperate folders under a `Data_Analysis/` folder. I save the manual just on my one drive.
+Now you'll pull the remote repo from GitHub onto you computer. You'll want to think about where you want to save this. For example, I save data analysis projects in separate folders under a `Data_Analysis/` folder. I save the manual just on my OneDrive.
 
-##### Comand line
+##### Command line
 
 Here I'm saving this to temporary space, by navigating to `~/tmp/~` and then cloning the data:
 
@@ -102,7 +102,7 @@ This will pull down all the content of the repo: files, folders, all commits, al
 
 Here's how you do it from RStudio:
 
-1.  In RStudio, start a new Project: **File \> New Project \> Version Control \> Git**, or click on project icon in the upper right-hand corner of the IDE and select **New Project...**. ![](img/new_project_selection.png "Creating a new project")
+1.  In RStudio, start a new Project: **File \> New Project \> Version Control \> Git**, or click on the project icon in the upper right-hand corner of the IDE and select **New Project...**. ![](img/new_project_selection.png "Creating a new project")
 2.  In the "repository URL" paste the URL of your new GitHub repository. That is: <https://github.com/idea-analytics/r_and_a_manual.git>
 3.  Be intentional about where you create this project.
 4.  You should click "Open in new session". ![](img/new_session_checkbox.png "Making sure you create a new session")
@@ -114,9 +114,9 @@ Here's how you do it from RStudio:
 
 Cool. You should now have the R&A Manual files on repo history on your computer!
 
-#### Checkout a branch
+#### Check out a branch
 
-*Before you start doing anything* you should check out a branch. A branch is like your own, tempory, disposable workspace. When you checkout a branch you create a new copy of the the repo and changes you make only happen on the branch. When your happy with the changes and are ready to share them you'll to a pull request. But we'll get to that below.
+*Before you start doing anything* you should check out a branch. A branch is like your own, temporary, disposable workspace. When you checkout a branch you create a new copy of the repo and changes you make only happen on the branch. When you're happy with the changes and are ready to share them you'll create a pull request. But we'll get to that below.
 
 ##### Command line
 
@@ -135,31 +135,31 @@ git checkout -b update-bio-cjh
 
 ##### RStudio
 
-1.  Click on the *Git* panel (usually in the upper right on that standard RStudio layout, but YMMV if you've customized your layouts).
+1.  Click on the *Git* panel (usually in the upper right on the standard RStudio layout, but YMMV if you've customized your layouts).
 2.  Click on the purple "branch" icon (it kinda looks like a piece of a flowchart). ![](img/rstduio_create_branch.png "Creating a branch in RStudio")
-3.  Giving a short but meaningful name (something like, `update-bio-cjh`). Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.
+3.  Give a short but meaningful name (something like, `update-bio-cjh`). Make sure the **Sync branch with remote** checkbox is selected; this will save you a step later when you push you changes up to the repo.
 
 #### Making changes and saving them
 
-You now on a new branch and go go makes some changes. Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would
+You are now on a new branch and ready to make some changes. Go ahead and open `02-Who_We_Are.Rmd` file and add your name as a section, update your bio and save it, as you usually would.
 
 Now you'll want to commit those changes, which takes a snapshot of the current state on the branch you are working on.
 
 #### Command line
 
-after saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
+After saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
 
 ```{bash commit, eval=FALSE}
 git commit -a -m "Updated Chris's bio"
 ```
 
-You should do this often. After a while you'll want to push your changes up to Github (frequently, but not as often as commits):
+You should do this often. After awhile you'll want to push your changes up to GitHub (frequently, but not as often as commits):
 
 ```{bash push, eval = FALSE}
 git push
 ```
 
-You've likely not yet defined where this remote branch should go, but git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch.:
+You've likely not yet defined where this remote branch should go, but Git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch:
 
 ```{bash, eval=FALSE}
 fatal: The current branch update-bio-cjh has no upstream branch.
@@ -174,18 +174,18 @@ Go ahead and copy and run that command.
 git push --set-upstream origin update-bio-cjh
 ```
 
-After that you can just use `git push` and you'll branch changes will be saved remotely.
+After that you can just use `git push` and your branch changes will be saved remotely.
 
 #### Maintaining large files
 
-If you have a file that is over 100 MB in size (e.g. a PowerBI dashboard), GitHub will block your commit (or at least send you a warning). There are two ways of approaching this issue:
+If you have a file that is over 100 MB in size (e.g., a PowerBI dashboard), GitHub will block your commit (or at least send you a warning). There are two ways of approaching this issue:
 
 1.  Use the large file storage (LFS) extension to commit the file.
 2.  Add the file to .gitignore so the file is not committed.
 
 ##### Large file storage (LFS)
 
-Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 137 MB in size, so it cannot be handled through normal a Git workflow. You will need to download the LFS extension from this site: <https://git-lfs.github.com/>. Once you download, then you will follow these steps:
+Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 137 MB in size, so it cannot be handled through a normal Git workflow. You will need to download the LFS extension from this site: <https://git-lfs.github.com/>. Once you download, then you will follow these steps:
 
 1.  Open the Git command line. (I have not found a solution through RStudio or GitHub Desktop).
 2.  Switch to the repo and branch that has the large file.

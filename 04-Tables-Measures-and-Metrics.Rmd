@@ -1639,7 +1639,7 @@ TCP/Teacher Export Data: Teacher Performance data.
 * If a person is missing one of the other four TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights are the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage four equal ways).
 
 1. SY 18-19  
- * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Stephen, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
+ * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Steven, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
 
 2. SY 19-20  
   * (“Maura Report”, from Alex, new sheet on the Teacher Export 18-19 file from Alex, see email).
