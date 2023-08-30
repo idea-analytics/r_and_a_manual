@@ -282,8 +282,8 @@ The Schools table provides essential information about each school, including th
 **Important columns:**
 
 * **[SchoolNumber]:** official PowerSchool school ID; most frequently used to link to other tables
-* **[SchoolName]:** full name of the school, e.g. IDEA Frontier College Preparatory
-* **[SchoolShortName]:** campus name, e.g. Frontier
+* **[SchoolName]:** full name of the school (e.g., IDEA Frontier College Preparatory)
+* **[SchoolShortName]:** campus name (e.g., Frontier)
 * **[StateSchoolNumber]:** number used by the campus' respective state for reporting (note: this column may not have correct values for all schools)
 * **[SchoolAbbreviation]:** abbreviation of school name (not commonly used)
 * **[SchoolLowestGrade]:** lowest grade level, where PK = -1, K = 0
@@ -296,7 +296,7 @@ The Schools table provides essential information about each school, including th
 * **[CollegeSuccessDirector]:** Director of College Counseling (DCC) at the school; links to Employees table using EmployeeKey
 * **[Area]:** describes if the school is under the division of RGV, Texas, or IPS & SA, i.e. which superintendent oversees the school
 * **[RegionAltID]:** describes the Subregion, if applicable (default is Region); mostly used for RGV schools to divide into Lower, Mid and Upper Valley, and San Antonio schools into East and West; links to the Regions table
-* **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022 you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
+* **[IsDeprecated]:** 0/1 indicator of open vs. closed schools or old vs. new school numbers. Oscar Dunn is coded as 1, since it closed at the end of 2021-2022. The two Tampa schools (Hope and Victory) have 4 rows, 2 with the school number used in 2021-2022 and 2 with the new school numbers being used in the 2022-2023 school year. Note: If you are needing data on Hope or Victory for 2021-2022, you will need to use the old school numbers where IsDeprecated == 1. If you want data for the current year, you will need to filter to IsDeprecated == 0. 
 
 **Context:**
 
@@ -305,8 +305,8 @@ The Schools table provides essential information about each school, including th
 * For historical reasons, IDEA Academy Donna is labeled as "IDEA Academy Primary", IDEA Middle School Donna is labeled as "IDEA Academy", and IDEA College Preparatory Donna is labeled as "IDEA College Preparatory". (It is suggested you rename these to the modern names).
 * IDEA San Juan Academy is [physically in a different location](https://ideapublicschools.org/our-schools/idea-san-juan/) than is IDEA San Juan College Prep, rather than being on the same campus. Systems and individuals that are traditionally shared between campuses, such as the APO, are distinct for each school. Their [SchoolShortName] is also different - "San Juan AC" and "San Juan CP", respectively. (It is suggested you rename these both to be "San Juan" when pulling in data.)
 * IDEA Allan was renamed as IDEA Montopolis, so older records may still reflect this name.
-* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable, since values may reflect coding choices at Midland ISD.
-* IDEA Amber Creek was renamed as IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
+* IDEA Travis Academy is an in-district partnership with Midland ISD. Records from this school may not necessarily be accurate or interpretable since values may reflect coding choices at Midland ISD.
+* IDEA Amber Creek was renamed IDEA Ambrose and Freda Robinson (short name IDEA Robinson) as of the 2022-2023 school year.
 
 
 ### Regions table
@@ -365,7 +365,7 @@ Daily attendance is taken through PowerSchool to see which students are presentl
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
 * **Current Year + 3 Past Years** This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, & 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.
 
-**For Attendance data Prior to 2019-2020:**
+**For Attendance Data Prior to 2019-2020:**
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
 * **Academic Years: 2021-2022 - 2015-2016** This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.
 
@@ -489,9 +489,9 @@ The other side of enrollment is **student persistence**. To see how enrollment i
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for 2 consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA, the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence, FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for two consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
 
-Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on FDOP because he didn't return until September, John would not count as a student who persisted.
+Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on the FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on the FDOP because he didn't return until September, John would not count as a student who persisted.
 
 **Database:** [RGVPDSD-DWPRD1].[Persistence]
 
@@ -501,7 +501,7 @@ Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended s
 
 **Tables:**
 
-* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year)? After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schoools and regions due to differing start dates and FDOPs).
+* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).
 
 * **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
@@ -519,8 +519,8 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   + **AcademicYear:** the academic year
   + **RegionDescription:** the region the student is in
   + **SchoolShortName:** the school the student attends
-  + **SchoolType:** Academy of College Prep
-  + **GradeLevelID:** Student's grade level (integer ranging from -1 = Pre-K to 12)
+  + **SchoolType:** Academy or College Prep
+  + **GradeLevelID:** student's grade level (integer ranging from -1 = Pre-K to 12)
   + **NewStudent:** indicates if the student is new (1) or returning (0)
   + **PersistenceWeek:** the current week of persistence based on the student's region and school (ranges from 1-52)
   + **LeaverWeek:** the persistence week the student left the district
@@ -545,33 +545,33 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   
 ### Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)
 
-Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students overtime. When this occurs the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
+Occasionally student persistence is requested for school years that are not captured in the Persistence Tables, i.e., persistence data prior to 2018-2019, or for cohorts of students over time. When this occurs, the Attendance tables can be used to "snapshot" whether a student is attending at a particular date at the beginning of the school year in question and is still attending at a particular date in the beginning of the following school year. This way of calculating persistence has its drawbacks, mainly that it is not as precise as persistence calculated with the persistence table, results will differ slightly depending on the "snapshot" date selected. 
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1]
 
 **Tables:**
 
-* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table, contains a row for every school day every student attended for all years contained in the table.
+* **_[Attendance].[Students]:_** This table contains daily attendance data from 2017-2018 school year to present. To see what students are attending on a specific date use the AcademicYear column to select the specific school year and AttDate to select the date (in YYYY-MM-DD format). Be sure to filter before collecting the data due to the large size of the table (contains a row for every school day every student attended for all years contained in the table).
 
-* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same profess described above.
+* **_[ADA].[StudentDailyMembership]_** This table contains daily attendance data for 2016-2017 and prior. Contains some of the same columns as the Attendance.Students table, such as AttDate, AcademicYear, and SchoolNumber. To see what students are attending on a specific day you would use the same process described above.
 
 * **Other Useful Fields:**
-  + **AcademicYear:** the academic year (in both tables)
-  + **SchoolName:** the long school name (in both tables)
-  + **schoolnumber:** the school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
-  + **SchoolShortName:** the school's short name (ex. Donna; Only in the Attendance.Students table - 2017-2018 to present)
-  + **SchoolType:** indicates Academy or College Prep (Only in the Attendance.Students table - 2017-2018 to present)
-  + **RegionDescription:** the region (Only on the Attendance.Students table - 2017-2018 to present)
+  + **AcademicYear:** academic year (in both tables)
+  + **SchoolName:** long school name (in both tables)
+  + **schoolnumber:** school number (in the StudentDailyMembership (2016-2017 & prior) table it is SchoolNumber)
+  + **SchoolShortName:** school's short name (ex. Donna; only in the Attendance.Students table - 2017-2018 to present)
+  + **SchoolType:** indicates Academy or College Prep (only in the Attendance.Students table - 2017-2018 to present)
+  + **RegionDescription:** region (only on the Attendance.Students table - 2017-2018 to present)
   + **GradeLevelID:** student's grade level (in both tables)
   + **WeekNumber:** the number of the week in the academic year (in both tables) **Use Cautiously** the weeks are **NOT** numbered properly in 2019-2020 contains in the Attendance.Students table
   + **AttDate:** the date for the attendance record (format "YYYY-MM-DD") (in both tables)
   + **Membership:** indicates full-time = 1.0 or half-time = .5 (half-day pre-k students)
-  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", "or "LAUNCHING" (Only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
+  + **SchoolTypeOperation:** indicates if the school is "FULL SCALE", "SCALING", or "LAUNCHING" (only in the Attendance.Students table - 2017-2018 to present) and applies to Academies and College Preps individually
 
 
 ## College Application & Matriculation Metrics
 
-To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) lead the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
+To close the opportunity gap, IDEA Public Schools is committed to a vision of College for All Children. The College Success Team (CST) leads the initiative of monitoring and identifying the best College/University for each senior student, this is possible with data dashboards that use [Naviance](https://www.hobsons.com/solution/naviance/) information.
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Colleges]
 
@@ -658,7 +658,7 @@ IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture 
 
 ## Critical Student Intervention (CSI) Identification {#csi}
 
-To address the achievement gap among students, Dolores Gonzalez, our Chief Program Office introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
+To address the achievement gap among students, Dolores Gonzalez, our Chief Program Officer introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program. 
 
 **Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools]
 
@@ -668,7 +668,7 @@ To address the achievement gap among students, Dolores Gonzalez, our Chief Progr
 
 **Tables:**
 
-* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need of data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
+* **_[StudentCSI]:_** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
 
 * **SQL Code Example:**
 
