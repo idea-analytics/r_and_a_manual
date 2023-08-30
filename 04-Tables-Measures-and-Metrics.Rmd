@@ -1295,19 +1295,19 @@ get_table(.table_name = "StudentScores",
 
 ### LEAP
 
-Louisiana Educational Assessment Program (LEAP)
+Louisiana Educational Assessment Program (LEAP) 
 The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
 
 Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
 English learners from K-12 take the English Language Proficiency test (ELPT).
 
-LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least 3 tests and need to score Approaching Basic or higher in the fourth test.
+LEAP test results summarized by school and grade level can be downloaded from the [Louisiana Department of Education website](https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance) (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least three tests and need to score Approaching Basic or higher in the fourth test.
 
 The downloaded workbook has tabs for each grade level and a tab for high school. Filter the spreadsheet for the IDEA schools in LA. Use the expected number of students to participate and the participation rate columns to calculate the actual number of students who participated. To calculate the percentage of students who passed each subject, add the percentage of students who scored at the Advanced, Mastery, and Basic levels.
 
-#### Student level LEAP
+#### Student Level LEAP
 
-If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the excel spreadsheet to see the data.
+If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results [here](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx). Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the Excel spreadsheet to see the data.
 
 Useful Fields:
 •	SchoolNbr
@@ -1325,7 +1325,7 @@ Useful Fields:
 
 ## Student Course Grades
 
-There are 2 tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
+There are two tables in the warehouse that collect student course grades, `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]` and `[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]`. The [StudentCurrentGrades] table is where course grades land from PowerSchool for students in 8th through 12th grade. This table is used to calculate *On track to Graduate* and to check if students are passing their courses. These grades change! After the quarter is complete the grades are moved to the [StudentHistoricalGrades] table as a permanent grade. The [StudentHistoricalGrades] table contains grades for all students in Pre-K though 12th. This is the table used for transcripts and report cards.
 
 **Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCurrentGrades]
 
@@ -1341,7 +1341,7 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 * **GradeLevelID:** Grade level (only 8th through 12th)
 * **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter
 * **PercentGrade:** The numerical grade 0-100
-* **LetterGrade:** Wouldn't use this column it is a mix of letter grades and numerical grades
+* **LetterGrade:** Wouldn't use this column, it is a mix of letter grades and numerical grades
 * **SchoolTermID:** Indicates the quarter or year, Ex. 3000 = 2020-2021 SY, 3100 = 2021-2022 SY
 
 **Table:** [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentHistoricalGrades]
@@ -1356,14 +1356,14 @@ There are 2 tables in the warehouse that collect student course grades, `[RGVPDS
 * **CourseNumber:** Course number
 * **CreditType:** Abbreviated subject, such as ELA or MA for Math
 * **StaffID:** The Staff ID number for the teacher of the course (not sure if this is accurate)
-* **TeacherName:** The teacher's name (Last, First) again not sure if this is accurate
+* **TeacherName:** The teacher's name (Last, First), again not sure if this is accurate
 * **GradeLevelID:** Grade level (only 8th through 12th)
 * **StoreCode:** Indicates the whether the grade is for the year-long course, semester, or quarter (Y1 = end-of-course grade for the year)
 * **PercentageGrade:** The numerical grade 0-100
 * **LetterGrade:** Appears to be all letter grades (Character column)
 * **AbsentCount:** Count of absences
 * **TardyCount:** Count of tardies
-* **State:** 2 letter abbreviation for the student's State 
+* **State:** two letter abbreviation for the student's state 
 
 
 ## Staff Retention
@@ -1419,9 +1419,9 @@ Data has varied across the years and the naming conventions (or lack there of) i
 
 ### Tyler Munis data
 
-Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's Step, salary, pay rate, pay schedule, lastest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
+Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee's step, salary, pay rate, pay schedule, latest step "date" (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.
 
-Currently, this data is being used for the Teacher Tenure project for Martin Winchester and HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
+Currently, this data is being used for the Teacher Tenure project for Martin Winchester and the HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher's Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.
 
 22-23 SY Steps for Teachers range from 0 to 35, consecutively, but skipping 32 and 34. Some teachers have NA for their Step. A Step of "0" indicates no prior experience teaching before being hired at IDEA. A step of "1+" indicates prior experience if it is the teacher's first year at IDEA, or it indicates experience at IDEA, if it is not the teacher's first year at IDEA.
 
@@ -1442,13 +1442,13 @@ FORMAT(premppay_all.prep_work_st_dt,'d','en-us')  AS 'Work Start Date'
 ,CASE WHEN prempmst.prem_term_date < GETDATE() THEN 'NLE'  
 ELSE 'Active' END AS [JobPaySkill]  
 
-It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports, that could be filtered for NLE or Active, in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).
+It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports that could be filtered for NLE or Active in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).
 
 ##Start Date
 
 ,FORMAT(prempmst.prem_hire,'d','en-us')   [StartDate] 
 
-Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, they person doesn't have to switch roles, and the Work Start Date is the start date for their current school year's job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.
+Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, that person doesn't have to switch roles, and the Work Start Date is the start date for their current school year's job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.
 
 ###New Teacher at IDEA
 Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
@@ -1502,11 +1502,11 @@ forms_try <- get_table(.table_name = "Forms", .database_name = "SRC_Teachboost",
   collect()
  forms_try
 
-Forms table has the topic_id, which is the TB ID of the person about whom the form is written. the author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is the not employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
+Forms table has the topic_id, which is the TB ID of the person about whom the form is written. The author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the "ID" number on the Users table. The ID from users is not the employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.
 
 #### Users
 
-UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in teachboost such as Region or School.
+UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in Teachboost such as Region or School.
 
 #### Templates
 
@@ -1514,7 +1514,7 @@ This table no longer exists and the data has been moved to the forms table.
 
 ### Compass data
 
-[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data 
+[Compass](https://compass.ideapublicschools.org) is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data **and should be considered the source of truth** for these data. 
 
 :::tip
 You'll need to reach out to Chris Haid to access the database. A set of compass functions for `[ideadata](idea-analytics.github.io/ideadata)` is in development.
@@ -1526,7 +1526,7 @@ You'll need to reach out to Chris Haid to access the database. A set of compass 
   - Employee_ID
   - Question_ID
   - Year
-  - SortOrder (specific to year and Reviewer amd ois order displayed in Cornerstone)
+  - SortOrder (specific to year and Reviewer and is order displayed in Cornerstone)
   - Reviewer
   - IsComplete (completed by Staff and Manager)
 
@@ -1570,7 +1570,7 @@ You'll need to reach out to Chris Haid to access the database. A set of compass 
     - Pivoted by employee id for performance manager
     - **This will change** (moving to tidy data)
 - Goals
-- External Position (not ussedd, but for user added data not captured in Jobvite)
+- External Position (not used, but for user added data not captured in Jobvite)
 - AnnualPerformanceReviews
  
 
@@ -1584,9 +1584,9 @@ R&A has used data from Jobvite to analyze pre-hiring measures of hired teachers.
 
 Here are some more facts about Jobvite data:
 
-* Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have  `Candidate Submit Date` column , which ranges from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following FAll after the application cycle). 
+* Obtained from HA team. It is the data from the candidates who apply for IDEA jobs through Jobvite. Not all candidates applied through Jobvite in the past, but HA is trying to streamline the application process and require all applicants for all jobs (at all campuses) to apply through Jobvite. A particular Jobvite file is labeled with a year, such as "Jobvite 19-20", and it will have  `Candidate Submit Date` column , which ranges from October 2019 to July 2019 (October to July, proceeding the year the applicant will likely begin work). An applicant from that range will most likely have a Start Date of August 2019 (or sometime in the calendar year 2019, starting AFTER the 19-20 Academic Year). However, there are cases when applicants will, for example, apply during the 10/2018 - 07/2019 cycle (Jobvite 19-20), but will not have a Start Date until 2020 or 2021 (so they do not start the following Fall after the application cycle). 
 
-This file has columns including `Candidate Full Name`, `Candidate Email` (personal email used for the application), and some of the pre-hire selection measures, such as `GPA`. However, all 5 of the pre-hire selection measures are not included yet (`STEM Major`, `Teach For America status`, `Experience prior to IDEA`, `GPA`, and `Teacher Certification`). The data also has no `Employee IDs yet`, as this is a list of candidates. There is a `Hire Yes/No` column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
+This file has columns including `Candidate Full Name`, `Candidate Email` (personal email used for the application), and some of the pre-hire selection measures, such as `GPA`. However, all five of the pre-hire selection measures are not included yet (`STEM Major`, `Teach For America status`, `Experience prior to IDEA`, `GPA`, and `Teacher Certification`). The data also has no `Employee IDs yet`, as this is a list of candidates. There is a `Hire Yes/No` column, which has "Yes" for those candidates who were offered a position and "No" for those who were not offered a position. Also, there is a Requisition ID which is basically an application ID number, and it is unique per application. If a single candidate applies for more than one position, the candidate will have a unique ID for each application. Below are some bullet points describing Jobvite and Teacher Export (TCP) data.
           
 * Jobvite Data: applications for Teacher Roles through Jobvite (when filtering for `Category == "Teaching"`)
 
@@ -1610,7 +1610,7 @@ This file has columns including `Candidate Full Name`, `Candidate Email` (person
     * Contains Tentative Start Date column
 
   3. 21-22 – 4th year of Jobvite data
-    *(renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
+    * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
     * Contains Tentative Start Date column
 
 ### TCP/Teacher Export Data
@@ -1631,12 +1631,12 @@ TCP/Teacher Export Data: Teacher Performance data.
   + Contains IDEA Work Email and EmployeeID
   + Contains First Name and Last Name (but not Full Name)
   
-**There is a 2 year HOLD for the pandemic** (we don’t know who was “held”), meaning someone at a particular level (E.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
+**There is a 2 year HOLD for the pandemic** (we don’t know who was “held”), meaning someone at a particular level (e.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.
 
 
-* If someone got a 4.5+ composite TCP score for 2 consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
+* If someone got a 4.5+ composite TCP score for two consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.
 * For those who do not have Student Achievement scores, the highest TCP Level they can reach is a Level 3 (since Student Achievement is 50% of the score).
-* If a person is missing one of the other 4 TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage 4 equal ways).
+* If a person is missing one of the other four TCP components, such as Parent Survey, the points that were from that score are reallocated to the other components, weights are the in the same ratios as the other components (so it’s not an equal allocation, meaning you don’t divide the percentage four equal ways).
 
 1. SY 18-19  
  * Available from www.tcp.ideapublicschool.org. Click on "Export", and click the SY you are interested in. Alex Saldivar can give you access; however Maura, Ilissa, Stephen, Edison, and Marlena have been granted access. Maura has requested access for Chris, Karina, Mishan, and Aline.
@@ -1646,7 +1646,7 @@ TCP/Teacher Export Data: Teacher Performance data.
   * Need to request this from Blanca (data table we are already using for TSLIP grant, that we can re-use for Teacher Hiring Round 3).
   * 20-21 – 3rd year of Jobvite data 
   * from Blanca Carillo, contains ONLY those with “Teacher” roles OR New Hires and Promotions; all co-teachers, etc., have been removed for that academic year 
-  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year.
+  * Contains some who started work in 21-22 but are New Hires or Promotions, so rated Level 1 TCP (but didn’t work in the 20-21 school year).
   
   If you would like to download your own TCP Export data for SY 19-20, please go to the TCP Application Website: www.tcp.ideapublicschools.org.
 
