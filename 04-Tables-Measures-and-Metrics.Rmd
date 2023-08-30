@@ -713,7 +713,7 @@ WHERE A.AcademicYear = '2020-2021'
 
 ### State of Texas Assessments of Academic Readiness (STAAR)
 
-The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:
+The STAAR assessments are Texas' standardized tests administered every year, except for 2019-2020 due to COVID-19. Grades 3-8 take the Reading and Math assessments every year with Writing, Science, and Social Studies assessed at specific grades. In 2021-2022, the TEA removed the writing assessment and incorporated writing into all assessments. Testing schedule is as follows:
 
   + **Grade 3:** Reading and Math
   + **Grade 4:** Reading and Math
@@ -722,15 +722,15 @@ The STAAR assessments are Texas' standardized tests administered every year, exc
   + **Grade 7:** Reading and Math
   + **Grade 8:** Reading, Math, Science, and Social Studies
 
-Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas a student must have taken and passed 5 EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
+Assessments are provided in both English and Spanish up to the 5th grade, after which the test is only in English. Students in High School (and some middle school students) complete End-of-Course (EOC) assessments to fulfill graduation requirements. In order to graduate in Texas, a student must have taken and passed five EOC assessments: Algebra I (taken in 8th grade at IDEA), Biology, English I, English II, and United States History. Students with significant cognitive disabilities would take the STAAR Alternate 2 (STAAR Alt 2) rather than the STAAR. This alternate test is administered by the teacher and is usually excluded from our analyses on academic achievement.
 
-All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Approaches, Meets, and Masters. When the assessments were rolled out the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are **NOT** mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standrad are included in the counts for Satisfactory.
+All STAAR assessments, excluding STAAR Alt 2, have three performance standards: Approaches, Meets, and Masters. When the assessments were rolled out, the passing standard was going to be moved up to the Meets standard after a few years when more than half of students were meeting the Approaches standard. This has not yet happened so the passing standard remains at the Approaches performance level. These three performance levels are **NOT** mutually exclusive, meaning that students that achieve the Masters standard are included in the Meets count and the Approaches count, and students achieving the Meets standard are included in the Approaches count. The STAAR Alt 2 has two performance levels: Developing, Satisfactory, and Accomplished. The passing standard for the STAAR Alt 2 is the Satisfactory performance standard. Again these performance levels (Satisfactory and Accomplished) are not mutually exclusive categories, students who achieve the Accomplished standard are included in the counts for Satisfactory.
 
 **Database:** [RGVPDRA-DASQL].[Dashboard]
 
 **Tables:**
 
-* **_[dbo].[STAAR]:_** This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to 3 administrations in one year. For example, a fifth grade student will take reading, math and science in one year, so that's 3 rows for each test. Further, if this student doesn't pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn't pass it in May they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in r to get the students best score and de-duplicate to get one row per student.
+* **_[dbo].[STAAR]:_** This table contains all of the STAAR and STAAR Alt 2, 3-8 and EOC assessment data. Data in this table has multiple rows for each student, for each test and each administration that could be up to three administrations in one year. For example, a fifth grade student will take reading, math, and science in one year, so that's three rows for each test. Further, if this student doesn't pass reading or math in March (the first administration) then they would take it again in May (second administration or retake). If they didn't pass it in May, they could take it a third time in June. Only 5th and 8th grade students get three opportunities to take Reading and Math in one academic year, this is due to the Student Success Initiative (SSI) requirements that every 5th and 8th grade student pass STAAR Reading and Math to be promoted to the next grade. Although there are exceptions to this rule (i.e., the requirement was waived in 2020-2021), one should expect more than one administration for some students. Below the description of columns is an example in R to get the student's best score and de-duplicate to get one row per student.
 
 * **Useful Fields:**
 
@@ -751,9 +751,9 @@ All STAAR assessments, excluding STAAR Alt 2, have 3 performance standards: Appr
   + **ScoreCode:** indicates whether the test was scored or student was absent. **ALWAYS** filter to ScoreCode == "S" to get the scored tests
   + **TestVersion:** "S" = STAAR and "T" = STAAR Alt 2
   + **ScaleScore:** provides the scaled score for that assessment and can be used to find the best score/most recent administration
-  + **LevelII:** 0/1 indicator for the Approaches performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
-  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Satisfactory performance level
-  + **LevelIII:** 0/1 indicator for the Masters performance standard **Note** When filtered to STAAR ALt 2 this indicates whether or not the student achieved the Accomplished performance level
+  + **LevelII:** 0/1 indicator for the Approaches performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIIFinal:** 0/1 indicator for the Meets performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Satisfactory performance level
+  + **LevelIII:** 0/1 indicator for the Masters performance standard **Note** When filtered to STAAR Alt 2 this indicates whether or not the student achieved the Accomplished performance level
   + **SchoolYear:** character value indicating the academic year, Ex. "2020-2021"
   + **BestRecord:** logical column supposed to indicate if that record is the best for that student for that test **DOES NOT WORK**
 
@@ -911,7 +911,7 @@ This table aggregates item-level data for each student and reports a student's p
 * **[PBStartRange]:** Lower bound for a performance band, as a percent.
 * **[PBEndRange]:** Upper bound for a performance band, as a percent.
 * **[Description]:** Description of performance band interval, in words.
-* **[Mastery]:** 1 = demonstrated mastery (e.g. passed, approaches+, etc.); 0 = did not
+* **[Mastery]:** 1 = demonstrated mastery (passed, approaches+, etc.); 0 = did not
 * **[src]:** Source of asssessment data (most are Illuminate, but some are from legacy systems)
 * **[Scope]:** Similar to AssessmentType, but more detailed.
 * **[State]:** Two-letter state code (TX, LA, FL, OH) where the assessment is administered.
@@ -922,7 +922,7 @@ This table aggregates item-level data for each student and reports a student's p
 * **[StudentNumber]:** Use to link to the students table.
 * **[TcpCourseCode]:** This code uniquely links the assessment to the TCP course code.
 
-##### IABWAItems
+##### IABWA Items
 
 This table displays item-level data for each student for each assessment. This information can be useful for looking up items with specific TEKS, taught/not-taught objectives, multiple-choice vs. open-ended responses, etc.
 
@@ -940,7 +940,7 @@ This table displays item-level data for each student for each assessment. This i
 * **[Subject]:** Same as SubjectID, but in words. 
 * **[AssessmentReporingName]:** One of two columns to choose a type of assessment.
 * **[AssessmentType]:** One of two columns to choose a type of assessment.
-* **[QuestionNumber]:** Describes the question and part (e.g. 1a, 1b, 2, etc.)
+* **[QuestionNumber]:** Describes the question and part (1a, 1b, 2, etc.)
 * **[ItemStudentResponse]:** The response(s) scanned in by the student or teacher
 * **[ItemCorrectResponse]:** The response(s) needed for full credit on the item.
 * **[standard]:** Describes the objective number, TEKS, etc.
@@ -951,7 +951,7 @@ This table displays item-level data for each student for each assessment. This i
 * **[Points]:** Total points available for item.
 * **[ReportingGroups]:** Describes the reporting group of objectives.
 * **[IsRubric]:** ?
-* **[State]:** Two-letter state code (TX, LA, FL) where the assessment is administered.
+* **[State]:** Two-letter state code (TX, LA, FL, OH) where the assessment is administered.
 * **[QuestionTypeName]:** Describes the type of question (Multiple Choice, etc.)
 * **[QuestionType]:** Same as QuestionTypeName but abbr.
 * **[ExtraCredit]:** 1 = extra credit question; 0 = not
@@ -1031,25 +1031,25 @@ DIBELS has multiple required measures but can be implemented using *gating rules
   
 
 ### Renaissance STAR (also RenStar, Little Star)
-[Reinaissance](https://www.renaissance.com/about-us/) [Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostics to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
+[Renaissance](https://www.renaissance.com/about-us/) [Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostic to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
 
 It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student's effort on any given test).
 
 #### Where to get RenStar data?
-Accessessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best best is to use:
+Accessing these data in the warehouse at this juncture is not always obvious.  There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best is to use:
 
 `[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
 
 ### AP
 
-IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams, however, IB schools offer far fewer options than the non-IB campuses. 
+IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams; however, IB schools offer far fewer options than the non-IB campuses. 
 
-All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned and added to the R&A's server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
+All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned, and added to the R&A server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
 
 **Step One:** pull down the most recent year's project on github.
-**Step Two:** Open the main r project within that folder, for example, "22-23 AP Report & Requests". Within that project there are 2 main sub-project folders. Use the AP Requests.
-**Step Three:** Run the 2 scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
-**Step Four:** Run the 3 scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and pass both with the same score that they are not counted twice towards the 3 exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
+**Step Two:** Open the main R project within that folder, for example, "22-23 AP Report & Requests". Within that project there are two main sub-project folders. Use the AP Requests.
+**Step Three:** Run the two scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
+**Step Four:** Run the three scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and passes both with the same score that they are not counted twice towards the three exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
 
 ### IB
 
