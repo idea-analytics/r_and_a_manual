@@ -1,6 +1,6 @@
 # Key Tables, Measures, and Metrics
 
-Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested about.
+Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.
 
 ## The Students Table
 
@@ -15,24 +15,24 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
 **Who is what?:** 
 
 * **_[EnrollmentStatus]:_** 
-  + If EnrollmentStatus = 0, it means that the student is/was an active student for the corresponding academic year,
-  + If EnrollmentStatus = 2, it means the student left the district before completing the academic year,
-  + If EnrollmentStatus = 3, it means the student graduated from IDEA's high school.
+  + If EnrollmentStatus = 0, the student is/was an active student for the corresponding academic year,
+  + If EnrollmentStatus = 2, the student left the district before completing the academic year,
+  + If EnrollmentStatus = 3, the student graduated from IDEA's high school.
 
 * **_[ELLCode]:_** English Learner (EL) A.K.A. Limited English Proficiency (LEP)
-  + If ELLCode = 0, student **is not** identified as an EL student,
+  + If ELLCode = 0, the student **is not** identified as an EL student,
   + If ELLCode = 1, the student **is** identified as an EL student,
-  + If ELLCode not in (0,1), it means the student is not currently identified as an EL but was identified before as one,
+  + If ELLCode not in (0,1), the student is not currently identified as an EL but was identified before as one,
   + If ELLCode = "F", the student **is not** identified as an EL student but is in the First Year of Monitoring status,
   + IF ELLCode = "S", the student **is not** identified as an EL student but is in the Second Year of Monitoring status,
   + If ELLCode = 3, the student **is not** identified as an EL student but is in the Third Year of Monitoring status,
   + If ELLCode = 4, the student **is not** identified as an EL student but is in the Fourth Year of Monitoring status,
   + If ELLCode = 5, the student **is not** identified as an EL student but was at one point more than 4 years ago.
   
-* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification the students ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
+* **EL Reclassification** An EL who has passed the Texas English Language Proficiency Assessment System (TELPAS) will be reclassified as a Non-EL and monitored for 4 years. After reclassification, the student's ELLCode will not change to 0, it will move through the codes for the 4 years of monitoring status and then change to an ELLCode of 5  
 
 * **_[SPED]:_** SPED students are composed of RISE and Life Skills students, not including Critical Student Intervention (CSI) students.
-  + If SPED = 0, it means the student is not identified as a SPED student, otherwise then SPED = 1.
+  + If SPED = 0, the student is not identified as a SPED student, otherwise SPED = 1.
   
 * **_[InstructionalSettingCode]:_** Students who are classified as SPED may receive additional services. Their services can be found in the **InstructionalSettingDescription** column, which is linked to a specific [PEIMS code](https://tealprod.tea.state.tx.us/TWEDS/98/0/0/0/CodeTable/List/14562):
 
@@ -43,8 +43,8 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  8 | Vocational Adjustment Class/Program
  40 | Mainstream
  41 | Resource Room/Services < 21%
- 42 | Resource Room/Services 21- <50%
- 43 | Resource Room/Services 50- 60%
+ 42 | Resource Room/Services 21 - <50%
+ 43 | Resource Room/Services 50-60%
  44 | Resource Room/Services > 60%
  96 | Off Home Campus - Separate Campus
  
@@ -62,7 +62,7 @@ We use this table to know to what subpopulation a student belongs to. Also, we c
  3 | Auditory impairment
  4 | Visual impairment
  5 | Deaf-Blind
- 6 | Intellectual Disability
+ 6 | Intellectual disability
  7 | Emotional disturbance
  8 | Learning disability
  9 | Speech impairment
@@ -102,19 +102,19 @@ SELECT DISTINCT  [StudentNumber], [TertiaryDisabilityCode], [TertiaryDisabilityD
 
 * **_[EconomicDisadvantageCode]:_** A.K.A ECD 
   + If EconomicDisadvantageCode = 0, then the student is _not identified as economically disadvantaged_, otherwise the student is identified as **economically disadvantaged**,
-  + If EconomicDisadvantageCode = 1, then the student is identified as an economically disadvantaged and eligible for free meals,
-  + If EconomicDisadvantageCode = 2, the student is also identified as an economically disadvantaged but only eligible for reduced-price meals,
-  + If EconomicDisadvantageCode = 99, it means the student is identified as an economically disadvantaged one but has another economic disadvantage.
+  + If EconomicDisadvantageCode = 1, then the student is identified as economically disadvantaged and eligible for free meals,
+  + If EconomicDisadvantageCode = 2, the student is also identified as economically disadvantaged but only eligible for reduced-price meals,
+  + If EconomicDisadvantageCode = 99, it means the student is identified as economically disadvantaged but has another economic disadvantage.
   
-* **ECDFlag** Consolidates the codes above to 0/1 indicator
+* **ECDFlag** consolidates the codes above to 0/1 indicator
   + If ECDFlag = TRUE (1), the student **is** identified as economically disadvantaged,
   + If ECDFlag = FALSE (0), the student **is not** identified as economically disadvantaged.
 
 
 * **_Race / Ethnicity:_** Same like in TX
-  + If the student identifies as Hispanic or Latino then the student is classified as Hispanic/Latino,
-  + If the student **does not** identify as Hispanic or Latino and only selected one race the student is classified as that race,
-  + If the student **does not** identify as Hispanic or Latino and selected more than one race, then the student is classified as Two or more races.
+  + If the student identifies as Hispanic or Latino, the student is classified as Hispanic/Latino,
+  + If the student **does not** identify as Hispanic or Latino and only selected one race, the student is classified as that race,
+  + If the student **does not** identify as Hispanic or Latino and selected more than one race, the student is classified as two or more races.
 
 * **_[RowIsCurrent]:_** Indicates the most current row for a student, **Only to be used on the current school year**
 
