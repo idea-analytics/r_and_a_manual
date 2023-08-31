@@ -19,7 +19,7 @@ Evaluation plans are created with program and grant managers. Evaluation plans a
 
 #### Evaluation Plan Guidelines
 
-**Standard components found in*most*evaluation plans**
+**Standard components found in most evaluation plans**
 
 Because evaluation plans are customized to each project, not all components may be included in every evaluation plan. 
 
@@ -33,7 +33,7 @@ Because evaluation plans are customized to each project, not all components may 
 General information about the program. May include program goals, objectives, and other pertinent information to understanding its importance to IDEA Public Schools (e.g., organizational goals, strategic plan, key action steps supported by the program).
 
 **Fiscal Considerations**  
-Cost-Effectiveness or Cost-Benefit  Measures (to be included by the evaluation)
+Cost-Effectiveness or Cost-Benefit  Measures (to be included in the evaluation)
 
 **Evaluation Purpose**  
 May include a purpose statement, primary objectives, and evaluation or research questions to be addressed by the evaluation.  
@@ -50,7 +50,7 @@ Mandatory reporting requirements (for funding agency and other entities) and pla
 
 **Program/Project Support**  
 Types of ongoing support that will be provided to the program staff over the course of the year. Ex: recurring meetings, data requests, etc.  
-*Sample language:* Evaluation staff will participate in ongoing, regularly scheduled meetings with the program staff for evaluation collaboration and provision of continuous feedback).
+*Sample language:* Evaluation staff will participate in ongoing, regularly scheduled meetings with the program staff for evaluation collaboration and provision of continuous feedback.
 
 **Timeline**  
 Lists and organizes tasks, activities, and focus areas as planned for the year. The timeline may combine months or list month-by-month as appropriate to the project. The timeline serves to communicate plans throughout the year and guide expectations among stakeholders interested in the evaluation work. Evaluators are held accountable to milestones highlighted in the timeline and overall evaluation plan.
@@ -74,11 +74,11 @@ Evaluation planning resources and files are stored in the [R&A Private Group][R&
 
 ## Annual Evaluation Projects
 
-The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program (CSP), and Teacher and School Leader Incentive Program (TSLIP).
+The R&A team evaluates four (4) annually funded grants including: 1) 21st Century Afterschool Program, 2) Camp Rio, 3) Charter School Program (CSP), and 4) Teacher and School Leader Incentive Program (TSLIP).
 
 ### 21st Century Afterschool Program
 
-IDEA Public Schools’ 21st Century Afterschool program provides high quality programming for students in the hours before and after the traditional school day has ended. The afterschool program allows IDEA schools to make a positive difference in the lives of students with greatest needs, as the program aims to provide additional support and ensure that all students are receiving the guidance and assistance they need to successfully progress towards college completion. The 21st Century program is centered around four main goals for students: increasing achievement scores, improving student behavior and attendance, and increasing rates of graduation or grade promotion towards timely graduation. 
+IDEA Public Schools’ 21st Century Afterschool program provides high quality programming for students in the hours before and after the traditional school day has ended. The afterschool program allows IDEA schools to make a positive difference in the lives of students with the greatest needs, as the program aims to provide additional support and ensure that all students are receiving the guidance and assistance they need to successfully progress towards college completion. The 21st Century program is centered around four main goals for students: increasing achievement scores, improving student behavior and attendance, and increasing rates of graduation or grade promotion towards timely graduation. 
 
 During the 2021-2022 school year, the majority of IDEA schools implementing the Afterschool Program were funded by the 10th cycle of the 21st Century grant or by the Elementary and Secondary School Emergency Relief Fund (ESSER). These schools were located in the South Texas and Rio Grande Valley and served students from pre-K through 12th grade. The following campuses were funded by the 21st Century grant: IDEA Alamo, IDEA Donna, IDEA Frontier, IDEA McAllen, IDEA Mission, IDEA Pharr, IDEA Quest, IDEA San Benito, IDEA San Juan, and IDEA Weslaco. The following campuses were covered by ESSER funds: IDEA Brownsville, IDEA Edinburg, IDEA Elsa, IDEA Harlingen, IDEA La Joya, IDEA Los Encinos, IDEA North Mission, IDEA Owassa, IDEA Palmview, IDEA Rio Grande City, IDEA Robindale, IDEA Riverview, IDEA Sports Park, IDEA Toros, IDEA Tres Lagos, IDEA Weslaco Pike. In addition, IDEA Health Professions was funded by the Department of Education and IDEA Innovation was funded by the Louisiana Department of Education.
 
@@ -92,7 +92,7 @@ Student participation in the Afterschool program is tracked in PowerSchool and t
 * **_[dbo].[Students]_**  This table tracks student program and activity participation. 
 
 **Columns:**
-* **[AcademicYear]:** Academic Year .i.e. 2022-2023
+* **[AcademicYear]:** Academic Year (i.e., 2022-2023)
 * **[Summer]:** Summer data Indicator (0/1 indicator) 
 * **[FIRST_NAME]:** Student First Name
 * **[LAST_NAME]:** Student Last Name
@@ -119,12 +119,12 @@ The 21st Century Afterschool Programs provide students with afterschool opportun
   + **ACADEMIC_SUPPORT:** binary indicator for participation in academic support activities;
   + **COLLEGE_CAREER_READINESS:** binary indicator for participation in college and career readiness activities;
   + **FAMILY_ENGAGEMENT:** binary indicator for participation in family engagement activities;
-  + **WHENCREAATED:** a date/time stamp indicating the date of participation;
+  + **WHENCREATED:** a date/time stamp indicating the date of participation;
   + **WHENMODIFIED:** a date/time stamp indicating the date when the record was modified. Most values are null.
 
 #### 21st Century Afterschool Program Data Life Cycle
 
-21st Century Afterschool Program data that is found in [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students] is pulled nightly at 12am. The initial process deletes the current data only with the same current school session of data such as (2022-2023 Summer) so that once the new Academic Year changes or no longer in summer, that data is not deleted but left as the last update. Below is the query that is ran in Power School so that in the [U_IDEA_STUDENTS_OSS] table we receive that latest records for 21st Century Aferschool Programs.
+21st Century Afterschool Program data that is found in [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students] is pulled nightly at 12am. The initial process deletes the current data only with the same current school session of data such as (2022-2023 Summer) so that once the new Academic Year changes or no longer in summer, that data is not deleted but left as the last update. Below is the query that is run in PowerSchool so that in the [U_IDEA_STUDENTS_OSS] table we receive the latest records for 21st Century Afterschool Programs.
 
 ```{sql, eval=FALSE}
 SELECT   
@@ -170,7 +170,7 @@ Camp RIO has been in operation since 2015 as a year-round outdoor education and 
 
 The program provides guided outdoor activities such as fishing, canoeing, building campfires, geocaching, hiking, and archery which help connect participants to their community and nature. From its inception in 2015, the number of students attending Camp Rio per year has increased from a few hundred to over 28,000 students in the 2021-2022 school year.
 
-The program evaluation for Camp Rio focuses on 3 main goals:
+The program evaluation for Camp Rio focuses on three main goals:
   1) To understand the short- and long-term association between students’ participation in Camp RIO and students’ interests in natural resources and land stewardship 
   2) To evaluate the short- and long-term association between participation in Camp RIO and student academic achievement and well-being  
   3) To understand the long-term association between participation in Camp RIO and student college and career choices in the natural sciences  
@@ -180,7 +180,7 @@ The program evaluation for Camp Rio focuses on 3 main goals:
 
 ### Charter School Program (CSP) Grants
 
-Charter School Program (CSP) Replication and Expansion grant awarded to IDEA Public Schools provide funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
+The Charter School Program (CSP) Replication and Expansion grant awarded to IDEA Public Schools provides funds to support the successful launch and expansion of new IDEA schools for five years. **Replication** refers to launching new schools. **Expansion** refers to scaling existing schools.
 
 **CSP grant applications** are submitted and approved for funding by the Department of Education (DOE). The grant application provides general guidance for evaluation. 
 
@@ -278,17 +278,17 @@ Research and evaluation work aimed to answer the following question, "What is th
 
     + **Research** was conducted to locate and review the IDEA model for launching and scaling new schools. Contents available online via the Hub and web were reviewed and analyzed. Specific examples included Academic Books, APO Playbooks, GET Rubrics, TCP Handbooks, Onboarding Guides, School Culture Components, Team Sites, IDEA Schools, and Year 0.
 
-    + **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 3) sustaining new schools; 4) roles of leaders and teams; 5) regions, new regions, and new states; and 6) viable metrics and measures. 
+    + **Discussions** focused on CSP. R&A Team Members have various professional experiences as administrators, evaluators, researchers, statisticians, students, teachers, and volunteers. Each weekly discussion focused on a unique aspect of CSP: 1) key components of the IDEA model; 2) processes involved in launching and scaling schools; 3) challenges and needs for launching and scaling schools; 4) sustaining new schools; 5) roles of leaders and teams; 6) regions, new regions, and new states; and 7) viable metrics and measures. 
 
     + **As part of the evaluation process,** evaluators collected information, recorded notes, and synthesized the content into three areas for investigation: 1) What is the IDEA model for launching and scaling new schools?; 2) What are the challenges, needs, and supports provided to launching and scaling schools?; and 3) What sustainability strategies have been implemented to support the launch and expansion of new schools?
 
-To move forward with the evaluation, a draft model needed to be created and developed to showcase the main elements of the IDEA Model for opening new schools based on the review of information and discussions. As notes were reviewed, discussed, and documented, content informing the IDEA Model was organized into 5 key components. 
+To move forward with the evaluation, a draft model needed to be created and developed to showcase the main elements of the IDEA Model for opening new schools based on the review of information and discussions. As notes were reviewed, discussed, and documented, content informing the IDEA Model was organized into five key components. 
 
 ###### CSP IDEA Model Components (v.1)
 
 What are the essential components to launch and scale schools in alignment with the IDEA model?
 
-There were 5 key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
+There were five key components in our first version of the CSP IDEA Model. Components may look different by region and school maturity, but essential components may be consistent across new schools at IDEA. We believe that each of these components must be in place for new IDEA schools to open successfully.
 
 ![This image shows the CSP Model Version 1 with essential components of the IDEA model.](img/CSP_Model-1_original_filesize-small.png "CSP IDEA Model Version 1 Key Components of the IDEA Model"){width="500"}
   
@@ -326,21 +326,21 @@ The most important factors for implementing the IDEA model successfully (as woul
 
 ### Teacher and School Leader Incentive Program (TSLIP)
 
-Grant that contains 4 key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
+Grant that contains four key components/areas for research questions. Main points of analysis: Level 5 Pilot Program and "Best Practices" library; TCP Level percentages by District/Region/Campus/School and look at percentage and distribution of TCP Level 5 teachers across schools and possibly down to grade level.
 
 
 #### Focus Group Interviews, Sampling, and Models
 
-We are interviewing students at 10 College Preps and 10 Academies and asking several questions to find out "what is working" and "what is not working" at schools. The samples was carefully created using a model that fits Most Different Systems Design (MDSD). We considered using Most Similar Systems Design, but ran into the issue of finding schools that scored similarly acorss the independent variables.
+We are interviewing students at 10 College Preps and 10 Academies and asking several questions to find out "what is working" and "what is not working" at schools. The sample was carefully created using a model that fits Most Different Systems Design (MDSD). We considered using Most Similar Systems Design, but ran into the issue of finding schools that scored similarly across the independent variables.
 
 For Most Similar
 •	Keep all x’s the same except for one xn; that particular xn can vary on different levels or bins
 •	Expect to see different y values (outcome variable)
 •	Then we can say xn caused changes in y (dependent variable varies with xn)
-o	Can eliminate other x’s as the causes for change/variation in y
+•	Can eliminate other x’s as the causes for change/variation in y
 
 
-For Most Different Systems Design:
+For Most Different Systems Design
 •	All x’s are different, or better yet “random” (we don’t care if they are the same or different), except for one xn is the same (xn is the only thing that is the same across subjects)
 •	Expect to see same/similar y (no differences in outcome variable)
 •	Then we can say regardless of all the different values for the various x’s, that the same value of xn caused same/similar values of y (the independent variable xn – which was the same for all subjects – caused the outcome variable to be the same for all subjects)
@@ -360,20 +360,20 @@ o	y = Teacher Retention Rate
 
 
 1.	Most Similar Systems Design (MSSD)   
-               (NOTE: We would have 2 of these MSSD designs: one for AC, one for CP; not comparing AC to CP)
+               (NOTE: We would have two of these MSSD designs: one for AC, one for CP; not comparing AC to CP)
 *Different x1 + same x2 + same x3 + same x4 = Different y
 *Different maturity + same econ  dis + same overall rating + same Domain1 = Different Retention Rate
 o	*can substitute another xi for the “different” x (It doesn’t have to be Maturity that is the x with different levels/bins); if wanting to see if another particular xi predicts variation in y (retention). For example, can hold Maturity constant and have differences on EconDis.
 
 2.	Most Different Systems Design (MDSD)
-               (NOTE: We would have 2 of these MDSD designs: one for AC, one for CP; not comparing AC to CP)
+               (NOTE: We would have two of these MDSD designs: one for AC, one for CP; not comparing AC to CP)
 *Same x1 + different x2 + different x3 + different x4 = Same y
 *Same unknown variable + different maturity + different econ dis + different overall rating + different Domain1/student achievement = Same Retention Rate
 o	*can substitute another xi for the “same” x (It doesn’t have to be Maturity that is the x with same values across subjects); if wanting to see if another particular xi predicts sameness/lack of variation in values of y (retention). For example, can have differences on Maturity, but hold EconDis constant/same across subjects.
 
 We are using #2 Most Different Systems Design, with the above model. Focus group interviews are in the process of being scheduled. 8-12 students spanning STAAR tested subjects/grades will be selected at each AC or CP (3rd-5th at Academy, 6th-12th at College Prep), for a total of 20 focus groups.
 
-#### TSLIP Continuance/ Year 4 of the Grant
+#### TSLIP Continuance/Year 4 of the Grant
 
 Blanca Carillo applied for the extension of the grant into Year 4. All departments and teams involved in the grant submitted a requested budget for Year 4 (October 1, 2023 to September 30, 2024), for Supplies, Equipment, Training and Professional Development, Travel, Stipends (such as for teacher or leaders in pilot groups), and contractor hours/work. 
 
