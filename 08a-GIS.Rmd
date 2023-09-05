@@ -6,17 +6,17 @@ This chapter provides a gentle introduction to Geographic Information Systems (G
 
 **Simple Features** is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).
 
-A **feature** is essentially a thing in the world. In the simple feature specification a feature ha *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names or metrics like population.
+A **feature** is essentially a thing in the world. In the simple feature specification a feature has *a geometry* describing where on Earth the feature is located, **and they have attributes**, which describe other properties, like names or metrics such as population.
 
 ### How are simple features implemented in R
 
-In a word, simply. A special feature in R is essentially a a row in `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an `sf` `data.frame`
+In a word, simply. A special feature in R is essentially a row in `data.frame` with class **sf**. This `data.frame` will have the normal suspects---names of things, metrics you care about---in columns and then a special column named **geometry** or **geom**. This will typically be a list-column, meaning that instead of holding characters or numbers, the contents are a list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an `sf` `data.frame`
 
 ![](img/sf_layout.png){width="500"}
 
 ## Let's look at TACO schools
 
-Let's start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:
+Let's start by getting schools in Tarrant County (TACO). We can get these schools and their addresses from the data warehouse:
 
 ```{r get-schools}
 
@@ -84,9 +84,9 @@ Notice that the `lat` and `long` variables are replaced by the `geometry` column
 
 #### Coordinate Reference System
 
-Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth's curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.
+Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with an estimate of the Earth's curvature and a set of control points, and finally a projection that converts spherical coordinates to Cartesian coordinates.
 
-You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
+You should always set this and the most common CRS in latitude and longitude as WGS84 (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
 
 ```{r set-crs}
 st_crs(taco_schools_sf) <- "WGS84"
@@ -114,7 +114,7 @@ base_google_map %>%
 
 ```
 
-I don't always love Google Maps look for display purposes on slides, so let's change that up with Stamen Maps:
+I don't always love Google Maps' look for display purposes on slides, so let's change that up with Stamen Maps:
 
 ```{r}
 # Need a bounding box for the get_stamenmap function
@@ -252,7 +252,7 @@ age10 %>%
   geom_point()
 ```
 
-##### Searching for variables:
+##### Searching for variables
 
 How, pray tell, does one know that `P013001` is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the `load_variables()` function. There are [more details on in the package's documentation page](https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables).
 
