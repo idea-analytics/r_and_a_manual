@@ -72,17 +72,17 @@
 <span class="header-section-number">10</span> Models and Methods<a class="anchor" aria-label="anchor" href="#models-and-methods"><i class="fas fa-link"></i></a>
 </h1>
 <p>Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.</p>
-<p>We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. The choice of frequentist vs. Bayesian methods is up to you and should always be justified, but choosing the simplest, appropriate tool should be the starting point for analysis But, before we start any analysis, the design of the program influences how we establish our methods of research.</p>
+<p>We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. The choice of frequentist vs. Bayesian methods is up to you and should always be justified, but choosing the simplest, appropriate tool should be the starting point for analysis. But, before we start any analysis, the design of the program influences how we establish our methods of research.</p>
 <div id="research-design" class="section level2" number="10.1">
 <h2>
 <span class="header-section-number">10.1</span> Research design<a class="anchor" aria-label="anchor" href="#research-design"><i class="fas fa-link"></i></a>
 </h2>
-<p>When our works requires us to assign causation, we must consider how the data were collected before deciding on an appropriate model.</p>
+<p>When our work requires us to assign causation, we must consider how the data were collected before deciding on an appropriate model.</p>
 <div id="causal-inference" class="section level3" number="10.1.1">
 <h3>
 <span class="header-section-number">10.1.1</span> Causal inference<a class="anchor" aria-label="anchor" href="#causal-inference"><i class="fas fa-link"></i></a>
 </h3>
-<p>Most of our data is observational, so if we want to describe causal relationships in our data, we must appeal to potential outcomes. Thus, we will briefly cover some of relevant causal inference concepts and techniques.</p>
+<p>Most of our data is observational, so if we want to describe causal relationships in our data, we must appeal to potential outcomes. Thus, we will briefly cover some of the relevant causal inference concepts and techniques.</p>
 <p>When a student is marked for inclusion in, say, a tutorial group, we would like to see how much the tutorial increased their score on a test, compared to a scenario where the student did not attend the tutorial. If the student attends the tutorial, we can measure the outcome of the treatment (the tutorial) by seeing what grade they earned after a test; we cannot observe, however, the outcome of the control (no tutorial). Potential outcomes aims to remedy this.</p>
 <div id="potential-outcomes" class="section level4" number="10.1.1.1">
 <h4>
@@ -247,8 +247,8 @@
 <p>For <strong>bivariate data</strong>, use a scatterplot to determine if linear measures can be used appropriately. The Pearson correlation <span class="math inline">\(r\)</span> <code>cor(x, y)</code> can be easily understood by a wide audience to describe the linear strength of a bivariate association. However, the Spearman rank correlation <code>cor(x, y, method = "spearman")</code> can provide an associative measure for monotonic nonlinear associations, and Kendall’s <span class="math inline">\(\tau\)</span> <code>cor(x, y, method = "kendall")</code> can describe concordance for ordinal data.</p>
 <p>When describing <strong>outliers</strong> in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set.</p>
 <div class="tip">
-<p>One heuristic for deciding what to do with an outlier is to ask yourself, “Does this observation <em>belong</em> in the sample?”</p>
-<p>If you decide that the observation is fundamentally different than the others (e.g. a school is off-model and does not implement the Imagine Learning the same way that other schools do), then you might consider removing that observation. If the observation represents some exceptional case of the proposed model, then you might consider keeping that observation.</p>
+<p>One heuristic way for deciding what to do with an outlier is to ask yourself, “Does this observation <em>belong</em> in the sample?”</p>
+<p>If you decide that the observation is fundamentally different than the others (e.g., a school is off-model and does not implement the Imagine Learning the same way that other schools do), then you might consider removing that observation. If the observation represents some exceptional case of the proposed model, then you might consider keeping that observation.</p>
 </div>
 <p>In general, we should be modeling a measure of center and its spread as a function of covariates (see Modeling and predictive statistics).</p>
 </div>
@@ -256,7 +256,7 @@
 <h3>
 <span class="header-section-number">10.2.2</span> Graphical summaries - broad principles<a class="anchor" aria-label="anchor" href="#graphical-summaries---broad-principles"><i class="fas fa-link"></i></a>
 </h3>
-<p>While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways, and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the <a href="https://idea-analytics.github.io/ideacolors/">ideacolors</a> package for aesthetics.</p>
+<p>While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the <a href="https://idea-analytics.github.io/ideacolors/">ideacolors</a> package for aesthetics.</p>
 <p>Selecting an appropriate graphical display depends on the purpose of the analysis and the communication of results. Bar graphs, line graphs, histograms, and scatterplots each have their place in displaying central tendency; however, emphasis should be placed on displaying variation within the data.</p>
 <div id="displaying-variation" class="section level4" number="10.2.2.1">
 <h4>
@@ -299,7 +299,7 @@
 <span>                              <span class="st">"2019-2020"</span> <span class="op">=</span> <span class="st">"2019-20"</span>,</span>
 <span>                              <span class="st">"2020-2021"</span> <span class="op">=</span> <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color wtih each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
+<p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color with each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
 <div class="figure">
 <img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt=""><p class="caption">This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.</p>
 </div>
@@ -345,13 +345,13 @@
 <h2>
 <span class="header-section-number">10.4</span> Inferential methods with the <code>{infer}</code> package<a class="anchor" aria-label="anchor" href="#inferential-methods-with-the-infer-package"><i class="fas fa-link"></i></a>
 </h2>
-<p>The <a href="https://infer.tidymodels.org/"><code>{infer}</code></a> package provides <code>tidyverse</code> grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which are excellent. This section will simply provide some examples to get you started.</p>
-<p><a href="https://github.com/tidymodels/infer">infer</a> implements a straightforward inferential workflow, which is encapsulated by five verbs:</p>
+<p>The <a href="https://infer.tidymodels.org/"><code>{infer}</code></a> package provides <code>tidyverse</code> grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which is excellent. This section will simply provide some examples to get you started.</p>
+<p><a href="https://github.com/tidymodels/infer">infer</a> implements a straightforward inferential workflow, which is encapsulated by four verbs:</p>
 <ul>
 <li>
 <code>specify()</code> a relationship between variables</li>
 <li>
-<code>hytpothesize()</code> the null relationship (i.e., <em>declare</em> the null hypothesis)</li>
+<code>hypothesize()</code> the null relationship (i.e., <em>declare</em> the null hypothesis)</li>
 <li>
 <code>generate()</code> data that holds if the null hypothesis is true (i.e, draws form the null distribution)</li>
 <li>
@@ -359,21 +359,23 @@
 </ul>
 <p>Additionally the package provides tools for visualizing the relationship between the null distributions and your observed data. The workflow is illustrated below:</p>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/tidymodels/infer/main/figs/ht-diagram.png" width="500" alt=""><p class="caption">The infer packages hypothesis testing workflow.</p>
+<img src="https://raw.githubusercontent.com/tidymodels/infer/main/figs/ht-diagram.png" width="500" alt=""><p class="caption">The infer package’s hypothesis testing workflow.</p>
 </div>
 <div class="inline-table"><table style="width:99%;" class="table table-sm">
-<caption>Infernetial methods based on observed variable types and numbers</caption>
+<caption>Inferential methods based on observed variable types and numbers</caption>
 <colgroup>
 <col width="20%">
-<col width="41%">
+<col width="40%">
 <col width="11%">
 <col width="25%">
+<col width="0%">
 </colgroup>
 <thead><tr class="header">
 <th>Data</th>
 <th>Null Hypothesis</th>
 <th>Test Type</th>
 <th><code>Code</code></th>
+<th></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -385,6 +387,7 @@
 <td>1-sample <em>t</em>-test</td>
 <td><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="va">hypothesized_value</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>
@@ -395,20 +398,10 @@
 <td>paired <em>t-</em>test</td>
 <td><div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>
-<p>means of two populations</p>
-<p>2 continuous variable</p>
-</td>
-<td>difference in means is 0</td>
-<td>2-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">specify</span><span class="op">(</span><span class="va">hours</span> <span class="op">~</span> <span class="va">college</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">generate</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">calculate</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"diff in means"</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"degree"</span>, <span class="st">"no degree"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div></td>
+<td colspan="5">means of two populations | difference in means is 0 | 2-sample <em>t</em>-test | <code>R                                                                 |                                                         |                                                                                                                 |                              | gss %&gt;%                                                               | 2 continuous variables                                   |                                                                                                                 |                              |   specify(hours ~ college) %&gt;%                                                         |                                                                                                                 |                              |   hypothesize(null = "independence") %&gt;%                              |                                                         |                                                                                                                 |                              |   generate(reps = 1000, type = "permute") %&gt;%                         |                                                         |                                                                                                                 |                              |   calculate(stat = "diff in means", order = c("degree", "no degree")) |                                                         |                                                                                                                 |                              |</code> |</td>
 </tr>
 <tr class="even">
 <td>
@@ -420,24 +413,26 @@
 <p>Analysis of Variance (ANOVA)</p>
 <p>F-test</p>
 </td>
-<td><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">partyid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">generate</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">calculate</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"F"</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Association between two categorical variables</td>
 <td>No relationship between both categorical variables</td>
 <td>
 <span class="math inline">\(\chi^2\)</span> test</td>
-<td><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">null_dist_sim</span> <span class="op">&lt;-</span> <span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">college</span> <span class="op">~</span> <span class="va">finrela</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">generate</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">calculate</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
 </tr>
 </tbody>
 </table></div>
@@ -456,7 +451,7 @@
 <p>Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.</p>
 <p><span class="math inline">\(\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>To estimate these coefficients and evaluate the fit, we can use the following workflow:</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters</span></span>
 <span><span class="co"># all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1</span></span>
 <span></span>
@@ -489,9 +484,9 @@
 <span class="math inline">\(\mu\)</span> is the mean response</li>
 </ul>
 <p>Note that there are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family">link functions</a>, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm">documentation.</a> However, base R provides the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, which gives options to choose a link.</p>
-<p>Now suppose we are modeling the probability of a student passing the STAAR (probability of approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
+<p>Now suppose we are modeling the probability of a student passing the STAAR (probability approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
 <p><span class="math inline">\(\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># logistic regression to determine log odds of passing STAAR</span></span>
 <span><span class="va">glm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Approaches</span> <span class="op">~</span> <span class="va">SemesterExamQuestions</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
 <span>                 family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
@@ -511,7 +506,7 @@
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
 <span></span>
 <span><span class="co"># model enrolled students using a GAM</span></span>
@@ -547,9 +542,9 @@
 <h3>
 <span class="header-section-number">10.5.5</span> Natural Language Processing (Sentiment Analysis)<a class="anchor" aria-label="anchor" href="#natural-language-processing-sentiment-analysis"><i class="fas fa-link"></i></a>
 </h3>
-<p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into 5 parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
-<p>With NLP our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
+<p>Within NLP, our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
 <span></span>
@@ -570,7 +565,7 @@
 <span class="header-section-number">10.6.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
 </h3>
 <p>Qualitative Research provides IDEA Public Schools rich, contextual information through various data collection and analysis techniques that are aimed to understand the meaning of the information collected. While qualitative research can be used for both exploratory and confirmatory research, it is most useful when context is important, a rich description is needed, and when participant interpretation and meaning of experiences need to be considered.</p>
-<p>The R&amp;A team, specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.</p>
+<p>The R&amp;A team specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.</p>
 <p>Common methods used to collect data include:
 - Individual Interviews
 - Focus Groups
@@ -578,7 +573,8 @@
 <p>Common methods used to analyze data include:
 - Thematic analysis
 - Triangulation
-- Linguistic analysis –emotions (including Natural Language Processing).</p>
+- Linguistic analysis
+– Emotions (including Natural Language Processing).</p>
 </div>
 <div id="qualitative-tools" class="section level3" number="10.6.2">
 <h3>
@@ -608,7 +604,7 @@
 <h5>
 <span class="header-section-number">10.6.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
 </h5>
-<p>There are various types of text file formats that can be used in MaxQDA for analysis, such as Word, PDF, Excel documents. The following section provides a walk through for creating a new project and importing excel documents into MaxQDA.</p>
+<p>There are various types of text file formats that can be used in MaxQDA for analysis, such as Word, PDF, and Excel documents. The following section provides a walk through for creating a new project and importing Excel documents into MaxQDA.</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>Create folders to store original data, MaxQDA analysis, description visualizations, and project deliverables.</p>
@@ -639,7 +635,7 @@
 <span class="header-section-number">10.6.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
 </h5>
 <p>Depending on the purposes of your analysis and the total number of responses, you may want to randomly select responses for analysis.</p>
-<p>After importing files into the Document System of MaxQDA,responses can be randomly selected using the following steps.</p>
+<p>After importing files into the Document System of MaxQDA, responses can be randomly selected using the following steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Select the document group of interest.</p></li>
 <li><p>Right click the highlighted document group.</p></li>
@@ -648,7 +644,7 @@
 <li><p>A small window will then pop-up. Enter the desired n, and click ‘Ok’.</p></li>
 </ol>
 <p>The randomly selected documents will appear in the Code System section of MaxQDA. You may need to alter the display frequency to display only the ‘Coded segments in all activated documents’.</p>
-<p>Note: This does not save the randomly selected documents. We suggest applying a code to all of the randomly selected documents (i.e., “random_sample).</p>
+<p>Note: This does not save the randomly selected documents. We suggest applying a code to all of the randomly selected documents (i.e., “random_sample”).</p>
 
 </div>
 </div>
@@ -713,7 +709,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-31.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-09-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

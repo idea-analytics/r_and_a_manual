@@ -77,12 +77,12 @@
 <span class="header-section-number">11.1</span> What is a simple feature?<a class="anchor" aria-label="anchor" href="#what-is-a-simple-feature"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Simple Features</strong> is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).</p>
-<p>A <strong>feature</strong> is essentially a thing in the world. In the simple feature specification a feature ha <em>a geometry</em> describing where on Earth the feature is located, <strong>and they have attributes</strong>, which describe other properties, like names or metrics like population.</p>
+<p>A <strong>feature</strong> is essentially a thing in the world. In the simple feature specification a feature has <em>a geometry</em> describing where on Earth the feature is located, <strong>and they have attributes</strong>, which describe other properties, like names or metrics such as population.</p>
 <div id="how-are-simple-features-implemented-in-r" class="section level3" number="11.1.1">
 <h3>
 <span class="header-section-number">11.1.1</span> How are simple features implemented in R<a class="anchor" aria-label="anchor" href="#how-are-simple-features-implemented-in-r"><i class="fas fa-link"></i></a>
 </h3>
-<p>In a word, simply. A special feature in R is essentially a a row in <code>data.frame</code> with class <strong>sf</strong>. This <code>data.frame</code> will have the normal suspects—names of things, metrics you care about—in columns and then a special column named <strong>geometry</strong> or <strong>geom</strong>. This will typically be a list-column, meaning that instead of holding characters or a numbers, the contents are list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an <code>sf</code> <code>data.frame</code></p>
+<p>In a word, simply. A special feature in R is essentially a row in <code>data.frame</code> with class <strong>sf</strong>. This <code>data.frame</code> will have the normal suspects—names of things, metrics you care about—in columns and then a special column named <strong>geometry</strong> or <strong>geom</strong>. This will typically be a list-column, meaning that instead of holding characters or numbers, the contents are a list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an <code>sf</code> <code>data.frame</code></p>
 <div class="inline-figure"><img src="img/sf_layout.png" width="500"></div>
 </div>
 </div>
@@ -90,8 +90,8 @@
 <h2>
 <span class="header-section-number">11.2</span> Let’s look at TACO schools<a class="anchor" aria-label="anchor" href="#lets-look-at-taco-schools"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let’s start by getting schools in Tarrant County. We can get these schools and their address from the data warehouse:</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<p>Let’s start by getting schools in Tarrant County (TACO). We can get these schools and their addresses from the data warehouse:</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="co">#library(tidyverse)</span></span>
@@ -131,7 +131,7 @@
 </h3>
 <p>We’ve got schools and addresses! But that isn’t sufficient to plot these schools on a map, and we certainly don’t have a simple features data.frame.</p>
 <p>The first stop is <strong>geocoding</strong> these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the <code>[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)</code> which provides a great interface to a number of different geocoders (e.g., US Census, OpenStreetMaps, geocod.io).</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span> <span class="op">&lt;-</span> <span class="va">taco_schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -141,7 +141,7 @@
 <span>            postalcode <span class="op">=</span> <span class="va">school_zip_code</span>, </span>
 <span>            method <span class="op">=</span> <span class="st">"osm"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.2 seconds</span></span>
 <span></span>
 <span><span class="va">taco_schools_geocoded</span></span>
 <span><span class="co">#&gt; # A tibble: 4 × 7</span></span>
@@ -155,7 +155,7 @@
 <span><span class="co">#&gt; #   long &lt;dbl&gt;</span></span></code></pre></div>
 <p>Brilliant! We’ve got <code>lat</code> and <code>long</code> variables for those addresses. Super Cool!</p>
 <p>Let’s transform these now to a <code>sf</code> object:</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2()</span></span>
@@ -185,9 +185,9 @@
 <h4>
 <span class="header-section-number">11.2.1.1</span> Coordinate Reference System<a class="anchor" aria-label="anchor" href="#coordinate-reference-system"><i class="fas fa-link"></i></a>
 </h4>
-<p>Notice in the meta-data above that CRS is <code>NA</code>. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with estimate of the Earth’s curvature and a set of control points, and finally projection that converts spherical coordinates to Cartesian coordinates.</p>
-<p>You should always set this and the most common CRS in latitude and longitude is WGS84 (used by the GPS satellite navigation system) with the following CRS string <code>"+init=epsg:4326"</code> as a formal identifier, but also more simply by its name:</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<p>Notice in the meta-data above that CRS is <code>NA</code>. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with an estimate of the Earth’s curvature and a set of control points, and finally a projection that converts spherical coordinates to Cartesian coordinates.</p>
+<p>You should always set this and the most common CRS in latitude and longitude as WGS84 (used by the GPS satellite navigation system) with the following CRS string <code>"+init=epsg:4326"</code> as a formal identifier, but also more simply by its name:</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">taco_schools_sf</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"WGS84"</span></span></code></pre></div>
 </div>
 </div>
@@ -196,7 +196,7 @@
 <span class="header-section-number">11.2.2</span> Plotting<a class="anchor" aria-label="anchor" href="#plotting"><i class="fas fa-link"></i></a>
 </h3>
 <p>We now have enough information to draw a map!</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#renv::install("yutannihilation/ggsflabel")</span></span>
 <span></span>
@@ -236,8 +236,8 @@
 <span><span class="co">#&gt; st_point_on_surface may not give correct results for</span></span>
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/ggmap-1.png" width="672"></div>
-<p>I don’t always love Google Maps look for display purposes on slides, so let’s change that up with Stamen Maps:</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<p>I don’t always love Google Maps’ look for display purposes on slides, so let’s change that up with Stamen Maps:</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Need a bounding box for the get_stamenmap function</span></span>
 <span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/bb2bbox.html">bb2bbox</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">base_google_map</span>, <span class="st">"bb"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -263,7 +263,7 @@
 <span class="header-section-number">11.2.3</span> Getting drive times<a class="anchor" aria-label="anchor" href="#getting-drive-times"><i class="fas fa-link"></i></a>
 </h3>
 <p>This requires the MapBox API, which requires an API key.</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages("mapboxapi")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mapboxapi</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Usage of the Mapbox APIs is governed by the Mapbox Terms of Service.</span></span>
@@ -318,7 +318,7 @@
 <h3>
 <span class="header-section-number">11.2.4</span> Some geographic filtering<a class="anchor" aria-label="anchor" href="#some-geographic-filtering"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Spherical geometry (s2) switched off</span></span>
@@ -368,7 +368,7 @@
 <span><span class="co">#&gt; longitude/latitude data</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/geo-filtering-1.png" width="672"></div>
 <p>And what schools are found in this area?</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">schools_in_overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter</a></span><span class="op">(</span><span class="va">taco_schools_sf</span>,</span>
 <span>                         <span class="va">taco_area_of_max_intersection</span>, </span>
 <span>                         join <span class="op">=</span> <span class="va">st_within</span><span class="op">)</span></span>
@@ -398,7 +398,7 @@
 </h2>
 <p>Kyle Walker has written the exceptional <code>[tidycensus](https://walker-data.com/tidycensus/)</code>package, with fantastic documentation, which allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).</p>
 <p>Let’s load it up:</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#install.packages('tidycensus')</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://walker-data.com/tidycensus/">tidycensus</a></span><span class="op">)</span></span>
 <span></span>
@@ -417,7 +417,7 @@
 <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code>, which grants access to the 1-year and 5-year American Community Survey APIs.</li>
 </ul>
 <p>Let’s get <em>median age by state</em> in 2010:</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"state"</span>, </span>
 <span>                       variables <span class="op">=</span> <span class="st">"P013001"</span>, </span>
 <span>                       year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
@@ -440,7 +440,7 @@
 <span><span class="co">#&gt; 10 10    Delaware    P013001   38.8</span></span>
 <span><span class="co">#&gt; # ℹ 42 more rows</span></span></code></pre></div>
 <p>Plotting is super duper easy:</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">NAME</span>, <span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -448,18 +448,18 @@
 </div>
 <div id="searching-for-variables" class="section level5" number="11.3.0.0.2">
 <h5>
-<span class="header-section-number">11.3.0.0.2</span> Searching for variables:<a class="anchor" aria-label="anchor" href="#searching-for-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.3.0.0.2</span> Searching for variables<a class="anchor" aria-label="anchor" href="#searching-for-variables"><i class="fas fa-link"></i></a>
 </h5>
 <p>How, pray tell, does one know that <code>P013001</code> is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> function. There are <a href="https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables">more details on in the package’s documentation page</a>.</p>
 <p>To browse these variables, assign the result of <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> to a variable and use the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function in RStudio. An optional argument <code>cache = TRUE</code> will cache the dataset on your computer for future use.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">v_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"acs5"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#View(v_2020)</span></span></code></pre></div>
 <p>Let’s get Tarrant county:</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">tarr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"block group"</span>, variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="co">#tpotal pop</span></span>
@@ -493,7 +493,7 @@
 <p>Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasize those areas versus smaller geographies. This distortion is familiar to those who follow elections, where geographically large states with small populations, like Wyoming, loom larger than geographically small, but densely populated states, like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal populations (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.</p>
 <p>A second issue is that it’s very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all children aged 5-17 years in each tract. But, we may be interested in how differently distributed those students are.</p>
 <p>A method to remedy both issues is to use <strong>dot-density</strong> plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot). It’s pretty straightforward to get what you need by using <a href="https://walker-data.com/tidycensus/reference/as_dot_density.html"><code>sf::as_dot_density()</code></a></p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">acs_ages</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span> <span class="va">variable</span>,     <span class="op">~</span><span class="va">age_range</span>, <span class="op">~</span><span class="va">gender</span>,</span>
 <span>  <span class="st">"B01001_001"</span>,    <span class="st">"All"</span>,      <span class="st">"All"</span>,  </span>
@@ -527,7 +527,7 @@
 <span><span class="co">#&gt; assumes that they are planar</span></span>
 <span><span class="co">#&gt; although coordinates are longitude/latitude, st_intersects</span></span>
 <span><span class="co">#&gt; assumes that they are planar</span></span></code></pre></div>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
@@ -592,7 +592,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-08-31.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-09-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
