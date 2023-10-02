@@ -10,11 +10,11 @@ Succinctly, the R&A team separates and communicates signal from noise which has 
 
 * **Strategic support**: Long-term investments with high ROI are pursued; strategies that are ineffective are adjusted so they are or are replaced by activities that move us closer to our goal of college for all. 
 
-* **Tactical guidance**: Nimbly surmise what is working in pilots or across region(s) and communicate these findings clearly; Ensure that decisions are not pushed from one school year to the next.
+* **Tactical guidance**: Nimbly surmise what is working in pilots or across region(s) and communicate these findings clearly; ensure that decisions are not pushed from one school year to the next.
 
-*	**Short Cycle Improvements**: Analyze and understand short-to-medium term impacts of program choices and with business partners provide actionable recommendations in a cycle of continuous improvement.
+*	**Short cycle improvements**: Analyze and understand short-to-medium term impacts of program choices and with business partners provide actionable recommendations in a cycle of continuous improvement.
 
-* **Educate our partners**: Assist our team in family in understanding what is and what is not possible with data, that is what analyses can be performed, what nuggets of wisdom can be mined, and where we face limitation and need to bring substantive expertise from outside R&A.   
+* **Educate our partners**: Assist our team and family in understanding what is and what is not possible with data, that is what analyses can be performed, what nuggets of wisdom can be mined, and where we face limitation and need to bring substantive expertise from outside R&A.   
 
 
 
@@ -24,9 +24,9 @@ Succinctly, the R&A team separates and communicates signal from noise which has 
 
 Edison is a Data Science and Analytics Engineer who supports IDEA by making sure our organization and team have access to the highest quality information and insights that is streamlined, efficient, and accurate.  He works with all teams and members across IDEA to help drive better decisions or navigate those to their goal. Edison also works with different teams in identifying opportunities to improve the process we use to collect, share, and disseminate information.
 
-His previous position was with the Software Development Team as a Senior Developer working on data integration and software development. One of the software’s led by Edison was TCP (Teacher Career Pathway) in where he developed and designed the system to absorb numerous data points to be transformed into a TCP Level for all teacher across IDEA.
+His previous position was with the Software Development Team as a Senior Developer working on data integration and software development. One of the software’s led by Edison was Teacher Career Pathway (TCP) in which he developed and designed the system to absorb numerous data points to be transformed into a TCP Level for all teacher across IDEA.
 
-His background stems from Computer Science as he holds a BBA in Computer Information Systems and MS in Business Analytics. Ask him about Power BI, Excel, R, DAX, Power Query, Statistical methods/models. 
+His background stems from Computer Science as he holds a BBA in Computer Information Systems and MS in Business Analytics. Ask him about Power BI, Excel, R, DAX, Power Query, statistical methods/models. 
 
 ### Chris Haid 
 Chris Haid is VP of Data Analytics at IDEA Public Schools, where leads research, evaluation, and data analysis across 180+ schools in Texas, Louisiana, Florida, and Ohio.
@@ -36,14 +36,14 @@ Previously he was KIPP Chicago’s Chief of Staff, leading progress monitoring, 
 Chris has held academic positions at Yale University, New York University, and the University of Chicago. He has taught graduate and undergraduate courses in social scientific theory, statistical analysis, game theory, international development, and globalization. Chris attended the College of William and Mary where he earned a BA in Economics and the University of Chicago earning both a MPP and a MA in Political Science.
 
 ### Mishan Jensen, PhD
-Dr. Mishan Jensen is a Statistician on IDEA’s Research and Analytics Team with 4 years of experience in program evaluation in a large urban school district and 2 years of experience as a Statistician for the Texas Department of Public Safety. She holds a Master's and Doctoral degrees from the University of Texas at Austin in educational psychology, with a specialization in Quantitative Methods. Previous work included evaluating multilingual education, teacher appraisal programs, and integration of arts into the classroom. During her time at UT, Mishan assisted with the development of the College of Education’s first fully web-based Introduction to Statistics course, as well as provided assistant teaching support for most of the graduate level statistics courses offered. Recent work at IDEA has included Student Persistence, Enrollment, Teacher Career Pathways and Advanced Placement, focusing on impact analyses and predictive modeling.
+Dr. Mishan Jensen is a Statistician on IDEA’s Research and Analytics Team with 4 years of experience in program evaluation in a large urban school district and 2 years of experience as a Statistician for the Texas Department of Public Safety. She holds Master's and Doctoral degrees from the University of Texas at Austin in educational psychology, with a specialization in Quantitative Methods. Previous work included evaluating multilingual education, teacher appraisal programs, and integration of arts into the classroom. During her time at UT, Mishan assisted with the development of the College of Education’s first fully web-based Introduction to Statistics course, as well as provided assistant teaching support for most of the graduate level statistics courses offered. Recent work at IDEA has included Student Persistence, Enrollment, Teacher Career Pathways and Advanced Placement, focusing on impact analyses and predictive modeling.
 
 ### Steven Macapagal
 Steven Macapagal (Mac) is a statistician with IDEA Public Schools on the Research and Analytics team and has taught 6th through 12th grade. His recent projects have centered on enrollment, instruction and curriculum, college success, DEI, and Camp Rio. Before joining the team, he was a middle school math teacher and grade team leader at IDEA Bluff Springs College Prep in Austin, TX and prior to that, started his career at IDEA Frontier College Prep in Brownsville, TX as a 2014 corps member with Teach For America. Throughout his time at IDEA Frontier, he taught AP and IB math and economics, served as 12th grade team leader, and witnessed IDEA fulfill its promise to his 5 senior classes, all of whom achieved 100 percent matriculation to college. He earned his BA in Economics and Mathematics at The University of Texas at Austin and his MS in Statistics at Texas A&M University. 
 
 
 ### Maura Carter
-Maura Carter is a Statistician on the R&A Team at IDEA, and a former mathematics educator and university instructor in the Statistics department at University of California, Santa Cruz. She holds a master's degree from University of Notre Dame in nonprofit business management, and a master's degree from California State University in Statistics and Data Science. She enjoys volunteering, mentoring students in STEM topics, ocean science, and scuba diving. Maura supports IDEA by providing analytical and statistical support to a variety of teams and decision makers across the organization.
+Maura Carter is a Statistician on the R&A Team at IDEA, and a former mathematics educator and university instructor in the Statistics department at University of California, Santa Cruz. She holds a master's degree from University of Notre Dame in nonprofit business management and a master's degree from California State University in Statistics and Data Science. She enjoys volunteering, mentoring students in STEM topics, ocean science, and scuba diving. Maura supports IDEA by providing analytical and statistical support to a variety of teams and decision makers across the organization.
 
 ### Aline Orr, PhD
 Dr. Aline Orr has over 20 years of combined experience in research and program evaluation. She holds a Master's degree in educational psychology and quantitative methods from the University of Texas at Austin and a PhD in Neuroscience from the University of Pittsburgh, where she focused on brain pathways underlying emotional responses. In the recent past, Aline has led the evaluation of educational programs serving elementary and secondary students in a large urban public school district. Before that she was conducting educational research for a large assessment and textbook publishing house. Aline joined IDEA's Research and Analytics team as an evaluator in 2021. In this position, she supports the evaluation of initiatives associated with the Charter School Program grants, the 21st Century Afterschool program, and the Camp Rio program.
@@ -60,6 +60,11 @@ Before working at IDEA, Ilissa taught high school chemistry in the RGV before ea
 ### Marlena Coco, PhD
 Dr. Marlena Coco is an Evaluator on the R&A Team with over 15 years of experience in education and higher education. She earned a PhD in Higher Education Leadership and Research Methodology at Florida Atlantic University, MA in College Student Development at St. Edward’s University, and BS in Psychology at UT-Austin. She teaches undergraduate and graduate courses, chairs doctoral students dissertation research, reviews articles for journal publication, provides education consulting services, and conducts strengths-based leadership development. In previous roles, she led research, evaluation, and data support for college and career readiness at a large, urban school district, implemented district wide surveys, and analyzed post secondary retention and academic support data at multiple universities. She evaluates Charter School Program grants.
 
+
+### Lindsey Smith, PhD
+Dr. Lindsey Smith is a statistician at IDEA Public Schools where she contributes to the mission and goals of IDEA by providing analyses and reporting. Prior to coming to IDEA, she was an associate professor of instruction at The University of Texas at Austin in the Department of Statistics and Data Science. Lindsey holds a BS in Biochemistry, MS in Statistics, and PhD in Educational Psychology with a focus in Quantitative Methods from The University of Texas at Austin.
+
+
 ## What we've contributed
 
 Our team has among it's annual goals the following:
@@ -68,9 +73,9 @@ Our team has among it's annual goals the following:
 
 The [Shiny app embedded below](https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/) allows us to track those contributions during the year. 
 
-It includes a simple interactive ggplot graph ([made interqactive by the most excellent `{ggiraph}` package ](https://davidgohel.github.io/ggiraph/)) as a well as a table with some more info about about each merged pull request. 
+It includes a simple interactive ggplot graph ([made interactive by the most excellent `{ggiraph}` package ](https://davidgohel.github.io/ggiraph/)) as a well as a table with some more info about about each merged pull request. 
 
-Note that clicking on the hyperlinked pull request number will take you to the the diff page on Github for the merged pull request. 
+Note that clicking on the hyperlinked pull request number will take you to the diff page on Github for the merged pull request. 
 
 
 

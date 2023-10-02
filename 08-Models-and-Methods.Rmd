@@ -483,13 +483,15 @@ Qualitative Research provides IDEA Public Schools rich, contextual information t
 The R&A team specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.
 
 
-Common methods used to collect data include: 
+Common methods used to collect data include:
+
 -   Individual Interviews 
 -   Focus Groups 
 -   Review of archival documents. 
 
 
 Common methods used to analyze data include: 
+
 -   Thematic analysis 
 -   Triangulation 
 -   Linguistic analysis 
