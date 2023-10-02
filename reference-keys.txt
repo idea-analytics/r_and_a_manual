@@ -15,6 +15,7 @@ maura-carter
 aline-orr-phd
 ilissa-madrigal
 marlena-coco-phd
+lindsey-smith-phd
 what-weve-contributed
 the-data-warehouse-and-how-to-access-it
 the-data-warehouse
