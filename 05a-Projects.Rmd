@@ -256,9 +256,36 @@ The key point is that we backwards plan from our final product. The project mana
 Below is an overview of the backwards planning process. ![](img/project_workflow_diagram.png)
 
 
-### Wrike
+### General project management
 
-We use [Wrike](https://login.wrike.com/login/) as our main project management system to track the workflow for our team. All [information requests](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Information-Requests.aspx) (note - this link may change as we transition to the IST team) generate a Wrike task, which will be accepted or rejected from our work. Once we know who will be assigned to the request, we can use Wrike in the following ways to organize the work.
+1. When you have a project established, you still need to document your progress as you move forward.
+
+  * During a project meeting, jot down key points and next steps as a comment, or create new tasks.
+  * Add comments after relevant tasks are completed.
+  * Include links to any completed products.
+
+::: {.hat}
+Are you taking notes in a notebook, on a OneNote, or in a Teams chat? Capture the links to all your relevant documents, GitHub repos, notes, pictures, etc. in a relevant task, as a comment, or in a description in a Wrike project! You'll be able to find things you forgot about months later.
+:::
+
+2. If you used a GRPI/RASI for the project, be sure to update your stakeholders, as well.
+
+  * Include a link to the GRPI/RASI in the Wrike project.
+  * When you update Wrike, update the GRPI/RASI.
+  * Your GRPI/RASI should succinctly summarize what you are doing in the project.
+
+3. Things might change in your project. Each week, ask yourself:
+
+  * Did the scope of the work change?
+  * Did the timeline of the project change?
+  * Did I realize something else needed to be completed?, and so on
+
+If you need to modify the project, carve out time to do so. Evaluating your progress will help keep yourself on track, and will alert others that the project may take longer or may end differently than originally planned. And of course, **document it!**
+
+
+### Wrike projects and requests
+
+We use [Wrike](https://login.wrike.com/login/) as our main project management system to track the workflow for our team. All [information requests](https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Information-Requests.aspx) generate a Wrike task, which will be accepted or rejected from our work. Once we know who will be assigned to the request, we can use Wrike in the following ways to organize the work.
 
 #### Onboarding and setup
 
@@ -267,70 +294,79 @@ We use [Wrike](https://login.wrike.com/login/) as our main project management sy
 2. Determine if the request will be accepted, and if so, determine who will be assigned to the task.
 
 3. Evaluate the scope of the request with your team AND the requester.
+
   * Vet the request thoroughly and ask clarifying questions with the requester.
   * If this is an ad-hoc request, keep the request in the original queue and set up tasks (see next section).
   * If this is a medium- to long-term request, then set up a project and related tasks into an appropriate folder:
     - Evaluation Projects
     - Impact Analyses
+    - An appropriate project folder
   * **N.B.** For medium- to long-term requests, you should consider establishing a GRPI and a RASI for your stakeholders, so that you have a common document for the scope and progress of the work.
 
 #### Goal setting and deadlines
 
 1. Once your Wrike project or task has a page, then you should start backwards planning from the deliverable. Ask yourself:
+
   * What is the *goal* of the project? (document it!)
   * What is the *deliverable* for the project? (document it!)
   * When is that deliverable due? (document it!)
 
 2. Assign the goal and the deliverable to the task or project.
-  * You can create a task/subtask for the deliverable and assign a due date. 
-  * You can use the project/task description, leave a comment, or create a task/subtask for the goal.
+
+  * You can create a task for the deliverable and assign a due date. 
+  * You can use the project/task description, leave a comment, or create a task for the goal.
   * Ex. "Deliver slide deck and final report to Dolores" could be the deliverable, and "2021-12-17" could be the due date.
 
 #### Defining tasks and dependencies
 
 1. Now, you need to accomplish those goals and produce the deliverable. Ask yourself:
+
   * What steps do I need to produce the deliverable?
   * What is the order in which I need to do those steps?
   * Do certain steps require other tasks to be completed first?
 
-2. Create tasks/subtasks for each step.
-  * Tasks could refer to a group of related steps that could be accomplished over a fixed period of time.
-  * Subtasks could be specific, bite-sized steps that could be accomplished in a single day.
-  * Ex. "Make visualizations of data" could be the task, and "Make time series plot of AP Spanish Language scores at Mission CP" could be the subtask.
+2. For each step you identified in part (1), create a new task.
 
-3. Create dependencies for relevant steps.
+  * Tasks are specific, bite-sized steps.
+  * Ex. "Make time series plot of AP Spanish Language scores at Mission CP" could be the task
+  
+3. Assign tasks created in step (2) to the backlog.
+
+4. Create dependencies for relevant steps.
+
   * Link the *predecessors* (i.e., the steps before) and the *successors* (i.e., the steps after) to the task/subtask.
 
-4. Establish due dates for ALL steps, including dependencies, subtasks, etc.
+5. Establish due dates for ALL steps, including dependencies, etc.
 
-#### Documenting and evaluating progress towards goal
+#### Kanban workflow
 
-1. Your project or task is ready-to-go! You still need to document your progress as you move forward.
-  * After a meeting, jot down key points and next steps as a comment, or create new tasks.
-  * Add comments after relevant tasks are completed.
-  * Include links to any completed products.
+Kanban (a Japanese word for *visual signal*) is a workflow for visualizing your progress. We track our project tasks using a **Kanban board** on Wrike. Tasks can move through a workflow in the following order:
 
-::: {.hat}
-Are you taking notes in a notebook, on a OneNote, or in a Teams chat? Capture the links to all your relevant documents, GitHub repos, notes, pictures, etc. in a relevant task, as a comment, or in a description in the Wrike project! You'll be able to find things you forgot about months later.
-:::
+$\textrm{Backlog} \rightarrow \textrm{Work in Progress} \rightarrow \textrm{Work in Review} \rightarrow \textrm{Completed}$
 
-2. If you used a GRPI/RASI for the project, be sure to update your stakeholders, as well.
-  * Include a link to the GRPI/RASI in the Wrike project.
-  * When you update Wrike, update the GRPI/RASI.
-  * Your GRPI/RASI should succinctly summarize what you are doing in the project.
+![The Kanban backlog board](img/workflow-backlog-board.png "The Kanban backlog board categories are Backlog, Work in Progress, Work in Review, and Completed."){width="600"}
 
-3. Things might change in your project. Each week, ask yourself:
-  * Did the scope of the work change?
-  * Did the timeline of the project change?
-  * Did I realize something else needed to be completed?, and so on
+Each stage can be roughly defined as the following:
 
-If you need to modify the project, carve out time to do so. Evaluating your progress will help keep yourself on track, and will alert others that the project may take longer or may end differently than originally planned. And of course, **document it!**
+  * **Backlog**: This category may hold tasks for brainstorming or future development. None of these tasks have been started.
+  * **Work in Progress**: These tasks have been pulled from the Backlog and have been started. They are not yet complete.
+  * **Work in Review**: These tasks have reached a critical benchmark in development and need final feedback or revision. They are not yet approved for completion.
+  * **Completed**: These tasks have been completed.
+  
+To use a Kanban task workflow for a project:
 
+1. Open the context menu for a project (right-click).
+2. Change default workflow -> For tasks -> R&A Kanban Task Board Workflow.
+
+![Changing a project to a Kanban workflow](img/workflow-kanban.png "Open the context menu, change default workflow, for tasks, R&A Kanban Task Board Workflow"){width="600"}
+
+When you choose the "Board" view for the project, you should see the Kanban board with the appropriate categories. Task cards should be created and moved as you progress through the project.
 
 ### GRPI and RASI
 
 ### Project operating mechanisms
 
+### Outgoing data requests
 
 
 ## ProjectTemplate (for analyses) {#section-ProjectTemplate}
