@@ -108,13 +108,15 @@ using-.gitignore
 rstudio-2
 merging-changes
 project-process
-wrike
+general-project-management
+wrike-projects-and-requests
 onboarding-and-setup
 goal-setting-and-deadlines
 defining-tasks-and-dependencies
-documenting-and-evaluating-progress-towards-goal
+kanban-workflow
 grpi-and-rasi
 project-operating-mechanisms
+outgoing-data-requests
 section-ProjectTemplate
 installing-projecttemplate
 creating-a-project-with-projecttemplate
