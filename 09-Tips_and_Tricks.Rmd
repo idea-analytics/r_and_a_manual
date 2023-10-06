@@ -266,4 +266,8 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 `clear.cache()`: to clear the cache, example: `clear.cache(conn_PROD1)`
 
 Then try reloading the project and running the script. 
+
+## IDEA Acronym Guide
+
+IDEA uses acronyms frequently. Several of these acronyms have been compiled in [this resource] (https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA).
  
