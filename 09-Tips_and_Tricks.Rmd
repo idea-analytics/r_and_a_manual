@@ -269,5 +269,5 @@ Then try reloading the project and running the script.
 
 ## IDEA Acronym Guide
 
-IDEA uses acronyms frequently. Several of these acronyms have been compiled in [this resource] (https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA).
+IDEA uses acronyms frequently. Several of these acronyms have been compiled in [this resource](https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA).
  
