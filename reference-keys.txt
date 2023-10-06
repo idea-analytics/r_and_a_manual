@@ -256,6 +256,7 @@ simpsons-paradox
 bias-variance-tradeoff
 troubleshooting-messages-and-errors
 connection-to-the-dashboard
+idea-acronym-guide
 platforms
 qualtrics
 creating-a-new-survey
