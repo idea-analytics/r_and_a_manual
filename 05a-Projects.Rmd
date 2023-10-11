@@ -364,6 +364,15 @@ When you choose the "Board" view for the project, you should see the Kanban boar
 
 ### GRPI and RASI
 
+While we use Wrike internally to manage a project, external teams cannot access our workspace. Therefore, we must use different tools to track goals and roles for cross-functional projects.
+
+* A **GRPI** is a tool governing the **G**oals, **R**esponsibilities, **P**rocesses, and **I**nterpersonal norms of a project. This describes the purpose of the group working on the project.
+* A **RASI** is a tool governing the roles of each group member. Each task should have a person who is: **R**esponsible, **A**pproving, **S**upporting, and **I**nformed.
+
+The GRPI and RASI should be shared between relevant teams and stakeholders. These documents serve as the contract and tracking system for the project. Note that while these tools are often paired together, some smaller tasks could benefit from just the RASI structure.
+
+For more information, visit the Best Practices on [GRPI and RASI](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EX_Be2K6aitIjIuTIIDw6ogBFrP3Rb6jlUi_yHJdNv5SeQ?e=aKdDi6).
+
 ### Project operating mechanisms
 
 ### Outgoing data requests
