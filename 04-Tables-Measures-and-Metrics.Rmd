@@ -885,7 +885,7 @@ A list of the most common codes used is included below:
 
 Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment. 
 
-##### IABWA
+##### IABWA table
 
 This table aggregates item-level data for each student and reports a student's performance on a single assessment.
 
@@ -1031,7 +1031,7 @@ DIBELS has multiple required measures but can be implemented using *gating rules
   
 
 ### Renaissance STAR (also RenStar, Little Star)
-[Renaissance](https://www.renaissance.com/about-us/) [Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostic to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
+[Renaissance Star Assessments](https://www.renaissance.com/products/star-assessments/) are a suite of of norm-referenced assessments used by IDEA for both screening (particularly for identifying students in need of [CSI support](#csi)) as well as gauging achievement and growth of students in a way that is agnostic to both grade-level and location (i.e., Texas, Louisiana, Florida, or Ohio).  
 
 It is particularly useful for evaluative purposes as it allows us to use normed data (e.g., national percentile rank, grade-level equivalent) to understand how students are progressing in their learning; it effectively gives an indirect measure of student acumen (though this can be confounded by a student's effort on any given test).
 
@@ -1044,9 +1044,9 @@ Accessing these data in the warehouse at this juncture is not always obvious.  T
 
 IDEA's Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams; however, IB schools offer far fewer options than the non-IB campuses. 
 
-All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned, and added to the R&A server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on github that need to be run in a specific order.
+All AP student data is downloaded directly from the College Board's website. Once downloaded it is imported, cleaned, and added to the R&A server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on GitHub that need to be run in a specific order.
 
-**Step One:** pull down the most recent year's project on github.
+**Step One:** pull down the most recent year's project on GitHub.
 **Step Two:** Open the main R project within that folder, for example, "22-23 AP Report & Requests". Within that project there are two main sub-project folders. Use the AP Requests.
 **Step Three:** Run the two scripts in the data folder. First run "1_Load_AP_Data", this pulls all of the AP tables. Next run "2_Load_Students_Data", this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
 **Step Four:** Run the three scripts in the munge folder. First run "1_Clean_AP_Data", this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and passes both with the same score that they are not counted twice towards the three exams passed for AP Scholars classification. Then run "2_Scaffold_AP_Data", this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call "ap_df". This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run "3_Scaffold_AP_Scholars_Data", this is the same script as #2, but ensures that the file that is produced by the script doesn't include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called "ap_df_scholars".
@@ -1184,7 +1184,7 @@ df_ib %>%
 ```
 
 
-### ACT
+### ACT exam
 
 The [ACT](https://www.act.org/) is the main college-entrance exam taken by IDEA students. Students typically start taking the exam in 10th grade, then have multiple attempts in 11th grade while taking their ACT Prep course, and have a final opportunity in 12th grade prior to submitting college applications. 
 
@@ -1296,7 +1296,7 @@ get_table(.table_name = "StudentScores",
 ### LEAP
 
 Louisiana Educational Assessment Program (LEAP) 
-The LEAP assessments are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
+The [LEAP assessments](https://www.louisianabelieves.com/measuringresults) are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school.  Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.
 
 Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
 English learners from K-12 take the English Language Proficiency test (ELPT).
@@ -1372,7 +1372,8 @@ There are two tables in the warehouse that collect student course grades, `[RGVP
 
 During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -> Quick Links -> Dashboards -> Locus -> Staff Retention). If you can't find what you need in the dashboard, below are the tables that store the Staff Retention data.
 
-**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year's staff retention data.
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] 
+This table contains the current year's staff retention data.
 
 **Useful Fields:** 
 
