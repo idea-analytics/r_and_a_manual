@@ -114,7 +114,7 @@ onboarding-and-setup
 goal-setting-and-deadlines
 defining-tasks-and-dependencies
 kanban-workflow
-grpi-and-rasi
+grpi-rasi
 project-operating-mechanisms
 outgoing-data-requests
 section-ProjectTemplate
