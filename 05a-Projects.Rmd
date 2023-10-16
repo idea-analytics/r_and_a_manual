@@ -385,6 +385,9 @@ Consider reviewing Wrike, or the GRPI and RASI, at each of these operating mecha
 
 ### Outgoing data requests
 
+If a data request or project is being sent to an external-to-IDEA partner (or potentially internal partners), then the data must be vetted for accuracy and consistency with prior data. Our team has processes to ensure that what we publish is consistent with a "source of truth" and can be easily verified later.
+
+For the complete process, read through this document on [Outgoing Data Requests](https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/EatUXsxMoMJBvUV9k6QgpRgBvfziCWxeBiOZPqDxMG1cYA?e=klOUUz).
 
 ## ProjectTemplate (for analyses) {#section-ProjectTemplate}
 
