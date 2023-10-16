@@ -362,7 +362,7 @@ To use a Kanban task workflow for a project:
 
 When you choose the "Board" view for the project, you should see the Kanban board with the appropriate categories. Task cards should be created and moved as you progress through the project.
 
-### GRPI and RASI
+### GRPI and RASI {#grpi-rasi}
 
 While we use Wrike internally to manage a project, external teams cannot access our workspace. Therefore, we must use different tools to track goals and roles for cross-functional projects.
 
@@ -374,6 +374,14 @@ The GRPI and RASI should be shared between relevant teams and stakeholders. Thes
 For more information, visit the Best Practices on [GRPI and RASI](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EX_Be2K6aitIjIuTIIDw6ogBFrP3Rb6jlUi_yHJdNv5SeQ?e=aKdDi6).
 
 ### Project operating mechanisms
+
+To monitor an ongoing project with your group members (either internal or external), consider an appropriate operating mechanism. An **operating mechanism** is a process (see [GRPI](https://idea-analytics.github.io/r_and_a_manual/projects.html#grpi-rasi)) for establishing how the work can done. These meetings help establish and maintain regular communication across teams (see [Best Practice for Strong Business Partnerships](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/ETq-uUomFuNOvTgbzAdwplwBaBXYEvUgoblw1FcV2l4cSQ?e=JhRUFw). At IDEA, two common operating mechanisms are:
+
+1. **Daily huddle**: A (daily / morning / stand-up) huddle is a short (less than 10 minutes) to recap progress from the prior day and to state priorities for the current day. A team leader may also establish priorities for the team and provide announcements. This type of operating mechanism is optimal for teams that need to align priorities day-to-day. A [Best Practice for Daily Huddles](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EXWFlniwe5lGl4sUGrBb-FQB8wt5AeW87EoKT1jqJQBx5A?e=K92ACk) is also available.
+
+2. **Tactical**: A (weekly / biweekly) tactical is a recurring meeting to review goals, share information, and solve short-term problems. Usually, there are both recurring agenda items and a real-time agenda that can be flexible week-to-week. This type of operating mechanism is optimal for both internal and cross-functional teams working towards a long-term goal.  A [Best Practice for Weekly Tactical](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EbjTlM00OJxHgrvTh3QzA2sBThCQdEOfk8f9gh5F01zB2Q?e=xghlN8) is also available.
+
+Consider reviewing Wrike, or the GRPI and RASI, at each of these operating mechanisms to record your progress, notes, and next steps.
 
 ### Outgoing data requests
 
