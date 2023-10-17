@@ -493,23 +493,23 @@ Student Persistence is one of the most important measures that Chiefs, VPs, and 
 
 Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on the FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on the FDOP because he didn't return until September, John would not count as a student who persisted.
 
-**Database:** [RGVPDSD-DWPRD1].[Persistence]
+**Database:** [RGVPDSD-DWPRD1].[StudentPersistence]
 
 **Main metrics:** District, Regional, School, Sub-population, Grade Level
 
-**General Formula:** 1 – (Leavers/All Students)
+**General Formula:** 1 – (Leavers/All Students) or 1 - (FDOPLEAVERS/FDOPENROLLED + FDOPNEWENTRY)
 
 **Tables:**
 
-* **_[dbo].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).
+* **_[Fact].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).
 
-* **_[dbo].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
+* **_[Fact].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2022-2023. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
 **Context:**
 
 * **Who Counts?** 
 
-To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(EXCLUDE == 0, FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. These two filters should be used when looking at current **or** historical data.
+To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. This filter should be used when looking at current **or** historical data.
 
 * **Who is a Leaver?**
 
@@ -520,6 +520,7 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   + **RegionDescription:** the region the student is in
   + **SchoolShortName:** the school the student attends
   + **SchoolType:** Academy or College Prep
+  + **Studentnumber:** the local student number
   + **GradeLevelID:** student's grade level (integer ranging from -1 = Pre-K to 12)
   + **NewStudent:** indicates if the student is new (1) or returning (0)
   + **PersistenceWeek:** the current week of persistence based on the student's region and school (ranges from 1-52)
@@ -542,6 +543,48 @@ All leavers are coded as FDOPLEAVER = 1, if FDOPLEAVER = 0 then they are a curre
   + **EconDisad:** 0/1 indicator of student's economic disadvantaged status. **Inaccurate Don't Use**
   + **IsCSI:** 0/1 indicator for students identified as CSI
   + **ContinuousEnrollment:** 0/1 indicates whether the student has been continuously enrolled
+  + **Entity:** Indicates either TX or IPS
+  + **State:** Indicates the state the student attends school
+  
+Example of how to pull and calculate Student Persistence
+```{r persistence_ex, echo=TRUE, eval=FALSE}
+#Getting a connection to the Persistence table
+persistence_conn <- get_table(.table_name = "PersistenceCode", .database_name = "Persistence",
+                                  .schema = "dbo", .server_name = "RGVPDSD-DWPRD1")
+
+#Pull the columns  that you need
+persistence_23_24 <- persistence_conn %>%
+  filter(AcademicYear == "2023-2024") %>%
+  select(AcademicYear,
+         RegionDescription,
+         SchoolShortName,
+         Studentnumber,
+         FDOPENROLLED,
+         FDOPNEWENTRY,
+         FDOPLEAVER,
+         FDOPCOUNTP
+         ) %>%
+  #Creating a "leavers" column
+  mutate(leavers = if_else(FDOPLEAVER == 1, 1, 0)
+         ) %>%
+  distinct() %>%
+  #Collect the data to pull it onto your machine
+  collect()
+
+#Calculate Student Persistence by Campus Using the 2 different formulas above
+Persistence_Rate_23_23 <- persistence_23_24 %>%
+  filter(FDOPCOUNTP == 1) %>%
+  group_by(SchoolShortName) %>%
+  summarize(n_leavers = sum(leavers),
+            n_students = n_distinct(Studentnumber),
+            n_FDOP = sum(FDOPENROLLED),
+            n_NEWENTRY = sum(FDOPNEWENTRY),
+            persistence_rate_1 = (1-(n_leavers)/(n_students))*100,
+            persistence_rate_2 = (1-(n_leavers)/(n_FDOP + n_NEWENTRY))) %>%
+  distinct()
+
+```
+
   
 ### Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)
 
