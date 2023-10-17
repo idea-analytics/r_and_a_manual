@@ -503,7 +503,7 @@ Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended s
 
 * **_[Fact].[PersistenceCode]:_** This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).
 
-* **_[Fact].[PersistenceHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2022-2023. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
+* **_[Fact].[PersistenceCodeHistorical]:_** This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2022-2023. This table is updated with the previous years' data after that year is closed out and the next persistence year has started.
 
 **Context:**
 
