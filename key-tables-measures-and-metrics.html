@@ -7,7 +7,7 @@
 <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.  4.1 The Students Table The Students table is probably the most important table...">
-<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
@@ -682,19 +682,19 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </h2>
 <p>Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA, the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence, FDOP). In other words, the student was enrolled and attended school on the “First Day of Persistence” (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for two consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.</p>
 <p>Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on the FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on the FDOP because he didn’t return until September, John would not count as a student who persisted.</p>
-<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[Persistence]</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[StudentPersistence]</p>
 <p><strong>Main metrics:</strong> District, Regional, School, Sub-population, Grade Level</p>
-<p><strong>General Formula:</strong> 1 – (Leavers/All Students)</p>
+<p><strong>General Formula:</strong> 1 – (Leavers/All Students) or 1 - (FDOPLEAVERS/FDOPENROLLED + FDOPNEWENTRY)</p>
 <p><strong>Tables:</strong></p>
 <ul>
-<li><p><strong><em>[dbo].[PersistenceCode]:</em></strong> This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).</p></li>
-<li><p><strong><em>[dbo].[PersistenceHistorical]:</em></strong> This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2021-2022. This table is updated with the previous years’ data after that year is closed out and the next persistence year has started.</p></li>
+<li><p><strong><em>[Fact].[PersistenceCode]:</em></strong> This table is used to calculate the persistence rate for the current academic year. The data is updated every three hours, weekdays. LeaverWeek column shows the week the student left the district (beginning the week containing the FDOP, which is the second week of the academic year). After the end of the current school year but before the persistence year has ended (the summer months), the week the student leaves the district is captured in the ULeaverWeek column. The PersistenceWeek column shows the current week of persistence for the school and region that the student attends (this week will be different across schools and regions due to differing start dates and FDOPs).</p></li>
+<li><p><strong><em>[Fact].[PersistenceHistorical]:</em></strong> This table contains the final persistence data for previous persistence years starting with 2018-2019 and up through 2022-2023. This table is updated with the previous years’ data after that year is closed out and the next persistence year has started.</p></li>
 </ul>
 <p><strong>Context:</strong></p>
 <ul>
 <li><strong>Who Counts?</strong></li>
 </ul>
-<p>To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(EXCLUDE == 0, FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. These two filters should be used when looking at current <strong>or</strong> historical data.</p>
+<p>To calculate persistence, we need to filter out all students who should be excluded from the denominator, filter(FDOPCOUNTP == 1). This limits the denominator to only those students that should be counted. This filter should be used when looking at current <strong>or</strong> historical data.</p>
 <ul>
 <li><strong>Who is a Leaver?</strong></li>
 </ul>
@@ -711,6 +711,8 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <strong>SchoolShortName:</strong> the school the student attends</li>
 <li>
 <strong>SchoolType:</strong> Academy or College Prep</li>
+<li>
+<strong>Studentnumber:</strong> the local student number</li>
 <li>
 <strong>GradeLevelID:</strong> student’s grade level (integer ranging from -1 = Pre-K to 12)</li>
 <li>
@@ -759,9 +761,49 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <strong>IsCSI:</strong> 0/1 indicator for students identified as CSI</li>
 <li>
 <strong>ContinuousEnrollment:</strong> 0/1 indicates whether the student has been continuously enrolled</li>
+<li>
+<strong>Entity:</strong> Indicates either TX or IPS</li>
+<li>
+<strong>State:</strong> Indicates the state the student attends school</li>
 </ul>
 </li>
 </ul>
+<p>Example of how to pull and calculate Student Persistence</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#Getting a connection to the Persistence table</span></span>
+<span><span class="va">persistence_conn</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"PersistenceCode"</span>, .database_name <span class="op">=</span> <span class="st">"Persistence"</span>,</span>
+<span>                                  .schema <span class="op">=</span> <span class="st">"dbo"</span>, .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWPRD1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Pull the columns  that you need</span></span>
+<span><span class="va">persistence_23_24</span> <span class="op">&lt;-</span> <span class="va">persistence_conn</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AcademicYear</span> <span class="op">==</span> <span class="st">"2023-2024"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">AcademicYear</span>,</span>
+<span>         <span class="va">RegionDescription</span>,</span>
+<span>         <span class="va">SchoolShortName</span>,</span>
+<span>         <span class="va">Studentnumber</span>,</span>
+<span>         <span class="va">FDOPENROLLED</span>,</span>
+<span>         <span class="va">FDOPNEWENTRY</span>,</span>
+<span>         <span class="va">FDOPLEAVER</span>,</span>
+<span>         <span class="va">FDOPCOUNTP</span></span>
+<span>         <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="co">#Creating a "leavers" column</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>leavers <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">FDOPLEAVER</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>         <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="co">#Collect the data to pull it onto your machine</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Calculate Student Persistence by Campus Using the 2 different formulas above</span></span>
+<span><span class="va">Persistence_Rate_23_23</span> <span class="op">&lt;-</span> <span class="va">persistence_23_24</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">FDOPCOUNTP</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">SchoolShortName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>n_leavers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">leavers</span><span class="op">)</span>,</span>
+<span>            n_students <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">Studentnumber</span><span class="op">)</span>,</span>
+<span>            n_FDOP <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">FDOPENROLLED</span><span class="op">)</span>,</span>
+<span>            n_NEWENTRY <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">FDOPNEWENTRY</span><span class="op">)</span>,</span>
+<span>            persistence_rate_1 <span class="op">=</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="va">n_leavers</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n_students</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>,</span>
+<span>            persistence_rate_2 <span class="op">=</span> <span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="op">(</span><span class="va">n_leavers</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">n_FDOP</span> <span class="op">+</span> <span class="va">n_NEWENTRY</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div id="student-persistence-using-attendance-tables-a.k.a.-cohort-persistence" class="section level3" number="4.4.1">
 <h3>
 <span class="header-section-number">4.4.1</span> Student Persistence using Attendance Tables (A.K.A. Cohort Persistence)<a class="anchor" aria-label="anchor" href="#student-persistence-using-attendance-tables-a.k.a.-cohort-persistence"><i class="fas fa-link"></i></a>
@@ -916,37 +958,37 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <li><p><strong><em>[StudentCSI]:</em></strong> This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="key-tables-measures-and-metrics.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
-<span id="cb19-2"><a href="key-tables-measures-and-metrics.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
-<span id="cb19-3"><a href="key-tables-measures-and-metrics.html#cb19-3" aria-hidden="true" tabindex="-1"></a>      ,[ProgramID]</span>
-<span id="cb19-4"><a href="key-tables-measures-and-metrics.html#cb19-4" aria-hidden="true" tabindex="-1"></a>      ,<span class="cf">CASE</span> </span>
-<span id="cb19-5"><a href="key-tables-measures-and-metrics.html#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
-<span id="cb19-6"><a href="key-tables-measures-and-metrics.html#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
-<span id="cb19-7"><a href="key-tables-measures-and-metrics.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb19-8"><a href="key-tables-measures-and-metrics.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2018-2019'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
-<span id="cb19-9"><a href="key-tables-measures-and-metrics.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="key-tables-measures-and-metrics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
+<span id="cb20-2"><a href="key-tables-measures-and-metrics.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
+<span id="cb20-3"><a href="key-tables-measures-and-metrics.html#cb20-3" aria-hidden="true" tabindex="-1"></a>      ,[ProgramID]</span>
+<span id="cb20-4"><a href="key-tables-measures-and-metrics.html#cb20-4" aria-hidden="true" tabindex="-1"></a>      ,<span class="cf">CASE</span> </span>
+<span id="cb20-5"><a href="key-tables-measures-and-metrics.html#cb20-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
+<span id="cb20-6"><a href="key-tables-measures-and-metrics.html#cb20-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
+<span id="cb20-7"><a href="key-tables-measures-and-metrics.html#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [<span class="dv">1065574</span><span class="op">-</span>SQLPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb20-8"><a href="key-tables-measures-and-metrics.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2018-2019'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
+<span id="cb20-9"><a href="key-tables-measures-and-metrics.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID</span></code></pre></div>
 <ul>
 <li><p><strong><em>[StudentCSIDetails]:</em></strong> Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the <strong><em>[StudentCSI]</em></strong> table data to the Students table and get the percent of CSI students per school.</p></li>
 <li><p><strong>SQL Code Example:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb20-1"><a href="key-tables-measures-and-metrics.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
-<span id="cb20-2"><a href="key-tables-measures-and-metrics.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
-<span id="cb20-3"><a href="key-tables-measures-and-metrics.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
-<span id="cb20-4"><a href="key-tables-measures-and-metrics.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.SchoolNumber <span class="op">=</span> B.SchoolNumber</span>
-<span id="cb20-5"><a href="key-tables-measures-and-metrics.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI] <span class="kw">AS</span> C</span>
-<span id="cb20-6"><a href="key-tables-measures-and-metrics.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.StudentNumber <span class="op">=</span> C.StudentNumber <span class="kw">AND</span> A.AcademicYear <span class="op">=</span> C.AcademicYear</span>
-<span id="cb20-7"><a href="key-tables-measures-and-metrics.html#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
-<span id="cb20-8"><a href="key-tables-measures-and-metrics.html#cb20-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
-<span id="cb20-9"><a href="key-tables-measures-and-metrics.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
-<span id="cb20-10"><a href="key-tables-measures-and-metrics.html#cb20-10" aria-hidden="true" tabindex="-1"></a>      ,[ProgramID]</span>
-<span id="cb20-11"><a href="key-tables-measures-and-metrics.html#cb20-11" aria-hidden="true" tabindex="-1"></a>      ,<span class="cf">CASE</span> </span>
-<span id="cb20-12"><a href="key-tables-measures-and-metrics.html#cb20-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
-<span id="cb20-13"><a href="key-tables-measures-and-metrics.html#cb20-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
-<span id="cb20-14"><a href="key-tables-measures-and-metrics.html#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI]</span>
-<span id="cb20-15"><a href="key-tables-measures-and-metrics.html#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2020-2021'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
-<span id="cb20-16"><a href="key-tables-measures-and-metrics.html#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID) <span class="kw">AS</span> D</span>
-<span id="cb20-17"><a href="key-tables-measures-and-metrics.html#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> C.ProgramID <span class="op">=</span> D.ProgramID</span>
-<span id="cb20-18"><a href="key-tables-measures-and-metrics.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> A.AcademicYear <span class="op">=</span> <span class="st">'2020-2021'</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb21-1"><a href="key-tables-measures-and-metrics.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]</span>
+<span id="cb21-2"><a href="key-tables-measures-and-metrics.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Students] <span class="kw">AS</span> A</span>
+<span id="cb21-3"><a href="key-tables-measures-and-metrics.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[Schools] <span class="kw">AS</span> B</span>
+<span id="cb21-4"><a href="key-tables-measures-and-metrics.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.SchoolNumber <span class="op">=</span> B.SchoolNumber</span>
+<span id="cb21-5"><a href="key-tables-measures-and-metrics.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI] <span class="kw">AS</span> C</span>
+<span id="cb21-6"><a href="key-tables-measures-and-metrics.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> A.StudentNumber <span class="op">=</span> C.StudentNumber <span class="kw">AND</span> A.AcademicYear <span class="op">=</span> C.AcademicYear</span>
+<span id="cb21-7"><a href="key-tables-measures-and-metrics.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> </span>
+<span id="cb21-8"><a href="key-tables-measures-and-metrics.html#cb21-8" aria-hidden="true" tabindex="-1"></a>(<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> AcademicYear, [Subject], ProgramID</span>
+<span id="cb21-9"><a href="key-tables-measures-and-metrics.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (<span class="kw">SELECT</span> [AcademicYear]</span>
+<span id="cb21-10"><a href="key-tables-measures-and-metrics.html#cb21-10" aria-hidden="true" tabindex="-1"></a>      ,[ProgramID]</span>
+<span id="cb21-11"><a href="key-tables-measures-and-metrics.html#cb21-11" aria-hidden="true" tabindex="-1"></a>      ,<span class="cf">CASE</span> </span>
+<span id="cb21-12"><a href="key-tables-measures-and-metrics.html#cb21-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="cf">THEN</span> <span class="st">'Math'</span></span>
+<span id="cb21-13"><a href="key-tables-measures-and-metrics.html#cb21-13" aria-hidden="true" tabindex="-1"></a>      <span class="cf">WHEN</span> [InterventionType] <span class="kw">LIKE</span> <span class="st">'%reading%'</span> <span class="cf">THEN</span> <span class="st">'Reading'</span> <span class="cf">ELSE</span> <span class="kw">NULL</span> <span class="cf">END</span> <span class="kw">AS</span> [Subject]</span>
+<span id="cb21-14"><a href="key-tables-measures-and-metrics.html#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD1].[PROD1].[Schools].[StudentCSI]</span>
+<span id="cb21-15"><a href="key-tables-measures-and-metrics.html#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [AcademicYear] <span class="op">=</span> <span class="st">'2020-2021'</span> <span class="kw">AND</span> (InterventionType <span class="kw">LIKE</span> <span class="st">'%math%'</span> <span class="kw">OR</span> InterventionType <span class="kw">LIKE</span> <span class="st">'%reading%'</span>)) <span class="kw">AS</span> A</span>
+<span id="cb21-16"><a href="key-tables-measures-and-metrics.html#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> AcademicYear, [Subject], ProgramID) <span class="kw">AS</span> D</span>
+<span id="cb21-17"><a href="key-tables-measures-and-metrics.html#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> C.ProgramID <span class="op">=</span> D.ProgramID</span>
+<span id="cb21-18"><a href="key-tables-measures-and-metrics.html#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> A.AcademicYear <span class="op">=</span> <span class="st">'2020-2021'</span></span></code></pre></div>
 </div>
 <div id="assessment-data" class="section level2" number="4.8">
 <h2>
@@ -1030,7 +1072,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </li>
 <li><p>R example:</p></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">STAAR</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"STAAR"</span>, .database_name <span class="op">=</span> <span class="st">"Dashboard"</span>, </span>
 <span>                   .schema <span class="op">=</span> <span class="st">"dbo"</span>, .server_name <span class="op">=</span> <span class="st">"RGVPDRA-DASQL"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1568,7 +1610,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <span class="header-section-number">4.8.6.3</span> Useful queries<a class="anchor" aria-label="anchor" href="#useful-queries"><i class="fas fa-link"></i></a>
 </h4>
 <p>Suppose we wanted to retreive the most recent IB scores.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ACADEMIC_YEAR</span> <span class="op">&lt;-</span> <span class="st">"2021-2022"</span></span>
 <span></span>
 <span><span class="va">df_ib</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"IBScores"</span>,</span>
@@ -1586,7 +1628,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </ul>
 <p>Thus, the [Grade] column is <em>character</em>, not numeric.</p>
 <p>The code below will provide the distribution of numerical and letter grades.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_ib</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TCPCourseCode</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Grade</span><span class="op">)</span></span></code></pre></div>
@@ -1651,30 +1693,30 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <li>Janna Wiley is the Director of ACT Programming. She has context on ACT administration and data.</li>
 </ul>
 <p><strong>SQL example:</strong></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="key-tables-measures-and-metrics.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
-<span id="cb24-2"><a href="key-tables-measures-and-metrics.html#cb24-2" aria-hidden="true" tabindex="-1"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
-<span id="cb24-3"><a href="key-tables-measures-and-metrics.html#cb24-3" aria-hidden="true" tabindex="-1"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
-<span id="cb24-4"><a href="key-tables-measures-and-metrics.html#cb24-4" aria-hidden="true" tabindex="-1"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
-<span id="cb24-5"><a href="key-tables-measures-and-metrics.html#cb24-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
-<span id="cb24-6"><a href="key-tables-measures-and-metrics.html#cb24-6" aria-hidden="true" tabindex="-1"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
-<span id="cb24-7"><a href="key-tables-measures-and-metrics.html#cb24-7" aria-hidden="true" tabindex="-1"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
-<span id="cb24-8"><a href="key-tables-measures-and-metrics.html#cb24-8" aria-hidden="true" tabindex="-1"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
-<span id="cb24-9"><a href="key-tables-measures-and-metrics.html#cb24-9" aria-hidden="true" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
-<span id="cb24-10"><a href="key-tables-measures-and-metrics.html#cb24-10" aria-hidden="true" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
-<span id="cb24-11"><a href="key-tables-measures-and-metrics.html#cb24-11" aria-hidden="true" tabindex="-1"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
-<span id="cb24-12"><a href="key-tables-measures-and-metrics.html#cb24-12" aria-hidden="true" tabindex="-1"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
-<span id="cb24-13"><a href="key-tables-measures-and-metrics.html#cb24-13" aria-hidden="true" tabindex="-1"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
-<span id="cb24-14"><a href="key-tables-measures-and-metrics.html#cb24-14" aria-hidden="true" tabindex="-1"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
-<span id="cb24-15"><a href="key-tables-measures-and-metrics.html#cb24-15" aria-hidden="true" tabindex="-1"></a>      ,[Composite]</span>
-<span id="cb24-16"><a href="key-tables-measures-and-metrics.html#cb24-16" aria-hidden="true" tabindex="-1"></a>      ,[Writing]</span>
-<span id="cb24-17"><a href="key-tables-measures-and-metrics.html#cb24-17" aria-hidden="true" tabindex="-1"></a>      ,[STEM]</span>
-<span id="cb24-18"><a href="key-tables-measures-and-metrics.html#cb24-18" aria-hidden="true" tabindex="-1"></a>      ,[ELA]</span>
-<span id="cb24-19"><a href="key-tables-measures-and-metrics.html#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
-<span id="cb24-20"><a href="key-tables-measures-and-metrics.html#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
-<span id="cb24-21"><a href="key-tables-measures-and-metrics.html#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
-<span id="cb24-22"><a href="key-tables-measures-and-metrics.html#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="key-tables-measures-and-metrics.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
+<span id="cb25-2"><a href="key-tables-measures-and-metrics.html#cb25-2" aria-hidden="true" tabindex="-1"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
+<span id="cb25-3"><a href="key-tables-measures-and-metrics.html#cb25-3" aria-hidden="true" tabindex="-1"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
+<span id="cb25-4"><a href="key-tables-measures-and-metrics.html#cb25-4" aria-hidden="true" tabindex="-1"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
+<span id="cb25-5"><a href="key-tables-measures-and-metrics.html#cb25-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
+<span id="cb25-6"><a href="key-tables-measures-and-metrics.html#cb25-6" aria-hidden="true" tabindex="-1"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
+<span id="cb25-7"><a href="key-tables-measures-and-metrics.html#cb25-7" aria-hidden="true" tabindex="-1"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
+<span id="cb25-8"><a href="key-tables-measures-and-metrics.html#cb25-8" aria-hidden="true" tabindex="-1"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
+<span id="cb25-9"><a href="key-tables-measures-and-metrics.html#cb25-9" aria-hidden="true" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
+<span id="cb25-10"><a href="key-tables-measures-and-metrics.html#cb25-10" aria-hidden="true" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
+<span id="cb25-11"><a href="key-tables-measures-and-metrics.html#cb25-11" aria-hidden="true" tabindex="-1"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
+<span id="cb25-12"><a href="key-tables-measures-and-metrics.html#cb25-12" aria-hidden="true" tabindex="-1"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
+<span id="cb25-13"><a href="key-tables-measures-and-metrics.html#cb25-13" aria-hidden="true" tabindex="-1"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
+<span id="cb25-14"><a href="key-tables-measures-and-metrics.html#cb25-14" aria-hidden="true" tabindex="-1"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
+<span id="cb25-15"><a href="key-tables-measures-and-metrics.html#cb25-15" aria-hidden="true" tabindex="-1"></a>      ,[Composite]</span>
+<span id="cb25-16"><a href="key-tables-measures-and-metrics.html#cb25-16" aria-hidden="true" tabindex="-1"></a>      ,[Writing]</span>
+<span id="cb25-17"><a href="key-tables-measures-and-metrics.html#cb25-17" aria-hidden="true" tabindex="-1"></a>      ,[STEM]</span>
+<span id="cb25-18"><a href="key-tables-measures-and-metrics.html#cb25-18" aria-hidden="true" tabindex="-1"></a>      ,[ELA]</span>
+<span id="cb25-19"><a href="key-tables-measures-and-metrics.html#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
+<span id="cb25-20"><a href="key-tables-measures-and-metrics.html#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
+<span id="cb25-21"><a href="key-tables-measures-and-metrics.html#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
+<span id="cb25-22"><a href="key-tables-measures-and-metrics.html#cb25-22" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
 <p><strong>R example:</strong></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"StudentScores"</span>,</span>
 <span>          .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC2"</span>,</span>
 <span>          .database_name <span class="op">=</span> <span class="st">"SRC_ACT"</span>,</span>
@@ -2385,7 +2427,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-16.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -7,7 +7,7 @@
 <title>Chapter 9 Visualization Standards | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="9.1 IDEA Branding When producing a visualization for presentation or publication, use the Brand Guideline standards established by the Marketing team. Many of these guidelines, particularly...">
-<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 9 Visualization Standards | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/visualization-standards.html">
@@ -82,7 +82,7 @@
 </h3>
 <p>The <code>ideacolors</code> package is used in conjunction with <code>ggplot2</code> to produce graphs and visualizations consistent with the primary and secondary brand color schemes. For more information, consult the <code>ideacolors</code> <a href="https://idea-analytics.github.io/ideacolors/">documentation</a>.</p>
 <p>To install the package, use the following code:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"idea-analytics/ideacolors"</span><span class="op">)</span></span></code></pre></div>
 <div id="ideacolors-themes-and-scales" class="section level4" number="9.1.1.1">
@@ -90,24 +90,24 @@
 <span class="header-section-number">9.1.1.1</span> <code>ideacolors</code> themes and scales<a class="anchor" aria-label="anchor" href="#ideacolors-themes-and-scales"><i class="fas fa-link"></i></a>
 </h4>
 <p>Consider the following chart using the <code>mtcars</code> data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we’ve set the color aesthetic (or channel) to the number of cylinders a car’s engine has:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">disp</span>, y<span class="op">=</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="fu">as_factor</span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-25-1.png" width="672"></div>
 <p>You can quickly apply IDEA brand compliant colors by using the <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea()</a></code> function:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideacolors</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="r-and-a-manual_files/figure-html/unnamed-chunk-26-1.png" width="672"><strong>Super easy!</strong> We can also easily change the palette and even reverse it:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"blueorange"</span>, reverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="r-and-a-manual_files/figure-html/unnamed-chunk-27-1.png" width="672">
 Available palettes are given in the <code>idea_palettes</code> variable and can be seen here:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">idea_palettes</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-28-1.png" width="672"></div>
 </div>
@@ -117,7 +117,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <span class="header-section-number">9.1.2</span> Color Blindness<a class="anchor" aria-label="anchor" href="#color-blindness"><i class="fas fa-link"></i></a>
 </h3>
 <p>Note that IDEA’s brand colors are not completely safe for color blindness. Here’s each palette with adjustments to check for the predominant types of color blindness in the population:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">idea_palettes</span>, cvd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"desaturate"</span>, <span class="st">'deutan'</span>, <span class="st">"protan"</span>, <span class="st">"tritan"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="r-and-a-manual_files/figure-html/unnamed-chunk-29-1.png" width="672"></div>
 <div class="tip">
@@ -159,7 +159,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <li>as a value, inside a manual scale function</li>
 </ol>
 <p>Let’s define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 1</span></span>
 <span><span class="va">race_ethnicity_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"American Indian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">melon</span>,</span>
 <span>                           <span class="st">"Asian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">cyan</span>,</span>
@@ -170,13 +170,13 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <span>                           <span class="st">"Two or more races"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">lime</span>,</span>
 <span>                           <span class="st">"White"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">coolgray</span><span class="op">)</span></span></code></pre></div>
 <p>Then, inside a <code>geom_*()</code> layer, assign the appropriate column <code>RaceEthnicity</code> to the appropriate aesthetic <code>aes()</code>. (Depending on your visualization, the aesthetic might be <code>fill</code>, <code>shape</code>, etc.).</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 2</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
 <span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>One additional call is needed to force <code>ggplot()</code> to use the palette you specified earlier.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># step 2</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
@@ -230,7 +230,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <span class="header-section-number">9.1.5</span> Typography<a class="anchor" aria-label="anchor" href="#typography"><i class="fas fa-link"></i></a>
 </h3>
 <p>The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("showtext")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span></span>
 <span></span>
@@ -251,7 +251,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 </h2>
 <p>Our data is often presented and displayed hierarchically (e.g., state, then region, then school, etc.). Therefore, it may be useful to group visualizations in a hierarchy, rather than arranging them alphabetically or in another manner.</p>
 <p>Let’s use the <a href="https://jennybc.github.io/gapminder/"><code>gapminder</code></a> data in R, where each row is a life expectancy, population, and GDP per capita corresponding with a specific country in a specific year.</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
@@ -440,7 +440,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 </tbody>
 </table></div>
 <p>We could visualize the changes in life expectancy vs. GDP per capita over time like this:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_gapminder_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
 <span>             color <span class="op">=</span> <span class="va">continent</span>,</span>
@@ -465,7 +465,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <img src="img/gapminder_unnested.png" title="Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by country" width="500" alt=""><p class="caption">This graph displays changes in life expectancy arranged alphabetically by country.</p>
 </div>
 <p>The line graphs are arranged alphabetically by country. However, it might be more visually appealing and intuitive to a reader if the graphs were arranged by continent and <em>then</em> country. To do this, we can use the <a href="https://github.com/teunbrand/ggh4x">ggh4x</a> package <a href="https://teunbrand.github.io/ggh4x/articles/ggh4x.html">(documentation here)</a>, and switch from <code>facet_grid()</code> or <code>facet_wrap()</code> in <code>ggplot2</code> to <code>facet_nested()</code> or <code>facet_nested_wrap()</code> in <code>ggh4x</code>.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">df_gapminder_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -510,7 +510,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <li>Close the device using <code><a href="https://rdrr.io/r/grDevices/dev.html">dev.off()</a></code>.</li>
 </ol>
 <p>Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename <code>01-my-high-quality-graph.pdf</code>. Then, the output sandwich would look like this:</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># 1. open the device</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/pdf.html">pdf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"graphs"</span>, <span class="st">"01-my-high-quality-graph.pdf"</span><span class="op">)</span>,</span>
 <span>    width <span class="op">=</span> <span class="fl">3</span>,</span>
@@ -538,7 +538,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <li>Revise specifications as needed.</li>
 </ol>
 <p>Suppose you need to include a plot (.png) that takes up about <span class="math inline">\(\frac{1}{4}\)</span> of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). Then, the code would look like this:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">my_data_frame</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_histogram</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_continuous_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
@@ -596,7 +596,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-16.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

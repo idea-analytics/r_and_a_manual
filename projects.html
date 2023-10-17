@@ -7,7 +7,7 @@
 <title>Chapter 5 Projects | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="Some significant applications are demonstrated in this chapter.  5.1 Version control with GitHub All analysis projects need to be saved via Git (on your local computer) and pushed to GitHub. Doing...">
-<meta name="generator" content="bookdown 0.35 with bs4_book()">
+<meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 5 Projects | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/projects.html">
@@ -179,8 +179,8 @@
 <span class="header-section-number">5.1.3.2.1</span> Command line<a class="anchor" aria-label="anchor" href="#command-line"><i class="fas fa-link"></i></a>
 </h5>
 <p>Here I’m saving this to temporary space, by navigating to <code>~/tmp/~</code> and then cloning the data:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="projects.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/</span>
-<span id="cb26-2"><a href="projects.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="projects.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/</span>
+<span id="cb27-2"><a href="projects.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
 <p>This will pull down all the content of the repo: files, folders, all commits, all branches. Really the whole kit and kaboodle.</p>
 </div>
 <div id="rstudio" class="section level5" number="5.1.3.2.2">
@@ -216,10 +216,10 @@
 <span class="header-section-number">5.1.3.3.1</span> Command line<a class="anchor" aria-label="anchor" href="#command-line-1"><i class="fas fa-link"></i></a>
 </h5>
 <p>It’s pretty straightforward. You create the branch, by giving a short but meaningful name, and then check it out.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="projects.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
-<span id="cb27-2"><a href="projects.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="projects.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
+<span id="cb28-2"><a href="projects.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
 <p>Or you can do both of those moves in one line by using <code>git checkout</code> with the <code>-b</code> flag:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="projects.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="projects.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> update-bio-cjh</span></code></pre></div>
 </div>
 <div id="rstudio-1" class="section level5" number="5.1.3.3.2">
 <h5>
@@ -245,16 +245,16 @@
 <span class="header-section-number">5.1.3.5</span> Command line<a class="anchor" aria-label="anchor" href="#command-line-2"><i class="fas fa-link"></i></a>
 </h4>
 <p>After saving you’ll run the <code>git commit</code> command with the <code>-a</code> (adds all changes) and <code>-m</code> (add commit message) flag with a short description of what you did.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="projects.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="projects.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
 <p>You should do this often. After awhile you’ll want to push your changes up to GitHub (frequently, but not as often as commits):</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="projects.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="projects.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
 <p>You’ve likely not yet defined where this remote branch should go, but Git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="projects.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fatal:</span> The current branch update-bio-cjh has no upstream branch.</span>
-<span id="cb31-2"><a href="projects.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
-<span id="cb31-3"><a href="projects.html#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="projects.html#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="projects.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fatal:</span> The current branch update-bio-cjh has no upstream branch.</span>
+<span id="cb32-2"><a href="projects.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
+<span id="cb32-3"><a href="projects.html#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="projects.html#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
 <p>Go ahead and copy and run that command.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="projects.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="projects.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
 <p>After that you can just use <code>git push</code> and your branch changes will be saved remotely.</p>
 </div>
 <div id="maintaining-large-files" class="section level4" number="5.1.3.6">
@@ -276,15 +276,15 @@
 <li>Switch to the repo and branch that has the large file.</li>
 <li>Install the LFS extension in the correct repo and branch using</li>
 </ol>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="projects.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="projects.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Track the file extension (in our scenario, .pbix), using</li>
 </ol>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="projects.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="projects.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Track .gitattributes</li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="projects.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="projects.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
 <p>N.B. Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch.
 6. Commit the file and push normally.</p>
 <p>When you commit, you will see a message indicating the LFS extension was used on that file.</p>
@@ -534,7 +534,7 @@
 <span class="header-section-number">5.3.1</span> Installing ProjectTemplate<a class="anchor" aria-label="anchor" href="#installing-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Installing the package is straightforward</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ProjectTemplate"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="creating-a-project-with-projecttemplate" class="section level3" number="5.3.2">
@@ -542,7 +542,7 @@
 <span class="header-section-number">5.3.2</span> Creating a project with ProjectTemplate<a class="anchor" aria-label="anchor" href="#creating-a-project-with-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Creating a project is pretty simple. Navigate to where you typically save projects via RStudio and then run the following commands:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span></span>
 <span><span class="fu">create.project</span><span class="op">(</span><span class="st">"learning-pt"</span><span class="op">)</span></span></code></pre></div>
 <p>Doing that bestows upon you the following directory structure:</p>
@@ -805,7 +805,7 @@ Team Site Documents folder are not to be confused with the R&amp;A Private Group
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-16.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
