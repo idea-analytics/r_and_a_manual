@@ -229,7 +229,8 @@ randomly-selecting-files
 geospatial-methods-and-gis
 what-is-a-simple-feature
 how-are-simple-features-implemented-in-r
-lets-look-at-taco-schools
+sf-workflow
+taco-gis
 geocoding
 coordinate-reference-system
 plotting
