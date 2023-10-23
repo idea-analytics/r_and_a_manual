@@ -14,21 +14,50 @@ In a word, simply. A special feature in R is essentially a row in `data.frame` w
 
 ![](img/sf_layout.png){width="500"}
 
-## Let's look at TACO schools
+## Workflows using `sf` objects {#sf-workflow}
+
+Importing and transforming data in a `sf` data frame is somewhat different than using data frames because extra metadata is encoded into an `sf` object. R&A uses the following skills (as of October 2023) ...
+
+... for basic `sf` handling:
+
+* Distinguishing ordinary data frames and `sf` data frames
+* Geocoding using an address
+* Establishing a coordinate reference system (CRS)
+* Identifying and using a geometry column
+* Using and modifying a bounding box (bbox)
+* Using spatial joins
+
+... for mapping data:
+
+* Using mapping packages
+* Common types of map visualizations, including chloropleths and dot densities
+* Accessing and transforming shapefiles
+* Computing and mapping isochrones
+* Computing commute times
+* Layers vs. facets
+* Static vs. interactive maps
+
+... and for working with Census data:
+
+* Census surveys
+* Census geographies
+* Using the Census API
+
+### Guided example using TACO schools {#taco-gis}
 
 Let's start by getting schools in Tarrant County (TACO). We can get these schools and their addresses from the data warehouse:
 
-```{r get-schools}
-
-
-#library(tidyverse)
-#library(ideadata)
+```{r get_schools_for_gis}
+# library(tidyverse)
+# library(ideadata)
 
 # schools_conn <- get_schools()
 
 # regions_conn <- get_regions() %>% 
-#   filter(RegionDescription == "Tarrant County") %>% 
+#   filter(RegionDescription == "Tarrant County") %>%
 #   select(RegionID)
+
+# get the addresses of schools for geocoding 
 
 # taco_schools <- schools_conn %>% 
 #   inner_join(regions_conn, by = "RegionID") %>% 
@@ -37,9 +66,9 @@ Let's start by getting schools in Tarrant County (TACO). We can get these school
 #   collect() %>% 
 #   janitor::clean_names()  
 
-#taco_schools
+# taco_schools
 
-#save(taco_schools, file = "./taco_schools.Rda")
+# save(taco_schools, file = "./taco_schools.Rda")
 
 load("./taco_schools.Rda")
 
@@ -50,17 +79,21 @@ taco_schools
 
 We've got schools and addresses! But that isn't sufficient to plot these schools on a map, and we certainly don't have a simple features data.frame.
 
-The first stop is **geocoding** these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the `[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)` which provides a great interface to a number of different geocoders (e.g., US Census, OpenStreetMaps, geocod.io). 
+The first stop is **geocoding** these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the `[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)` package which provides a great interface to a number of different geocoders (e.g., US Census, OpenStreetMaps, geocod.io). 
 
 ```{r geocode_schools}
 library(tidygeocoder)
 
+# note that different geocoders may require a full address OR
+# an address split into components
 taco_schools_geocoded <- taco_schools %>% 
-    tidygeocoder::geocode(street = school_street,
-            city = school_city,
-            state = school_state,
-            postalcode = school_zip_code, 
-            method = "osm")
+    tidygeocoder::geocode(
+      street = school_street,
+      city = school_city,
+      state = school_state,
+      postalcode = school_zip_code, 
+      method = "osm" # we also use method = "geocodio"
+    )
 
 taco_schools_geocoded
 ```
@@ -70,101 +103,152 @@ Brilliant! We've got `lat` and `long` variables for those addresses. Super Cool!
 Let's transform these now to a `sf` object:
 
 ```{r as_sf}
-
 library(sf)
 
+# st_as_sf() requires a user to specify what column(s) to use for geometry
 taco_schools_sf <- taco_schools_geocoded %>%  
-  st_as_sf(coords = c("long", "lat"))
-
+  st_as_sf(coords = c("long", "lat")) # use coords to specify a POINT geometry
 
 taco_schools_sf
 ```
 
 Notice that the `lat` and `long` variables are replaced by the `geometry` column.
 
-#### Coordinate Reference System
+### Coordinate Reference System
 
 Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with an estimate of the Earth's curvature and a set of control points, and finally a projection that converts spherical coordinates to Cartesian coordinates.
 
-You should always set this and the most common CRS in latitude and longitude as WGS84 (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
+You should always set this and the most common CRS in latitude and longitude as `WGS84` (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
 
 ```{r set-crs}
 st_crs(taco_schools_sf) <- "WGS84"
+
+# alternate ways of establishing a CRS in the same pipe
+
+# option 1:
+# taco_schools_sf <- taco_schools_geocoded %>%  
+#   st_as_sf(coords = c("long", "lat")) %>%
+#   st_set_crs("WGS84")
+
+# option 2:
+# taco_schools_sf <- taco_schools_geocoded %>%
+#   st_as_sf(coords = c("long", "lat"),
+#            crs = "WGS84")
 ```
 
 ### Plotting
 
-We now have enough information to draw a map!
+We now have enough information to draw a map! To create a map, you need a ggmap object, a base layer map, and additional `sf` layers you want to display. All `sf` objects can be plotted if the `geometry` column is specified. The function `geom_sf()` reads the geometry column and automatically plots the data using the specified metadata.
 
 ```{r ggmap}
-
-#renv::install("yutannihilation/ggsflabel")
+# renv::install("yutannihilation/ggsflabel")
 
 library(ggmap)
 
+# starting with a Google map can give us a quick bounding box
+# this pulls appropriate Google map tiles around zip code 76117 at zoom level 11
+# and becomes our base layer map
 base_google_map <- get_googlemap("76117", zoom = 11)
 
-
-base_google_map %>% 
-  ggmap() +
-  geom_sf(data = taco_schools_sf, color = "hotpink", inherit.aes = FALSE) +
-  ggsflabel::geom_sf_label_repel(data = taco_schools_sf,
-               aes(label = school_short_name), color = "hotpink",
-               inherit.aes = FALSE) 
+# before creating other layers/features, create a quick map with labels
+# to verify the correct bounding box and zoom level
+base_google_map %>% # baselayer map
+  ggmap() + # create the ggmap object
+  
+  # additional layers
+  # plots school locations with a hotpink dot
+  geom_sf(
+    data = taco_schools_sf, 
+    color = "hotpink",
+    inherit.aes = FALSE
+  ) +
+  
+  # adds hotpink labels of school names
+  ggsflabel::geom_sf_label_repel(
+    data = taco_schools_sf,
+    aes(label = school_short_name), 
+    color = "hotpink",
+    inherit.aes = FALSE
+  ) 
 
 ```
 
-I don't always love Google Maps' look for display purposes on slides, so let's change that up with Stamen Maps:
+I don't always love Google Maps' look for display purposes on slides, so let's change that up with Stamen Maps, which give us different styles of map tiles. In particular, we will use `toner-lite`, which provides a neutral, grey-white background.
 
-```{r}
-# Need a bounding box for the get_stamenmap function
+To get any baselayer map, you must specify the **bounding box**, or a set of longitudes and latitudes that respectively establish the left/right and top/bottom edges of the map. You can either get the bounding box attributes from the Google Map baselayer, or you can create your own.
+
+```{r adjust_bounding_box}
+# gets bounding box from Google Map base layer attributes
 bbox <- bb2bbox(attr(base_google_map, "bb"))
 
+# if you need a different bounding box, adjust the individual parameters
+# using your preferred coordinates
 
-base_stamen_map <- get_stamenmap(bbox, zoom=11, maptype = "toner-lite")
+# bbox <- c(left = -97.5, right = -97.1, top = 32.8, bottom = 32.5)
+
+# get a new base layer map using the specified bounding box
+base_stamen_map <- get_stamenmap(bbox, 
+                                 zoom = 11, 
+                                 maptype = "toner-lite")
 
 base_stamen_map %>% 
   ggmap() +
-  geom_sf(data = taco_schools_sf, color = "hotpink", inherit.aes = FALSE) +
-  ggsflabel::geom_sf_label_repel(data = taco_schools_sf,
-               aes(label = school_short_name), color = "hotpink",
-               inherit.aes = FALSE) 
+  geom_sf(
+    data = taco_schools_sf, 
+    color = "hotpink",
+    inherit.aes = FALSE
+  ) +
+  ggsflabel::geom_sf_label_repel(
+    data = taco_schools_sf,
+    aes(label = school_short_name), 
+    color = "hotpink",
+    inherit.aes = FALSE
+  ) 
 ```
 
 ### Getting drive times
 
-This requires the MapBox API, which requires an API key.
+We are often interested in getting an **isochrone**, or a radius around a geographic feature with respect to time. Isochrones can be useful for identifying what communities are within a 10- or 15-minute drive-time of a school. This calculation requires the MapBox API, which requires an API key.
 
-```{r}
+```{r get_isochrone}
 #install.packages("mapboxapi")
 library(mapboxapi)
 
 drive_10min <- mb_isochrone(taco_schools_sf, 
-                            profile = "driving", 
+                            profile = "driving", # can also get walking distances
                             time = 10)
 
 
-schools_drive_10min_sf <-drive_10min  %>%  bind_cols(as_tibble(taco_schools_sf) %>% select(-geometry))
+schools_drive_10min_sf <- drive_10min %>%
+  bind_cols(as_tibble(taco_schools_sf) %>%
+              select(-geometry))
 
 
 base_stamen_map %>% 
   ggmap() +
   
-  geom_sf(data = schools_drive_10min_sf, 
-          aes(color = school_short_name,
-              fill = school_short_name),
-          alpha = .2,
-              inherit.aes = FALSE) +
+  geom_sf(
+    data = schools_drive_10min_sf,
+    aes(color = school_short_name,
+        fill = school_short_name),
+    alpha = .2,
+    inherit.aes = FALSE
+  ) +
   
-  geom_sf(data = taco_schools_sf, 
-          aes(color = school_short_name), 
-              inherit.aes = FALSE) +
+  geom_sf(
+    data = taco_schools_sf,
+    aes(color = school_short_name),
+    inherit.aes = FALSE
+  ) +
   
   ggsflabel::geom_sf_label_repel(
-        data = taco_schools_sf,
-               aes(label = school_short_name, color = school_short_name),
-               inherit.aes = FALSE) +
-  guides(fill = "none", color = "none")
+    data = taco_schools_sf,
+    aes(label = school_short_name, 
+        color = school_short_name),
+    inherit.aes = FALSE
+  ) +
+  guides(fill = "none", 
+         color = "none")
 
 ```
 
@@ -236,7 +320,7 @@ There are two major functions implemented in tidycensus:
 
 Let's get *median age by state* in 2010:
 
-```{r}
+```{r get_decennial}
 age10 <- get_decennial(geography = "state", 
                        variables = "P013001", 
                        year = 2010)
@@ -246,7 +330,7 @@ age10
 
 Plotting is super duper easy:
 
-```{r}
+```{r plot_decennial_data}
 age10 %>%
   ggplot(aes(x = value, y = reorder(NAME, value))) + 
   geom_point()
@@ -268,7 +352,7 @@ v_2020 <- load_variables(2020, "acs5", cache = TRUE)
 
 Let's get Tarrant county:
 
-```{r}
+```{r get_acs}
 #| message: false
 #| results: false
 
@@ -295,7 +379,7 @@ tarr
 
 Now we are summing up all school aged children (5-17 year old boy and girls):
 
-```{r warning=FALSE, message=FALSE, echo=FALSE}
+```{r chloropleth, warning=FALSE, message=FALSE, echo=TRUE}
 
 library(viridis)
 tarr_school_aged<-tarr %>% 
@@ -328,8 +412,7 @@ base_stamen_map %>%
           color = "green") +
   theme_void() +
   
-  scale_fill_viridis(option = "magma") 
-  #scale_color_viridis(option = "magma")
+  scale_fill_viridis(option = "magma")
 
 ```
 
