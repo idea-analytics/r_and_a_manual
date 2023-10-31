@@ -270,5 +270,6 @@ survey-blocks
 survey-participant-lists
 embeded-data
 live-summary-reports
+advanced-reports
 exporting-survey-data
 where-can-you-learn-more
