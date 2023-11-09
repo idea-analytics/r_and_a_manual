@@ -2,6 +2,8 @@
 
 Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.
 
+Note that an individual table may not contain all information of interest. This additional information could be extracted from a different table and then joined. Information regarding the various types of joins can be found [here](#section-joins).
+
 ## The Students Table
 
 The Students table is probably the most important table of all. It contains historical student personal data since IDEA's inception. 
@@ -1814,6 +1816,26 @@ Not all of the leavers from the TCP Retention project matched up with those who 
 
 TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of five components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). For teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has one academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given two years (and then now, indefinite years of pandemic holds) of "hold" time instead of one. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for one year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
 
+## Joins
+It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, four joins will be covered: one inner and three outer joins (left, right, and full). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber. 
 
+### Inner Join
+An `inner join()` retains observations when a matching key value is found in both `x` and `y`. Any unmatched observations are not included in the output. Visually,
 
+![inner_join(x, y)](img/inner_join.png "visualization of an inner join"){width="600"}
+
+### Left Join
+A `left_join()` is an outer join that retains all observations from `x`. Any observation in `x` that does not have a matching key in `y` results in NAs in the columns added from `y`. Any observation in `y` that does not have a matching key in `x` is not included in the output. Visually,
+
+![left_join(x, y)](img/left_join.png "visualization of a left join"){width="600"}
+
+### Right Join
+A `right_join()` is an outer join that retains all observations from `y`. Any observation in `y` that does not have a matching key in `x` results in NAs in the columns from `x`. Any observation in `x` that does not have a matching key in `y` is not included in the output. Visually,
+
+![right_join(x, y)](img/right_join.png "visualization of a right join"){width="600"}
+
+### Full Join
+A `full_join()` is an outer join that retains all observations from `x` and `y`. Any observation in `x` that does not have a matching key in `y` results in NAs in the columns added from `y`. Any observation in `y` that does not have a matching key in `x` results in NAs in the columns from `x`. Visually,
+
+![full_join(x, y)](img/full_join.png "visualization of a full join"){width="600"}
 
