@@ -72,7 +72,7 @@ Let's start by getting schools in Tarrant County (TACO). We can get these school
 
 load("./taco_schools.Rda")
 
-taco_schools
+knitr::kable(taco_schools)
 ```
 
 ### Geocoding
@@ -95,7 +95,7 @@ taco_schools_geocoded <- taco_schools %>%
       method = "osm" # we also use method = "geocodio"
     )
 
-taco_schools_geocoded
+knitr::kable(taco_schools_geocoded)
 ```
 
 Brilliant! We've got `lat` and `long` variables for those addresses. Super Cool!
@@ -109,7 +109,7 @@ library(sf)
 taco_schools_sf <- taco_schools_geocoded %>%  
   st_as_sf(coords = c("long", "lat")) # use coords to specify a POINT geometry
 
-taco_schools_sf
+knitr::kable(taco_schools_sf)
 ```
 
 Notice that the `lat` and `long` variables are replaced by the `geometry` column.
@@ -120,28 +120,37 @@ Notice in the meta-data above that CRS is `NA`. CRS refers to the Coordinate Ref
 
 You should always set this and the most common CRS in latitude and longitude as `WGS84` (used by the GPS satellite navigation system) with the following CRS string `"+init=epsg:4326"` as a formal identifier, but also more simply by its name:
 
-```{r set-crs}
+```{r set_crs_for_map, eval=FALSE}
 st_crs(taco_schools_sf) <- "WGS84"
 
 # alternate ways of establishing a CRS in the same pipe
 
-# option 1:
+# option 1: use if no CRS has been established
 # taco_schools_sf <- taco_schools_geocoded %>%  
 #   st_as_sf(coords = c("long", "lat")) %>%
 #   st_set_crs("WGS84")
 
-# option 2:
+# option 2: use if no CRS has been established
 # taco_schools_sf <- taco_schools_geocoded %>%
 #   st_as_sf(coords = c("long", "lat"),
 #            crs = "WGS84")
+
+# option 3: use if CRS has already been established
+# taco_schools_sf <- taco_schools_geocoded %>%
+#   st_as_sf(coords = c("long", "lat")) %>%
+#   st_transform("WGS84")
+
 ```
 
-### Plotting
+### Basic mapping
 
 We now have enough information to draw a map! To create a map, you need a ggmap object, a base layer map, and additional `sf` layers you want to display. All `sf` objects can be plotted if the `geometry` column is specified. The function `geom_sf()` reads the geometry column and automatically plots the data using the specified metadata.
 
-```{r ggmap}
+```{r ggmap, eval=FALSE}
+# {ggsflabel} is not available on CRAN, {ggmap} requires get_stadiamap()
+# that is not yet on CRAN
 # renv::install("yutannihilation/ggsflabel")
+# renv::install("dkahle/ggmap")
 
 library(ggmap)
 
@@ -173,11 +182,13 @@ base_google_map %>% # baselayer map
 
 ```
 
-I don't always love Google Maps' look for display purposes on slides, so let's change that up with Stamen Maps, which give us different styles of map tiles. In particular, we will use `toner-lite`, which provides a neutral, grey-white background.
+![Schools in Tarrant County, using Google Map tiles](img/taco_google_map.png "This map overlays the location of Tarrant County schools in hotpink on tiles from Google Map."){width="600"}
+
+There are many types of **map tiles** that can be used to display geographic data. I don't always love Google Maps' look for display purposes on slides, so let's change that up with Stamen, which give us different styles of map tiles. In particular, we will use `toner-lite`, which provides a neutral, grey-white background. Stamen tiles, now provided by [Stadia Maps](https://stadiamaps.com/stamen/), requires an API key.
 
 To get any baselayer map, you must specify the **bounding box**, or a set of longitudes and latitudes that respectively establish the left/right and top/bottom edges of the map. You can either get the bounding box attributes from the Google Map baselayer, or you can create your own.
 
-```{r adjust_bounding_box}
+```{r adjust_bounding_box, eval=FALSE}
 # gets bounding box from Google Map base layer attributes
 bbox <- bb2bbox(attr(base_google_map, "bb"))
 
@@ -187,9 +198,9 @@ bbox <- bb2bbox(attr(base_google_map, "bb"))
 # bbox <- c(left = -97.5, right = -97.1, top = 32.8, bottom = 32.5)
 
 # get a new base layer map using the specified bounding box
-base_stamen_map <- get_stamenmap(bbox, 
+base_stamen_map <- get_stadiamap(bbox, 
                                  zoom = 11, 
-                                 maptype = "toner-lite")
+                                 maptype = "stamen_toner_lite")
 
 base_stamen_map %>% 
   ggmap() +
@@ -206,19 +217,24 @@ base_stamen_map %>%
   ) 
 ```
 
+![Schools in Tarrant County, using Stamen tiles from Stadia Maps](img/taco_stamen_map.png "This map overlays the location of Tarrant County schools in hotpink on Stamen tiles from Stadia Maps."){width="600"}
+
 ### Getting drive times
 
 We are often interested in getting an **isochrone**, or a radius around a geographic feature with respect to time. Isochrones can be useful for identifying what communities are within a 10- or 15-minute drive-time of a school. This calculation requires the MapBox API, which requires an API key.
 
-```{r get_isochrone}
-#install.packages("mapboxapi")
+```{r get_isochrone, eval=FALSE}
+# install.packages("mapboxapi")
 library(mapboxapi)
 
-drive_10min <- mb_isochrone(taco_schools_sf, 
-                            profile = "driving", # can also get walking distances
-                            time = 10)
+drive_10min <- mb_isochrone(
+    taco_schools_sf,
+    profile = "driving", # can also get walking distances
+    time = 10
+  )
 
 
+# this step removes the simple features metadata from a data frame
 schools_drive_10min_sf <- drive_10min %>%
   bind_cols(as_tibble(taco_schools_sf) %>%
               select(-geometry))
@@ -229,8 +245,10 @@ base_stamen_map %>%
   
   geom_sf(
     data = schools_drive_10min_sf,
-    aes(color = school_short_name,
-        fill = school_short_name),
+    aes(
+      color = school_short_name,
+      fill = school_short_name
+    ),
     alpha = .2,
     inherit.aes = FALSE
   ) +
@@ -243,53 +261,73 @@ base_stamen_map %>%
   
   ggsflabel::geom_sf_label_repel(
     data = taco_schools_sf,
-    aes(label = school_short_name, 
-        color = school_short_name),
+    aes(
+      label = school_short_name, 
+      color = school_short_name
+    ),
     inherit.aes = FALSE
   ) +
-  guides(fill = "none", 
-         color = "none")
-
-```
-
-### Some geographic filtering
-
-```{r geo-filtering}
-
-sf_use_s2(FALSE)
-taco_area_of_max_intersection <- schools_drive_10min_sf %>% 
-  filter(school_short_name == "Edgecliff") %>% 
-  st_intersection(schools_drive_10min_sf %>% filter(school_short_name == "Southeast"))
-
-
-
-
-base_stamen_map %>% 
-  ggmap() +
-  geom_sf(data = taco_area_of_max_intersection, 
-          color = "goldenrod",
-          fill = "goldenrod",
-          alpha = .2,
-              inherit.aes = FALSE) +
-  
-  geom_sf(data = taco_schools_sf, 
-          aes(color = school_short_name), 
-              inherit.aes = FALSE) +
-  
-  ggsflabel::geom_sf_label_repel(
-        data = taco_schools_sf,
-               aes(label = school_short_name, color = school_short_name),
-               inherit.aes = FALSE) +
   guides(fill = "none", color = "none")
 
 ```
 
-And what schools are found in this area?
+![Plotting 10-minute isochrones for each Tarrant County school](img/taco_isochrones.png "This map overlays the 10-minute isochrone for each Tarrant County school."){width="600"}
 
-```{r}
-schools_in_overlap <- st_filter(taco_schools_sf,
-                         taco_area_of_max_intersection, 
-                         join = st_within)
+### Spatial joins
+
+Using a **spatial join** is somewhat different than joining data frames. There are xx types of joins for spatial data:
+
+
+
+```{r geofiltering, eval=FALSE}
+
+sf_use_s2(FALSE)
+
+# use st_intersection with two sf objects
+taco_area_of_max_intersection <- schools_drive_10min_sf %>% 
+  filter(school_short_name == "Edgecliff") %>% 
+  st_intersection(schools_drive_10min_sf %>% 
+                    filter(school_short_name == "Southeast"))
+
+
+base_stamen_map %>% 
+  ggmap() +
+  geom_sf(
+    data = taco_area_of_max_intersection, 
+    color = "goldenrod",
+    fill = "goldenrod",
+    alpha = .2,
+    inherit.aes = FALSE
+  ) +
+  
+  geom_sf(
+    data = taco_schools_sf, 
+    aes(color = school_short_name), 
+    inherit.aes = FALSE
+  ) +
+  
+  ggsflabel::geom_sf_label_repel(
+    data = taco_schools_sf,
+    aes(
+      label = school_short_name, 
+      color = school_short_name
+    ),
+    inherit.aes = FALSE
+  ) +
+  guides(fill = "none", color = "none")
+
+```
+
+![Plotting the intersection of 10-minute isochrones for each Tarrant County school](img/taco_isochrone_intersection.png "This map overlays the intersection of 10-minute isochrones in goldenrod."){width="600"}
+
+And what schools are found in this area of overlapping isochrones? We can use `st_filter()` with an `st_within` join to help us identify points inside of a polygon.
+
+```{r schools_in_overlap, eval=FALSE}
+schools_in_overlap <- taco_schools_sf %>%
+  st_filter(
+    taco_area_of_max_intersection, 
+    join = st_within
+  )
 
 schools_in_overlap
 ```
@@ -300,15 +338,15 @@ It may look like Edgecliff is within the 10-minute drive time overlap area, but 
 
 Kyle Walker has written the exceptional `[tidycensus](https://walker-data.com/tidycensus/)`package, with fantastic documentation, which allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).
 
-Let's load it up:
+Let's load some Census data. We'll need a Census API key first to gain access.
 
-```{r setup-tidycensus}
-#install.packages('tidycensus')
+```{r setup_tidycensus}
+# install.packages('tidycensus')
 library(tidycensus)
 
 # NEt command saves Census API key to your .Renviron file
-#census_api_key("YOUR API KEY GOES HERE")
-#census_api_key(Sys.getenv("CENSUS_API_KEY"))
+# census_api_key("YOUR API KEY GOES HERE")
+# census_api_key(Sys.getenv("CENSUS_API_KEY"))
 ```
 
 ##### Getting Basic Data
@@ -325,16 +363,20 @@ age10 <- get_decennial(geography = "state",
                        variables = "P013001", 
                        year = 2010)
 
-age10
+age10 %>%
+  slice_head(n = 5) %>%
+  knitr::kable()
 ```
 
-Plotting is super duper easy:
+Census data is structured to make usual tasks, like cleaning and plotting, work in the ways you expect using the tidyverse. For example, we can plot the median age by state using ggplot:
 
-```{r plot_decennial_data}
+```{r plot_decennial_data, eval=FALSE}
 age10 %>%
   ggplot(aes(x = value, y = reorder(NAME, value))) + 
   geom_point()
 ```
+
+![This plot is an example of how Census data can be plotted.](img/median_age_by_state.png "This dotplot shows the median age by state, ordered from oldest to youngest."){width="600"}
 
 ##### Searching for variables
 
@@ -342,54 +384,67 @@ How, pray tell, does one know that `P013001` is the variable for median age? Get
 
 To browse these variables, assign the result of `load_variables()` to a variable and use the `View()` function in RStudio. An optional argument `cache = TRUE` will cache the dataset on your computer for future use.
 
-```{r view-vars}
-
-
+```{r view_vars, eval=FALSE}
 v_2020 <- load_variables(2020, "acs5", cache = TRUE)
 
-#View(v_2020)
+# View(v_2020)
 ```
 
-Let's get Tarrant county:
+Let's get estimates for how many school-aged children live in Tarrant County, TX. To do this, we will use the `get_acs()` function, which requires:
 
-```{r get_acs}
-#| message: false
-#| results: false
+- `geography`: the statistical geographic unit used by the Census [(a brief overview is provided by ESRI)](https://learn.arcgis.com/en/related-concepts/united-states-census-geography.htm)
+- `variables`: the variable code/ID, which can be optionally renamed
+- `state`: two-letter postal codes are accepted
+- `county`: to avoid ambiguity in the API, type out the full county or parish name (e.g. "Tarrant County", not "Tarrant")
+- `year`: the ACS survey-year requested
+- `geometry`: TRUE will pull the appropriate geometry from the `tigris` package and return an sf object
 
+Because I looked up the appropriate variable names in the `load_variables()` function, I know that the appropriate table is `B01001`, and I will choose the correct variables. I want this data at the smallest geographic unit, so I will choose "block group" for the geography, and I need data as of 2020. Because I eventually would like to map this data, I will choose to include the `geometry` column to have an sf data frame.
 
-
-tarr <- get_acs(geography = "block group", variables = c( #tpotal pop
-                                                    "B01001_001", 
-                                                   
-                                                    #male
-                                                   "B01001_004", #5-9
-                                                   "B01001_005", #10-14
-                                                   "B01001_006", #15-17
-                                                    
-                                                   #Femaile
-                                                   "B01001_028", #5-9
-                                                   "B01001_029", #10-14
-                                                   "B01001_030"),#15-17
-                state = "TX", county = "Tarrant", geometry = TRUE, year = 2020)
-
-tarr
+```{r get_acs, eval=FALSE}
+tarr <- get_acs(
+    geography = "block group", 
+    variables = c(
+      # variable codes (e.g. "B01001_001") are mandatory
+      # renaming is optional
+      # ex. "B01001_001", "B01001_004" are acceptable arguments
+      
+      "Total" = "B01001_001",
+      "Male, 5 to 9 years" = "B01001_004",
+      "Male, 10 to 14 years" = "B01001_005",
+      "Male, 15 to 17 years" = "B01001_006", 
+      "Female, 5 to 9 years" = "B01001_028",
+      "Female, 10 to 14 years" = "B01001_029",
+      "Female, 15 to 17 years" = "B01001_030"
+    ),
+    state = "TX", 
+    county = "Tarrant County",
+    year = 2020,
+    geometry = TRUE, 
+  )
 ```
 
-## Chloropleth
+## Plotting geographic data
 
-Now we are summing up all school aged children (5-17 year old boy and girls):
+Spatial data can broadly be analyzed using **point pattern**, **areal**, **geospatial** and **spatiotemporal**.
 
-```{r chloropleth, warning=FALSE, message=FALSE, echo=TRUE}
+**Point pattern data** are data that merely locate the longitude and latitude of the data. For example, we could plot where every school-aged child lives in Tarrant County. **Areal data** are aggregate data that describe a geographic *area* or *region*. The *total* number of school-aged children living in Tarrant County, Dallas County, or other surrounding counties is an example of areal data. 
 
+**Geospatial data** maps a point to a *value* - in this case, it could be the age of a single child at a given point. **Spatiotemporal data** adds a *time* variable to geospatial data, so the age of a child at a given point might be tracked at different points in time.
+
+We have different methods for mapping geographic data, depending on the type of spatial data used.
+
+### Chloropleth
+
+A **chloropleth** is a type of plot used for areal data that takes on different colors, depending on the data. Let's sum up all school aged children (5-17 year old boy and girls) by block group:
+
+```{r chloropleth, warning=FALSE, message=FALSE, echo=TRUE, eval=FALSE}
 library(viridis)
-tarr_school_aged<-tarr %>% 
-  filter(variable %in% c("B01001_004", #5-9 Male
-                         "B01001_005", #10-14
-                         "B01001_006", #15-17
-                         "B01001_028", #5-9 Female
-                         "B01001_029", #10-14
-                         "B01001_030") #15-17
-         ) %>% 
+
+# aggregate school-aged children by block group
+# remove "Total" category
+tarr_school_aged < -tarr %>% 
+  filter(variable != "Total") %>%
   group_by(GEOID, NAME) %>% 
   summarise(tot_all_ages = sum(estimate))
 
@@ -397,85 +452,111 @@ tarr_school_aged<-tarr %>%
 base_stamen_map %>% 
   ggmap() +
   
-  geom_sf(data = tarr_school_aged, 
-         aes(fill = tot_all_ages), 
-         inherit.aes = FALSE, 
-         alpha  = .82, 
-         color = NA) +
-  geom_sf(data = taco_area_of_max_intersection, 
-          color = "goldenrod",
-          fill = NA,
-          alpha = .2,
-              inherit.aes = FALSE) +
-  geom_sf(data = taco_schools_sf, 
-              inherit.aes = FALSE, 
-          color = "green") +
+  geom_sf(
+    data = tarr_school_aged, 
+    aes(fill = tot_all_ages), 
+    inherit.aes = FALSE, 
+    alpha  = .82, 
+    color = NA
+  ) +
+  geom_sf(
+    data = taco_area_of_max_intersection, 
+    color = "goldenrod",
+    fill = NA,
+    alpha = .2,
+    inherit.aes = FALSE
+  ) +
+  geom_sf(
+    data = taco_schools_sf, 
+    inherit.aes = FALSE, 
+    color = "green"
+  ) +
   theme_void() +
   
   scale_fill_viridis(option = "magma")
-
 ```
 
-## Dot-density
+![This chloropleth estimates the number of school-aged children in Tarrant County.](img/taco_chloropleth.png "This cholropleth uses a palette to show low densities of school-aged children in black to high densities in light yellow."){width="600"}
+
+From this map, we can use color to identify which block groups have high densities of school-aged children and which do not.
+
+### Dot-density
 
 Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasize those areas versus smaller geographies. This distortion is familiar to those who follow elections, where geographically large states with small populations, like Wyoming, loom larger than geographically small, but densely populated states, like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal populations (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.
 
 A second issue is that it's very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all children aged 5-17 years in each tract. But, we may be interested in how differently distributed those students are.
 
-A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot). It's pretty straightforward to get what you need by using [`sf::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
+A method to remedy both issues is to use **dot-density** plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot). It's pretty straightforward to get what you need by using [`tidycensus::as_dot_density()`](https://walker-data.com/tidycensus/reference/as_dot_density.html)
 
-```{r dot_dentsity_df, warning=FALSE}
+```{r dot_density_df, warning=FALSE, eval=FALSE}
+# library(terra) # as_dot_density() requires the {terra} package
+
 acs_ages <- dplyr::tribble(
-  ~ variable,     ~age_range, ~gender,
-  "B01001_001",    "All",      "All",  
-                                                   
-    #male
-   "B01001_004", "5-9",   "Male",
-   "B01001_005", "10-14", "Male",
-   "B01001_006", "15-17", "Male",
-    
-   #Femaile
-   "B01001_028", "5-9",    "female",
-   "B01001_029", "10-14", "female",
-   "B01001_030", "15-17", "female"
+  ~ variable,     ~ age_range,   ~ gender,
+  "B01001_001",   "All",         "All",
+  
+  # male
+  "B01001_004",   "5-9",         "Male",
+  "B01001_005",   "10-14",       "Male",
+  "B01001_006",   "15-17",       "Male",
+  
+  # female
+  "B01001_028",   "5-9",         "Female",
+  "B01001_029",   "10-14",       "Female",
+  "B01001_030",   "15-17",       "Female"
 )
 
-tarr_childs <- tarr %>% inner_join(acs_ages) %>% 
+tarr_childs <- tarr %>% 
+  inner_join(acs_ages) %>% 
   filter(gender != "All") %>% 
   select(-variable, -moe, -gender) %>% 
   group_by(GEOID, NAME, age_range) %>% 
   mutate(n_children = sum(estimate))
 
-
 tarr_dots <- tarr_childs %>% 
   as_dot_density(
-    value = "n_children",
-    values_per_dot = 20,
-    group = "age_range"
+    value = "n_children", # use the summary column to determine number of dots
+    values_per_dot = 20,  # specify the dot-to-value ratio
+    group = "age_range"   # specify how dots should be categorized (if needed)
   ) 
-
-
 ```
 
-```{r dot_density_map}
+Note that `as_dot_density()` will convert an areal value (the count of children), represented in a `POLYGON`, into a value represented by a `POINT`. Once we have our data prepped as a dot density, then we are ready to plot the data.
+
+```{r dot_density_map, eval=FALSE}
 base_stamen_map %>% 
   ggmap() +
   
-  geom_sf(data = tarr_dots, 
-         aes(color = age_range), 
-         inherit.aes = FALSE, 
-         alpha  = .25,
-         size=.25) +
-  geom_sf(data = taco_area_of_max_intersection, 
-          color = "goldenrod",
-          fill = "goldenrod",
-          alpha = .2,
-              inherit.aes = FALSE) +
-  geom_sf(data = taco_schools_sf, 
-              inherit.aes = FALSE, 
-          color = "green", 
-          size = 3) +
+  # plot dot density
+  geom_sf(
+    data = tarr_dots,
+    aes(color = age_range),
+    inherit.aes = FALSE,
+    alpha  = .25,
+    size = .25
+  ) +
+  
+  # plot spatial intersection of drive times
+  geom_sf(
+    data = taco_area_of_max_intersection, 
+    color = "goldenrod",
+    fill = "goldenrod",
+    alpha = .2,
+    inherit.aes = FALSE
+  ) +
+  
+  # plot school locations
+  geom_sf(
+    data = taco_schools_sf,
+    inherit.aes = FALSE,
+    color = "green",
+    size = 3
+  ) +
   theme_void() +
   
   scale_color_viridis(option = "viridis", discrete = TRUE)
 ```
+
+![Dot density plots can be useful for showing differently distributed age groups.](img/taco_dot_density_age.png "This dot density plot facets age group into three panels, with ages 5-9 on the left, 10-14 in the middle, and 15-17 on the right."){width="600"}
+
+Dot densities can be particularly useful when the variables are faceted, so differences in distributions can be seen.
