@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
-<meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.  4.1 The Students Table The Students table is probably the most important table...">
+<meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in. Note that an individual table may not contain all information of interest. This...">
 <meta name="generator" content="bookdown 0.36 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
-<meta property="og:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.  4.1 The Students Table The Students table is probably the most important table...">
+<meta property="og:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in. Note that an individual table may not contain all information of interest. This...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
-<meta name="twitter:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.  4.1 The Students Table The Students table is probably the most important table...">
+<meta name="twitter:description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in. Note that an individual table may not contain all information of interest. This...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -72,6 +72,7 @@
 <span class="header-section-number">4</span> Key Tables, Measures, and Metrics<a class="anchor" aria-label="anchor" href="#key-tables-measures-and-metrics"><i class="fas fa-link"></i></a>
 </h1>
 <p>Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in.</p>
+<p>Note that an individual table may not contain all information of interest. This additional information could be extracted from a different table and then joined. Information regarding the various types of joins can be found <a href="#section-joins">here</a>.</p>
 <div id="the-students-table" class="section level2" number="4.1">
 <h2>
 <span class="header-section-number">4.1</span> The Students Table<a class="anchor" aria-label="anchor" href="#the-students-table"><i class="fas fa-link"></i></a>
@@ -2351,8 +2352,50 @@ Level 5: 334</p>
 <span class="header-section-number">4.11.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of five components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). For teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has one academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given two years (and then now, indefinite years of pandemic holds) of “hold” time instead of one. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for one year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
-
 </div>
+</div>
+</div>
+<div id="joins" class="section level2" number="4.12">
+<h2>
+<span class="header-section-number">4.12</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
+</h2>
+<p>It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, four joins will be covered: one inner and three outer joins (left, right, and full). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.</p>
+<div id="inner-join" class="section level3" number="4.12.1">
+<h3>
+<span class="header-section-number">4.12.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
+</h3>
+<p>An <code>inner join()</code> retains observations when a matching key value is found in both <code>x</code> and <code>y</code>. Any unmatched observations are not included in the output. Visually,</p>
+<div class="figure">
+<img src="img/inner_join.png" title="visualization of an inner join" width="600" alt=""><p class="caption">inner_join(x, y)</p>
+</div>
+</div>
+<div id="left-join" class="section level3" number="4.12.2">
+<h3>
+<span class="header-section-number">4.12.2</span> Left Join<a class="anchor" aria-label="anchor" href="#left-join"><i class="fas fa-link"></i></a>
+</h3>
+<p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> is an outer join that retains all observations from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> is not included in the output. Visually,</p>
+<div class="figure">
+<img src="img/left_join.png" title="visualization of a left join" width="600" alt=""><p class="caption">left_join(x, y)</p>
+</div>
+</div>
+<div id="right-join" class="section level3" number="4.12.3">
+<h3>
+<span class="header-section-number">4.12.3</span> Right Join<a class="anchor" aria-label="anchor" href="#right-join"><i class="fas fa-link"></i></a>
+</h3>
+<p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> is an outer join that retains all observations from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
+<div class="figure">
+<img src="img/right_join.png" title="visualization of a right join" width="600" alt=""><p class="caption">right_join(x, y)</p>
+</div>
+</div>
+<div id="full-join" class="section level3" number="4.12.4">
+<h3>
+<span class="header-section-number">4.12.4</span> Full Join<a class="anchor" aria-label="anchor" href="#full-join"><i class="fas fa-link"></i></a>
+</h3>
+<p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> is an outer join that retains all observations from <code>x</code> and <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Visually,</p>
+<div class="figure">
+<img src="img/full_join.png" title="visualization of a full join" width="600" alt=""><p class="caption">full_join(x, y)</p>
+</div>
+
 </div>
 </div>
 </div>
@@ -2410,6 +2453,14 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.11.5</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
+<li>
+<a class="nav-link" href="#joins"><span class="header-section-number">4.12</span> Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#inner-join"><span class="header-section-number">4.12.1</span> Inner Join</a></li>
+<li><a class="nav-link" href="#left-join"><span class="header-section-number">4.12.2</span> Left Join</a></li>
+<li><a class="nav-link" href="#right-join"><span class="header-section-number">4.12.3</span> Right Join</a></li>
+<li><a class="nav-link" href="#full-join"><span class="header-section-number">4.12.4</span> Full Join</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -2427,7 +2478,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-10-31.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-11-10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

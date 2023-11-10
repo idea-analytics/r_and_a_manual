@@ -89,6 +89,11 @@ missing-tcp-placements
 leaver-rates
 exit-surveys-for-teacher-leavers
 tcp-levels-and-composite-score-correlations
+joins
+inner-join
+left-join
+right-join
+full-join
 projects
 section-github
 getting-started-with-git-github-and-rstudio
@@ -182,7 +187,7 @@ dplyr
 language-sql
 hard-bracket-encapsulation
 variables-1
-joins
+joins-1
 visualization-standards
 idea-branding
 the-ideacolors-package
@@ -233,12 +238,13 @@ sf-workflow
 taco-gis
 geocoding
 coordinate-reference-system
-plotting
+basic-mapping
 getting-drive-times
-some-geographic-filtering
+spatial-joins
 census-data
 getting-basic-data
 searching-for-variables
+plotting-geographic-data
 chloropleth
 dot-density
 surveys
