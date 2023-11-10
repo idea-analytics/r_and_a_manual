@@ -46,6 +46,14 @@ More to come
 
 More to come
 
+### Advanced Reports
+
+In Qualtrics, you can create an advanced report found under the 'Reports' tab. The Reports tool allows you to create static or live reports from a blank form or by copying and modifying an existing report.  
+
+You are able to customize reports based on your survey. Visualizations include charts (i.e.,  bar, line, pie, breakdown), tables (i.e., data, statistics, results), and heat maps. 
+
+Using the breakdown visualization, you can breakdown items by certain demographics and apply a Display Logic (which displays the data presented in the visual if certain criteria are met). However, it is important to keep in mind that Display Logic applies to the total count (N) and is not specific to Breakout Groups count (n). 
+
 ### Exporting Survey Data
 
 More to come
