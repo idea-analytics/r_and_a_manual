@@ -94,6 +94,7 @@ inner-join
 left-join
 right-join
 full-join
+anti-join
 projects
 section-github
 getting-started-with-git-github-and-rstudio

@@ -2359,14 +2359,14 @@ Level 5: 334</p>
 <h2>
 <span class="header-section-number">4.12</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
 </h2>
-<p>It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, four joins will be covered: one inner and three outer joins (left, right, and full). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.</p>
+<p>It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.</p>
 <div id="inner-join" class="section level3" number="4.12.1">
 <h3>
 <span class="header-section-number">4.12.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>An <code>inner join()</code> retains observations when a matching key value is found in both <code>x</code> and <code>y</code>. Any unmatched observations are not included in the output. Visually,</p>
 <div class="figure">
-<img src="img/inner_join.png" title="visualization of an inner join" width="600" alt=""><p class="caption">inner_join(x, y)</p>
+<img src="img/inner_join.png" title="visualization of an inner join" width="500" alt=""><p class="caption">inner_join(x, y)</p>
 </div>
 </div>
 <div id="left-join" class="section level3" number="4.12.2">
@@ -2375,7 +2375,7 @@ Level 5: 334</p>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> is an outer join that retains all observations from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> is not included in the output. Visually,</p>
 <div class="figure">
-<img src="img/left_join.png" title="visualization of a left join" width="600" alt=""><p class="caption">left_join(x, y)</p>
+<img src="img/left_join.png" title="visualization of a left join" width="500" alt=""><p class="caption">left_join(x, y)</p>
 </div>
 </div>
 <div id="right-join" class="section level3" number="4.12.3">
@@ -2384,7 +2384,7 @@ Level 5: 334</p>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> is an outer join that retains all observations from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
 <div class="figure">
-<img src="img/right_join.png" title="visualization of a right join" width="600" alt=""><p class="caption">right_join(x, y)</p>
+<img src="img/right_join.png" title="visualization of a right join" width="500" alt=""><p class="caption">right_join(x, y)</p>
 </div>
 </div>
 <div id="full-join" class="section level3" number="4.12.4">
@@ -2393,7 +2393,16 @@ Level 5: 334</p>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> is an outer join that retains all observations from <code>x</code> and <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Visually,</p>
 <div class="figure">
-<img src="img/full_join.png" title="visualization of a full join" width="600" alt=""><p class="caption">full_join(x, y)</p>
+<img src="img/full_join.png" title="visualization of a full join" width="500" alt=""><p class="caption">full_join(x, y)</p>
+</div>
+</div>
+<div id="anti-join" class="section level3" number="4.12.5">
+<h3>
+<span class="header-section-number">4.12.5</span> Anti-Join<a class="anchor" aria-label="anchor" href="#anti-join"><i class="fas fa-link"></i></a>
+</h3>
+<p>An <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> is an outer join that retains all observations from <code>x</code> that do not have a matching key in <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
+<div class="figure">
+<img src="img/anti_join.png" title="visualization of an anti-join" width="500" alt=""><p class="caption">anti_join(x, y)</p>
 </div>
 
 </div>
@@ -2459,6 +2468,7 @@ Level 5: 334</p>
 <li><a class="nav-link" href="#left-join"><span class="header-section-number">4.12.2</span> Left Join</a></li>
 <li><a class="nav-link" href="#right-join"><span class="header-section-number">4.12.3</span> Right Join</a></li>
 <li><a class="nav-link" href="#full-join"><span class="header-section-number">4.12.4</span> Full Join</a></li>
+<li><a class="nav-link" href="#anti-join"><span class="header-section-number">4.12.5</span> Anti-Join</a></li>
 </ul>
 </li>
 </ul>
@@ -2478,7 +2488,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-11-10.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-11-14.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
