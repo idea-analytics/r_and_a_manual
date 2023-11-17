@@ -273,14 +273,14 @@ Then try reloading the project and running the script.
 
 To open and make changes to your `.Renviron` file, run the following code:
 
-```{r}
+```{r open .Renviron, eval = FALSE}
 library(usethis)
 usethis::edit_r_environ()
 ```
 
 Once this file is open, changes can be made. To access IDEA data, the following should be included:
 
-``` {r}
+``` {r access IDEA data, eval = FALSE}
 IDEA_RNA_DB_UID = ‘firstname.lastname’
 IDEA_RNA_DB_PWD = ‘password’ (your IDEA password)
 IDEA_RNA_ODC_DRIVER = ‘{ODBC Driver __ for SQL Server}’ (substitute blank with current number)
@@ -288,14 +288,14 @@ IDEA_RNA_ODC_DRIVER = ‘{ODBC Driver __ for SQL Server}’ (substitute blank wi
 
 To access Posit Connect, the following should be included:
 
-```{r}
+```{r API key, eval = FALSE}
 CONNECT_API_KEY = 'your key here'
 CONNECT_SERVER = 'https://analytics.ideapublicschools.org/'
 ```
 
 As an additional example, there may be a need for a Mapbox API token. If so, include the following in the `.Renviron` file:
 
-```{r}
+```{r mapbox, eval = FALSE}
 MAPBOX_API_TOKEN = 'your key here'
 ```
 
