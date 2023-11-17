@@ -267,7 +267,42 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 
 Then try reloading the project and running the script. 
 
+## .Renviron
+
+`.Renviron` is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts. 
+
+To open and make changes to your `.Renviron` file, run the following code:
+
+```{r}
+library(usethis)
+usethis::edit_r_environ()
+```
+
+Once this file is open, changes can be made. To access IDEA data, the following should be included:
+
+``` {r}
+IDEA_RNA_DB_UID = ‘firstname.lastname’
+IDEA_RNA_DB_PWD = ‘password’ (your IDEA password)
+IDEA_RNA_ODC_DRIVER = ‘{ODBC Driver __ for SQL Server}’ (substitute blank with current number)
+```
+
+To access Posit Connect, the following should be included:
+
+```{r}
+CONNECT_API_KEY = 'your key here'
+CONNECT_SERVER = 'https://analytics.ideapublicschools.org/'
+```
+
+As an additional example, there may be a need for a Mapbox API token. If so, include the following in the `.Renviron` file:
+
+```{r}
+MAPBOX_API_TOKEN = 'your key here'
+```
+
+Once that is included in the `.Renviron` file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.
+
+If changes are made to the `.Renviron` file, don’t forget to restart R to have changes take effect.
+
 ## IDEA Acronym Guide
 
 IDEA uses acronyms frequently. Several of these acronyms have been compiled in [this resource](https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA).
- 
