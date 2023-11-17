@@ -2702,9 +2702,32 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <p>Then try reloading the project and running the script.</p>
 </div>
 </div>
-<div id="idea-acronym-guide" class="section level2" number="13.4">
+<div id="renviron" class="section level2" number="13.4">
 <h2>
-<span class="header-section-number">13.4</span> IDEA Acronym Guide<a class="anchor" aria-label="anchor" href="#idea-acronym-guide"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.4</span> .Renviron<a class="anchor" aria-label="anchor" href="#renviron"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>.Renviron</code> is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts.</p>
+<p>To open and make changes to your <code>.Renviron</code> file, run the following code:</p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Once this file is open, changes can be made. To access IDEA data, the following should be included:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tips-and-tricks.html#cb97-1" aria-hidden="true" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
+<span id="cb97-2"><a href="tips-and-tricks.html#cb97-2" aria-hidden="true" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
+<span id="cb97-3"><a href="tips-and-tricks.html#cb97-3" aria-hidden="true" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
+<p>To access Posit Connect, the following should be included:</p>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CONNECT_API_KEY</span> <span class="op">=</span> <span class="st">'your key here'</span></span>
+<span><span class="va">CONNECT_SERVER</span> <span class="op">=</span> <span class="st">'https://analytics.ideapublicschools.org/'</span></span></code></pre></div>
+<p>As an additional example, there may be a need for a Mapbox API token. If so, include the following in the <code>.Renviron</code> file:</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">MAPBOX_API_TOKEN</span> <span class="op">=</span> <span class="st">'your key here'</span></span></code></pre></div>
+<p>Once that is included in the <code>.Renviron</code> file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.</p>
+<p>If changes are made to the <code>.Renviron</code> file, don’t forget to restart R to have changes take effect.</p>
+</div>
+<div id="idea-acronym-guide" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> IDEA Acronym Guide<a class="anchor" aria-label="anchor" href="#idea-acronym-guide"><i class="fas fa-link"></i></a>
 </h2>
 <p>IDEA uses acronyms frequently. Several of these acronyms have been compiled in <a href="https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA">this resource</a>.</p>
 
@@ -2734,7 +2757,8 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <li>
 <a class="nav-link" href="#troubleshooting-messages-and-errors"><span class="header-section-number">13.3</span> Troubleshooting messages and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">13.3.1</span> Connection to the dashboard</a></li></ul>
 </li>
-<li><a class="nav-link" href="#idea-acronym-guide"><span class="header-section-number">13.4</span> IDEA Acronym Guide</a></li>
+<li><a class="nav-link" href="#renviron"><span class="header-section-number">13.4</span> .Renviron</a></li>
+<li><a class="nav-link" href="#idea-acronym-guide"><span class="header-section-number">13.5</span> IDEA Acronym Guide</a></li>
 </ul>
 
       <div class="book-extra">
@@ -2752,7 +2776,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-11-14.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-11-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

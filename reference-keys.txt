@@ -266,6 +266,7 @@ simpsons-paradox
 bias-variance-tradeoff
 troubleshooting-messages-and-errors
 connection-to-the-dashboard
+renviron
 idea-acronym-guide
 platforms
 qualtrics
