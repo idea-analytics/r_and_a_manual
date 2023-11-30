@@ -275,19 +275,29 @@ base_stamen_map %>%
 
 ### Spatial joins
 
-Using a **spatial join** is somewhat different than joining data frames. There are xx types of joins for spatial data:
+Using a **spatial join** is somewhat different than joining data frames. There are many types of *spatial predicates*, or join type, for spatial data, including:
 
+- equals
+- disjoint
+- contains
+- intersects
+- within
+- and more, which can be found in the [sf documentation for predicates](https://r-spatial.github.io/sf/reference/geos_binary_pred.html).
 
+Spatial joins operate on the `geometry` column and check the relationship of the shapes (`POINT`, `POLYGON`, `LINE`, etc.) in the data frames with the spatial predicate.
+
+Suppose we have a data frame describing the locations of each school as a `POINT`, and a second data frame describing the drive time radius around each school as a `POLYGON`. We might want to check if there are other schools located in a certain school's drive time radius. Spatially, we are using an intersecting join to check if certain points fall inside a polygon.
 
 ```{r geofiltering, eval=FALSE}
-
 sf_use_s2(FALSE)
 
-# use st_intersection with two sf objects
-taco_area_of_max_intersection <- schools_drive_10min_sf %>% 
+# use spatial joins with two sf objects
+taco_area_of_max_intersection <- schools_drive_10min_sf %>% # contains POLYGON geometry
   filter(school_short_name == "Edgecliff") %>% 
+  
+  # we can use st_intersection to check if the school locations are inside the drive time
   st_intersection(schools_drive_10min_sf %>% 
-                    filter(school_short_name == "Southeast"))
+                    filter(school_short_name == "Southeast")) # contains POINT geometry
 
 
 base_stamen_map %>% 
@@ -372,8 +382,18 @@ Census data is structured to make usual tasks, like cleaning and plotting, work 
 
 ```{r plot_decennial_data, eval=FALSE}
 age10 %>%
-  ggplot(aes(x = value, y = reorder(NAME, value))) + 
-  geom_point()
+  ggplot(
+    aes(
+      x = value, 
+      y = reorder(NAME, value)
+    )
+  ) + 
+  geom_point() +
+  labs(
+    x = "Median Age",
+    y = "State",
+    title = "Median Age by State"
+  )
 ```
 
 ![This plot is an example of how Census data can be plotted.](img/median_age_by_state.png "This dotplot shows the median age by state, ordered from oldest to youngest."){width="600"}
@@ -426,13 +446,13 @@ tarr <- get_acs(
 
 ## Plotting geographic data
 
-Spatial data can broadly be analyzed using **point pattern**, **areal**, **geospatial** and **spatiotemporal**.
+Spatial data can broadly be represented as discrete processes, aggregations, or continuous processes.
 
-**Point pattern data** are data that merely locate the longitude and latitude of the data. For example, we could plot where every school-aged child lives in Tarrant County. **Areal data** are aggregate data that describe a geographic *area* or *region*. The *total* number of school-aged children living in Tarrant County, Dallas County, or other surrounding counties is an example of areal data. 
+You can use point pattern analysis when data merely locate the longitude and latitude of a variable. For example, we could plot where every school-aged child lives in Tarrant County. Areal data are aggregate data that describe a geographic *area* or *region*. The *total* number of school-aged children living in Tarrant County, Dallas County, or other surrounding counties is an example of areal data. Continuous processes map a point to a *value* - in this case, it could be the age of a single child at a given point. We could also add time as a variable and make the data spatiotemporal.
 
-**Geospatial data** maps a point to a *value* - in this case, it could be the age of a single child at a given point. **Spatiotemporal data** adds a *time* variable to geospatial data, so the age of a child at a given point might be tracked at different points in time.
+Specific resources on **modeling** these types of data can be found in [An Introduction to Spatial Data Analysis and Statistics](https://paezha.github.io/spatial-analysis-r/).
 
-We have different methods for mapping geographic data, depending on the type of spatial data used.
+For **mapping** geographic data, we also have different methods depending on the type of spatial data used.
 
 ### Chloropleth
 
@@ -443,10 +463,18 @@ library(viridis)
 
 # aggregate school-aged children by block group
 # remove "Total" category
-tarr_school_aged < -tarr %>% 
+tarr_school_aged <- tarr %>% 
   filter(variable != "Total") %>%
+  
+  # when summarizing multiple Census variables in a single Census location,
+  # group by the GEOID, which is a unique identifier for a Census geography
   group_by(GEOID, NAME) %>% 
-  summarise(tot_all_ages = sum(estimate))
+  
+  # best practice - keep the estimate AND margin of error columns
+  summarise(
+    estimate = sum(estimate),
+    moe = moe_sum(moe, estimate = .9) # recomputes the grouped margin of error at 90%
+  )
 
 
 base_stamen_map %>% 
@@ -454,11 +482,13 @@ base_stamen_map %>%
   
   geom_sf(
     data = tarr_school_aged, 
-    aes(fill = tot_all_ages), 
+    aes(fill = estimate), 
     inherit.aes = FALSE, 
-    alpha  = .82, 
+    alpha = .82, 
     color = NA
   ) +
+  
+  # shades the isochrone intersection
   geom_sf(
     data = taco_area_of_max_intersection, 
     color = "goldenrod",
@@ -491,31 +521,38 @@ A method to remedy both issues is to use **dot-density** plots which simply plot
 ```{r dot_density_df, warning=FALSE, eval=FALSE}
 # library(terra) # as_dot_density() requires the {terra} package
 
+# this table will be used to combine the male and female groups for estimating
 acs_ages <- dplyr::tribble(
-  ~ variable,     ~ age_range,   ~ gender,
-  "B01001_001",   "All",         "All",
+  ~ acs_var,     ~ variable,                ~ age_range,   ~ gender,
+  "B01001_001",  "Total",                   "All",         "All",
   
   # male
-  "B01001_004",   "5-9",         "Male",
-  "B01001_005",   "10-14",       "Male",
-  "B01001_006",   "15-17",       "Male",
+  "B01001_004",  "Male, 5 to 9 years",      "5-9",         "Male",
+  "B01001_005",  "Male, 10 to 14 years",    "10-14",       "Male",
+  "B01001_006",  "Male, 15 to 17 years",    "15-17",       "Male",
   
   # female
-  "B01001_028",   "5-9",         "Female",
-  "B01001_029",   "10-14",       "Female",
-  "B01001_030",   "15-17",       "Female"
+  "B01001_028",  "Female, 5 to 9 years",    "5-9",         "Female",
+  "B01001_029",  "Female, 10 to 14 years",  "10-14",       "Female",
+  "B01001_030",  "Female, 15 to 17 years",  "15-17",       "Female"
 )
 
-tarr_childs <- tarr %>% 
-  inner_join(acs_ages) %>% 
+# gets the estimated number of children per age group per block group
+sf_tarrant_children <- tarr %>% 
+  inner_join(acs_ages, by = "variable") %>% 
   filter(gender != "All") %>% 
-  select(-variable, -moe, -gender) %>% 
+  select(-acs_var, -gender) %>% 
+  
+  # this will count the number of boys and girls into one group
   group_by(GEOID, NAME, age_range) %>% 
-  mutate(n_children = sum(estimate))
+  summarize(estimate = sum(estimate),
+            moe = moe_sum(moe, estimate = 0.9))
 
-tarr_dots <- tarr_childs %>% 
+
+# converts to a dot density
+sf_tarrant_children_dots <- sf_tarrant_children %>% 
   as_dot_density(
-    value = "n_children", # use the summary column to determine number of dots
+    value = "estimate", # use the summary column to determine number of dots
     values_per_dot = 20,  # specify the dot-to-value ratio
     group = "age_range"   # specify how dots should be categorized (if needed)
   ) 
@@ -529,7 +566,9 @@ base_stamen_map %>%
   
   # plot dot density
   geom_sf(
-    data = tarr_dots,
+    data = sf_tarrant_children_dots %>%
+      mutate(age_range = fct_relevel(age_range, 
+                                     "5-9", "10-14", "15-17")),
     aes(color = age_range),
     inherit.aes = FALSE,
     alpha  = .25,
@@ -549,12 +588,29 @@ base_stamen_map %>%
   geom_sf(
     data = taco_schools_sf,
     inherit.aes = FALSE,
-    color = "green",
-    size = 3
+    color = "hotpink",
+    size = 2
   ) +
+  
+  # use more options to move labels out of the way
+  ggsflabel::geom_sf_label_repel(
+    data = taco_schools_sf,
+    aes(label = school_short_name),
+    color = idea_colors$coolgray,
+    
+    # use nudge values to align all labels to one side of the map
+    direction = "y",
+    nudge_x = -97.1 - st_coordinates(taco_schools_sf)[,"X"], # uses right edge of bbox
+    nudge_y = 0.02,
+    size = 3,
+    inherit.aes = FALSE
+  ) +
+  
+  facet_wrap(~ age_range) +
   theme_void() +
   
-  scale_color_viridis(option = "viridis", discrete = TRUE)
+  scale_color_viridis(option = "viridis", discrete = TRUE) +
+  guides(color = "none")
 ```
 
 ![Dot density plots can be useful for showing differently distributed age groups.](img/taco_dot_density_age.png "This dot density plot facets age group into three panels, with ages 5-9 on the left, 10-14 in the middle, and 15-17 on the right."){width="600"}
