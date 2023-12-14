@@ -144,6 +144,27 @@ The following are the current polo colors for each grade level:
 Clearly, if all grade levels are present on one plot and cannot be individually labeled (say, a scatterplot), then using one color for multiple grade levels is not advised. However, if color coding a document or table where colors can be repeated, then this palette can provide visual cues to contextualize the report.
 
 
+### IDEA Palette Color Ramp
+
+To obtain a color ramp of the IDEA palette with hex codes, use following R code:
+
+```{r show idea palette ramp, eval = FALSE}
+# load libraries
+library(ideacolors)
+library(scales)
+
+show_col(idea_palette_ramp()(___) # substitute blank with the number of colors desired
+```
+
+As an example, the IDEA palette color ramp for six colors is as follows:
+
+```{r idea palette ramp 6 colors, eval = false}
+show_col(idea_palette_ramp()(6))
+```
+
+![IDEA palette color ramp with six colors)](img/idea_palette_ramp_6.png "show_col(idea_palette_ramp()(6))"){width="500"}
+
+
 ### Typography
 
 The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:
