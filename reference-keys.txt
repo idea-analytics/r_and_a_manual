@@ -196,6 +196,7 @@ ideacolors-themes-and-scales
 color-blindness
 raceethnicity-colors
 grade-level-colors
+idea-palette-color-ramp
 typography
 visualizing-hierarchical-data
 saving-and-publishing-visualizations
