@@ -158,7 +158,7 @@ show_col(idea_palette_ramp()(___) # substitute blank with the number of colors d
 
 As an example, the IDEA palette color ramp for six colors is as follows:
 
-```{r idea palette ramp 6 colors, eval = false}
+```{r idea palette ramp 6 colors, eval = FALSE}
 show_col(idea_palette_ramp()(6))
 ```
 
