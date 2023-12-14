@@ -162,7 +162,7 @@ As an example, the IDEA palette color ramp for six colors is as follows:
 show_col(idea_palette_ramp()(6))
 ```
 
-![IDEA palette color ramp with six colors)](img/idea_palette_ramp_6.png "show_col(idea_palette_ramp()(6))"){width="500"}
+![IDEA palette color ramp with six colors](img/idea_palette_ramp_6.png "show_col(idea_palette_ramp()(6))"){width="500"}
 
 
 ### Typography
