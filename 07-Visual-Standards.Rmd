@@ -185,6 +185,10 @@ font_add("proxima",
 
 This code will apply the font consistently to all text in any visualization created for that R session. To stop using the custom fonts in a session, use `showtext_auto(FALSE)` to revert to the default fonts.
 
+## Camp RIO branding
+
+For Camp RIO-specific analyses, visualizations, or publications, use the [Camp RIO brand guidelines](https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/ETpoVdcAUQZCkXhI83eV6U0BHT2vFOcXUqAas326qEneXw?e=tj2BNS) from the Advancement and Marketing teams. 
+
 
 ## Visualizing Hierarchical Data
 
