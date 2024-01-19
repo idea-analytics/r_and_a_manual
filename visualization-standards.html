@@ -262,9 +262,15 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <p>This code will apply the font consistently to all text in any visualization created for that R session. To stop using the custom fonts in a session, use <code>showtext_auto(FALSE)</code> to revert to the default fonts.</p>
 </div>
 </div>
-<div id="visualizing-hierarchical-data" class="section level2" number="9.2">
+<div id="camp-rio-branding" class="section level2" number="9.2">
 <h2>
-<span class="header-section-number">9.2</span> Visualizing Hierarchical Data<a class="anchor" aria-label="anchor" href="#visualizing-hierarchical-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.2</span> Camp RIO branding<a class="anchor" aria-label="anchor" href="#camp-rio-branding"><i class="fas fa-link"></i></a>
+</h2>
+<p>For Camp RIO-specific analyses, visualizations, or publications, use the <a href="https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/ETpoVdcAUQZCkXhI83eV6U0BHT2vFOcXUqAas326qEneXw?e=tj2BNS">Camp RIO brand guidelines</a> from the Advancement and Marketing teams.</p>
+</div>
+<div id="visualizing-hierarchical-data" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Visualizing Hierarchical Data<a class="anchor" aria-label="anchor" href="#visualizing-hierarchical-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Our data is often presented and displayed hierarchically (e.g., state, then region, then school, etc.). Therefore, it may be useful to group visualizations in a hierarchy, rather than arranging them alphabetically or in another manner.</p>
 <p>Let’s use the <a href="https://jennybc.github.io/gapminder/"><code>gapminder</code></a> data in R, where each row is a life expectancy, population, and GDP per capita corresponding with a specific country in a specific year.</p>
@@ -510,15 +516,15 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <img src="img/gapminder_nested.png" title="Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country" width="500" alt=""><p class="caption">This graph displays changes in life expectancy arranged alphabetically by continent first, then country.</p>
 </div>
 </div>
-<div id="saving-and-publishing-visualizations" class="section level2" number="9.3">
+<div id="saving-and-publishing-visualizations" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">9.3</span> Saving and publishing visualizations<a class="anchor" aria-label="anchor" href="#saving-and-publishing-visualizations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Saving and publishing visualizations<a class="anchor" aria-label="anchor" href="#saving-and-publishing-visualizations"><i class="fas fa-link"></i></a>
 </h2>
 <p>Data visualization can also communicate our findings effectively to external (to R&amp;A) audiences. Often, the graphs or tables we publish are included in slide decks or products around the organization. Thus, it is important to consider both the <strong>quality</strong> (i.e. plot resolution and size) and <strong>device output</strong> (e.g. .png, .pdf, .svg, etc.) of the visualization produced.</p>
 <p>Often, clicking on <code>Plots -&gt; Export -&gt; Save as image...</code> produces a <em>low-resolution bitmap</em> (.bmp) that does not resize appropriately. It is suggested you use one of the following methods instead:</p>
-<div id="using-device-functions" class="section level3" number="9.3.1">
+<div id="using-device-functions" class="section level3" number="9.4.1">
 <h3>
-<span class="header-section-number">9.3.1</span> Using device functions<a class="anchor" aria-label="anchor" href="#using-device-functions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.1</span> Using device functions<a class="anchor" aria-label="anchor" href="#using-device-functions"><i class="fas fa-link"></i></a>
 </h3>
 <p>To save a plot directly to a specified device, use the “output sandwich” method.</p>
 <ol style="list-style-type: decimal">
@@ -543,9 +549,9 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <span><span class="co"># 3. close the device</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="using-ggsave" class="section level3" number="9.3.2">
+<div id="using-ggsave" class="section level3" number="9.4.2">
 <h3>
-<span class="header-section-number">9.3.2</span> Using <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#using-ggsave"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4.2</span> Using <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#using-ggsave"><i class="fas fa-link"></i></a>
 </h3>
 <p>The function <code>ggsave()</code> provides a wrapper around multiple device functions, like <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code> or <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code>, but gives nice defaults for saving a high quality plot object to a device of your choice. It is suggested to use the function like this:</p>
 <ol style="list-style-type: decimal">
@@ -590,11 +596,12 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <li><a class="nav-link" href="#typography"><span class="header-section-number">9.1.6</span> Typography</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#visualizing-hierarchical-data"><span class="header-section-number">9.2</span> Visualizing Hierarchical Data</a></li>
+<li><a class="nav-link" href="#camp-rio-branding"><span class="header-section-number">9.2</span> Camp RIO branding</a></li>
+<li><a class="nav-link" href="#visualizing-hierarchical-data"><span class="header-section-number">9.3</span> Visualizing Hierarchical Data</a></li>
 <li>
-<a class="nav-link" href="#saving-and-publishing-visualizations"><span class="header-section-number">9.3</span> Saving and publishing visualizations</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#using-device-functions"><span class="header-section-number">9.3.1</span> Using device functions</a></li>
-<li><a class="nav-link" href="#using-ggsave"><span class="header-section-number">9.3.2</span> Using ggsave()</a></li>
+<a class="nav-link" href="#saving-and-publishing-visualizations"><span class="header-section-number">9.4</span> Saving and publishing visualizations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#using-device-functions"><span class="header-section-number">9.4.1</span> Using device functions</a></li>
+<li><a class="nav-link" href="#using-ggsave"><span class="header-section-number">9.4.2</span> Using ggsave()</a></li>
 </ul>
 </li>
 </ul>
@@ -614,7 +621,7 @@ Available palettes are given in the <code>idea_palettes</code> variable and can 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2023-12-14.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
