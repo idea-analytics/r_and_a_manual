@@ -70,9 +70,10 @@ staff-retention
 teacher-and-all-staff-retention
 teacher-staff-and-hiring-data
 tyler-munis-data
-teach-boost-data
+teachboost-data
 forms
 users
+teachboost-table-joins
 templates
 compass-data
 key-tables

@@ -109,7 +109,7 @@
 </h4>
 <p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
 <p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#use matchit like a glm</span></span>
 <span><span class="va">m_out</span> <span class="op">&lt;-</span> <span class="fu">matchit</span><span class="op">(</span><span class="va">ActiveIL</span> <span class="op">~</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Grade</span> <span class="op">+</span></span>
 <span>                   <span class="va">SPED</span> <span class="op">+</span> <span class="va">LEP</span> <span class="op">+</span> <span class="va">EcoDis</span> <span class="op">+</span> <span class="va">GradeEquivalentBOY</span>, <span class="co">#response specifies control/treatment, covariates specify what to match</span></span>
@@ -161,7 +161,7 @@
 </li>
 </ol>
 <p>Suppose we want to use SEL survey results to measure emotion regulation (a quantitative variable) across multiple grade levels. To see if the average <code>EmotionRegulationScore</code> differs at all between grade levels, then we can use the following code:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># linear model, where grade level is treated as a factor, not numeric</span></span>
 <span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">GradeLevelID</span><span class="op">)</span>,</span>
 <span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
@@ -196,7 +196,7 @@
 <p>A model where the error term does not account for any grouping, such as modeling the response of student <span class="math inline">\(i\)</span>, would look like:</p>
 <p><span class="math inline">\(\textrm{EmotionRegulationScore}_i = \beta_0 + \beta_1 \times \textrm{AvgDailyAttendance}_i + \epsilon_i\)</span></p>
 <p>and can be estimated using <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="va">AvgDailyAttendance</span>,</span>
 <span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
 <span></span>
@@ -205,7 +205,7 @@
 <p>A mixed model where the error term accounts for the grouping of student <span class="math inline">\(i\)</span> in school <span class="math inline">\(j\)</span>, and the slope and intercept are dependent on each school, would look like</p>
 <p><span class="math inline">\(\textrm{LifeSatisfactionScore}_{ij} = \beta_{0j} + \beta_{1j} \times \textrm{AvgDailyAttendance}_{ij} + \epsilon_{ij}\)</span></p>
 <p>and can be estimated using <code>lme4::lmer()</code>:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("lme4")</span></span>
 <span><span class="co"># library(lme4)</span></span>
 <span><span class="va">mm_survey_results</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
@@ -215,18 +215,18 @@
 <span><span class="fu">fixef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get inference on fixed effects coefficients</span></span>
 <span><span class="fu">ranef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get estimates of random effects coefficients</span></span></code></pre></div>
 <p>Note that if only the intercept needs to vary, then the code would change to</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mm_random_intercept</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span>,</span>
 <span>                            data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
 <p>while if only the slope needs to vary, then the code would change to</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mm_random_slope</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
 <span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Case 3: level 3+ model</strong></p>
 <p>A mixed model with three or more nested levels would account for, say a student <span class="math inline">\(i\)</span> within a school <span class="math inline">\(j\)</span> within a region <span class="math inline">\(k\)</span>. Such a model would look like</p>
 <p><span class="math inline">\(\textrm{EmotionRegulationScore}_{ijk} = \beta_{0jk} + \beta_{1jk} \times \textrm{AvgDailyAttendance}_{ijk} + \epsilon_{ijk}\)</span></p>
 <p>and could be coded as</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mm_level_3</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">Region</span> <span class="op">/</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
 <span>                   data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
 <p>Note: The initial level of nesting is coded using a vertical pipe <code>|</code> and all subsequent levels of nesting is coded using a backslash <code>/</code>.</p>
@@ -270,35 +270,35 @@
 <li><p>Clustering of values in a region (and conversely, gaps in data)</p></li>
 </ol>
 <p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
 <span>             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="va">MedianGrowth</span><span class="op">)</span>, <span class="co">#jittering of clustered points</span></span>
 <span>             group <span class="op">=</span> <span class="va">School</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">School</span>, <span class="co">#change color by school</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">School</span>, <span class="co">#change color by school</span></span>
 <span>                 alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, <span class="co">#set transparency level to 0.2</span></span>
 <span>             size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> <span class="op">+</span> <span class="co">#increases size of point</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">MedianGrowthLaunch</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">MedianGrowthLaunch</span>,</span>
 <span>                 color <span class="op">=</span> <span class="va">LaunchOrder</span><span class="op">)</span>,</span>
 <span>             shape <span class="op">=</span> <span class="fl">3</span>, <span class="co">#changes shape to plus sign +</span></span>
 <span>             size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/theme_idea_light.html">theme_idea_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">LaunchOrder</span>,</span>
-<span>             labeller <span class="op">=</span> <span class="fu">labeller</span><span class="op">(</span>LaunchOrder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"First Year"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">LaunchOrder</span>,</span>
+<span>             labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>LaunchOrder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"First Year"</span>,</span>
 <span>                                                 <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Second Year"</span>,</span>
 <span>                                                 <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Third Year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Median RenStar Reading Growth"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Median RenStar Reading Growth"</span>,</span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Results grouped by schools launching in the same year"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">"+ represents median RenStar reading growth for that launching cohort"</span>,</span>
 <span>       x <span class="op">=</span> <span class="st">"Launch Year"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Median RenStar Growth"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_discrete</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2017-2018"</span> <span class="op">=</span> <span class="st">"2017-18"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2017-2018"</span> <span class="op">=</span> <span class="st">"2017-18"</span>,</span>
 <span>                              <span class="st">"2018-2019"</span> <span class="op">=</span> <span class="st">"2018-19"</span>,</span>
 <span>                              <span class="st">"2019-2020"</span> <span class="op">=</span> <span class="st">"2019-20"</span>,</span>
 <span>                              <span class="st">"2020-2021"</span> <span class="op">=</span> <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color with each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
 <div class="figure">
 <img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt=""><p class="caption">This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.</p>
@@ -385,7 +385,7 @@
 </td>
 <td>hypothesized true mean</td>
 <td>1-sample <em>t</em>-test</td>
-<td><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="va">hypothesized_value</span><span class="op">)</span></span></code></pre></div></td>
 <td></td>
 </tr>
@@ -396,7 +396,7 @@
 </td>
 <td>difference in pairs of 0</td>
 <td>paired <em>t-</em>test</td>
-<td><div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div></td>
 <td></td>
 </tr>
@@ -413,7 +413,7 @@
 <p>Analysis of Variance (ANOVA)</p>
 <p>F-test</p>
 </td>
-<td><div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">partyid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -426,7 +426,7 @@
 <td>No relationship between both categorical variables</td>
 <td>
 <span class="math inline">\(\chi^2\)</span> test</td>
-<td><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<td><div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">null_dist_sim</span> <span class="op">&lt;-</span> <span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">specify</span><span class="op">(</span><span class="va">college</span> <span class="op">~</span> <span class="va">finrela</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -451,7 +451,7 @@
 <p>Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.</p>
 <p><span class="math inline">\(\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>To estimate these coefficients and evaluate the fit, we can use the following workflow:</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters</span></span>
 <span><span class="co"># all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1</span></span>
 <span></span>
@@ -486,7 +486,7 @@
 <p>Note that there are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family">link functions</a>, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm">documentation.</a> However, base R provides the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, which gives options to choose a link.</p>
 <p>Now suppose we are modeling the probability of a student passing the STAAR (probability approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
 <p><span class="math inline">\(\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># logistic regression to determine log odds of passing STAAR</span></span>
 <span><span class="va">glm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Approaches</span> <span class="op">~</span> <span class="va">SemesterExamQuestions</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
 <span>                 family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
@@ -506,7 +506,7 @@
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
 <span></span>
 <span><span class="co"># model enrolled students using a GAM</span></span>
@@ -544,7 +544,7 @@
 </h3>
 <p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
 <p>Within NLP, our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
 <span></span>
@@ -713,7 +713,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-19.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

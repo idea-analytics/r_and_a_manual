@@ -1960,11 +1960,11 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
 To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher’s Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee’s role was “TEACHER” in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA.</p>
 </div>
-<div id="teach-boost-data" class="section level3" number="4.11.2">
+<div id="teachboost-data" class="section level3" number="4.11.2">
 <h3>
-<span class="header-section-number">4.11.2</span> Teach Boost Data<a class="anchor" aria-label="anchor" href="#teach-boost-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2</span> TeachBoost Data<a class="anchor" aria-label="anchor" href="#teachboost-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders.</p>
+<p>TeachBoost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders.</p>
 <p>TB contains the Forms table and Users table.</p>
 <div id="forms" class="section level4" number="4.11.2.1">
 <h4>
@@ -2017,9 +2017,74 @@ forms_try</p>
 </h4>
 <p>UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column “ID” on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in Teachboost such as Region or School.</p>
 </div>
-<div id="templates" class="section level4" number="4.11.2.3">
+<div id="teachboost-table-joins" class="section level4" number="4.11.2.3">
 <h4>
-<span class="header-section-number">4.11.2.3</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11.2.3</span> TeachBoost Table Joins<a class="anchor" aria-label="anchor" href="#teachboost-table-joins"><i class="fas fa-link"></i></a>
+</h4>
+<p>To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the <a href="https://support.teachboost.com/hc/en-us/articles/8083873489940">TeachBoost support guide</a></p>
+<div class="figure">
+<img src="img/teachboost_table_joins.png" title="TeachBoost table joins" width="500" alt=""><p class="caption">TeachBoost table joins</p>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/sfirke/janitor">janitor</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># users ----</span></span>
+<span><span class="co"># Note: Users table resource_id = staff ID number (name_id in Staffing table)</span></span>
+<span><span class="va">users</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"Users"</span>, </span>
+<span>                    .database_name <span class="op">=</span> <span class="st">"SRC_Teachboost"</span>,</span>
+<span>                    .schema <span class="op">=</span> <span class="st">"dbo"</span>, </span>
+<span>                    .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC3"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span></span>
+<span>  <span class="co"># reduce users to distinct staff ID numbers (resource_id)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">resource_id</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># scores ----</span></span>
+<span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"Scores"</span>, </span>
+<span>                        .database_name <span class="op">=</span> <span class="st">"SRC_Teachboost"</span>,</span>
+<span>                        .schema <span class="op">=</span> <span class="st">"dbo"</span>, </span>
+<span>                        .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC3"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  </span>
+<span>  <span class="co"># for use when filtering for a particular date range</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/between.html">between</a></span><span class="op">(</span><span class="va">date</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">'2023-07-25'</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">'2023-12-31'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># merge scores with users ----</span></span>
+<span><span class="va">scores_users</span> <span class="op">&lt;-</span> <span class="va">scores</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">topic_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">id</span>, .after <span class="op">=</span> <span class="va">topic_id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">users</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># forms ----</span></span>
+<span><span class="va">forms</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"Forms"</span>, </span>
+<span>                      .database_name <span class="op">=</span> <span class="st">"SRC_Teachboost"</span>,</span>
+<span>                      .schema <span class="op">=</span> <span class="st">"dbo"</span>, </span>
+<span>                      .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC3"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span> </span>
+<span><span class="co"># for use when the template_name includes GET</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">template_name</span> <span class="op">%like%</span> <span class="st">"%GET%"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">type_label</span>, <span class="va">template_name</span>, <span class="va">template_id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># merge scores/users with forms ----</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">scores_users</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">forms</span>, by <span class="op">=</span> <span class="st">"template_id"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="templates" class="section level4" number="4.11.2.4">
+<h4>
+<span class="header-section-number">4.11.2.4</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
 </h4>
 <p>This table no longer exists and the data has been moved to the forms table.</p>
 </div>
@@ -2456,7 +2521,7 @@ Level 5: 334</p>
 <li>
 <a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.11</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.11.1</span> Tyler Munis data</a></li>
-<li><a class="nav-link" href="#teach-boost-data"><span class="header-section-number">4.11.2</span> Teach Boost Data</a></li>
+<li><a class="nav-link" href="#teachboost-data"><span class="header-section-number">4.11.2</span> TeachBoost Data</a></li>
 <li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.11.3</span> Compass data</a></li>
 <li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.11.4</span> Jobvite Data</a></li>
 <li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.11.5</span> TCP/Teacher Export Data</a></li>
@@ -2488,7 +2553,7 @@ Level 5: 334</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-19.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
