@@ -1500,9 +1500,9 @@ Start Date is a column used in the HRIS reports that denotes the date of hire at
 Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
 To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher's Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee's role was "TEACHER" in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA. 
 
-### Teach Boost Data
+### TeachBoost Data
 
-Teach Boost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders. 
+TeachBoost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders. 
 
 TB contains the Forms table and Users table. 
 
@@ -1553,6 +1553,71 @@ Forms table has the topic_id, which is the TB ID of the person about whom the fo
 #### Users
 
 UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column "ID" on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in Teachboost such as Region or School.
+
+#### TeachBoost Table Joins
+
+To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the [TeachBoost support guide](https://support.teachboost.com/hc/en-us/articles/8083873489940)
+
+![TeachBoost table joins](img/teachboost_table_joins.png "TeachBoost table joins"){width="500"}
+
+```{r code to link tables, eval = FALSE}
+# load libraries
+library(tidyverse)
+library(ideadata)
+library(janitor)
+
+# users ----
+# Note: Users table resource_id = staff ID number (name_id in Staffing table)
+users <- get_table(.table_name = "Users", 
+                    .database_name = "SRC_Teachboost",
+                    .schema = "dbo", 
+                    .server_name = "RGVPDSD-DWSRC3") %>%
+
+  distinct() %>%
+  collect() %>%
+  janitor::clean_names() %>%
+
+  # reduce users to distinct staff ID numbers (resource_id)
+  distinct(resource_id, .keep_all = TRUE)
+
+# scores ----
+scores <- get_table(.table_name = "Scores", 
+                        .database_name = "SRC_Teachboost",
+                        .schema = "dbo", 
+                        .server_name = "RGVPDSD-DWSRC3") %>%
+  
+  # for use when filtering for a particular date range
+  filter(between(date, as.Date('2023-07-25'), as.Date('2023-12-31'))) %>%
+    
+  distinct() %>%
+  collect() %>%
+  janitor::clean_names()
+
+# merge scores with users ----
+scores_users <- scores %>% 
+  mutate(id = topic_id) %>% 
+  relocate(id, .after = topic_id) %>% 
+  left_join(users, by = "id")
+
+# forms ----
+forms <- get_table(.table_name = "Forms", 
+                      .database_name = "SRC_Teachboost",
+                      .schema = "dbo", 
+                      .server_name = "RGVPDSD-DWSRC3") %>%
+ 
+# for use when the template_name includes GET
+  filter(template_name %like% "%GET%") %>%
+  
+  distinct() %>%
+  collect() %>%
+  janitor::clean_names() %>%
+  distinct(type_label, template_name, template_id)
+
+# merge scores/users with forms ----
+data <- scores_users %>% 
+  left_join(forms, by = "template_id")
+
+```
 
 #### Templates
 
