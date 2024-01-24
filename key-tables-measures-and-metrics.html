@@ -2021,9 +2021,9 @@ forms_try</p>
 <h4>
 <span class="header-section-number">4.11.2.3</span> TeachBoost Table Joins<a class="anchor" aria-label="anchor" href="#teachboost-table-joins"><i class="fas fa-link"></i></a>
 </h4>
-<p>To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the <a href="https://support.teachboost.com/hc/en-us/articles/8083873489940">TeachBoost support guide</a></p>
+<p>To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the <a href="https://support.teachboost.com/hc/en-us/articles/8083873489940">TeachBoost support guide</a>.</p>
 <div class="figure">
-<img src="img/teachboost_table_joins.png" title="TeachBoost table joins" width="500" alt=""><p class="caption">TeachBoost table joins</p>
+<img src="img/teachboost_table_joins.png" title="TeachBoost table joins" width="600" alt=""><p class="caption">TeachBoost table joins</p>
 </div>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load libraries</span></span>
@@ -2069,8 +2069,8 @@ forms_try</p>
 <span>                      .database_name <span class="op">=</span> <span class="st">"SRC_Teachboost"</span>,</span>
 <span>                      .schema <span class="op">=</span> <span class="st">"dbo"</span>, </span>
 <span>                      .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC3"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span> </span>
-<span><span class="co"># for use when the template_name includes GET</span></span>
+<span>  </span>
+<span>  <span class="co"># for use when the template_name includes GET</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">template_name</span> <span class="op">%like%</span> <span class="st">"%GET%"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
