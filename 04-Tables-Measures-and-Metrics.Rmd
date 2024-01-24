@@ -1556,9 +1556,9 @@ UserID is a column that denotes the number of the loggin. For example, if I was 
 
 #### TeachBoost Table Joins
 
-To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the [TeachBoost support guide](https://support.teachboost.com/hc/en-us/articles/8083873489940)
+To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the [TeachBoost support guide](https://support.teachboost.com/hc/en-us/articles/8083873489940).
 
-![TeachBoost table joins](img/teachboost_table_joins.png "TeachBoost table joins"){width="500"}
+![TeachBoost table joins](img/teachboost_table_joins.png "TeachBoost table joins"){width="600"}
 
 ```{r code to link tables, eval = FALSE}
 # load libraries
@@ -1604,8 +1604,8 @@ forms <- get_table(.table_name = "Forms",
                       .database_name = "SRC_Teachboost",
                       .schema = "dbo", 
                       .server_name = "RGVPDSD-DWSRC3") %>%
- 
-# for use when the template_name includes GET
+  
+  # for use when the template_name includes GET
   filter(template_name %like% "%GET%") %>%
   
   distinct() %>%
