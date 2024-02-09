@@ -416,6 +416,38 @@ $g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i +
 
 See [this reference](https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf) for implementations of ordinal logistic regression using various packages.
 
+#### Ordinal logistic regression in R
+
+As seen in the previous section, ordinal logistic regression is the appropriate regression model to use when the levels of a categorical response variable are ordered. With a sufficient sample size, training and testing data frames can be utilized. The training data frame is used to estimate the model while the testing data frame is used, as the name implies, to test it. Predictions are made with the testing data with a confusion matrix and misclassification error following. Below is sample R code to accomplish these steps.
+
+```{r olr train and test, eval = FALSE}
+
+# prepare training and testing data frames ----
+library(tidymodels) 
+set.seed(21) 
+df_split <- initial_split(df, prop = 0.7) 
+df_train <- training(df_split) 
+df_test <- testing(df_split)
+
+# model ----
+library(MASS)
+olr <- polr(dv ~ iv, 
+            data = df_train,
+            Hess = TRUE)
+summary(olr)
+
+# predict using testing data ----
+predicted_class <- predict(olr, df_test)  # predict the classes
+head(predicted_class)
+predicted_probs <- predict(olr, df_test, type = "probs")  # predict the probabilities
+head(predicted_probs)
+
+# confusion matrix and misclassification error ----
+table(df_test$dv, predicted_class)  # confusion matrix
+mean(as.character(df_test$dv) != as.character(predicted_class))  # misclassification error
+
+```
+
 ### Generalized additive modeling
 
 If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses *splines*, which are more flexible and somewhat less restrictive than fitting polynomials.
