@@ -19,7 +19,7 @@
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.6.1/transition.js"></script><script src="libs/bs3compat-0.6.1/tabs.js"></script><script src="libs/bs3compat-0.6.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="libs/grViz-binding-1.0.10/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
@@ -499,6 +499,37 @@
 <p>For example, modeling an AP score (which only takes on ordered levels of 1 to 5) as a function of semester exam questions correct and the course grade could be:</p>
 <p><span class="math inline">\(g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>See <a href="https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf">this reference</a> for implementations of ordinal logistic regression using various packages.</p>
+<div id="ordinal-logistic-regression-in-r" class="section level4" number="10.5.2.1">
+<h4>
+<span class="header-section-number">10.5.2.1</span> Ordinal logistic regression in R<a class="anchor" aria-label="anchor" href="#ordinal-logistic-regression-in-r"><i class="fas fa-link"></i></a>
+</h4>
+<p>As seen in the previous section, ordinal logistic regression is the appropriate regression model to use when the levels of a categorical response variable are ordered. With a sufficient sample size, training and testing data frames can be utilized. The training data frame is used to estimate the model while the testing data frame is used, as the name implies, to test it. Predictions are made with the testing data with a confusion matrix and misclassification error following. Below is sample R code to accomplish these steps.</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># prepare training and testing data frames ----</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">21</span><span class="op">)</span> </span>
+<span><span class="va">df_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">df</span>, prop <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> </span>
+<span><span class="va">df_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">df_split</span><span class="op">)</span> </span>
+<span><span class="va">df_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">df_split</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># model ----</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<span><span class="va">olr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html">polr</a></span><span class="op">(</span><span class="va">dv</span> <span class="op">~</span> <span class="va">iv</span>, </span>
+<span>            data <span class="op">=</span> <span class="va">df_train</span>,</span>
+<span>            Hess <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">olr</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># predict using testing data ----</span></span>
+<span><span class="va">predicted_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">olr</span>, <span class="va">df_test</span><span class="op">)</span>  <span class="co"># predict the classes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">predicted_class</span><span class="op">)</span></span>
+<span><span class="va">predicted_probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">olr</span>, <span class="va">df_test</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span>  <span class="co"># predict the probabilities</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">predicted_probs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># confusion matrix and misclassification error ----</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_test</span><span class="op">$</span><span class="va">dv</span>, <span class="va">predicted_class</span><span class="op">)</span>  <span class="co"># confusion matrix</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">df_test</span><span class="op">$</span><span class="va">dv</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">predicted_class</span><span class="op">)</span><span class="op">)</span>  <span class="co"># misclassification error</span></span></code></pre></div>
+</div>
 </div>
 <div id="generalized-additive-modeling" class="section level3" number="10.5.3">
 <h3>
@@ -506,7 +537,7 @@
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
 <span></span>
 <span><span class="co"># model enrolled students using a GAM</span></span>
@@ -544,7 +575,7 @@
 </h3>
 <p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
 <p>Within NLP, our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/juliasilge/tidytext">tidytext</a></span><span class="op">)</span></span>
 <span></span>
@@ -713,7 +744,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-01-24.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-02-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

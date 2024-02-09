@@ -226,6 +226,7 @@ inferential-methods-with-the-infer-package
 modeling-and-predictive-statistics
 linear-modeling
 generalized-linear-modeling
+ordinal-logistic-regression-in-r
 generalized-additive-modeling
 machine-learning
 natural-language-processing-sentiment-analysis
