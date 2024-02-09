@@ -505,8 +505,7 @@
 </h4>
 <p>As seen in the previous section, ordinal logistic regression is the appropriate regression model to use when the levels of a categorical response variable are ordered. With a sufficient sample size, training and testing data frames can be utilized. The training data frame is used to estimate the model while the testing data frame is used, as the name implies, to test it. Predictions are made with the testing data with a confusion matrix and misclassification error following. Below is sample R code to accomplish these steps.</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># prepare training and testing data frames ----</span></span>
+<code class="sourceCode R"><span><span class="co"># prepare training and testing data frames ----</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">21</span><span class="op">)</span> </span>
 <span><span class="va">df_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">df</span>, prop <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> </span>
