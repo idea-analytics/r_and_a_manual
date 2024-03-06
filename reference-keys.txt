@@ -252,6 +252,16 @@ searching-for-variables
 plotting-geographic-data
 chloropleth
 dot-density
+gis-based-mcda
+simple-and-weighted-linear-combination
+analytical-hierarchy-process
+context
+ahp-steps
+identify-criteria
+create-hierarchical-structure
+make-pairwise-comparisons-and-create-matrix
+check-the-consistency-of-the-matrix
+compute-criteria-weights
 surveys
 about-survey-research
 surveys-at-idea

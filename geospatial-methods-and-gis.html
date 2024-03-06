@@ -7,7 +7,7 @@
 <title>Chapter 11 Geospatial Methods and GIS | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  11.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
-<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta name="generator" content="bookdown 0.38 with bs4_book()">
 <meta property="og:title" content="Chapter 11 Geospatial Methods and GIS | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/geospatial-methods-and-gis.html">
@@ -214,7 +214,7 @@
 <span>      method <span class="op">=</span> <span class="st">"osm"</span> <span class="co"># we also use method = "geocodio"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.2 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">taco_schools_geocoded</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -405,8 +405,8 @@
 <span>    color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
 <span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span> </span></code></pre></div>
-<div class="figure">
-<img src="img/taco_google_map.png" title="This map overlays the location of Tarrant County schools in hotpink on tiles from Google Map." width="600" alt=""><p class="caption">Schools in Tarrant County, using Google Map tiles</p>
+<div class="float">
+<img src="img/taco_google_map.png" title="This map overlays the location of Tarrant County schools in hotpink on tiles from Google Map." width="600" alt="Schools in Tarrant County, using Google Map tiles"><div class="figcaption">Schools in Tarrant County, using Google Map tiles</div>
 </div>
 <p>There are many types of <strong>map tiles</strong> that can be used to display geographic data. I don’t always love Google Maps’ look for display purposes on slides, so let’s change that up with Stamen, which give us different styles of map tiles. In particular, we will use <code>toner-lite</code>, which provides a neutral, grey-white background. Stamen tiles, now provided by <a href="https://stadiamaps.com/stamen/">Stadia Maps</a>, requires an API key.</p>
 <p>To get any baselayer map, you must specify the <strong>bounding box</strong>, or a set of longitudes and latitudes that respectively establish the left/right and top/bottom edges of the map. You can either get the bounding box attributes from the Google Map baselayer, or you can create your own.</p>
@@ -437,8 +437,8 @@
 <span>    color <span class="op">=</span> <span class="st">"hotpink"</span>,</span>
 <span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span> </span></code></pre></div>
-<div class="figure">
-<img src="img/taco_stamen_map.png" title="This map overlays the location of Tarrant County schools in hotpink on Stamen tiles from Stadia Maps." width="600" alt=""><p class="caption">Schools in Tarrant County, using Stamen tiles from Stadia Maps</p>
+<div class="float">
+<img src="img/taco_stamen_map.png" title="This map overlays the location of Tarrant County schools in hotpink on Stamen tiles from Stadia Maps." width="600" alt="Schools in Tarrant County, using Stamen tiles from Stadia Maps"><div class="figcaption">Schools in Tarrant County, using Stamen tiles from Stadia Maps</div>
 </div>
 </div>
 <div id="getting-drive-times" class="section level3" number="11.2.5">
@@ -491,8 +491,8 @@
 <span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="img/taco_isochrones.png" title="This map overlays the 10-minute isochrone for each Tarrant County school." width="600" alt=""><p class="caption">Plotting 10-minute isochrones for each Tarrant County school</p>
+<div class="float">
+<img src="img/taco_isochrones.png" title="This map overlays the 10-minute isochrone for each Tarrant County school." width="600" alt="Plotting 10-minute isochrones for each Tarrant County school"><div class="figcaption">Plotting 10-minute isochrones for each Tarrant County school</div>
 </div>
 </div>
 <div id="spatial-joins" class="section level3" number="11.2.6">
@@ -547,8 +547,8 @@
 <span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span>, color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="img/taco_isochrone_intersection.png" title="This map overlays the intersection of 10-minute isochrones in goldenrod." width="600" alt=""><p class="caption">Plotting the intersection of 10-minute isochrones for each Tarrant County school</p>
+<div class="float">
+<img src="img/taco_isochrone_intersection.png" title="This map overlays the intersection of 10-minute isochrones in goldenrod." width="600" alt="Plotting the intersection of 10-minute isochrones for each Tarrant County school"><div class="figcaption">Plotting the intersection of 10-minute isochrones for each Tarrant County school</div>
 </div>
 <p>And what schools are found in this area of overlapping isochrones? We can use <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter()</a></code> with an <code>st_within</code> join to help us identify points inside of a polygon.</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
@@ -652,8 +652,8 @@
 <span>    y <span class="op">=</span> <span class="st">"State"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"Median Age by State"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="img/median_age_by_state.png" title="This dotplot shows the median age by state, ordered from oldest to youngest." width="600" alt=""><p class="caption">This plot is an example of how Census data can be plotted.</p>
+<div class="float">
+<img src="img/median_age_by_state.png" title="This dotplot shows the median age by state, ordered from oldest to youngest." width="600" alt="This plot is an example of how Census data can be plotted."><div class="figcaption">This plot is an example of how Census data can be plotted.</div>
 </div>
 </div>
 <div id="searching-for-variables" class="section level5" number="11.3.0.0.2">
@@ -765,8 +765,8 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_fill_viridis</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"magma"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="img/taco_chloropleth.png" title="This cholropleth uses a palette to show low densities of school-aged children in black to high densities in light yellow." width="600" alt=""><p class="caption">This chloropleth estimates the number of school-aged children in Tarrant County.</p>
+<div class="float">
+<img src="img/taco_chloropleth.png" title="This cholropleth uses a palette to show low densities of school-aged children in black to high densities in light yellow." width="600" alt="This chloropleth estimates the number of school-aged children in Tarrant County."><div class="figcaption">This chloropleth estimates the number of school-aged children in Tarrant County.</div>
 </div>
 <p>From this map, we can use color to identify which block groups have high densities of school-aged children and which do not.</p>
 </div>
@@ -867,11 +867,181 @@
 <span>  </span>
 <span>  <span class="fu"><a href="https://sjmgarnier.github.io/viridis/reference/scale_viridis.html">scale_color_viridis</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"viridis"</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="img/taco_dot_density_age.png" title="This dot density plot facets age group into three panels, with ages 5-9 on the left, 10-14 in the middle, and 15-17 on the right." width="600" alt=""><p class="caption">Dot density plots can be useful for showing differently distributed age groups.</p>
+<div class="float">
+<img src="img/taco_dot_density_age.png" title="This dot density plot facets age group into three panels, with ages 5-9 on the left, 10-14 in the middle, and 15-17 on the right." width="600" alt="Dot density plots can be useful for showing differently distributed age groups."><div class="figcaption">Dot density plots can be useful for showing differently distributed age groups.</div>
 </div>
 <p>Dot densities can be particularly useful when the variables are faceted, so differences in distributions can be seen.</p>
+</div>
+</div>
+<div id="gis-based-mcda" class="section level2" number="11.5">
+<h2>
+<span class="header-section-number">11.5</span> GIS-Based MCDA<a class="anchor" aria-label="anchor" href="#gis-based-mcda"><i class="fas fa-link"></i></a>
+</h2>
+<p>Suitability analyses can be used in a variety of contexts such as choosing the best candidate, car, or phone. Additionally, it can be used with a Geographic Information System (GIS) where land suitability is assessed. This land suitability analysis could be conducted for a variety of reasons such as identifying good locations for a park, landfill, or school.</p>
+<p>When making decisions regarding the suitability of a piece of land for a particular purpose, multiple criteria are considered thus a multi-criteria decision analysis (MCDA) is conducted. This is the focus of this section, GIS-based MCDA. Three different methods will be covered, the simple and weighted linear combination and the analytical hierarchy process.</p>
+<div id="simple-and-weighted-linear-combination" class="section level3" number="11.5.1">
+<h3>
+<span class="header-section-number">11.5.1</span> Simple and Weighted Linear Combination<a class="anchor" aria-label="anchor" href="#simple-and-weighted-linear-combination"><i class="fas fa-link"></i></a>
+</h3>
+<p>The simple and weighted linear combination methods are two MCDAs. In the simple linear combination method, all criteria are equally weighted while the weighted linear combination method allows for criteria to be weighted according to importance.</p>
+<p>If one were interested in locating suitable sites for a landfill (as an example), criteria would be identified and then rasters created. Each cell of those rasters is considered a potential alternative site for the landfill and a score is assigned to it. Raster algebra is used to compute the combination scores and then a threshold is set to distinguish between cells that are and are not suitable for a landfill site.</p>
+<p>Assume that three criteria are being used for a landfill land suitability analysis: <em>Distance to Schools</em> (farther is better), <em>Slope</em> (flatter is better), and <em>Distance to Population Centers</em> (decently far away, but not too far). The first step for these linear combination methods is to create a raster for each of the criteria (school_raster, slope_raster, and pop_center_raster) where each cell is assessed with respect to that raster’s criteria. Once that is complete, combine linearly with either equal (simple linear combination method) or unequal (weighted linear combination method) weights and compare to a threshold value. Below is sample R code to accomplish this.</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">layer_stack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">school_raster</span>, </span>
+<span>                 <span class="va">slope_raster</span>,</span>
+<span>                 <span class="va">pop_center_raster</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># linear combo, equal weights ----</span></span>
+<span></span>
+<span><span class="va">equal_combo_raster</span> <span class="op">&lt;-</span> <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">equal_combo_raster</span> <span class="op">&gt;</span> <span class="va">your_threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"classes"</span>, </span>
+<span>       axes <span class="op">=</span> <span class="cn">F</span>, </span>
+<span>       main <span class="op">=</span> <span class="st">"Combined (Simple)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># linear combo, weighted ----</span></span>
+<span></span>
+<span><span class="co"># weights are arbitrarily assigned</span></span>
+<span><span class="va">weighted_combo_raster</span> <span class="op">&lt;-</span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span> <span class="fl">0.40</span> <span class="op">+</span> </span>
+<span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">*</span> <span class="fl">0.35</span> <span class="op">+</span> </span>
+<span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">*</span> <span class="fl">0.25</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">weighted_combo_raster</span> <span class="op">&gt;</span> <span class="va">your_threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"classes"</span>, </span>
+<span>       axes <span class="op">=</span> <span class="cn">F</span>, </span>
+<span>       main <span class="op">=</span> <span class="st">"Combined (Weighted)"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="analytical-hierarchy-process" class="section level3" number="11.5.2">
+<h3>
+<span class="header-section-number">11.5.2</span> Analytical Hierarchy Process<a class="anchor" aria-label="anchor" href="#analytical-hierarchy-process"><i class="fas fa-link"></i></a>
+</h3>
+<p>The analytical hierarchy process (AHP) was developed by Thomas Saaty in the 1970s and can be used as a Geographic Information System (GIS) multi-criteria decision analysis (MCDA) method. The AHP creates a set of weights that can then be used in the weighted linear combination (WLC) method or, as an example, in conjunction with Ordered Weighted Averaging (OWA). Here, the step-by-step process of the AHP method will be presented, both by hand and in R.</p>
+<div id="context" class="section level4" number="11.5.2.1">
+<h4>
+<span class="header-section-number">11.5.2.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
+</h4>
+<p>The number of uses for suitability analyses is vast. Some examples are identifying locations for new restaurants, parks, and retail sites; identifying the best candidate for a job; and choosing the best car for an individual. In this example, the goal is to identify the best location for a new landfill.</p>
+</div>
+<div id="ahp-steps" class="section level4" number="11.5.2.2">
+<h4>
+<span class="header-section-number">11.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
+</h4>
+<p>The general steps to perform the AHP are:
+• Identify criteria
+• Create hierarchical structure
+• Make pairwise comparisons and create matrix
+• Check the consistency of the matrix
+• Compute criteria weights</p>
+</div>
+<div id="identify-criteria" class="section level4" number="11.5.2.3">
+<h4>
+<span class="header-section-number">11.5.2.3</span> Identify Criteria<a class="anchor" aria-label="anchor" href="#identify-criteria"><i class="fas fa-link"></i></a>
+</h4>
+<p>Three arbitrary+ criteria will be used:
+• Distance to schools
+• Slope
+• Distance to population centers
++Please note that this is an <em>example</em> based on <a href="https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc">this sample land suitability analysis</a>. Other criteria could be utilized to identify appropriate locations for a landfill.</p>
+</div>
+<div id="create-hierarchical-structure" class="section level4" number="11.5.2.4">
+<h4>
+<span class="header-section-number">11.5.2.4</span> Create Hierarchical Structure<a class="anchor" aria-label="anchor" href="#create-hierarchical-structure"><i class="fas fa-link"></i></a>
+</h4>
+<p>The AHP hierarchy includes, at a minimum, three levels: the goal, criteria, and alternatives. The alternatives could be the candidates or cars of interest (see examples in the Context section above). In the case where raster data is being used, the alternatives are every cell in the raster data.</p>
+<div class="float">
+<img src="img/ahp_hierarchy.png" title="AHP hierarchy" width="500" alt="AHP hierarchy"><div class="figcaption">AHP hierarchy</div>
+</div>
+</div>
+<div id="make-pairwise-comparisons-and-create-matrix" class="section level4" number="11.5.2.5">
+<h4>
+<span class="header-section-number">11.5.2.5</span> Make Pairwise Comparisons and Create Matrix<a class="anchor" aria-label="anchor" href="#make-pairwise-comparisons-and-create-matrix"><i class="fas fa-link"></i></a>
+</h4>
+<p>The nodes at each level must be compared two-by-two in relation to their contribution to the node above. These values will then be entered into a matrix which will be used to compute the criteria weights.</p>
+<div class="inline-figure">The AHP fundamental scale (see below) is used when making these pairwise comparisons.
+<img src="img/ahp_fundamental_scale.png" title="AHP Fundamental Scale" width="400" alt="AHP Fundamental Scale">
+For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.</div>
+<p>To begin, <em>Distance to Schools</em> and <em>Slope</em> were compared. The individual or group tasked with making these pairwise comparisons believes that the <em>Distance to Schools</em> is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to <em>Slope</em> for that pairwise comparison. The next question is what the value should be for <em>Distance to Schools</em>. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to <em>Distance to Schools</em> for this pairwise comparison.</p>
+<div class="inline-figure">This method continues through all pairwise comparisons and the results are as follows:
+<img src="img/ahp_pairwise_comparisons.png" title="AHP Pairwise Comparisons" width="400" alt="AHP Pairwise Comparisons">
+</div>
+<div class="inline-figure">The results can now be transferred to a matrix. To begin, 1s are included in the diagonal of the matrix and then the remainder of the matrix is completed.
+<img src="img/ahp_matrix.png" title="AHP Matrix" width="400" alt="AHP Matrix">
+</div>
+<p>To accomplish this in R, the following code can be used:</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create 3x3 matrix with all 1s</span></span>
+<span><span class="va">AHP_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>,</span>
+<span>                     nrow <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>                     ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#       [,1] [,2] [,3]</span></span>
+<span><span class="co"># [1,]    1    1    1</span></span>
+<span><span class="co"># [2,]    1    1    1</span></span>
+<span><span class="co"># [3,]    1    1    1</span></span>
+<span></span>
+<span><span class="co"># name the row and columns</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Distance to Schools'</span>, </span>
+<span>    <span class="st">'Slope'</span>, </span>
+<span>    <span class="st">'Distance to Population Centers'</span><span class="op">)</span></span>
+<span><span class="co">#                                   Distance to Schools Slope Distance to Population Centers</span></span>
+<span><span class="co"># Distance to Schools                 1                   1       1</span></span>
+<span><span class="co"># Slope                               1                   1       1</span></span>
+<span><span class="co"># Distance to Population Centers      1                   1       1</span></span>
+<span></span>
+<span><span class="co"># add the rankings in the upper triangle</span></span>
+<span><span class="va">AHP_matrix</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lower.tri.html">upper.tri</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#                                   Distance to Schools Slope Distance to Population Centers</span></span>
+<span><span class="co"># Distance to Schools                 1                   5       4</span></span>
+<span><span class="co"># Slope                               1                   1       2</span></span>
+<span><span class="co"># Distance to Population Centers      1                   1       1</span></span>
+<span></span>
+<span><span class="co"># put reciprocal in the lower triangle of the matrix</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">i</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">AHP_matrix</span><span class="op">[</span><span class="va">j</span>,<span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">AHP_matrix</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#                                   Distance to Schools Slope Distance to Population Centers</span></span>
+<span><span class="co"># Distance to Schools                 1.00              5.0       4</span></span>
+<span><span class="co"># Slope                               0.20              1.0       2</span></span>
+<span><span class="co"># Distance to Population Centers      0.25              0.5       1</span></span></code></pre></div>
+</div>
+<div id="check-the-consistency-of-the-matrix" class="section level4" number="11.5.2.6">
+<h4>
+<span class="header-section-number">11.5.2.6</span> Check the Consistency of the Matrix<a class="anchor" aria-label="anchor" href="#check-the-consistency-of-the-matrix"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-figure">The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980).
+<img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index">
+</div>
+<p>If the CR &lt; 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.</p>
+<div class="inline-figure">The CI is computed
+<img src="img/ahp_ci_formula.png" title="CI Formula" width="100" alt="CI Formula">
+</div>
+<p>where λ^max = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html">Mod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span><span class="op">/</span> <span class="fl">2</span></span>
+<span><span class="co"># [1] 0.04700755</span></span>
+<span></span>
+<span><span class="co"># RCI for n = 3 criteria is 0.58</span></span>
+<span><span class="va">CR</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op">/</span> <span class="fl">0.58</span> </span>
+<span><span class="co"># [1] 0.08104751</span></span></code></pre></div>
+<p>The value of the CR is less than 0.10 so the AHP matrix is considered consistent in this example.</p>
+</div>
+<div id="compute-criteria-weights" class="section level4" number="11.5.2.7">
+<h4>
+<span class="header-section-number">11.5.2.7</span> Compute Criteria Weights<a class="anchor" aria-label="anchor" href="#compute-criteria-weights"><i class="fas fa-link"></i></a>
+</h4>
+<p>The final step of the AHP is to compute the criteria weights. These weights are computed by normalizing the largest eigenvector of the matrix. To do this, each value in the largest eigenvector is divided by the sum of the values in that vector.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># compute criteria weights by normalizing the largest eigenvector </span></span>
+<span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># [1] 0.6869815+0i 0.1864755+0i 0.1265431+0i</span></span></code></pre></div>
+<p>The results show that the <em>Distance to Schools</em> is the highest weighted criteria followed by <em>Slope</em> and <em>Distance to Population Centers</em>. Now that the criteria weights are computed, they can be used in the WLC method or, as an example, in conjunction with OWA.</p>
 
+</div>
 </div>
 </div>
 </div>
@@ -902,6 +1072,12 @@
 <li><a class="nav-link" href="#dot-density"><span class="header-section-number">11.4.2</span> Dot-density</a></li>
 </ul>
 </li>
+<li>
+<a class="nav-link" href="#gis-based-mcda"><span class="header-section-number">11.5</span> GIS-Based MCDA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simple-and-weighted-linear-combination"><span class="header-section-number">11.5.1</span> Simple and Weighted Linear Combination</a></li>
+<li><a class="nav-link" href="#analytical-hierarchy-process"><span class="header-section-number">11.5.2</span> Analytical Hierarchy Process</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -919,7 +1095,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-02-22.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -7,7 +7,7 @@
 <title>Chapter 1 A little about this manual | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="This is IDEA Public Schools’ Research &amp; Analytics Team’s ever evolving encyclopedia of resources and best practices.">
-<meta name="generator" content="bookdown 0.37 with bs4_book()">
+<meta name="generator" content="bookdown 0.38 with bs4_book()">
 <meta property="og:title" content="Chapter 1 A little about this manual | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/">
@@ -120,51 +120,51 @@
 <p>Do you see the blue box just above this section? That’s a tips box, but we have a few others you can add.</p>
 <p>Doing so is super simple by using a special block tag (<code>:::</code>) in your RMarkdown that creates a CSS-styled <code>&lt;div&gt;</code> block in the resulting HTML when this manual’s RMD files are rendered.</p>
 <p>Here’s an example. Writing this in your RMD:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>::: {.tip}</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>This is a tip box!</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a>You should use this for quick callouts that are important pieces of hard-earned wisdom</span>
-<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a>::: {.tip}</span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>This is a tip box!</span>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a>You should use this for quick callouts that are important pieces of hard-earned wisdom</span>
+<span id="cb1-5"><a href="index.html#cb1-5" tabindex="-1"></a>:::</span></code></pre></div>
 <p>Results in this:</p>
 <div class="tip">
 <p>This is a tip box!</p>
 <p>You should use this for quick callouts that are important pieces of hard-earned wisdom.</p>
 </div>
 <p>There are <em>four</em> other callout boxes we can use, each with a different icon:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a>::: {.rstudio-tip}</span>
-<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a>This is an **RStudio** tip box</span>
-<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="index.html#cb2-4" aria-hidden="true" tabindex="-1"></a>This is a different tip box to use for any sage advice regarding RStudio products like RStudio Connect, the RStudio IDE, or even RStudio supported packages.</span>
-<span id="cb2-5"><a href="index.html#cb2-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a>::: {.rstudio-tip}</span>
+<span id="cb2-2"><a href="index.html#cb2-2" tabindex="-1"></a>This is an **RStudio** tip box</span>
+<span id="cb2-3"><a href="index.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="index.html#cb2-4" tabindex="-1"></a>This is a different tip box to use for any sage advice regarding RStudio products like RStudio Connect, the RStudio IDE, or even RStudio supported packages.</span>
+<span id="cb2-5"><a href="index.html#cb2-5" tabindex="-1"></a>:::</span></code></pre></div>
 <div class="rstudio-tip">
 <p>This is a <strong>RStudio</strong> tip box</p>
 <p>This is a different tip box to use for any sage advice regarding RStudio products like RStudio Connect, the RStudio IDE, or even RStudio supported packages.</p>
 </div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>::: {.gotcha}</span>
-<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a>This is a **gotcha** callout</span>
-<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a>Warn your reader of things to look out for with this box.</span>
-<span id="cb3-5"><a href="index.html#cb3-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a>::: {.gotcha}</span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a>This is a **gotcha** callout</span>
+<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a>Warn your reader of things to look out for with this box.</span>
+<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>:::</span></code></pre></div>
 <div class="gotcha">
 <p>This is a <strong>gotcha</strong> callout</p>
 <p>Warn your reader of things to look out for with this box.</p>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a>::: {.design}</span>
-<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a>This is a **design** callout</span>
-<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a>This is great looking spot to provide extra advice on look-and-feel and design conventions.</span>
-<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="index.html#cb4-1" tabindex="-1"></a>::: {.design}</span>
+<span id="cb4-2"><a href="index.html#cb4-2" tabindex="-1"></a>This is a **design** callout</span>
+<span id="cb4-3"><a href="index.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="index.html#cb4-4" tabindex="-1"></a>This is great looking spot to provide extra advice on look-and-feel and design conventions.</span>
+<span id="cb4-5"><a href="index.html#cb4-5" tabindex="-1"></a>:::</span></code></pre></div>
 <div class="design">
 <p>This is a <strong>design</strong> callout</p>
 <p>This is great looking spot to provide extra advice on look-and-feel and design conventions.</p>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {hat}</span>
-<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a>This is a **hat** callout</span>
-<span id="cb5-3"><a href="index.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="index.html#cb5-4" aria-hidden="true" tabindex="-1"></a>You get a hat!  </span>
-<span id="cb5-5"><a href="index.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="index.html#cb5-6" aria-hidden="true" tabindex="-1"></a>You can use this for extra special tips that seem like magic. Or something like that.</span>
-<span id="cb5-7"><a href="index.html#cb5-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="index.html#cb5-1" tabindex="-1"></a>::: {hat}</span>
+<span id="cb5-2"><a href="index.html#cb5-2" tabindex="-1"></a>This is a **hat** callout</span>
+<span id="cb5-3"><a href="index.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="index.html#cb5-4" tabindex="-1"></a>You get a hat!  </span>
+<span id="cb5-5"><a href="index.html#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="index.html#cb5-6" tabindex="-1"></a>You can use this for extra special tips that seem like magic. Or something like that.</span>
+<span id="cb5-7"><a href="index.html#cb5-7" tabindex="-1"></a>:::</span></code></pre></div>
 <div class="hat">
 <p>This is a <strong>hat</strong> callout</p>
 <p>You get a hat!</p>
@@ -202,7 +202,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-02-22.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-03-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
