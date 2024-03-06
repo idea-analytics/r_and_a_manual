@@ -616,3 +616,162 @@ base_stamen_map %>%
 ![Dot density plots can be useful for showing differently distributed age groups.](img/taco_dot_density_age.png "This dot density plot facets age group into three panels, with ages 5-9 on the left, 10-14 in the middle, and 15-17 on the right."){width="600"}
 
 Dot densities can be particularly useful when the variables are faceted, so differences in distributions can be seen.
+
+## GIS-Based MCDA
+
+Suitability analyses can be used in a variety of contexts such as choosing the best candidate, car, or phone. Additionally, it can be used with a Geographic Information System (GIS) where land suitability is assessed. This land suitability analysis could be conducted for a variety of reasons such as identifying good locations for a park, landfill, or school.
+
+When making decisions regarding the suitability of a piece of land for a particular purpose, multiple criteria are considered thus a multi-criteria decision analysis (MCDA) is conducted. This is the focus of this section, GIS-based MCDA. Three different methods will be covered, the simple and weighted linear combination and the analytical hierarchy process. 
+
+### Simple and Weighted Linear Combination
+
+The simple and weighted linear combination methods are two MCDAs. In the simple linear combination method, all criteria are equally weighted while the weighted linear combination method allows for criteria to be weighted according to importance.
+
+If one were interested in locating suitable sites for a landfill (as an example), criteria would be identified and then rasters created. Each cell of those rasters is considered a potential alternative site for the landfill and a score is assigned to it. Raster algebra is used to compute the combination scores and then a threshold is set to distinguish between cells that are and are not suitable for a landfill site.
+
+Assume that three criteria are being used for a landfill land suitability analysis: *Distance to Schools* (farther is better), *Slope* (flatter is better), and *Distance to Population Centers* (decently far away, but not too far). The first step for these linear combination methods is to create a raster for each of the criteria (school_raster, slope_raster, and pop_center_raster) where each cell is assessed with respect to that raster’s criteria. Once that is complete, combine linearly with either equal (simple linear combination method) or unequal (weighted linear combination method) weights and compare to a threshold value. Below is sample R code to accomplish this.
+
+```{r linear_combos, eval = FALSE}
+layer_stack <- c(school_raster, 
+                 slope_raster,
+                 pop_center_raster)
+
+# linear combo, equal weights ----
+
+equal_combo_raster <- layer_stack[[1]] + 
+  layer_stack[[2]] + 
+  layer_stack[[3]]
+
+(equal_combo_raster > your_threshold) %>% 
+  plot(type = "classes", 
+       axes = F, 
+       main = "Combined (Simple)")
+
+# linear combo, weighted ----
+
+# weights are arbitrarily assigned
+weighted_combo_raster <-  layer_stack[[1]]* 0.40 + 
+  layer_stack[[2]]* 0.35 + 
+  layer_stack[[3]] * 0.25
+
+(weighted_combo_raster > your_threshold) %>% 
+  plot(type = "classes", 
+       axes = F, 
+       main = "Combined (Weighted)")
+```
+
+### Analytical Hierarchy Process
+
+The analytical hierarchy process (AHP) was developed by Thomas Saaty in the 1970s and can be used as a Geographic Information System (GIS) multi-criteria decision analysis (MCDA) method. The AHP creates a set of weights that can then be used in the weighted linear combination (WLC) method or, as an example, in conjunction with Ordered Weighted Averaging (OWA). Here, the step-by-step process of the AHP method will be presented, both by hand and in R. 
+
+#### Context
+The number of uses for suitability analyses is vast. Some examples are identifying locations for new restaurants, parks, and retail sites; identifying the best candidate for a job; and choosing the best car for an individual. In this example, the goal is to identify the best location for a new landfill.
+
+#### AHP Steps
+The general steps to perform the AHP are:
+•	Identify criteria
+•	Create hierarchical structure
+•	Make pairwise comparisons and create matrix
+•	Check the consistency of the matrix
+•	Compute criteria weights
+
+#### Identify Criteria
+Three arbitrary+ criteria will be used:
+•	Distance to schools
+•	Slope
+•	Distance to population centers
++Please note that this is an *example* based on [this sample land suitability analysis](https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc). Other criteria could be utilized to identify appropriate locations for a landfill.
+
+#### Create Hierarchical Structure
+The AHP hierarchy includes, at a minimum, three levels: the goal, criteria, and alternatives. The alternatives could be the candidates or cars of interest (see examples in the Context section above). In the case where raster data is being used, the alternatives are every cell in the raster data.
+
+![AHP hierarchy](img/ahp_hierarchy.png "AHP hierarchy"){width="500"}
+
+#### Make Pairwise Comparisons and Create Matrix
+The nodes at each level must be compared two-by-two in relation to their contribution to the node above. These values will then be entered into a matrix which will be used to compute the criteria weights.
+
+The AHP fundamental scale (see below) is used when making these pairwise comparisons.
+![AHP Fundamental Scale](img/ahp_fundamental_scale.png "AHP Fundamental Scale"){width="400"}
+For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.
+
+To begin, *Distance to Schools* and *Slope* were compared. The individual or group tasked with making these pairwise comparisons believes that the *Distance to Schools* is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to *Slope* for that pairwise comparison. The next question is what the value should be for *Distance to Schools*. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to *Distance to Schools* for this pairwise comparison.
+
+This method continues through all pairwise comparisons and the results are as follows:
+![AHP Pairwise Comparisons](img/ahp_pairwise_comparisons.png "AHP Pairwise Comparisons"){width="400"}
+
+The results can now be transferred to a matrix. To begin, 1s are included in the diagonal of the matrix and then the remainder of the matrix is completed.
+![AHP Matrix](img/ahp_matrix.png "AHP Matrix"){width="400"}
+
+To accomplish this in R, the following code can be used:
+```{r AHP_matrix, eval = FALSE}
+# create 3x3 matrix with all 1s
+AHP_matrix <- matrix(1,
+                     nrow = 3, 
+                     ncol = 3)
+#       [,1] [,2] [,3]
+# [1,]    1    1    1
+# [2,]    1    1    1
+# [3,]    1    1    1
+
+# name the row and columns
+row.names(AHP_matrix) <- 
+  colnames(AHP_matrix) <- 
+  c('Distance to Schools', 
+    'Slope', 
+    'Distance to Population Centers')
+#                                   Distance to Schools Slope Distance to Population Centers
+# Distance to Schools                 1                   1       1
+# Slope                               1                   1       1
+# Distance to Population Centers      1                   1       1
+
+# add the rankings in the upper triangle
+AHP_matrix[upper.tri(AHP_matrix)] <- c(5,4,2)
+#                                   Distance to Schools Slope Distance to Population Centers
+# Distance to Schools                 1                   5       4
+# Slope                               1                   1       2
+# Distance to Population Centers      1                   1       1
+
+# put reciprocal in the lower triangle of the matrix
+for(i in 1:dim(AHP_matrix)[1]){
+  for(j in i:dim(AHP_matrix)[2])
+    AHP_matrix[j,i] = 1/AHP_matrix[i,j]
+}
+#                                   Distance to Schools Slope Distance to Population Centers
+# Distance to Schools                 1.00              5.0       4
+# Slope                               0.20              1.0       2
+# Distance to Population Centers      0.25              0.5       1
+```
+
+#### Check the Consistency of the Matrix
+The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980). 
+![Random Consistency Index](img/random_consistency_index.png "Random Consistency Index"){width="500"}
+
+If the CR < 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.
+
+The CI is computed
+![CI Formula](img/ahp_ci_formula.png "CI Formula"){width="100"}
+
+where λ^max = largest eigenvalue of the matrix and *n* = the number of criteria.
+
+```{r CI, eval = FALSE}
+CI <- (Mod(eigen(AHP_matrix)$values[1]) - 3)/ 2
+# [1] 0.04700755
+
+# RCI for n = 3 criteria is 0.58
+CR <- CI / 0.58 
+# [1] 0.08104751
+```
+
+The value of the CR is less than 0.10 so the AHP matrix is considered consistent in this example.
+
+#### Compute Criteria Weights
+The final step of the AHP is to compute the criteria weights. These weights are computed by normalizing the largest eigenvector of the matrix. To do this, each value in the largest eigenvector is divided by the sum of the values in that vector.
+
+```{r criteria_weights, eval = FALSE}
+# compute criteria weights by normalizing the largest eigenvector 
+weights <- eigen(AHP_matrix, symmetric = F)$vectors[,1] / sum(eigen(AHP_matrix, symmetric = F)$vectors[,1])
+# [1] 0.6869815+0i 0.1864755+0i 0.1265431+0i
+```
+
+The results show that the *Distance to Schools* is the highest weighted criteria followed by *Slope* and *Distance to Population Centers*. Now that the criteria weights are computed, they can be used in the WLC method or, as an example, in conjunction with OWA.
+
