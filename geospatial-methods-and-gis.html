@@ -214,7 +214,7 @@
 <span>      method <span class="op">=</span> <span class="st">"osm"</span> <span class="co"># we also use method = "geocodio"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.8 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">taco_schools_geocoded</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -929,21 +929,21 @@
 <h4>
 <span class="header-section-number">11.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
 </h4>
-<p>The general steps to perform the AHP are:<br>
-* Identify the criteria<br>
-* Create the hierarchical structure<br>
-* Make pairwise comparisons and create matrix<br>
-* Check the consistency of the matrix<br>
-* Compute the criteria weights<br></p>
+<p>The general steps to perform the AHP are:
+- Identify the criteria
+- Create the hierarchical structure
+- Make pairwise comparisons and create matrix
+- Check the consistency of the matrix
+- Compute the criteria weights</p>
 </div>
 <div id="identify-the-criteria" class="section level4" number="11.5.2.3">
 <h4>
 <span class="header-section-number">11.5.2.3</span> Identify the Criteria<a class="anchor" aria-label="anchor" href="#identify-the-criteria"><i class="fas fa-link"></i></a>
 </h4>
-<p>Three arbitrary+ criteria will be used:<br>
-* Distance to schools<br>
-* Slope<br>
-* Distance to population centers<br>
+<p>Three arbitrary+ criteria will be used:
+- Distance to schools
+- Slope
+- Distance to population centers
 +Please note that this is an <em>example</em> based on <a href="https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc">this sample land suitability analysis</a>. Other criteria could be utilized to identify appropriate locations for a landfill.</p>
 </div>
 <div id="create-the-hierarchical-structure" class="section level4" number="11.5.2.4">
@@ -972,7 +972,7 @@
 </div>
 <p>The results can now be transferred to a matrix.</p>
 <div class="float">
-<img src="img/ahp_matrix.png" title="AHP Matrix" width="400" alt="AHP Matrix"><div class="figcaption">AHP Matrix</div>
+<img src="img/ahp_matrix.png" title="AHP Matrix" width="500" alt="AHP Matrix"><div class="figcaption">AHP Matrix</div>
 </div>
 <p>To accomplish this in R, the following code can be used:</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
@@ -1023,9 +1023,7 @@
 </div>
 <p>If the CR &lt; 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.</p>
 <p>The CI is computed</p>
-<div class="float">
-<img src="img/ahp_ci_formula.png" title="CI Formula" width="100" alt="CI Formula"><div class="figcaption">CI Formula</div>
-</div>
+<p>!(img/ahp_ci_formula.png “CI Formula”){width=“100”}</p>
 <p>where λmax = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
 <p>In R,</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
