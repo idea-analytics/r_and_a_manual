@@ -257,11 +257,11 @@ simple-and-weighted-linear-combination
 analytical-hierarchy-process
 context
 ahp-steps
-identify-criteria
-create-hierarchical-structure
+identify-the-criteria
+create-the-hierarchical-structure
 make-pairwise-comparisons-and-create-matrix
 check-the-consistency-of-the-matrix
-compute-criteria-weights
+compute-the-criteria-weights
 surveys
 about-survey-research
 surveys-at-idea

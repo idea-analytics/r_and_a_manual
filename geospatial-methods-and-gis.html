@@ -214,7 +214,7 @@
 <span>      method <span class="op">=</span> <span class="st">"osm"</span> <span class="co"># we also use method = "geocodio"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.8 seconds</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">taco_schools_geocoded</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -900,11 +900,11 @@
 <span><span class="op">(</span><span class="va">equal_combo_raster</span> <span class="op">&gt;</span> <span class="va">your_threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"classes"</span>, </span>
 <span>       axes <span class="op">=</span> <span class="cn">F</span>, </span>
-<span>       main <span class="op">=</span> <span class="st">"Combined (Simple)"</span><span class="op">)</span></span>
+<span>       main <span class="op">=</span> <span class="st">"Simple Linear Combination"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># linear combo, weighted ----</span></span>
 <span></span>
-<span><span class="co"># weights are arbitrarily assigned</span></span>
+<span><span class="co"># note that weights have been arbitrarily assigned here</span></span>
 <span><span class="va">weighted_combo_raster</span> <span class="op">&lt;-</span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">*</span> <span class="fl">0.40</span> <span class="op">+</span> </span>
 <span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">*</span> <span class="fl">0.35</span> <span class="op">+</span> </span>
 <span>  <span class="va">layer_stack</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">*</span> <span class="fl">0.25</span></span>
@@ -912,7 +912,7 @@
 <span><span class="op">(</span><span class="va">weighted_combo_raster</span> <span class="op">&gt;</span> <span class="va">your_threshold</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"classes"</span>, </span>
 <span>       axes <span class="op">=</span> <span class="cn">F</span>, </span>
-<span>       main <span class="op">=</span> <span class="st">"Combined (Weighted)"</span><span class="op">)</span></span></code></pre></div>
+<span>       main <span class="op">=</span> <span class="st">"Weighted Linear Combination"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="analytical-hierarchy-process" class="section level3" number="11.5.2">
 <h3>
@@ -929,26 +929,26 @@
 <h4>
 <span class="header-section-number">11.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
 </h4>
-<p>The general steps to perform the AHP are:
-• Identify criteria
-• Create hierarchical structure
-• Make pairwise comparisons and create matrix
-• Check the consistency of the matrix
-• Compute criteria weights</p>
+<p>The general steps to perform the AHP are:<br>
+* Identify the criteria<br>
+* Create the hierarchical structure<br>
+* Make pairwise comparisons and create matrix<br>
+* Check the consistency of the matrix<br>
+* Compute the criteria weights<br></p>
 </div>
-<div id="identify-criteria" class="section level4" number="11.5.2.3">
+<div id="identify-the-criteria" class="section level4" number="11.5.2.3">
 <h4>
-<span class="header-section-number">11.5.2.3</span> Identify Criteria<a class="anchor" aria-label="anchor" href="#identify-criteria"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.2.3</span> Identify the Criteria<a class="anchor" aria-label="anchor" href="#identify-the-criteria"><i class="fas fa-link"></i></a>
 </h4>
-<p>Three arbitrary+ criteria will be used:
-• Distance to schools
-• Slope
-• Distance to population centers
+<p>Three arbitrary+ criteria will be used:<br>
+* Distance to schools<br>
+* Slope<br>
+* Distance to population centers<br>
 +Please note that this is an <em>example</em> based on <a href="https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc">this sample land suitability analysis</a>. Other criteria could be utilized to identify appropriate locations for a landfill.</p>
 </div>
-<div id="create-hierarchical-structure" class="section level4" number="11.5.2.4">
+<div id="create-the-hierarchical-structure" class="section level4" number="11.5.2.4">
 <h4>
-<span class="header-section-number">11.5.2.4</span> Create Hierarchical Structure<a class="anchor" aria-label="anchor" href="#create-hierarchical-structure"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.2.4</span> Create the Hierarchical Structure<a class="anchor" aria-label="anchor" href="#create-the-hierarchical-structure"><i class="fas fa-link"></i></a>
 </h4>
 <p>The AHP hierarchy includes, at a minimum, three levels: the goal, criteria, and alternatives. The alternatives could be the candidates or cars of interest (see examples in the Context section above). In the case where raster data is being used, the alternatives are every cell in the raster data.</p>
 <div class="float">
@@ -960,19 +960,23 @@
 <span class="header-section-number">11.5.2.5</span> Make Pairwise Comparisons and Create Matrix<a class="anchor" aria-label="anchor" href="#make-pairwise-comparisons-and-create-matrix"><i class="fas fa-link"></i></a>
 </h4>
 <p>The nodes at each level must be compared two-by-two in relation to their contribution to the node above. These values will then be entered into a matrix which will be used to compute the criteria weights.</p>
-<div class="inline-figure">The AHP fundamental scale (see below) is used when making these pairwise comparisons.
-<img src="img/ahp_fundamental_scale.png" title="AHP Fundamental Scale" width="400" alt="AHP Fundamental Scale">
-For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.</div>
-<p>To begin, <em>Distance to Schools</em> and <em>Slope</em> were compared. The individual or group tasked with making these pairwise comparisons believes that the <em>Distance to Schools</em> is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to <em>Slope</em> for that pairwise comparison. The next question is what the value should be for <em>Distance to Schools</em>. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to <em>Distance to Schools</em> for this pairwise comparison.</p>
-<div class="inline-figure">This method continues through all pairwise comparisons and the results are as follows:
-<img src="img/ahp_pairwise_comparisons.png" title="AHP Pairwise Comparisons" width="400" alt="AHP Pairwise Comparisons">
+<p>The AHP fundamental scale (see below) is used when making these pairwise comparisons.</p>
+<div class="float">
+<img src="img/ahp_fundamental_scale.png" title="AHP Fundamental Scale" width="400" alt="AHP Fundamental Scale"><div class="figcaption">AHP Fundamental Scale</div>
 </div>
-<div class="inline-figure">The results can now be transferred to a matrix. To begin, 1s are included in the diagonal of the matrix and then the remainder of the matrix is completed.
-<img src="img/ahp_matrix.png" title="AHP Matrix" width="400" alt="AHP Matrix">
+<p>For each pairwise comparison, a 1 is assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.</p>
+<p>To begin, <em>Distance to Schools</em> and <em>Slope</em> were compared. The individual or group tasked with making these pairwise comparisons believes that the <em>Distance to Schools</em> is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to <em>Slope</em> for that pairwise comparison. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to <em>Distance to Schools</em> for this pairwise comparison.</p>
+<p>This method continues through all pairwise comparisons and the results are as follows:</p>
+<div class="float">
+<img src="img/ahp_pairwise_comparisons.png" title="AHP Pairwise Comparisons" width="400" alt="AHP Pairwise Comparisons"><div class="figcaption">AHP Pairwise Comparisons</div>
+</div>
+<p>The results can now be transferred to a matrix.</p>
+<div class="float">
+<img src="img/ahp_matrix.png" title="AHP Matrix" width="400" alt="AHP Matrix"><div class="figcaption">AHP Matrix</div>
 </div>
 <p>To accomplish this in R, the following code can be used:</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># create 3x3 matrix with all 1s</span></span>
+<code class="sourceCode R"><span><span class="co"># create a 3x3 matrix with all 1s</span></span>
 <span><span class="va">AHP_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>,</span>
 <span>                     nrow <span class="op">=</span> <span class="fl">3</span>, </span>
 <span>                     ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
@@ -981,7 +985,7 @@ For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with
 <span><span class="co"># [2,]    1    1    1</span></span>
 <span><span class="co"># [3,]    1    1    1</span></span>
 <span></span>
-<span><span class="co"># name the row and columns</span></span>
+<span><span class="co"># name the rows and columns</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Distance to Schools'</span>, </span>
@@ -992,14 +996,14 @@ For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with
 <span><span class="co"># Slope                               1                   1       1</span></span>
 <span><span class="co"># Distance to Population Centers      1                   1       1</span></span>
 <span></span>
-<span><span class="co"># add the rankings in the upper triangle</span></span>
+<span><span class="co"># add the rankings to the upper triangle</span></span>
 <span><span class="va">AHP_matrix</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lower.tri.html">upper.tri</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#                                   Distance to Schools Slope Distance to Population Centers</span></span>
 <span><span class="co"># Distance to Schools                 1                   5       4</span></span>
 <span><span class="co"># Slope                               1                   1       2</span></span>
 <span><span class="co"># Distance to Population Centers      1                   1       1</span></span>
 <span></span>
-<span><span class="co"># put reciprocal in the lower triangle of the matrix</span></span>
+<span><span class="co"># put the reciprocal in the lower triangle of the matrix</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">i</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
 <span>    <span class="va">AHP_matrix</span><span class="op">[</span><span class="va">j</span>,<span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">AHP_matrix</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span></span>
@@ -1013,28 +1017,32 @@ For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with
 <h4>
 <span class="header-section-number">11.5.2.6</span> Check the Consistency of the Matrix<a class="anchor" aria-label="anchor" href="#check-the-consistency-of-the-matrix"><i class="fas fa-link"></i></a>
 </h4>
-<div class="inline-figure">The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980).
-<img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index">
+<p>The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980).</p>
+<div class="float">
+<img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index"><div class="figcaption">Random Consistency Index</div>
 </div>
 <p>If the CR &lt; 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.</p>
-<div class="inline-figure">The CI is computed
-<img src="img/ahp_ci_formula.png" title="CI Formula" width="100" alt="CI Formula">
+<p>The CI is computed</p>
+<div class="float">
+<img src="img/ahp_ci_formula.png" title="CI Formula" width="100" alt="CI Formula"><div class="figcaption">CI Formula</div>
 </div>
-<p>where λ^max = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
+<p>where λmax = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
+<p>In R,</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html">Mod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span><span class="op">/</span> <span class="fl">2</span></span>
 <span><span class="co"># [1] 0.04700755</span></span>
 <span></span>
-<span><span class="co"># RCI for n = 3 criteria is 0.58</span></span>
+<span><span class="co"># RCI for n = 3 is 0.58</span></span>
 <span><span class="va">CR</span> <span class="op">&lt;-</span> <span class="va">CI</span> <span class="op">/</span> <span class="fl">0.58</span> </span>
 <span><span class="co"># [1] 0.08104751</span></span></code></pre></div>
 <p>The value of the CR is less than 0.10 so the AHP matrix is considered consistent in this example.</p>
 </div>
-<div id="compute-criteria-weights" class="section level4" number="11.5.2.7">
+<div id="compute-the-criteria-weights" class="section level4" number="11.5.2.7">
 <h4>
-<span class="header-section-number">11.5.2.7</span> Compute Criteria Weights<a class="anchor" aria-label="anchor" href="#compute-criteria-weights"><i class="fas fa-link"></i></a>
+<span class="header-section-number">11.5.2.7</span> Compute the Criteria Weights<a class="anchor" aria-label="anchor" href="#compute-the-criteria-weights"><i class="fas fa-link"></i></a>
 </h4>
 <p>The final step of the AHP is to compute the criteria weights. These weights are computed by normalizing the largest eigenvector of the matrix. To do this, each value in the largest eigenvector is divided by the sum of the values in that vector.</p>
+<p>In R,</p>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute criteria weights by normalizing the largest eigenvector </span></span>
 <span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
@@ -1095,7 +1103,7 @@ For each pairwise comparison, a 1 is to be assigned to the weaker criteria (with
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-03-06.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-03-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
