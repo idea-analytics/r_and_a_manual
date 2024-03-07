@@ -214,7 +214,7 @@
 <span>      method <span class="op">=</span> <span class="st">"osm"</span> <span class="co"># we also use method = "geocodio"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.1 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.2 seconds</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">taco_schools_geocoded</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -929,21 +929,21 @@
 <h4>
 <span class="header-section-number">11.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
 </h4>
-<p>The general steps to perform the AHP are:
-- Identify the criteria
-- Create the hierarchical structure
-- Make pairwise comparisons and create matrix
-- Check the consistency of the matrix
-- Compute the criteria weights</p>
+<p>The general steps to perform the AHP are:<br>
+• Identify the criteria<br>
+• Create the hierarchical structure<br>
+• Make pairwise comparisons and create matrix<br>
+• Check the consistency of the matrix<br>
+• Compute the criteria weights<br></p>
 </div>
 <div id="identify-the-criteria" class="section level4" number="11.5.2.3">
 <h4>
 <span class="header-section-number">11.5.2.3</span> Identify the Criteria<a class="anchor" aria-label="anchor" href="#identify-the-criteria"><i class="fas fa-link"></i></a>
 </h4>
-<p>Three arbitrary+ criteria will be used:
-- Distance to schools
-- Slope
-- Distance to population centers
+<p>Three arbitrary+ criteria will be used:<br>
+• Distance to schools<br>
+• Slope<br>
+• Distance to population centers<br>
 +Please note that this is an <em>example</em> based on <a href="https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc">this sample land suitability analysis</a>. Other criteria could be utilized to identify appropriate locations for a landfill.</p>
 </div>
 <div id="create-the-hierarchical-structure" class="section level4" number="11.5.2.4">
@@ -961,19 +961,13 @@
 </h4>
 <p>The nodes at each level must be compared two-by-two in relation to their contribution to the node above. These values will then be entered into a matrix which will be used to compute the criteria weights.</p>
 <p>The AHP fundamental scale (see below) is used when making these pairwise comparisons.</p>
-<div class="float">
-<img src="img/ahp_fundamental_scale.png" title="AHP Fundamental Scale" width="400" alt="AHP Fundamental Scale"><div class="figcaption">AHP Fundamental Scale</div>
-</div>
+<p><img src="img/ahp_fundamental_scale.png" title="AHP Fundamental Scale" width="400" alt="AHP Fundamental Scale"><br></p>
 <p>For each pairwise comparison, a 1 is assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.</p>
 <p>To begin, <em>Distance to Schools</em> and <em>Slope</em> were compared. The individual or group tasked with making these pairwise comparisons believes that the <em>Distance to Schools</em> is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to <em>Slope</em> for that pairwise comparison. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to <em>Distance to Schools</em> for this pairwise comparison.</p>
 <p>This method continues through all pairwise comparisons and the results are as follows:</p>
-<div class="float">
-<img src="img/ahp_pairwise_comparisons.png" title="AHP Pairwise Comparisons" width="400" alt="AHP Pairwise Comparisons"><div class="figcaption">AHP Pairwise Comparisons</div>
-</div>
+<p><img src="img/ahp_pairwise_comparisons.png" title="AHP Pairwise Comparisons" width="400" alt="AHP Pairwise Comparisons"><br></p>
 <p>The results can now be transferred to a matrix.</p>
-<div class="float">
-<img src="img/ahp_matrix.png" title="AHP Matrix" width="500" alt="AHP Matrix"><div class="figcaption">AHP Matrix</div>
-</div>
+<p><img src="img/ahp_matrix.png" title="AHP Matrix" width="500" alt="AHP Matrix"><br></p>
 <p>To accomplish this in R, the following code can be used:</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a 3x3 matrix with all 1s</span></span>
@@ -1018,12 +1012,10 @@
 <span class="header-section-number">11.5.2.6</span> Check the Consistency of the Matrix<a class="anchor" aria-label="anchor" href="#check-the-consistency-of-the-matrix"><i class="fas fa-link"></i></a>
 </h4>
 <p>The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980).</p>
-<div class="float">
-<img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index"><div class="figcaption">Random Consistency Index</div>
-</div>
+<p><img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index"><br></p>
 <p>If the CR &lt; 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.</p>
 <p>The CI is computed</p>
-<p>!(img/ahp_ci_formula.png “CI Formula”){width=“100”}</p>
+<p><img src="img/ahp_ci_formula.png" title="CI Formula" width="100"><br></p>
 <p>where λmax = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
 <p>In R,</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
