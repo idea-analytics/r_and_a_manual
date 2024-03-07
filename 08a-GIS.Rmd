@@ -619,7 +619,7 @@ Dot densities can be particularly useful when the variables are faceted, so diff
 
 ## GIS-Based MCDA
 
-Suitability analyses can be used in a variety of contexts such as choosing the best candidate, car, or phone. Additionally, it can be used with a Geographic Information System (GIS) where land suitability is assessed. This land suitability analysis could be conducted for a variety of reasons such as identifying good locations for a park, landfill, or school.
+Suitability analyses can be used in a variety of contexts such as choosing the best candidate, car, or phone. Additionally, it can be used with a Geographic Information System (GIS) where land suitability is assessed. This land suitability analysis could be conducted for a variety of reasons such as identifying good locations for a park or landfill.
 
 When making decisions regarding the suitability of a piece of land for a particular purpose, multiple criteria are considered thus a multi-criteria decision analysis (MCDA) is conducted. This is the focus of this section, GIS-based MCDA. Three different methods will be covered, the simple and weighted linear combination and the analytical hierarchy process. 
 
