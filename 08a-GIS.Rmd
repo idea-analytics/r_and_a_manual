@@ -668,18 +668,18 @@ The analytical hierarchy process (AHP) was developed by Thomas Saaty in the 1970
 The number of uses for suitability analyses is vast. Some examples are identifying locations for new restaurants, parks, and retail sites; identifying the best candidate for a job; and choosing the best car for an individual. In this example, the goal is to identify the best location for a new landfill.
 
 #### AHP Steps
-The general steps to perform the AHP are:\
-* Identify the criteria\
-*	Create the hierarchical structure\
-*	Make pairwise comparisons and create matrix\
-*	Check the consistency of the matrix\
-*	Compute the criteria weights\
+The general steps to perform the AHP are:
+-   Identify the criteria
+-   Create the hierarchical structure
+-   Make pairwise comparisons and create matrix
+-   Check the consistency of the matrix
+-   Compute the criteria weights
 
 #### Identify the Criteria
-Three arbitrary+ criteria will be used:\
-*	Distance to schools\
-*	Slope\
-*	Distance to population centers\
+Three arbitrary+ criteria will be used:
+-   Distance to schools
+-   Slope
+-   Distance to population centers
 +Please note that this is an *example* based on [this sample land suitability analysis](https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc). Other criteria could be utilized to identify appropriate locations for a landfill.
 
 #### Create the Hierarchical Structure
@@ -694,6 +694,7 @@ The AHP fundamental scale (see below) is used when making these pairwise compari
 
 ![AHP Fundamental Scale](img/ahp_fundamental_scale.png "AHP Fundamental Scale"){width="400"}
 
+
 For each pairwise comparison, a 1 is assigned to the weaker criteria (with respect to the node above). Then, the other criteria is assigned a value based on the AHP fundamental scale.
 
 To begin, *Distance to Schools* and *Slope* were compared. The individual or group tasked with making these pairwise comparisons believes that the *Distance to Schools* is the stronger criteria with respect to the location of a landfill. As such, a 1 is assigned to *Slope* for that pairwise comparison. The individual or group believes that a landfill further away from a school site is strongly favored over the area being flatter. Thus, a value of 5 is assigned to *Distance to Schools* for this pairwise comparison.
@@ -702,9 +703,11 @@ This method continues through all pairwise comparisons and the results are as fo
 
 ![AHP Pairwise Comparisons](img/ahp_pairwise_comparisons.png "AHP Pairwise Comparisons"){width="400"}
 
+
 The results can now be transferred to a matrix. 
 
-![AHP Matrix](img/ahp_matrix.png "AHP Matrix"){width="400"}
+![AHP Matrix](img/ahp_matrix.png "AHP Matrix"){width="500"}
+
 
 To accomplish this in R, the following code can be used:
 ```{r AHP_matrix, eval = FALSE}
@@ -751,11 +754,12 @@ The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) i
 
 ![Random Consistency Index](img/random_consistency_index.png "Random Consistency Index"){width="500"}
 
+
 If the CR < 0.10 then the AHP matrix is considered consistent. Once that consistency is confirmed, the criteria weights can be computed.
 
 The CI is computed
 
-![CI Formula](img/ahp_ci_formula.png "CI Formula"){width="100"}
+!(img/ahp_ci_formula.png "CI Formula"){width="100"}
 
 where λmax = largest eigenvalue of the matrix and *n* = the number of criteria.
 
