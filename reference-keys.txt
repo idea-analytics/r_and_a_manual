@@ -294,4 +294,6 @@ embeded-data
 live-summary-reports
 advanced-reports
 exporting-survey-data
+export-survey-data-to-file
+read-survey-data-into-r
 where-can-you-learn-more
