@@ -56,7 +56,49 @@ Using the breakdown visualization, you can breakdown items by certain demographi
 
 ### Exporting Survey Data
 
-More to come
+#### Export survey data to file
+
+Survey data can be exported as various file types (.csv, .xlsx, among others). To do so, go to the **Data & Analysis** tab, and click on **Export & Import**. There, you can select a file type to download the data.
+
+::: {.gotcha}
+Note that there are 3 lines of header in the .csv export - a variable name, a title, and an ImportId (html tags). If you attempt to import this .csv export into R using readr::read_csv(), you will encounter errors. Instead, use the `qualtRics` package (next section).
+:::
+
+#### Read survey data into R
+
+You can directly read survey data and metadata into R. To get your Qualtrics data, you need the `qualtRics` package (notice the capital R).
+
+The following are one-time steps you'll need to establish a connection between R and the Qualtrics API:
+
+1. **Obtain an API key from Qualtrics.** Click on your Account button (upper-right corner), and choose Account Settings. Then, if you are on the new version of Account Settings, click on Generate Token. Copy the token.
+2. **Determine the base URL from Qualtrics.** In the same Account Settings page, a *Datacenter ID* should already be active. You will also use this unique ID when installing your credentials.
+3. **Install your API credentials in your .Renviron file.** In your R session, use the following code to install your credentials.
+
+```{r install_qualtrics_api_key, eval=FALSE}
+# install.packages("qualtRics")
+library(qualtRics)
+
+qualtrics_api_credentials(api_key = "paste-your-api-key",
+                          base_url = "base_url.qualtrics.com",
+                          install = TRUE)
+```
+
+Once you have completed these steps, you can now simply load the `qualtRics` library and start importing your survey data.
+
+```{r fetch_survey_qualtrics, eval=FALSE}
+all_my_surveys <- all_surveys() # get survey IDs and names for surveys you can access
+
+# copy the survey ID you need
+my_specific_survey <- fetch_survey(surveyID = "paste-survey-id") # gets survey in tidy format
+my_survey_questions <- survey_questions("paste-survey-id") # gets names of survey questions (but not each part)
+my_metadata <- metadata("paste-survey-id") # gets list of metadata
+```
+
+However, if you need to import your survey directly from an exported .csv file from Qualtrics, then the `qualtRics` package provides a special function for that export. The `read_survey()` function will automatically handle the three lines of header by removing the html tags and using the title as a label for each variable.
+
+```{r read_csv_survey, eval=FALSE}
+csv_survey <- read_survey("file-path.csv") # only use to read a Qualtrics .csv export
+```
 
 ### Where Can You Learn More?
 
