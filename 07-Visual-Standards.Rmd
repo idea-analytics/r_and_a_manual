@@ -2,7 +2,7 @@
 
 ## IDEA Branding
 
-When producing a visualization for presentation or publication, use the [Brand Guideline](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx) standards established by the [Marketing team](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx). Many of these guidelines, particularly colors, have already been incorporated into an R package, `ideacolors`.
+When producing a visualization for presentation or publication, use the [IDEA 2024 Branding Guidelines](https://brandfolder.com/ideapublicschools) established by the [Marketing team](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx). Many of these guidelines, particularly colors, have already been incorporated into an R package, `ideacolors`.
 
 
 ### The `ideacolors` package
@@ -19,7 +19,8 @@ devtools::install_github("idea-analytics/ideacolors")
 #### `ideacolors` themes and scales
 
 Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has: 
-```{r}
+
+```{r get_plot}
 p <- ggplot(mtcars, aes(x=disp, y=mpg)) +
   geom_point(aes(color=as_factor(cyl)))
 
@@ -28,27 +29,42 @@ p
 
 You can quickly apply IDEA brand compliant colors by using the `scale_color_idea()` function:
 
-```{r}
+```{r apply_scale_color_idea}
 library(ideacolors)
+
 p +
   scale_color_idea()
 ```
+
 **Super easy!**  We can also easily change the palette and even reverse it:
-```{r}
+
+```{r reverse_palette}
 p +
   scale_color_idea(palette = "blueorange", reverse = TRUE)
 ```
+
 Available palettes are given in the `idea_palettes` variable and can be seen here:
 
-```{r}
+```{r swatchplot}
 colorspace::swatchplot(idea_palettes)
 ```
+
+#### Differences between branding guidelines
+
+The branding guidelines released in 2024 modifies the 2019 color palette and removes the `magenta` accent in favor of a `vermillion` accent. To switch between palettes, use the `year` argument in `scale_color_idea()` or `scale_fill_idea()`. Note the default behavior is to use the most recent branding guidelines available (in this case, `year = 2024`).
+
+```{r switch_guidelines}
+p +
+  scale_color_idea(year = 2019)
+```
+
+For more information on using the different branding guidelines, please refer to the [package vignette](https://idea-analytics.github.io/ideacolors/articles/switching-guidelines.html).
 
 ### Color Blindness
 
 Note that IDEA's brand colors are not completely safe for color blindness.  Here's each palette with adjustments to check for the predominant types of color blindness in the population:
 
-```{r}
+```{r swatchplot_cb}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
 ```
 
@@ -187,8 +203,30 @@ This code will apply the font consistently to all text in any visualization crea
 
 ## Camp RIO branding
 
-For Camp RIO-specific analyses, visualizations, or publications, use the [Camp RIO brand guidelines](https://ideapublicschoolsorg.sharepoint.com/:b:/s/ResearchandAnalysis/ETpoVdcAUQZCkXhI83eV6U0BHT2vFOcXUqAas326qEneXw?e=tj2BNS) from the Advancement and Marketing teams. 
+For Camp RIO-specific analyses, visualizations, or publications, use the [Camp RIO 2022 brand guidelines](https://brandfolder.com/ideapublicschools) from the Advancement and Marketing teams.
 
+### Camp RIO scales
+
+To use Camp RIO scales in a visualization, use `scale_color_camp_rio()` or `scale_fill_camp_rio()`. The default palette is `year = 2022`.
+
+```{r scale_color_camp_rio}
+p +
+  scale_color_camp_rio()
+```
+
+### Camp RIO palette ramp
+
+The palette ramp for Camp RIO is shown below:
+
+```{r camp_rio_palette_ramp, eval = FALSE}
+show_col(camp_rio_palette_ramp()(6))
+```
+
+![Camp RIO palette color ramp with six colors](img/camp-rio-palette-ramp-edit.png "show_col(camp_rio_palette_ramp()(6))"){width="500"}
+
+### Typography
+
+The primary brand fonts are Baloo and Baloo 2; the secondary fonts are Verveine, which is useful for taglines, and Assistant, which is useful for subheadings and body text.
 
 ## Visualizing Hierarchical Data
 
