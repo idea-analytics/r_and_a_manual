@@ -492,6 +492,41 @@ Note that communicating results from these models may be beyond a general audien
 
 The [ISLR website](https://www.statlearning.com/) and [tidymodels implementation](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) should be consulted for more details about these models.
 
+#### Supervised Learning
+
+#### Unsupervised Learning
+
+Unsupervised learning is a type of machine learning algorithms that used a different type of input data from supervised learning. Namely, unsupervised learning uses unlabeled data (whereas, supervised learning uses labeled data to train the models on before inputting test data) and infer its own rules based on looking for patterns, grouping, and anomalies, without explicit guidance or instruction.
+Why would a statistician prefer to use an unsupervised learning model? First, there is a huge amount of unlabeled data. Unlabeled data is everywhere and very abundant and easy to access. Second, putting labels on the data takes hours, weeks or even months, and can be extremely tedious. It also often requires human labor to put the labels on the data. Next, it can be very helpful and useful to explore raw data and unknown data, looking for patterns, associations, or groupings. It is also helpful for conducting pattern recognition when a statistician has very large data sets. 
+
+##### Clustering
+
+This is a technique used on unlabeled data, to explore and break the data down into groups (e.g., “clusters used”). These groups are based on similarities or differences.
+A common type of clustering is K-means. In this method, the data points are assigned into K groups, where K is the number of clusters based on the distance from each group’s centroid. 
+
+##### Association Rules
+
+It is a rule-based approach to discover correlations, co-occurrences, and relationships within the data, usually in very large data sets; again, it uses unlabeled data.
+
+##### Dimensionality Reduction
+
+A method to reduce the number of dimensions (i.e., such as the number of variables one might used in a regression model) and exclude extraneous, random, or irrelevant factors in the data.
+
+##### Examples:  
+Anomaly detection by identifying data points that are atypical for that type of dataset
+One type of anomaly detection is looking for behaviors in the data that deviate from normal patterns in the data, which could expose fraudulent transactions 
+
+
+##### References
+https://cloud.google.com/discover/what-is-unsupervised-learning#section-5
+https://learn.g2.com/unsupervised-learning
+
+
+Graphical Example of Clustering
+ + ![This image shows an example of clustering.](img/Clustering.png){width="500"}  
+
+
+
 
 ### Natural Language Processing (Sentiment Analysis)
 Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent). 
