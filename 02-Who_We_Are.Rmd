@@ -69,7 +69,7 @@ Dr. Lindsey Smith is a statistician at IDEA Public Schools where she contributes
 
 
 ### Connor Caldwell
-testing
+Connor Caldwell is a data analyst on the R&A Team who supports the Human Assets division. She holds a BA in Statistics and Cognitive Science from Rice University and is currently pursuing a MS in Information Science at Texas A&M International University.
 
 ## What we've contributed
 
