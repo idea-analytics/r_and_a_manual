@@ -1746,9 +1746,25 @@ For a separation to be classified as non-regrettable, the leaver must have one o
 
 Leavers with the following exit reason are excluded from the population:
 
--   Voluntary Retirement
--   Job Change to Seasonal/Part - Time
--   Did not Return Next Year in FT Position
+-   **Voluntary Retirement**
+-   **Job Change to Seasonal/Part - Time**
+-   **Did not Return Next Year in FT Position**
+
+### 90 Day Retention
+
+90 Day retention is the attrition rate of first year staff. The formula for the attrition rate is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff). 
+
+In the staff retention dashboard (reporting.employees), there is a binary column "LEAVERS90D" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90D retention, it divides the number of 0's in that column by the total count of first year staff. 
+
+**Example:**
++ Total staff headcount: 10
++	1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1)
++	1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2)
++	1 staff member is no longer employed and quit more than 90 calendar days after their start date
++	7 staff members are actively employed and more than 90 calendar days from their start date
+
+In this example, 90D retention would be 1-(1/10) = 90%. If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged. If staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.
+
 
 ### Tips for Staff Retention Reporting
 
