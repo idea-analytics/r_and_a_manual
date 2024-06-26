@@ -1750,6 +1750,20 @@ Leavers with the following exit reason are excluded from the population:
 -   Job Change to Seasonal/Part - Time
 -   Did not Return Next Year in FT Position
 
+### Tips for Staff Retention Reporting
+
+When calculating year over year retention using reporting.employees, two columns, TRUELEAVER and TRUEHEADCOUNT, need to be created to get the proper retention for the previous year. These columns can be created as follows (from SY 22-23 and SY 23-24; years can be changed as necessary):
+
+```{r yoy retention, echo=TRUE, eval=FALSE}
+reporting.employees <-  reporting.employees %>% mutate(TRUELEAVER = case_when(
+  YEAR == "2022" & EXITDATE >= "2022-07-01" & EXITDATE <= Sys.Date()-years(1) ~ 1,
+  YEAR == "2023"& LEAVERS == "1" ~ 1,
+  TRUE ~ 0)) %>%
+  mutate(TRUEHEADCOUNT = case_when(YEAR == "2022" & STARTDATE <= Sys.Date()-years(1) ~ 1,
+                                   YEAR == "2023" & HEADCOUNT == "1" ~ 1,
+                                   TRUE ~ 0))
+```
+
 ## Joins
 
 It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.
