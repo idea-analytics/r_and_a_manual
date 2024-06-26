@@ -2346,6 +2346,21 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <span>                                   <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span> <span class="op">&amp;</span> <span class="va">HEADCOUNT</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
 <span>                                   <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div id="high-stakes-roles" class="section level3" number="4.12.4">
+<h3>
+<span class="header-section-number">4.12.4</span> High Stakes Roles<a class="anchor" aria-label="anchor" href="#high-stakes-roles"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>HighStakesRoles <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%CO-TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%TEACHER RESIDENCY COACH%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%FLEX TEACHER%"</span> <span class="op">~</span> <span class="st">"Teacher"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF OPERATIONS%"</span> <span class="op">~</span> <span class="st">"APO"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF INSTRUCTION"</span> <span class="op">~</span> <span class="st">"API"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%EXECUTIVE DIRECTOR%"</span> <span class="op">~</span> <span class="st">"Executive Director"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%VP%"</span> <span class="op">~</span> <span class="st">"HQ VP"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%PRINCIPAL"</span> <span class="op">~</span> <span class="st">"Principal"</span>,</span>
+<span>                                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non- HighStakesRoles"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.</p>
+</div>
 </div>
 <div id="joins" class="section level2" number="4.13">
 <h2>
@@ -2459,6 +2474,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <li><a class="nav-link" href="#regrettable-vs-non-regrettable"><span class="header-section-number">4.12.1</span> Regrettable vs Non Regrettable</a></li>
 <li><a class="nav-link" href="#day-retention"><span class="header-section-number">4.12.2</span> 90 Day Retention</a></li>
 <li><a class="nav-link" href="#tips-for-staff-retention-reporting"><span class="header-section-number">4.12.3</span> Tips for Staff Retention Reporting</a></li>
+<li><a class="nav-link" href="#high-stakes-roles"><span class="header-section-number">4.12.4</span> High Stakes Roles</a></li>
 </ul>
 </li>
 <li>

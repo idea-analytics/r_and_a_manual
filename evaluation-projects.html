@@ -180,38 +180,38 @@ Readers of this document are encouraged to direct their comments and questions a
 <span class="header-section-number">7.2.1.1</span> 21st Century Afterschool Program Data Life Cycle<a class="anchor" aria-label="anchor" href="#st-century-afterschool-program-data-life-cycle"><i class="fas fa-link"></i></a>
 </h4>
 <p>21st Century Afterschool Program data that is found in [RGVPDRA-DASQL].[Program21stCentury].[dbo].[Students] is pulled nightly at 12am. The initial process deletes the current data only with the same current school session of data such as (2022-2023 Summer) so that once the new Academic Year changes or no longer in summer, that data is not deleted but left as the last update. Below is the query that is run in PowerSchool so that in the [U_IDEA_STUDENTS_OSS] table we receive the latest records for 21st Century Afterschool Programs.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb41-1"><a href="evaluation-projects.html#cb41-1" tabindex="-1"></a><span class="kw">SELECT</span>   </span>
-<span id="cb41-2"><a href="evaluation-projects.html#cb41-2" tabindex="-1"></a>  FIRST_NAME, </span>
-<span id="cb41-3"><a href="evaluation-projects.html#cb41-3" tabindex="-1"></a>  LAST_NAME,</span>
-<span id="cb41-4"><a href="evaluation-projects.html#cb41-4" tabindex="-1"></a>  a.STUDENT_NUMBER,</span>
-<span id="cb41-5"><a href="evaluation-projects.html#cb41-5" tabindex="-1"></a>  b.ACADEMIC_SUPPORT, </span>
-<span id="cb41-6"><a href="evaluation-projects.html#cb41-6" tabindex="-1"></a>  b.COLLEGE_CAREER_READINESS, </span>
-<span id="cb41-7"><a href="evaluation-projects.html#cb41-7" tabindex="-1"></a>  b.FAMILY_ENGAGEMENT, </span>
-<span id="cb41-8"><a href="evaluation-projects.html#cb41-8" tabindex="-1"></a>  b.ENRICHMENT,  </span>
-<span id="cb41-9"><a href="evaluation-projects.html#cb41-9" tabindex="-1"></a>  b.DAY45, </span>
-<span id="cb41-10"><a href="evaluation-projects.html#cb41-10" tabindex="-1"></a>  b.WHENCREATED, </span>
-<span id="cb41-11"><a href="evaluation-projects.html#cb41-11" tabindex="-1"></a>  b.WHENMODIFIED </span>
-<span id="cb41-12"><a href="evaluation-projects.html#cb41-12" tabindex="-1"></a><span class="kw">FROM</span>  STUDENTS a</span>
-<span id="cb41-13"><a href="evaluation-projects.html#cb41-13" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
-<span id="cb41-14"><a href="evaluation-projects.html#cb41-14" tabindex="-1"></a>(<span class="kw">SELECT</span> a.<span class="op">*</span> <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS a </span>
-<span id="cb41-15"><a href="evaluation-projects.html#cb41-15" tabindex="-1"></a>  <span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
-<span id="cb41-16"><a href="evaluation-projects.html#cb41-16" tabindex="-1"></a>  (<span class="kw">SELECT</span> STUDENTSDCID, <span class="fu">MAX</span>(WHENCREATED) <span class="kw">AS</span> WHENCREATED </span>
-<span id="cb41-17"><a href="evaluation-projects.html#cb41-17" tabindex="-1"></a>    <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS </span>
-<span id="cb41-18"><a href="evaluation-projects.html#cb41-18" tabindex="-1"></a>    <span class="kw">WHERE</span> YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
-<span id="cb41-19"><a href="evaluation-projects.html#cb41-19" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
-<span id="cb41-20"><a href="evaluation-projects.html#cb41-20" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
-<span id="cb41-21"><a href="evaluation-projects.html#cb41-21" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
-<span id="cb41-22"><a href="evaluation-projects.html#cb41-22" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) </span>
-<span id="cb41-23"><a href="evaluation-projects.html#cb41-23" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> STUDENTSDCID ) b </span>
-<span id="cb41-24"><a href="evaluation-projects.html#cb41-24" tabindex="-1"></a>  <span class="kw">ON</span> a.STUDENTSDCID <span class="op">=</span> b.STUDENTSDCID </span>
-<span id="cb41-25"><a href="evaluation-projects.html#cb41-25" tabindex="-1"></a>  <span class="kw">AND</span> a.WHENCREATED <span class="op">=</span> b.WHENCREATED </span>
-<span id="cb41-26"><a href="evaluation-projects.html#cb41-26" tabindex="-1"></a>  <span class="kw">WHERE</span> a.YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
-<span id="cb41-27"><a href="evaluation-projects.html#cb41-27" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
-<span id="cb41-28"><a href="evaluation-projects.html#cb41-28" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
-<span id="cb41-29"><a href="evaluation-projects.html#cb41-29" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
-<span id="cb41-30"><a href="evaluation-projects.html#cb41-30" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) )  b</span>
-<span id="cb41-31"><a href="evaluation-projects.html#cb41-31" tabindex="-1"></a><span class="kw">ON</span> a.DCID <span class="op">=</span> b.STUDENTSDCID</span>
-<span id="cb41-32"><a href="evaluation-projects.html#cb41-32" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  a.STUDENT_NUMBER</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb42-1"><a href="evaluation-projects.html#cb42-1" tabindex="-1"></a><span class="kw">SELECT</span>   </span>
+<span id="cb42-2"><a href="evaluation-projects.html#cb42-2" tabindex="-1"></a>  FIRST_NAME, </span>
+<span id="cb42-3"><a href="evaluation-projects.html#cb42-3" tabindex="-1"></a>  LAST_NAME,</span>
+<span id="cb42-4"><a href="evaluation-projects.html#cb42-4" tabindex="-1"></a>  a.STUDENT_NUMBER,</span>
+<span id="cb42-5"><a href="evaluation-projects.html#cb42-5" tabindex="-1"></a>  b.ACADEMIC_SUPPORT, </span>
+<span id="cb42-6"><a href="evaluation-projects.html#cb42-6" tabindex="-1"></a>  b.COLLEGE_CAREER_READINESS, </span>
+<span id="cb42-7"><a href="evaluation-projects.html#cb42-7" tabindex="-1"></a>  b.FAMILY_ENGAGEMENT, </span>
+<span id="cb42-8"><a href="evaluation-projects.html#cb42-8" tabindex="-1"></a>  b.ENRICHMENT,  </span>
+<span id="cb42-9"><a href="evaluation-projects.html#cb42-9" tabindex="-1"></a>  b.DAY45, </span>
+<span id="cb42-10"><a href="evaluation-projects.html#cb42-10" tabindex="-1"></a>  b.WHENCREATED, </span>
+<span id="cb42-11"><a href="evaluation-projects.html#cb42-11" tabindex="-1"></a>  b.WHENMODIFIED </span>
+<span id="cb42-12"><a href="evaluation-projects.html#cb42-12" tabindex="-1"></a><span class="kw">FROM</span>  STUDENTS a</span>
+<span id="cb42-13"><a href="evaluation-projects.html#cb42-13" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
+<span id="cb42-14"><a href="evaluation-projects.html#cb42-14" tabindex="-1"></a>(<span class="kw">SELECT</span> a.<span class="op">*</span> <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS a </span>
+<span id="cb42-15"><a href="evaluation-projects.html#cb42-15" tabindex="-1"></a>  <span class="kw">INNER</span> <span class="kw">JOIN</span> </span>
+<span id="cb42-16"><a href="evaluation-projects.html#cb42-16" tabindex="-1"></a>  (<span class="kw">SELECT</span> STUDENTSDCID, <span class="fu">MAX</span>(WHENCREATED) <span class="kw">AS</span> WHENCREATED </span>
+<span id="cb42-17"><a href="evaluation-projects.html#cb42-17" tabindex="-1"></a>    <span class="kw">FROM</span> U_IDEA_STUDENTS_OSS </span>
+<span id="cb42-18"><a href="evaluation-projects.html#cb42-18" tabindex="-1"></a>    <span class="kw">WHERE</span> YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
+<span id="cb42-19"><a href="evaluation-projects.html#cb42-19" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
+<span id="cb42-20"><a href="evaluation-projects.html#cb42-20" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb42-21"><a href="evaluation-projects.html#cb42-21" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb42-22"><a href="evaluation-projects.html#cb42-22" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb42-23"><a href="evaluation-projects.html#cb42-23" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> STUDENTSDCID ) b </span>
+<span id="cb42-24"><a href="evaluation-projects.html#cb42-24" tabindex="-1"></a>  <span class="kw">ON</span> a.STUDENTSDCID <span class="op">=</span> b.STUDENTSDCID </span>
+<span id="cb42-25"><a href="evaluation-projects.html#cb42-25" tabindex="-1"></a>  <span class="kw">AND</span> a.WHENCREATED <span class="op">=</span> b.WHENCREATED </span>
+<span id="cb42-26"><a href="evaluation-projects.html#cb42-26" tabindex="-1"></a>  <span class="kw">WHERE</span> a.YEARID <span class="op">=</span> (<span class="kw">SELECT</span> </span>
+<span id="cb42-27"><a href="evaluation-projects.html#cb42-27" tabindex="-1"></a>  <span class="cf">CASE</span> <span class="cf">WHEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'MM'</span>) <span class="op">-</span> <span class="dv">0</span> <span class="kw">FROM</span> DUAL) <span class="op">&gt;</span> <span class="dv">7</span> </span>
+<span id="cb42-28"><a href="evaluation-projects.html#cb42-28" tabindex="-1"></a>  <span class="cf">THEN</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1990</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb42-29"><a href="evaluation-projects.html#cb42-29" tabindex="-1"></a><span class="cf">ELSE</span> (<span class="kw">SELECT</span> <span class="fu">TO_CHAR</span>((<span class="kw">SELECT</span> <span class="fu">CURRENT_DATE</span> <span class="kw">FROM</span> DUAL), <span class="st">'YYYY'</span>) <span class="op">-</span> <span class="dv">1991</span> <span class="kw">FROM</span> DUAL) </span>
+<span id="cb42-30"><a href="evaluation-projects.html#cb42-30" tabindex="-1"></a><span class="cf">END</span> <span class="kw">FROM</span> DUAL) )  b</span>
+<span id="cb42-31"><a href="evaluation-projects.html#cb42-31" tabindex="-1"></a><span class="kw">ON</span> a.DCID <span class="op">=</span> b.STUDENTSDCID</span>
+<span id="cb42-32"><a href="evaluation-projects.html#cb42-32" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span>  a.STUDENT_NUMBER</span></code></pre></div>
 </div>
 </div>
 <div id="camp-rio" class="section level3" number="7.2.2">
