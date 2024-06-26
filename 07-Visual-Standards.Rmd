@@ -159,6 +159,22 @@ The following are the current polo colors for each grade level:
  
 Clearly, if all grade levels are present on one plot and cannot be individually labeled (say, a scatterplot), then using one color for multiple grade levels is not advised. However, if color coding a document or table where colors can be repeated, then this palette can provide visual cues to contextualize the report.
 
+### Separation Colors
+When reporting on separation reasons from Tyler Munis (located in the reporting.employees table), the following colors should be used:
+
++ **Failed I-9 Verification:** light yellow (#FFDE75)
++ **Involuntary Misconduct:** pink (#EE3A80)
++ **Involuntary Non-Renew:** light blue (#BDD7EE)
++ **Involuntary Poor Performance:** navy blue (#1A4789)
++ **No Call No Show:** light purple (#CD9BFF)
++ **Resign in Lieu of Termination:** green (#00B050)
++ **Voluntary Resignation No Notice:** orange (#F9A054)
++ **Voluntary Resignation With Notice:** blue (#0079C1)
++ **Voluntary No Return From Leave:** light green (#A4C364)
++ **Voluntary Retirement:** dark grey (#626363)
++ **Job Change to Seasonal/Part-Time:** tan (#E5C09F)
++ **Did not Return Next Year in FT Position:** dark green (#214F28)
+
 
 ### IDEA Palette Color Ramp
 
