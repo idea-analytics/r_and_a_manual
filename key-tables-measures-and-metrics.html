@@ -546,11 +546,8 @@
 <span class="header-section-number">4.3</span> Student Attendance<a class="anchor" aria-label="anchor" href="#student-attendance"><i class="fas fa-link"></i></a>
 </h2>
 <p>Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked <em>absent (A)</em> by the teacher, or as <em>tardy present (TP)</em> at the school’s front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an <strong>Official Attendance-Taking Time or Period (OATT/OATP)</strong>, a roughly 10-minute window for all teachers with a class at that time to submit the day’s official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.</p>
-<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students]
-* <strong>Current Year + 3 Past Years</strong> This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, &amp; 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.</p>
-<p><strong>For Attendance Data Prior to 2019-2020:</strong>
-<strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical]
-* <strong>Academic Years: 2021-2022 - 2015-2016</strong> This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.</p>
+<p><strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[Students] * <strong>Current Year + 3 Past Years</strong> This table currently has data for the current year (2023-2024), and the last three years data (2022-2023, 2021-2022, &amp; 2020-2021). Once the current year is complete and the next year begins, 2020-2021 data will drop off of this table and the new academic year will be added.</p>
+<p><strong>For Attendance Data Prior to 2019-2020:</strong> <strong>Database:</strong> [RGVPDSD-DWPRD1].[PROD1].[Attendance].[StudentsHistorical] * <strong>Academic Years: 2021-2022 - 2015-2016</strong> This is the official historical table. All of the same columns as the [Attendance].[Students] table. Was told that when the academic year ends the data will roll over to this table.</p>
 <p><strong>Main metrics:</strong> Full-day vs. half-day attendance; number of absences; new to IDEA students</p>
 <p><strong>Important columns:</strong></p>
 <ul>
@@ -629,8 +626,7 @@
 <span id="cb17-22"><a href="key-tables-measures-and-metrics.html#cb17-22" tabindex="-1"></a><span class="co"># computes ADA as 1 - absence ratio</span></span>
 <span id="cb17-23"><a href="key-tables-measures-and-metrics.html#cb17-23" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ada_percent =</span> <span class="dv">1</span> <span class="sc">-</span> (n_absent<span class="sc">/</span>n_enrolled)) <span class="sc">%&gt;%</span> </span></code></pre></div>
 <p>If you are needing attendance data for enrollment purposes for years prior to 2015-2016, you will need to use a different table.</p>
-<p><strong>Database</strong> [RGVPDSD-DWPRD1].[PROD1].[ADA].[StudentDailyMembership]
-This table contain daily attendance for 2002-2003 through 2020-2021 Academic Years. However, the data for 2016-2017 through 2018-2019 appears to be incorrect. Only use this table for daily attendance prior to 2015-2016 School Year. There are far fewer columns on this table, but the ones needed for calculating ADA and/or enrollment for years prior to 2015-2016 are there.</p>
+<p><strong>Database</strong> [RGVPDSD-DWPRD1].[PROD1].[ADA].[StudentDailyMembership] This table contain daily attendance for 2002-2003 through 2020-2021 Academic Years. However, the data for 2016-2017 through 2018-2019 appears to be incorrect. Only use this table for daily attendance prior to 2015-2016 School Year. There are far fewer columns on this table, but the ones needed for calculating ADA and/or enrollment for years prior to 2015-2016 are there.</p>
 <p><strong>Important columns:</strong></p>
 <ul>
 <li>
@@ -1176,7 +1172,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <p>A list of the most common codes used is included below:</p>
 <div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="37%">
+<col width="36%">
 <col width="28%">
 <col width="34%">
 </colgroup>
@@ -1481,10 +1477,7 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 </h3>
 <p>IDEA’s Advanced Placement (AP) for all model requires most 9th through 12th grade students take AP coursework and provides opportunities for students to take AP Exams at no cost. All campuses offer AP courses and exams; however, IB schools offer far fewer options than the non-IB campuses.</p>
 <p>All AP student data is downloaded directly from the College Board’s website. Once downloaded it is imported, cleaned, and added to the R&amp;A server. In order to get the data into a usable format, with local student numbers and deduplicated, there are several scripts in the AP project on GitHub that need to be run in a specific order.</p>
-<p><strong>Step One:</strong> pull down the most recent year’s project on GitHub.
-<strong>Step Two:</strong> Open the main R project within that folder, for example, “22-23 AP Report &amp; Requests”. Within that project there are two main sub-project folders. Use the AP Requests.
-<strong>Step Three:</strong> Run the two scripts in the data folder. First run “1_Load_AP_Data”, this pulls all of the AP tables. Next run “2_Load_Students_Data”, this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise).
-<strong>Step Four:</strong> Run the three scripts in the munge folder. First run “1_Clean_AP_Data”, this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and passes both with the same score that they are not counted twice towards the three exams passed for AP Scholars classification. Then run “2_Scaffold_AP_Data”, this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call “ap_df”. This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run “3_Scaffold_AP_Scholars_Data”, this is the same script as #2, but ensures that the file that is produced by the script doesn’t include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called “ap_df_scholars”.</p>
+<p><strong>Step One:</strong> pull down the most recent year’s project on GitHub. <strong>Step Two:</strong> Open the main R project within that folder, for example, “22-23 AP Report &amp; Requests”. Within that project there are two main sub-project folders. Use the AP Requests. <strong>Step Three:</strong> Run the two scripts in the data folder. First run “1_Load_AP_Data”, this pulls all of the AP tables. Next run “2_Load_Students_Data”, this pulls all of the students and excludes Thrive and Rise students, which are students with severe cognitive disabilities that are over the age of 18 (Thrive) or students with severe cognitive disabilities that do not take AP course work specified by their Individual Education Plan (IEP) but are under the age of 18 (Rise). <strong>Step Four:</strong> Run the three scripts in the munge folder. First run “1_Clean_AP_Data”, this script cleans up the AP data, like making sure that if a student takes the same AP Exam two different years and passes both with the same score that they are not counted twice towards the three exams passed for AP Scholars classification. Then run “2_Scaffold_AP_Data”, this creates several scaffolds such as the exams taken in the years that they take them. This script results in a base data file that can be used call “ap_df”. This file will include duplicate tests if taken in a different year by the same student. There are not many of these students that took the same exam that they had already passed in an attempt to get a better score. Finally run “3_Scaffold_AP_Scholars_Data”, this is the same script as #2, but ensures that the file that is produced by the script doesn’t include duplicate exams for the calculation of AP Scholars. The resultant file from this last script is called “ap_df_scholars”.</p>
 </div>
 <div id="ib" class="section level3" number="4.8.6">
 <h3>
@@ -1757,10 +1750,8 @@ This table contain daily attendance for 2002-2003 through 2020-2021 Academic Yea
 <h3>
 <span class="header-section-number">4.8.8</span> LEAP<a class="anchor" aria-label="anchor" href="#leap"><i class="fas fa-link"></i></a>
 </h3>
-<p>Louisiana Educational Assessment Program (LEAP)
-The <a href="https://www.louisianabelieves.com/measuringresults">LEAP assessments</a> are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school. Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.</p>
-<p>Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment).
-English learners from K-12 take the English Language Proficiency test (ELPT).</p>
+<p>Louisiana Educational Assessment Program (LEAP) The <a href="https://www.louisianabelieves.com/measuringresults">LEAP assessments</a> are Louisiana standardized tests administered every year. Students in grades 3 through 8 take the assessments in English Language Arts, mathematics, science, and social studies every year. High school students take the English I, English II, Algebra I, Geometry, U.S. History, and Biology tests once while in high school. Student results are reported using five performance levels (Advanced, Mastery, Basic, Approaches Basic, Unsatisfactory). These assessments are aligned to the Louisiana Students Standards and provide a consistent measure of student performance and growth from grades three through eleven.</p>
+<p>Students with significant cognitive disabilities take the LEAP Connect (Alternate Assessment). English learners from K-12 take the English Language Proficiency test (ELPT).</p>
 <p>LEAP test results summarized by school and grade level can be downloaded from the <a href="https://www.louisianabelieves.com/resources/library/elementary-and-middle-school-performance">Louisiana Department of Education website</a> (file name: 2022 leap 2025 state lea school achievement level summary). Students in grades 3-8 need to score Basic or higher in at least three tests and need to score Approaching Basic or higher in the fourth test.</p>
 <p>The downloaded workbook has tabs for each grade level and a tab for high school. Filter the spreadsheet for the IDEA schools in LA. Use the expected number of students to participate and the participation rate columns to calculate the actual number of students who participated. To calculate the percentage of students who passed each subject, add the percentage of students who scored at the Advanced, Mastery, and Basic levels.</p>
 <div id="student-level-leap" class="section level4" number="4.8.8.1">
@@ -1768,19 +1759,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 <span class="header-section-number">4.8.8.1</span> Student Level LEAP<a class="anchor" aria-label="anchor" href="#student-level-leap"><i class="fas fa-link"></i></a>
 </h4>
 <p>If you need to have student level LEAP data, you can access (Spring 2021 and 2022) 3-8 assessment results <a href="https://ideapublicschoolsorg.sharepoint.com/RA/SitePages/Official-LEAP-Campus-Reports.aspx">here</a>. Follow the link for LEAP2025 for the main stream results, LEAP Connect for the alternate assessment results, and ELPT for the English Language Proficiency assessment results. Then select the campus you are interested in and open the Excel spreadsheet to see the data.</p>
-<p>Useful Fields:
-• SchoolNbr
-• SchoolName
-• LASID
-• Grade
-• ELAVoidFlag
-• ELAAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
-• MathVoidFlag
-• MathAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
-• SocialVoidFlag
-• SocialAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)
-• ScienceVoidFlag
-• ScienceAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)</p>
+<p>Useful Fields: • SchoolNbr • SchoolName • LASID • Grade • ELAVoidFlag • ELAAchievement (Advanced, Mastery, and Basic scores represent passing that subject test) • MathVoidFlag • MathAchievement (Advanced, Mastery, and Basic scores represent passing that subject test) • SocialVoidFlag • SocialAchievement (Advanced, Mastery, and Basic scores represent passing that subject test) • ScienceVoidFlag • ScienceAchievement (Advanced, Mastery, and Basic scores represent passing that subject test)</p>
 </div>
 </div>
 </div>
@@ -1863,8 +1842,7 @@ English learners from K-12 take the English Language Proficiency test (ELPT).</p
 <span class="header-section-number">4.10.1</span> Teacher and All Staff Retention<a class="anchor" aria-label="anchor" href="#teacher-and-all-staff-retention"><i class="fas fa-link"></i></a>
 </h3>
 <p>During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -&gt; Quick Links -&gt; Dashboards -&gt; Locus -&gt; Staff Retention). If you can’t find what you need in the dashboard, below are the tables that store the Staff Retention data.</p>
-<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew]
-This table contains the current year’s staff retention data.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year’s staff retention data.</p>
 <p><strong>Useful Fields:</strong></p>
 <ul>
 <li>
@@ -1925,10 +1903,7 @@ This table contains the current year’s staff retention data.</p>
 <strong>DOB:</strong> Employee’s Date of Birth</li>
 </ul>
 <p>For Prior Year’s Data there are other tables with the same columns as above</p>
-<p><strong>2018-2019</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819]
-<strong>2019-2020</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920]
-<strong>2020-2021</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021]
-<strong>2021-2022</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]</p>
+<p><strong>2018-2019</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819] <strong>2019-2020</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920] <strong>2020-2021</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021] <strong>2021-2022</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]</p>
 <p>Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.</p>
 </div>
 </div>
@@ -1948,18 +1923,14 @@ This table contains the current year’s staff retention data.</p>
 <p>The prempmst table is one of the primary sources of employee data and information. It has the employee ID number, the step level (for salary), the social security number (which is why the data is deemed more sensitive), start date at IDEA, work start date for that school year, gender, race, ethnicity, and other pertinent employee information and data (much of which has been captured in the HRIS data reports that are sent out weekly). It also includes employee full name, marital status, home phone number, spouse, bank account, supervisor, IDEA email address, alternate email address (the personal email the employee used likely to apply to IDEA), pay type, pay frequency, sick bank.</p>
 <p>Prempmst is one of hundreds of tables. It is accessed via this path on MSSQL: RGVPDEIS-TMTXDB-&gt; Databases -&gt; munprod -&gt; Tables -&gt; dbo.prempmst_orig</p>
 <p>Here are some specific columns or how to format them:</p>
-<p>##Work Start Date:
-FORMAT(premppay_all.prep_work_st_dt,‘d’,‘en-us’) AS ‘Work Start Date’</p>
-<p>##Job Status (NLE vs Active)
-,CASE WHEN prempmst.prem_term_date &lt; GETDATE() THEN ‘NLE’<br>
+<p>##Work Start Date: FORMAT(premppay_all.prep_work_st_dt,‘d’,‘en-us’) AS ‘Work Start Date’</p>
+<p>##Job Status (NLE vs Active) ,CASE WHEN prempmst.prem_term_date &lt; GETDATE() THEN ‘NLE’<br>
 ELSE ‘Active’ END AS [JobPaySkill]</p>
 <p>It is based on term dates. NLE is for employees who are no longer with IDEA, and Active means the employee is an active employee who is still currently working with IDEA. There is a Job Status column on the Retention Reports that could be filtered for NLE or Active in order to calculate retention rates and see who used to be an employee and is no longer, the date the employee left, and who is still a current active employee. (Active employees in the Job Status column are then used on the HRIS reports).</p>
 <p>##Start Date</p>
 <p>,FORMAT(prempmst.prem_hire,‘d’,‘en-us’) [StartDate]</p>
 <p>Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, that person doesn’t have to switch roles, and the Work Start Date is the start date for their current school year’s job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.</p>
-<p>###New Teacher at IDEA
-Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA.
-To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher’s Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee’s role was “TEACHER” in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA.</p>
+<p>###New Teacher at IDEA Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA. To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher’s Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee’s role was “TEACHER” in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA.</p>
 </div>
 <div id="teachboost-data" class="section level3" number="4.11.2">
 <h3>
@@ -1972,44 +1943,7 @@ To determine if someone is a new teacher (as there is no existing flag or field 
 <span class="header-section-number">4.11.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.</p>
-<p>forms_try &lt;- get_table(.table_name = “Forms”, .database_name = “SRC_Teachboost”, .schema = “dbo”, .server_name = “RGVPDSD-DWSRC3”) %&gt;%
-select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %&gt;%
-filter(type_label == “GET Row Rating”) %&gt;%
-filter(date == “2022-08-01” |
-date == “2022-08-02” |
-date == “2022-08-03” |
-date == “2022-08-04” |
-date == “2022-08-05” |
-date == “2022-08-06” |
-date == “2022-08-07” |
-date == “2022-08-08” |
-date == “2022-08-09” |
-date == “2022-08-10” |
-date == “2022-08-11” |
-date == “2022-08-12” |
-date == “2022-08-13” |
-date == “2022-08-14” |
-date == “2022-08-15” |
-date == “2022-08-16” |
-date == “2022-08-17” |
-date == “2022-08-18” |
-date == “2022-08-19” |
-date == “2022-08-20” |
-date == “2022-08-21” |
-date == “2022-08-22” |
-date == “2022-08-23” |
-date == “2022-08-24” |
-date == “2022-08-25” |
-date == “2022-08-26” |
-date == “2022-08-27” |
-date == “2022-08-28” |
-date == “2022-08-29” |
-date == “2022-08-30” |
-date == “2022-08-31” |
-date == “2022-09-01” |
-date == “2022-09-02” ) %&gt;%
-collect()
-forms_try</p>
+<p>forms_try &lt;- get_table(.table_name = “Forms”, .database_name = “SRC_Teachboost”, .schema = “dbo”, .server_name = “RGVPDSD-DWSRC3”) %&gt;% select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %&gt;% filter(type_label == “GET Row Rating”) %&gt;% filter(date == “2022-08-01” | date == “2022-08-02” | date == “2022-08-03” | date == “2022-08-04” | date == “2022-08-05” | date == “2022-08-06” | date == “2022-08-07” | date == “2022-08-08” | date == “2022-08-09” | date == “2022-08-10” | date == “2022-08-11” | date == “2022-08-12” | date == “2022-08-13” | date == “2022-08-14” | date == “2022-08-15” | date == “2022-08-16” | date == “2022-08-17” | date == “2022-08-18” | date == “2022-08-19” | date == “2022-08-20” | date == “2022-08-21” | date == “2022-08-22” | date == “2022-08-23” | date == “2022-08-24” | date == “2022-08-25” | date == “2022-08-26” | date == “2022-08-27” | date == “2022-08-28” | date == “2022-08-29” | date == “2022-08-30” | date == “2022-08-31” | date == “2022-09-01” | date == “2022-09-02” ) %&gt;% collect() forms_try</p>
 <p>Forms table has the topic_id, which is the TB ID of the person about whom the form is written. The author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the “ID” number on the Users table. The ID from users is not the employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.</p>
 </div>
 <div id="users" class="section level4" number="4.11.2.2">
@@ -2211,39 +2145,17 @@ forms_try</p>
 </ul>
 </li>
 </ul>
-<p><strong>Jobvite File facts</strong>
-1. 19-20 – 2nd year of Jobvite data (18-19 is first and starting year of Jobvite data)
-* (renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
-* Contains Tentative Start Date column – shows which month/year a new hire started working
-(doesn’t have to be immediately following that year’s hiring cycle)</p>
+<p><strong>Jobvite File facts</strong> 1. 19-20 – 2nd year of Jobvite data (18-19 is first and starting year of Jobvite data) * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21) * Contains Tentative Start Date column – shows which month/year a new hire started working (doesn’t have to be immediately following that year’s hiring cycle)</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>20-21 – 3rd year of Jobvite data
-* (renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
-* Contains Tentative Start Date column</p></li>
-<li><p>21-22 – 4th year of Jobvite data
-* (renamed Jobvite 18-19 SY by Brittany; email 10-12-21)
-* Contains Tentative Start Date column</p></li>
+<li><p>20-21 – 3rd year of Jobvite data * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21) * Contains Tentative Start Date column</p></li>
+<li><p>21-22 – 4th year of Jobvite data * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21) * Contains Tentative Start Date column</p></li>
 </ol>
 </div>
 <div id="tcpteacher-export-data" class="section level3" number="4.11.5">
 <h3>
 <span class="header-section-number">4.11.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>TCP/Teacher Export Data: Teacher Performance data.
-* Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components).
-+ GET (35%): Manager and Self Guidepost Ratings contain 6 components
-+ Lesson Planning &amp; Delivery
-+ Culture, Etc.
-+ Components 1-5 are counted, and Component 6 (Core Values) is calculated outside of this score (it is 1 of 5 Components of TCP, worth 5% on its own). Each Guidepost Component has 4-5 items listed under each as 1A, 1B, etc.
-+ Parent Survey (5%): Show up as BLANK if &lt;10 surveys were completed per teacher
-+ Student Survey (5%) Shows up as BLANK if:
-+ &lt;10 surveys were completed per teacher
-+ Some campuses encourage students and parents to fill out the surveys, and some do not
-+ Teacher taught SPED, pre-K, K, 1st, or 2nd Grades (those students are not able to take the survey/or too young).
-+ Student Achievement (50%) Testing such as STAAR, etc.
-+ Core Values (5%)
-+ Contains IDEA Work Email and EmployeeID
-+ Contains First Name and Last Name (but not Full Name)</p>
+<p>TCP/Teacher Export Data: Teacher Performance data. * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components). + GET (35%): Manager and Self Guidepost Ratings contain 6 components + Lesson Planning &amp; Delivery + Culture, Etc. + Components 1-5 are counted, and Component 6 (Core Values) is calculated outside of this score (it is 1 of 5 Components of TCP, worth 5% on its own). Each Guidepost Component has 4-5 items listed under each as 1A, 1B, etc. + Parent Survey (5%): Show up as BLANK if &lt;10 surveys were completed per teacher + Student Survey (5%) Shows up as BLANK if: + &lt;10 surveys were completed per teacher + Some campuses encourage students and parents to fill out the surveys, and some do not + Teacher taught SPED, pre-K, K, 1st, or 2nd Grades (those students are not able to take the survey/or too young). + Student Achievement (50%) Testing such as STAAR, etc. + Core Values (5%) + Contains IDEA Work Email and EmployeeID + Contains First Name and Last Name (but not Full Name)</p>
 <p><strong>There is a 2 year HOLD for the pandemic</strong> (we don’t know who was “held”), meaning someone at a particular level (e.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.</p>
 <ul>
 <li>If someone got a 4.5+ composite TCP score for two consecutive years in a row, they can move to a Level 5 TCP without having the required years of Experience.</li>
@@ -2284,16 +2196,11 @@ forms_try</p>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
-<li>Jobvite 20-21 to Teacher Export 20-21
-Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT available yet!</li>
+<li>Jobvite 20-21 to Teacher Export 20-21 Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT available yet!</li>
 <li>Thus, we will be looking at 2 years of data:
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
-<li>Jobvite 20-21 to Teacher Export 20-21
-+ Removing Jobvite 19-20 Hires who did not have a Start Date of Fall 2019
-+ Removing Jobvite 20-21 Hires who did not have a Start Date of Fall 2020
-+ Removing all Teacher Export 19-20 and Teacher Export 20-21, who did not have a Job Title of Teacher
-+ Removing all Teacher Export 19-20 and Teacher Export 20-21, who had Internal Role as:</li>
+<li>Jobvite 20-21 to Teacher Export 20-21 + Removing Jobvite 19-20 Hires who did not have a Start Date of Fall 2019 + Removing Jobvite 20-21 Hires who did not have a Start Date of Fall 2020 + Removing all Teacher Export 19-20 and Teacher Export 20-21, who did not have a Job Title of Teacher + Removing all Teacher Export 19-20 and Teacher Export 20-21, who had Internal Role as:</li>
 </ul>
 </li>
 <li>SPED CP</li>
@@ -2316,9 +2223,7 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 <h4>
 <span class="header-section-number">4.11.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
-<p>How to join?
-* Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email.
-* Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email</p>
+<p>How to join? * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email. * Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email</p>
 </div>
 <div id="apr-report-for-june-2022" class="section level4" number="4.11.5.3">
 <h4>
@@ -2335,45 +2240,11 @@ Jobvite 21-22 to Teacher Export 21-22 – Can’t do this! TE 21-22 NOT availabl
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both school years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
-<p>LICENSED SPECIALIST IN SCHOOL PSYCHOLOGY INTERN
-ASST. PRINCIPAL OF INSTRUCTION
-REGIONAL ATHLETICS MANAGER
-COLLEGE COUNSELOR
-SPECIAL PROGRAMS COACH
-DI PROGRAM MANAGER
-REGIONAL SPECIAL PROGRAMS COACH
-DIRECTOR OF COLLEGE COUNSELING</p>
-<p>ASSISTANT PRINCIPAL OF INSTRUCTION
-SCHOOL COUNSELOR
-STUDENT SUCCESS ADVISOR
-EDU DIAGNOSTICIAN
-REGIONAL INTERVENTION COACH
-ASST. PRINCIPAL OF OPERATIONS
-TALENT RECRUITER
-PRINCIPAL OF INSTRUCTION
-PUBLIC RELATIONS MANAGER</p>
-<p>EDUCATIONAL DIAGNOSTICIAN
-TALENT PARTNER
-MATH CURRICULUM WRITER
-SPANISH LANGUAGE ARTS CURRICULUM MANAGER
-ASSISTANT PRINCIPAL OF OPERATIONS IN RESIDENCE
-ASSISTANT PRINCIPAL OF OPERATIONS
-ELA SECONDARY CURRICULUM MANAGER
-STATE REPORTING COORDINATOR</p>
-<p>ASST. PRINCIPAL OF INSTRUCTION IN RESIDENCE
-SOCIAL STUDIES CURRICULUM MANAGER
-K-2 REGIONAL MATH COACH
-MATH CURRICULUM MANAGER
-DIGITAL COMMUNICATIONS MANAGER
-SR. COLLEGE COUNSELOR
-TECHNICAL TRAINER
-PROJECT MANAGER
-JOB COACH</p>
-<p><strong>Demotions</strong>
-FLEX TEACHER
-TESTING COORDINATOR
-SUBSTITUTE TEACHER
-SPECIAL EDUCATION RISE CO-TEACHER</p>
+<p>LICENSED SPECIALIST IN SCHOOL PSYCHOLOGY INTERN ASST. PRINCIPAL OF INSTRUCTION REGIONAL ATHLETICS MANAGER COLLEGE COUNSELOR SPECIAL PROGRAMS COACH DI PROGRAM MANAGER REGIONAL SPECIAL PROGRAMS COACH DIRECTOR OF COLLEGE COUNSELING</p>
+<p>ASSISTANT PRINCIPAL OF INSTRUCTION SCHOOL COUNSELOR STUDENT SUCCESS ADVISOR EDU DIAGNOSTICIAN REGIONAL INTERVENTION COACH ASST. PRINCIPAL OF OPERATIONS TALENT RECRUITER PRINCIPAL OF INSTRUCTION PUBLIC RELATIONS MANAGER</p>
+<p>EDUCATIONAL DIAGNOSTICIAN TALENT PARTNER MATH CURRICULUM WRITER SPANISH LANGUAGE ARTS CURRICULUM MANAGER ASSISTANT PRINCIPAL OF OPERATIONS IN RESIDENCE ASSISTANT PRINCIPAL OF OPERATIONS ELA SECONDARY CURRICULUM MANAGER STATE REPORTING COORDINATOR</p>
+<p>ASST. PRINCIPAL OF INSTRUCTION IN RESIDENCE SOCIAL STUDIES CURRICULUM MANAGER K-2 REGIONAL MATH COACH MATH CURRICULUM MANAGER DIGITAL COMMUNICATIONS MANAGER SR. COLLEGE COUNSELOR TECHNICAL TRAINER PROJECT MANAGER JOB COACH</p>
+<p><strong>Demotions</strong> FLEX TEACHER TESTING COORDINATOR SUBSTITUTE TEACHER SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
 <div id="teacher-leader-promotions" class="section level6" number="4.11.5.3.1.2">
 <h6>
@@ -2398,12 +2269,7 @@ SPECIAL EDUCATION RISE CO-TEACHER</p>
 <span class="header-section-number">4.11.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is to promote straight from Level 1 after the first year, to Level 3.</p>
-<p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY:
-Level 1: 1185
-Level 2: 90
-Level 3: 813
-Level 4: 1010
-Level 5: 334</p>
+<p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY: Level 1: 1185 Level 2: 90 Level 3: 813 Level 4: 1010 Level 5: 334</p>
 <p>Going forward for 21-22 SY TCP, all teachers will supposedly be placed into TCP Placement Levels, regardless of known leaver-status. This should help with the issue of analyzing retention of teachers by TCP Level, as all teachers would have a TCP Level when the October 2022 TCP comes out. Teachers who left should still be available in the Teacher Export file on the TCP website/application, according to the TCP Team.</p>
 </div>
 <div id="exit-surveys-for-teacher-leavers" class="section level5" number="4.11.5.4.3">
@@ -2421,50 +2287,82 @@ Level 5: 334</p>
 </div>
 </div>
 </div>
-<div id="joins" class="section level2" number="4.12">
+<div id="staff-data" class="section level2" number="4.12">
 <h2>
-<span class="header-section-number">4.12</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12</span> Staff Data<a class="anchor" aria-label="anchor" href="#staff-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="regrettable-vs-non-regrettable" class="section level3" number="4.12.1">
+<h3>
+<span class="header-section-number">4.12.1</span> Regrettable vs Non Regrettable<a class="anchor" aria-label="anchor" href="#regrettable-vs-non-regrettable"><i class="fas fa-link"></i></a>
+</h3>
+<p>Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.</p>
+<p>For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:</p>
+<ul>
+<li><strong>Voluntary Resignation No Notice</strong></li>
+<li><strong>Voluntary Resignation With Notice</strong></li>
+<li><strong>Voluntary No Return From Leave</strong></li>
+</ul>
+<p>For a separation to be classified as non-regrettable, the leaver must have one of the following exit reasons:</p>
+<ul>
+<li><strong>Failed I-9 Verification</strong></li>
+<li><strong>Involuntary Misconduct</strong></li>
+<li><strong>Involuntary Non-Renew</strong></li>
+<li><strong>Involuntary Poor Performance</strong></li>
+<li><strong>No Call No Show</strong></li>
+<li><strong>Resignation In Lieu Of Termination</strong></li>
+</ul>
+<p>Leavers with the following exit reason are excluded from the population:</p>
+<ul>
+<li>Voluntary Retirement</li>
+<li>Job Change to Seasonal/Part - Time</li>
+<li>Did not Return Next Year in FT Position</li>
+</ul>
+</div>
+</div>
+<div id="joins" class="section level2" number="4.13">
+<h2>
+<span class="header-section-number">4.13</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
 </h2>
 <p>It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.</p>
-<div id="inner-join" class="section level3" number="4.12.1">
+<div id="inner-join" class="section level3" number="4.13.1">
 <h3>
-<span class="header-section-number">4.12.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>An <code>inner join()</code> retains observations when a matching key value is found in both <code>x</code> and <code>y</code>. Any unmatched observations are not included in the output. Visually,</p>
 <div class="float">
 <img src="img/inner_join.png" title="visualization of an inner join" width="500" alt="inner_join(x, y)"><div class="figcaption">inner_join(x, y)</div>
 </div>
 </div>
-<div id="left-join" class="section level3" number="4.12.2">
+<div id="left-join" class="section level3" number="4.13.2">
 <h3>
-<span class="header-section-number">4.12.2</span> Left Join<a class="anchor" aria-label="anchor" href="#left-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13.2</span> Left Join<a class="anchor" aria-label="anchor" href="#left-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> is an outer join that retains all observations from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> is not included in the output. Visually,</p>
 <div class="float">
 <img src="img/left_join.png" title="visualization of a left join" width="500" alt="left_join(x, y)"><div class="figcaption">left_join(x, y)</div>
 </div>
 </div>
-<div id="right-join" class="section level3" number="4.12.3">
+<div id="right-join" class="section level3" number="4.13.3">
 <h3>
-<span class="header-section-number">4.12.3</span> Right Join<a class="anchor" aria-label="anchor" href="#right-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13.3</span> Right Join<a class="anchor" aria-label="anchor" href="#right-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> is an outer join that retains all observations from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
 <div class="float">
 <img src="img/right_join.png" title="visualization of a right join" width="500" alt="right_join(x, y)"><div class="figcaption">right_join(x, y)</div>
 </div>
 </div>
-<div id="full-join" class="section level3" number="4.12.4">
+<div id="full-join" class="section level3" number="4.13.4">
 <h3>
-<span class="header-section-number">4.12.4</span> Full Join<a class="anchor" aria-label="anchor" href="#full-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13.4</span> Full Join<a class="anchor" aria-label="anchor" href="#full-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> is an outer join that retains all observations from <code>x</code> and <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Visually,</p>
 <div class="float">
 <img src="img/full_join.png" title="visualization of a full join" width="500" alt="full_join(x, y)"><div class="figcaption">full_join(x, y)</div>
 </div>
 </div>
-<div id="anti-join" class="section level3" number="4.12.5">
+<div id="anti-join" class="section level3" number="4.13.5">
 <h3>
-<span class="header-section-number">4.12.5</span> Anti-Join<a class="anchor" aria-label="anchor" href="#anti-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13.5</span> Anti-Join<a class="anchor" aria-label="anchor" href="#anti-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>An <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> is an outer join that retains all observations from <code>x</code> that do not have a matching key in <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
 <div class="float">
@@ -2529,12 +2427,15 @@ Level 5: 334</p>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#joins"><span class="header-section-number">4.12</span> Joins</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#inner-join"><span class="header-section-number">4.12.1</span> Inner Join</a></li>
-<li><a class="nav-link" href="#left-join"><span class="header-section-number">4.12.2</span> Left Join</a></li>
-<li><a class="nav-link" href="#right-join"><span class="header-section-number">4.12.3</span> Right Join</a></li>
-<li><a class="nav-link" href="#full-join"><span class="header-section-number">4.12.4</span> Full Join</a></li>
-<li><a class="nav-link" href="#anti-join"><span class="header-section-number">4.12.5</span> Anti-Join</a></li>
+<a class="nav-link" href="#staff-data"><span class="header-section-number">4.12</span> Staff Data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#regrettable-vs-non-regrettable"><span class="header-section-number">4.12.1</span> Regrettable vs Non Regrettable</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#joins"><span class="header-section-number">4.13</span> Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#inner-join"><span class="header-section-number">4.13.1</span> Inner Join</a></li>
+<li><a class="nav-link" href="#left-join"><span class="header-section-number">4.13.2</span> Left Join</a></li>
+<li><a class="nav-link" href="#right-join"><span class="header-section-number">4.13.3</span> Right Join</a></li>
+<li><a class="nav-link" href="#full-join"><span class="header-section-number">4.13.4</span> Full Join</a></li>
+<li><a class="nav-link" href="#anti-join"><span class="header-section-number">4.13.5</span> Anti-Join</a></li>
 </ul>
 </li>
 </ul>
