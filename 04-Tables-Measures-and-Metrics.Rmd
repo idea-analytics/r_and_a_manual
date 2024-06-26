@@ -1780,6 +1780,23 @@ reporting.employees <-  reporting.employees %>% mutate(TRUELEAVER = case_when(
                                    TRUE ~ 0))
 ```
 
+### High Stakes Roles
+
+There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:
+
+```{r hsr, echo=TRUE, eval=FALSE}
+  mutate(HighStakesRoles = case_when(JOBTITLE %like% "%TEACHER%" & JOBTITLE %notlike% "%CO-TEACHER%" & JOBTITLE %notlike% "%TEACHER RESIDENCY COACH%" & JOBTITLE %notlike% "%FLEX TEACHER%" ~ "Teacher",
+                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF OPERATIONS%" ~ "APO",
+                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF INSTRUCTION" ~ "API",
+                                     JOBTITLE %like% "%EXECUTIVE DIRECTOR%" ~ "Executive Director",
+                                     JOBTITLE %like% "%VP%" ~ "HQ VP",
+                                     JOBTITLE %like% "%PRINCIPAL" ~ "Principal",
+                                     TRUE ~ "Non- HighStakesRoles"))
+```
+
+
+When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used.  Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
+
 ## Joins
 
 It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.
