@@ -198,6 +198,7 @@ differences-between-branding-guidelines
 color-blindness
 raceethnicity-colors
 grade-level-colors
+separation-colors
 idea-palette-color-ramp
 typography
 camp-rio-branding
