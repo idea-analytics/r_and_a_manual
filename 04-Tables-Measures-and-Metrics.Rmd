@@ -1005,7 +1005,80 @@ Querying assessment data, particularly item data, can be computationally costly.
 2. If you need items from a specific exam, use the **[ExternalTestID]** in the **IABWAItems** table. Filter for the **[SchoolTermID], [State], [ExternalTestID], [QuestionNumber], and [AssessmentType] (if known)** to get item-level data for all students.
 :::
 
+Let's say you want all scores from the open-ended questions of the AP English Literature Unit Exam 1 assessment in 2024-2025. Here is one way to approach this problem:
 
+1. Use the IABWA table to identify the [ExternalTestID] of the assessment.
+2. Use the [ExternalTestID] to filter the IABWA table again.
+3. Use the [ExternalTestID] and [QuestionNumber] to filter the IABWAItems table.
+
+**To find the names of all exams administered within a school year, use the following query:**
+
+```{sql exam_names, eval=FALSE}
+SELECT  DISTINCT [AcademicYear]
+                ,[State]
+                ,[SubjectID]
+                ,[Subject]
+                ,[AssessmentType]
+                ,[ExternalTestID]
+                ,[AssessmentName]
+                ,[AssessmentGradeLevels]
+                ,[StudentNumber]
+  FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+  
+  /* use as many filters as needed, but at minimum, start with the school year */
+  WHERE [SchoolTermID] = 3400 /* 3400 is 2024-2025, 3300 is 2023-2024, etc. */
+    AND [State] = 'TX'
+    AND [Subject] = 'English Language Arts'
+```
+
+You learn the relevant [ExternalTestID] is 2601.
+
+**To query student-assessment-level-data, use the following query:**
+
+```{sql student_assessment, eval=FALSE}
+SELECT *
+  FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+  
+  /* add filter for [ExternalTestID] */
+  WHERE [SchoolTermID] = 3400 /* 3400 is 2024-2025, 3300 is 2023-2024, etc. */
+    AND [State] = 'TX'
+    AND [Subject] = 'English Language Arts'
+    AND [ExternalTestID] = 2601
+```
+
+
+You learn that Question 13 was particularly difficult, and would like to investigate the item. The IABWAItems table is extremely large, so ONLY query the assessment AND item you are interested in.
+
+**To query the student-assessment-item-level-data, use the following query:**
+
+```{sql item_assessment, eval=FALSE}
+SELECT B.[AssessmentName]
+      ,A.* /* pulls all columns from table A */
+      
+  /* use a subquery on IABWAItems to pull only the [QuestionNumber]s you need */
+  FROM (
+    SELECT *
+      FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWAItems]
+      WHERE [SchoolTermID] = 3400
+        AND [State] = 'TX'
+        AND [ExternalTestID] = 2601
+        AND [QuestionNumber] = 13
+    ) AS A 
+    
+  /* the IABWAItems table does not have the name of the assessment, so 
+     join to the IABWA table to get the assessment name                */
+  LEFT JOIN (
+    SELECT DISTINCT [ExternalTestID],
+                    [AssessmentName]
+      FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+      WHERE [SchoolTermID] = 3400
+        AND [State] = 'TX'
+        AND [ExternalTestID] = 2601
+    ) AS B
+  ON A.[ExternalTestID] = B.[ExternalTestID]
+```
+
+You may want to join this data with the Students, Schools, and Regions tables to get item-level summaries at every organizational level.
 
 ### DIBELS
 
