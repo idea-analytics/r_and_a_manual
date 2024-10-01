@@ -694,10 +694,7 @@ The Software Development Team has created tables in which students who are enrol
 
 #### CSILessonInputCoreDetails
 
-server = RGVPDSD-DWRPT2\
-database = Assessments\
-schema = dbo\
-table = CSILessonInputCoreDetails
+`[RGVPDSD-DWRPT2].[Assessments].[dbo].[CSILessonInputCoreDetails]`
 
 This table is used to populate the [CSI Locus dashboard](https://app.powerbi.com/groups/7c5c298d-bf00-4c77-83c3-5d50c8ce7220/reports/ae2401c6-c8bf-4e8e-8988-9142069c131a/ReportSection?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&experience=power-bi&clientSideAuth=0&bookmarkGuid=Bookmark564eb5d1535ec89486c2). It is recommended to cross-reference the data in this dashboard with the raw data in the table as inconsistencies with student counts have been observed.
 
@@ -738,10 +735,7 @@ It has been noted that some students have multiple grade levels recorded within 
 
 #### StudentCSI
 
-server = RGVPDSD-DWPRD1\
-database = PROD1\
-schema = Schools\
-table = StudentCSI
+`[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI]`
 
 This table identifies students who are/were enrolled in Math or Reading CSI intervention programs. Since there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because the [InterventionType] field can correctly associate an intervention program to either Math or Reading.
 
@@ -762,10 +756,7 @@ FROM (SELECT [AcademicYear]
 
 #### StudentCSIDetails
 
-server = RGVPDSD-DWPRD1\
-database = PROD1\
-schema = Schools\
-table = StudentCSIDetails
+`[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSIDetails]`
 
 This is a temporary table and should not be used to pull data.
 
