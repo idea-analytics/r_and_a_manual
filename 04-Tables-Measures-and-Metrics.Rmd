@@ -703,7 +703,7 @@ This table is used to populate the [CSI Locus dashboard](https://app.powerbi.com
 
 IDEA data cannot be used to pull data from this table in R, so the following code can be utilized to access the data:
 
-```{csi, eval=FALSE}
+```{r csi, eval=FALSE}
 username <- [enter user name]
 password <- [enter password]
 
