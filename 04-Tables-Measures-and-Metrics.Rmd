@@ -886,13 +886,15 @@ Formative assessments are used to reveal student progress in the learning cycle 
 
 In this section, we will only consider district assessments that are *centralized*, meaning that most schools must administer and scan in the results into Illuminate ([Texas](https://ideapublicschools.illuminateed.com/) \| [Louisiana](https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&prev_page=Main_NotDashboardPage&page=SisLogin)), our main assessment platform.
 
-#### Illuminate data
+#### Current assessment platforms
 
-The IABWA tables (for **I**nterim **A**ssessments and **B**i**w**eekly **A**ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.
+The IABWA tables (for **I**nterim **A**ssessments and **B**i**w**eekly **A**ssessments) contain student-level and item-level performance records for any assessment administered on Edcite, Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.
 
 The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.
 
-Illuminate then stores all data at two different levels:
+Starting in 2022-2023, the STAAR exam was administered online only, causing most IDEA Texas assessments to switch to using Edcite exclusively.
+
+All internal assessment data are stored at two different levels:
 
 1.  student-level, and
 
@@ -904,18 +906,12 @@ each of which is stored in a different IABWA table.
 
 Most assessments have a standard naming convention:
 
-**SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT**
+**STATEABBR_SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT**
 
-For example, a 6th grade ELA semester exam in Fall 2021 may have the name **ELA_6thReading_F21_SE**, or the first AP Spanish Language unit exam may have the name **SPA_APSpanishLanguage_F21_UE1**.
+For example, a 6th grade ELA semester exam in Fall 2024 may have the name **TX_ELA_6thReading_F24_SE**, or the first AP Spanish Language unit exam may have the name **TX_SPA_APSpanishLanguage_F24_UE1**.
 
 ::: gotcha
-Note that as IDEA continues to expand, some, but not all, exams are now coded as
-
-STATEABBR_SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT
-
-For example, the first 6th grade math unit exam administered in Louisiana may be coded as LA_MAT_6thMath_F22_U1, while the first 6th grade math unit exam in Texas (covering different material) may be coded as TX_MAT_6thMath_F22_U1.
-
-Current state abbreviations include TX, LA, FL, and OH, so it may be prudent to filter rows by state FIRST before finding an appropriate exam to analyze.
+Note that prior to 2021, many assessments omitted the state abbreviation, so if you need to identify historical exam names, start with the subject code instead.
 :::
 
 A list of the most common codes used is included below:
@@ -1025,7 +1021,91 @@ This table displays item-level data for each student for each assessment. This i
 
 #### Other sources
 
-As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use [ANet](https://www.achievementnetwork.org/) to house some of their LEAP-aligned assessments.
+As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools historically used [ANet](https://www.achievementnetwork.org/) to house some of their LEAP-aligned assessments.
+
+#### Common queries
+
+::: {.tip}
+Querying assessment data, particularly item data, can be computationally costly. Here are some best practices if you're looking up specific exam data:
+
+1. Use the **IABWA** table first to filter for the desired **[SchoolTermID], [Subject], [State] and [AssessmentType] (if known)** to identify exam names you need. Then, use the corresponding **[ExternalTestID]** column to filter for exams efficiently.
+2. If you need items from a specific exam, use the **[ExternalTestID]** in the **IABWAItems** table. Filter for the **[SchoolTermID], [State], [ExternalTestID], [QuestionNumber], and [AssessmentType] (if known)** to get item-level data for all students.
+:::
+
+Let's say you want all scores from the open-ended questions of the AP English Literature Unit Exam 1 assessment in 2024-2025. Here is one way to approach this problem:
+
+1. Use the IABWA table to identify the [ExternalTestID] of the assessment.
+2. Use the [ExternalTestID] to filter the IABWA table again.
+3. Use the [ExternalTestID] and [QuestionNumber] to filter the IABWAItems table.
+
+**To find the names of all exams administered within a school year, use the following query:**
+
+```{sql exam_names, eval=FALSE}
+SELECT  DISTINCT [AcademicYear]
+                ,[State]
+                ,[SubjectID]
+                ,[Subject]
+                ,[AssessmentType]
+                ,[ExternalTestID]
+                ,[AssessmentName]
+                ,[AssessmentGradeLevels]
+                ,[StudentNumber]
+  FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+  
+  /* use as many filters as needed, but at minimum, start with the school year */
+  WHERE [SchoolTermID] = 3400 /* 3400 is 2024-2025, 3300 is 2023-2024, etc. */
+    AND [State] = 'TX'
+    AND [Subject] = 'English Language Arts'
+```
+
+You learn the relevant [ExternalTestID] is 2601.
+
+**To query student-assessment-level-data, use the following query:**
+
+```{sql student_assessment, eval=FALSE}
+SELECT *
+  FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+  
+  /* add filter for [ExternalTestID] */
+  WHERE [SchoolTermID] = 3400 /* 3400 is 2024-2025, 3300 is 2023-2024, etc. */
+    AND [State] = 'TX'
+    AND [Subject] = 'English Language Arts'
+    AND [ExternalTestID] = 2601
+```
+
+
+You learn that Question 13 was particularly difficult, and would like to investigate the item. The IABWAItems table is extremely large, so ONLY query the assessment AND item you are interested in.
+
+**To query the student-assessment-item-level-data, use the following query:**
+
+```{sql item_assessment, eval=FALSE}
+SELECT B.[AssessmentName]
+      ,A.* /* pulls all columns from table A */
+      
+  /* use a subquery on IABWAItems to pull only the [QuestionNumber]s you need */
+  FROM (
+    SELECT *
+      FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWAItems]
+      WHERE [SchoolTermID] = 3400
+        AND [State] = 'TX'
+        AND [ExternalTestID] = 2601
+        AND [QuestionNumber] = 13
+    ) AS A 
+    
+  /* the IABWAItems table does not have the name of the assessment, so 
+     join to the IABWA table to get the assessment name                */
+  LEFT JOIN (
+    SELECT DISTINCT [ExternalTestID],
+                    [AssessmentName]
+      FROM [RGVPDSD-DWPRD2].[PROD2].[Assessments].[IABWA]
+      WHERE [SchoolTermID] = 3400
+        AND [State] = 'TX'
+        AND [ExternalTestID] = 2601
+    ) AS B
+  ON A.[ExternalTestID] = B.[ExternalTestID]
+```
+
+You may want to join this data with the Students, Schools, and Regions tables to get item-level summaries at every organizational level.
 
 ### DIBELS
 
