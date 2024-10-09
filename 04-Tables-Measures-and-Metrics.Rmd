@@ -680,58 +680,85 @@ IDEA uses [Stream](https://stream.ideapublicschools.org/admin/login) to capture 
 -   **[RatioAcceptance]**: calculated as [OfferAccepted] $\div$ [CapacityContract]
 -   **[RatioSubmission]**: calculated as [Submitted] $\div$ [CapacityContract]
 
-## Critical Student Intervention (CSI) Identification {#csi}
+## Critical Student Intervention (CSI) {#csi}
 
-To address the achievement gap among students, Dolores Gonzalez, our Chief Program Officer introduced the Critical Student Intervention (CSI) program in 2014. Currently, along with her team, Tricia Lopez our VP of Special Programs lead IDEA Public Schools in the effort of reducing the performance gaps. To help Tricia's team, the Software Development team put together a table where we can find the students who are enrolled in a CSI math and/or reading intervention program.
+Critical Student Intervention (CSI) is a program that was introduced in 2014 that aims to provide additional Reading and Math instructional time to students in grades 3-8 ([Hub site](https://ideapublicschoolsorg.sharepoint.com/SpecialPrograms/SitePages/Critical-Student-Intervention.aspx)). Students are selected to participate in the CSI program based on Renaissance STAR (RenStar) or state assessment scores. Students with a gap of 2.0 or more years in either Math and/or Reading as measured by their respective RenStar grade equivalency (GE) are selected into a CSI program. However, based on documentation, students who failed their Reading and/or Math state assessment can also be selected for the CSI program. For students who are brought in after late-June and before the first day of school, a decoding placement test is used (in addition to state assessment score) since RenStar is not available during this time (rollover in our system).
 
-**Database:** [RGVPDSD-DWPRD1].[PROD1].[Schools]
+Within the CSI program, there are two intervention subjects (Math and Reading), and each program has various strands. For example, students in CSI Reading are grouped into strands such as Decoding, Reading Mastery, and Corrective Reading. Based on CSI documentation, programs such as DISE and Español to English are identified as neither Math nor Reading; however, in the data, they are labeled under Reading as students who are in DISE tend to move into Decoding A (another Reading intervention) after 60 lessons.
 
-**Main metrics:** Percent of CSI students by school
+While there is documented guidance on CSI entry, there is limited information on the CSI exit process. For instance, there currently is not a flag in the data warehouse to indicate whether a student has exited CSI programming. An exit date is included in a warehouse table; however, it has not been found to be accurate (e.g., some students with an exit date continued, without a break, in the program). According to CSI documents, students are required to be enrolled in CSI courses for the entirety of the school year, and students exit the program at the end of the school year if their RenStar GE score is less than two years below grade level. However, the data does not reflect these requirements. For instance, students across grade levels 3-7 are exiting CSI despite having end of year RenStar GEs that are more than two grade levels below.
 
-**Most important columns:** [ProgramID] \| [InterventionType]
+The Software Development Team has created tables in which students who are enrolled in CSI programs can be identified. The tables are described below.
 
-**Tables:**
+### CSI Tables
 
--   ***[StudentCSI]:*** This table will aid us to identify the students who are/were enrolled in math or reading CSI intervention programs. Since sometimes there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because we can always use the [InterventionType] field to correctly associate an intervention program to either math or reading.
+#### CSILessonInputCoreDetails
 
--   **SQL Code Example:**
+`[RGVPDSD-DWRPT2].[Assessments].[dbo].[CSILessonInputCoreDetails]`
+
+This table is used to populate the [CSI Locus dashboard](https://app.powerbi.com/groups/7c5c298d-bf00-4c77-83c3-5d50c8ce7220/reports/ae2401c6-c8bf-4e8e-8988-9142069c131a/ReportSection?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&experience=power-bi&clientSideAuth=0&bookmarkGuid=Bookmark564eb5d1535ec89486c2). It is recommended to cross-reference the data in this dashboard with the raw data in the table as inconsistencies with student counts have been observed.
+
+IDEA data cannot be used to pull data from this table in R, so the following code can be utilized to access the data:
+
+```{r csi, eval=FALSE}
+username <- [enter user name]
+password <- [enter password]
+
+server <- "RGVPDSD-DWRPT2.ips.org"
+
+connection_string <- glue::glue(
+
+  "Driver = {{ODBC Driver 17 for SQL Server}};",
+  "Server = {server};",
+  "UID = {username};",
+  "PWD = {password};",
+  "database = Assessments"
+  
+  )
+
+conn <- NA
+
+conn <- DBI::dbConnect(odbc::odbc()
+                       ,timeout = 10
+                       ,.connection_string = connection_string)
+
+# pull all information from SY 24-25 (school term = 3400)
+csi_sy2425_raw <-
+  DBI::dbGetQuery(conn
+                  ,paste("SELECT *
+                         FROM [RGVPDSD-DWRPT2].[Assessments].[dbo].[CSILessonInputCoreDetails]
+                         WHERE [TermID] = '3400'")
+                         )
+```
+
+It has been noted that some students have multiple grade levels recorded within the same school year. As such, it is recommended to join this table with the Students table ([RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]) for the most up-to-date grade level.
+
+#### StudentCSI
+
+`[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI]`
+
+This table identifies students who are/were enrolled in Math or Reading CSI intervention programs. Since there is need for data adjustments from one year to another, the [ProgramID] number might change. However, this should not be a problem because the [InterventionType] field can correctly associate an intervention program to either Math or Reading.
+
+*SQL Code Example:*
 
 ```{sql, eval=FALSE}
 SELECT DISTINCT AcademicYear, [Subject], ProgramID
 FROM (SELECT [AcademicYear]
       ,[ProgramID]
-      ,CASE 
-	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
-	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
-  FROM [1065574-SQLPRD1].[PROD1].[Schools].[StudentCSI]
-  WHERE [AcademicYear] = '2018-2019' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
-GROUP BY AcademicYear, [Subject], ProgramID
-```
-
--   ***[StudentCSIDetails]:*** Here we find detailed information about the students who are or were part of a CSI program. We can either use this table to get a student count per school, or we could match the ***[StudentCSI]*** table data to the Students table and get the percent of CSI students per school.
-
--   **SQL Code Example:**
-
-```{sql, eval=FALSE}
-SELECT A.StudentNumber, A.SchoolNumber, B.SchoolName, D.[Subject]
-FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[Students] AS A
-INNER JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[Schools] AS B
-ON A.SchoolNumber = B.SchoolNumber
-LEFT JOIN [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI] AS C
-ON A.StudentNumber = C.StudentNumber AND A.AcademicYear = C.AcademicYear
-LEFT JOIN 
-(SELECT DISTINCT AcademicYear, [Subject], ProgramID
-FROM (SELECT [AcademicYear]
-      ,[ProgramID]
-      ,CASE 
-	  WHEN [InterventionType] LIKE '%math%' THEN 'Math'
-	  WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
+      ,CASE
+      WHEN [InterventionType] LIKE '%math%' THEN 'Math'
+      WHEN [InterventionType] LIKE '%reading%' THEN 'Reading' ELSE NULL END AS [Subject]
   FROM [RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSI]
-  WHERE [AcademicYear] = '2020-2021' AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
-GROUP BY AcademicYear, [Subject], ProgramID) AS D
-ON C.ProgramID = D.ProgramID
-WHERE A.AcademicYear = '2020-2021'
+  WHERE [AcademicYear] = '2018-2019'
+  AND (InterventionType LIKE '%math%' OR InterventionType LIKE '%reading%')) AS A
+  GROUP BY AcademicYear, [Subject], ProgramID
 ```
+
+#### StudentCSIDetails
+
+`[RGVPDSD-DWPRD1].[PROD1].[Schools].[StudentCSIDetails]`
+
+This is a temporary table and should not be used to pull data.
 
 ## Assessment Data
 
@@ -1832,19 +1859,13 @@ Leavers with the following exit reason are excluded from the population:
 
 ### 90 Day Retention
 
-90 Day retention is the attrition rate of first year staff. The formula for the attrition rate is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff). 
+90 Day retention is the attrition rate of first year staff. The formula for the attrition rate is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff).
 
-In the staff retention dashboard (reporting.employees), there is a binary column "LEAVERS90D" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90D retention, it divides the number of 0's in that column by the total count of first year staff. 
+In the staff retention dashboard (reporting.employees), there is a binary column "LEAVERS90D" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90D retention, it divides the number of 0's in that column by the total count of first year staff.
 
-**Example:**
-+ Total staff headcount: 10
-+	1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1)
-+	1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2)
-+	1 staff member is no longer employed and quit more than 90 calendar days after their start date
-+	7 staff members are actively employed and more than 90 calendar days from their start date
+**Example:** + Total staff headcount: 10 + 1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1) + 1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2) + 1 staff member is no longer employed and quit more than 90 calendar days after their start date + 7 staff members are actively employed and more than 90 calendar days from their start date
 
 In this example, 90D retention would be 1-(1/10) = 90%. If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged. If staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.
-
 
 ### Tips for Staff Retention Reporting
 
@@ -1874,8 +1895,7 @@ There are some high stakes roles in the vw_CurrentStaffDirectory table located i
                                      TRUE ~ "Non- HighStakesRoles"))
 ```
 
-
-When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used.  Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
+When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
 
 ## Joins
 
