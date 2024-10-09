@@ -1175,13 +1175,14 @@
 <li>and more…</li>
 </ul>
 <p>In this section, we will only consider district assessments that are <em>centralized</em>, meaning that most schools must administer and scan in the results into Illuminate (<a href="https://ideapublicschools.illuminateed.com/">Texas</a> | <a href="https://ideala.illuminateed.com/live/?Main_NotDashboardPage=&amp;prev_page=Main_NotDashboardPage&amp;page=SisLogin">Louisiana</a>), our main assessment platform.</p>
-<div id="illuminate-data" class="section level4" number="4.8.2.1">
+<div id="current-assessment-platforms" class="section level4" number="4.8.2.1">
 <h4>
-<span class="header-section-number">4.8.2.1</span> Illuminate data<a class="anchor" aria-label="anchor" href="#illuminate-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8.2.1</span> Current assessment platforms<a class="anchor" aria-label="anchor" href="#current-assessment-platforms"><i class="fas fa-link"></i></a>
 </h4>
-<p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
+<p>The IABWA tables (for <strong>I</strong>nterim <strong>A</strong>ssessments and <strong>B</strong>i<strong>w</strong>eekly <strong>A</strong>ssessments) contain student-level and item-level performance records for any assessment administered on Edcite, Illuminate, Edulastic, SchoolCity, or SchoolNet. Although we have phased out IAs and BWAs in favor of UEs (unit exams) and EOMs (end of module assessments), the table nevertheless contains all types of assessments scanned in since 2014-2015.</p>
 <p>The most common way of entering data into Illuminate is through a scantron-like answer form, which Illuminate automatically generates when an assessment is created. The teacher has the option of generating answer forms either with the individual student ID prepopulated (most common) or with a generic ID key that must be bubbled in (less common). Students (or teachers, if the response is open-ended) bubble in their responses, upload each answer form via webcam or scanner, until all data is collected.</p>
-<p>Illuminate then stores all data at two different levels:</p>
+<p>Starting in 2022-2023, the STAAR exam was administered online only, causing most IDEA Texas assessments to switch to using Edcite exclusively.</p>
+<p>All internal assessment data are stored at two different levels:</p>
 <ol style="list-style-type: decimal">
 <li><p>student-level, and</p></li>
 <li><p>item-level by student,</p></li>
@@ -1192,13 +1193,10 @@
 <span class="header-section-number">4.8.2.1.1</span> Naming conventions<a class="anchor" aria-label="anchor" href="#naming-conventions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Most assessments have a standard naming convention:</p>
-<p><strong>SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
-<p>For example, a 6th grade ELA semester exam in Fall 2021 may have the name <strong>ELA_6thReading_F21_SE</strong>, or the first AP Spanish Language unit exam may have the name <strong>SPA_APSpanishLanguage_F21_UE1</strong>.</p>
+<p><strong>STATEABBR_SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</strong></p>
+<p>For example, a 6th grade ELA semester exam in Fall 2024 may have the name <strong>TX_ELA_6thReading_F24_SE</strong>, or the first AP Spanish Language unit exam may have the name <strong>TX_SPA_APSpanishLanguage_F24_UE1</strong>.</p>
 <div class="gotcha">
-<p>Note that as IDEA continues to expand, some, but not all, exams are now coded as</p>
-<p>STATEABBR_SUBJECTCODE_COURSE_SEMESTER_ASSESSMENT</p>
-<p>For example, the first 6th grade math unit exam administered in Louisiana may be coded as LA_MAT_6thMath_F22_U1, while the first 6th grade math unit exam in Texas (covering different material) may be coded as TX_MAT_6thMath_F22_U1.</p>
-<p>Current state abbreviations include TX, LA, FL, and OH, so it may be prudent to filter rows by state FIRST before finding an appropriate exam to analyze.</p>
+<p>Note that prior to 2021, many assessments omitted the state abbreviation, so if you need to identify historical exam names, start with the subject code instead.</p>
 </div>
 <p>A list of the most common codes used is included below:</p>
 <div class="inline-table"><table class="table table-sm">
@@ -1416,7 +1414,78 @@
 <h4>
 <span class="header-section-number">4.8.2.2</span> Other sources<a class="anchor" aria-label="anchor" href="#other-sources"><i class="fas fa-link"></i></a>
 </h4>
-<p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools use <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
+<p>As IDEA grows nationally, certain regions have assessment-specific platforms that do not directly flow into the data warehouse. For example, Louisiana schools historically used <a href="https://www.achievementnetwork.org/">ANet</a> to house some of their LEAP-aligned assessments.</p>
+</div>
+<div id="common-queries-2" class="section level4" number="4.8.2.3">
+<h4>
+<span class="header-section-number">4.8.2.3</span> Common queries<a class="anchor" aria-label="anchor" href="#common-queries-2"><i class="fas fa-link"></i></a>
+</h4>
+<div class="tip">
+<p>Querying assessment data, particularly item data, can be computationally costly. Here are some best practices if you’re looking up specific exam data:</p>
+<ol style="list-style-type: decimal">
+<li>Use the <strong>IABWA</strong> table first to filter for the desired <strong>[SchoolTermID], [Subject], [State] and [AssessmentType] (if known)</strong> to identify exam names you need. Then, use the corresponding <strong>[ExternalTestID]</strong> column to filter for exams efficiently.</li>
+<li>If you need items from a specific exam, use the <strong>[ExternalTestID]</strong> in the <strong>IABWAItems</strong> table. Filter for the <strong>[SchoolTermID], [State], [ExternalTestID], [QuestionNumber], and [AssessmentType] (if known)</strong> to get item-level data for all students.</li>
+</ol>
+</div>
+<p>Let’s say you want all scores from the open-ended questions of the AP English Literature Unit Exam 1 assessment in 2024-2025. Here is one way to approach this problem:</p>
+<ol style="list-style-type: decimal">
+<li>Use the IABWA table to identify the [ExternalTestID] of the assessment.</li>
+<li>Use the [ExternalTestID] to filter the IABWA table again.</li>
+<li>Use the [ExternalTestID] and [QuestionNumber] to filter the IABWAItems table.</li>
+</ol>
+<p><strong>To find the names of all exams administered within a school year, use the following query:</strong></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb23-1"><a href="key-tables-measures-and-metrics.html#cb23-1" tabindex="-1"></a><span class="kw">SELECT</span>  <span class="kw">DISTINCT</span> [AcademicYear]</span>
+<span id="cb23-2"><a href="key-tables-measures-and-metrics.html#cb23-2" tabindex="-1"></a>                ,[State]</span>
+<span id="cb23-3"><a href="key-tables-measures-and-metrics.html#cb23-3" tabindex="-1"></a>                ,[SubjectID]</span>
+<span id="cb23-4"><a href="key-tables-measures-and-metrics.html#cb23-4" tabindex="-1"></a>                ,[Subject]</span>
+<span id="cb23-5"><a href="key-tables-measures-and-metrics.html#cb23-5" tabindex="-1"></a>                ,[AssessmentType]</span>
+<span id="cb23-6"><a href="key-tables-measures-and-metrics.html#cb23-6" tabindex="-1"></a>                ,[ExternalTestID]</span>
+<span id="cb23-7"><a href="key-tables-measures-and-metrics.html#cb23-7" tabindex="-1"></a>                ,[AssessmentName]</span>
+<span id="cb23-8"><a href="key-tables-measures-and-metrics.html#cb23-8" tabindex="-1"></a>                ,[AssessmentGradeLevels]</span>
+<span id="cb23-9"><a href="key-tables-measures-and-metrics.html#cb23-9" tabindex="-1"></a>                ,[StudentNumber]</span>
+<span id="cb23-10"><a href="key-tables-measures-and-metrics.html#cb23-10" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD2].[PROD2].[Assessments].[IABWA]</span>
+<span id="cb23-11"><a href="key-tables-measures-and-metrics.html#cb23-11" tabindex="-1"></a>  </span>
+<span id="cb23-12"><a href="key-tables-measures-and-metrics.html#cb23-12" tabindex="-1"></a>  <span class="co">/* use as many filters as needed, but at minimum, start with the school year */</span></span>
+<span id="cb23-13"><a href="key-tables-measures-and-metrics.html#cb23-13" tabindex="-1"></a>  <span class="kw">WHERE</span> [SchoolTermID] <span class="op">=</span> <span class="dv">3400</span> <span class="co">/* 3400 is 2024-2025, 3300 is 2023-2024, etc. */</span></span>
+<span id="cb23-14"><a href="key-tables-measures-and-metrics.html#cb23-14" tabindex="-1"></a>    <span class="kw">AND</span> [State] <span class="op">=</span> <span class="st">'TX'</span></span>
+<span id="cb23-15"><a href="key-tables-measures-and-metrics.html#cb23-15" tabindex="-1"></a>    <span class="kw">AND</span> [Subject] <span class="op">=</span> <span class="st">'English Language Arts'</span></span></code></pre></div>
+<p>You learn the relevant [ExternalTestID] is 2601.</p>
+<p><strong>To query student-assessment-level-data, use the following query:</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb24-1"><a href="key-tables-measures-and-metrics.html#cb24-1" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb24-2"><a href="key-tables-measures-and-metrics.html#cb24-2" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD2].[PROD2].[Assessments].[IABWA]</span>
+<span id="cb24-3"><a href="key-tables-measures-and-metrics.html#cb24-3" tabindex="-1"></a>  </span>
+<span id="cb24-4"><a href="key-tables-measures-and-metrics.html#cb24-4" tabindex="-1"></a>  <span class="co">/* add filter for [ExternalTestID] */</span></span>
+<span id="cb24-5"><a href="key-tables-measures-and-metrics.html#cb24-5" tabindex="-1"></a>  <span class="kw">WHERE</span> [SchoolTermID] <span class="op">=</span> <span class="dv">3400</span> <span class="co">/* 3400 is 2024-2025, 3300 is 2023-2024, etc. */</span></span>
+<span id="cb24-6"><a href="key-tables-measures-and-metrics.html#cb24-6" tabindex="-1"></a>    <span class="kw">AND</span> [State] <span class="op">=</span> <span class="st">'TX'</span></span>
+<span id="cb24-7"><a href="key-tables-measures-and-metrics.html#cb24-7" tabindex="-1"></a>    <span class="kw">AND</span> [Subject] <span class="op">=</span> <span class="st">'English Language Arts'</span></span>
+<span id="cb24-8"><a href="key-tables-measures-and-metrics.html#cb24-8" tabindex="-1"></a>    <span class="kw">AND</span> [ExternalTestID] <span class="op">=</span> <span class="dv">2601</span></span></code></pre></div>
+<p>You learn that Question 13 was particularly difficult, and would like to investigate the item. The IABWAItems table is extremely large, so ONLY query the assessment AND item you are interested in.</p>
+<p><strong>To query the student-assessment-item-level-data, use the following query:</strong></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="key-tables-measures-and-metrics.html#cb25-1" tabindex="-1"></a><span class="kw">SELECT</span> B.[AssessmentName]</span>
+<span id="cb25-2"><a href="key-tables-measures-and-metrics.html#cb25-2" tabindex="-1"></a>      ,A.<span class="op">*</span> <span class="co">/* pulls all columns from table A */</span></span>
+<span id="cb25-3"><a href="key-tables-measures-and-metrics.html#cb25-3" tabindex="-1"></a>      </span>
+<span id="cb25-4"><a href="key-tables-measures-and-metrics.html#cb25-4" tabindex="-1"></a>  <span class="co">/* use a subquery on IABWAItems to pull only the [QuestionNumber]s you need */</span></span>
+<span id="cb25-5"><a href="key-tables-measures-and-metrics.html#cb25-5" tabindex="-1"></a>  <span class="kw">FROM</span> (</span>
+<span id="cb25-6"><a href="key-tables-measures-and-metrics.html#cb25-6" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb25-7"><a href="key-tables-measures-and-metrics.html#cb25-7" tabindex="-1"></a>      <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD2].[PROD2].[Assessments].[IABWAItems]</span>
+<span id="cb25-8"><a href="key-tables-measures-and-metrics.html#cb25-8" tabindex="-1"></a>      <span class="kw">WHERE</span> [SchoolTermID] <span class="op">=</span> <span class="dv">3400</span></span>
+<span id="cb25-9"><a href="key-tables-measures-and-metrics.html#cb25-9" tabindex="-1"></a>        <span class="kw">AND</span> [State] <span class="op">=</span> <span class="st">'TX'</span></span>
+<span id="cb25-10"><a href="key-tables-measures-and-metrics.html#cb25-10" tabindex="-1"></a>        <span class="kw">AND</span> [ExternalTestID] <span class="op">=</span> <span class="dv">2601</span></span>
+<span id="cb25-11"><a href="key-tables-measures-and-metrics.html#cb25-11" tabindex="-1"></a>        <span class="kw">AND</span> [QuestionNumber] <span class="op">=</span> <span class="dv">13</span></span>
+<span id="cb25-12"><a href="key-tables-measures-and-metrics.html#cb25-12" tabindex="-1"></a>    ) <span class="kw">AS</span> A </span>
+<span id="cb25-13"><a href="key-tables-measures-and-metrics.html#cb25-13" tabindex="-1"></a>    </span>
+<span id="cb25-14"><a href="key-tables-measures-and-metrics.html#cb25-14" tabindex="-1"></a>  <span class="co">/* the IABWAItems table does not have the name of the assessment, so </span></span>
+<span id="cb25-15"><a href="key-tables-measures-and-metrics.html#cb25-15" tabindex="-1"></a><span class="co">     join to the IABWA table to get the assessment name                */</span></span>
+<span id="cb25-16"><a href="key-tables-measures-and-metrics.html#cb25-16" tabindex="-1"></a>  <span class="kw">LEFT</span> <span class="kw">JOIN</span> (</span>
+<span id="cb25-17"><a href="key-tables-measures-and-metrics.html#cb25-17" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> [ExternalTestID],</span>
+<span id="cb25-18"><a href="key-tables-measures-and-metrics.html#cb25-18" tabindex="-1"></a>                    [AssessmentName]</span>
+<span id="cb25-19"><a href="key-tables-measures-and-metrics.html#cb25-19" tabindex="-1"></a>      <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWPRD2].[PROD2].[Assessments].[IABWA]</span>
+<span id="cb25-20"><a href="key-tables-measures-and-metrics.html#cb25-20" tabindex="-1"></a>      <span class="kw">WHERE</span> [SchoolTermID] <span class="op">=</span> <span class="dv">3400</span></span>
+<span id="cb25-21"><a href="key-tables-measures-and-metrics.html#cb25-21" tabindex="-1"></a>        <span class="kw">AND</span> [State] <span class="op">=</span> <span class="st">'TX'</span></span>
+<span id="cb25-22"><a href="key-tables-measures-and-metrics.html#cb25-22" tabindex="-1"></a>        <span class="kw">AND</span> [ExternalTestID] <span class="op">=</span> <span class="dv">2601</span></span>
+<span id="cb25-23"><a href="key-tables-measures-and-metrics.html#cb25-23" tabindex="-1"></a>    ) <span class="kw">AS</span> B</span>
+<span id="cb25-24"><a href="key-tables-measures-and-metrics.html#cb25-24" tabindex="-1"></a>  <span class="kw">ON</span> A.[ExternalTestID] <span class="op">=</span> B.[ExternalTestID]</span></code></pre></div>
+<p>You may want to join this data with the Students, Schools, and Regions tables to get item-level summaries at every organizational level.</p>
 </div>
 </div>
 <div id="dibels" class="section level3" number="4.8.3">
@@ -1636,7 +1705,7 @@
 <span class="header-section-number">4.8.6.3</span> Useful queries<a class="anchor" aria-label="anchor" href="#useful-queries"><i class="fas fa-link"></i></a>
 </h4>
 <p>Suppose we wanted to retreive the most recent IB scores.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ACADEMIC_YEAR</span> <span class="op">&lt;-</span> <span class="st">"2021-2022"</span></span>
 <span></span>
 <span><span class="va">df_ib</span> <span class="op">&lt;-</span> <span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"IBScores"</span>,</span>
@@ -1654,7 +1723,7 @@
 </ul>
 <p>Thus, the [Grade] column is <em>character</em>, not numeric.</p>
 <p>The code below will provide the distribution of numerical and letter grades.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df_ib</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TCPCourseCode</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Grade</span><span class="op">)</span></span></code></pre></div>
@@ -1719,30 +1788,30 @@
 <li>Janna Wiley is the Director of ACT Programming. She has context on ACT administration and data.</li>
 </ul>
 <p><strong>SQL example:</strong></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb25-1"><a href="key-tables-measures-and-metrics.html#cb25-1" tabindex="-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
-<span id="cb25-2"><a href="key-tables-measures-and-metrics.html#cb25-2" tabindex="-1"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
-<span id="cb25-3"><a href="key-tables-measures-and-metrics.html#cb25-3" tabindex="-1"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
-<span id="cb25-4"><a href="key-tables-measures-and-metrics.html#cb25-4" tabindex="-1"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
-<span id="cb25-5"><a href="key-tables-measures-and-metrics.html#cb25-5" tabindex="-1"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
-<span id="cb25-6"><a href="key-tables-measures-and-metrics.html#cb25-6" tabindex="-1"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
-<span id="cb25-7"><a href="key-tables-measures-and-metrics.html#cb25-7" tabindex="-1"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
-<span id="cb25-8"><a href="key-tables-measures-and-metrics.html#cb25-8" tabindex="-1"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
-<span id="cb25-9"><a href="key-tables-measures-and-metrics.html#cb25-9" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
-<span id="cb25-10"><a href="key-tables-measures-and-metrics.html#cb25-10" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
-<span id="cb25-11"><a href="key-tables-measures-and-metrics.html#cb25-11" tabindex="-1"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
-<span id="cb25-12"><a href="key-tables-measures-and-metrics.html#cb25-12" tabindex="-1"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
-<span id="cb25-13"><a href="key-tables-measures-and-metrics.html#cb25-13" tabindex="-1"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
-<span id="cb25-14"><a href="key-tables-measures-and-metrics.html#cb25-14" tabindex="-1"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
-<span id="cb25-15"><a href="key-tables-measures-and-metrics.html#cb25-15" tabindex="-1"></a>      ,[Composite]</span>
-<span id="cb25-16"><a href="key-tables-measures-and-metrics.html#cb25-16" tabindex="-1"></a>      ,[Writing]</span>
-<span id="cb25-17"><a href="key-tables-measures-and-metrics.html#cb25-17" tabindex="-1"></a>      ,[STEM]</span>
-<span id="cb25-18"><a href="key-tables-measures-and-metrics.html#cb25-18" tabindex="-1"></a>      ,[ELA]</span>
-<span id="cb25-19"><a href="key-tables-measures-and-metrics.html#cb25-19" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
-<span id="cb25-20"><a href="key-tables-measures-and-metrics.html#cb25-20" tabindex="-1"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
-<span id="cb25-21"><a href="key-tables-measures-and-metrics.html#cb25-21" tabindex="-1"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
-<span id="cb25-22"><a href="key-tables-measures-and-metrics.html#cb25-22" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb28-1"><a href="key-tables-measures-and-metrics.html#cb28-1" tabindex="-1"></a><span class="kw">SELECT</span> [ID_Local] <span class="kw">AS</span> [StudentNumber]</span>
+<span id="cb28-2"><a href="key-tables-measures-and-metrics.html#cb28-2" tabindex="-1"></a>      ,[F_Name] <span class="kw">AS</span> [FirstName]</span>
+<span id="cb28-3"><a href="key-tables-measures-and-metrics.html#cb28-3" tabindex="-1"></a>      ,[M_Initial] <span class="kw">AS</span> [MiddleInitial]</span>
+<span id="cb28-4"><a href="key-tables-measures-and-metrics.html#cb28-4" tabindex="-1"></a>      ,[L_Name] <span class="kw">AS</span> [LastName]</span>
+<span id="cb28-5"><a href="key-tables-measures-and-metrics.html#cb28-5" tabindex="-1"></a>        ,<span class="kw">REPLACE</span>([HS_GradeLev], <span class="st">'th Grade'</span>, <span class="st">''</span>) <span class="kw">AS</span> [GradeLevelTaken]</span>
+<span id="cb28-6"><a href="key-tables-measures-and-metrics.html#cb28-6" tabindex="-1"></a>      ,[HS_Code] <span class="kw">AS</span> [CEEBCode]</span>
+<span id="cb28-7"><a href="key-tables-measures-and-metrics.html#cb28-7" tabindex="-1"></a>      ,[HS_GradYr] <span class="kw">AS</span> [ClassYear]</span>
+<span id="cb28-8"><a href="key-tables-measures-and-metrics.html#cb28-8" tabindex="-1"></a>      ,[Test_Dte] <span class="kw">AS</span> [TestDate]</span>
+<span id="cb28-9"><a href="key-tables-measures-and-metrics.html#cb28-9" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">1</span>, <span class="dv">2</span>) <span class="kw">AS</span> [<span class="dt">Month</span>]</span>
+<span id="cb28-10"><a href="key-tables-measures-and-metrics.html#cb28-10" tabindex="-1"></a>        ,SUBSTRING([Test_Dte], <span class="dv">3</span>, <span class="dv">6</span>) <span class="kw">AS</span> [<span class="dt">Year</span>]</span>
+<span id="cb28-11"><a href="key-tables-measures-and-metrics.html#cb28-11" tabindex="-1"></a>      ,[Eng] <span class="kw">AS</span> [English]</span>
+<span id="cb28-12"><a href="key-tables-measures-and-metrics.html#cb28-12" tabindex="-1"></a>      ,[Mth] <span class="kw">AS</span> [Mathematics]</span>
+<span id="cb28-13"><a href="key-tables-measures-and-metrics.html#cb28-13" tabindex="-1"></a>      ,[Rdg] <span class="kw">AS</span> [Reading]</span>
+<span id="cb28-14"><a href="key-tables-measures-and-metrics.html#cb28-14" tabindex="-1"></a>      ,[Sci] <span class="kw">AS</span> [Science]</span>
+<span id="cb28-15"><a href="key-tables-measures-and-metrics.html#cb28-15" tabindex="-1"></a>      ,[Composite]</span>
+<span id="cb28-16"><a href="key-tables-measures-and-metrics.html#cb28-16" tabindex="-1"></a>      ,[Writing]</span>
+<span id="cb28-17"><a href="key-tables-measures-and-metrics.html#cb28-17" tabindex="-1"></a>      ,[STEM]</span>
+<span id="cb28-18"><a href="key-tables-measures-and-metrics.html#cb28-18" tabindex="-1"></a>      ,[ELA]</span>
+<span id="cb28-19"><a href="key-tables-measures-and-metrics.html#cb28-19" tabindex="-1"></a>  <span class="kw">FROM</span> [RGVPDSD<span class="op">-</span>DWSRC2].[SRC_ACT].[ACT].[StudentScores]</span>
+<span id="cb28-20"><a href="key-tables-measures-and-metrics.html#cb28-20" tabindex="-1"></a>  <span class="kw">WHERE</span> [HS_GradYr] <span class="kw">IN</span> (<span class="st">'2023'</span>, <span class="st">'2024'</span>, <span class="st">'2025'</span>, <span class="st">'2026'</span>)</span>
+<span id="cb28-21"><a href="key-tables-measures-and-metrics.html#cb28-21" tabindex="-1"></a>    <span class="kw">AND</span> [HS_GradeLev] <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="st">'8th Grade'</span>, <span class="st">'6th or 7th Grad'</span>)   </span>
+<span id="cb28-22"><a href="key-tables-measures-and-metrics.html#cb28-22" tabindex="-1"></a>  <span class="kw">ORDER</span> <span class="kw">BY</span> [HS_GradYr], [HS_Code], [L_Name], [<span class="dt">Year</span>], [<span class="dt">Month</span>]</span></code></pre></div>
 <p><strong>R example:</strong></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_table</span><span class="op">(</span>.table_name <span class="op">=</span> <span class="st">"StudentScores"</span>,</span>
 <span>          .server_name <span class="op">=</span> <span class="st">"RGVPDSD-DWSRC2"</span>,</span>
 <span>          .database_name <span class="op">=</span> <span class="st">"SRC_ACT"</span>,</span>
@@ -1991,7 +2060,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <div class="float">
 <img src="img/teachboost_table_joins.png" title="TeachBoost table joins" width="600" alt="TeachBoost table joins"><div class="figcaption">TeachBoost table joins</div>
 </div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
@@ -2363,7 +2432,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <span class="header-section-number">4.12.3</span> Tips for Staff Retention Reporting<a class="anchor" aria-label="anchor" href="#tips-for-staff-retention-reporting"><i class="fas fa-link"></i></a>
 </h3>
 <p>When calculating year over year retention using reporting.employees, two columns, TRUELEAVER and TRUEHEADCOUNT, need to be created to get the proper retention for the previous year. These columns can be created as follows (from SY 22-23 and SY 23-24; years can be changed as necessary):</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reporting.employees</span> <span class="op">&lt;-</span>  <span class="va">reporting.employees</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TRUELEAVER <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
 <span>  <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2022"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&gt;=</span> <span class="st">"2022-07-01"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span><span class="op">&amp;</span> <span class="va">LEAVERS</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
@@ -2377,7 +2446,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <span class="header-section-number">4.12.4</span> High Stakes Roles<a class="anchor" aria-label="anchor" href="#high-stakes-roles"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>HighStakesRoles <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%CO-TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%TEACHER RESIDENCY COACH%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%FLEX TEACHER%"</span> <span class="op">~</span> <span class="st">"Teacher"</span>,</span>
 <span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF OPERATIONS%"</span> <span class="op">~</span> <span class="st">"APO"</span>,</span>
 <span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF INSTRUCTION"</span> <span class="op">~</span> <span class="st">"API"</span>,</span>
@@ -2531,7 +2600,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-01.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-09.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
