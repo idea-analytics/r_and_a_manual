@@ -75,9 +75,9 @@ But first things first:
 
 \*\*Note that throughout the steps below I'll show you how to each step. Ok. You ready? Great! Here we go.
 
-#### Get the [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
+#### Get the [R_and_A_Manual](https://github.com/idea-analytics/r_and_a_manual/) repository URL
 
-1.  Go to [R_and_A\_Manual](https://github.com/idea-analytics/r_and_a_manual/) repo in your browser.
+1.  Go to [R_and_A_Manual](https://github.com/idea-analytics/r_and_a_manual/) repo in your browser.
 
 2.  On the main page for the repo click the green *Code* button, Click on HTTPS (the default), and click the clipboard to copy the repo's URL:
 
@@ -189,7 +189,7 @@ Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 1
 
 1.  Open the Git command line. (I have not found a solution through RStudio or GitHub Desktop).
 2.  Switch to the repo and branch that has the large file.
-3.  Install the LFS extension in the correct repo and branch using 
+3.  Install the LFS extension in the correct repo and branch using
 
 ```{bash lfs install, eval = FALSE}
 git lfs install
@@ -206,18 +206,18 @@ git lfs track "*.pbix"
 ```{bash add gitattributes, eval = FALSE}
 git add .gitattributes
 ```
-N.B.  Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch.
-6.  Commit the file and push normally.
+
+N.B. Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch. 6. Commit the file and push normally.
 
 When you commit, you will see a message indicating the LFS extension was used on that file.
 
 ##### Using `.gitignore`
+
 Alternatively, you could choose not to commit the file and just keep the large file locally. (This is a good option if the file can be generated through code, like a `.csv` output). You will follow these steps:
 
 1.  If the file does not already exist, create a text file called `.gitignore` in your repo.
 2.  Add the name of the file you wish to ignore in the `.gitignore` file (e.g., `.Rdata` is ignored when using ProjectTemplate).
 3.  Save `.gitignore` and commit.
-
 
 #### RStudio
 
@@ -238,50 +238,47 @@ Merging changes in your feature branch with the main branch requires you go to G
 
 You're done!
 
-::: {.gotcha}
+::: gotcha
 You'll want to be careful here if you are working with others. If you pulled your main branch down awhile ago there is a risk that the main branch on your laptop is not up-to-date with the main branch on Github (because others have merged changes there).
 
 The best remedy is to checkout and pull main---which gets up to date---and then checkout your branch and run `git merge main`. You may have to resolve conflicts.
 :::
 
-
 ## Project Process
 
 When we are working on a project, we need to document not only our analytical work, but also our organization and management. There are multiple tools we use to plan, track, modify, and evaluate our progress among our team and with our stakeholders, and as we evolve, we certainly can add to our best practices for each of these tools. Namely, we will discuss how to set up Wrike projects, set up a GRPI/RASI, use operating mechanisms, and other important project structures.
 
-::: {.tip}
+::: tip
 The key point is that we backwards plan from our final product. The project management tools document these processes in greater detail, in the same way that a teacher might backwards plan from the assessment to the lesson, or a leader might document and follow up with the next steps from a meeting.
 :::
 
 Below is an overview of the backwards planning process. ![](img/project_workflow_diagram.png)
 
-
 ### General project management
 
-1. When you have a project established, you still need to document your progress as you move forward.
+1.  When you have a project established, you still need to document your progress as you move forward.
 
-  * During a project meeting, jot down key points and next steps as a comment, or create new tasks.
-  * Add comments after relevant tasks are completed.
-  * Include links to any completed products.
+-   During a project meeting, jot down key points and next steps as a comment, or create new tasks.
+-   Add comments after relevant tasks are completed.
+-   Include links to any completed products.
 
-::: {.hat}
+::: hat
 Are you taking notes in a notebook, on a OneNote, or in a Teams chat? Capture the links to all your relevant documents, GitHub repos, notes, pictures, etc. in a relevant task, as a comment, or in a description in a Wrike project! You'll be able to find things you forgot about months later.
 :::
 
-2. If you used a GRPI/RASI for the project, be sure to update your stakeholders, as well.
+2.  If you used a GRPI/RASI for the project, be sure to update your stakeholders, as well.
 
-  * Include a link to the GRPI/RASI in the Wrike project.
-  * When you update Wrike, update the GRPI/RASI.
-  * Your GRPI/RASI should succinctly summarize what you are doing in the project.
+-   Include a link to the GRPI/RASI in the Wrike project.
+-   When you update Wrike, update the GRPI/RASI.
+-   Your GRPI/RASI should succinctly summarize what you are doing in the project.
 
-3. Things might change in your project. Each week, ask yourself:
+3.  Things might change in your project. Each week, ask yourself:
 
-  * Did the scope of the work change?
-  * Did the timeline of the project change?
-  * Did I realize something else needed to be completed?, and so on
+-   Did the scope of the work change?
+-   Did the timeline of the project change?
+-   Did I realize something else needed to be completed?, and so on
 
 If you need to modify the project, carve out time to do so. Evaluating your progress will help keep yourself on track, and will alert others that the project may take longer or may end differently than originally planned. And of course, **document it!**
-
 
 ### Wrike projects and requests
 
@@ -289,54 +286,54 @@ We use [Wrike](https://login.wrike.com/login/) as our main project management sy
 
 #### Onboarding and setup
 
-1. During tactical or throughout the week, review any new Wrike requests.
+1.  During tactical or throughout the week, review any new Wrike requests.
 
-2. Determine if the request will be accepted, and if so, determine who will be assigned to the task.
+2.  Determine if the request will be accepted, and if so, determine who will be assigned to the task.
 
-3. Evaluate the scope of the request with your team AND the requester.
+3.  Evaluate the scope of the request with your team AND the requester.
 
-  * Vet the request thoroughly and ask clarifying questions with the requester.
-  * If this is an ad-hoc request, keep the request in the original queue and set up tasks (see next section).
-  * If this is a medium- to long-term request, then set up a project and related tasks into an appropriate folder:
-    - Evaluation Projects
-    - Impact Analyses
-    - An appropriate project folder
-  * **N.B.** For medium- to long-term requests, you should consider establishing a GRPI and a RASI for your stakeholders, so that you have a common document for the scope and progress of the work.
+-   Vet the request thoroughly and ask clarifying questions with the requester.
+-   If this is an ad-hoc request, keep the request in the original queue and set up tasks (see next section).
+-   If this is a medium- to long-term request, then set up a project and related tasks into an appropriate folder:
+    -   Evaluation Projects
+    -   Impact Analyses
+    -   An appropriate project folder
+-   **N.B.** For medium- to long-term requests, you should consider establishing a GRPI and a RASI for your stakeholders, so that you have a common document for the scope and progress of the work.
 
 #### Goal setting and deadlines
 
-1. Once your Wrike project or task has a page, then you should start backwards planning from the deliverable. Ask yourself:
+1.  Once your Wrike project or task has a page, then you should start backwards planning from the deliverable. Ask yourself:
 
-  * What is the *goal* of the project? (document it!)
-  * What is the *deliverable* for the project? (document it!)
-  * When is that deliverable due? (document it!)
+-   What is the *goal* of the project? (document it!)
+-   What is the *deliverable* for the project? (document it!)
+-   When is that deliverable due? (document it!)
 
-2. Assign the goal and the deliverable to the task or project.
+2.  Assign the goal and the deliverable to the task or project.
 
-  * You can create a task for the deliverable and assign a due date. 
-  * You can use the project/task description, leave a comment, or create a task for the goal.
-  * Ex. "Deliver slide deck and final report to Dolores" could be the deliverable, and "2021-12-17" could be the due date.
+-   You can create a task for the deliverable and assign a due date.
+-   You can use the project/task description, leave a comment, or create a task for the goal.
+-   Ex. "Deliver slide deck and final report to Dolores" could be the deliverable, and "2021-12-17" could be the due date.
 
 #### Defining tasks and dependencies
 
-1. Now, you need to accomplish those goals and produce the deliverable. Ask yourself:
+1.  Now, you need to accomplish those goals and produce the deliverable. Ask yourself:
 
-  * What steps do I need to produce the deliverable?
-  * What is the order in which I need to do those steps?
-  * Do certain steps require other tasks to be completed first?
+-   What steps do I need to produce the deliverable?
+-   What is the order in which I need to do those steps?
+-   Do certain steps require other tasks to be completed first?
 
-2. For each step you identified in part (1), create a new task.
+2.  For each step you identified in part (1), create a new task.
 
-  * Tasks are specific, bite-sized steps.
-  * Ex. "Make time series plot of AP Spanish Language scores at Mission CP" could be the task
-  
-3. Assign tasks created in step (2) to the backlog.
+-   Tasks are specific, bite-sized steps.
+-   Ex. "Make time series plot of AP Spanish Language scores at Mission CP" could be the task
 
-4. Create dependencies for relevant steps.
+3.  Assign tasks created in step (2) to the backlog.
 
-  * Link the *predecessors* (i.e., the steps before) and the *successors* (i.e., the steps after) to the task/subtask.
+4.  Create dependencies for relevant steps.
 
-5. Establish due dates for ALL steps, including dependencies, etc.
+-   Link the *predecessors* (i.e., the steps before) and the *successors* (i.e., the steps after) to the task/subtask.
+
+5.  Establish due dates for ALL steps, including dependencies, etc.
 
 #### Kanban workflow
 
@@ -348,15 +345,15 @@ $\textrm{Backlog} \rightarrow \textrm{Work in Progress} \rightarrow \textrm{Work
 
 Each stage can be roughly defined as the following:
 
-  * **Backlog**: This category may hold tasks for brainstorming or future development. None of these tasks have been started.
-  * **Work in Progress**: These tasks have been pulled from the Backlog and have been started. They are not yet complete.
-  * **Work in Review**: These tasks have reached a critical benchmark in development and need final feedback or revision. They are not yet approved for completion.
-  * **Completed**: These tasks have been completed.
-  
+-   **Backlog**: This category may hold tasks for brainstorming or future development. None of these tasks have been started.
+-   **Work in Progress**: These tasks have been pulled from the Backlog and have been started. They are not yet complete.
+-   **Work in Review**: These tasks have reached a critical benchmark in development and need final feedback or revision. They are not yet approved for completion.
+-   **Completed**: These tasks have been completed.
+
 To use a Kanban task workflow for a project:
 
-1. Open the context menu for a project (right-click).
-2. Change default workflow -> For tasks -> R&A Kanban Task Board Workflow.
+1.  Open the context menu for a project (right-click).
+2.  Change default workflow -\> For tasks -\> R&A Kanban Task Board Workflow.
 
 ![Changing a project to a Kanban workflow](img/workflow-kanban.png "Open the context menu, change default workflow, for tasks, R&A Kanban Task Board Workflow"){width="600"}
 
@@ -366,8 +363,8 @@ When you choose the "Board" view for the project, you should see the Kanban boar
 
 While we use Wrike internally to manage a project, external teams cannot access our workspace. Therefore, we must use different tools to track goals and roles for cross-functional projects.
 
-* A **GRPI** is a tool governing the **G**oals, **R**esponsibilities, **P**rocesses, and **I**nterpersonal norms of a project. This describes the purpose of the group working on the project.
-* A **RASI** is a tool governing the roles of each group member. Each task should have a person who is: **R**esponsible, **A**pproving, **S**upporting, and **I**nformed.
+-   A **GRPI** is a tool governing the **G**oals, **R**esponsibilities, **P**rocesses, and **I**nterpersonal norms of a project. This describes the purpose of the group working on the project.
+-   A **RASI** is a tool governing the roles of each group member. Each task should have a person who is: **R**esponsible, **A**pproving, **S**upporting, and **I**nformed.
 
 The GRPI and RASI should be shared between relevant teams and stakeholders. These documents serve as the contract and tracking system for the project. Note that while these tools are often paired together, some smaller tasks could benefit from just the RASI structure.
 
@@ -377,9 +374,9 @@ For more information, visit the Best Practices on [GRPI and RASI](https://ideapu
 
 To monitor an ongoing project with your group members (either internal or external), consider an appropriate operating mechanism. An **operating mechanism** is a process (see [GRPI](https://idea-analytics.github.io/r_and_a_manual/projects.html#grpi-rasi)) for establishing how the work can done. These meetings help establish and maintain regular communication across teams (see [Best Practice for Strong Business Partnerships](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/ETq-uUomFuNOvTgbzAdwplwBaBXYEvUgoblw1FcV2l4cSQ?e=JhRUFw). At IDEA, two common operating mechanisms are:
 
-1. **Daily huddle**: A (daily / morning / stand-up) huddle is a short (less than 10 minutes) to recap progress from the prior day and to state priorities for the current day. A team leader may also establish priorities for the team and provide announcements. This type of operating mechanism is optimal for teams that need to align priorities day-to-day. A [Best Practice for Daily Huddles](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EXWFlniwe5lGl4sUGrBb-FQB8wt5AeW87EoKT1jqJQBx5A?e=K92ACk) is also available.
+1.  **Daily huddle**: A (daily / morning / stand-up) huddle is a short (less than 10 minutes) to recap progress from the prior day and to state priorities for the current day. A team leader may also establish priorities for the team and provide announcements. This type of operating mechanism is optimal for teams that need to align priorities day-to-day. A [Best Practice for Daily Huddles](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EXWFlniwe5lGl4sUGrBb-FQB8wt5AeW87EoKT1jqJQBx5A?e=K92ACk) is also available.
 
-2. **Tactical**: A (weekly / biweekly) tactical is a recurring meeting to review goals, share information, and solve short-term problems. Usually, there are both recurring agenda items and a real-time agenda that can be flexible week-to-week. This type of operating mechanism is optimal for both internal and cross-functional teams working towards a long-term goal.  A [Best Practice for Weekly Tactical](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EbjTlM00OJxHgrvTh3QzA2sBThCQdEOfk8f9gh5F01zB2Q?e=xghlN8) is also available.
+2.  **Tactical**: A (weekly / biweekly) tactical is a recurring meeting to review goals, share information, and solve short-term problems. Usually, there are both recurring agenda items and a real-time agenda that can be flexible week-to-week. This type of operating mechanism is optimal for both internal and cross-functional teams working towards a long-term goal. A [Best Practice for Weekly Tactical](https://ideapublicschoolsorg.sharepoint.com/:w:/s/BestPracticesLibrary/EbjTlM00OJxHgrvTh3QzA2sBThCQdEOfk8f9gh5F01zB2Q?e=xghlN8) is also available.
 
 Consider reviewing Wrike, or the GRPI and RASI, at each of these operating mechanisms to record your progress, notes, and next steps.
 
@@ -395,7 +392,7 @@ For the complete process, read through this document on [Outgoing Data Requests]
 
 Is it perfect? No. It has more features than we'll likely ever use (logging, code profiling, and unit testing).
 
-::: {.tip}
+::: tip
 If you are new to ProjectTemplate the [Getting Started Tutorial is great](http://projecttemplate.net/getting_started.html). Indeed, it's always good to [read the docs](https://tyk.io/wp-content/webp-express/webp-images/uploads/2017/06/documentation_matrix.jpg.webp)
 :::
 
@@ -422,7 +419,7 @@ Doing that bestows upon you the following directory structure:
 
 ![ProjectTemplate Directory Structure](img/learning-pt-directory-structure.png "ProjectTemplate Directory Structure")
 
-::: {.gotcha}
+::: gotcha
 You'll notice in the image above that there is `.Rproj` file, which isn't added by ProjectTemplate. I created an Project in RStudio first and then navigated to that direction and ran the following:
 
 `create.project("../learning-pt/", merge.strategy = "allow.non.conflict")`,
@@ -453,7 +450,7 @@ We only use about half of the directories that ProjectTemplate Scaffolds. Here's
 
 **reports**: Here you can store any output reports, especially RMarkdown reports, that you produce. This is where final reports live.
 
-::: {.gotcha}
+::: gotcha
 ProjectTemplate doesn't always play well with RMarkdown (well, really the issue is with `knitr`). The biggest issue is running `load.project()` inside of RMarkdown. ProjectTemplate will complain that your `reports/` directory is not a ProjectTemplate directory, which is annoying. It's easily fixed with this line of code at the top of your RMarkdown and you are in Rproject:
 
 `setwd(here::here()); load.project()`
@@ -489,7 +486,7 @@ This is a common technique in Python and there it goes by the name of virtual en
 
 These three points are crucial for working well with others and protection for your future self.
 
-::: {.tip}
+::: tip
 As usual, you really should [read the docs for `renv`](https://rstudio.github.io/renv/articles/renv.html). They are thorough and clear.
 
 There's also an excellent [FAQ](https://rstudio.github.io/renv/articles/faq.html)
@@ -520,7 +517,7 @@ The `renv` workflow is super duper simple, after you've set it up:
 2.  Use `renv::snapshot()` to save the state of your project library. The project state will be serialized into a file called `renv.lock`.
 3.  If you want to revert to the previous state of your project---i.e., you installed a new version of a package and it's wreaking havoc on your project---simply use `renv::restore()`.
 
-::: {.hat}
+::: hat
 Following these simple steps isolates your project's environment from the rest of your other projects. So downloading a bleeding-edge, dev version of package from GitHub because you need a new feature won't pollute your other projects that are running just fine. This is the isolation bit mentioned in the three points above.
 :::
 
@@ -536,7 +533,7 @@ The `renv` developers recommend the following steps when using `renv` in collabo
 
 4.  When a collaborator first launches in this project, `renv` should automatically bootstrap itself, thereby downloading and installing the appropriate version of `renv` into the project library. After this has completed, they can then use [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) to restore the project library locally on their machine.
 
-::: {.gotcha}
+::: gotcha
 While working on a project, you or your collaborators may need to update or install new packages in your project. **When this occurs, you'll also want to ensure your collaborators are then using the same newly-installed packages.** In general, the process looks like this:
 
 1.  A user installs, or updates, one or more packages in their local project library;
@@ -558,10 +555,124 @@ For more information on collaboration strategies, please visit [environments.rst
 
 In short, there should be no issues, but there is one important thing to always keep in mind when publishing to RStudio connect:
 
-::: {.gotcha}
+::: gotcha
 The `renv` generated `.Rprofile` file should **not** be included in deployments to RStudio Connect.
 :::
 
+## Steps to Create a GitHub Repository with ProjectTemplate and renv
+
+\**Note*. Replace "new_project" with your new project name
+
+1\. Create a folder for the repo
+
+![](img/github-repo-1_create-folder-for-repo.png){width="500"}
+
+2\. Open R
+
+3\. R: Set the working directory to use the folder that was just created
+
+```{r set_working_directory, eval = FALSE}
+
+setwd("...")
+
+```
+
+4\. R: Set up the ProjectTemplate directory structure inside a folder titled "new_project"
+
+```{r set_up_project_template, eval = FALSE}
+
+install.packages("ProjectTemplate")
+library(ProjectTemplate)
+
+# add to existing folder
+create.project("...", merge.strategy = "allow.non.conflict")
+
+```
+
+5\. R: Create a project file named "new_project.Rproj" inside the "new_project" folder
+
+*Step 1: File \> New Project*
+
+![](img/github-repo-2_file_new-project.png){width="166"}
+
+*Step 2: Existing Directory*
+
+![](img/github-repo-3_existing-directory.png){width="262"}
+
+*Step 3: Select the "new_project" folder \> check "Open in new session" \> click "Create Project"*
+
+![](img/github-repo-4_create-project.png){width="300"}
+
+6\. R: set up the reproducible environment within the new Rproject
+
+*Step 1: Tools \> Project Options*
+
+![](img/github-repo-5_tools_project-options.png){width="358"}
+
+*Step 2: Git/SVN \> select "Git" for Version control system*
+
+![](img/github-repo-6_git-svn.png){width="454"}
+
+*Step 3: Environments \> check "Use renv with this project"*
+
+![](img/github-repo-7_environments_renv.png){width="322"}
+
+7\. GitHub: add repository to GitHub
+
+*Step 1: Open GitHub Desktop*
+
+*Step 2: File \> Add local repository...*
+
+![](img/github-repo-8_add-local-repo.png){width="175"}
+
+*Step 3: Select the "new_project" folder \> Add repository*
+
+![](img/github-repo-9_add-local-repo2.png){width="262"}
+
+*Step 4: Commit any files that are in the repository*
+
+![](img/github-repo-10_commit.png){width="357"}
+
+*Step 5: Publish repository \> check "Keep this code private" \> select Organization as "idea-analytics"*
+
+![](img/github-repo-11_publish-repo.png){width="459"}
+
+8\. R: install ideadata and ideacolors packages
+
+```{r install_ideadata_ideacolors, eval = FALSE}
+
+library(renv)
+renv::install("idea-analytics/ideadata@main")
+
+install.packages("devtools")
+library("devtools")
+devtools::install_github("idea-analytics/ideacolors")
+
+```
+
+*If you get this error,*
+
+![](img/github-repo-12_error.png){width="353"}
+
+*use this code instead*
+
+```{r install_github, eval = FALSE}
+
+devtools::install_github("idea-analytics/ideacolors", auth_token = "my_personal_access_token")
+
+```
+
+10\. R: open config \> global.dcf and change load_libraries to TRUE + add ideadata and ideacolors to library list + add any other libraries needed + change any other configuration settings as needed
+
+![](img/github-repo-13_global.png){width="429"}
+
+11\. R: save the state of the project library (and do this each time you want to save the state of the project)
+
+```{r install_github, eval = FALSE}
+
+renv::snapshot()
+
+```
 
 ## Publishing Projects
 
@@ -573,56 +684,54 @@ If your report is written in RMarkdown, then you can directly publish your repor
 
 To publish a report, do the following:
 
-1. Make sure your output in the header section is set to `output: html_document`. You can add other options, like a table of contents and formatting.
+1.  Make sure your output in the header section is set to `output: html_document`. You can add other options, like a table of contents and formatting.
 
-2. Knit your .Rmd to find any compiling errors before you publish.
+2.  Knit your .Rmd to find any compiling errors before you publish.
 
-3. Click on the blue Publish button in the upper right hand corner of the html output or in the editor. 
+3.  Click on the blue Publish button in the upper right hand corner of the html output or in the editor.
 
-4. Select RStudio Connect.
+4.  Select RStudio Connect.
 
-5. Choose if you want to publish with the source code or just publish the finished document. (The source code is useful if your report is recurring and can be updated, while the finished document is appropriate for things like analytical reports.)
+5.  Choose if you want to publish with the source code or just publish the finished document. (The source code is useful if your report is recurring and can be updated, while the finished document is appropriate for things like analytical reports.)
 
-6. Select analytics.ideapublicschools.org as the destination. Then, choose an appropriate title for your report. Finally, click Publish.
+6.  Select analytics.ideapublicschools.org as the destination. Then, choose an appropriate title for your report. Finally, click Publish.
 
-::: {.gotcha}
+::: gotcha
 If the .Rmd filename is too long, then the report will not publish. You'll need to shorten the filename if you get errors.
 :::
 
-7. Check your report on RStudio Connect and make adjustments under the Settings gear.
+7.  Check your report on RStudio Connect and make adjustments under the Settings gear.
 
 A detailed guide about publishing can be found in the RStudio Connect [documentation](https://docs.rstudio.com/connect/user/publishing/).
 
 ### Power BI
+
 If your dashboard was created in Power BI and you want to directly publish your dashboard to app.powerbi.com (Power BI Online) these are the steps to do so. You can go directly online to view your [Power BI](https://app.powerbi.com).
 
-1. Make sure at the top right you are signed in with your account.
+1.  Make sure at the top right you are signed in with your account.
 
-2. Save the report before Publishing.
+2.  Save the report before Publishing.
 
-3. On the Home menu, on the far right click Publish
+3.  On the Home menu, on the far right click Publish
 
-4. Select the Workspace that you want to Publish the dashboard to, then click "Select".
-  If you want to later post this Published dashboard to the team site (TheHub), select the "Research and Analysis" Workspace or a Premium Content Workspace, noted by a diamond on the Workspace.
+4.  Select the Workspace that you want to Publish the dashboard to, then click "Select". If you want to later post this Published dashboard to the team site (TheHub), select the "Research and Analysis" Workspace or a Premium Content Workspace, noted by a diamond on the Workspace.
 
-5. Go to [Power BI](https://app.powerbi.com) then go to your dashboard in the Workspace you Published and there will be two items, the dashboard and the data.
+5.  Go to [Power BI](https://app.powerbi.com) then go to your dashboard in the Workspace you Published and there will be two items, the dashboard and the data.
 
-6. Click on the dashboard report and then go to File > Embed report > Website or portal and copy the link in "Here's a link you can use to embed this content."
-  Use that link to share out or post to a Team Site.
+6.  Click on the dashboard report and then go to File \> Embed report \> Website or portal and copy the link in "Here's a link you can use to embed this content." Use that link to share out or post to a Team Site.
 
-### Team Site (TheHub)
+### Team Site (TheHub) {#team-site-thehub}
 
 The R&A Team Site Documents folder contains files we upload to the Team Site.
 
-The [Team Site (TheHub)][Team Site (TheHub)] Documents folder is not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
+The [Team Site (TheHub)](#team-site-thehub) Documents folder is not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
 
 #### Published Evaluation Plans
 
 On an annual basis, save a copy of the final evaluation plan to the Team Site Documents folder and select for upload to the R&A Team Site.
 
-The [Team Site (TheHub)][Team Site (TheHub)] and 
-Team Site Documents folder are not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
+The [Team Site (TheHub)](#team-site-thehub) and Team Site Documents folder are not to be confused with the R&A Private Group Documents folder. The [R&A Private Group][R&A Private Group] Documents folder contains shared folders R&A team members use for collaborative work and storage.
 
-Evaluation plans are published annually to the [Team Site (TheHub)][Team Site (TheHub)]. Published evaluation plan files are stored in the Team Site `Documents folder > Evaluation > Evaluation Plans > FY 20##` for accessibility, consistency, and organization purposes.
+Evaluation plans are published annually to the [Team Site (TheHub)](#team-site-thehub). Published evaluation plan files are stored in the Team Site `Documents folder > Evaluation > Evaluation Plans > FY 20##` for accessibility, consistency, and organization purposes.
 
 On an annual basis, save copy of each final, approved, ready-for-publication evaluation plan to the appropriate Team Site Documents folder. Select files for upload to the R&A Team Site.
