@@ -571,7 +571,7 @@ The `renv` generated `.Rprofile` file should **not** be included in deployments 
 
 3\. R: Set the working directory to use the folder that was just created
 
-```{r set_working_directory, eval = FALSE}
+```{r set_working_directory, eval=FALSE}
 
 setwd("...")
 
@@ -579,7 +579,7 @@ setwd("...")
 
 4\. R: Set up the ProjectTemplate directory structure inside a folder titled "new_project"
 
-```{r set_up_project_template, eval = FALSE}
+```{r set_up_project_template, eval=FALSE}
 
 install.packages("ProjectTemplate")
 library(ProjectTemplate)
@@ -639,7 +639,7 @@ create.project("...", merge.strategy = "allow.non.conflict")
 
 8\. R: install ideadata and ideacolors packages
 
-```{r install_ideadata_ideacolors, eval = FALSE}
+```{r install_ideadata_ideacolors, eval=FALSE}
 
 library(renv)
 renv::install("idea-analytics/ideadata@main")
@@ -656,7 +656,7 @@ devtools::install_github("idea-analytics/ideacolors")
 
 *use this code instead*
 
-```{r install_github, eval = FALSE}
+```{r install_github, eval=FALSE}
 
 devtools::install_github("idea-analytics/ideacolors", auth_token = "my_personal_access_token")
 
@@ -668,7 +668,7 @@ devtools::install_github("idea-analytics/ideacolors", auth_token = "my_personal_
 
 11\. R: save the state of the project library (and do this each time you want to save the state of the project)
 
-```{r install_github, eval = FALSE}
+```{r project_state, eval=FALSE}
 
 renv::snapshot()
 
