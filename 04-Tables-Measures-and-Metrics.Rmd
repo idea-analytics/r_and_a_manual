@@ -731,7 +731,7 @@ csi_sy2425_raw <-
                          )
 ```
 
-It has been noted that some students have multiple grade levels recorded within the same school year. As such, it is recommended to join this table with the Students table ([RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]) for the most up-to-date grade level.
+It has been noted that some students have multiple grade levels recorded within the same school year. As such, it is recommended to join this table with the Students table (`[RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]`) for the most up-to-date grade level.
 
 #### StudentCSI
 
@@ -1084,9 +1084,9 @@ It is particularly useful for evaluative purposes as it allows us to use normed 
 
 #### Where to get RenStar data?
 
-Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. `[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. The best is to use:
+Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. `[RGVPDSD-DWPRD2].[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. For Math RenStar, the best table to use is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarMathV2]` while the best time for Reading RenStar is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarReadingV2]`. 
 
-`[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]` and `[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]`
+Students take the RenStar during three testing windows, beginning of year (BOY), middle of year (MOY), and end of year (EOY). [CSI](#csi) students take this exam BOY, MOY, and EOY as well as two additional times, one in the fall (between BOY and MOY) and one in the spring (between MOY and EOY). Note that students can take the exam more than once during each screening window and these tables include all scores.
 
 ### AP
 
