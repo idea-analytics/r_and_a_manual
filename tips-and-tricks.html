@@ -103,7 +103,7 @@
 <p>Schools data, especially student-level data, is embedded in hierarchical groupings.</p>
 <p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is a smoothed, seasonally adjusted measure of the typical home value and market changes across a given region. It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
 <p>It’s a very large dataset so we’ll use the <a href="https://arrow.apache.org/docs/r/">Apache Arrow Project</a>’s feather file format to read the data into R and subset the housing costs to IDEA metro areas since 2020.</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'arrow'</span></span>
@@ -372,7 +372,7 @@
 </table></div>
 <p>These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we’d like to do aggregations over these various levels. That is, we’d like to know the mean home price for each neighborhood, city, and county. A typical work flow to achieve this is to write a <a href="https://dplyr.tidyverse.org">dplyr</a> pipeline for one <code>group_by</code> combination and then copy-and-paste that pipeline and change the columns in the <code>group_by</code> call. While this works in a pinch, its repetitive (violating <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">the DRY doctrine</a>), prone to copying errors and leaves with a bunch of dataframe that have increasingly awkward names.</p>
 <p>A more elegant solution is to leverage <a href="https://purrr.tidyverse.org/">purrr</a>’s <code>map_df</code> function and to pass it a list of already grouped data frames. Here’s a simple example:</p>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1005,7 +1005,7 @@
 </tbody>
 </table></div>
 <p>We now have a data frame with county-level <em>and</em> state-level means in one data frame. Notice however that the <code>county_name</code> field is <code>NA</code> for state level data:</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -1140,7 +1140,7 @@
 </tbody>
 </table></div>
 <p>This makes sense, since <code>map_df</code> uses <code>bind_rows</code> to concatenate the aggregated tables together and will fill columns that are missing in a data frame with NA values. With a simple example like this we could add an extra step at the end of our pipeline to provide more information:</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># create a list of grouped data.frames</span></span>
 <span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
@@ -1302,7 +1302,7 @@
 </tbody>
 </table></div>
 <p>Why have all of this in one data frame? Because it can now be easily graphed:</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span></span>
@@ -1345,7 +1345,7 @@
 <span class="header-section-number">13.1.2.1</span> Saving grouping info<a class="anchor" aria-label="anchor" href="#saving-grouping-info"><i class="fas fa-link"></i></a>
 </h4>
 <p>Another trick is to save the <code>group_by</code> info that you are passing with the grouped data.frame into a column. Here’s an example:</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">zillow_idea_neighborhood</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># create a list of grouped data.frames</span></span>
@@ -2513,7 +2513,7 @@
 <span class="header-section-number">13.1.3</span> Duplicating rows<a class="anchor" aria-label="anchor" href="#duplicating-rows"><i class="fas fa-link"></i></a>
 </h3>
 <p>Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span> <span class="va">state</span>, <span class="op">~</span> <span class="va">region</span>, <span class="op">~</span> <span class="va">n_campuses</span>,</span>
 <span>  <span class="st">"FL"</span>, <span class="st">"Jacksonville"</span>, <span class="fl">2</span>,</span>
@@ -2595,7 +2595,7 @@
 </tbody>
 </table></div>
 <p>To do so, we could simply use <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> to duplicate the rows. The first 10 rows are printed as an example:</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/uncount.html">uncount</a></span><span class="op">(</span><span class="va">n_campuses</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2709,19 +2709,19 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 </h2>
 <p><code>.Renviron</code> is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts.</p>
 <p>To open and make changes to your <code>.Renviron</code> file, run the following code:</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span></span>
 <span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Once this file is open, changes can be made. To access IDEA data, the following should be included:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tips-and-tricks.html#cb113-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
-<span id="cb113-2"><a href="tips-and-tricks.html#cb113-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
-<span id="cb113-3"><a href="tips-and-tricks.html#cb113-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="tips-and-tricks.html#cb118-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
+<span id="cb118-2"><a href="tips-and-tricks.html#cb118-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
+<span id="cb118-3"><a href="tips-and-tricks.html#cb118-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
 <p>To access Posit Connect, the following should be included:</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CONNECT_API_KEY</span> <span class="op">=</span> <span class="st">'your key here'</span></span>
 <span><span class="va">CONNECT_SERVER</span> <span class="op">=</span> <span class="st">'https://analytics.ideapublicschools.org/'</span></span></code></pre></div>
 <p>As an additional example, there may be a need for a Mapbox API token. If so, include the following in the <code>.Renviron</code> file:</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MAPBOX_API_TOKEN</span> <span class="op">=</span> <span class="st">'your key here'</span></span></code></pre></div>
 <p>Once that is included in the <code>.Renviron</code> file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.</p>
 <p>If changes are made to the <code>.Renviron</code> file, don’t forget to restart R to have changes take effect.</p>
@@ -2777,7 +2777,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-09.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

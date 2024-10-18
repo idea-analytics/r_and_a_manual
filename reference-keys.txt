@@ -146,6 +146,7 @@ setting-up-renv-with-an-existing-project
 using-renv
 collaborating-with-renv
 renv-and-rstudio-connect
+steps-to-create-a-github-repository-with-projecttemplate-and-renv
 publishing-projects
 rstudio-connect
 power-bi

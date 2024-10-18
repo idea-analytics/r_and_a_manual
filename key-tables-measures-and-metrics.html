@@ -990,7 +990,7 @@
 <span id="cb20-26"><a href="key-tables-measures-and-metrics.html#cb20-26" tabindex="-1"></a><span class="st">                         FROM [RGVPDSD-DWRPT2].[Assessments].[dbo].[CSILessonInputCoreDetails]</span></span>
 <span id="cb20-27"><a href="key-tables-measures-and-metrics.html#cb20-27" tabindex="-1"></a><span class="st">                         WHERE [TermID] = '3400'"</span>)</span>
 <span id="cb20-28"><a href="key-tables-measures-and-metrics.html#cb20-28" tabindex="-1"></a>                         )</span></code></pre></div>
-<p>It has been noted that some students have multiple grade levels recorded within the same school year. As such, it is recommended to join this table with the Students table ([RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]) for the most up-to-date grade level.</p>
+<p>It has been noted that some students have multiple grade levels recorded within the same school year. As such, it is recommended to join this table with the Students table (<code>[RGVPDSD-DWPRD1].[PROD1].[Schools].[Students]</code>) for the most up-to-date grade level.</p>
 </div>
 <div id="studentcsi" class="section level4" number="4.7.1.2">
 <h4>
@@ -1567,8 +1567,8 @@
 <h4>
 <span class="header-section-number">4.8.4.1</span> Where to get RenStar data?<a class="anchor" aria-label="anchor" href="#where-to-get-renstar-data"><i class="fas fa-link"></i></a>
 </h4>
-<p>Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[PROD2].[Assessments].[LittleStar]</code>) that are not frequently updated. The best is to use:</p>
-<p><code>[RGVPDSD-DWSRC4].[SRC_AR].[StarMathV2]</code> and <code>[RGVPDSD-DWSRC4].[SRC_AR].[StarReadingV2]</code></p>
+<p>Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. <code>[RGVPDSD-DWPRD2].[PROD2].[Assessments].[LittleStar]</code>) that are not frequently updated. For Math RenStar, the best table to use is <code>[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarMathV2]</code> while the best time for Reading RenStar is <code>[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarReadingV2]</code>.</p>
+<p>Students take the RenStar during three testing windows, beginning of year (BOY), middle of year (MOY), and end of year (EOY). <a href="key-tables-measures-and-metrics.html#csi">CSI</a> students take this exam BOY, MOY, and EOY as well as two additional times, one in the fall (between BOY and MOY) and one in the spring (between MOY and EOY). Note that students can take the exam more than once during each screening window and these tables include all scores.</p>
 </div>
 </div>
 <div id="ap" class="section level3" number="4.8.5">
@@ -2600,7 +2600,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-09.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
