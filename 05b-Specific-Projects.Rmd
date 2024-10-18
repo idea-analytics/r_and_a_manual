@@ -132,4 +132,24 @@ The EOY rates of teachers with at least one observation per teacher, in all IDEA
 
 In general, the non-Texas regions are doing very well especially compared to some of the Texas regions. Permian Basin is struggling the most, followed by Greater Houston Area. Jacksonville, Tampa Bay, Southern Louisiana, and Cincinnati are doing the best, followed by Upper RGV and Lower RGV. Austin, El Paso, Tarrant County, and San Antonio are doing moderately well. The IDEA District as a whole increased nearly 3 percentage points with total rates of teachers with 1+ observations in Teachboost when compared with All-Texas-District (the IDEA district with only the Texas regions). 
 
-#### SLL Observations for Leaders
+### Staffing Trends and Student Achievement 
+R&A is looking at vacancy numbers, rates and lengths, and FMLA days out, to see the trends between this data and student achievement outcomes, specifically STAAR math and English Language Arts for SY 23-24. This can be looked at by organization (Texas only), region, campus, subject, grade, region-subject, campus-subject, and grade-subject. We are answering the question of how many vacancies are there, how long are they, where are they (particular regions or subjects?), and how do they impact STAAR results as a percent that reached a particular performance band (Approaches, Masters, Meets).
+
+#### Position Control Data and Vacancy Rates
+With position control data, the number of monthly roles (that are budgeted for) can be seen (by row), and when filtering for employee_number = 0, the number of monthly vacancies can be calculated. The number of vacancies equals the number of rows of employee_number = 0. This data can be filtered by campus and region and employee_id.
+
+The monthly average vacancy rate from position control data for SY 23-24 is 0.7 (July 2023 to June 2024). When excluding July (which had nearly twice the vacancy rate as other months, likely because school had not started yet), the monthly average vacancy rate from position control data is 0.6. Vacancy rates below are rounded to nearest hundredth.
+
+Month     Number_Vacancies    Total_Number_Positions    Vacancy_Rate   Mean Vacancy_Rate_All_Months  
+July            568               4179                        0.14            0.07                           
+August          316               4143                        0.08            0.07                           
+September       306               4143                        0.07            0.07                           
+October         273               4125                        0.07            0.07                           
+November        258               4120                        0.06            0.07                           
+December        244               4120                        0.06            0.07                           
+January         252               4121                        0.06            0.07                           
+February        258               4124                        0.06            0.07                          
+March           235               4116                        0.06            0.07                           
+April           209               4105                        0.05            0.07                         
+May             210               4088                        0.05            0.07                           
+
