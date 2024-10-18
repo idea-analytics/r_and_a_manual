@@ -140,16 +140,16 @@ With position control data, the number of monthly roles (that are budgeted for) 
 
 The monthly average vacancy rate from position control data for SY 23-24 is 0.7 (July 2023 to June 2024). When excluding July (which had nearly twice the vacancy rate as other months, likely because school had not started yet), the monthly average vacancy rate from position control data is 0.6. Vacancy rates below are rounded to nearest hundredth.
 
-Month     Number_Vacancies    Total_Number_Positions    Vacancy_Rate    Mean Vacancy_Rate_All_Months        Mean_Vacancy_Rate_Exclude_July
-July	      568	                4179	                        0.14		        0.07                               0.06
-August	    316	                4143	                        0.08		        0.07                               0.06
-September	  306	                4143	                        0.07		        0.07                               0.06
-October	    273	                4125	                        0.07		        0.07                               0.06
-November	  258	                4120	                        0.06		        0.07                               0.06
-December	  244	                4120	                        0.06		        0.07                               0.06
-January	    252	                4121	                        0.06		        0.07                               0.06
-February	  258	                4124	                        0.06		        0.07                               0.06
-March	      235	                4116	                        0.06		        0.07                               0.06
-April	      209	                4105	                        0.05		        0.07                               0.06
-May	        210	                4088	                        0.05		        0.07                               0.06
+Month     Number_Vacancies    Total_Number_Positions    Vacancy_Rate  Mean Vacancy_Rate_All_Months  Mean_Vacancy_Rate_Exclude_July
+July	      568	                4179	                        0.14		        0.07                           0.06
+August	    316	                4143	                        0.08		        0.07                           0.06
+September	  306	                4143	                        0.07		        0.07                           0.06
+October	    273	                4125	                        0.07		        0.07                           0.06
+November	  258	                4120	                        0.06		        0.07                           0.06
+December	  244	                4120	                        0.06		        0.07                           0.06
+January	    252	                4121	                        0.06		        0.07                           0.06
+February	  258	                4124	                        0.06		        0.07                           0.06
+March	      235	                4116	                        0.06		        0.07                           0.06
+April	      209	                4105	                        0.05		        0.07                           0.06
+May	        210	                4088	                        0.05		        0.07                           0.06
 
