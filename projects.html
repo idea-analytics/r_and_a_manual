@@ -683,6 +683,7 @@
 <h2>
 <span class="header-section-number">5.5</span> Steps to Create a GitHub Repository with ProjectTemplate and renv<a class="anchor" aria-label="anchor" href="#steps-to-create-a-github-repository-with-projecttemplate-and-renv"><i class="fas fa-link"></i></a>
 </h2>
+<p>Below is a step-by-step guide to create a GitHub repository with ProjectTemplate and renv. Note that this is <em>one</em> way to create a repository.</p>
 <p>*<em>Note</em>. Replace “new_project” with your new project name</p>
 <p>1. Create a folder for the repo</p>
 <div class="inline-figure"><img src="img/github-repo-1_create-folder-for-repo.png" width="500"></div>
@@ -690,7 +691,7 @@
 <p>3. R: Set the working directory to use the folder that was just created</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"..."</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"[insert your path]"</span><span class="op">)</span></span></code></pre></div>
 <p>4. R: Set up the ProjectTemplate directory structure inside a folder titled “new_project”</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -698,7 +699,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># add to existing folder</span></span>
-<span><span class="fu">create.project</span><span class="op">(</span><span class="st">"..."</span>, merge.strategy <span class="op">=</span> <span class="st">"allow.non.conflict"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">create.project</span><span class="op">(</span><span class="st">"[insert your path]"</span>, merge.strategy <span class="op">=</span> <span class="st">"allow.non.conflict"</span><span class="op">)</span></span></code></pre></div>
 <p>5. R: Create a project file named “new_project.Rproj” inside the “new_project” folder</p>
 <p><em>Step 1: File &gt; New Project</em></p>
 <div class="inline-figure"><img src="img/github-repo-2_file_new-project.png" width="166"></div>
@@ -869,7 +870,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-18.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-10-31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
