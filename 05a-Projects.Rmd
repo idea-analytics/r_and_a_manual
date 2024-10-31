@@ -561,6 +561,8 @@ The `renv` generated `.Rprofile` file should **not** be included in deployments 
 
 ## Steps to Create a GitHub Repository with ProjectTemplate and renv
 
+Below is a step-by-step guide to create a GitHub repository with ProjectTemplate and renv. Note that this is *one* way to create a repository.
+
 \**Note*. Replace "new_project" with your new project name
 
 1\. Create a folder for the repo
@@ -573,7 +575,7 @@ The `renv` generated `.Rprofile` file should **not** be included in deployments 
 
 ```{r set_working_directory, eval=FALSE}
 
-setwd("...")
+setwd("[insert your path]")
 
 ```
 
@@ -585,7 +587,7 @@ install.packages("ProjectTemplate")
 library(ProjectTemplate)
 
 # add to existing folder
-create.project("...", merge.strategy = "allow.non.conflict")
+create.project("[insert your path]", merge.strategy = "allow.non.conflict")
 
 ```
 
