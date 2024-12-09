@@ -132,11 +132,13 @@ The EOY rates of teachers with at least one observation per teacher, in all IDEA
 
 In general, the non-Texas regions are doing very well especially compared to some of the Texas regions. Permian Basin is struggling the most, followed by Greater Houston Area. Jacksonville, Tampa Bay, Southern Louisiana, and Cincinnati are doing the best, followed by Upper RGV and Lower RGV. Austin, El Paso, Tarrant County, and San Antonio are doing moderately well. The IDEA District as a whole increased nearly 3 percentage points with total rates of teachers with 1+ observations in Teachboost when compared with All-Texas-District (the IDEA district with only the Texas regions). 
 
-### Staffing Trends and Student Achievement 
+### Staffing Trends and Student Achievement.
+
 R&A is looking at vacancy numbers, rates and lengths, and FMLA days out, to see the trends between this data and student achievement outcomes, specifically STAAR math and English Language Arts for SY 23-24. This can be looked at by organization (Texas only), region, campus, subject, grade, region-subject, campus-subject, and grade-subject. We are answering the question of how many vacancies are there, how long are they, where are they (particular regions or subjects?), and how do they impact STAAR results as a percent that reached a particular performance band (Approaches, Masters, Meets).
 
-#### Position Control Data and Vacancy Rates
-With position control data, the number of monthly roles (that are budgeted for) can be seen (by row), and when filtering for employee_number = 0, the number of monthly vacancies can be calculated. The number of vacancies equals the number of rows of employee_number = 0. This data can be filtered by campus and region and employee_id.
+#### Position Control Data and Vacancy Rates.
+
+Position Control Data Looks at Approved Budgeted Teacher Openings that are Non-Specific. With position control data, the number of monthly roles (that are budgeted for) can be seen (by row), and when filtering for employee_number = 0, the number of monthly vacancies can be calculated. The number of vacancies equals the number of rows of employee_number = 0. This data can be filtered by campus and region and employee_id.
 
 The monthly average vacancy rate from position control data for SY 23-24 is 0.7 (July 2023 to June 2024). When excluding July (which had nearly twice the vacancy rate as other months, likely because school had not started yet), the monthly average vacancy rate from position control data is 0.6. Vacancy rates below are rounded to nearest hundredth.
 
@@ -152,4 +154,36 @@ February        258               4124                        0.06            0.
 March           235               4116                        0.06            0.07                           
 April           209               4105                        0.05            0.07                         
 May             210               4088                        0.05            0.07                           
+
+
+The finance office uses this data to track the number of approved teacher roles  by school, month-to-month. Indicates whether someone is being paid for this roll (filled), or not paid (unfilled/vacant). However, unfilled position may not be actively trying to be filled (back-filled), such as if there is a reduction in student enrollment (do not know which roles). Position Control numbers are generic for a teacher role; they are not created for a specific class, subject, or grade level. Usually follows a teacher (not a subject/grade) when teacher changes grade/subject within a school. Often changes if the teacher switches to a non-teacher role (such as API) or change schools within the same campus, or changes campus.
+
+#### Position Control Numbers are not for specific grades and subjects (they are for non-specific roles).
+
+Teacher Shuffling “Domino Effect” Makes it Difficult to Track Vacancies Through Jobvite, or Subject & Grade by Position Control Number. 
+Although Tyler Munis would be ideal, there are reasons why it doesn’t work. TM does not show specific subject or individual grade level. Shows grade bins (1st-5th, etc.) & general subject categories (MATH, ELA, etc.) According to HA, grade bins/subjects may not be updated and are not considered a reliable source of this information. Does not show historic data. Some position control numbers are connected to a different employee in Tyler Munis than in initial Position Control data, from shuffling. 
+
+#### Position Control Numbers were removed from Grade/Course/Subject to make HA jobs easier (although PC numbers used to be for specific grades/subjects/courses).
+
+According to HA, it saved thousands of hours to remove the information containing specific grade level and subject from individual position control numbers. This data was removed to make HA jobs easier with manual entry. Because of the numerous employee changes between subjects and/or grades that happen internally at schools and between campuses/regions, those changes to requisitions had to be input by hand each time there was a change. Hundreds of changes used thousands of hours to input changes.
+
+#### Jobvite Data is Not Inclusive of all Openings or Vacancies.
+
+Not all openings are posted on Jobvite, so this data is a subset of potential vacancies. For example, it is possible that some internal roles may not be posted on Jobvite if teachers were “shuffled” around to fill a need (a teacher moves from Math 7 to Science 8, and another teacher takes over the Math 7, etc.). Rolls that campuses are not actively seeking to fill (or “back-fill”) that have been approved by Position Control but due to causes such as reduction in student enrollment, there is no job requisition created and posted on Jobvite. Rolls on Jobvite are posted after Exit Tickets are submitted and a requisition is created and a position control number. PC numbers on Jobvite may be initially attached to a position for a specific subject or grade level but shows up in PC data as a general number that denotes a teacher role was approved for a particular school.If an employee changes subject or grade level after being hired from Jobvite, that initial PC number from the Jobvite posting would likely follow the teacher to their new teaching role within the same school (meaning the PC number can be attached to more than one subject or grade level in the same school year). Not all Jobvite positions contain a position control number depending on the length of time of the posting, or other reasons (such as newly created positions that someone internally is taking).
+
+#### Currently in Tyler Munis, it is Hard to Track Teacher-Shuffling; Labels are Over-Simplified Over Time.
+
+If a teacher changes subject or grade, their Position Control number generally follows them to their new role, to avoid making changes on the HA side of operations and save time.
+This causes us to lose the important information: Direct subject (reduced to general subject bins); Specific grade level (reduced to general grade bins); Not only are grade and subject over-simplified but this information is not necessarily updated to reflect a teacher’s current rule (and does not show past roles) in Tyler Munis.
+
+#### Association Between Vacancies and STAAR Performance is Poor.
+
+Although there is some expected correlation between student demographics, there is poor association between Jobvite vacancy rates and STAAR Performance. The Correlation Between Jobvite Vacancies and STAAR Performance is Poor at -0.10 (Not Inclusive of All Vacancies in Position Control data). Some roles show as a “vacancy” in position control data because they are never filled for SY 23-24. However, we do not attempt to fill all roles that have a position control number assigned.This alters the true vacancy rate, which should be openings that remain unfilled even after we wish them to be filled and/or attempt to fill them.Poor correlation and predictive power between Position Control vacancy rates and STAAR performance.
+
+#### Recommendations.
+
+The ERP needs to be the source of truth about who is working where, and when. It should show: 1) Courses/subjects and specific grades served; 2) Dates the teacher started and ended those positions; 3) Headcounts should be included. Data systems should align better (Tyler Munis, Jobvite, Position Control finance data, PowerSchool, etc.)
+Neither Jobvite unfilled postings nor Position Control vacancy data predicted STAAR performance, and it may prove useful to identify other potential sources of poor STAAR performance in SY 23-24. The ERP Should Capture The Answers to The Following Questions: 1) How long are vacancies at IDEA for teacher roles? 2) How many vacancies are at IDEA for teacher roles? 3) Which specific grade and course/subject are the vacancies in? 4) What is the highest number of vacancies, during a single time-period? 
+(Time-period = Semester, Quarter, Month, Week); 5) Which specific grade and course/subject is the employee currently teaching?
+
 
