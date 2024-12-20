@@ -171,12 +171,9 @@ teachboost-data-and-observations-counts
 get-observations-for-teachers
 staffing-trends-and-student-achievement.
 position-control-data-and-vacancy-rates.
-position-control-numbers-are-not-for-specific-grades-and-subjects-they-are-for-non-specific-roles.
-position-control-numbers-were-removed-from-gradecoursesubject-to-make-ha-jobs-easier-although-pc-numbers-used-to-be-for-specific-gradessubjectscourses.
-jobvite-data-is-not-inclusive-of-all-openings-or-vacancies.
-currently-in-tyler-munis-it-is-hard-to-track-teacher-shuffling-labels-are-over-simplified-over-time.
 association-between-vacancies-and-staar-performance-is-poor.
 recommendations.
+continuous-enrollment
 evaluation-projects
 evaluation-plans
 about-evaluation-plans
