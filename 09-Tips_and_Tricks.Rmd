@@ -273,7 +273,7 @@ Assume a request came in to provide a list of all Core Value Award nominations a
 
 To begin, install (if necessary) and load {tidyverse} and {openxlsx} and create a sample data frame:
 
-```{r core-df, eval = FALSE}
+```{r core-value-award, eval = FALSE}
 # load packages ----
 library(tidyverse)
 library(openxlsx)
@@ -293,9 +293,17 @@ core_value_award_nominations <- data.frame(entity = c('TX', 'TX', 'IPS', 'TX', '
 ```
 
 The sample data frame will appear as follows:
-![](img/core_value_df.png){width="500"}
+![](img/core_value_df.png){width="360"}
 
-`write.xlsx()` from {openxlsx} will be used to create the workbook with the two worksheets (one for Texas nominations and one for IPS nominations). The first argument of the function is the list of worksheets. For each worksheet, the name is provided surrounded by “quotes” followed by an equal sign and then what should be included in that worksheet. In this case, the first worksheet is named “Texas” and includes the entire `core_value_award_nominations` data frame for only those who are part of the Texas entity. This is followed by the IPS worksheet which includes nominations for IPS.
+`write.xlsx()` from {openxlsx} will be used to create the workbook with
+the two worksheets (one for Texas nominations and one for IPS
+nominations). The first argument of the function is the list of
+worksheets. For each worksheet, the name is provided surrounded by
+“quotes” followed by an equal sign and then what should be included in
+that worksheet. In this case, the first worksheet is named “Texas” and
+includes the entire `core_value_award_nominations` data frame for only
+those who are part of the Texas entity. This is followed by the IPS
+worksheet which includes nominations for IPS.
 
 ```{r create-workbook, eval = FALSE}
 # create Excel workbook ----
@@ -307,9 +315,10 @@ write.xlsx(list("Texas" = core_value_award_nominations %>%
 ```
 
 Below is an image of the resulting Excel workbook
-![](img/final_workbook.png){width="500"}
+![](img/final_workbook.png){width="360"}
 
-Note that if the number of unique worksheets were longer (e.g., a worksheet for each region), a loop could be employed.
+Note that if the number of unique worksheets were longer (e.g., a
+worksheet for each region), a loop could be employed.
 
 ## .Renviron
 
