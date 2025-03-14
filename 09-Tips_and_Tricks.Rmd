@@ -267,6 +267,50 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 
 Then try reloading the project and running the script. 
 
+## Export Excel Workbook with Multiple Worksheets Using R
+
+Assume a request came in to provide a list of all Core Value Award nominations and return it as an Excel workbook. The requestor has also asked that each entity be presented in a separate worksheet. To save the manual process of separating the entities into different worksheets within Excel, R can be utilized. This will streamline the workflow and make it reproducible in the event that this request is made again in the future. Note that there are a number of ways to accomplish this task in R though only one will be demonstrated here.
+
+To begin, install (if necessary) and load {tidyverse} and {openxlsx} and create a sample data frame:
+
+```{r core-df, eval = FALSE}
+# load packages ----
+library(tidyverse)
+library(openxlsx)
+
+# create the sample data frame ----
+core_value_award_nominations <- data.frame(entity = c('TX', 'TX', 'IPS', 'TX', 'IPS'),
+                                           name = c('Simone Biles',
+                                                    'Laurie Hernandez',
+                                                    'Alexandra Raisman',
+                                                    'Madison Kocian',
+                                                    'Gabrielle Douglas'), 
+                                           core_value = c('We Achieve Academic Excellence',
+                                                          'We Bring Joy',
+                                                          'We Deliver Results',
+                                                          'We Bring Joy',
+                                                          'We Achieve Academic Excellence'))
+```
+
+The sample data frame will appear as follows:
+![](img/core_value_df.png){width="500"}
+
+`write.xlsx()` from {openxlsx} will be used to create the workbook with the two worksheets (one for Texas nominations and one for IPS nominations). The first argument of the function is the list of worksheets. For each worksheet, the name is provided surrounded by “quotes” followed by an equal sign and then what should be included in that worksheet. In this case, the first worksheet is named “Texas” and includes the entire `core_value_award_nominations` data frame for only those who are part of the Texas entity. This is followed by the IPS worksheet which includes nominations for IPS.
+
+```{r create-workbook, eval = FALSE}
+# create Excel workbook ----
+write.xlsx(list("Texas" = core_value_award_nominations %>% 
+                 filter(entity == 'TX'),
+             "IPS" = core_value_award_nominations %>% 
+                 filter(entity == 'IPS')),
+        file = "C:/Users/fname.lname/Desktop/core_values_entity.xlsx") # insert your path here
+```
+
+Below is an image of the resulting Excel workbook
+![](img/final_workbook.png){width="500"}
+
+Note that if the number of unique worksheets were longer (e.g., a worksheet for each region), a loop could be employed.
+
 ## .Renviron
 
 `.Renviron` is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts. 
