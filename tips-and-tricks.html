@@ -7,7 +7,7 @@
 <title>Chapter 13 Tips and Tricks | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco">
 <meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  13.1...">
-<meta name="generator" content="bookdown 0.41 with bs4_book()">
+<meta name="generator" content="bookdown 0.42 with bs4_book()">
 <meta property="og:title" content="Chapter 13 Tips and Tricks | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/tips-and-tricks.html">
@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  13.1...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.8.0/transition.js"></script><script src="libs/bs3compat-0.8.0/tabs.js"></script><script src="libs/bs3compat-0.8.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -2703,32 +2703,80 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <p>Then try reloading the project and running the script.</p>
 </div>
 </div>
-<div id="renviron" class="section level2" number="13.4">
+<div id="export-excel-workbook-with-multiple-worksheets-using-r" class="section level2" number="13.4">
 <h2>
-<span class="header-section-number">13.4</span> .Renviron<a class="anchor" aria-label="anchor" href="#renviron"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.4</span> Export Excel Workbook with Multiple Worksheets Using R<a class="anchor" aria-label="anchor" href="#export-excel-workbook-with-multiple-worksheets-using-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Assume a request came in to provide a list of all Core Value Award nominations and return it as an Excel workbook. The requestor has also asked that each entity be presented in a separate worksheet. To save the manual process of separating the entities into different worksheets within Excel, R can be utilized. This will streamline the workflow and make it reproducible in the event that this request is made again in the future. Note that there are a number of ways to accomplish this task in R though only one will be demonstrated here.</p>
+<p>To begin, install (if necessary) and load {tidyverse} and {openxlsx} and create a sample data frame:</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load packages ----</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html">openxlsx</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create the sample data frame ----</span></span>
+<span><span class="va">core_value_award_nominations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>entity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'TX'</span>, <span class="st">'TX'</span>, <span class="st">'IPS'</span>, <span class="st">'TX'</span>, <span class="st">'IPS'</span><span class="op">)</span>,</span>
+<span>                                           name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Simone Biles'</span>,</span>
+<span>                                                    <span class="st">'Laurie Hernandez'</span>,</span>
+<span>                                                    <span class="st">'Alexandra Raisman'</span>,</span>
+<span>                                                    <span class="st">'Madison Kocian'</span>,</span>
+<span>                                                    <span class="st">'Gabrielle Douglas'</span><span class="op">)</span>, </span>
+<span>                                           core_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'We Achieve Academic Excellence'</span>,</span>
+<span>                                                          <span class="st">'We Bring Joy'</span>,</span>
+<span>                                                          <span class="st">'We Deliver Results'</span>,</span>
+<span>                                                          <span class="st">'We Bring Joy'</span>,</span>
+<span>                                                          <span class="st">'We Achieve Academic Excellence'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">The sample data frame will appear as follows:
+<img src="img/core_value_df.png" width="360">
+</div>
+<p><code>write.xlsx()</code> from {openxlsx} will be used to create the workbook with
+the two worksheets (one for Texas nominations and one for IPS
+nominations). The first argument of the function is the list of
+worksheets. For each worksheet, the name is provided surrounded by
+“quotes” followed by an equal sign and then what should be included in
+that worksheet. In this case, the first worksheet is named “Texas” and
+includes the entire <code>core_value_award_nominations</code> data frame for only
+those who are part of the Texas entity. This is followed by the IPS
+worksheet which includes nominations for IPS.</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create Excel workbook ----</span></span>
+<span><span class="fu">write.xlsx</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Texas"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'TX'</span><span class="op">)</span>,</span>
+<span>             <span class="st">"IPS"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'IPS'</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>        file <span class="op">=</span> <span class="st">"C:/Users/fname.lname/Desktop/core_values_entity.xlsx"</span><span class="op">)</span> <span class="co"># insert your path here</span></span></code></pre></div>
+<div class="inline-figure">Below is an image of the resulting Excel workbook
+<img src="img/final_workbook.png" width="360">
+</div>
+<p>Note that if the number of unique worksheets were longer (e.g., a
+worksheet for each region), a loop could be employed.</p>
+</div>
+<div id="renviron" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> .Renviron<a class="anchor" aria-label="anchor" href="#renviron"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>.Renviron</code> is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts.</p>
 <p>To open and make changes to your <code>.Renviron</code> file, run the following code:</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span></span>
 <span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Once this file is open, changes can be made. To access IDEA data, the following should be included:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="tips-and-tricks.html#cb118-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
-<span id="cb118-2"><a href="tips-and-tricks.html#cb118-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
-<span id="cb118-3"><a href="tips-and-tricks.html#cb118-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="tips-and-tricks.html#cb120-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
+<span id="cb120-2"><a href="tips-and-tricks.html#cb120-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
+<span id="cb120-3"><a href="tips-and-tricks.html#cb120-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
 <p>To access Posit Connect, the following should be included:</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CONNECT_API_KEY</span> <span class="op">=</span> <span class="st">'your key here'</span></span>
 <span><span class="va">CONNECT_SERVER</span> <span class="op">=</span> <span class="st">'https://analytics.ideapublicschools.org/'</span></span></code></pre></div>
 <p>As an additional example, there may be a need for a Mapbox API token. If so, include the following in the <code>.Renviron</code> file:</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MAPBOX_API_TOKEN</span> <span class="op">=</span> <span class="st">'your key here'</span></span></code></pre></div>
 <p>Once that is included in the <code>.Renviron</code> file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.</p>
 <p>If changes are made to the <code>.Renviron</code> file, don’t forget to restart R to have changes take effect.</p>
 </div>
-<div id="idea-acronym-guide" class="section level2" number="13.5">
+<div id="idea-acronym-guide" class="section level2" number="13.6">
 <h2>
-<span class="header-section-number">13.5</span> IDEA Acronym Guide<a class="anchor" aria-label="anchor" href="#idea-acronym-guide"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.6</span> IDEA Acronym Guide<a class="anchor" aria-label="anchor" href="#idea-acronym-guide"><i class="fas fa-link"></i></a>
 </h2>
 <p>IDEA uses acronyms frequently. Several of these acronyms have been compiled in <a href="https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA">this resource</a>.</p>
 
@@ -2758,8 +2806,9 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <li>
 <a class="nav-link" href="#troubleshooting-messages-and-errors"><span class="header-section-number">13.3</span> Troubleshooting messages and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">13.3.1</span> Connection to the dashboard</a></li></ul>
 </li>
-<li><a class="nav-link" href="#renviron"><span class="header-section-number">13.4</span> .Renviron</a></li>
-<li><a class="nav-link" href="#idea-acronym-guide"><span class="header-section-number">13.5</span> IDEA Acronym Guide</a></li>
+<li><a class="nav-link" href="#export-excel-workbook-with-multiple-worksheets-using-r"><span class="header-section-number">13.4</span> Export Excel Workbook with Multiple Worksheets Using R</a></li>
+<li><a class="nav-link" href="#renviron"><span class="header-section-number">13.5</span> .Renviron</a></li>
+<li><a class="nav-link" href="#idea-acronym-guide"><span class="header-section-number">13.6</span> IDEA Acronym Guide</a></li>
 </ul>
 
       <div class="book-extra">
@@ -2777,7 +2826,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2024-12-20.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Maura Carter, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco. It was last built on 2025-03-25.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

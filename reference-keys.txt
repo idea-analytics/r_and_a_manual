@@ -307,6 +307,7 @@ simpsons-paradox
 bias-variance-tradeoff
 troubleshooting-messages-and-errors
 connection-to-the-dashboard
+export-excel-workbook-with-multiple-worksheets-using-r
 renviron
 idea-acronym-guide
 platforms
