@@ -2727,17 +2727,9 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 <span>                                                          <span class="st">'We Bring Joy'</span>,</span>
 <span>                                                          <span class="st">'We Achieve Academic Excellence'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure">The sample data frame will appear as follows:
-<img src="img/core_value_df.png" width="360">
+<img src="img/core_value_df.png" width="500">
 </div>
-<p><code>write.xlsx()</code> from {openxlsx} will be used to create the workbook with
-the two worksheets (one for Texas nominations and one for IPS
-nominations). The first argument of the function is the list of
-worksheets. For each worksheet, the name is provided surrounded by
-“quotes” followed by an equal sign and then what should be included in
-that worksheet. In this case, the first worksheet is named “Texas” and
-includes the entire <code>core_value_award_nominations</code> data frame for only
-those who are part of the Texas entity. This is followed by the IPS
-worksheet which includes nominations for IPS.</p>
+<p><code>write.xlsx()</code> from {openxlsx} will be used to create the workbook with the two worksheets (one for Texas nominations and one for IPS nominations). The first argument of the function is the list of worksheets. For each worksheet, the name is provided surrounded by “quotes” followed by an equal sign and then what should be included in that worksheet. In this case, the first worksheet is named “Texas” and includes the entire <code>core_value_award_nominations</code> data frame for only those who are part of the Texas entity. This is followed by the IPS worksheet which includes nominations for IPS.</p>
 <div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create Excel workbook ----</span></span>
 <span><span class="fu">write.xlsx</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Texas"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -2746,10 +2738,9 @@ worksheet which includes nominations for IPS.</p>
 <span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'IPS'</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        file <span class="op">=</span> <span class="st">"C:/Users/fname.lname/Desktop/core_values_entity.xlsx"</span><span class="op">)</span> <span class="co"># insert your path here</span></span></code></pre></div>
 <div class="inline-figure">Below is an image of the resulting Excel workbook
-<img src="img/final_workbook.png" width="360">
+<img src="img/final_workbook.png" width="500">
 </div>
-<p>Note that if the number of unique worksheets were longer (e.g., a
-worksheet for each region), a loop could be employed.</p>
+<p>Note that if the number of unique worksheets were longer (e.g., a worksheet for each region), a loop could be employed.</p>
 </div>
 <div id="renviron" class="section level2" number="13.5">
 <h2>
