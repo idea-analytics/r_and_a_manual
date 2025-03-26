@@ -11,13 +11,13 @@ edison-coronado
 chris-haid
 mishan-jensen-phd
 steven-macapagal
-maura-carter
 aline-orr-phd
 ilissa-madrigal
 marlena-coco-phd
 lindsey-smith-phd
 karina-pacheco
 connor-caldwell
+jose-f.-rodriguez
 what-weve-contributed
 the-data-warehouse-and-how-to-access-it
 the-data-warehouse
