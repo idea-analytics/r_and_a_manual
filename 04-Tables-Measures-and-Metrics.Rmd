@@ -539,12 +539,12 @@ Example of how to pull and calculate Student Persistence
 
 ```{r persistence_ex, echo=TRUE, eval=FALSE}
 #Getting a connection to the Persistence table
-persistence_conn <- get_table(.table_name = "PersistenceCode", .database_name = "Persistence",
-                                  .schema = "dbo", .server_name = "RGVPDSD-DWPRD1")
+persistence_conn <- get_table(.table_name = "PersistenceCode", .database_name = "StudentPersistence",
+                                  .schema = "Fact", .server_name = "RGVPDSD-DWPRD1")
 
 #Pull the columns  that you need
-persistence_23_24 <- persistence_conn %>%
-  filter(AcademicYear == "2023-2024") %>%
+persistence_24_25 <- persistence_conn %>%
+  filter(AcademicYear == "2024-2025") %>%
   select(AcademicYear,
          RegionDescription,
          SchoolShortName,
@@ -562,7 +562,7 @@ persistence_23_24 <- persistence_conn %>%
   collect()
 
 #Calculate Student Persistence by Campus Using the 2 different formulas above
-Persistence_Rate_23_23 <- persistence_23_24 %>%
+Persistence_Rate_24_25 <- persistence_24_25 %>%
   filter(FDOPCOUNTP == 1) %>%
   group_by(SchoolShortName) %>%
   summarize(n_leavers = sum(leavers),
@@ -1518,6 +1518,43 @@ For Prior Year's Data there are other tables with the same columns as above
 **2018-2019** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819] **2019-2020** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920] **2020-2021** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021] **2021-2022** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]
 
 Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.
+
+The data that feeds the Staff Retention Dashboard is found in a different table that contains the current year and the prior year's data.
+
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[Reporting].[Employees] This table contains the current year's staff retention data and the prior year.
+
+**Useful Fields:**
+
+-   **NAMEID:** Employee ID
+-   **HIREDATE:** The date the employee was hired
+-   **STARTDATE:** The date the employee started work
+-   **EMPLOYEENAME:** The employees full name
+-   **CAMPUS:** Abbreviated Campus long name (very dirty)
+-   **REGION:** Abbreviated region name (very dirty)
+-   **JOBTITLE:** Employee's Job Title
+-   **SUBFUNCTIONAL GROUP:** Indicates whether the employee's position is Campus-based, Regional, or National
+-   **JOBGROUP:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
+-   **YEARLONG:** The academic year in the "2024-2025" format
+-   **POSITIONENDDATE:** The position end date, for teachers it is the last day of the previous academic year, such as 2023-06-30
+-   **EXITDATE:** The date the employee was terminated else is NULL
+-   **ETHNICITY:** The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option
+-   **TENURE:** The number of year the employee has worked at IDEA
+-   **EMPLOYEESTATUS:** 0 == No Longer Employeed (NLE), 1 == Active
+-   **EXITREASON:** Termination Reason
+-   **EXITDESCRIPTION:** Longer description of reason
+-   **MANAGER:** Employee's Manager
+-   **CHIEF:** The abbreviated chief (Cso)
+-   **AREA:** Area name (Academic Team, Information Systems & Technology, etc.)
+-   **DIVISION:** Division name (Curriculum-Instruction-Assessment, Technology Operations, etc.)
+-   **DEPARTMENT:** Department name (Instructional, Campus Operations, etc.)
+-   **JOBPAYSKILL:** Same as EmpStatus but character (Nle, Active)
+-   **MANAGERID:** Manager's Employee ID
+-   **GENDER:** M == Male, F == Female
+-   **ISTEACHER:** 0/1 indicating if the employee is a teacher
+-   **TEACHERSTEP:** The step level of the teacher
+-   **DOB:** Employee's Date of Birth
+
+There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first 90 days of employment.
 
 ## Teacher, Staff, and Hiring Data
 
