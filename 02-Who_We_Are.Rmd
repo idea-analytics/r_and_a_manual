@@ -75,6 +75,11 @@ Connor Caldwell is a statistician on the R&A Team who supports the Human Assets 
 ### Jose F. Rodriguez
 Jose Rodriguez is a Human Assets Data Analyst at IDEA with a background in statistics. He supports IDEA's goals by transforming information into insights that drive staff performance management and reward programs.
 
+
+### Colleen Skinner
+Colleen Skinner is a Human Assets Data Analyst with IDEA. She earned a BA in Statistics and Data Science from Rice University.
+
+
 ## What we've contributed
 
 Our team has among it's annual goals the following:
