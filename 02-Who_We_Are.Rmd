@@ -79,6 +79,8 @@ Jose Rodriguez is a Human Assets Data Analyst at IDEA with a background in stati
 ### Colleen Skinner
 Colleen Skinner is a Human Assets Data Analyst on the R&A Team at IDEA. She earned a BA in Statistics and Data Science from Rice University. 
 
+### Hilary Doe
+Hilary Doe is a Data Analyst supporting IDEA’s Growth team. Before joining IDEA in August 2025, Hilary worked as a Senior Data Analyst at the Prenatal-to-3 Policy Impact Center at Vanderbilt University (formerly the Child and Family Research Partnership at UT Austin). In that role she managed, merged, cleaned, and analyzed large datasets primarily for program evaluation research for programs serving young children and their families. Hilary received her PhD in Applied Developmental Psychology from the University of Pittsburgh in 2017 and has a BA in Psychology from Messiah College. 
 
 ## What we've contributed
 
