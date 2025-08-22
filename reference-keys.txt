@@ -19,6 +19,7 @@ karina-pacheco
 connor-caldwell
 jose-f.-rodriguez
 colleen-skinner
+hilary-doe
 what-weve-contributed
 the-data-warehouse-and-how-to-access-it
 the-data-warehouse
