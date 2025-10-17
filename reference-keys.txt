@@ -102,6 +102,8 @@ regrettable-vs-non-regrettable
 day-retention
 tips-for-staff-retention-reporting
 high-stakes-roles
+data-oddities-and-exceptions
+travis-campus
 joins
 inner-join
 left-join

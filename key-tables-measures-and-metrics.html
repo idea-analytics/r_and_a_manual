@@ -7,7 +7,7 @@
 <title>Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
 <meta name="description" content="Within this chapter we will find the tables and metrics IDEA Public Schools stakeholders are the most interested in. Note that an individual table may not contain all information of interest. This...">
-<meta name="generator" content="bookdown 0.44 with bs4_book()">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Key Tables, Measures, and Metrics | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/key-tables-measures-and-metrics.html">
@@ -2519,50 +2519,93 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <p>When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.</p>
 </div>
 </div>
-<div id="joins" class="section level2" number="4.13">
+<div id="data-oddities-and-exceptions" class="section level2" number="4.13">
 <h2>
-<span class="header-section-number">4.13</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.13</span> Data Oddities and Exceptions<a class="anchor" aria-label="anchor" href="#data-oddities-and-exceptions"><i class="fas fa-link"></i></a>
+</h2>
+<div id="travis-campus" class="section level3" number="4.13.1">
+<h3>
+<span class="header-section-number">4.13.1</span> Travis Campus<a class="anchor" aria-label="anchor" href="#travis-campus"><i class="fas fa-link"></i></a>
+</h3>
+<p>Accessing and working with data from the Travis campus in Permian Basin comes with some unique challenges. If you aren’t aware of the unique context, it can be easy to end up with apparently “missing” data from Travis that may actually exist.</p>
+<p>Historically and at the time of this writing (Fall 2025), IDEA Travis has a unique partnership with Midland ISD (MISD). Although IDEA operates Travis, it is considered to be part of MISD, and therefore much of Travis data is provided to us by MISD rather than being collected and stored in the same manner as other IDEA Texas data.</p>
+<p>Although Travis, like other IDEA Campuses, has an Academy (Elementary) and College Prep (Middle and High School), each with unique school IDs, much of the Travis data is linked only to Travis Academy. For example, TEA treats the Travis campus as a single school (Academy), and therefore data such as accountability ratings and STAAR assessment scores appear only for Travis Academy, despite some being for older grades. When pulling STAAR scores, if you were to filter to grades K-5 for all Academy schools, you would miss STAAR scores for grades 6-12 from Travis College Prep, because they are stored as Academy.</p>
+<p>Another common challenge comes with joining Travis data using school IDs. The school IDs for Travis within the schools table are 3-digit IDs, while the remainder of the schools use a 9-digit state school number. In many (most?) cases, the data stored in other tables use Travis’ 9-digit state school number.</p>
+<p>Please check school IDs in data you intend to join and then check that the presence of Travis data matches your expectations after any joins.</p>
+<p>You may use a variation of the following R code to create the state school number prior to using it for joining.</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">RegionSchools</span> <span class="op">&lt;-</span> <span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">SchoolNumber</span>,</span>
+<span>         <span class="va">SchoolName</span>,</span>
+<span>         <span class="va">SchoolShortName</span>,</span>
+<span>         <span class="va">StateSchoolNumber</span>,</span>
+<span>         <span class="va">SchoolAbbreviation</span>,</span>
+<span>         <span class="va">SchoolLowestGrade</span>,</span>
+<span>         <span class="va">SchoolHighestGrade</span>,</span>
+<span>         <span class="va">CountyNumber</span>,</span>
+<span>         <span class="va">CountyName</span>,</span>
+<span>         <span class="va">RegionID</span>,</span>
+<span>         <span class="va">Area</span>,</span>
+<span>         <span class="va">RegionAltID</span>,</span>
+<span>         <span class="va">IsDeprecated</span>,</span>
+<span>         <span class="va">EstablishedYear</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_regions</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>             by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RegionID"</span> <span class="op">=</span> <span class="st">"RegionID"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    StateSchoolNumber_permian <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">CountyName</span> <span class="op">==</span> <span class="st">"MIDLAND"</span> </span>
+<span>        <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">CountyNumber</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">StateSchoolNumber</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>      .default <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">StateSchoolNumber</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>StateSchoolNumber_permian <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">StateSchoolNumber_permian</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="joins" class="section level2" number="4.14">
+<h2>
+<span class="header-section-number">4.14</span> Joins<a class="anchor" aria-label="anchor" href="#joins"><i class="fas fa-link"></i></a>
 </h2>
 <p>It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.</p>
-<div id="inner-join" class="section level3" number="4.13.1">
+<div id="inner-join" class="section level3" number="4.14.1">
 <h3>
-<span class="header-section-number">4.13.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.14.1</span> Inner Join<a class="anchor" aria-label="anchor" href="#inner-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>An <code>inner join()</code> retains observations when a matching key value is found in both <code>x</code> and <code>y</code>. Any unmatched observations are not included in the output. Visually,</p>
 <div class="float">
 <img src="img/inner_join.png" title="visualization of an inner join" width="500" alt="inner_join(x, y)"><div class="figcaption">inner_join(x, y)</div>
 </div>
 </div>
-<div id="left-join" class="section level3" number="4.13.2">
+<div id="left-join" class="section level3" number="4.14.2">
 <h3>
-<span class="header-section-number">4.13.2</span> Left Join<a class="anchor" aria-label="anchor" href="#left-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.14.2</span> Left Join<a class="anchor" aria-label="anchor" href="#left-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> is an outer join that retains all observations from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> is not included in the output. Visually,</p>
 <div class="float">
 <img src="img/left_join.png" title="visualization of a left join" width="500" alt="left_join(x, y)"><div class="figcaption">left_join(x, y)</div>
 </div>
 </div>
-<div id="right-join" class="section level3" number="4.13.3">
+<div id="right-join" class="section level3" number="4.14.3">
 <h3>
-<span class="header-section-number">4.13.3</span> Right Join<a class="anchor" aria-label="anchor" href="#right-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.14.3</span> Right Join<a class="anchor" aria-label="anchor" href="#right-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join()</a></code> is an outer join that retains all observations from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
 <div class="float">
 <img src="img/right_join.png" title="visualization of a right join" width="500" alt="right_join(x, y)"><div class="figcaption">right_join(x, y)</div>
 </div>
 </div>
-<div id="full-join" class="section level3" number="4.13.4">
+<div id="full-join" class="section level3" number="4.14.4">
 <h3>
-<span class="header-section-number">4.13.4</span> Full Join<a class="anchor" aria-label="anchor" href="#full-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.14.4</span> Full Join<a class="anchor" aria-label="anchor" href="#full-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> is an outer join that retains all observations from <code>x</code> and <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> results in NAs in the columns added from <code>y</code>. Any observation in <code>y</code> that does not have a matching key in <code>x</code> results in NAs in the columns from <code>x</code>. Visually,</p>
 <div class="float">
 <img src="img/full_join.png" title="visualization of a full join" width="500" alt="full_join(x, y)"><div class="figcaption">full_join(x, y)</div>
 </div>
 </div>
-<div id="anti-join" class="section level3" number="4.13.5">
+<div id="anti-join" class="section level3" number="4.14.5">
 <h3>
-<span class="header-section-number">4.13.5</span> Anti-Join<a class="anchor" aria-label="anchor" href="#anti-join"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.14.5</span> Anti-Join<a class="anchor" aria-label="anchor" href="#anti-join"><i class="fas fa-link"></i></a>
 </h3>
 <p>An <code><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join()</a></code> is an outer join that retains all observations from <code>x</code> that do not have a matching key in <code>y</code>. Any observation in <code>x</code> that does not have a matching key in <code>y</code> is not included in the output. Visually,</p>
 <div class="float">
@@ -2637,12 +2680,15 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#joins"><span class="header-section-number">4.13</span> Joins</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#inner-join"><span class="header-section-number">4.13.1</span> Inner Join</a></li>
-<li><a class="nav-link" href="#left-join"><span class="header-section-number">4.13.2</span> Left Join</a></li>
-<li><a class="nav-link" href="#right-join"><span class="header-section-number">4.13.3</span> Right Join</a></li>
-<li><a class="nav-link" href="#full-join"><span class="header-section-number">4.13.4</span> Full Join</a></li>
-<li><a class="nav-link" href="#anti-join"><span class="header-section-number">4.13.5</span> Anti-Join</a></li>
+<a class="nav-link" href="#data-oddities-and-exceptions"><span class="header-section-number">4.13</span> Data Oddities and Exceptions</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#travis-campus"><span class="header-section-number">4.13.1</span> Travis Campus</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#joins"><span class="header-section-number">4.14</span> Joins</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#inner-join"><span class="header-section-number">4.14.1</span> Inner Join</a></li>
+<li><a class="nav-link" href="#left-join"><span class="header-section-number">4.14.2</span> Left Join</a></li>
+<li><a class="nav-link" href="#right-join"><span class="header-section-number">4.14.3</span> Right Join</a></li>
+<li><a class="nav-link" href="#full-join"><span class="header-section-number">4.14.4</span> Full Join</a></li>
+<li><a class="nav-link" href="#anti-join"><span class="header-section-number">4.14.5</span> Anti-Join</a></li>
 </ul>
 </li>
 </ul>
@@ -2662,7 +2708,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-08-26.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-10-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
