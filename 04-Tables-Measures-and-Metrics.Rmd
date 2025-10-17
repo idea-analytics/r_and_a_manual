@@ -1934,6 +1934,55 @@ There are some high stakes roles in the vw_CurrentStaffDirectory table located i
 
 When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
 
+## Data Oddities and Exceptions
+
+### Travis Campus
+
+Accessing and working with data from the Travis campus in Permian Basin comes with some unique challenges. If you aren’t aware of the unique context, it can be easy to end up with apparently “missing” data from Travis that may actually exist. 
+
+Historically and at the time of this writing (Fall 2025), IDEA Travis has a unique partnership with Midland ISD (MISD). Although IDEA operates Travis, it is considered to be part of MISD, and therefore much of Travis data is provided to us by MISD rather than being collected and stored in the same manner as other IDEA Texas data. 
+
+Although Travis, like other IDEA Campuses, has an Academy (Elementary) and College Prep (Middle and High School), each with unique school IDs, much of the Travis data is linked only to Travis Academy. For example, TEA treats the Travis campus as a single school (Academy), and therefore data such as accountability ratings and STAAR assessment scores appear only for Travis Academy, despite some being for older grades. When pulling STAAR scores, if you were to filter to grades K-5 for all Academy schools, you would miss STAAR scores for grades 6-12 from Travis College Prep, because they are stored as Academy. 
+
+Another common challenge comes with joining Travis data using school IDs. The school IDs for Travis within the schools table are 3-digit IDs, while the remainder of the schools use a 9-digit state school number. In many (most?) cases, the data stored in other tables use Travis’ 9-digit state school number. 
+
+Please check school IDs in data you intend to join and then check that the presence of Travis data matches your expectations after any joins.
+
+You may use a variation of the following R code to create the state school number prior to using it for joining. 
+
+```{r Travis, eval=FALSE}
+RegionSchools <- get_schools() %>%
+  select(SchoolNumber,
+         SchoolName,
+         SchoolShortName,
+         StateSchoolNumber,
+         SchoolAbbreviation,
+         SchoolLowestGrade,
+         SchoolHighestGrade,
+         CountyNumber,
+         CountyName,
+         RegionID,
+         Area,
+         RegionAltID,
+         IsDeprecated,
+         EstablishedYear) %>%
+  inner_join(get_regions(),
+             by = c("RegionID" = "RegionID")) %>%
+  mutate(
+    StateSchoolNumber_permian = case_when(
+      CountyName == "MIDLAND" 
+        ~ paste0(as.character(CountyNumber), as.character(StateSchoolNumber)), 
+      .default = as.character(StateSchoolNumber)
+    )
+  )  %>%
+  mutate(StateSchoolNumber_permian = as.numeric(StateSchoolNumber_permian)) %>%
+  collect()
+
+
+```
+
+
+
 ## Joins
 
 It is possible that the information needed to conduct an analysis resides in more than one table in the data warehouse. To solve for this, a join statement can be used. The appropriate join depends on your data needs and the table structure. In the examples below, five joins will be covered: one inner and four outer joins (left, right, full, and anti). For each join, a matching key (common field between the tables) is identified. Some common keys with IDEA data are StudentNumber and SchoolNumber.
