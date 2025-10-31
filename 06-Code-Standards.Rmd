@@ -5,6 +5,25 @@ There is no naming convention that is "standard" in R and SQL but there are typi
 **General**
 
   + Introduction header – State the purpose or goal of the code, your name, and any other information that can help anyone get up to speed on the code. Maintain a log of changes with a date to indicate what was last changed - this isn’t always necessary, but this is good for projects that will be continue to be reused.
+  
+  Below is a sample header you can use at the top of an R script.
+  
+```{r sample_header, eval=FALSE}
+# header ----                                                                  #
+#                                                                              #
+# Filename: 01_describe_what_your_script_does.R                                #
+# Path: data/01_describe_what_your_script_does.R                               #
+# Author: Your Name                                                            #
+# Date created: 2025-10-15                                                     #
+# Date modified: 2025-10-31                                                    #
+# Purpose: Describe why you would use this script.                             #
+# Inputs: Identify any files, dependencies, etc. this script requires.         #
+# Outputs: Identify any named outputs, files, etc. this script produces.       #
+# Notes: Add any additional notes, links, etc. for others to execute your      #
+#        code properly.                                                        #
+
+```
+  
 
   + Use informative names – In naming variables or functions it is always good to make informative names to help make sense of the code. Not too short and not too long, just enough to be concise and informative. 
 
