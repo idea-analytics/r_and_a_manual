@@ -21,8 +21,10 @@ devtools::install_github("idea-analytics/ideacolors")
 Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has: 
 
 ```{r get_plot}
-p <- ggplot(mtcars, aes(x=disp, y=mpg)) +
-  geom_point(aes(color=as_factor(cyl)))
+p <- ggplot(mtcars, 
+            aes(x = disp, 
+                y = mpg)) +
+  geom_point(aes(color = as_factor(cyl)))
 
 p
 ```
@@ -371,7 +373,7 @@ The function `ggsave()` provides a wrapper around multiple device functions, lik
 3. Use `ggsave()` with the specifications identified in step 2. Note: the file name MUST include the extension of the device.
 4. Revise specifications as needed.
 
-Suppose you need to include a plot (.png) that takes up about $\frac{1}{4}$ of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). Then, the code would look like this:
+Suppose you need to include a plot (.png) that takes up about $\frac{1}{4}$ of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). If you used a theme that had a transparent background, you could also specify a background (bg) of white. Then, the code would look like this:
 
 ```{r ggsave, eval=FALSE}
 my_plot <- ggplot(my_data_frame) +
@@ -386,9 +388,11 @@ ggsave(filename = here::here("graphs", "01-my-high-quality-graph.png"),
        width = 6.5,
        height = 6.5,
        units = "in",
-       dpi = 320)
+       dpi = 320,
+       bg = "white")
 ```
 
 
+For more information on saving your output, reference the [ggplot2 book](https://ggplot2-book.org/themes#sec-saving) or the [ggsave documentation](https://ggplot2.tidyverse.org/reference/ggsave.html).
 
 
