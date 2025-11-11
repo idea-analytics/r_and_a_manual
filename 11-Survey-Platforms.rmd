@@ -1,4 +1,4 @@
-# Platforms
+# Survey Platforms
 
 This section of the R&A Manual concerns details on the various software platforms we use: general purpose of the software, some steps for using the software, and useful links for learning more about it.
 
