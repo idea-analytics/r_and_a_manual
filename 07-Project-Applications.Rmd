@@ -1,4 +1,4 @@
-# Projects
+# Project Applications
 
 Some of the team's data analysis and evaluation work is done on an annual basis, such as annual performance reporting (APR) on grant-funded evaluations and analyzing academic performance on state standardized tests or student persistence data. In some project areas, data is analyzed and shared on a weekly or monthly basis (i.e., senior college applications, ACT test scores). In-depth analyses are also conducted by the team that may involve multiple methods including quantitative, machine learning, and qualitative methods to gain breadth and depth for understanding a particular topic.
 
