@@ -40,6 +40,7 @@ schools-and-regions
 schools-table
 regions-table
 school-launch-year
+school-scaling-status
 student-attendance
 common-queries-1
 other-uses
