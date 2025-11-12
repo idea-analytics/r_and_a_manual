@@ -356,6 +356,41 @@ Need to know what year a school was opened? See the **LaunchSchoolYear** column 
 -   **[CountyDistrictCampusNumber]:** number combining the County, District, and Campus numbers, like SchoolNumber
 -   **[LaunchSchoolYear]:** school year the school was first opened; ranges from 2000-2001 to 2022-2023
 
+### School Scaling Status
+
+IDEA schools do not typically open with all grade levels present. Each year of operation includes the addition of grade levels until it is fully scaled. Details about where to find the scaling status of the school along with sample R code to pull this information is found below:
+
+**Table:** [RGVPDSD-DWPRD2].[lk_Schools].[dbo].[SchoolsExtensions]
+
+**Important columns:**
+
+-   **[SchoolName]:** full name of the school (e.g., IDEA Donna Academy)
+-   **[SchoolShortName]:** campus name (e.g., Donna)
+-   **[SchoolDesignation]:** Academy, College Prep
+-   **[StateSchoolNumber]:** state school number
+-   **[RegionID]:** IDEA region number, links to the Regions table
+-   **[RegionDescription]:** region description (e.g., Rio Grande Valley)
+-   **[SchoolState]:** school’s state (e.g., TX)
+-   **[SchoolTypeOperation]:** site status (e.g., full scale)
+-   **[SchoolYearOperation]:** year the school launched (e.g., 2004)
+
+```{r school operation, eval = FALSE}
+# load packages
+library(tidyverse)
+library(ideadata)
+
+# pull school name, campus name, region, and operation
+operation <- ideadata::get_table(.table_name = "SchoolsExtensions",
+                                 .schema = "dbo",
+                                 .database_name = "lk_Schools",
+                                 .server_name = "RGVPDSD-DWPRD2") %>% 
+  dplyr::select(SchoolName,
+                SchoolShortName,
+                RegionDescription,
+                SchoolTypeOperation) %>% 
+  collect()
+```
+
 ## Student Attendance
 
 Daily attendance is taken through PowerSchool to see which students are presently at school or not. By default, a student is assumed present until they are marked *absent (A)* by the teacher, or as *tardy present (TP)* at the school's front office. Schools will typically take a preliminary attendance snapshot within the first available period (i.e. either homeroom or 1st period) to determine which families need to be called. Then, each school designates an **Official Attendance-Taking Time or Period (OATT/OATP)**, a roughly 10-minute window for all teachers with a class at that time to submit the day's official attendance roster. The OATP snapshot is what is sent to the state for Average Daily Attendance (ADA) counts and is what is recorded in our warehouse.
@@ -916,17 +951,17 @@ Note that prior to 2021, many assessments omitted the state abbreviation, so if 
 
 A list of the most common codes used is included below:
 
-| Subject Code                       | Semester             | Assessment                                               |
+| Subject Code | Semester | Assessment |
 |---------------------------|---------------------|-------------------------|
-| ELA - English Language Arts        | Fyy - Fall (year)    | UE - unit exam                                           |
-| MAT - Mathematics                  | SPyy - Spring (year) | EOM - end of module                                      |
-| SCI - Science                      |                      | MUE - mid-unit exam                                      |
-| HUM or SS - Social Studies         |                      | MM - mid-module                                          |
-| TECH - Technology                  |                      | SE or SEM - semester exam                                |
-| RTTC - Road to and through College |                      | FE or FINAL - final exam                                 |
-| SPA - Spanish                      |                      | MOCK - mock exam                                         |
-| CSCI - Computer Science            |                      | IA - former interim assessment (final exam coded as IA4) |
-| TELPAS - TELPAS mock               |                      | BWA - biweekly assessment                                |
+| ELA - English Language Arts | Fyy - Fall (year) | UE - unit exam |
+| MAT - Mathematics | SPyy - Spring (year) | EOM - end of module |
+| SCI - Science |  | MUE - mid-unit exam |
+| HUM or SS - Social Studies |  | MM - mid-module |
+| TECH - Technology |  | SE or SEM - semester exam |
+| RTTC - Road to and through College |  | FE or FINAL - final exam |
+| SPA - Spanish |  | MOCK - mock exam |
+| CSCI - Computer Science |  | IA - former interim assessment (final exam coded as IA4) |
+| TELPAS - TELPAS mock |  | BWA - biweekly assessment |
 
 Note that each assessment, except for semester and final exams, is typically numbered (see examples). You can use regular expressions to parse these codes and select which exams are needed. Note that different states may use different names for equivalent exams. Similarly, multiple-part exams may deviate from this convention to indicate each part of the assessment.
 
@@ -1025,18 +1060,18 @@ As IDEA grows nationally, certain regions have assessment-specific platforms tha
 
 #### Common queries
 
-::: {.tip}
+::: tip
 Querying assessment data, particularly item data, can be computationally costly. Here are some best practices if you're looking up specific exam data:
 
-1. Use the **IABWA** table first to filter for the desired **[SchoolTermID], [Subject], [State] and [AssessmentType] (if known)** to identify exam names you need. Then, use the corresponding **[ExternalTestID]** column to filter for exams efficiently.
-2. If you need items from a specific exam, use the **[ExternalTestID]** in the **IABWAItems** table. Filter for the **[SchoolTermID], [State], [ExternalTestID], [QuestionNumber], and [AssessmentType] (if known)** to get item-level data for all students.
+1.  Use the **IABWA** table first to filter for the desired **[SchoolTermID], [Subject], [State] and [AssessmentType] (if known)** to identify exam names you need. Then, use the corresponding **[ExternalTestID]** column to filter for exams efficiently.
+2.  If you need items from a specific exam, use the **[ExternalTestID]** in the **IABWAItems** table. Filter for the **[SchoolTermID], [State], [ExternalTestID], [QuestionNumber], and [AssessmentType] (if known)** to get item-level data for all students.
 :::
 
 Let's say you want all scores from the open-ended questions of the AP English Literature Unit Exam 1 assessment in 2024-2025. Here is one way to approach this problem:
 
-1. Use the IABWA table to identify the [ExternalTestID] of the assessment.
-2. Use the [ExternalTestID] to filter the IABWA table again.
-3. Use the [ExternalTestID] and [QuestionNumber] to filter the IABWAItems table.
+1.  Use the IABWA table to identify the [ExternalTestID] of the assessment.
+2.  Use the [ExternalTestID] to filter the IABWA table again.
+3.  Use the [ExternalTestID] and [QuestionNumber] to filter the IABWAItems table.
 
 **To find the names of all exams administered within a school year, use the following query:**
 
@@ -1072,7 +1107,6 @@ SELECT *
     AND [Subject] = 'English Language Arts'
     AND [ExternalTestID] = 2601
 ```
-
 
 You learn that Question 13 was particularly difficult, and would like to investigate the item. The IABWAItems table is extremely large, so ONLY query the assessment AND item you are interested in.
 
@@ -1164,7 +1198,7 @@ It is particularly useful for evaluative purposes as it allows us to use normed 
 
 #### Where to get RenStar data?
 
-Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. `[RGVPDSD-DWPRD2].[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. For Math RenStar, the best table to use is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarMathV2]` while the best time for Reading RenStar is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarReadingV2]`. 
+Accessing these data in the warehouse at this juncture is not always obvious. There are number of tables (e.g. `[RGVPDSD-DWPRD2].[PROD2].[Assessments].[LittleStar]`) that are not frequently updated. For Math RenStar, the best table to use is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarMathV2]` while the best time for Reading RenStar is `[RGVPDSD-DWSRC4].[SRC_AR].[dbo].[StarReadingV2]`.
 
 Students take the RenStar during three testing windows, beginning of year (BOY), middle of year (MOY), and end of year (EOY). [CSI](#csi) students take this exam BOY, MOY, and EOY as well as two additional times, one in the fall (between BOY and MOY) and one in the spring (between MOY and EOY). Note that students can take the exam more than once during each screening window and these tables include all scores.
 
@@ -1938,17 +1972,17 @@ When defining high stakes roles with job titles, it is important to go in this o
 
 ### Travis Campus
 
-Accessing and working with data from the Travis campus in Permian Basin comes with some unique challenges. If you aren’t aware of the unique context, it can be easy to end up with apparently “missing” data from Travis that may actually exist. 
+Accessing and working with data from the Travis campus in Permian Basin comes with some unique challenges. If you aren’t aware of the unique context, it can be easy to end up with apparently “missing” data from Travis that may actually exist.
 
-Historically and at the time of this writing (Fall 2025), IDEA Travis has a unique partnership with Midland ISD (MISD). Although IDEA operates Travis, it is considered to be part of MISD, and therefore much of Travis data is provided to us by MISD rather than being collected and stored in the same manner as other IDEA Texas data. 
+Historically and at the time of this writing (Fall 2025), IDEA Travis has a unique partnership with Midland ISD (MISD). Although IDEA operates Travis, it is considered to be part of MISD, and therefore much of Travis data is provided to us by MISD rather than being collected and stored in the same manner as other IDEA Texas data.
 
-Although Travis, like other IDEA Campuses, has an Academy (Elementary) and College Prep (Middle and High School), each with unique school IDs, much of the Travis data is linked only to Travis Academy. For example, TEA treats the Travis campus as a single school (Academy), and therefore data such as accountability ratings and STAAR assessment scores appear only for Travis Academy, despite some being for older grades. When pulling STAAR scores, if you were to filter to grades K-5 for all Academy schools, you would miss STAAR scores for grades 6-12 from Travis College Prep, because they are stored as Academy. 
+Although Travis, like other IDEA Campuses, has an Academy (Elementary) and College Prep (Middle and High School), each with unique school IDs, much of the Travis data is linked only to Travis Academy. For example, TEA treats the Travis campus as a single school (Academy), and therefore data such as accountability ratings and STAAR assessment scores appear only for Travis Academy, despite some being for older grades. When pulling STAAR scores, if you were to filter to grades K-5 for all Academy schools, you would miss STAAR scores for grades 6-12 from Travis College Prep, because they are stored as Academy.
 
-Another common challenge comes with joining Travis data using school IDs. The school IDs for Travis within the schools table are 3-digit IDs, while the remainder of the schools use a 9-digit state school number. In many (most?) cases, the data stored in other tables use Travis’ 9-digit state school number. 
+Another common challenge comes with joining Travis data using school IDs. The school IDs for Travis within the schools table are 3-digit IDs, while the remainder of the schools use a 9-digit state school number. In many (most?) cases, the data stored in other tables use Travis’ 9-digit state school number.
 
 Please check school IDs in data you intend to join and then check that the presence of Travis data matches your expectations after any joins.
 
-You may use a variation of the following R code to create the state school number prior to using it for joining. 
+You may use a variation of the following R code to create the state school number prior to using it for joining.
 
 ```{r Travis, eval=FALSE}
 RegionSchools <- get_schools() %>%
@@ -1980,8 +2014,6 @@ RegionSchools <- get_schools() %>%
 
 
 ```
-
-
 
 ## Joins
 
