@@ -164,18 +164,38 @@ Clearly, if all grade levels are present on one plot and cannot be individually 
 ### Separation Colors
 When reporting on separation reasons from Tyler Munis (located in the reporting.employees table), the following colors should be used:
 
-+ **Failed I-9 Verification:** light yellow (#FFDE75)
-+ **Involuntary Misconduct:** pink (#EE3A80)
-+ **Involuntary Non-Renew:** light blue (#BDD7EE)
-+ **Involuntary Poor Performance:** navy blue (#1A4789)
-+ **No Call No Show:** light purple (#CD9BFF)
-+ **Resign in Lieu of Termination:** green (#00B050)
-+ **Voluntary Resignation No Notice:** orange (#F9A054)
-+ **Voluntary Resignation With Notice:** blue (#0079C1)
-+ **Voluntary No Return From Leave:** light green (#A4C364)
-+ **Voluntary Retirement:** dark grey (#626363)
-+ **Job Change to Seasonal/Part-Time:** tan (#E5C09F)
-+ **Did not Return Next Year in FT Position:** dark green (#214F28)
++ **Did not Return Next Year in FT Position:** Dark Green (#214F28)
++ **Entity Change:** Purple (#7030A0)
++ **Failed I-9 Verification:** Light Yellow (#FFDE75)
++ **Involuntary Position Eliminated:** Burnt Orange (#C55A11)
++ **Involuntary Misconduct:** Pink (#EE3A80)
++ **Involuntary Non-Renew:** Light Blue (#BDD7EE)
++ **Involuntary Poor Performance:** Navy Blue (#1A4789)
++ **Job Change to Seasonal/Part-Time:** Tan (#E5C09F)
++ **No Call No Show:** Light Purple (#CD9BFF)
++ **Resign in Lieu of Termination:** Green (#00B050)
++ **Voluntary Resignation No Notice:** Orange (#F9A054)
++ **Voluntary Resignation With Notice:** Blue (#0079C1)
++ **Voluntary No Return From Leave:** Light Green (#A4C364)
++ **Voluntary Retirement:** Dark Grey (#626363)
+
+The following code defines this palette as a vector which can easily be used as the values for `scale_fill_manual()`.
+```{r separation_colors, eval=FALSE}
+separation_reason_legend <- c("DID NOT RETURN NEXT YEAR IN FT POSITION"	= "#214F28",
+                              "ENTITY CHANGE" =	"#7030A0",
+                              "FAILED I-9 VERIFICATION" =	"#FFDE75",
+                              "INVOL POSITION ELIMINATED" =	"#C55A11",
+                              "INVOLUNTARY MISCONDUCT" = "#EE3A80",
+                              "INVOLUNTARY NON RENEW" =	"#BDD7EE",
+                              "INVOLUNTARY POOR PERFORMANCE" = "#1A4789",
+                              "JOB CHANGE TO SEASONAL / PART-TIME" = "#E5C09F",
+                              "NO CALL NO SHOW" = "#CD9BFF",
+                              "RESIGN IN LIEU OF TERMINATION" =	"#00B050",
+                              "VOL RESIGNATION NO NOTICE" =	"#F9A054",
+                              "VOL RESIGNATION WITH NOTICE" =	"#0079C1",
+                              "VOLUNTARY NO RETURN FROM LEAVE" = "#A4C364",
+                              "VOLUNTARY RETIREMENT" = "#626363")
+```
 
 
 ### IDEA Palette Color Ramp
