@@ -1581,8 +1581,10 @@ The Reporting.Employees table contains both the current and prior year's staff r
 -   **HIREDATE:** The date the employee was hired
 -   **STARTDATE:** The date the employee started work
 -   **EMPLOYEENAME:** The employees full name
--   **CAMPUS:** Abbreviated Campus long name (very dirty)
--   **REGION:** Abbreviated region name (very dirty)
+-   **REGION:** Abbreviated region name 
+-   **CAMPUSNAME:** Campus long name 
+-   **CAMPUS:** Abbreviated Campus long name 
+-   **CAMPUSTYPE:** Campus type (College Prep, Academy, IDEA)
 -   **JOBTITLE:** Employee's Job Title
 -   **SUBFUNCTIONAL GROUP:** Indicates whether the employee's position is Campus-based, Regional, or National
 -   **JOBGROUP:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
@@ -1591,22 +1593,24 @@ The Reporting.Employees table contains both the current and prior year's staff r
 -   **EXITDATE:** The date the employee was terminated else is NULL
 -   **ETHNICITY:** The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option
 -   **TENURE:** The number of year the employee has worked at IDEA
--   **EMPLOYEESTATUS:** 0 == No Longer Employeed (NLE), 1 == Active
+-   **EMPLOYEESTATUS:** 0 == No Longer Employed (NLE), 1 == Active
 -   **EXITREASON:** Termination Reason
 -   **EXITDESCRIPTION:** Longer description of reason
--   **MANAGER:** Employee's Manager
--   **CHIEF:** The abbreviated chief (Cso)
+-   **CHIEF:** The abbreviated chief
 -   **AREA:** Area name (Academic Team, Information Systems & Technology, etc.)
 -   **DIVISION:** Division name (Curriculum-Instruction-Assessment, Technology Operations, etc.)
 -   **DEPARTMENT:** Department name (Instructional, Campus Operations, etc.)
--   **JOBPAYSKILL:** Same as EmpStatus but character (Nle, Active)
+-   **JOBPAYSKILL:** Same as EMPLOYEESTATUS but character (NLE, Active)
+-   **MANAGER:** Employee's Manager
 -   **MANAGERID:** Manager's Employee ID
 -   **GENDER:** M == Male, F == Female
+-   **DOB:** Employee's Date of Birth
 -   **ISTEACHER:** 0/1 indicating if the employee is a teacher
 -   **TEACHERSTEP:** The step level of the teacher
--   **DOB:** Employee's Date of Birth
+-   **HEADCOUNT:** 0/1 indicating if the employee is counted in the overall staff headcount
+-   **LEAVER:** 0/1 indicating if the employee is considered a leaver
 
-There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first 90 days of employment.
+There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher, a First Year employee, or a leaver within the first 90 days of employment.
 
 #### 90 Day Retention
 90 Day retention is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff).
@@ -1638,7 +1642,7 @@ reporting.employees <-  reporting.employees %>%
                                    TRUE ~ 0))
 ```
 
-The following R code is an example of calculating All Staff Retention by Entity using TRUELEAVER and TRUEHEADCOUNT:
+The following R code is an example of calculating All Staff Retention by Entity for the current year and prior year using TRUELEAVER and TRUEHEADCOUNT:
 ```{r entity ret, echo=TRUE, eval=FALSE}
 entity_ret <- reporting.employees %>%
   {list(group_by(.,YEARLONG, ENTITY, REGIONNAME),
@@ -1648,10 +1652,10 @@ entity_ret <- reporting.employees %>%
    map_df(., ~{
     .x %>%
     summarise(n_employees = sum(TRUEHEADCOUNT),
-            n_leavers = sum(TRUELEAVER),
+              n_leavers = sum(TRUELEAVER),
               n_retained = n_employees-n_leavers) %>%
     mutate(pct_retained = (n_retained/n_employees),
-         pct_retained = round(pct_retained, digits = 4)) 
+           pct_retained = round(pct_retained, digits = 4)) 
      }) %>%
   mutate(ENTITY = replace_na(ENTITY,"ORG WIDE")) %>%
   distinct() %>%
