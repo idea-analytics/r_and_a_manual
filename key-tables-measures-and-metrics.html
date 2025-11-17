@@ -1980,12 +1980,19 @@
 <h2>
 <span class="header-section-number">4.10</span> Staff Retention<a class="anchor" aria-label="anchor" href="#staff-retention"><i class="fas fa-link"></i></a>
 </h2>
-<div id="teacher-and-all-staff-retention" class="section level3" number="4.10.1">
+<div id="staff-retention-dashboard" class="section level3" number="4.10.1">
 <h3>
-<span class="header-section-number">4.10.1</span> Teacher and All Staff Retention<a class="anchor" aria-label="anchor" href="#teacher-and-all-staff-retention"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.1</span> Staff Retention Dashboard<a class="anchor" aria-label="anchor" href="#staff-retention-dashboard"><i class="fas fa-link"></i></a>
 </h3>
-<p>During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -&gt; Quick Links -&gt; Dashboards -&gt; Locus -&gt; Staff Retention). If you can’t find what you need in the dashboard, below are the tables that store the Staff Retention data.</p>
-<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year’s staff retention data.</p>
+<p>During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement for the previous the weekly reports. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, First Year Teacher, Job Group, and First Year Job Group. The Staff Retention dashboard can be found here: <a href="https://app.powerbi.com/links/1vL4fsQaP_?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&amp;pbi_source=linkShare&amp;bookmarkGuid=4b219ac3-4c9c-4588-9673-4b36a9de016d">Staff Retention Dashboard</a> (or on the HUB -&gt; Quick Links -&gt; Dashboards -&gt; Locus -&gt; Staff Retention).</p>
+<p>If you can’t find what you need in the dashboard, the following sections explain the tables that store Staff Retention data.</p>
+</div>
+<div id="staff-headcount-new-table" class="section level3" number="4.10.2">
+<h3>
+<span class="header-section-number">4.10.2</span> Staff HeadCount New Table<a class="anchor" aria-label="anchor" href="#staff-headcount-new-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>The StaffHeadCountNew table contains the current year’s staff retention data.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew]</p>
 <p><strong>Useful Fields:</strong></p>
 <ul>
 <li>
@@ -1997,11 +2004,11 @@
 <li>
 <strong>EmployeeName:</strong> The employees full name</li>
 <li>
-<strong>Campus:</strong> Abbreviated Campus long name (very dirty)</li>
+<strong>Campus:</strong> Abbreviated Campus long name</li>
 <li>
-<strong>Region:</strong> Abbreviated region name (very dirty)</li>
+<strong>Region:</strong> Region name</li>
 <li>
-<strong>Job Title:</strong> Employee’s Job Title</li>
+<strong>JobTitle:</strong> Employee’s Job Title</li>
 <li>
 <strong>JobRole:</strong> Employee’s Job Role</li>
 <li>
@@ -2029,9 +2036,9 @@
 <li>
 <strong>FunctionalGroup:</strong> The division the employee is in</li>
 <li>
-<strong>SubFunctionalGroup:</strong> Indicates if the employee is National, Campus based, Regional, etc. (Some missingness in this column)</li>
+<strong>SubFunctionalGroup:</strong> Indicates if the employee is National, Campus based, Regional, etc.</li>
 <li>
-<strong>ChiefName:</strong> The abbreviated chief (Cso)</li>
+<strong>ChiefName:</strong> The abbreviated chief</li>
 <li>
 <strong>DeptRename:</strong> Department name (Instructional, Campus Operations, etc.)</li>
 <li>
@@ -2045,11 +2052,28 @@
 <li>
 <strong>DOB:</strong> Employee’s Date of Birth</li>
 </ul>
-<p>For Prior Year’s Data there are other tables with the same columns as above</p>
-<p><strong>2018-2019</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819] <strong>2019-2020</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920] <strong>2020-2021</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021] <strong>2021-2022</strong> <strong>Table</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]</p>
+<div id="historic-staff-retention-data" class="section level4" number="4.10.2.1">
+<h4>
+<span class="header-section-number">4.10.2.1</span> Historic Staff Retention Data<a class="anchor" aria-label="anchor" href="#historic-staff-retention-data"><i class="fas fa-link"></i></a>
+</h4>
+<p>For prior year’s Staff Retention data there are other tables with the same columns as described above.</p>
+<p><strong>2018-2019 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819]</p>
+<p><strong>2019-2020 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920]</p>
+<p><strong>2020-2021 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021]</p>
+<p><strong>2021-2022 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]</p>
+<p><strong>2022-2023 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2223]</p>
+<p><strong>2023-2024 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2324]</p>
+<p><strong>2024-2025 Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2425]</p>
 <p>Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.</p>
-<p>The data that feeds the Staff Retention Dashboard is found in a different table that contains the current year and the prior year’s data.</p>
-<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[Reporting].[Employees] This table contains the current year’s staff retention data and the prior year.</p>
+<p>The data that feeds the Staff Retention Dashboard is found in a different table which contains the current year and the prior year’s data.</p>
+</div>
+</div>
+<div id="reporting-employees-table" class="section level3" number="4.10.3">
+<h3>
+<span class="header-section-number">4.10.3</span> Reporting Employees Table<a class="anchor" aria-label="anchor" href="#reporting-employees-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>The Reporting.Employees table contains both the current and prior year’s staff retention data. This is the data that feeds the Staff Retention Dashboard.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[Reporting].[Employees]</p>
 <p><strong>Useful Fields:</strong></p>
 <ul>
 <li>
@@ -2061,9 +2085,13 @@
 <li>
 <strong>EMPLOYEENAME:</strong> The employees full name</li>
 <li>
-<strong>CAMPUS:</strong> Abbreviated Campus long name (very dirty)</li>
+<strong>REGION:</strong> Abbreviated region name</li>
 <li>
-<strong>REGION:</strong> Abbreviated region name (very dirty)</li>
+<strong>CAMPUSNAME:</strong> Campus long name</li>
+<li>
+<strong>CAMPUS:</strong> Abbreviated Campus long name</li>
+<li>
+<strong>CAMPUSTYPE:</strong> Campus type (College Prep, Academy, IDEA)</li>
 <li>
 <strong>JOBTITLE:</strong> Employee’s Job Title</li>
 <li>
@@ -2081,15 +2109,13 @@
 <li>
 <strong>TENURE:</strong> The number of year the employee has worked at IDEA</li>
 <li>
-<strong>EMPLOYEESTATUS:</strong> 0 == No Longer Employeed (NLE), 1 == Active</li>
+<strong>EMPLOYEESTATUS:</strong> 0 == No Longer Employed (NLE), 1 == Active</li>
 <li>
 <strong>EXITREASON:</strong> Termination Reason</li>
 <li>
 <strong>EXITDESCRIPTION:</strong> Longer description of reason</li>
 <li>
-<strong>MANAGER:</strong> Employee’s Manager</li>
-<li>
-<strong>CHIEF:</strong> The abbreviated chief (Cso)</li>
+<strong>CHIEF:</strong> The abbreviated chief</li>
 <li>
 <strong>AREA:</strong> Area name (Academic Team, Information Systems &amp; Technology, etc.)</li>
 <li>
@@ -2097,28 +2123,183 @@
 <li>
 <strong>DEPARTMENT:</strong> Department name (Instructional, Campus Operations, etc.)</li>
 <li>
-<strong>JOBPAYSKILL:</strong> Same as EmpStatus but character (Nle, Active)</li>
+<strong>JOBPAYSKILL:</strong> Same as EMPLOYEESTATUS but character (NLE, Active)</li>
+<li>
+<strong>MANAGER:</strong> Employee’s Manager</li>
 <li>
 <strong>MANAGERID:</strong> Manager’s Employee ID</li>
 <li>
 <strong>GENDER:</strong> M == Male, F == Female</li>
 <li>
+<strong>DOB:</strong> Employee’s Date of Birth</li>
+<li>
 <strong>ISTEACHER:</strong> 0/1 indicating if the employee is a teacher</li>
 <li>
 <strong>TEACHERSTEP:</strong> The step level of the teacher</li>
 <li>
-<strong>DOB:</strong> Employee’s Date of Birth</li>
+<strong>HEADCOUNT:</strong> 0/1 indicating if the employee is counted in the overall staff headcount</li>
+<li>
+<strong>LEAVER:</strong> 0/1 indicating if the employee is considered a leaver</li>
+<li>
+<strong>HEADCOUNTFIRSTYEAR:</strong> 0/1 indicating if the employee is in their first year</li>
+<li>
+<strong>LEAVERS90DAY:</strong> 0/1 indicating if the employee left within 90 calendar days of their start date</li>
 </ul>
-<p>There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first 90 days of employment.</p>
+<p>There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first year of employment.</p>
+<div id="day-retention" class="section level4" number="4.10.3.1">
+<h4>
+<span class="header-section-number">4.10.3.1</span> 90 Day Retention<a class="anchor" aria-label="anchor" href="#day-retention"><i class="fas fa-link"></i></a>
+</h4>
+<p>90 Day retention is 1-(number of first year staff who left prior to reaching 90 days after their start date / total number of first year staff).</p>
+<p>In the reporting.employees table there is a binary column “LEAVERS90DAY” that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90 Day retention, we divide the number of 0’s in that column by the total count of first year staff.</p>
+<p><strong>Example:</strong> Total staff headcount: 10</p>
+<ul>
+<li>1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1)</li>
+<li>1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2)</li>
+<li>1 staff member is no longer employed and quit more than 90 calendar days after their start date</li>
+<li>7 staff members are actively employed and more than 90 calendar days from their start date</li>
+</ul>
+<p>In this example, 90 Day retention would be 1-(1/10) = 90%.
+If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged.
+However, if staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.</p>
+</div>
+<div id="tips-for-staff-retention-reporting" class="section level4" number="4.10.3.2">
+<h4>
+<span class="header-section-number">4.10.3.2</span> Tips for Staff Retention Reporting<a class="anchor" aria-label="anchor" href="#tips-for-staff-retention-reporting"><i class="fas fa-link"></i></a>
+</h4>
+<p>When comparing current year-to-date retention to last year’s retention using reporting.employees data, two helper columns (TRUELEAVER and TRUEHEADCOUNT) are needed to ensure accurate year-over-year comparisons.</p>
+<ul>
+<li>
+<strong>TRUELEAVER</strong> identifies employees who exited during the current retention year up to the cutoff date as well as employees who exited during the equivalent period in the prior retention year.</li>
+<li>
+<strong>TRUEHEADCOUNT</strong> identifies employees who are part of the staff headcount during the retention year up to the cutoff date, for both the current year and the equivalent period in the prior year.</li>
+</ul>
+<p>These columns can be created as follows (example uses SY 22-23 and SY 23-24 with cutoff date of May 1st for both years; years/dates can be changed as needed):</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reporting.employees</span> <span class="op">&lt;-</span>  <span class="va">reporting.employees</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TRUELEAVER <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2022"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&gt;=</span> <span class="st">"2022-07-01"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&lt;=</span> <span class="st">"2023-05-01"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>                                <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span><span class="op">&amp;</span> <span class="va">LEAVERS</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&lt;=</span> <span class="st">"2024-05-01"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>                                <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TRUEHEADCOUNT <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2022"</span> <span class="op">&amp;</span> <span class="va">STARTDATE</span> <span class="op">&lt;=</span> <span class="st">"2023-05-01"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>                                   <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span> <span class="op">&amp;</span> <span class="va">HEADCOUNT</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">&amp;</span> <span class="va">STARTDATE</span> <span class="op">&lt;=</span> <span class="st">"2024-05-01"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>                                   <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="teacher-staff-and-hiring-data" class="section level2" number="4.11">
-<h2>
-<span class="header-section-number">4.11</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
-</h2>
-<div id="tyler-munis-data" class="section level3" number="4.11.1">
+<div id="all-staff-retention-table" class="section level3" number="4.10.4">
 <h3>
-<span class="header-section-number">4.11.1</span> Tyler Munis data<a class="anchor" aria-label="anchor" href="#tyler-munis-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10.4</span> All Staff Retention Table<a class="anchor" aria-label="anchor" href="#all-staff-retention-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>Both of the previously mentioned staff retention tables (StaffHeadCountNew and Reporting.Employees) contain data for full-time staff only. The All Staff Retention table contains retention data for both full-time and part-time employees.</p>
+<p><strong>Table:</strong> [RGVPDSD-DWPRD1].[Staffing].[dbo].[AllStaffRetention]</p>
+<p><strong>Useful Fields:</strong></p>
+<ul>
+<li>
+<strong>EmployeeID:</strong> Employee ID</li>
+<li>
+<strong>EmployeeName:</strong> The employee’s full name</li>
+<li>
+<strong>HireDate:</strong> The date the employee was hired</li>
+<li>
+<strong>StartDate:</strong> The date the employee started work</li>
+<li>
+<strong>CampusName:</strong> Abbreviated Campus long name</li>
+<li>
+<strong>RegionName:</strong> Abbreviated region name</li>
+<li>
+<strong>JobRename:</strong> Employee’s Job Title</li>
+<li>
+<strong>DeptRename:</strong> Department name (Instructional, Campus Operations, etc.)</li>
+<li>
+<strong>EmploymentStatus:</strong> FULL TIME or PART TIME</li>
+<li>
+<strong>JobGroup:</strong> Short list of categories that employee’s job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.</li>
+<li>
+<strong>AcademicYear:</strong> The current academic year</li>
+<li>
+<strong>Race:</strong> The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option</li>
+<li>
+<strong>TerminationDate:</strong> The date the employee was terminated else is NULL</li>
+<li>
+<strong>TerminatedReason:</strong> Termination Reason</li>
+<li>
+<strong>ManagerName:</strong> Employee’s Manager</li>
+<li>
+<strong>RowIsCurrent:</strong> Indicates that is the most current row of data for that employee</li>
+<li>
+<strong>Functional:</strong> The division the employee is in</li>
+<li>
+<strong>SubFunctional:</strong> Indicates if the employee is National, Campus based, Regional, etc.</li>
+<li>
+<strong>Chief:</strong> The abbreviated chief</li>
+<li>
+<strong>ManagerID:</strong> Manager’s Employee ID</li>
+<li>
+<strong>Gender:</strong> M == Male, F == Female</li>
+<li>
+<strong>Teacher Step:</strong> The step level of the teacher</li>
+<li>
+<strong>Date of Birth:</strong> Employee’s Date of Birth</li>
+<li>
+<strong>JobPaySkill:</strong> Same as EmpStatus but character (NLE, Active)</li>
+<li>
+<strong>EmpStatus:</strong> 0 == No Longer Employeed (NLE), 1 == Active</li>
+</ul>
+</div>
+</div>
+<div id="staff-data" class="section level2" number="4.11">
+<h2>
+<span class="header-section-number">4.11</span> Staff Data<a class="anchor" aria-label="anchor" href="#staff-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="regrettable-vs-non-regrettable-separation" class="section level3" number="4.11.1">
+<h3>
+<span class="header-section-number">4.11.1</span> Regrettable vs Non Regrettable Separation<a class="anchor" aria-label="anchor" href="#regrettable-vs-non-regrettable-separation"><i class="fas fa-link"></i></a>
+</h3>
+<p>Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.</p>
+<p>For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:</p>
+<ul>
+<li><strong>Voluntary Resignation No Notice</strong></li>
+<li><strong>Voluntary Resignation With Notice</strong></li>
+<li><strong>Voluntary No Return From Leave</strong></li>
+</ul>
+<p>For a separation to be classified as non-regrettable, the leaver must have one of the following exit reasons:</p>
+<ul>
+<li><strong>Failed I-9 Verification</strong></li>
+<li><strong>Involuntary Misconduct</strong></li>
+<li><strong>Involuntary Non-Renew</strong></li>
+<li><strong>Involuntary Poor Performance</strong></li>
+<li><strong>No Call No Show</strong></li>
+<li><strong>Resignation In Lieu Of Termination</strong></li>
+</ul>
+<p>Leavers with the following exit reason are excluded from the population:</p>
+<ul>
+<li><strong>Voluntary Retirement</strong></li>
+<li><strong>Job Change to Seasonal/Part - Time</strong></li>
+<li><strong>Did not Return Next Year in FT Position</strong></li>
+</ul>
+</div>
+<div id="high-stakes-roles" class="section level3" number="4.11.2">
+<h3>
+<span class="header-section-number">4.11.2</span> High Stakes Roles<a class="anchor" aria-label="anchor" href="#high-stakes-roles"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>HighStakesRoles <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%CO-TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%TEACHER RESIDENCY COACH%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%FLEX TEACHER%"</span> <span class="op">~</span> <span class="st">"Teacher"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF OPERATIONS%"</span> <span class="op">~</span> <span class="st">"APO"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF INSTRUCTION"</span> <span class="op">~</span> <span class="st">"API"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%EXECUTIVE DIRECTOR%"</span> <span class="op">~</span> <span class="st">"Executive Director"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%VP%"</span> <span class="op">~</span> <span class="st">"HQ VP"</span>,</span>
+<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%PRINCIPAL"</span> <span class="op">~</span> <span class="st">"Principal"</span>,</span>
+<span>                                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non- HighStakesRoles"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.</p>
+</div>
+</div>
+<div id="teacher-staff-and-hiring-data" class="section level2" number="4.12">
+<h2>
+<span class="header-section-number">4.12</span> Teacher, Staff, and Hiring Data<a class="anchor" aria-label="anchor" href="#teacher-staff-and-hiring-data"><i class="fas fa-link"></i></a>
+</h2>
+<div id="tyler-munis-data" class="section level3" number="4.12.1">
+<h3>
+<span class="header-section-number">4.12.1</span> Tyler Munis data<a class="anchor" aria-label="anchor" href="#tyler-munis-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Tyler Munis can be accessed by Maura Carter. It has the munprod database that contains a variety of tables and views for staffing data. One of the main tables for employee data is the prempmst table. Another is the premppay_all view (under munprod), and it has the employee’s step, salary, pay rate, pay schedule, latest step “date” (for current step), and employee ID number. This data can be filtered for job type. For example, if you want to see Teacher Salary, you can filter for job type Teacher.</p>
 <p>Currently, this data is being used for the Teacher Tenure project for Martin Winchester and the HA team, to investigate if there is a relationship between student achievement (via Semester Exams and STAAR testing scores) and a teacher’s Step (pay scale). The higher the step indicates more experience teaching, which includes teaching at IDEA and prior years of experience teaching elsewhere.</p>
@@ -2137,35 +2318,35 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <p>Start Date is a column used in the HRIS reports that denotes the date of hire at IDEA (when did the employee start their employment at IDEA, regardless of their current IDEA role now.) For example, an employee could have started for the first time at IDEA on August 1, 2016 in a role as a teacher, but now their current Work Start date is August 1, 2023 as a Principal. This employee would have started at IDEA in 2016 but is a current employee in 2023 under a different role. However, that person doesn’t have to switch roles, and the Work Start Date is the start date for their current school year’s job role for that particular school year. An employee would have a new Work Start Date each school year (for either the same role or their new current role, if it is different), but would have only one Start Date at IDEA with the organization.</p>
 <p>###New Teacher at IDEA Start Date and Work Start Date are important columns for determining a flag for New Teacher at IDEA. To determine if someone is a new teacher (as there is no existing flag or field in the Tyler Munis data), one would have to first look at the Start Date, then look at the Work Start Date. If those years match up, it is most likely a new teacher. But, for example, if the Start Date year does not match the Work Start Date year (Start Date is an older year), then the employee is not a new teacher (if the job roles are the same for both columns, they are both TEACHER). If a teacher’s Start Date is July 15, 2020 and their Work Start Date is August 1, 2021, this is not a new teacher (given that the employee’s role was “TEACHER” in both those cases). However, it is possible in this example that the person was hired as a co-teacher in 2020, then started in the role of a teacher in 2021. In that case, the employee would not be new to IDEA, but would be a new teacher at IDEA.</p>
 </div>
-<div id="teachboost-data" class="section level3" number="4.11.2">
+<div id="teachboost-data" class="section level3" number="4.12.2">
 <h3>
-<span class="header-section-number">4.11.2</span> TeachBoost Data<a class="anchor" aria-label="anchor" href="#teachboost-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.2</span> TeachBoost Data<a class="anchor" aria-label="anchor" href="#teachboost-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TeachBoost has observation data for teachers and leaders, as well as lesson plan submission and other useful information. The main reason our department has been accessing TB data is for GET observations for teachers and SLL observations for Leaders.</p>
 <p>TB contains the Forms table and Users table.</p>
-<div id="forms" class="section level4" number="4.11.2.1">
+<div id="forms" class="section level4" number="4.12.2.1">
 <h4>
-<span class="header-section-number">4.11.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.2.1</span> Forms<a class="anchor" aria-label="anchor" href="#forms"><i class="fas fa-link"></i></a>
 </h4>
 <p>This is how to connect to the Teachboost Forms table. It has been filtered for the 22-23 SY dates for observations, and it has also been filtered for only GET observations (excludes SLL observations for leaders, lesson plan submissions, etc.). If you want SLL forms, you can filter for that instead. You can also filter for different dates. This is filtered for the first month of school.</p>
 <p>forms_try &lt;- get_table(.table_name = “Forms”, .database_name = “SRC_Teachboost”, .schema = “dbo”, .server_name = “RGVPDSD-DWSRC3”) %&gt;% select(template_name, template_id, id, topic_ids, author_ids, group_ids, status, type_label, type, date, last_modified) %&gt;% filter(type_label == “GET Row Rating”) %&gt;% filter(date == “2022-08-01” | date == “2022-08-02” | date == “2022-08-03” | date == “2022-08-04” | date == “2022-08-05” | date == “2022-08-06” | date == “2022-08-07” | date == “2022-08-08” | date == “2022-08-09” | date == “2022-08-10” | date == “2022-08-11” | date == “2022-08-12” | date == “2022-08-13” | date == “2022-08-14” | date == “2022-08-15” | date == “2022-08-16” | date == “2022-08-17” | date == “2022-08-18” | date == “2022-08-19” | date == “2022-08-20” | date == “2022-08-21” | date == “2022-08-22” | date == “2022-08-23” | date == “2022-08-24” | date == “2022-08-25” | date == “2022-08-26” | date == “2022-08-27” | date == “2022-08-28” | date == “2022-08-29” | date == “2022-08-30” | date == “2022-08-31” | date == “2022-09-01” | date == “2022-09-02” ) %&gt;% collect() forms_try</p>
 <p>Forms table has the topic_id, which is the TB ID of the person about whom the form is written. The author_id is the TB ID of the person who wrote the form. The form type describes whether it is GET, Lesson Plan, SLL, etc. The topic_ID and author_ID can be the same, if the same person wrote the form about themselves, and this number matches the “ID” number on the Users table. The ID from users is not the employee ID; rather, it is the Teachboost user ID number (uniquely) assigned to each person in Teachboost. If you find a form (which is generally an observation that is submitted, such as GET) in the Forms table, to see who it is about (to find the employee ID number), you have to connect the Forms table to the User table by topic_id, then find the employee ID column on the users table. From there, you can connect this joined table to the employees table by the employee ID (found on the Users table) and on the staffing/employee table, to get additional information such as Region or School, for example.</p>
 </div>
-<div id="users" class="section level4" number="4.11.2.2">
+<div id="users" class="section level4" number="4.12.2.2">
 <h4>
-<span class="header-section-number">4.11.2.2</span> Users<a class="anchor" aria-label="anchor" href="#users"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.2.2</span> Users<a class="anchor" aria-label="anchor" href="#users"><i class="fas fa-link"></i></a>
 </h4>
 <p>UserID is a column that denotes the number of the loggin. For example, if I was the 3,541st loggin, that would be my UserID number on the Users table. The assigned Teachboost ID number is the column “ID” on the Users table, and there is a separate column for employee ID, which is different from UserID and ID. You can connect the Users table to other tables, such as Staffing.Employees, to get addtional information about the person in Teachboost such as Region or School.</p>
 </div>
-<div id="teachboost-table-joins" class="section level4" number="4.11.2.3">
+<div id="teachboost-table-joins" class="section level4" number="4.12.2.3">
 <h4>
-<span class="header-section-number">4.11.2.3</span> TeachBoost Table Joins<a class="anchor" aria-label="anchor" href="#teachboost-table-joins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.2.3</span> TeachBoost Table Joins<a class="anchor" aria-label="anchor" href="#teachboost-table-joins"><i class="fas fa-link"></i></a>
 </h4>
 <p>To link the TeachBoost Users, Scores, and Forms tables, a key is necessary for each join. Below is a visualization of how to link these tables as well as sample code. For additional information about these tables, please see the <a href="https://support.teachboost.com/hc/en-us/articles/8083873489940">TeachBoost support guide</a>.</p>
 <div class="float">
 <img src="img/teachboost_table_joins.png" title="TeachBoost table joins" width="600" alt="TeachBoost table joins"><div class="figcaption">TeachBoost table joins</div>
 </div>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
@@ -2222,24 +2403,18 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">scores_users</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">forms</span>, by <span class="op">=</span> <span class="st">"template_id"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="templates" class="section level4" number="4.11.2.4">
-<h4>
-<span class="header-section-number">4.11.2.4</span> Templates<a class="anchor" aria-label="anchor" href="#templates"><i class="fas fa-link"></i></a>
-</h4>
-<p>This table no longer exists and the data has been moved to the forms table.</p>
 </div>
-</div>
-<div id="compass-data" class="section level3" number="4.11.3">
+<div id="compass-data" class="section level3" number="4.12.3">
 <h3>
-<span class="header-section-number">4.11.3</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.3</span> Compass data<a class="anchor" aria-label="anchor" href="#compass-data"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://compass.ideapublicschools.org">Compass</a> is an internally developed application that collects and displays most employee data. The applications production database provides tidy tables for most staff data <strong>and should be considered the source of truth</strong> for these data.</p>
 <div class="tip">
 <p>You’ll need to reach out to Chris Haid to access the database. A set of compass functions for <code>[ideadata](idea-analytics.github.io/ideadata)</code> is in development.</p>
 </div>
-<div id="key-tables" class="section level4" number="4.11.3.1">
+<div id="key-tables" class="section level4" number="4.12.3.1">
 <h4>
-<span class="header-section-number">4.11.3.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.3.1</span> Key Tables<a class="anchor" aria-label="anchor" href="#key-tables"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>2x2s in TwoByTwos
@@ -2325,9 +2500,9 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 </ul>
 </div>
 </div>
-<div id="jobvite-data" class="section level3" number="4.11.4">
+<div id="jobvite-data" class="section level3" number="4.12.4">
 <h3>
-<span class="header-section-number">4.11.4</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.4</span> Jobvite Data<a class="anchor" aria-label="anchor" href="#jobvite-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jobvite is the application and hiring platform used for all staff. There job listings are posted, the interview process managed, and even initial onboarding tasks are progress monitored.</p>
 <p>R&amp;A has used data from Jobvite to analyze pre-hiring measures of hired teachers.</p>
@@ -2356,9 +2531,9 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <li><p>21-22 – 4th year of Jobvite data * (renamed Jobvite 18-19 SY by Brittany; email 10-12-21) * Contains Tentative Start Date column</p></li>
 </ol>
 </div>
-<div id="tcpteacher-export-data" class="section level3" number="4.11.5">
+<div id="tcpteacher-export-data" class="section level3" number="4.12.5">
 <h3>
-<span class="header-section-number">4.11.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5</span> TCP/Teacher Export Data<a class="anchor" aria-label="anchor" href="#tcpteacher-export-data"><i class="fas fa-link"></i></a>
 </h3>
 <p>TCP/Teacher Export Data: Teacher Performance data. * Includes TCP Level Placements, TCP Composite Score, and TCP component scores (all 5 components). + GET (35%): Manager and Self Guidepost Ratings contain 6 components + Lesson Planning &amp; Delivery + Culture, Etc. + Components 1-5 are counted, and Component 6 (Core Values) is calculated outside of this score (it is 1 of 5 Components of TCP, worth 5% on its own). Each Guidepost Component has 4-5 items listed under each as 1A, 1B, etc. + Parent Survey (5%): Show up as BLANK if &lt;10 surveys were completed per teacher + Student Survey (5%) Shows up as BLANK if: + &lt;10 surveys were completed per teacher + Some campuses encourage students and parents to fill out the surveys, and some do not + Teacher taught SPED, pre-K, K, 1st, or 2nd Grades (those students are not able to take the survey/or too young). + Student Achievement (50%) Testing such as STAAR, etc. + Core Values (5%) + Contains IDEA Work Email and EmployeeID + Contains First Name and Last Name (but not Full Name)</p>
 <p><strong>There is a 2 year HOLD for the pandemic</strong> (we don’t know who was “held”), meaning someone at a particular level (e.g., Level 5) could stay at that level for 2 years without having a composite score that is as high as that level. Usually, the hold is for 1 year.</p>
@@ -2395,9 +2570,9 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <li>No one was rated for this school year because it’s not over yet, and the TCP ratings/placements have not yet been conducted. Will likely be finalized in Fall 2022 by early-October.</li>
 </ul>
 <p>For all School Years, an “appeals” process takes place in the fall after the original placements are submitted in October. There has been a roughly 50% appeal rate (50% of teachers or their managers appealing the placements) each year. Appeals go before the appeals committee, where some appeals are denied (the given placement holds), and some appeals are approved (so the placement changes). This can alter the TCP Export report, which is not static. The export report changes depending on the current day and month; if you would like to know the “original” placements prior to appeals, you need to download the TCP Export data directly from the tcp application website prior to the appeals and any changes that will be made to placement levels. It is a good idea to download the TCP Export each year in the beginning of October when it is first posted so that you have that data, in case it changes as time goes on.</p>
-<div id="data-matching" class="section level4" number="4.11.5.1">
+<div id="data-matching" class="section level4" number="4.12.5.1">
 <h4>
-<span class="header-section-number">4.11.5.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.1</span> Data Matching<a class="anchor" aria-label="anchor" href="#data-matching"><i class="fas fa-link"></i></a>
 </h4>
 <ul>
 <li>Jobvite 19-20 to Teacher Export 19-20</li>
@@ -2424,24 +2599,24 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <li>(Removing New Hires, Promotions starting in Fall 2020, TCP Level 1)</li>
 </ul>
 </div>
-<div id="join-tables" class="section level4" number="4.11.5.2">
+<div id="join-tables" class="section level4" number="4.12.5.2">
 <h4>
-<span class="header-section-number">4.11.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.2</span> Join Tables<a class="anchor" aria-label="anchor" href="#join-tables"><i class="fas fa-link"></i></a>
 </h4>
 <p>How to join? * Jobvite has no Employee ID &amp; no Work Email and Teacher Export has Employee ID and Work Email. * Possibly join through PROD1.Staffing.Employees table, which contains First Name, Last Name, Birthday, Employee ID, and Work Email</p>
 </div>
-<div id="apr-report-for-june-2022" class="section level4" number="4.11.5.3">
+<div id="apr-report-for-june-2022" class="section level4" number="4.12.5.3">
 <h4>
-<span class="header-section-number">4.11.5.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.3</span> APR Report for June 2022<a class="anchor" aria-label="anchor" href="#apr-report-for-june-2022"><i class="fas fa-link"></i></a>
 </h4>
-<div id="promotions" class="section level5" number="4.11.5.3.1">
+<div id="promotions" class="section level5" number="4.12.5.3.1">
 <h5>
-<span class="header-section-number">4.11.5.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.3.1</span> Promotions<a class="anchor" aria-label="anchor" href="#promotions"><i class="fas fa-link"></i></a>
 </h5>
 <p>Examining the rate of promotions for both teachers and teacher-leaders, from 20-21 SY to 21-22 SY. We are using the HRIS report from May 21, 2021 and comparing it to the HRIS report from June 10, 2022.</p>
-<div id="teacher-promotions" class="section level6" number="4.11.5.3.1.1">
+<div id="teacher-promotions" class="section level6" number="4.12.5.3.1.1">
 <h6>
-<span class="header-section-number">4.11.5.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.3.1.1</span> Teacher Promotions<a class="anchor" aria-label="anchor" href="#teacher-promotions"><i class="fas fa-link"></i></a>
 </h6>
 <p>We are looking at Area = “TEACHER” for 20-21 SY. Then inner_join to all employees on the HRIS for 21-22 SY. There were a total of 2,388 employees who worked for both school years (20-21 and 21-22 SY), including as a Teacher for 20-21 SY and as either a Teacher or different Area for 21-22 SY. We found 39 Job Titles for Areas other than “TEACHER” on the 21-22 SY report (for teachers who had changed Areas from 20-21 to 21-22 SY). One Job Title was “INTERVENTIONIST” which moved from Area = “TEACHER” to Area = “INSTRUCTIONAL SUPPORT”. We concluded this was incorrect and should remain as Area = “TEACHER”, and so was counted as “no change”. The remaining 38 Job Titles that fell outside of Area = “TEACHER” were included as either Promotions or Demotions.</p>
 <p><strong>Promotions</strong></p>
@@ -2451,115 +2626,45 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <p>ASST. PRINCIPAL OF INSTRUCTION IN RESIDENCE SOCIAL STUDIES CURRICULUM MANAGER K-2 REGIONAL MATH COACH MATH CURRICULUM MANAGER DIGITAL COMMUNICATIONS MANAGER SR. COLLEGE COUNSELOR TECHNICAL TRAINER PROJECT MANAGER JOB COACH</p>
 <p><strong>Demotions</strong> FLEX TEACHER TESTING COORDINATOR SUBSTITUTE TEACHER SPECIAL EDUCATION RISE CO-TEACHER</p>
 </div>
-<div id="teacher-leader-promotions" class="section level6" number="4.11.5.3.1.2">
+<div id="teacher-leader-promotions" class="section level6" number="4.12.5.3.1.2">
 <h6>
-<span class="header-section-number">4.11.5.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.3.1.2</span> Teacher-Leader Promotions<a class="anchor" aria-label="anchor" href="#teacher-leader-promotions"><i class="fas fa-link"></i></a>
 </h6>
 </div>
 </div>
 </div>
-<div id="tcp-retention-and-tcp-levels" class="section level4" number="4.11.5.4">
+<div id="tcp-retention-and-tcp-levels" class="section level4" number="4.12.5.4">
 <h4>
-<span class="header-section-number">4.11.5.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.4</span> TCP Retention and TCP Levels<a class="anchor" aria-label="anchor" href="#tcp-retention-and-tcp-levels"><i class="fas fa-link"></i></a>
 </h4>
 <p>One part of TSLIP looks at Teacher Retention by TCP Placement Level. The reason for this is because if we know more about how many teachers are leaving from particular levels, we may be able to determine some reasons why, and then provide needed support to help retain teachers. Mid-year and even end-of-year teachers leaving is a huge disruption to students and it is expensive and time-intensive for the hiring team. It can have impacts on student achievement and classroom culture.</p>
-<div id="missing-tcp-placements" class="section level5" number="4.11.5.4.1">
+<div id="missing-tcp-placements" class="section level5" number="4.12.5.4.1">
 <h5>
-<span class="header-section-number">4.11.5.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.4.1</span> Missing TCP Placements<a class="anchor" aria-label="anchor" href="#missing-tcp-placements"><i class="fas fa-link"></i></a>
 </h5>
 <p>TCP Retention for 20-21 SY had to be calculated using predictions for TCP Placements for 50% of the leavers. About 200/400 leavers were not placed into TCP Levels because the manager knew that the teacher would not be returning. For the 21-22 SY, all teachers will be placed into a TCP Level regardless of known leaver status, and this should be available on the Teacher Export sheet on the TCP website application.</p>
 </div>
-<div id="leaver-rates" class="section level5" number="4.11.5.4.2">
+<div id="leaver-rates" class="section level5" number="4.12.5.4.2">
 <h5>
-<span class="header-section-number">4.11.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.4.2</span> Leaver Rates<a class="anchor" aria-label="anchor" href="#leaver-rates"><i class="fas fa-link"></i></a>
 </h5>
 <p>Leaver rates for 21-22 SY were approximately: 17% Level 1, 16% Level 2, 11% Level 3, 7% Level 4, 6% Level 5. Level 1 makes up the largest total number of teachers at IDEA; approximately 1/3 teachers at IDEA are “New To IDEA” Level 1. That number is followed closely by Level 4, which makes up the next largest group of teachers at IDEA. Level 2 has the smallest number of teachers. This level is a sort of “holding” level for teachers who didn’t score high enough on the composite score to go straight from Level 1 to Level 3. The traditional path is to promote straight from Level 1 after the first year, to Level 3.</p>
 <p>Total n for Each TCP Level, out of 3432 Teachers at IDEA, 21-22 SY: Level 1: 1185 Level 2: 90 Level 3: 813 Level 4: 1010 Level 5: 334</p>
 <p>Going forward for 21-22 SY TCP, all teachers will supposedly be placed into TCP Placement Levels, regardless of known leaver-status. This should help with the issue of analyzing retention of teachers by TCP Level, as all teachers would have a TCP Level when the October 2022 TCP comes out. Teachers who left should still be available in the Teacher Export file on the TCP website/application, according to the TCP Team.</p>
 </div>
-<div id="exit-surveys-for-teacher-leavers" class="section level5" number="4.11.5.4.3">
+<div id="exit-surveys-for-teacher-leavers" class="section level5" number="4.12.5.4.3">
 <h5>
-<span class="header-section-number">4.11.5.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.4.3</span> Exit Surveys for Teacher Leavers<a class="anchor" aria-label="anchor" href="#exit-surveys-for-teacher-leavers"><i class="fas fa-link"></i></a>
 </h5>
 <p>Not all of the leavers from the TCP Retention project matched up with those who took Exit Surveys. In many cases, there was no Exit Survey for a Teacher Leaver from the TCP Retention project, and in other cases, the leavers with an Exit Survey were not on the TCP Retention project list of teachers. We are still reviewing the Exit Survey data for clues as to why teachers from various levels might leave (either mid-year or EOY), and we hope this can help inform ways to support teachers so they do not leave and are instead retained.</p>
 </div>
 </div>
-<div id="tcp-levels-and-composite-score-correlations" class="section level4" number="4.11.5.5">
+<div id="tcp-levels-and-composite-score-correlations" class="section level4" number="4.12.5.5">
 <h4>
-<span class="header-section-number">4.11.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.12.5.5</span> TCP Levels and Composite Score Correlations<a class="anchor" aria-label="anchor" href="#tcp-levels-and-composite-score-correlations"><i class="fas fa-link"></i></a>
 </h4>
 <p>TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of five components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher’s Placement Level, but can be overridden by a manager, a “hold”, or an appeal (generally initiated by the manager). For teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a “hold” is placed to keep the teacher at the prior year’s level (given that it is higher than this year’s Composite Score). The teacher then has one academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given two years (and then now, indefinite years of pandemic holds) of “hold” time instead of one. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for one year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.</p>
 </div>
-</div>
-</div>
-<div id="staff-data" class="section level2" number="4.12">
-<h2>
-<span class="header-section-number">4.12</span> Staff Data<a class="anchor" aria-label="anchor" href="#staff-data"><i class="fas fa-link"></i></a>
-</h2>
-<div id="regrettable-vs-non-regrettable" class="section level3" number="4.12.1">
-<h3>
-<span class="header-section-number">4.12.1</span> Regrettable vs Non Regrettable<a class="anchor" aria-label="anchor" href="#regrettable-vs-non-regrettable"><i class="fas fa-link"></i></a>
-</h3>
-<p>Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.</p>
-<p>For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:</p>
-<ul>
-<li><strong>Voluntary Resignation No Notice</strong></li>
-<li><strong>Voluntary Resignation With Notice</strong></li>
-<li><strong>Voluntary No Return From Leave</strong></li>
-</ul>
-<p>For a separation to be classified as non-regrettable, the leaver must have one of the following exit reasons:</p>
-<ul>
-<li><strong>Failed I-9 Verification</strong></li>
-<li><strong>Involuntary Misconduct</strong></li>
-<li><strong>Involuntary Non-Renew</strong></li>
-<li><strong>Involuntary Poor Performance</strong></li>
-<li><strong>No Call No Show</strong></li>
-<li><strong>Resignation In Lieu Of Termination</strong></li>
-</ul>
-<p>Leavers with the following exit reason are excluded from the population:</p>
-<ul>
-<li><strong>Voluntary Retirement</strong></li>
-<li><strong>Job Change to Seasonal/Part - Time</strong></li>
-<li><strong>Did not Return Next Year in FT Position</strong></li>
-</ul>
-</div>
-<div id="day-retention" class="section level3" number="4.12.2">
-<h3>
-<span class="header-section-number">4.12.2</span> 90 Day Retention<a class="anchor" aria-label="anchor" href="#day-retention"><i class="fas fa-link"></i></a>
-</h3>
-<p>90 Day retention is the attrition rate of first year staff. The formula for the attrition rate is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff).</p>
-<p>In the staff retention dashboard (reporting.employees), there is a binary column “LEAVERS90D” that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90D retention, it divides the number of 0’s in that column by the total count of first year staff.</p>
-<p><strong>Example:</strong> + Total staff headcount: 10 + 1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1) + 1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2) + 1 staff member is no longer employed and quit more than 90 calendar days after their start date + 7 staff members are actively employed and more than 90 calendar days from their start date</p>
-<p>In this example, 90D retention would be 1-(1/10) = 90%. If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged. If staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.</p>
-</div>
-<div id="tips-for-staff-retention-reporting" class="section level3" number="4.12.3">
-<h3>
-<span class="header-section-number">4.12.3</span> Tips for Staff Retention Reporting<a class="anchor" aria-label="anchor" href="#tips-for-staff-retention-reporting"><i class="fas fa-link"></i></a>
-</h3>
-<p>When calculating year over year retention using reporting.employees, two columns, TRUELEAVER and TRUEHEADCOUNT, need to be created to get the proper retention for the previous year. These columns can be created as follows (from SY 22-23 and SY 23-24; years can be changed as necessary):</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">reporting.employees</span> <span class="op">&lt;-</span>  <span class="va">reporting.employees</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TRUELEAVER <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
-<span>  <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2022"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&gt;=</span> <span class="st">"2022-07-01"</span> <span class="op">&amp;</span> <span class="va">EXITDATE</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>  <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span><span class="op">&amp;</span> <span class="va">LEAVERS</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>  <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>TRUEHEADCOUNT <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2022"</span> <span class="op">&amp;</span> <span class="va">STARTDATE</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/period.html">years</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>                                   <span class="va">YEAR</span> <span class="op">==</span> <span class="st">"2023"</span> <span class="op">&amp;</span> <span class="va">HEADCOUNT</span> <span class="op">==</span> <span class="st">"1"</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>                                   <span class="cn">TRUE</span> <span class="op">~</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div id="high-stakes-roles" class="section level3" number="4.12.4">
-<h3>
-<span class="header-section-number">4.12.4</span> High Stakes Roles<a class="anchor" aria-label="anchor" href="#high-stakes-roles"><i class="fas fa-link"></i></a>
-</h3>
-<p>There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>HighStakesRoles <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%CO-TEACHER%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%TEACHER RESIDENCY COACH%"</span> <span class="op">&amp;</span> <span class="va">JOBTITLE</span> <span class="op">%notlike%</span> <span class="st">"%FLEX TEACHER%"</span> <span class="op">~</span> <span class="st">"Teacher"</span>,</span>
-<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF OPERATIONS%"</span> <span class="op">~</span> <span class="st">"APO"</span>,</span>
-<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%ASSISTANT PRINCIPAL OF INSTRUCTION"</span> <span class="op">~</span> <span class="st">"API"</span>,</span>
-<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%EXECUTIVE DIRECTOR%"</span> <span class="op">~</span> <span class="st">"Executive Director"</span>,</span>
-<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%VP%"</span> <span class="op">~</span> <span class="st">"HQ VP"</span>,</span>
-<span>                                     <span class="va">JOBTITLE</span> <span class="op">%like%</span> <span class="st">"%PRINCIPAL"</span> <span class="op">~</span> <span class="st">"Principal"</span>,</span>
-<span>                                     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Non- HighStakesRoles"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.</p>
 </div>
 </div>
 <div id="data-oddities-and-exceptions" class="section level2" number="4.13">
@@ -2704,23 +2809,26 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 </li>
 <li><a class="nav-link" href="#student-course-grades"><span class="header-section-number">4.9</span> Student Course Grades</a></li>
 <li>
-<a class="nav-link" href="#staff-retention"><span class="header-section-number">4.10</span> Staff Retention</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#teacher-and-all-staff-retention"><span class="header-section-number">4.10.1</span> Teacher and All Staff Retention</a></li></ul>
-</li>
-<li>
-<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.11</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.11.1</span> Tyler Munis data</a></li>
-<li><a class="nav-link" href="#teachboost-data"><span class="header-section-number">4.11.2</span> TeachBoost Data</a></li>
-<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.11.3</span> Compass data</a></li>
-<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.11.4</span> Jobvite Data</a></li>
-<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.11.5</span> TCP/Teacher Export Data</a></li>
+<a class="nav-link" href="#staff-retention"><span class="header-section-number">4.10</span> Staff Retention</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#staff-retention-dashboard"><span class="header-section-number">4.10.1</span> Staff Retention Dashboard</a></li>
+<li><a class="nav-link" href="#staff-headcount-new-table"><span class="header-section-number">4.10.2</span> Staff HeadCount New Table</a></li>
+<li><a class="nav-link" href="#reporting-employees-table"><span class="header-section-number">4.10.3</span> Reporting Employees Table</a></li>
+<li><a class="nav-link" href="#all-staff-retention-table"><span class="header-section-number">4.10.4</span> All Staff Retention Table</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#staff-data"><span class="header-section-number">4.12</span> Staff Data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#regrettable-vs-non-regrettable"><span class="header-section-number">4.12.1</span> Regrettable vs Non Regrettable</a></li>
-<li><a class="nav-link" href="#day-retention"><span class="header-section-number">4.12.2</span> 90 Day Retention</a></li>
-<li><a class="nav-link" href="#tips-for-staff-retention-reporting"><span class="header-section-number">4.12.3</span> Tips for Staff Retention Reporting</a></li>
-<li><a class="nav-link" href="#high-stakes-roles"><span class="header-section-number">4.12.4</span> High Stakes Roles</a></li>
+<a class="nav-link" href="#staff-data"><span class="header-section-number">4.11</span> Staff Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#regrettable-vs-non-regrettable-separation"><span class="header-section-number">4.11.1</span> Regrettable vs Non Regrettable Separation</a></li>
+<li><a class="nav-link" href="#high-stakes-roles"><span class="header-section-number">4.11.2</span> High Stakes Roles</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#teacher-staff-and-hiring-data"><span class="header-section-number">4.12</span> Teacher, Staff, and Hiring Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tyler-munis-data"><span class="header-section-number">4.12.1</span> Tyler Munis data</a></li>
+<li><a class="nav-link" href="#teachboost-data"><span class="header-section-number">4.12.2</span> TeachBoost Data</a></li>
+<li><a class="nav-link" href="#compass-data"><span class="header-section-number">4.12.3</span> Compass data</a></li>
+<li><a class="nav-link" href="#jobvite-data"><span class="header-section-number">4.12.4</span> Jobvite Data</a></li>
+<li><a class="nav-link" href="#tcpteacher-export-data"><span class="header-section-number">4.12.5</span> TCP/Teacher Export Data</a></li>
 </ul>
 </li>
 <li>
@@ -2752,7 +2860,7 @@ ELSE ‘Active’ END AS [JobPaySkill]</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-11-13.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-11-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
