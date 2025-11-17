@@ -1510,11 +1510,15 @@ There are two tables in the warehouse that collect student course grades, `[RGVP
 
 ## Staff Retention
 
-### Teacher and All Staff Retention
+### Staff Retention Dashboard
+During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement for the previous the weekly reports. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, First Year Teacher, Job Group, and First Year Job Group. The Staff Retention dashboard can be found here: [Staff Retention Dashboard](https://app.powerbi.com/links/1vL4fsQaP_?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&pbi_source=linkShare&bookmarkGuid=4b219ac3-4c9c-4588-9673-4b36a9de016d) (or on the HUB -\> Quick Links -\> Dashboards -\> Locus -\> Staff Retention). 
 
-During the 2022-2023 School Year the Software Development team created a dashboard to track Staff Retention as a replacement of the weekly reports that Alfredo sent out. This dashboard tracks retention by Region, Campus, School, Area, Chief, Teachers (Only), and by Demographics, which includes reason for leaving, Race/Ethnicity, Tenure, First Year, 90 Day, and First Year Teacher. This is where to find the Staff Retention dashboard, (on the HUB -\> Quick Links -\> Dashboards -\> Locus -\> Staff Retention). If you can't find what you need in the dashboard, below are the tables that store the Staff Retention data.
+If you can't find what you need in the dashboard, the following sections explain the tables that store Staff Retention data.
 
-**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew] This table contains the current year's staff retention data.
+### Staff HeadCount New Table
+The StaffHeadCountNew table contains the current year's staff retention data. 
+
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew]
 
 **Useful Fields:**
 
@@ -1522,9 +1526,9 @@ During the 2022-2023 School Year the Software Development team created a dashboa
 -   **HireDate:** The date the employee was hired
 -   **StartDate:** The date the employee started work
 -   **EmployeeName:** The employees full name
--   **Campus:** Abbreviated Campus long name (very dirty)
--   **Region:** Abbreviated region name (very dirty)
--   **Job Title:** Employee's Job Title
+-   **Campus:** Abbreviated Campus long name 
+-   **Region:** Region name 
+-   **JobTitle:** Employee's Job Title
 -   **JobRole:** Employee's Job Role
 -   **JobGroup:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
 -   **AcademicYear:** The current academic year
@@ -1538,8 +1542,8 @@ During the 2022-2023 School Year the Software Development team created a dashboa
 -   **Manager:** Employee's Manager
 -   **RowIsCurrent:** Indicates that is the most current row of data for that employee
 -   **FunctionalGroup:** The division the employee is in
--   **SubFunctionalGroup:** Indicates if the employee is National, Campus based, Regional, etc. (Some missingness in this column)
--   **ChiefName:** The abbreviated chief (Cso)
+-   **SubFunctionalGroup:** Indicates if the employee is National, Campus based, Regional, etc.
+-   **ChiefName:** The abbreviated chief 
 -   **DeptRename:** Department name (Instructional, Campus Operations, etc.)
 -   **JobPaySkill:** Same as EmpStatus but character (Nle, Active)
 -   **ManagerID:** Manager's Employee ID
@@ -1547,15 +1551,31 @@ During the 2022-2023 School Year the Software Development team created a dashboa
 -   **TeacherStep:** The step level of the teacher
 -   **DOB:** Employee's Date of Birth
 
-For Prior Year's Data there are other tables with the same columns as above
+#### Historic Staff Retention Data
+For prior year's Staff Retention data there are other tables with the same columns as described above. 
 
-**2018-2019** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819] **2019-2020** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920] **2020-2021** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021] **2021-2022** **Table** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]
+**2018-2019 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1819] 
+
+**2019-2020 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew1920] 
+
+**2020-2021 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2021] 
+
+**2021-2022 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2122]
+
+**2022-2023 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2223]
+
+**2023-2024 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2324]
+
+**2024-2025 Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[StaffHeadCountNew2425]
 
 Data has varied across the years and the naming conventions (or lack there of) is varied across these tables.
 
-The data that feeds the Staff Retention Dashboard is found in a different table that contains the current year and the prior year's data.
+The data that feeds the Staff Retention Dashboard is found in a different table which contains the current year and the prior year's data.
 
-**Table:** [RGVPDSD-DWPRD1].[Staffing].[Reporting].[Employees] This table contains the current year's staff retention data and the prior year.
+### Reporting Employees Table
+The Reporting.Employees table contains both the current and prior year's staff retention data. This is the data that feeds the Staff Retention Dashboard. 
+
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[Reporting].[Employees] 
 
 **Useful Fields:**
 
@@ -1563,8 +1583,10 @@ The data that feeds the Staff Retention Dashboard is found in a different table 
 -   **HIREDATE:** The date the employee was hired
 -   **STARTDATE:** The date the employee started work
 -   **EMPLOYEENAME:** The employees full name
--   **CAMPUS:** Abbreviated Campus long name (very dirty)
--   **REGION:** Abbreviated region name (very dirty)
+-   **REGION:** Abbreviated region name 
+-   **CAMPUSNAME:** Campus long name 
+-   **CAMPUS:** Abbreviated Campus long name 
+-   **CAMPUSTYPE:** Campus type (College Prep, Academy, IDEA)
 -   **JOBTITLE:** Employee's Job Title
 -   **SUBFUNCTIONAL GROUP:** Indicates whether the employee's position is Campus-based, Regional, or National
 -   **JOBGROUP:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
@@ -1573,22 +1595,137 @@ The data that feeds the Staff Retention Dashboard is found in a different table 
 -   **EXITDATE:** The date the employee was terminated else is NULL
 -   **ETHNICITY:** The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option
 -   **TENURE:** The number of year the employee has worked at IDEA
--   **EMPLOYEESTATUS:** 0 == No Longer Employeed (NLE), 1 == Active
+-   **EMPLOYEESTATUS:** 0 == No Longer Employed (NLE), 1 == Active
 -   **EXITREASON:** Termination Reason
 -   **EXITDESCRIPTION:** Longer description of reason
--   **MANAGER:** Employee's Manager
--   **CHIEF:** The abbreviated chief (Cso)
+-   **CHIEF:** The abbreviated chief
 -   **AREA:** Area name (Academic Team, Information Systems & Technology, etc.)
 -   **DIVISION:** Division name (Curriculum-Instruction-Assessment, Technology Operations, etc.)
 -   **DEPARTMENT:** Department name (Instructional, Campus Operations, etc.)
--   **JOBPAYSKILL:** Same as EmpStatus but character (Nle, Active)
+-   **JOBPAYSKILL:** Same as EMPLOYEESTATUS but character (NLE, Active)
+-   **MANAGER:** Employee's Manager
 -   **MANAGERID:** Manager's Employee ID
 -   **GENDER:** M == Male, F == Female
+-   **DOB:** Employee's Date of Birth
 -   **ISTEACHER:** 0/1 indicating if the employee is a teacher
 -   **TEACHERSTEP:** The step level of the teacher
--   **DOB:** Employee's Date of Birth
+-   **HEADCOUNT:** 0/1 indicating if the employee is counted in the overall staff headcount
+-   **LEAVER:** 0/1 indicating if the employee is considered a leaver
+-   **HEADCOUNTFIRSTYEAR:** 0/1 indicating if the employee is in their first year 
+-   **LEAVERS90DAY:** 0/1 indicating if the employee left within 90 calendar days of their start date
 
-There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first 90 days of employment.
+There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first year of employment.
+
+#### 90 Day Retention
+90 Day retention is 1-(number of first year staff who left prior to reaching 90 days after their start date / total number of first year staff).
+
+In the reporting.employees table there is a binary column "LEAVERS90DAY" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90 Day retention, we divide the number of 0's in that column by the total count of first year staff.
+
+**Example:** Total staff headcount: 10
+
++   1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1) 
++   1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2) 
++   1 staff member is no longer employed and quit more than 90 calendar days after their start date 
++   7 staff members are actively employed and more than 90 calendar days from their start date
+
+In this example, 90 Day retention would be 1-(1/10) = 90%. 
+If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged. 
+However, if staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.
+
+#### Tips for Staff Retention Reporting
+
+When comparing current year-to-date retention to last year's retention using reporting.employees data, two helper columns (TRUELEAVER and TRUEHEADCOUNT) are needed to ensure accurate year-over-year comparisons. 
+
+- **TRUELEAVER** identifies employees who exited during the current retention year up to the cutoff date as well as employees who exited during the equivalent period in the prior retention year. 
+- **TRUEHEADCOUNT** identifies employees who are part of the staff headcount during the retention year up to the cutoff date, for both the current year and the equivalent period in the prior year. 
+
+These columns can be created as follows (example uses SY 22-23 and SY 23-24 with cutoff date of May 1st for both years; years/dates can be changed as needed):
+
+```{r yoy retention, echo=TRUE, eval=FALSE}
+reporting.employees <-  reporting.employees %>% 
+  mutate(TRUELEAVER = case_when(YEAR == "2022" & EXITDATE >= "2022-07-01" & EXITDATE <= "2023-05-01" ~ 1,
+                                YEAR == "2023"& LEAVERS == "1" & EXITDATE <= "2024-05-01" ~ 1,
+                                TRUE ~ 0)) %>%
+  mutate(TRUEHEADCOUNT = case_when(YEAR == "2022" & STARTDATE <= "2023-05-01" ~ 1,
+                                   YEAR == "2023" & HEADCOUNT == "1" & STARTDATE <= "2024-05-01" ~ 1,
+                                   TRUE ~ 0))
+```
+
+
+### All Staff Retention Table
+Both of the previously mentioned staff retention tables (StaffHeadCountNew and Reporting.Employees) contain data for full-time staff only. The All Staff Retention table contains retention data for both full-time and part-time employees. 
+
+**Table:** [RGVPDSD-DWPRD1].[Staffing].[dbo].[AllStaffRetention]
+
+**Useful Fields:**
+
+-   **EmployeeID:** Employee ID
+-   **EmployeeName:** The employee's full name
+-   **HireDate:** The date the employee was hired
+-   **StartDate:** The date the employee started work
+-   **CampusName:** Abbreviated Campus long name 
+-   **RegionName:** Abbreviated region name 
+-   **JobRename:** Employee's Job Title
+-   **DeptRename:** Department name (Instructional, Campus Operations, etc.)
+-   **EmploymentStatus:** FULL TIME or PART TIME
+-   **JobGroup:** Short list of categories that employee's job falls into, such as Clerical/Technical, Teacher, Manual Trades, etc.
+-   **AcademicYear:** The current academic year
+-   **Race:** The Race/Ethnicity in mutually exclusive categories, however, More than 2 Races is not an option
+-   **TerminationDate:** The date the employee was terminated else is NULL
+-   **TerminatedReason:** Termination Reason
+-   **ManagerName:** Employee's Manager
+-   **RowIsCurrent:** Indicates that is the most current row of data for that employee
+-   **Functional:** The division the employee is in
+-   **SubFunctional:** Indicates if the employee is National, Campus based, Regional, etc. 
+-   **Chief:** The abbreviated chief
+-   **ManagerID:** Manager's Employee ID
+-   **Gender:** M == Male, F == Female
+-   **Teacher Step:** The step level of the teacher
+-   **Date of Birth:** Employee's Date of Birth
+-   **JobPaySkill:** Same as EmpStatus but character (NLE, Active)
+-   **EmpStatus:** 0 == No Longer Employeed (NLE), 1 == Active
+
+## Staff Data
+
+### Regrettable vs Non Regrettable Separation
+Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.
+
+For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:
+
+-   **Voluntary Resignation No Notice**
+-   **Voluntary Resignation With Notice**
+-   **Voluntary No Return From Leave**
+
+For a separation to be classified as non-regrettable, the leaver must have one of the following exit reasons:
+
+-   **Failed I-9 Verification**
+-   **Involuntary Misconduct**
+-   **Involuntary Non-Renew**
+-   **Involuntary Poor Performance**
+-   **No Call No Show**
+-   **Resignation In Lieu Of Termination**
+
+Leavers with the following exit reason are excluded from the population:
+
+-   **Voluntary Retirement**
+-   **Job Change to Seasonal/Part - Time**
+-   **Did not Return Next Year in FT Position**
+
+### High Stakes Roles
+There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:
+
+```{r hsr, echo=TRUE, eval=FALSE}
+  mutate(HighStakesRoles = case_when(JOBTITLE %like% "%TEACHER%" & JOBTITLE %notlike% "%CO-TEACHER%" & JOBTITLE %notlike% "%TEACHER RESIDENCY COACH%" & JOBTITLE %notlike% "%FLEX TEACHER%" ~ "Teacher",
+                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF OPERATIONS%" ~ "APO",
+                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF INSTRUCTION" ~ "API",
+                                     JOBTITLE %like% "%EXECUTIVE DIRECTOR%" ~ "Executive Director",
+                                     JOBTITLE %like% "%VP%" ~ "HQ VP",
+                                     JOBTITLE %like% "%PRINCIPAL" ~ "Principal",
+                                     TRUE ~ "Non- HighStakesRoles"))
+```
+
+When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
+
 
 ## Teacher, Staff, and Hiring Data
 
@@ -1707,10 +1844,6 @@ data <- scores_users %>%
   left_join(forms, by = "template_id")
 
 ```
-
-#### Templates
-
-This table no longer exists and the data has been moved to the forms table.
 
 ### Compass data
 
@@ -1901,72 +2034,6 @@ Not all of the leavers from the TCP Retention project matched up with those who 
 
 TCP Placement Levels do not have a high correlation with TCP Composite Scores. The Composite Score is composed of five components (GET Ratings, Student Achievement, Parent Surveys, Student Surveys, and Core Values). This score is loosely used to decide a teacher's Placement Level, but can be overridden by a manager, a "hold", or an appeal (generally initiated by the manager). For teachers who do not get receive a high enough Composite Score to reach the TCP Placement Level they reached the prior year, a "hold" is placed to keep the teacher at the prior year's level (given that it is higher than this year's Composite Score). The teacher then has one academic year to get their Composite Score raised high enough to keep their TCP Placement Level. During the Pandemic, teachers were given two years (and then now, indefinite years of pandemic holds) of "hold" time instead of one. General cut-offs are: 0 to 1.4 rounds to Level 1, 1.5 to 2.4 rounds to Level 2, 2.5 to 3.4 rounds to Level 3, 3.5 to 4.4 rounds to Level 4, and 4.5+ rounds to Level 5. There is also a hold for changing content. If a teacher was teaching chemistry and is now teaching physics, that teacher would be placed on a hold for one year. Some teachers were on hold for 2-3 years prior to the pandemic 19-20 SY, according to the TCP Team, and thus some teachers have been on a TCP hold for 5-6 years at this point (end of 21-22 SY). Business rules may change or be updated and added to again, for the 22-23 SY.
 
-## Staff Data
-
-### Regrettable vs Non Regrettable
-
-Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.
-
-For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:
-
--   **Voluntary Resignation No Notice**
--   **Voluntary Resignation With Notice**
--   **Voluntary No Return From Leave**
-
-For a separation to be classified as non-regrettable, the leaver must have one of the following exit reasons:
-
--   **Failed I-9 Verification**
--   **Involuntary Misconduct**
--   **Involuntary Non-Renew**
--   **Involuntary Poor Performance**
--   **No Call No Show**
--   **Resignation In Lieu Of Termination**
-
-Leavers with the following exit reason are excluded from the population:
-
--   **Voluntary Retirement**
--   **Job Change to Seasonal/Part - Time**
--   **Did not Return Next Year in FT Position**
-
-### 90 Day Retention
-
-90 Day retention is the attrition rate of first year staff. The formula for the attrition rate is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff).
-
-In the staff retention dashboard (reporting.employees), there is a binary column "LEAVERS90D" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90D retention, it divides the number of 0's in that column by the total count of first year staff.
-
-**Example:** + Total staff headcount: 10 + 1 staff member is actively employed but is only 45 calendar days from their start date (staff member 1) + 1 staff member is no longer employed and quit 60 calendar days after their start date (staff member 2) + 1 staff member is no longer employed and quit more than 90 calendar days after their start date + 7 staff members are actively employed and more than 90 calendar days from their start date
-
-In this example, 90D retention would be 1-(1/10) = 90%. If staff member 1 remains employed through their first 90 calendar days of employment, this rate would remain unchanged. If staff member 1 were to leave prior to their 91st day of employment, this rate would change to 1-(2/10) = 80%.
-
-### Tips for Staff Retention Reporting
-
-When calculating year over year retention using reporting.employees, two columns, TRUELEAVER and TRUEHEADCOUNT, need to be created to get the proper retention for the previous year. These columns can be created as follows (from SY 22-23 and SY 23-24; years can be changed as necessary):
-
-```{r yoy retention, echo=TRUE, eval=FALSE}
-reporting.employees <-  reporting.employees %>% mutate(TRUELEAVER = case_when(
-  YEAR == "2022" & EXITDATE >= "2022-07-01" & EXITDATE <= Sys.Date()-years(1) ~ 1,
-  YEAR == "2023"& LEAVERS == "1" ~ 1,
-  TRUE ~ 0)) %>%
-  mutate(TRUEHEADCOUNT = case_when(YEAR == "2022" & STARTDATE <= Sys.Date()-years(1) ~ 1,
-                                   YEAR == "2023" & HEADCOUNT == "1" ~ 1,
-                                   TRUE ~ 0))
-```
-
-### High Stakes Roles
-
-There are some high stakes roles in the vw_CurrentStaffDirectory table located in the Surveys database on the RGVPDRA-DASQL server. However, that information is incomplete. To get high stakes roles from a job title column:
-
-```{r hsr, echo=TRUE, eval=FALSE}
-  mutate(HighStakesRoles = case_when(JOBTITLE %like% "%TEACHER%" & JOBTITLE %notlike% "%CO-TEACHER%" & JOBTITLE %notlike% "%TEACHER RESIDENCY COACH%" & JOBTITLE %notlike% "%FLEX TEACHER%" ~ "Teacher",
-                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF OPERATIONS%" ~ "APO",
-                                     JOBTITLE %like% "%ASSISTANT PRINCIPAL OF INSTRUCTION" ~ "API",
-                                     JOBTITLE %like% "%EXECUTIVE DIRECTOR%" ~ "Executive Director",
-                                     JOBTITLE %like% "%VP%" ~ "HQ VP",
-                                     JOBTITLE %like% "%PRINCIPAL" ~ "Principal",
-                                     TRUE ~ "Non- HighStakesRoles"))
-```
-
-When defining high stakes roles with job titles, it is important to go in this order so that groups that overlap are properly assigned (i.e., VP of Schools and HQ VPs). Make sure to apply the proper sentence case for the dataset being used. Keep in mind specialty titles that may contain words that you filter by but do not belong in that grouping, such as Flex Teacher or Teacher Residency Coach.
 
 ## Data Oddities and Exceptions
 
