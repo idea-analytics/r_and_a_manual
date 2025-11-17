@@ -1609,13 +1609,15 @@ The Reporting.Employees table contains both the current and prior year's staff r
 -   **TEACHERSTEP:** The step level of the teacher
 -   **HEADCOUNT:** 0/1 indicating if the employee is counted in the overall staff headcount
 -   **LEAVER:** 0/1 indicating if the employee is considered a leaver
+-   **HEADCOUNTFIRSTYEAR:** 0/1 indicating if the employee is in their first year 
+-   **LEAVERS90DAY:** 0/1 indicating if the employee left within 90 calendar days of their start date
 
-There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher, a First Year employee, or a leaver within the first 90 days of employment.
+There are more columns in this table that could be useful, for example there are columns that indicate if the employee is a First Year Teacher or a leaver within the first year of employment.
 
 #### 90 Day Retention
 90 Day retention is 1-(number of first year staff who left prior to reaching 90 days after their start date/ total number of first year staff).
 
-In the reporting.employees table there is a binary column "LEAVERS90D" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90 Day retention, we divide the number of 0's in that column by the total count of first year staff.
+In the reporting.employees table there is a binary column "LEAVERS90DAY" that is 1 if that staff member left within 90 calendar days of their start date and 0 otherwise. To calculate 90 Day retention, we divide the number of 0's in that column by the total count of first year staff.
 
 **Example:** Total staff headcount: 10
 
