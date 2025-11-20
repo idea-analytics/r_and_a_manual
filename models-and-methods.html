@@ -341,11 +341,10 @@
 <p><strong>When communicating your results, do not merely rely on a p-value.</strong> Supplement a p-value with other explanations of the effect in context, like an interval estimate, graphs, a margin of error, or transformed values.</p>
 <p>For reference, see the American Statistical Association’s statement on p-values <a href="https://doi.org/10.1080/00031305.2016.1154108">(2016)</a>.</p>
 </div>
-</div>
-<div id="inferential-methods-with-the-infer-package" class="section level2" number="8.4">
-<h2>
-<span class="header-section-number">8.4</span> Inferential methods with the <code>{infer}</code> package<a class="anchor" aria-label="anchor" href="#inferential-methods-with-the-infer-package"><i class="fas fa-link"></i></a>
-</h2>
+<div id="inferential-methods-with-the-infer-package" class="section level3" number="8.3.3">
+<h3>
+<span class="header-section-number">8.3.3</span> Inferential methods with the <code>{infer}</code> package<a class="anchor" aria-label="anchor" href="#inferential-methods-with-the-infer-package"><i class="fas fa-link"></i></a>
+</h3>
 <p>The <a href="https://infer.tidymodels.org/"><code>{infer}</code></a> package provides <code>tidyverse</code> grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which is excellent. This section will simply provide some examples to get you started.</p>
 <p><a href="https://github.com/tidymodels/infer">infer</a> implements a straightforward inferential workflow, which is encapsulated by four verbs:</p>
 <ul>
@@ -438,14 +437,15 @@
 </tbody>
 </table></div>
 </div>
-<div id="modeling-and-predictive-statistics" class="section level2" number="8.5">
+</div>
+<div id="modeling-and-predictive-statistics" class="section level2" number="8.4">
 <h2>
-<span class="header-section-number">8.5</span> Modeling and predictive statistics<a class="anchor" aria-label="anchor" href="#modeling-and-predictive-statistics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4</span> Modeling and predictive statistics<a class="anchor" aria-label="anchor" href="#modeling-and-predictive-statistics"><i class="fas fa-link"></i></a>
 </h2>
 <p>A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.</p>
-<div id="linear-modeling" class="section level3" number="8.5.1">
+<div id="linear-modeling" class="section level3" number="8.4.1">
 <h3>
-<span class="header-section-number">8.5.1</span> Linear modeling<a class="anchor" aria-label="anchor" href="#linear-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.1</span> Linear modeling<a class="anchor" aria-label="anchor" href="#linear-modeling"><i class="fas fa-link"></i></a>
 </h3>
 <p>To measure an association between two or more variables, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:</p>
 <p><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i\)</span></p>
@@ -471,9 +471,9 @@
 <p>We can describe the coefficients as an <em>additional</em> unit effect on the number of STAAR questions correct. For example, if the coefficient on <code>SemesterExamQuestionsCorrect</code> is 1.34, then we would say that as a student gets an additional correct answer on the semester exam, then on average, the predicted increase in STAAR questions correct is about 1.34.</p>
 <p>If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect.</p>
 </div>
-<div id="generalized-linear-modeling" class="section level3" number="8.5.2">
+<div id="generalized-linear-modeling" class="section level3" number="8.4.2">
 <h3>
-<span class="header-section-number">8.5.2</span> Generalized linear modeling<a class="anchor" aria-label="anchor" href="#generalized-linear-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.2</span> Generalized linear modeling<a class="anchor" aria-label="anchor" href="#generalized-linear-modeling"><i class="fas fa-link"></i></a>
 </h3>
 <p>When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:</p>
 <p><span class="math inline">\(g(\mu_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_n x_{ni} + \epsilon_i\)</span></p>
@@ -500,9 +500,9 @@
 <p>For example, modeling an AP score (which only takes on ordered levels of 1 to 5) as a function of semester exam questions correct and the course grade could be:</p>
 <p><span class="math inline">\(g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
 <p>See <a href="https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf">this reference</a> for implementations of ordinal logistic regression using various packages.</p>
-<div id="ordinal-logistic-regression-in-r" class="section level4" number="8.5.2.1">
+<div id="ordinal-logistic-regression-in-r" class="section level4" number="8.4.2.1">
 <h4>
-<span class="header-section-number">8.5.2.1</span> Ordinal logistic regression in R<a class="anchor" aria-label="anchor" href="#ordinal-logistic-regression-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.2.1</span> Ordinal logistic regression in R<a class="anchor" aria-label="anchor" href="#ordinal-logistic-regression-in-r"><i class="fas fa-link"></i></a>
 </h4>
 <p>As seen in the previous section, ordinal logistic regression is the appropriate regression model to use when the levels of a categorical response variable are ordered. With a sufficient sample size, training and testing data frames can be utilized. The training data frame is used to estimate the model while the testing data frame is used, as the name implies, to test it. Predictions are made with the testing data with a confusion matrix and misclassification error following. Below is sample R code to accomplish these steps.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
@@ -539,9 +539,9 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">df_test</span><span class="op">$</span><span class="va">Pclass</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">predicted_class</span><span class="op">)</span><span class="op">)</span>  <span class="co"># misclassification error</span></span></code></pre></div>
 </div>
 </div>
-<div id="generalized-additive-modeling" class="section level3" number="8.5.3">
+<div id="generalized-additive-modeling" class="section level3" number="8.4.3">
 <h3>
-<span class="header-section-number">8.5.3</span> Generalized additive modeling<a class="anchor" aria-label="anchor" href="#generalized-additive-modeling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.3</span> Generalized additive modeling<a class="anchor" aria-label="anchor" href="#generalized-additive-modeling"><i class="fas fa-link"></i></a>
 </h3>
 <p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
 <p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
@@ -569,53 +569,53 @@
 <a href="https://m-clark.github.io/generalized-additive-models/">Generalized Additive Models</a> (Short book by Michael Clark)</li>
 </ol>
 </div>
-<div id="machine-learning" class="section level3" number="8.5.4">
+<div id="machine-learning" class="section level3" number="8.4.4">
 <h3>
-<span class="header-section-number">8.5.4</span> Machine learning<a class="anchor" aria-label="anchor" href="#machine-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4</span> Machine learning<a class="anchor" aria-label="anchor" href="#machine-learning"><i class="fas fa-link"></i></a>
 </h3>
 <p>If the goal moves beyond inference (describing and estimating relationships) towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.</p>
 <p>Note that communicating results from these models may be beyond a general audience’s reach, so caution should be taken when describing a marginal effect of a variable.</p>
 <p>The <a href="https://www.statlearning.com/">ISLR website</a> and <a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html">tidymodels implementation</a> should be consulted for more details about these models.</p>
-<div id="supervised-learning" class="section level4" number="8.5.4.1">
+<div id="supervised-learning" class="section level4" number="8.4.4.1">
 <h4>
-<span class="header-section-number">8.5.4.1</span> Supervised Learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.1</span> Supervised Learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
 </h4>
 </div>
-<div id="unsupervised-learning" class="section level4" number="8.5.4.2">
+<div id="unsupervised-learning" class="section level4" number="8.4.4.2">
 <h4>
-<span class="header-section-number">8.5.4.2</span> Unsupervised Learning<a class="anchor" aria-label="anchor" href="#unsupervised-learning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2</span> Unsupervised Learning<a class="anchor" aria-label="anchor" href="#unsupervised-learning"><i class="fas fa-link"></i></a>
 </h4>
 <p>Unsupervised learning is a type of machine learning algorithms that used a different type of input data from supervised learning. Namely, unsupervised learning uses unlabeled data (whereas, supervised learning uses labeled data to train the models on before inputting test data) and infer its own rules based on looking for patterns, grouping, and anomalies, without explicit guidance or instruction.
 Why would a statistician prefer to use an unsupervised learning model? First, there is a huge amount of unlabeled data. Unlabeled data is everywhere and very abundant and easy to access. Second, putting labels on the data takes hours, weeks or even months, and can be extremely tedious. It also often requires human labor to put the labels on the data. Next, it can be very helpful and useful to explore raw data and unknown data, looking for patterns, associations, or groupings. It is also helpful for conducting pattern recognition when a statistician has very large data sets.</p>
-<div id="clustering" class="section level5" number="8.5.4.2.1">
+<div id="clustering" class="section level5" number="8.4.4.2.1">
 <h5>
-<span class="header-section-number">8.5.4.2.1</span> Clustering<a class="anchor" aria-label="anchor" href="#clustering"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2.1</span> Clustering<a class="anchor" aria-label="anchor" href="#clustering"><i class="fas fa-link"></i></a>
 </h5>
 <p>This is a technique used on unlabeled data, to explore and break the data down into groups (e.g., “clusters used”). These groups are based on similarities or differences.
 A common type of clustering is K-means. In this method, the data points are assigned into K groups, where K is the number of clusters based on the distance from each group’s centroid.</p>
 </div>
-<div id="association-rules" class="section level5" number="8.5.4.2.2">
+<div id="association-rules" class="section level5" number="8.4.4.2.2">
 <h5>
-<span class="header-section-number">8.5.4.2.2</span> Association Rules<a class="anchor" aria-label="anchor" href="#association-rules"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2.2</span> Association Rules<a class="anchor" aria-label="anchor" href="#association-rules"><i class="fas fa-link"></i></a>
 </h5>
 <p>It is a rule-based approach to discover correlations, co-occurrences, and relationships within the data, usually in very large data sets; again, it uses unlabeled data.</p>
 </div>
-<div id="dimensionality-reduction" class="section level5" number="8.5.4.2.3">
+<div id="dimensionality-reduction" class="section level5" number="8.4.4.2.3">
 <h5>
-<span class="header-section-number">8.5.4.2.3</span> Dimensionality Reduction<a class="anchor" aria-label="anchor" href="#dimensionality-reduction"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2.3</span> Dimensionality Reduction<a class="anchor" aria-label="anchor" href="#dimensionality-reduction"><i class="fas fa-link"></i></a>
 </h5>
 <p>A method to reduce the number of dimensions (i.e., such as the number of variables one might used in a regression model) and exclude extraneous, random, or irrelevant factors in the data.</p>
 </div>
-<div id="examples" class="section level5" number="8.5.4.2.4">
+<div id="examples" class="section level5" number="8.4.4.2.4">
 <h5>
-<span class="header-section-number">8.5.4.2.4</span> Examples:<a class="anchor" aria-label="anchor" href="#examples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2.4</span> Examples:<a class="anchor" aria-label="anchor" href="#examples"><i class="fas fa-link"></i></a>
 </h5>
 <p>Anomaly detection by identifying data points that are atypical for that type of dataset
 One type of anomaly detection is looking for behaviors in the data that deviate from normal patterns in the data, which could expose fraudulent transactions</p>
 </div>
-<div id="references" class="section level5" number="8.5.4.2.5">
+<div id="references" class="section level5" number="8.4.4.2.5">
 <h5>
-<span class="header-section-number">8.5.4.2.5</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.4.2.5</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
 </h5>
 <p><a href="https://cloud.google.com/discover/what-is-unsupervised-learning#section-5" class="uri">https://cloud.google.com/discover/what-is-unsupervised-learning#section-5</a>
 <a href="https://learn.g2.com/unsupervised-learning" class="uri">https://learn.g2.com/unsupervised-learning</a></p>
@@ -625,9 +625,9 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 </div>
 </div>
 </div>
-<div id="natural-language-processing-sentiment-analysis" class="section level3" number="8.5.5">
+<div id="natural-language-processing-sentiment-analysis" class="section level3" number="8.4.5">
 <h3>
-<span class="header-section-number">8.5.5</span> Natural Language Processing (Sentiment Analysis)<a class="anchor" aria-label="anchor" href="#natural-language-processing-sentiment-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.5</span> Natural Language Processing (Sentiment Analysis)<a class="anchor" aria-label="anchor" href="#natural-language-processing-sentiment-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
 <p>Within NLP, our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
@@ -643,13 +643,13 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_sentiments</span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="qualitative-methods" class="section level2" number="8.6">
+<div id="qualitative-methods" class="section level2" number="8.5">
 <h2>
-<span class="header-section-number">8.6</span> Qualitative Methods<a class="anchor" aria-label="anchor" href="#qualitative-methods"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5</span> Qualitative Methods<a class="anchor" aria-label="anchor" href="#qualitative-methods"><i class="fas fa-link"></i></a>
 </h2>
-<div id="qualitative-research" class="section level3" number="8.6.1">
+<div id="qualitative-research" class="section level3" number="8.5.1">
 <h3>
-<span class="header-section-number">8.6.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
 </h3>
 <p>Qualitative Research provides IDEA Public Schools rich, contextual information through various data collection and analysis techniques that are aimed to understand the meaning of the information collected. While qualitative research can be used for both exploratory and confirmatory research, it is most useful when context is important, a rich description is needed, and when participant interpretation and meaning of experiences need to be considered.</p>
 <p>The R&amp;A team specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.</p>
@@ -667,13 +667,13 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 – Emotions (including Natural Language Processing).</li>
 </ul>
 </div>
-<div id="qualitative-tools" class="section level3" number="8.6.2">
+<div id="qualitative-tools" class="section level3" number="8.5.2">
 <h3>
-<span class="header-section-number">8.6.2</span> Qualitative Tools<a class="anchor" aria-label="anchor" href="#qualitative-tools"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2</span> Qualitative Tools<a class="anchor" aria-label="anchor" href="#qualitative-tools"><i class="fas fa-link"></i></a>
 </h3>
-<div id="maxqda" class="section level4" number="8.6.2.1">
+<div id="maxqda" class="section level4" number="8.5.2.1">
 <h4>
-<span class="header-section-number">8.6.2.1</span> MaxQDA<a class="anchor" aria-label="anchor" href="#maxqda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2.1</span> MaxQDA<a class="anchor" aria-label="anchor" href="#maxqda"><i class="fas fa-link"></i></a>
 </h4>
 <p>The R&amp;A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.</p>
 <p>One tool used for thematic analyses is <a href="www.maxqda.com">MaxQDA</a>, which is a software program that is used to assist in analysis of qualitative and mixed-methods data.</p>
@@ -691,9 +691,9 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 <li>GPTW Pulse Check OER Survey Analysis</li>
 <li>Core Values 2x2 Analysis</li>
 </ul>
-<div id="importing-files" class="section level5" number="8.6.2.1.1">
+<div id="importing-files" class="section level5" number="8.5.2.1.1">
 <h5>
-<span class="header-section-number">8.6.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
 </h5>
 <p>There are various types of text file formats that can be used in MaxQDA for analysis, such as Word, PDF, and Excel documents. The following section provides a walk through for creating a new project and importing Excel documents into MaxQDA.</p>
 <ol style="list-style-type: decimal">
@@ -721,9 +721,9 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 </li>
 </ol>
 </div>
-<div id="randomly-selecting-files" class="section level5" number="8.6.2.1.2">
+<div id="randomly-selecting-files" class="section level5" number="8.5.2.1.2">
 <h5>
-<span class="header-section-number">8.6.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
 </h5>
 <p>Depending on the purposes of your analysis and the total number of responses, you may want to randomly select responses for analysis.</p>
 <p>After importing files into the Document System of MaxQDA, responses can be randomly selected using the following steps:</p>
@@ -765,22 +765,22 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 <a class="nav-link" href="#inferential-statistics"><span class="header-section-number">8.3</span> Inferential statistics</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#interval-estimates"><span class="header-section-number">8.3.1</span> Interval estimates</a></li>
 <li><a class="nav-link" href="#p-values-and-hypothesis-testing"><span class="header-section-number">8.3.2</span> p-values and hypothesis testing</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#inferential-methods-with-the-infer-package"><span class="header-section-number">8.4</span> Inferential methods with the {infer} package</a></li>
-<li>
-<a class="nav-link" href="#modeling-and-predictive-statistics"><span class="header-section-number">8.5</span> Modeling and predictive statistics</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#linear-modeling"><span class="header-section-number">8.5.1</span> Linear modeling</a></li>
-<li><a class="nav-link" href="#generalized-linear-modeling"><span class="header-section-number">8.5.2</span> Generalized linear modeling</a></li>
-<li><a class="nav-link" href="#generalized-additive-modeling"><span class="header-section-number">8.5.3</span> Generalized additive modeling</a></li>
-<li><a class="nav-link" href="#machine-learning"><span class="header-section-number">8.5.4</span> Machine learning</a></li>
-<li><a class="nav-link" href="#natural-language-processing-sentiment-analysis"><span class="header-section-number">8.5.5</span> Natural Language Processing (Sentiment Analysis)</a></li>
+<li><a class="nav-link" href="#inferential-methods-with-the-infer-package"><span class="header-section-number">8.3.3</span> Inferential methods with the {infer} package</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#qualitative-methods"><span class="header-section-number">8.6</span> Qualitative Methods</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#qualitative-research"><span class="header-section-number">8.6.1</span> Qualitative Research</a></li>
-<li><a class="nav-link" href="#qualitative-tools"><span class="header-section-number">8.6.2</span> Qualitative Tools</a></li>
+<a class="nav-link" href="#modeling-and-predictive-statistics"><span class="header-section-number">8.4</span> Modeling and predictive statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-modeling"><span class="header-section-number">8.4.1</span> Linear modeling</a></li>
+<li><a class="nav-link" href="#generalized-linear-modeling"><span class="header-section-number">8.4.2</span> Generalized linear modeling</a></li>
+<li><a class="nav-link" href="#generalized-additive-modeling"><span class="header-section-number">8.4.3</span> Generalized additive modeling</a></li>
+<li><a class="nav-link" href="#machine-learning"><span class="header-section-number">8.4.4</span> Machine learning</a></li>
+<li><a class="nav-link" href="#natural-language-processing-sentiment-analysis"><span class="header-section-number">8.4.5</span> Natural Language Processing (Sentiment Analysis)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#qualitative-methods"><span class="header-section-number">8.5</span> Qualitative Methods</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#qualitative-research"><span class="header-section-number">8.5.1</span> Qualitative Research</a></li>
+<li><a class="nav-link" href="#qualitative-tools"><span class="header-section-number">8.5.2</span> Qualitative Tools</a></li>
 </ul>
 </li>
 </ul>
@@ -800,7 +800,7 @@ One type of anomaly detection is looking for behaviors in the data that deviate 
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-11-17.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-11-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
