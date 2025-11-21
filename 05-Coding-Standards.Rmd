@@ -2,11 +2,15 @@
 
 There is no naming convention that is "standard" in R and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work. 
 
-**General**
+## General
 
-  + Introduction header – State the purpose or goal of the code, your name, and any other information that can help anyone get up to speed on the code. Maintain a log of changes with a date to indicate what was last changed - this isn’t always necessary, but this is good for projects that will be continue to be reused.
+### Introduction headers {.tabset}
+
+**Include a header at the beginning of your script.** State the purpose or goal of the code, your name, and any other information that can help anyone get up to speed on the code. Maintain a log of changes with a date to indicate what was last changed - this isn’t always necessary, but this is good for projects that will be continue to be reused.
   
-  Below is a sample header you can use at the top of an R script.
+Below are templates you can use in different scripts.
+
+#### R
   
 ```{r sample_header, eval=FALSE}
 # header ----                                                                  #
@@ -24,16 +28,36 @@ There is no naming convention that is "standard" in R and SQL but there are typi
 
 ```
   
+#### SQL
 
-  + Use informative names – In naming variables or functions it is always good to make informative names to help make sense of the code. Not too short and not too long, just enough to be concise and informative. 
+```{sql sample_sql_header, eval=FALSE}
+/******************************************************************************/
+/* Filename: 01_describe_what_your_script_does.sql                            */
+/* Path: data/01_describe_what_your_script_does.R                             */
+/* Author: Your Name                                                          */
+/* Date created: 2025-10-15                                                   */
+/* Date modified: 2025-10-15                                                  */
+/* Purpose: Describe why you would use this script.                           */
+/* Inputs: Identify any files, dependencies, etc. this script requires.       */
+/* Outputs: Identify any named outputs, files, etc. this script produces.     */
+/* Notes: Add any additional notes, links, etc. for others to execute your    */
+/*        code properly.                                                      */
+/******************************************************************************/
+```
+
+### Naming conventions
+
+**Use informative names.** In naming variables or functions it is always good to make informative names to help make sense of the code. Not too short and not too long, just enough to be concise and informative. 
 
 ## Language R
+
 ### Projects
-There are three general approaches we use for our work for a R project, the more methodic approach is ProjectTemplate which can be found in the project section of this manual. A report style approach which is good for short and quick assignments. A shiny project which has UI controls and is used for scenarios where the information needs to be absorbed in multiple perspectives.   
+
+There are three general approaches we use for our work for a R project, the more methodical approach is ProjectTemplate which can be found in the project section of this manual. A report style approach which is good for short and quick assignments. A Shiny project which has UI controls and is used for scenarios where the information needs to be absorbed in multiple perspectives.   
 
   + ProjectTemplate
-  + rmd
-  + shiny
+  + Quarto or RMarkdown
+  + Shiny
 
 ### Variables 
   + Use underscore_separated a.k.a. snake_case: e.g. my_data_set
