@@ -115,6 +115,11 @@ right-join
 full-join
 anti-join
 coding-standards
+general
+introduction-headers
+r
+sql
+naming-conventions-1
 language-r
 projects
 variables
