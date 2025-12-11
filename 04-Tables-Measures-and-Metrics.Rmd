@@ -529,6 +529,8 @@ Example: The first day of school at Johns IDEA school was August 12, 2024. John 
 
 Julia, enrolled and began attending IDEA in October, after moving to a new city. She remained enrolled and actively attending the entire 2024-2025 academic year and was enrolled and active on FDOP of the following academic year (FDOP for 2025-2026). She persisted, even though she was not enrolled on FDOP of 2024-2025.
 
+Finally, if Jose was active at FDOP in 2024-2025, left midyear to attend another school, and then returned to IDEA still within the 2024-2025 academic year, and is still active if at FDOP 2025, he also would be considered to be persisting. 
+
 The only way to get accurate Persistence data is using the official persistence tables. There are many additional rules regarding who is counted in the persistence. For example, graduating seniors do not count towards persistence. Other reasons for exclusion include but are not limited to: the student having a migrant status, death, incarceration, expected but never enrolled, etc. Although relatively rare in numbers, these types of exclusions could impact your calculations if attempting to calculate persistence without the official persistence tables. 
 
 ::: {.gotcha}
