@@ -513,9 +513,33 @@ The other side of enrollment is **student persistence**. To see how enrollment i
 
 ## Student Persistence
 
-Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA, the student must persist through high school. We say a student persisted if the student was enrolled and attended school for the entire academic school year, returned the following school year, and was enrolled and attending on the Monday after the first week of school (the First Day of Persistence, FDOP). In other words, the student was enrolled and attended school on the "First Day of Persistence" (FDOP) for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and attending for FDOP. These new students were not enrolled and attending for two consecutive FDOPs because they enrolled after the first FDOP but would be considered as persisting.
+Student Persistence is one of the most important measures that Chiefs, VPs, and School Leaders are always monitoring to understand our efforts in providing high quality services to our students and families. In order for a student to actualize the benefits of IDEA, the student must persist through high school. We say a student persisted if the student was enrolled and active for the entire academic school year, returned the following school year, and was enrolled and active on the First Day of Persistence (FDOP). 
+In other words, the student was enrolled and attended school on FDOP for two consecutive years. The only exception to this are New Students that enroll after the FDOP, attend the entire year, return the following year, and are enrolled and active at FDOP. These new students were not enrolled and attending for two consecutive FDOPs because they enrolled after the first FDOP but would still be considered as persisting.
 
-Example: John enrolled in IDEA Public Schools on August 19, 2019, and attended school on the FDOP, which is the Monday after the first week of school. John attended the entire 2019-2020 academic year and was enrolled and attending on the FDOP of the following academic year (FDOP for 2020-2021 school year). If John was enrolled but did not attend on the FDOP because he didn't return until September, John would not count as a student who persisted.
+Although it appears the definition of FDOP may have changed over time (previously listed in the manual as the Monday after the first week of school), according to the 22-23 Persistence Dictionary, the FDOP is defined as 11:59 PM on 10th day of school for the current academic year. In practicality, unless you have an automatic data pull at 11:59 PM, the FDOP we use is the 11th day of school. 
+
+::: {.tip}
+Unless a holiday falls within the first two weeks of school, the 11th day of class will be 14 calendar days after the First Day of School (FDOS). 
+
+For a quick and easy reference, either pull up your calendar and check the date two weeks down from FDOS, or take FDOS and add 14!
+:::
+
+
+Example: The first day of school at Johns IDEA school was August 12, 2024. John was enrolled and active on August 26, 2024, FDOP for his school (11th day of class). If John remained enrolled and actively attending the entire 2024-2025 academic year and was enrolled and active on the FDOP of the following academic year (FDOP for 2025-2026), he has persisted. If, however, if John was enrolled but was not active (attending) on the FDOP because he didn't actually return until September, John would not count as a student who persisted.
+
+Julia, enrolled and began attending IDEA in October, after moving to a new city. She remained enrolled and actively attending the entire 2024-2025 academic year and was enrolled and active on FDOP of the following academic year (FDOP for 2025-2026). She persisted, even though she was not enrolled on FDOP of 2024-2025.
+
+The only way to get accurate Persistence data is using the official persistence tables. There are many additional rules regarding who is counted in the persistence. For example, graduating seniors do not count towards persistence. Other reasons for exclusion include but are not limited to: the student having a migrant status, death, incarceration, expected but never enrolled, etc. Although relatively rare in numbers, these types of exclusions could impact your calculations if attempting to calculate persistence without the official persistence tables. 
+
+::: {.gotcha}
+It is easy to get confused when looking at the current academic year's persistence data or dashboards. The current tables and dashboards are **not** tracking persistence from FDOP last year to FDOP this year. Instead they are tracking persistence from FDOP this year to the current date. You can think of it as Year-To-Date (YTD) persistence. Current persistence will appear much higher than historical persistence, because YTD persistence slowly drops over the course of the academic year, with more distinct drops at certain times of year. 
+
+See the screenshot of a chart from the Persistence Dashboard demonstrating this trend. The 75.17% from 2024-2025 would indicate the final persistence rate for the 2024-2025 academic year. 
+
+![Persistence Chart](img/PersistenceChart.png "Persistence Chart from Persistence Dashboard showing drop over the course of the academic year."){width="500"}
+
+:::
+
 
 **Database:** [RGVPDSD-DWPRD1].[StudentPersistence]
 
