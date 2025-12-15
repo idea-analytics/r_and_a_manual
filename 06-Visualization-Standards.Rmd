@@ -1,9 +1,10 @@
 # Visualization Standards
 
+Data visualization standards are outlined in the handbook available [here](https://ideapublicschoolsorg.sharepoint.com/:w:/s/ResearchandAnalysis/IQDCokDu_a9-QpKjk5ae89pPAbmLmyFdcrV4kbZS71so-0s?e=utEgXG). This guidebook's goal is to provide best practices that make visualizations simple yet elegant, allowing for a clear message to be conveyed.
+
 ## IDEA Branding
 
 When producing a visualization for presentation or publication, use the [IDEA 2024 Branding Guidelines](https://brandfolder.com/ideapublicschools) established by the [Marketing team](https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx). Many of these guidelines, particularly colors, have already been incorporated into an R package, `ideacolors`.
-
 
 ### The `ideacolors` package
 
@@ -18,7 +19,7 @@ devtools::install_github("idea-analytics/ideacolors")
 
 #### `ideacolors` themes and scales
 
-Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has: 
+Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has:
 
 ```{r get_plot}
 p <- ggplot(mtcars, 
@@ -38,7 +39,7 @@ p +
   scale_color_idea()
 ```
 
-**Super easy!**  We can also easily change the palette and even reverse it:
+**Super easy!** We can also easily change the palette and even reverse it:
 
 ```{r reverse_palette}
 p +
@@ -64,45 +65,40 @@ For more information on using the different branding guidelines, please refer to
 
 ### Color Blindness
 
-Note that IDEA's brand colors are not completely safe for color blindness.  Here's each palette with adjustments to check for the predominant types of color blindness in the population:
+Note that IDEA's brand colors are not completely safe for color blindness. Here's each palette with adjustments to check for the predominant types of color blindness in the population:
 
 ```{r swatchplot_cb}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
 ```
 
-
-::: {.tip}
+::: tip
 The chart above includes the following types of color blindness:
 
-* Deuteranopia: Deuteranopia is a type of color blindness that primarily affects the perception of the green color spectrum. People with deuteranopia have a deficiency or absence of the green cone cells in their eyes, which are responsible for perceiving green light. As a result, they have **difficulty distinguishing between green and red hues**. The red and green colors may appear more similar or indistinguishable to individuals with deuteranopia.
+-   Deuteranopia: Deuteranopia is a type of color blindness that primarily affects the perception of the green color spectrum. People with deuteranopia have a deficiency or absence of the green cone cells in their eyes, which are responsible for perceiving green light. As a result, they have **difficulty distinguishing between green and red hues**. The red and green colors may appear more similar or indistinguishable to individuals with deuteranopia.
 
-* Protanopia: Protanopia is a type of color blindness that primarily affects the perception of the red color spectrum. Individuals with protanopia lack or have a reduced number of functional red cone cells in their eyes. Consequently, they **struggle to differentiate between red and green colors**. They may perceive these colors as muted or similar in appearance.
+-   Protanopia: Protanopia is a type of color blindness that primarily affects the perception of the red color spectrum. Individuals with protanopia lack or have a reduced number of functional red cone cells in their eyes. Consequently, they **struggle to differentiate between red and green colors**. They may perceive these colors as muted or similar in appearance.
 
-* Tritanopia: Tritanopia, also known as blue-yellow color blindness, is a rarer form of color blindness that affects the perception of the blue and yellow color spectrum. People with tritanopia have a deficiency or absence of the blue cone cells in their eyes, leading to **difficulty in distinguishing between blue and yellow colors**. 
-
+-   Tritanopia: Tritanopia, also known as blue-yellow color blindness, is a rarer form of color blindness that affects the perception of the blue and yellow color spectrum. People with tritanopia have a deficiency or absence of the blue cone cells in their eyes, leading to **difficulty in distinguishing between blue and yellow colors**.
 :::
-
-
-
 
 ### Race/Ethnicity Colors
 
 When creating visuals of Race/Ethnicity we want to be consistent with the colors chosen for each race/ethnicity. Additionally, we want to ensure that the colors are not offensive to any group. Below are the colors that were used for all of the Diversity, Equity, and Inclusion (DEI) work that has been completed in the last couple of months of 2022.
 
-  + **American Indian/Alaskan Native:** idea_colors$melon (#F9A054)
-  + **Asian:** idea_colors$cyan (#53B4CC)
-  + **Black:** idea_colors$magenta (#EE3A80)
-  + **Hispanic:** idea_colors$blue (#0079C1)
-  + **Multi-racial:** idea_colors$lime (#A4C364)
-  + **Other:** idea_colors$yellow (#FFDE75)
-  + **Pacific Islander:** idea_colors$darkblue (#1A4789)
-  + **White:** idea_colors$coolgray (#626363)
-  
+-   **American Indian/Alaskan Native:** idea_colors\$melon (#F9A054)
+-   **Asian:** idea_colors\$cyan (#53B4CC)
+-   **Black:** idea_colors\$magenta (#EE3A80)
+-   **Hispanic:** idea_colors\$blue (#0079C1)
+-   **Multi-racial:** idea_colors\$lime (#A4C364)
+-   **Other:** idea_colors\$yellow (#FFDE75)
+-   **Pacific Islander:** idea_colors\$darkblue (#1A4789)
+-   **White:** idea_colors\$coolgray (#626363)
+
 Suppose your data frame, `df_reading_levels`, contains information about Academy students' grade-level reading equivalents `GradeLevelEquivalent` with race and ethnicity in the `RaceEthnicity` column. To create a visualization of reading levels using the custom palette, you'll need to code the palette in three places:
 
-1. as a vector of colors, outside of the plotting function
-2. as an aesthetic, inside the initial plotting call
-3. as a value, inside a manual scale function
+1.  as a vector of colors, outside of the plotting function
+2.  as an aesthetic, inside the initial plotting call
+3.  as a value, inside a manual scale function
 
 Let's define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.
 
@@ -151,35 +147,37 @@ If your visualization or reporting requires grouping across grade levels, using 
 
 The following are the current polo colors for each grade level:
 
-  Grade Level | Color 
-  ------------|-------
- PK-5th, 8th | Blue
- 6th, 10th | Red
- 7th, 11th | Orange
- 9th | Green
- 12th | Black
- 
+| Grade Level | Color  |
+|-------------|--------|
+| PK-5th, 8th | Blue   |
+| 6th, 10th   | Red    |
+| 7th, 11th   | Orange |
+| 9th         | Green  |
+| 12th        | Black  |
+
 Clearly, if all grade levels are present on one plot and cannot be individually labeled (say, a scatterplot), then using one color for multiple grade levels is not advised. However, if color coding a document or table where colors can be repeated, then this palette can provide visual cues to contextualize the report.
 
 ### Separation Colors
+
 When reporting on separation reasons from Tyler Munis (located in the reporting.employees table), the following colors should be used:
 
-+ **Did not Return Next Year in FT Position:** Dark Green (#214F28)
-+ **Entity Change:** Purple (#7030A0)
-+ **Failed I-9 Verification:** Light Yellow (#FFDE75)
-+ **Involuntary Position Eliminated:** Burnt Orange (#C55A11)
-+ **Involuntary Misconduct:** Pink (#EE3A80)
-+ **Involuntary Non-Renew:** Light Blue (#BDD7EE)
-+ **Involuntary Poor Performance:** Navy Blue (#1A4789)
-+ **Job Change to Seasonal/Part-Time:** Tan (#E5C09F)
-+ **No Call No Show:** Light Purple (#CD9BFF)
-+ **Resign in Lieu of Termination:** Green (#00B050)
-+ **Voluntary Resignation No Notice:** Orange (#F9A054)
-+ **Voluntary Resignation With Notice:** Blue (#0079C1)
-+ **Voluntary No Return From Leave:** Light Green (#A4C364)
-+ **Voluntary Retirement:** Dark Grey (#626363)
+-   **Did not Return Next Year in FT Position:** Dark Green (#214F28)
+-   **Entity Change:** Purple (#7030A0)
+-   **Failed I-9 Verification:** Light Yellow (#FFDE75)
+-   **Involuntary Position Eliminated:** Burnt Orange (#C55A11)
+-   **Involuntary Misconduct:** Pink (#EE3A80)
+-   **Involuntary Non-Renew:** Light Blue (#BDD7EE)
+-   **Involuntary Poor Performance:** Navy Blue (#1A4789)
+-   **Job Change to Seasonal/Part-Time:** Tan (#E5C09F)
+-   **No Call No Show:** Light Purple (#CD9BFF)
+-   **Resign in Lieu of Termination:** Green (#00B050)
+-   **Voluntary Resignation No Notice:** Orange (#F9A054)
+-   **Voluntary Resignation With Notice:** Blue (#0079C1)
+-   **Voluntary No Return From Leave:** Light Green (#A4C364)
+-   **Voluntary Retirement:** Dark Grey (#626363)
 
 The following code defines this palette as a vector which can easily be used as the values for `scale_fill_manual()`.
+
 ```{r separation_colors, eval=FALSE}
 separation_reason_legend <- c("DID NOT RETURN NEXT YEAR IN FT POSITION"	= "#214F28",
                               "ENTITY CHANGE" =	"#7030A0",
@@ -196,7 +194,6 @@ separation_reason_legend <- c("DID NOT RETURN NEXT YEAR IN FT POSITION"	= "#214F
                               "VOLUNTARY NO RETURN FROM LEAVE" = "#A4C364",
                               "VOLUNTARY RETIREMENT" = "#626363")
 ```
-
 
 ### IDEA Palette Color Ramp
 
@@ -217,7 +214,6 @@ show_col(idea_palette_ramp()(6))
 ```
 
 ![IDEA palette color ramp with six colors](img/idea_palette_ramp_6.png "show_col(idea_palette_ramp()(6))"){width="500"}
-
 
 ### Typography
 
@@ -348,7 +344,6 @@ df_gapminder_sample %>%
 
 ![This graph displays changes in life expectancy arranged alphabetically by continent first, then country.](img/gapminder_nested.png "Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country"){width="500"}
 
-
 ## Saving and publishing visualizations
 
 Data visualization can also communicate our findings effectively to external (to R&A) audiences. Often, the graphs or tables we publish are included in slide decks or products around the organization. Thus, it is important to consider both the **quality** (i.e. plot resolution and size) and **device output** (e.g. .png, .pdf, .svg, etc.) of the visualization produced.
@@ -359,9 +354,9 @@ Often, clicking on `Plots -> Export -> Save as image...` produces a *low-resolut
 
 To save a plot directly to a specified device, use the "output sandwich" method.
 
-1. Open the device using a device function like `png()`, `pdf()`, `jpeg()`, etc.
-2. Include the code to produce the output.
-3. Close the device using `dev.off()`.
+1.  Open the device using a device function like `png()`, `pdf()`, `jpeg()`, etc.
+2.  Include the code to produce the output.
+3.  Close the device using `dev.off()`.
 
 Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename `01-my-high-quality-graph.pdf`. Then, the output sandwich would look like this:
 
@@ -382,16 +377,14 @@ ggplot(my_data_frame) +
 dev.off()
 ```
 
-
-
 ### Using `ggsave()`
 
 The function `ggsave()` provides a wrapper around multiple device functions, like `png()` or `pdf()`, but gives nice defaults for saving a high quality plot object to a device of your choice. It is suggested to use the function like this:
 
-1. Build your plot and assign the plot object (`<-`).
-2. Determine the dimensions, resolution, and output needed for the final product.
-3. Use `ggsave()` with the specifications identified in step 2. Note: the file name MUST include the extension of the device.
-4. Revise specifications as needed.
+1.  Build your plot and assign the plot object (`<-`).
+2.  Determine the dimensions, resolution, and output needed for the final product.
+3.  Use `ggsave()` with the specifications identified in step 2. Note: the file name MUST include the extension of the device.
+4.  Revise specifications as needed.
 
 Suppose you need to include a plot (.png) that takes up about $\frac{1}{4}$ of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). If you used a theme that had a transparent background, you could also specify a background (bg) of white. Then, the code would look like this:
 
@@ -412,7 +405,4 @@ ggsave(filename = here::here("graphs", "01-my-high-quality-graph.png"),
        bg = "white")
 ```
 
-
 For more information on saving your output, reference the [ggplot2 book](https://ggplot2-book.org/themes#sec-saving) or the [ggsave documentation](https://ggplot2.tidyverse.org/reference/ggsave.html).
-
-
