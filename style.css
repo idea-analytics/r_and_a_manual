@@ -1,0 +1,68 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+
+div.rstudio-tip, div.tip, div.gotcha, div.design, div.hat{
+  border: 4px #aed6d963;
+  border-style: dashed solid;
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  color: #2ea8b3;
+  background-color: #fcfcfc;
+}
+
+
+div.rstudio-tip {
+  background-image: url("img/div/rstudio.png");
+}
+
+div.tip {
+  background-image: url("img/div/lightbulb.png");
+}
+
+div.gotcha {
+  background-image: url("img/div/gotcha_2.png");
+}
+
+div.design {
+  background-image: url("img/div/design.png");
+}
+
+div.hat {
+  background-image: url("img/div/hat.png");
+}
+
+/* Cover image */
+
+img.cover {
+  float: left;
+  margin: 1rem 1rem 1rem 1rem;
+  /*margin: 1rem 1rem 1rem 1rem;*/
+  box-shadow : 0 0 0 0;
+  /*box-shadow : 0 .5rem 1rem rgba(0,0,0,.15);*/
+}
+
+@media (max-width: 767.98px) {
+  img.cover {
+    float: none;
+    display: block;
+    margin: 1rem auto 1rem auto;
+  }
+}

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual</title>
+<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
+<meta name="description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/the-data-warehouse-and-how-to-access-it.html">
+<meta property="og:description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 The Data Warehouse and How to Access It | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="The first section that follows provides lots of context about IDEA’s data warehouse. If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section 3.2 on...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IDEA R&amp;A Manual</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
+<li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
+<li><a class="active" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
+<li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li><a class="" href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">10</span> Surveys</a></li>
+<li><a class="" href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">14</span> Tips and Tricks</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/idea-analytics/r_and_a_manual">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="the-data-warehouse-and-how-to-access-it" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> The Data Warehouse and How to Access It<a class="anchor" aria-label="anchor" href="#the-data-warehouse-and-how-to-access-it"><i class="fas fa-link"></i></a>
+</h1>
+<p>The <a href="#section-the-data-warehouse">first section</a> that follows provides lots of context about IDEA’s data warehouse.</p>
+<p>If, however, you are in a rush and want to go about accessing the data warehouse, then skip to section <a href="the-data-warehouse-and-how-to-access-it.html#accessing-the-data-warehouse-from-r">3.2</a> on accessing from R below.</p>
+<div id="the-data-warehouse" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> The Data Warehouse<a class="anchor" aria-label="anchor" href="#the-data-warehouse"><i class="fas fa-link"></i></a>
+</h2>
+<p>The ‘data warehouse’ is actually a collection of disparate databases hosted by IDEA Public Schools. Some databases are used to host the original source data, some are used as the data model for production applications, while others site between those two points.</p>
+<p>While the IDEA has ~28 servers hosting SQL Server databases, R&amp;A typically only accesses 13 servers hosting 126 databases and 313 distinct tables. It’s a lot, for sure.</p>
+<div id="core-data-warehouse-server-configuration" class="section level3" number="3.1.1">
+<h3>
+<span class="header-section-number">3.1.1</span> Core data warehouse server configuration<a class="anchor" aria-label="anchor" href="#core-data-warehouse-server-configuration"><i class="fas fa-link"></i></a>
+</h3>
+<div class="gotcha">
+<p>These facts below are scheduled to change in May-June of 2022. The IT team is moving all servers from Rackspace to on-prem and as a result the Data warehousing team is upgrading servers and doing some maintenance on on the warehouse.</p>
+<p>Check back here for updates!</p>
+</div>
+<p>The servers are not islands unto themselves, but rather form a small economy of data flows, where data moves from source servers, to production servers (i.e., the sweetspot for us) to reporting servers that host transformed data for our Logi-powered Locus dashboards.</p>
+<div class="figure">
+<span style="display:block;" id="fig:server-graphs"></span>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-0190906c46bdf9205cca" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0190906c46bdf9205cca">{"x":{"diagram":"\n  digraph data_wh {\n    label=\"Basic Data Flows in Core Data Warehouse\";\n    labelloc = \"t\";\n    compound=true;\n  #graph statement\n  graph [overlap = true, layout = dot, rankdir = LR]\n  \n    #node statement\n    node [shape = cylinder, \n          style = filled, \n          fontname = Helvetica, \n          fillcolor= \"#f9a054\", \n          color = \"#626363\",\n          fontcolor = white,\n          fontsize=10]\n    SRC1 [label=<SRC1<br/><font point-size=\"6\">RGVPDSD-DWSRC1<\/font>>]; \n    SRC2  [label=<SRC2<br/><font point-size=\"6\">RGVPDSD-DWSRC2\t<\/font>>]; \n    SRC3 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC3<\/font>>];\n    SRC4 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC4<\/font>>];\n    SRC5 [label=<SRC3<br/><font point-size=\"6\">RGVPDSD-DWSRC5<\/font>>];\n  \n    node [fillcolor= \"#1a4784\"]\n    PROD1 [label=<PROD1<br/><font point-size=\"6\">RGVPDSD-DWPRD1<\/font>>]; \n    PROD2 [label=<PROD2<br/><font point-size=\"6\">RGVPDSD-DWPRD2<\/font>>]\n    \n    node [fillcolor= \"#a4c364\"]\n    RS2 [label=<RS2<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>];\n    RS1 [label=<RS1<br/><font point-size=\"6\">RGVPDSD-DWRPT1<\/font>>]\n  \n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ffde75\", fontcolor = black]\n  LOGI [label=\"LOGI/PowerBI\"]\n  \n  node [shape = box, fontname = Helvetica, fillcolor= \"#ee3a80\", fontcolor = white]\n  Analysis [label = \"R&A\"]\n\n  # subgraph statements\n  subgraph cluster_ds {rank = same; style = dotted; SRC1; SRC2; SRC3; SRC4; SRC5; label=\"1. Source Data\"}\n  subgraph cluster_prod {rank = same; style = dashed; PROD1; PROD2; label = \"2. Production\"}\n  subgraph cluster_rs {rank = same; style = dotted; RS2; RS1; label=\"4. Reporting\"}\n\n  \n  #edges statement\n  edge [color = \"#626363\", arrowhead=vee]\n  {SRC1 SRC3 SRC4 SRC5} -> PROD1 \n  {SRC2} -> PROD2\n   PROD1 -> {SRC1 SRC3 SRC4 SRC5} [label=\"Look-ups\", color = gray, style=dashed, fontcolor=gray, fontsize=7]\n   PROD1 -> RS1\n   PROD2 -> RS2\n  {PROD1 PROD2} \n   \n  {RS2} -> LOGI [ltail=cluster_rs]\n  \n  {PROD1} -> LOGI [ltail=cluster_prod]\n  {PROD1} -> Analysis [ltail=cluster_prod]\n  \n  \n  \n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 3.1: Data in the warehouse is initially stored in ‘src_<em>` databases in ’DS</em>’ servers and flows to the right towads Logi hosted Locus dashboards.
+</p>
+</div>
+<p>Figure <a href="the-data-warehouse-and-how-to-access-it.html#fig:server-graphs">3.1</a> shows the flows of data in the warehouse, which essentially move from left to right. The<code>DS-*</code> servers host databases holding source data. That data is processed and saved in databases in the two production servers (<code>PROD1</code> and <code>PROD2</code>). <strong>These two production servers host most the data that R&amp;A uses in analysis</strong>, but know where the source data comes from in is often helpful. The reporting servers—<code>RS1</code> and <code>RS2</code> serve transformed flat files that serve as the data layer for <a href="https://www.logianalytics.com/">Logi</a> and PowerBI, which serve up <a href="https://ideapublicschoolsorg.sharepoint.com/sites/dashboards">Locus dashboards on the hub</a>.</p>
+<p>The following sections provide some details on what databases might be found on each server.</p>
+<div id="src-servers" class="section level4" number="3.1.1.1">
+<h4>
+<span class="header-section-number">3.1.1.1</span> SRC Servers<a class="anchor" aria-label="anchor" href="#src-servers"><i class="fas fa-link"></i></a>
+</h4>
+<p>These servers are were source data from various applications is landed.</p>
+<ul>
+<li>
+<p><strong><code>SRC1</code></strong> is hosted on <code>RGVPDSD-DWSRC1</code> and serves as a source for <code>PROD1</code>. Most the data hosted on <code>RGVPDSD-DWSRC1</code> mirrors the various SISes (i.e., Schools data from PowerSchool, Focus, and Skyward) for TX (Travis), LA, FL, and OH.</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>lk_Schools</li>
+<li>Master_Schools</li>
+<li>NewSchoolsSetup</li>
+<li>Schools_YearlySnapShot</li>
+<li>SRC_AD</li>
+<li>SRC_Florida_Schools</li>
+<li>SRC_Florida_Schools_Focus</li>
+<li>SRC_Louisiana_Schools</li>
+<li>SRC_Ohio_Schools</li>
+<li>SRC_Texas_Schools</li>
+<li>SRC_Texas_Travis_Schools</li>
+<li>SSISTemp</li>
+<li>TravisSnapshotData</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>SRC2</code></strong> is hosted on <code>RGVPDSD-DWSRC2</code> and serves as a source for <code>PROD2</code> and exclusively source data from assessment platforms like Edcite, Illuminate DnA, AP, IB, ACT, and SAT.</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>lk_Schools</li>
+<li>SRC_Accountability</li>
+<li>SRC_ACT</li>
+<li>SRC_AP</li>
+<li>SRC_Dibles</li>
+<li>SRC_EA</li>
+<li>SRC_Edcite</li>
+<li>SRC_Edulastic</li>
+<li>SRC_EXPLORER</li>
+<li>SRC_IB</li>
+<li>SRC_Illuminate_LA</li>
+<li>SRC_NWEA</li>
+<li>SRC_PLAN</li>
+<li>SRC_SAT</li>
+<li>SRC_SchoolCity</li>
+<li>SRC_StateAssessments</li>
+<li>SRC_TSIAccuplacer</li>
+</ul>
+</li>
+<li>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>See the database names just above</li>
+<li>
+<code>PROD1</code> for lookup data about students and schools</li>
+</ul>
+</li>
+<li>
+<p><strong>Targets</strong>:</p>
+<ul>
+<li><code>PROD2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SRC3</strong> is hosted on <code>RGVPDSD-DWSRC3</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from variance external systems, including Naviance, Tyler Munis, Teachboost, Schoolmint, and a slew of individualized learning/blended learning platforms.</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>lk_Schools</li>
+<li>SRC_Alumni</li>
+<li>SRC_AssetPanda</li>
+<li>SRC_CollegeSuccess</li>
+<li>SRC_CornerStoneEvaluations</li>
+<li>SRC_DMac</li>
+<li>SRC_FitnessGram</li>
+<li>SRC_GetRatings</li>
+<li>SRC_GoodsideHealth</li>
+<li>SRC_HealthOfficeAnywhere</li>
+<li>SRC_HR</li>
+<li>SRC_JobVite</li>
+<li>SRC_NationalClearingHouse</li>
+<li>SRC_Naviance</li>
+<li>SRC_OpsCampusRanking</li>
+<li>SRC_PanoramaSurveys</li>
+<li>SRC_Recruitment</li>
+<li>SRC_SchoolMint</li>
+<li>SRC_StaffRetention</li>
+<li>SRC_STMATH</li>
+<li>SRC_Stream</li>
+<li>SRC_Teachboost</li>
+<li>SRC_TSI</li>
+<li>SRC_TTM</li>
+<li>SRC_TylerMunis</li>
+<li>SRC_Wrike</li>
+<li>SRC_Zendesk</li>
+<li>SRC_ZendeskDev</li>
+<li>TCPAppDev</li>
+</ul>
+</li>
+<li>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>See the database names just above</li>
+<li>
+<code>PROD1</code> for lookup data about students and schools</li>
+</ul>
+</li>
+<li>
+<p><strong>Targets</strong>:</p>
+<ul>
+<li><code>PROD1</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SRC4</strong> is hosted on <code>RGVPDSD-DWSRC4</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from various individualized learning/blended learning platforms.</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>lk_Schools</li>
+<li>SRC_AR</li>
+<li>SRC_BlendedLearning</li>
+<li>SRC_IHT</li>
+<li>SRC_IReady</li>
+</ul>
+</li>
+<li>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>See the database names just above</li>
+<li>
+<code>PROD1</code> for lookup data about students and schools</li>
+</ul>
+</li>
+<li>
+<p><strong>Targets</strong>:</p>
+<ul>
+<li><code>PROD1</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SRC5</strong> is hosted on <code>RGVPDSD-DWSRC5</code> and serves as a source for <code>PROD1</code>. Databases focus on source data from Microsoft Teams.</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>TeamsAttendance</li>
+</ul>
+</li>
+<li>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li>See the database names just above</li>
+<li>
+<code>PROD1</code> for lookup data about students and schools</li>
+</ul>
+</li>
+<li>
+<p><strong>Targets</strong>:</p>
+<ul>
+<li><code>PROD1</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="prod-servers" class="section level4" number="3.1.1.2">
+<h4>
+<span class="header-section-number">3.1.1.2</span> PROD Servers<a class="anchor" aria-label="anchor" href="#prod-servers"><i class="fas fa-link"></i></a>
+</h4>
+<ul>
+<li>
+<p><strong>PROD1</strong> is hosted on <code>RGVPDSD-DWPRD1</code> and contains a variety of databases sourced from all <code>SRC</code> servers except for <code>SRC2</code>. The key students, schools, and regions data is found here and is</p>
+<ul>
+<li>
+<p><strong>Databases</strong>:</p>
+<ul>
+<li>ADA</li>
+<li>BlendedLearning</li>
+<li>CollegeSuccess</li>
+<li>DashboardSettings</li>
+<li>dwSnapshots</li>
+<li>Enrollment</li>
+<li>GoodSideHealth</li>
+<li>HealthOfficeAnywhere</li>
+<li>Individualized Learning</li>
+<li>IT</li>
+<li>Matriculation</li>
+<li>Persistence</li>
+<li>PROD1</li>
+<li>PROD1New</li>
+<li>ProductDevelopment</li>
+<li>SSISDeprecation</li>
+<li>SSISTemp</li>
+<li>Staffing</li>
+<li>StudentPersistence</li>
+</ul>
+</li>
+<li>
+<p><strong>Sources</strong>:</p>
+<ul>
+<li><code>RGVPDSD-DWSRC1</code></li>
+<li><code>RGVPDSD-DWSRC2</code></li>
+<li><code>RGVPDSD-DWSRC3</code></li>
+<li><code>RGVPDSD-DWSRC4</code></li>
+<li><code>RGVPDSD-DWSRC5</code></li>
+<li><code>RGVPDSD-SQLCSI</code></li>
+<li><code>RGVPDSD-SQLDI</code></li>
+<li><code>RGVPDSD-TCPSQL</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>PROD2</strong> hosts all assessment data for all states. This is the source server for <code>RS2</code> and includes assessments (e.g., IAs, bi-weekly and unit assessments, AP, IB) data and accountability tables.</p>
+<ul>
+<li>
+<strong>Databases</strong>:
+<ul>
+<li><p>Assessments</p></li>
+<li><p>lk_Schools</p></li>
+<li><p>PROD2</p></li>
+<li><p>SSISDeprecation</p></li>
+<li><p>SSISTemp</p></li>
+<li><p>Schools: this actually contains inventories at the school level, like lists of employees, equipment and asset inventories, students schedules, correspondences between teachers and students.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="server-table-and-field-lookup" class="section level3" number="3.1.2">
+<h3>
+<span class="header-section-number">3.1.2</span> Server, Table, and Field Lookup<a class="anchor" aria-label="anchor" href="#server-table-and-field-lookup"><i class="fas fa-link"></i></a>
+</h3>
+<p>The easiest way to explore databases and tables available in the data warehouse is to use the <a href="https://idea-analytics.github.io/ideadata/"><code>ideadata</code></a> packages’ <code>view_warehouse_metadata()</code> function, which will launch a filterable table in the RStudio IDEA.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">view_warehouse_metadata</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="img/view_ware_house_meta_data.png" title="Example from running `view_warehouse_metadata()" alt="Example from running view_warehouse_metadata()"><div class="figcaption">Example from running <code>view_warehouse_metadata()</code>
+</div>
+</div>
+<p>More details on accessing the data warehouse from R are in the following section.</p>
+</div>
+</div>
+<div id="accessing-the-data-warehouse-from-r" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Accessing the data warehouse from R<a class="anchor" aria-label="anchor" href="#accessing-the-data-warehouse-from-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>The most straightforward way to access the data warehouse is to use our own, bespoke r package: <code>ideadata</code>, which is <a href="https://github.com/idea-analytics/ideadata">maintained on github</a> and has <a href="https://idea-analytics.github.io/ideadata/">its own documentation site</a>.</p>
+<div id="installation" class="section level3" number="3.2.1">
+<h3>
+<span class="header-section-number">3.2.1</span> Installation<a class="anchor" aria-label="anchor" href="#installation"><i class="fas fa-link"></i></a>
+</h3>
+<p>Since <code>ideadata</code> is an internal IDEA package, there is only a development version, which is installed from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"idea-analytics/ideadata"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#renv::install("idea-analytics/ideadata@main") also works</span></span></code></pre></div>
+</div>
+<div id="example" class="section level3" number="3.2.2">
+<h3>
+<span class="header-section-number">3.2.2</span> Example<a class="anchor" aria-label="anchor" href="#example"><i class="fas fa-link"></i></a>
+</h3>
+<p>Here’s how you connect to the <code>Schools</code> table in the warehouse.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ideadata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schools</span> <span class="op">&lt;-</span> <span class="fu">get_schools</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">schools</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>schools</code> object above is <code>tbl</code> object. That means it works with <code>dplyr</code> verbs and functions, but what happens in the background is that <code>dplyr</code> and <code>dbplyr</code> generate SQL that is sent to the database you are connected to and all that computation (e.g., filtering, selecting, joining, calculations, aggregation) are completed on the remote SQL Server instance and <strong>not</strong> on your computer.</p>
+<p>Nevertheless, you will eventually want to pull that data down onto your machine when you want to use R or Python to do what they can do (like modeling or graphics) that the database can’t do.</p>
+<p>Pulling that data down is easy with [dplyr::collect()]</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>(Here <code><a href="https://sfirke.github.io/janitor/reference/clean_names.html">janitor::clean_names()</a></code> snake_cases all the column names).</p>
+<div id="what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows" class="section level4" number="3.2.2.1">
+<h4>
+<span class="header-section-number">3.2.2.1</span> What if I am pulling down lots of data (say, millions of rows)?<a class="anchor" aria-label="anchor" href="#what-if-i-am-pulling-down-lots-of-data-say-millions-of-rows"><i class="fas fa-link"></i></a>
+</h4>
+<p>In this instance the database connection may fail. It’s not ideal, but it happens. One way to deal with this is to pull down the data piecemeal. The <code>collector()</code> function in <code>ideadata</code> makes this task trivial. It takes column names as arguments (unquote) from the table you want to pull down and those columns are used to break up the data into smaller sets of data that are pulled down from the database onto your computer and then recombined into a single table.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">schools_df</span> <span class="op">&lt;-</span> <span class="va">schools</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">collector</span><span class="op">(</span><span class="va">SchoolState</span>, <span class="va">CountyName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="gotcha">
+<p>The <code>ideadata</code> package is clever in that it updates its knowledge of the data warehouse every time you load the package with <code><a href="https://rdrr.io/r/base/library.html">library(ideadata)</a></code>. However to do that you need to have access to the warehouse, and that requires that you are on the VPN/behind the firewall. Do make sure that is true before invoking the package!</p>
+</div>
+</div>
+</div>
+<div id="finding-things-in-the-data-warehouse" class="section level3" number="3.2.3">
+<h3>
+<span class="header-section-number">3.2.3</span> Finding things in the data warehouse<a class="anchor" aria-label="anchor" href="#finding-things-in-the-data-warehouse"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>ideadata</code> package has a function that will open up a sortable, filterable, and searchable table in the RStudio idea: <a href="https://idea-analytics.github.io/ideadata/reference/view_warehouse_metadata.html"><code>view_warehouse_meta_data()</code></a></p>
+</div>
+<div id="where-to-learn-more" class="section level3" number="3.2.4">
+<h3>
+<span class="header-section-number">3.2.4</span> Where to learn more<a class="anchor" aria-label="anchor" href="#where-to-learn-more"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>ideadata</code> <a href="https://idea-analytics.github.io/ideadata/">has it’s own documentation here</a>. If you can’t find an answer there, then reach out to Chris Haid (he’s responsible for this craziness).</p>
+<div class="tip">
+<p><a href="https://idea-analytics.github.io/ideadata/articles/setting-up-your-credentials.html">Go to this article</a> to set up your credentials in R so that the warehouse can authenticate and authorize you as verified user</p>
+</div>
+<div class="tip">
+<p>Another important aspect of the warehouse is that the sources system for most student data is our SIS: PowerSchool. The <a href="http://www.albertapsug.ca/uploads/1/5/1/2/15120130/ps10x_data_dictionary_tbl.pdf">PowerSchool Tables Data Dictionary</a> is a helpful resource in understanding fields and relationships between tables.</p>
+</div>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="who.html"><span class="header-section-number">2</span> Contributors</a></div>
+<div class="next"><a href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-data-warehouse-and-how-to-access-it"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
+<li>
+<a class="nav-link" href="#the-data-warehouse"><span class="header-section-number">3.1</span> The Data Warehouse</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#core-data-warehouse-server-configuration"><span class="header-section-number">3.1.1</span> Core data warehouse server configuration</a></li>
+<li><a class="nav-link" href="#server-table-and-field-lookup"><span class="header-section-number">3.1.2</span> Server, Table, and Field Lookup</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#accessing-the-data-warehouse-from-r"><span class="header-section-number">3.2</span> Accessing the data warehouse from R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#installation"><span class="header-section-number">3.2.1</span> Installation</a></li>
+<li><a class="nav-link" href="#example"><span class="header-section-number">3.2.2</span> Example</a></li>
+<li><a class="nav-link" href="#finding-things-in-the-data-warehouse"><span class="header-section-number">3.2.3</span> Finding things in the data warehouse</a></li>
+<li><a class="nav-link" href="#where-to-learn-more"><span class="header-section-number">3.2.4</span> Where to learn more</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/03-Data_Warehouse.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/03-Data_Warehouse.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 14 Tips and Tricks | IDEA R&amp;A Manual</title>
+<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
+<meta name="description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  14.1...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 14 Tips and Tricks | IDEA R&amp;A Manual">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/tips-and-tricks.html">
+<meta property="og:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  14.1...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 14 Tips and Tricks | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  14.1...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IDEA R&amp;A Manual</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
+<li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
+<li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
+<li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li><a class="" href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">10</span> Surveys</a></li>
+<li><a class="" href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></li>
+<li><a class="active" href="tips-and-tricks.html"><span class="header-section-number">14</span> Tips and Tricks</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/idea-analytics/r_and_a_manual">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tips-and-tricks" class="section level1" number="14">
+<h1>
+<span class="header-section-number">14</span> Tips and Tricks<a class="anchor" aria-label="anchor" href="#tips-and-tricks"><i class="fas fa-link"></i></a>
+</h1>
+<p>This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.</p>
+<div id="data-processing" class="section level2" number="14.1">
+<h2>
+<span class="header-section-number">14.1</span> Data processing<a class="anchor" aria-label="anchor" href="#data-processing"><i class="fas fa-link"></i></a>
+</h2>
+<div id="de-duplicating-rows-in-a-table" class="section level3" number="14.1.1">
+<h3>
+<span class="header-section-number">14.1.1</span> De-duplicating rows in a table<a class="anchor" aria-label="anchor" href="#de-duplicating-rows-in-a-table"><i class="fas fa-link"></i></a>
+</h3>
+<p>There are two general purpose design patterns for de-duplicating rows in a table in either R or SQL.</p>
+<ol style="list-style-type: decimal">
+<li><p>In R use the <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">dplyr::distinct()</a></code> function and in SQL use a DISTINCT clause. This is pretty simple and robust, with the typical use case of wanting to reduce many <strong>identical</strong> rows to a single row.</p></li>
+<li>
+<p>If you are trying to de-duplicate where you may have <strong>non-identical</strong> rows (e.g., a student has taken the same assessment multiple times in a testing window and you’d like to get the latest date) then you can use a <code>group_by-arrange-row_number-filter</code> pattern:</p>
+<ol style="list-style-type: decimal">
+<li>Group your data by the columns that uniquely identify your object of inquiry (e.g., student number)</li>
+<li>Arrange or sort the data by a column that puts an ordering you care about within the grouped data (e.g., assessment date)</li>
+<li>Create a new column that contains the row number <em>within the group</em> (e.g, a student with 5 assessments in a window would have <code>row_number = 1</code> for the first date and <code>row_number = 5</code> for the last date).</li>
+<li>Filter for the maximum row number(with <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> in R or a <code>WHERE</code> clause in SQL)</li>
+<li>(optional) Ungroup your data.</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="hierarchical-aggregation-or-the-list-group_by-trick" class="section level3" number="14.1.2">
+<h3>
+<span class="header-section-number">14.1.2</span> Hierarchical aggregation, or the <code>list-group_by</code> trick<a class="anchor" aria-label="anchor" href="#hierarchical-aggregation-or-the-list-group_by-trick"><i class="fas fa-link"></i></a>
+</h3>
+<p>Schools data, especially student-level data, is embedded in hierarchical groupings.</p>
+<p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is a smoothed, seasonally adjusted measure of the typical home value and market changes across a given region. It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
+<p>It’s a very large dataset so we’ll use the <a href="https://arrow.apache.org/docs/r/">Apache Arrow Project</a>’s feather file format to read the data into R and subset the housing costs to IDEA metro areas since 2020.</p>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'arrow'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:lubridate':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     duration</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     timestamp</span></span>
+<span><span class="va">zillow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_feather.html">read_feather</a></span><span class="op">(</span><span class="st">"./zillow.feather"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">idea_metros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Metro <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Austin-Round Rock"</span>,</span>
+<span>                                <span class="st">"Dallas-Fort Worth-Arlington"</span>,</span>
+<span>                                <span class="st">"San Antonio-New Braunfels"</span>,</span>
+<span>                                <span class="st">"Brownsville-Harlingen"</span>,</span>
+<span>                                <span class="st">"El Paso"</span>,</span>
+<span>                                <span class="st">"Houston-The Woodlands-Sugar Land"</span>,</span>
+<span>                                <span class="st">"Baton Rouge"</span>,</span>
+<span>                                <span class="st">"Tampa-St. Petersburg-Clearwater"</span>,</span>
+<span>                                <span class="st">"Jacksonville"</span>,</span>
+<span>                                <span class="st">"Cincinnati"</span></span>
+<span>                                <span class="op">)</span></span>
+<span>                      <span class="op">)</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="va">zillow_idea</span> <span class="op">&lt;-</span> <span class="va">zillow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">idea_metros</span>, by <span class="op">=</span> <span class="st">"Metro"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">RegionID</span><span class="op">:</span><span class="va">CountyName</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"202*-"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># matches() selects columns with regular expressions</span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">zillow_idea</span><span class="op">)</span>,</span>
+<span>   booktabs <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  caption <span class="op">=</span> <span class="st">'first 10 rows of Zillow Home Value Index data'</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:read-zillow">Table 14.1: </span>first 10 rows of Zillow Home Value Index data</caption>
+<colgroup>
+<col width="3%">
+<col width="3%">
+<col width="5%">
+<col width="3%">
+<col width="3%">
+<col width="1%">
+<col width="2%">
+<col width="10%">
+<col width="4%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">region_id</th>
+<th align="right">size_rank</th>
+<th align="left">region_name</th>
+<th align="left">region_type</th>
+<th align="left">state_name</th>
+<th align="left">state</th>
+<th align="left">city</th>
+<th align="left">metro</th>
+<th align="left">county_name</th>
+<th align="right">x2020_01_31</th>
+<th align="right">x2020_02_29</th>
+<th align="right">x2020_03_31</th>
+<th align="right">x2020_04_30</th>
+<th align="right">x2020_05_31</th>
+<th align="right">x2020_06_30</th>
+<th align="right">x2020_07_31</th>
+<th align="right">x2020_08_31</th>
+<th align="right">x2020_09_30</th>
+<th align="right">x2020_10_31</th>
+<th align="right">x2020_11_30</th>
+<th align="right">x2020_12_31</th>
+<th align="right">x2022_01_31</th>
+<th align="right">x2022_02_28</th>
+<th align="right">x2022_03_31</th>
+<th align="right">x2022_04_30</th>
+<th align="right">x2022_05_31</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">274772</td>
+<td align="right">0</td>
+<td align="left">Northeast Dallas</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">Dallas</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="right">333454</td>
+<td align="right">336810</td>
+<td align="right">340564</td>
+<td align="right">339912</td>
+<td align="right">339009</td>
+<td align="right">338433</td>
+<td align="right">339473</td>
+<td align="right">343077</td>
+<td align="right">347308</td>
+<td align="right">351841</td>
+<td align="right">354504</td>
+<td align="right">357231</td>
+<td align="right">429105</td>
+<td align="right">438101</td>
+<td align="right">447245</td>
+<td align="right">459088</td>
+<td align="right">467757</td>
+</tr>
+<tr class="even">
+<td align="right">273698</td>
+<td align="right">15</td>
+<td align="left">Far North</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">Dallas</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="right">389308</td>
+<td align="right">390853</td>
+<td align="right">393431</td>
+<td align="right">393050</td>
+<td align="right">392890</td>
+<td align="right">392384</td>
+<td align="right">393206</td>
+<td align="right">396462</td>
+<td align="right">400808</td>
+<td align="right">405809</td>
+<td align="right">408638</td>
+<td align="right">411554</td>
+<td align="right">511133</td>
+<td align="right">522444</td>
+<td align="right">533209</td>
+<td align="right">546602</td>
+<td align="right">558331</td>
+</tr>
+<tr class="odd">
+<td align="right">275473</td>
+<td align="right">21</td>
+<td align="left">Southeast Dallas</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">Dallas</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="right">147717</td>
+<td align="right">150741</td>
+<td align="right">153961</td>
+<td align="right">154320</td>
+<td align="right">154202</td>
+<td align="right">153974</td>
+<td align="right">154329</td>
+<td align="right">155867</td>
+<td align="right">157253</td>
+<td align="right">159280</td>
+<td align="right">160616</td>
+<td align="right">162572</td>
+<td align="right">204557</td>
+<td align="right">210406</td>
+<td align="right">216388</td>
+<td align="right">222352</td>
+<td align="right">227436</td>
+</tr>
+<tr class="even">
+<td align="right">273566</td>
+<td align="right">27</td>
+<td align="left">East Side</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">El Paso</td>
+<td align="left">El Paso</td>
+<td align="left">El Paso County</td>
+<td align="right">137170</td>
+<td align="right">138001</td>
+<td align="right">138453</td>
+<td align="right">138709</td>
+<td align="right">138917</td>
+<td align="right">139443</td>
+<td align="right">140416</td>
+<td align="right">141446</td>
+<td align="right">143268</td>
+<td align="right">145373</td>
+<td align="right">147431</td>
+<td align="right">149282</td>
+<td align="right">179010</td>
+<td align="right">180938</td>
+<td align="right">183070</td>
+<td align="right">186421</td>
+<td align="right">190104</td>
+</tr>
+<tr class="odd">
+<td align="right">28380</td>
+<td align="right">37</td>
+<td align="left">Alief</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">Houston</td>
+<td align="left">Houston-The Woodlands-Sugar Land</td>
+<td align="left">Harris County</td>
+<td align="right">158971</td>
+<td align="right">159155</td>
+<td align="right">159770</td>
+<td align="right">160887</td>
+<td align="right">161645</td>
+<td align="right">161931</td>
+<td align="right">162161</td>
+<td align="right">162561</td>
+<td align="right">164237</td>
+<td align="right">166294</td>
+<td align="right">168729</td>
+<td align="right">170811</td>
+<td align="right">208258</td>
+<td align="right">211679</td>
+<td align="right">216194</td>
+<td align="right">220945</td>
+<td align="right">225093</td>
+</tr>
+<tr class="even">
+<td align="right">275501</td>
+<td align="right">43</td>
+<td align="left">Southwest Dallas</td>
+<td align="left">Neighborhood</td>
+<td align="left">TX</td>
+<td align="left">TX</td>
+<td align="left">Dallas</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="right">201404</td>
+<td align="right">204352</td>
+<td align="right">207513</td>
+<td align="right">207679</td>
+<td align="right">207241</td>
+<td align="right">206414</td>
+<td align="right">206176</td>
+<td align="right">208141</td>
+<td align="right">210863</td>
+<td align="right">214343</td>
+<td align="right">216305</td>
+<td align="right">218319</td>
+<td align="right">271521</td>
+<td align="right">277896</td>
+<td align="right">284364</td>
+<td align="right">291705</td>
+<td align="right">297237</td>
+</tr>
+</tbody>
+</table></div>
+<p>These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we’d like to do aggregations over these various levels. That is, we’d like to know the mean home price for each neighborhood, city, and county. A typical work flow to achieve this is to write a <a href="https://dplyr.tidyverse.org">dplyr</a> pipeline for one <code>group_by</code> combination and then copy-and-paste that pipeline and change the columns in the <code>group_by</code> call. While this works in a pinch, its repetitive (violating <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">the DRY doctrine</a>), prone to copying errors and leaves with a bunch of dataframe that have increasingly awkward names.</p>
+<p>A more elegant solution is to leverage <a href="https://purrr.tidyverse.org/">purrr</a>’s <code>map_df</code> function and to pass it a list of already grouped data frames. Here’s a simple example:</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># create a list of grouped data.frames</span></span>
+<span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">county_name</span>, <span class="va">state</span><span class="op">)</span>, <span class="co"># the . is a  placeholder for the data.frame being piped in </span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">state</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">}</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">.</span>, <span class="op">~</span><span class="op">{</span></span>
+<span>    <span class="va">.x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># .x is a placeholder for each element of list above passed to map_df</span></span>
+<span>      <span class="co"># across allows us to apply a function to every column satisfying a condition</span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span>  </span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">zillow_idea_county_state</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="10%">
+<col width="2%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">county_name</th>
+<th align="left">state</th>
+<th align="right">x2020_01_31</th>
+<th align="right">x2020_02_29</th>
+<th align="right">x2020_03_31</th>
+<th align="right">x2020_04_30</th>
+<th align="right">x2020_05_31</th>
+<th align="right">x2020_06_30</th>
+<th align="right">x2020_07_31</th>
+<th align="right">x2020_08_31</th>
+<th align="right">x2020_09_30</th>
+<th align="right">x2020_10_31</th>
+<th align="right">x2020_11_30</th>
+<th align="right">x2020_12_31</th>
+<th align="right">x2022_01_31</th>
+<th align="right">x2022_02_28</th>
+<th align="right">x2022_03_31</th>
+<th align="right">x2022_04_30</th>
+<th align="right">x2022_05_31</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bexar County</td>
+<td align="left">TX</td>
+<td align="right">236419.5</td>
+<td align="right">236616.76</td>
+<td align="right">237689.0</td>
+<td align="right">237529.7</td>
+<td align="right">237583.96</td>
+<td align="right">237524.57</td>
+<td align="right">238753.5</td>
+<td align="right">240488.55</td>
+<td align="right">242658.4</td>
+<td align="right">245415.9</td>
+<td align="right">247821.6</td>
+<td align="right">249705.4</td>
+<td align="right">304910.5</td>
+<td align="right">309343.9</td>
+<td align="right">315937.1</td>
+<td align="right">322795.8</td>
+<td align="right">328032.5</td>
+</tr>
+<tr class="even">
+<td align="left">Cameron County</td>
+<td align="left">TX</td>
+<td align="right">87851.0</td>
+<td align="right">88821.25</td>
+<td align="right">90097.0</td>
+<td align="right">91219.0</td>
+<td align="right">93008.75</td>
+<td align="right">94285.67</td>
+<td align="right">96549.5</td>
+<td align="right">98501.25</td>
+<td align="right">100187.5</td>
+<td align="right">101993.2</td>
+<td align="right">102501.0</td>
+<td align="right">102593.0</td>
+<td align="right">126942.2</td>
+<td align="right">130217.8</td>
+<td align="right">132900.5</td>
+<td align="right">135820.5</td>
+<td align="right">137613.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Clermont County</td>
+<td align="left">OH</td>
+<td align="right">256458.6</td>
+<td align="right">257760.57</td>
+<td align="right">260112.9</td>
+<td align="right">261297.2</td>
+<td align="right">262766.14</td>
+<td align="right">263090.93</td>
+<td align="right">264136.0</td>
+<td align="right">265508.71</td>
+<td align="right">267262.1</td>
+<td align="right">270291.1</td>
+<td align="right">274012.4</td>
+<td align="right">277794.7</td>
+<td align="right">325773.1</td>
+<td align="right">332262.7</td>
+<td align="right">336526.5</td>
+<td align="right">342560.1</td>
+<td align="right">361842.1</td>
+</tr>
+<tr class="even">
+<td align="left">Collin County</td>
+<td align="left">TX</td>
+<td align="right">252801.1</td>
+<td align="right">253511.72</td>
+<td align="right">254955.3</td>
+<td align="right">254684.5</td>
+<td align="right">254899.67</td>
+<td align="right">255074.06</td>
+<td align="right">256247.2</td>
+<td align="right">259277.50</td>
+<td align="right">262620.9</td>
+<td align="right">266918.2</td>
+<td align="right">269438.4</td>
+<td align="right">272188.9</td>
+<td align="right">351944.4</td>
+<td align="right">359552.7</td>
+<td align="right">365960.1</td>
+<td align="right">373242.8</td>
+<td align="right">380988.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">293025.4</td>
+<td align="right">294501.07</td>
+<td align="right">296657.5</td>
+<td align="right">296580.8</td>
+<td align="right">296460.58</td>
+<td align="right">296474.84</td>
+<td align="right">297524.7</td>
+<td align="right">300239.40</td>
+<td align="right">303332.5</td>
+<td align="right">306943.1</td>
+<td align="right">309158.9</td>
+<td align="right">311723.4</td>
+<td align="right">382452.0</td>
+<td align="right">392774.8</td>
+<td align="right">401296.8</td>
+<td align="right">411441.5</td>
+<td align="right">423091.7</td>
+</tr>
+<tr class="even">
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">294162.2</td>
+<td align="right">295455.18</td>
+<td align="right">297418.2</td>
+<td align="right">298997.0</td>
+<td align="right">300425.31</td>
+<td align="right">301885.76</td>
+<td align="right">303508.1</td>
+<td align="right">306065.07</td>
+<td align="right">309209.2</td>
+<td align="right">312709.9</td>
+<td align="right">315237.8</td>
+<td align="right">318183.7</td>
+<td align="right">406810.6</td>
+<td align="right">417011.6</td>
+<td align="right">426518.1</td>
+<td align="right">436968.6</td>
+<td align="right">446150.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Duval County</td>
+<td align="left">FL</td>
+<td align="right">192079.1</td>
+<td align="right">194276.90</td>
+<td align="right">196898.1</td>
+<td align="right">198398.1</td>
+<td align="right">199147.74</td>
+<td align="right">198914.95</td>
+<td align="right">198800.9</td>
+<td align="right">199908.43</td>
+<td align="right">202078.9</td>
+<td align="right">205067.8</td>
+<td align="right">207664.9</td>
+<td align="right">209891.6</td>
+<td align="right">270769.6</td>
+<td align="right">277030.0</td>
+<td align="right">284658.3</td>
+<td align="right">291757.5</td>
+<td align="right">298009.9</td>
+</tr>
+<tr class="even">
+<td align="left">East Baton Rouge Parish</td>
+<td align="left">LA</td>
+<td align="right">179934.9</td>
+<td align="right">181796.56</td>
+<td align="right">183615.9</td>
+<td align="right">185022.9</td>
+<td align="right">185315.91</td>
+<td align="right">184857.31</td>
+<td align="right">184305.4</td>
+<td align="right">184215.65</td>
+<td align="right">184405.7</td>
+<td align="right">184610.5</td>
+<td align="right">186147.5</td>
+<td align="right">187372.9</td>
+<td align="right">204779.7</td>
+<td align="right">207683.3</td>
+<td align="right">211541.2</td>
+<td align="right">212209.2</td>
+<td align="right">215491.1</td>
+</tr>
+<tr class="odd">
+<td align="left">El Paso County</td>
+<td align="left">TX</td>
+<td align="right">145968.5</td>
+<td align="right">146789.56</td>
+<td align="right">147215.2</td>
+<td align="right">146354.0</td>
+<td align="right">146395.29</td>
+<td align="right">146774.86</td>
+<td align="right">147678.8</td>
+<td align="right">149030.16</td>
+<td align="right">151164.7</td>
+<td align="right">153505.7</td>
+<td align="right">155702.6</td>
+<td align="right">161224.5</td>
+<td align="right">194323.3</td>
+<td align="right">196176.3</td>
+<td align="right">198462.4</td>
+<td align="right">202231.7</td>
+<td align="right">206134.7</td>
+</tr>
+<tr class="even">
+<td align="left">Fort Bend County</td>
+<td align="left">TX</td>
+<td align="right">313162.0</td>
+<td align="right">312742.00</td>
+<td align="right">312989.0</td>
+<td align="right">313767.0</td>
+<td align="right">315049.00</td>
+<td align="right">315403.00</td>
+<td align="right">315134.0</td>
+<td align="right">315730.00</td>
+<td align="right">316902.0</td>
+<td align="right">319097.0</td>
+<td align="right">322068.0</td>
+<td align="right">326151.0</td>
+<td align="right">403616.0</td>
+<td align="right">411565.0</td>
+<td align="right">421298.0</td>
+<td align="right">432068.0</td>
+<td align="right">440767.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Hamilton County</td>
+<td align="left">OH</td>
+<td align="right">181137.4</td>
+<td align="right">182081.13</td>
+<td align="right">183557.5</td>
+<td align="right">184205.6</td>
+<td align="right">185102.85</td>
+<td align="right">186049.38</td>
+<td align="right">186835.6</td>
+<td align="right">188725.45</td>
+<td align="right">190744.0</td>
+<td align="right">194126.5</td>
+<td align="right">197973.7</td>
+<td align="right">201780.1</td>
+<td align="right">230601.0</td>
+<td align="right">232962.7</td>
+<td align="right">236157.2</td>
+<td align="right">239920.2</td>
+<td align="right">242601.4</td>
+</tr>
+<tr class="even">
+<td align="left">Harris County</td>
+<td align="left">TX</td>
+<td align="right">237588.7</td>
+<td align="right">238271.57</td>
+<td align="right">239492.0</td>
+<td align="right">240980.1</td>
+<td align="right">241819.43</td>
+<td align="right">242300.43</td>
+<td align="right">242671.0</td>
+<td align="right">243784.60</td>
+<td align="right">247142.2</td>
+<td align="right">249050.8</td>
+<td align="right">251895.6</td>
+<td align="right">254029.4</td>
+<td align="right">289228.1</td>
+<td align="right">291940.2</td>
+<td align="right">295875.6</td>
+<td align="right">300054.9</td>
+<td align="right">304276.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Hays County</td>
+<td align="left">TX</td>
+<td align="right">221015.9</td>
+<td align="right">222083.96</td>
+<td align="right">223670.9</td>
+<td align="right">225189.5</td>
+<td align="right">227250.22</td>
+<td align="right">229404.30</td>
+<td align="right">230521.1</td>
+<td align="right">232754.11</td>
+<td align="right">235435.5</td>
+<td align="right">239015.0</td>
+<td align="right">241174.3</td>
+<td align="right">242566.3</td>
+<td align="right">332064.2</td>
+<td align="right">340318.6</td>
+<td align="right">346084.6</td>
+<td align="right">352008.2</td>
+<td align="right">354137.5</td>
+</tr>
+<tr class="even">
+<td align="left">Hernando County</td>
+<td align="left">FL</td>
+<td align="right">120956.0</td>
+<td align="right">121180.00</td>
+<td align="right">121369.0</td>
+<td align="right">121767.0</td>
+<td align="right">123293.00</td>
+<td align="right">124900.00</td>
+<td align="right">126821.0</td>
+<td align="right">128657.00</td>
+<td align="right">130393.0</td>
+<td align="right">132460.0</td>
+<td align="right">134521.0</td>
+<td align="right">136121.0</td>
+<td align="right">189750.0</td>
+<td align="right">195628.0</td>
+<td align="right">201497.0</td>
+<td align="right">207729.0</td>
+<td align="right">214439.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Hillsborough County</td>
+<td align="left">FL</td>
+<td align="right">349264.1</td>
+<td align="right">351739.72</td>
+<td align="right">354382.8</td>
+<td align="right">355552.9</td>
+<td align="right">356971.72</td>
+<td align="right">359018.07</td>
+<td align="right">361393.0</td>
+<td align="right">365575.55</td>
+<td align="right">369241.7</td>
+<td align="right">373273.2</td>
+<td align="right">375854.3</td>
+<td align="right">379941.2</td>
+<td align="right">503793.4</td>
+<td align="right">515923.2</td>
+<td align="right">533941.8</td>
+<td align="right">550129.7</td>
+<td align="right">567090.1</td>
+</tr>
+<tr class="even">
+<td align="left">Hood County</td>
+<td align="left">TX</td>
+<td align="right">235928.3</td>
+<td align="right">234916.33</td>
+<td align="right">235393.0</td>
+<td align="right">235256.0</td>
+<td align="right">237118.33</td>
+<td align="right">237996.67</td>
+<td align="right">240002.0</td>
+<td align="right">242098.00</td>
+<td align="right">244242.7</td>
+<td align="right">246587.7</td>
+<td align="right">248947.3</td>
+<td align="right">252189.3</td>
+<td align="right">329945.0</td>
+<td align="right">335712.3</td>
+<td align="right">341840.7</td>
+<td align="right">348550.7</td>
+<td align="right">354898.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Montgomery County</td>
+<td align="left">TX</td>
+<td align="right">369648.1</td>
+<td align="right">372622.14</td>
+<td align="right">373885.4</td>
+<td align="right">375667.1</td>
+<td align="right">375348.57</td>
+<td align="right">375732.43</td>
+<td align="right">376004.6</td>
+<td align="right">377733.43</td>
+<td align="right">381163.0</td>
+<td align="right">384827.7</td>
+<td align="right">388522.7</td>
+<td align="right">391143.7</td>
+<td align="right">467438.2</td>
+<td align="right">475088.5</td>
+<td align="right">483298.1</td>
+<td align="right">493857.0</td>
+<td align="right">504785.2</td>
+</tr>
+<tr class="even">
+<td align="left">Pasco County</td>
+<td align="left">FL</td>
+<td align="right">134105.8</td>
+<td align="right">135028.41</td>
+<td align="right">136941.2</td>
+<td align="right">139102.2</td>
+<td align="right">140580.76</td>
+<td align="right">141369.35</td>
+<td align="right">142584.9</td>
+<td align="right">144574.35</td>
+<td align="right">147502.2</td>
+<td align="right">151162.2</td>
+<td align="right">160476.1</td>
+<td align="right">161647.5</td>
+<td align="right">212669.4</td>
+<td align="right">217159.6</td>
+<td align="right">221922.4</td>
+<td align="right">230132.8</td>
+<td align="right">236579.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Pinellas County</td>
+<td align="left">FL</td>
+<td align="right">312021.6</td>
+<td align="right">314302.07</td>
+<td align="right">317429.9</td>
+<td align="right">317678.2</td>
+<td align="right">320157.62</td>
+<td align="right">321261.44</td>
+<td align="right">322380.6</td>
+<td align="right">325950.19</td>
+<td align="right">329802.2</td>
+<td align="right">334735.4</td>
+<td align="right">344679.1</td>
+<td align="right">346452.9</td>
+<td align="right">451758.3</td>
+<td align="right">462280.9</td>
+<td align="right">477444.6</td>
+<td align="right">500266.2</td>
+<td align="right">513847.2</td>
+</tr>
+<tr class="even">
+<td align="left">Saint Johns County</td>
+<td align="left">FL</td>
+<td align="right">490926.0</td>
+<td align="right">487807.00</td>
+<td align="right">482205.0</td>
+<td align="right">479515.0</td>
+<td align="right">480038.00</td>
+<td align="right">478654.00</td>
+<td align="right">475009.0</td>
+<td align="right">470512.00</td>
+<td align="right">469018.0</td>
+<td align="right">471930.0</td>
+<td align="right">478365.0</td>
+<td align="right">483877.0</td>
+<td align="right">673532.0</td>
+<td align="right">693035.0</td>
+<td align="right">714043.0</td>
+<td align="right">736664.0</td>
+<td align="right">760956.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Tarrant County</td>
+<td align="left">TX</td>
+<td align="right">256328.9</td>
+<td align="right">257545.33</td>
+<td align="right">258655.2</td>
+<td align="right">259389.2</td>
+<td align="right">259630.09</td>
+<td align="right">260563.14</td>
+<td align="right">261708.4</td>
+<td align="right">264524.49</td>
+<td align="right">267092.1</td>
+<td align="right">270145.0</td>
+<td align="right">272597.9</td>
+<td align="right">275271.2</td>
+<td align="right">347082.9</td>
+<td align="right">354661.7</td>
+<td align="right">361706.2</td>
+<td align="right">369883.6</td>
+<td align="right">377271.4</td>
+</tr>
+<tr class="even">
+<td align="left">Travis County</td>
+<td align="left">TX</td>
+<td align="right">381338.2</td>
+<td align="right">383352.55</td>
+<td align="right">387357.2</td>
+<td align="right">391275.4</td>
+<td align="right">395333.15</td>
+<td align="right">397607.15</td>
+<td align="right">400376.5</td>
+<td align="right">405145.54</td>
+<td align="right">411928.8</td>
+<td align="right">418949.0</td>
+<td align="right">426917.8</td>
+<td align="right">433544.8</td>
+<td align="right">619451.6</td>
+<td align="right">636455.4</td>
+<td align="right">650212.0</td>
+<td align="right">660887.2</td>
+<td align="right">667898.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Williamson County</td>
+<td align="left">TX</td>
+<td align="right">388307.6</td>
+<td align="right">390361.52</td>
+<td align="right">392133.0</td>
+<td align="right">394523.5</td>
+<td align="right">397150.83</td>
+<td align="right">399268.65</td>
+<td align="right">402710.1</td>
+<td align="right">407221.96</td>
+<td align="right">414348.0</td>
+<td align="right">421828.0</td>
+<td align="right">430322.9</td>
+<td align="right">439416.9</td>
+<td align="right">671363.9</td>
+<td align="right">688338.3</td>
+<td align="right">701260.0</td>
+<td align="right">709406.6</td>
+<td align="right">714930.5</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">FL</td>
+<td align="right">257793.6</td>
+<td align="right">259998.95</td>
+<td align="right">262738.5</td>
+<td align="right">263650.1</td>
+<td align="right">265251.67</td>
+<td align="right">265906.85</td>
+<td align="right">266690.5</td>
+<td align="right">269181.32</td>
+<td align="right">272194.7</td>
+<td align="right">276038.2</td>
+<td align="right">280710.2</td>
+<td align="right">283721.3</td>
+<td align="right">370718.0</td>
+<td align="right">379395.3</td>
+<td align="right">391283.3</td>
+<td align="right">405553.6</td>
+<td align="right">416427.7</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">LA</td>
+<td align="right">179934.9</td>
+<td align="right">181796.56</td>
+<td align="right">183615.9</td>
+<td align="right">185022.9</td>
+<td align="right">185315.91</td>
+<td align="right">184857.31</td>
+<td align="right">184305.4</td>
+<td align="right">184215.65</td>
+<td align="right">184405.7</td>
+<td align="right">184610.5</td>
+<td align="right">186147.5</td>
+<td align="right">187372.9</td>
+<td align="right">204779.7</td>
+<td align="right">207683.3</td>
+<td align="right">211541.2</td>
+<td align="right">212209.2</td>
+<td align="right">215491.1</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">OH</td>
+<td align="right">198424.2</td>
+<td align="right">199450.18</td>
+<td align="right">201127.6</td>
+<td align="right">201898.8</td>
+<td align="right">202927.21</td>
+<td align="right">203731.05</td>
+<td align="right">204576.7</td>
+<td align="right">206347.84</td>
+<td align="right">208305.6</td>
+<td align="right">211606.9</td>
+<td align="right">215425.2</td>
+<td align="right">219226.1</td>
+<td align="right">252443.8</td>
+<td align="right">256986.9</td>
+<td align="right">260440.1</td>
+<td align="right">264752.4</td>
+<td align="right">272884.7</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">TX</td>
+<td align="right">266041.9</td>
+<td align="right">267043.43</td>
+<td align="right">268645.8</td>
+<td align="right">269271.2</td>
+<td align="right">269983.37</td>
+<td align="right">270796.65</td>
+<td align="right">271937.4</td>
+<td align="right">274410.46</td>
+<td align="right">277549.5</td>
+<td align="right">280987.6</td>
+<td align="right">284077.3</td>
+<td align="right">287132.4</td>
+<td align="right">365434.1</td>
+<td align="right">373129.4</td>
+<td align="right">380595.8</td>
+<td align="right">388365.3</td>
+<td align="right">395199.6</td>
+</tr>
+</tbody>
+</table></div>
+<p>We now have a data frame with county-level <em>and</em> state-level means in one data frame. Notice however that the <code>county_name</code> field is <code>NA</code> for state level data:</p>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="5%">
+<col width="2%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">county_name</th>
+<th align="left">state</th>
+<th align="right">x2020_01_31</th>
+<th align="right">x2020_02_29</th>
+<th align="right">x2020_03_31</th>
+<th align="right">x2020_04_30</th>
+<th align="right">x2020_05_31</th>
+<th align="right">x2020_06_30</th>
+<th align="right">x2020_07_31</th>
+<th align="right">x2020_08_31</th>
+<th align="right">x2020_09_30</th>
+<th align="right">x2020_10_31</th>
+<th align="right">x2020_11_30</th>
+<th align="right">x2020_12_31</th>
+<th align="right">x2022_01_31</th>
+<th align="right">x2022_02_28</th>
+<th align="right">x2022_03_31</th>
+<th align="right">x2022_04_30</th>
+<th align="right">x2022_05_31</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">FL</td>
+<td align="right">257793.6</td>
+<td align="right">259998.9</td>
+<td align="right">262738.5</td>
+<td align="right">263650.1</td>
+<td align="right">265251.7</td>
+<td align="right">265906.8</td>
+<td align="right">266690.5</td>
+<td align="right">269181.3</td>
+<td align="right">272194.7</td>
+<td align="right">276038.2</td>
+<td align="right">280710.2</td>
+<td align="right">283721.3</td>
+<td align="right">370718.0</td>
+<td align="right">379395.3</td>
+<td align="right">391283.3</td>
+<td align="right">405553.6</td>
+<td align="right">416427.7</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">LA</td>
+<td align="right">179934.9</td>
+<td align="right">181796.6</td>
+<td align="right">183615.9</td>
+<td align="right">185022.9</td>
+<td align="right">185315.9</td>
+<td align="right">184857.3</td>
+<td align="right">184305.4</td>
+<td align="right">184215.6</td>
+<td align="right">184405.7</td>
+<td align="right">184610.5</td>
+<td align="right">186147.5</td>
+<td align="right">187372.9</td>
+<td align="right">204779.7</td>
+<td align="right">207683.3</td>
+<td align="right">211541.2</td>
+<td align="right">212209.2</td>
+<td align="right">215491.1</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">OH</td>
+<td align="right">198424.2</td>
+<td align="right">199450.2</td>
+<td align="right">201127.6</td>
+<td align="right">201898.8</td>
+<td align="right">202927.2</td>
+<td align="right">203731.0</td>
+<td align="right">204576.7</td>
+<td align="right">206347.8</td>
+<td align="right">208305.6</td>
+<td align="right">211606.9</td>
+<td align="right">215425.2</td>
+<td align="right">219226.1</td>
+<td align="right">252443.8</td>
+<td align="right">256986.9</td>
+<td align="right">260440.1</td>
+<td align="right">264752.4</td>
+<td align="right">272884.7</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">TX</td>
+<td align="right">266041.9</td>
+<td align="right">267043.4</td>
+<td align="right">268645.8</td>
+<td align="right">269271.2</td>
+<td align="right">269983.4</td>
+<td align="right">270796.6</td>
+<td align="right">271937.4</td>
+<td align="right">274410.5</td>
+<td align="right">277549.5</td>
+<td align="right">280987.6</td>
+<td align="right">284077.3</td>
+<td align="right">287132.4</td>
+<td align="right">365434.1</td>
+<td align="right">373129.4</td>
+<td align="right">380595.8</td>
+<td align="right">388365.3</td>
+<td align="right">395199.6</td>
+</tr>
+</tbody>
+</table></div>
+<p>This makes sense, since <code>map_df</code> uses <code>bind_rows</code> to concatenate the aggregated tables together and will fill columns that are missing in a data frame with NA values. With a simple example like this we could add an extra step at the end of our pipeline to provide more information:</p>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># create a list of grouped data.frames</span></span>
+<span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">county_name</span>, <span class="va">state</span><span class="op">)</span>, <span class="co"># the . is a  placeholder for the data.frame being piped in </span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">state</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">}</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">.</span>, <span class="op">~</span><span class="op">{</span></span>
+<span>    <span class="va">.x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># .x is a placeholder for each element of list above passed to map_df</span></span>
+<span>      <span class="co"># across allows us to apply a function to every column satisfying a condition</span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>county_name <span class="op">=</span> <span class="st">"State Avg"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span></span>
+<span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 0 × 19</span></span>
+<span><span class="co">#&gt; # Groups:   county_name [0]</span></span>
+<span><span class="co">#&gt; # ℹ 19 variables: county_name &lt;chr&gt;, state &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_01_31 &lt;dbl&gt;, x2020_02_29 &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_03_31 &lt;dbl&gt;, x2020_04_30 &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_05_31 &lt;dbl&gt;, x2020_06_30 &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_07_31 &lt;dbl&gt;, x2020_08_31 &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_09_30 &lt;dbl&gt;, x2020_10_31 &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   x2020_11_30 &lt;dbl&gt;, x2020_12_31 &lt;dbl&gt;, …</span></span>
+<span></span>
+<span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">county_name</span> <span class="op">==</span> <span class="st">"State Avg"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="5%">
+<col width="2%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">county_name</th>
+<th align="left">state</th>
+<th align="right">x2020_01_31</th>
+<th align="right">x2020_02_29</th>
+<th align="right">x2020_03_31</th>
+<th align="right">x2020_04_30</th>
+<th align="right">x2020_05_31</th>
+<th align="right">x2020_06_30</th>
+<th align="right">x2020_07_31</th>
+<th align="right">x2020_08_31</th>
+<th align="right">x2020_09_30</th>
+<th align="right">x2020_10_31</th>
+<th align="right">x2020_11_30</th>
+<th align="right">x2020_12_31</th>
+<th align="right">x2022_01_31</th>
+<th align="right">x2022_02_28</th>
+<th align="right">x2022_03_31</th>
+<th align="right">x2022_04_30</th>
+<th align="right">x2022_05_31</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">State Avg</td>
+<td align="left">FL</td>
+<td align="right">257793.6</td>
+<td align="right">259998.9</td>
+<td align="right">262738.5</td>
+<td align="right">263650.1</td>
+<td align="right">265251.7</td>
+<td align="right">265906.8</td>
+<td align="right">266690.5</td>
+<td align="right">269181.3</td>
+<td align="right">272194.7</td>
+<td align="right">276038.2</td>
+<td align="right">280710.2</td>
+<td align="right">283721.3</td>
+<td align="right">370718.0</td>
+<td align="right">379395.3</td>
+<td align="right">391283.3</td>
+<td align="right">405553.6</td>
+<td align="right">416427.7</td>
+</tr>
+<tr class="even">
+<td align="left">State Avg</td>
+<td align="left">LA</td>
+<td align="right">179934.9</td>
+<td align="right">181796.6</td>
+<td align="right">183615.9</td>
+<td align="right">185022.9</td>
+<td align="right">185315.9</td>
+<td align="right">184857.3</td>
+<td align="right">184305.4</td>
+<td align="right">184215.6</td>
+<td align="right">184405.7</td>
+<td align="right">184610.5</td>
+<td align="right">186147.5</td>
+<td align="right">187372.9</td>
+<td align="right">204779.7</td>
+<td align="right">207683.3</td>
+<td align="right">211541.2</td>
+<td align="right">212209.2</td>
+<td align="right">215491.1</td>
+</tr>
+<tr class="odd">
+<td align="left">State Avg</td>
+<td align="left">OH</td>
+<td align="right">198424.2</td>
+<td align="right">199450.2</td>
+<td align="right">201127.6</td>
+<td align="right">201898.8</td>
+<td align="right">202927.2</td>
+<td align="right">203731.0</td>
+<td align="right">204576.7</td>
+<td align="right">206347.8</td>
+<td align="right">208305.6</td>
+<td align="right">211606.9</td>
+<td align="right">215425.2</td>
+<td align="right">219226.1</td>
+<td align="right">252443.8</td>
+<td align="right">256986.9</td>
+<td align="right">260440.1</td>
+<td align="right">264752.4</td>
+<td align="right">272884.7</td>
+</tr>
+<tr class="even">
+<td align="left">State Avg</td>
+<td align="left">TX</td>
+<td align="right">266041.9</td>
+<td align="right">267043.4</td>
+<td align="right">268645.8</td>
+<td align="right">269271.2</td>
+<td align="right">269983.4</td>
+<td align="right">270796.6</td>
+<td align="right">271937.4</td>
+<td align="right">274410.5</td>
+<td align="right">277549.5</td>
+<td align="right">280987.6</td>
+<td align="right">284077.3</td>
+<td align="right">287132.4</td>
+<td align="right">365434.1</td>
+<td align="right">373129.4</td>
+<td align="right">380595.8</td>
+<td align="right">388365.3</td>
+<td align="right">395199.6</td>
+</tr>
+</tbody>
+</table></div>
+<p>Why have all of this in one data frame? Because it can now be easily graphed:</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># pivot to a long table by year</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x"</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"month"</span>, values_to <span class="op">=</span> <span class="st">"home_value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># let's clean up the month column by removing the leading x and casting to a date</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>month <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">month</span>, <span class="st">"x"</span><span class="op">)</span>, </span>
+<span>         month <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, <span class="va">home_value</span>, color <span class="op">=</span> <span class="va">county_name</span> <span class="op">==</span> <span class="st">"State Avg"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group<span class="op">=</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># geom_dl(aes(color = county_name == "State Avg", label = county_name), </span></span>
+<span>  <span class="co">#         method = "maxvar.qp") +</span></span>
+<span>  <span class="fu"><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">county_name</span><span class="op">)</span>, </span>
+<span>                  xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2022-05-31"</span><span class="op">)</span>, <span class="cn">Inf</span><span class="op">)</span>,</span>
+<span>                  size  <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>                  force             <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>                  nudge_x           <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>                  direction         <span class="op">=</span> <span class="st">"y"</span>,</span>
+<span>                  hjust             <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>                  vjust <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>                  max.overlaps <span class="op">=</span> <span class="cn">Inf</span>, <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ideacolors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"County Avg"</span>,<span class="st">"State Avg"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="cn">FALSE</span>, expand <span class="op">=</span> <span class="cn">TRUE</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2020-01-03"</span><span class="op">)</span>, </span>
+<span>                                                        <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">ymd</a></span><span class="op">(</span><span class="st">"2023-12-31"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">state</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ideacolors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/theme_idea_min.html">theme_idea_min</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Typical home values"</span>, </span>
+<span>       x <span class="op">=</span> <span class="st">"Month"</span>,</span>
+<span>       color <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/zillow_graph-1.png" width="672"></div>
+<div id="saving-grouping-info" class="section level4" number="14.1.2.1">
+<h4>
+<span class="header-section-number">14.1.2.1</span> Saving grouping info<a class="anchor" aria-label="anchor" href="#saving-grouping-info"><i class="fas fa-link"></i></a>
+</h4>
+<p>Another trick is to save the <code>group_by</code> info that you are passing with the grouped data.frame into a column. Here’s an example:</p>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">zillow_idea_neighborhood</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># create a list of grouped data.frames</span></span>
+<span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">region_name</span>, <span class="va">city</span>, <span class="va">metro</span>, <span class="va">county_name</span>, <span class="va">state</span><span class="op">)</span>, </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">city</span>, <span class="va">metro</span>, <span class="va">county_name</span>, <span class="va">state</span><span class="op">)</span>, </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">county_name</span>, <span class="va">state</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">state</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">}</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span><span class="va">.</span>, <span class="op">~</span><span class="op">{</span></span>
+<span>    <span class="va">.x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># .x is a placeholder for each element of list above passed to map_df</span></span>
+<span>      <span class="co"># across allows us to apply a function to every column satisfying a condition</span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_data.html">group_vars</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'region_name', 'city',</span></span>
+<span><span class="co">#&gt; 'metro', 'county_name'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'city', 'metro',</span></span>
+<span><span class="co">#&gt; 'county_name'. You can override using the `.groups`</span></span>
+<span><span class="co">#&gt; argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
+<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="va">zillow_idea_neighborhood</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">groups</span> <span class="op">==</span> <span class="st">"city|metro|county_name|state"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/top_n.html">top_n</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Selecting by groups</span></span></code></pre></div>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<colgroup>
+<col width="3%">
+<col width="5%">
+<col width="9%">
+<col width="7%">
+<col width="1%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="12%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">region_name</th>
+<th align="left">city</th>
+<th align="left">metro</th>
+<th align="left">county_name</th>
+<th align="left">state</th>
+<th align="right">x2020_01_31</th>
+<th align="right">x2020_02_29</th>
+<th align="right">x2020_03_31</th>
+<th align="right">x2020_04_30</th>
+<th align="right">x2020_05_31</th>
+<th align="right">x2020_06_30</th>
+<th align="right">x2020_07_31</th>
+<th align="right">x2020_08_31</th>
+<th align="right">x2020_09_30</th>
+<th align="right">x2020_10_31</th>
+<th align="right">x2020_11_30</th>
+<th align="right">x2020_12_31</th>
+<th align="right">x2022_01_31</th>
+<th align="right">x2022_02_28</th>
+<th align="right">x2022_03_31</th>
+<th align="right">x2022_04_30</th>
+<th align="right">x2022_05_31</th>
+<th align="left">groups</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Arlington</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Tarrant County</td>
+<td align="left">TX</td>
+<td align="right">226857.8</td>
+<td align="right">227971.33</td>
+<td align="right">229071.0</td>
+<td align="right">229866.8</td>
+<td align="right">230097.50</td>
+<td align="right">230873.50</td>
+<td align="right">232055.8</td>
+<td align="right">234728.00</td>
+<td align="right">237229.8</td>
+<td align="right">240049.0</td>
+<td align="right">242280.3</td>
+<td align="right">244595.3</td>
+<td align="right">309879.7</td>
+<td align="right">317000.5</td>
+<td align="right">323827.8</td>
+<td align="right">331587.3</td>
+<td align="right">338777.2</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Austin</td>
+<td align="left">Austin-Round Rock</td>
+<td align="left">Travis County</td>
+<td align="left">TX</td>
+<td align="right">452620.9</td>
+<td align="right">454851.50</td>
+<td align="right">460009.4</td>
+<td align="right">464940.3</td>
+<td align="right">469964.11</td>
+<td align="right">472942.68</td>
+<td align="right">476483.7</td>
+<td align="right">482704.97</td>
+<td align="right">490957.7</td>
+<td align="right">499393.4</td>
+<td align="right">508403.2</td>
+<td align="right">515906.3</td>
+<td align="right">719312.4</td>
+<td align="right">739223.4</td>
+<td align="right">754091.7</td>
+<td align="right">765141.7</td>
+<td align="right">771950.8</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Azle</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Tarrant County</td>
+<td align="left">TX</td>
+<td align="right">188638.0</td>
+<td align="right">188563.67</td>
+<td align="right">189388.0</td>
+<td align="right">189965.0</td>
+<td align="right">190994.67</td>
+<td align="right">192468.67</td>
+<td align="right">195245.7</td>
+<td align="right">199888.67</td>
+<td align="right">202237.3</td>
+<td align="right">203983.7</td>
+<td align="right">204394.7</td>
+<td align="right">205473.0</td>
+<td align="right">257810.0</td>
+<td align="right">263617.7</td>
+<td align="right">269648.3</td>
+<td align="right">275342.7</td>
+<td align="right">280386.7</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Baton Rouge</td>
+<td align="left">Baton Rouge</td>
+<td align="left">East Baton Rouge Parish</td>
+<td align="left">LA</td>
+<td align="right">179934.9</td>
+<td align="right">181796.56</td>
+<td align="right">183615.9</td>
+<td align="right">185022.9</td>
+<td align="right">185315.91</td>
+<td align="right">184857.31</td>
+<td align="right">184305.4</td>
+<td align="right">184215.65</td>
+<td align="right">184405.7</td>
+<td align="right">184610.5</td>
+<td align="right">186147.5</td>
+<td align="right">187372.9</td>
+<td align="right">204779.7</td>
+<td align="right">207683.3</td>
+<td align="right">211541.2</td>
+<td align="right">212209.2</td>
+<td align="right">215491.1</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Brownsville</td>
+<td align="left">Brownsville-Harlingen</td>
+<td align="left">Cameron County</td>
+<td align="left">TX</td>
+<td align="right">87851.0</td>
+<td align="right">88821.25</td>
+<td align="right">90097.0</td>
+<td align="right">91219.0</td>
+<td align="right">93008.75</td>
+<td align="right">94285.67</td>
+<td align="right">96549.5</td>
+<td align="right">98501.25</td>
+<td align="right">100187.5</td>
+<td align="right">101993.2</td>
+<td align="right">102501.0</td>
+<td align="right">102593.0</td>
+<td align="right">126942.2</td>
+<td align="right">130217.8</td>
+<td align="right">132900.5</td>
+<td align="right">135820.5</td>
+<td align="right">137613.2</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Carrollton</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">312360.4</td>
+<td align="right">313665.06</td>
+<td align="right">315668.0</td>
+<td align="right">317138.0</td>
+<td align="right">318655.72</td>
+<td align="right">320151.69</td>
+<td align="right">321877.9</td>
+<td align="right">324534.03</td>
+<td align="right">327876.6</td>
+<td align="right">331605.7</td>
+<td align="right">334063.6</td>
+<td align="right">337136.9</td>
+<td align="right">430069.2</td>
+<td align="right">440982.8</td>
+<td align="right">451041.1</td>
+<td align="right">462485.5</td>
+<td align="right">472476.6</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Cincinnati</td>
+<td align="left">Cincinnati</td>
+<td align="left">Hamilton County</td>
+<td align="left">OH</td>
+<td align="right">181137.4</td>
+<td align="right">182081.13</td>
+<td align="right">183557.5</td>
+<td align="right">184205.6</td>
+<td align="right">185102.85</td>
+<td align="right">186049.38</td>
+<td align="right">186835.6</td>
+<td align="right">188725.45</td>
+<td align="right">190744.0</td>
+<td align="right">194126.5</td>
+<td align="right">197973.7</td>
+<td align="right">201780.1</td>
+<td align="right">230601.0</td>
+<td align="right">232962.7</td>
+<td align="right">236157.2</td>
+<td align="right">239920.2</td>
+<td align="right">242601.4</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Clearwater</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Pinellas County</td>
+<td align="left">FL</td>
+<td align="right">321561.0</td>
+<td align="right">323888.44</td>
+<td align="right">327150.7</td>
+<td align="right">329068.6</td>
+<td align="right">329976.56</td>
+<td align="right">330730.74</td>
+<td align="right">331685.3</td>
+<td align="right">335050.44</td>
+<td align="right">339112.9</td>
+<td align="right">343714.4</td>
+<td align="right">351595.8</td>
+<td align="right">354477.0</td>
+<td align="right">458677.1</td>
+<td align="right">468696.0</td>
+<td align="right">483876.5</td>
+<td align="right">499914.2</td>
+<td align="right">514011.1</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Conroe</td>
+<td align="left">Houston-The Woodlands-Sugar Land</td>
+<td align="left">Montgomery County</td>
+<td align="left">TX</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">364456.0</td>
+<td align="right">368373.0</td>
+<td align="right">372022.0</td>
+<td align="right">377897.0</td>
+<td align="right">384094.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Converse</td>
+<td align="left">San Antonio-New Braunfels</td>
+<td align="left">Bexar County</td>
+<td align="left">TX</td>
+<td align="right">192056.0</td>
+<td align="right">192154.00</td>
+<td align="right">193037.0</td>
+<td align="right">193396.0</td>
+<td align="right">193902.00</td>
+<td align="right">194447.00</td>
+<td align="right">196026.0</td>
+<td align="right">197626.00</td>
+<td align="right">200629.0</td>
+<td align="right">203535.0</td>
+<td align="right">206803.0</td>
+<td align="right">208894.0</td>
+<td align="right">255764.0</td>
+<td align="right">259618.0</td>
+<td align="right">264371.0</td>
+<td align="right">269051.0</td>
+<td align="right">273221.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Dallas</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">363537.0</td>
+<td align="right">365398.89</td>
+<td align="right">367929.7</td>
+<td align="right">367318.4</td>
+<td align="right">366545.61</td>
+<td align="right">365841.93</td>
+<td align="right">366772.9</td>
+<td align="right">369629.39</td>
+<td align="right">373009.3</td>
+<td align="right">376777.9</td>
+<td align="right">378912.7</td>
+<td align="right">381799.4</td>
+<td align="right">457171.4</td>
+<td align="right">465783.9</td>
+<td align="right">474660.8</td>
+<td align="right">486903.0</td>
+<td align="right">496390.5</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Denton</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">235590.0</td>
+<td align="right">237413.20</td>
+<td align="right">239817.0</td>
+<td align="right">242003.1</td>
+<td align="right">243297.40</td>
+<td align="right">244830.10</td>
+<td align="right">246056.9</td>
+<td align="right">248466.80</td>
+<td align="right">251202.2</td>
+<td align="right">254210.1</td>
+<td align="right">256809.7</td>
+<td align="right">259139.8</td>
+<td align="right">329315.5</td>
+<td align="right">337160.8</td>
+<td align="right">345071.8</td>
+<td align="right">352674.2</td>
+<td align="right">359318.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Desoto</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">306157.6</td>
+<td align="right">307733.20</td>
+<td align="right">308586.4</td>
+<td align="right">308345.6</td>
+<td align="right">307358.20</td>
+<td align="right">307598.80</td>
+<td align="right">308500.0</td>
+<td align="right">312058.60</td>
+<td align="right">315371.4</td>
+<td align="right">319974.4</td>
+<td align="right">322757.2</td>
+<td align="right">325788.8</td>
+<td align="right">401954.3</td>
+<td align="right">411255.0</td>
+<td align="right">419165.7</td>
+<td align="right">429138.7</td>
+<td align="right">437286.2</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Duncanville</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">NaN</td>
+<td align="right">231602.0</td>
+<td align="right">236764.0</td>
+<td align="right">241599.0</td>
+<td align="right">248429.0</td>
+<td align="right">254249.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Egypt Lake-Leto</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Hillsborough County</td>
+<td align="left">FL</td>
+<td align="right">203303.0</td>
+<td align="right">206111.00</td>
+<td align="right">208729.0</td>
+<td align="right">210552.0</td>
+<td align="right">211785.00</td>
+<td align="right">213330.00</td>
+<td align="right">214912.0</td>
+<td align="right">218147.00</td>
+<td align="right">221101.0</td>
+<td align="right">224347.0</td>
+<td align="right">226328.0</td>
+<td align="right">229258.0</td>
+<td align="right">302986.0</td>
+<td align="right">309791.0</td>
+<td align="right">320099.0</td>
+<td align="right">329302.0</td>
+<td align="right">339503.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">El Paso</td>
+<td align="left">El Paso</td>
+<td align="left">El Paso County</td>
+<td align="left">TX</td>
+<td align="right">145968.5</td>
+<td align="right">146789.56</td>
+<td align="right">147215.2</td>
+<td align="right">146354.0</td>
+<td align="right">146395.29</td>
+<td align="right">146774.86</td>
+<td align="right">147678.8</td>
+<td align="right">149030.16</td>
+<td align="right">151164.7</td>
+<td align="right">153505.7</td>
+<td align="right">155702.6</td>
+<td align="right">161224.5</td>
+<td align="right">194323.3</td>
+<td align="right">196176.3</td>
+<td align="right">198462.4</td>
+<td align="right">202231.7</td>
+<td align="right">206134.7</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Fort Worth</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Tarrant County</td>
+<td align="left">TX</td>
+<td align="right">258219.0</td>
+<td align="right">259457.72</td>
+<td align="right">260572.1</td>
+<td align="right">261306.7</td>
+<td align="right">261536.06</td>
+<td align="right">262465.74</td>
+<td align="right">263585.5</td>
+<td align="right">266378.65</td>
+<td align="right">268951.5</td>
+<td align="right">272030.8</td>
+<td align="right">274520.8</td>
+<td align="right">277228.6</td>
+<td align="right">349525.9</td>
+<td align="right">357144.8</td>
+<td align="right">364210.9</td>
+<td align="right">372437.9</td>
+<td align="right">379853.6</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Garland</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">242862.1</td>
+<td align="right">244223.01</td>
+<td align="right">246008.8</td>
+<td align="right">246091.5</td>
+<td align="right">245996.26</td>
+<td align="right">246176.07</td>
+<td align="right">247200.8</td>
+<td align="right">249504.07</td>
+<td align="right">252119.2</td>
+<td align="right">255087.8</td>
+<td align="right">256982.2</td>
+<td align="right">259249.6</td>
+<td align="right">318918.2</td>
+<td align="right">331399.4</td>
+<td align="right">339127.8</td>
+<td align="right">348290.6</td>
+<td align="right">356906.7</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Georgetown</td>
+<td align="left">Austin-Round Rock</td>
+<td align="left">Williamson County</td>
+<td align="left">TX</td>
+<td align="right">347211.8</td>
+<td align="right">348732.83</td>
+<td align="right">349987.2</td>
+<td align="right">351980.8</td>
+<td align="right">354284.50</td>
+<td align="right">356127.33</td>
+<td align="right">358974.2</td>
+<td align="right">362702.50</td>
+<td align="right">368650.3</td>
+<td align="right">374701.7</td>
+<td align="right">381212.3</td>
+<td align="right">398132.7</td>
+<td align="right">600742.3</td>
+<td align="right">614895.7</td>
+<td align="right">627821.6</td>
+<td align="right">637682.3</td>
+<td align="right">644752.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Granbury</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Hood County</td>
+<td align="left">TX</td>
+<td align="right">235928.3</td>
+<td align="right">234916.33</td>
+<td align="right">235393.0</td>
+<td align="right">235256.0</td>
+<td align="right">237118.33</td>
+<td align="right">237996.67</td>
+<td align="right">240002.0</td>
+<td align="right">242098.00</td>
+<td align="right">244242.7</td>
+<td align="right">246587.7</td>
+<td align="right">248947.3</td>
+<td align="right">252189.3</td>
+<td align="right">329945.0</td>
+<td align="right">335712.3</td>
+<td align="right">341840.7</td>
+<td align="right">348550.7</td>
+<td align="right">354898.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Houston</td>
+<td align="left">Houston-The Woodlands-Sugar Land</td>
+<td align="left">Harris County</td>
+<td align="left">TX</td>
+<td align="right">237588.7</td>
+<td align="right">238271.57</td>
+<td align="right">239492.0</td>
+<td align="right">240980.1</td>
+<td align="right">241819.43</td>
+<td align="right">242300.43</td>
+<td align="right">242671.0</td>
+<td align="right">243784.60</td>
+<td align="right">247142.2</td>
+<td align="right">249050.8</td>
+<td align="right">251895.6</td>
+<td align="right">254029.4</td>
+<td align="right">289228.1</td>
+<td align="right">291940.2</td>
+<td align="right">295875.6</td>
+<td align="right">300054.9</td>
+<td align="right">304276.2</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Irving</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">252308.8</td>
+<td align="right">254165.11</td>
+<td align="right">256747.2</td>
+<td align="right">257021.8</td>
+<td align="right">257116.78</td>
+<td align="right">257216.56</td>
+<td align="right">257938.6</td>
+<td align="right">260219.83</td>
+<td align="right">262925.9</td>
+<td align="right">266120.4</td>
+<td align="right">267601.6</td>
+<td align="right">269062.1</td>
+<td align="right">323413.3</td>
+<td align="right">331155.6</td>
+<td align="right">339043.2</td>
+<td align="right">348942.2</td>
+<td align="right">356573.6</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Jacksonville</td>
+<td align="left">Jacksonville</td>
+<td align="left">Duval County</td>
+<td align="left">FL</td>
+<td align="right">192079.1</td>
+<td align="right">194276.90</td>
+<td align="right">196898.1</td>
+<td align="right">198398.1</td>
+<td align="right">199147.74</td>
+<td align="right">198914.95</td>
+<td align="right">198800.9</td>
+<td align="right">199908.43</td>
+<td align="right">202078.9</td>
+<td align="right">205067.8</td>
+<td align="right">207664.9</td>
+<td align="right">209891.6</td>
+<td align="right">270769.6</td>
+<td align="right">277030.0</td>
+<td align="right">284658.3</td>
+<td align="right">291757.5</td>
+<td align="right">298009.9</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Justin</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">223493.0</td>
+<td align="right">224011.00</td>
+<td align="right">224933.0</td>
+<td align="right">226540.0</td>
+<td align="right">227841.00</td>
+<td align="right">228876.00</td>
+<td align="right">229465.0</td>
+<td align="right">230649.00</td>
+<td align="right">232494.0</td>
+<td align="right">234845.0</td>
+<td align="right">237059.0</td>
+<td align="right">239706.0</td>
+<td align="right">318192.0</td>
+<td align="right">327217.0</td>
+<td align="right">335054.0</td>
+<td align="right">342626.0</td>
+<td align="right">349486.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Lewisville</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">278098.6</td>
+<td align="right">278864.80</td>
+<td align="right">280333.8</td>
+<td align="right">281823.4</td>
+<td align="right">283352.80</td>
+<td align="right">284841.80</td>
+<td align="right">286681.8</td>
+<td align="right">288961.80</td>
+<td align="right">291804.4</td>
+<td align="right">294946.2</td>
+<td align="right">297619.0</td>
+<td align="right">300740.8</td>
+<td align="right">382929.4</td>
+<td align="right">392255.8</td>
+<td align="right">400643.2</td>
+<td align="right">409485.8</td>
+<td align="right">417557.6</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Little Elm</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">399746.0</td>
+<td align="right">400275.00</td>
+<td align="right">402081.0</td>
+<td align="right">403067.0</td>
+<td align="right">404133.00</td>
+<td align="right">405194.00</td>
+<td align="right">407715.0</td>
+<td align="right">411892.00</td>
+<td align="right">417030.0</td>
+<td align="right">422215.0</td>
+<td align="right">426645.0</td>
+<td align="right">430783.0</td>
+<td align="right">565322.0</td>
+<td align="right">579749.0</td>
+<td align="right">591275.0</td>
+<td align="right">602789.0</td>
+<td align="right">613024.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Loveland</td>
+<td align="left">Cincinnati</td>
+<td align="left">Clermont County</td>
+<td align="left">OH</td>
+<td align="right">256458.6</td>
+<td align="right">257760.57</td>
+<td align="right">260112.9</td>
+<td align="right">261297.2</td>
+<td align="right">262766.14</td>
+<td align="right">263090.93</td>
+<td align="right">264136.0</td>
+<td align="right">265508.71</td>
+<td align="right">267262.1</td>
+<td align="right">270291.1</td>
+<td align="right">274012.4</td>
+<td align="right">277794.7</td>
+<td align="right">325773.1</td>
+<td align="right">332262.7</td>
+<td align="right">336526.5</td>
+<td align="right">342560.1</td>
+<td align="right">361842.1</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Mesquite</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">159871.7</td>
+<td align="right">160921.33</td>
+<td align="right">163043.3</td>
+<td align="right">163813.0</td>
+<td align="right">164240.00</td>
+<td align="right">164279.00</td>
+<td align="right">164747.3</td>
+<td align="right">165825.67</td>
+<td align="right">167329.0</td>
+<td align="right">169515.3</td>
+<td align="right">171157.3</td>
+<td align="right">173381.7</td>
+<td align="right">215072.7</td>
+<td align="right">220450.0</td>
+<td align="right">226115.3</td>
+<td align="right">232756.7</td>
+<td align="right">237715.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">New Port Richey</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Pasco County</td>
+<td align="left">FL</td>
+<td align="right">134105.8</td>
+<td align="right">135028.41</td>
+<td align="right">136941.2</td>
+<td align="right">139102.2</td>
+<td align="right">140580.76</td>
+<td align="right">141369.35</td>
+<td align="right">142584.9</td>
+<td align="right">144574.35</td>
+<td align="right">147502.2</td>
+<td align="right">151162.2</td>
+<td align="right">160476.1</td>
+<td align="right">161647.5</td>
+<td align="right">212669.4</td>
+<td align="right">217159.6</td>
+<td align="right">221922.4</td>
+<td align="right">230132.8</td>
+<td align="right">236579.9</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Pflugerville</td>
+<td align="left">Austin-Round Rock</td>
+<td align="left">Travis County</td>
+<td align="left">TX</td>
+<td align="right">270849.9</td>
+<td align="right">272529.17</td>
+<td align="right">274746.1</td>
+<td align="right">277094.7</td>
+<td align="right">279655.15</td>
+<td align="right">280837.08</td>
+<td align="right">282410.3</td>
+<td align="right">284928.42</td>
+<td align="right">289434.0</td>
+<td align="right">294260.2</td>
+<td align="right">300615.5</td>
+<td align="right">305884.5</td>
+<td align="right">464667.2</td>
+<td align="right">477165.0</td>
+<td align="right">489198.3</td>
+<td align="right">499292.7</td>
+<td align="right">506618.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Plano</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Collin County</td>
+<td align="left">TX</td>
+<td align="right">252801.1</td>
+<td align="right">253511.72</td>
+<td align="right">254955.3</td>
+<td align="right">254684.5</td>
+<td align="right">254899.67</td>
+<td align="right">255074.06</td>
+<td align="right">256247.2</td>
+<td align="right">259277.50</td>
+<td align="right">262620.9</td>
+<td align="right">266918.2</td>
+<td align="right">269438.4</td>
+<td align="right">272188.9</td>
+<td align="right">351944.4</td>
+<td align="right">359552.7</td>
+<td align="right">365960.1</td>
+<td align="right">373242.8</td>
+<td align="right">380988.4</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Richardson</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Dallas County</td>
+<td align="left">TX</td>
+<td align="right">349772.9</td>
+<td align="right">351049.33</td>
+<td align="right">353518.0</td>
+<td align="right">353350.7</td>
+<td align="right">353572.11</td>
+<td align="right">353718.24</td>
+<td align="right">355066.9</td>
+<td align="right">358513.07</td>
+<td align="right">362396.9</td>
+<td align="right">367044.8</td>
+<td align="right">370072.8</td>
+<td align="right">373304.8</td>
+<td align="right">469281.1</td>
+<td align="right">480166.2</td>
+<td align="right">490291.1</td>
+<td align="right">502465.1</td>
+<td align="right">520643.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Roanoke</td>
+<td align="left">Dallas-Fort Worth-Arlington</td>
+<td align="left">Denton County</td>
+<td align="left">TX</td>
+<td align="right">282157.0</td>
+<td align="right">282675.50</td>
+<td align="right">283550.5</td>
+<td align="right">284556.5</td>
+<td align="right">285037.00</td>
+<td align="right">285838.00</td>
+<td align="right">287091.0</td>
+<td align="right">289168.00</td>
+<td align="right">291189.0</td>
+<td align="right">293674.0</td>
+<td align="right">295945.5</td>
+<td align="right">298793.0</td>
+<td align="right">388758.0</td>
+<td align="right">398214.5</td>
+<td align="right">408116.5</td>
+<td align="right">419347.0</td>
+<td align="right">429643.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Round Rock</td>
+<td align="left">Austin-Round Rock</td>
+<td align="left">Williamson County</td>
+<td align="left">TX</td>
+<td align="right">402812.0</td>
+<td align="right">405054.00</td>
+<td align="right">407007.9</td>
+<td align="right">409538.5</td>
+<td align="right">412280.12</td>
+<td align="right">414495.00</td>
+<td align="right">418146.4</td>
+<td align="right">422934.71</td>
+<td align="right">430476.6</td>
+<td align="right">438460.9</td>
+<td align="right">447656.0</td>
+<td align="right">456416.3</td>
+<td align="right">700443.4</td>
+<td align="right">718579.4</td>
+<td align="right">731499.4</td>
+<td align="right">738940.2</td>
+<td align="right">743827.6</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Saint Augustine</td>
+<td align="left">Jacksonville</td>
+<td align="left">Saint Johns County</td>
+<td align="left">FL</td>
+<td align="right">490926.0</td>
+<td align="right">487807.00</td>
+<td align="right">482205.0</td>
+<td align="right">479515.0</td>
+<td align="right">480038.00</td>
+<td align="right">478654.00</td>
+<td align="right">475009.0</td>
+<td align="right">470512.00</td>
+<td align="right">469018.0</td>
+<td align="right">471930.0</td>
+<td align="right">478365.0</td>
+<td align="right">483877.0</td>
+<td align="right">673532.0</td>
+<td align="right">693035.0</td>
+<td align="right">714043.0</td>
+<td align="right">736664.0</td>
+<td align="right">760956.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Saint Petersburg</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Pinellas County</td>
+<td align="left">FL</td>
+<td align="right">304755.6</td>
+<td align="right">306980.72</td>
+<td align="right">309993.1</td>
+<td align="right">309453.2</td>
+<td align="right">312549.21</td>
+<td align="right">313755.73</td>
+<td align="right">314925.3</td>
+<td align="right">318545.30</td>
+<td align="right">322313.0</td>
+<td align="right">327316.3</td>
+<td align="right">337593.3</td>
+<td align="right">339286.6</td>
+<td align="right">442569.2</td>
+<td align="right">452940.0</td>
+<td align="right">467702.4</td>
+<td align="right">492794.7</td>
+<td align="right">505946.7</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">San Antonio</td>
+<td align="left">San Antonio-New Braunfels</td>
+<td align="left">Bexar County</td>
+<td align="left">TX</td>
+<td align="right">236572.5</td>
+<td align="right">236770.08</td>
+<td align="right">237843.0</td>
+<td align="right">237681.9</td>
+<td align="right">237734.59</td>
+<td align="right">237673.12</td>
+<td align="right">238900.8</td>
+<td align="right">240636.35</td>
+<td align="right">242802.8</td>
+<td align="right">245559.8</td>
+<td align="right">247962.6</td>
+<td align="right">249845.7</td>
+<td align="right">305079.4</td>
+<td align="right">309514.2</td>
+<td align="right">316113.1</td>
+<td align="right">322978.0</td>
+<td align="right">328217.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">San Marcos</td>
+<td align="left">Austin-Round Rock</td>
+<td align="left">Hays County</td>
+<td align="left">TX</td>
+<td align="right">221015.9</td>
+<td align="right">222083.96</td>
+<td align="right">223670.9</td>
+<td align="right">225189.5</td>
+<td align="right">227250.22</td>
+<td align="right">229404.30</td>
+<td align="right">230521.1</td>
+<td align="right">232754.11</td>
+<td align="right">235435.5</td>
+<td align="right">239015.0</td>
+<td align="right">241174.3</td>
+<td align="right">242566.3</td>
+<td align="right">332064.2</td>
+<td align="right">340318.6</td>
+<td align="right">346084.6</td>
+<td align="right">352008.2</td>
+<td align="right">354137.5</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Spring Hill</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Hernando County</td>
+<td align="left">FL</td>
+<td align="right">120956.0</td>
+<td align="right">121180.00</td>
+<td align="right">121369.0</td>
+<td align="right">121767.0</td>
+<td align="right">123293.00</td>
+<td align="right">124900.00</td>
+<td align="right">126821.0</td>
+<td align="right">128657.00</td>
+<td align="right">130393.0</td>
+<td align="right">132460.0</td>
+<td align="right">134521.0</td>
+<td align="right">136121.0</td>
+<td align="right">189750.0</td>
+<td align="right">195628.0</td>
+<td align="right">201497.0</td>
+<td align="right">207729.0</td>
+<td align="right">214439.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">Sugar Land</td>
+<td align="left">Houston-The Woodlands-Sugar Land</td>
+<td align="left">Fort Bend County</td>
+<td align="left">TX</td>
+<td align="right">313162.0</td>
+<td align="right">312742.00</td>
+<td align="right">312989.0</td>
+<td align="right">313767.0</td>
+<td align="right">315049.00</td>
+<td align="right">315403.00</td>
+<td align="right">315134.0</td>
+<td align="right">315730.00</td>
+<td align="right">316902.0</td>
+<td align="right">319097.0</td>
+<td align="right">322068.0</td>
+<td align="right">326151.0</td>
+<td align="right">403616.0</td>
+<td align="right">411565.0</td>
+<td align="right">421298.0</td>
+<td align="right">432068.0</td>
+<td align="right">440767.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Tampa</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Hillsborough County</td>
+<td align="left">FL</td>
+<td align="right">351263.5</td>
+<td align="right">353734.63</td>
+<td align="right">356378.1</td>
+<td align="right">357539.2</td>
+<td align="right">358960.58</td>
+<td align="right">361013.79</td>
+<td align="right">363399.6</td>
+<td align="right">367595.12</td>
+<td align="right">371271.1</td>
+<td align="right">375313.3</td>
+<td align="right">377902.6</td>
+<td align="right">382005.4</td>
+<td align="right">506544.2</td>
+<td align="right">518746.9</td>
+<td align="right">536871.2</td>
+<td align="right">553154.7</td>
+<td align="right">570207.7</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="left">The Woodlands</td>
+<td align="left">Houston-The Woodlands-Sugar Land</td>
+<td align="left">Montgomery County</td>
+<td align="left">TX</td>
+<td align="right">369648.1</td>
+<td align="right">372622.14</td>
+<td align="right">373885.4</td>
+<td align="right">375667.1</td>
+<td align="right">375348.57</td>
+<td align="right">375732.43</td>
+<td align="right">376004.6</td>
+<td align="right">377733.43</td>
+<td align="right">381163.0</td>
+<td align="right">384827.7</td>
+<td align="right">388522.7</td>
+<td align="right">391143.7</td>
+<td align="right">482150.0</td>
+<td align="right">490333.6</td>
+<td align="right">499194.7</td>
+<td align="right">510422.7</td>
+<td align="right">522026.9</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">Treasure Island</td>
+<td align="left">Tampa-St. Petersburg-Clearwater</td>
+<td align="left">Pinellas County</td>
+<td align="left">FL</td>
+<td align="right">453372.3</td>
+<td align="right">457023.00</td>
+<td align="right">462587.3</td>
+<td align="right">468233.3</td>
+<td align="right">470098.33</td>
+<td align="right">471639.00</td>
+<td align="right">472889.7</td>
+<td align="right">477048.67</td>
+<td align="right">481412.0</td>
+<td align="right">487696.3</td>
+<td align="right">495337.3</td>
+<td align="right">501555.0</td>
+<td align="right">689594.7</td>
+<td align="right">711256.3</td>
+<td align="right">740135.3</td>
+<td align="right">765875.0</td>
+<td align="right">791085.0</td>
+<td align="left">city|metro|county_name|state</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="duplicating-rows" class="section level3" number="14.1.3">
+<h3>
+<span class="header-section-number">14.1.3</span> Duplicating rows<a class="anchor" aria-label="anchor" href="#duplicating-rows"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.</p>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
+<span>  <span class="op">~</span> <span class="va">state</span>, <span class="op">~</span> <span class="va">region</span>, <span class="op">~</span> <span class="va">n_campuses</span>,</span>
+<span>  <span class="st">"FL"</span>, <span class="st">"Jacksonville"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"FL"</span>, <span class="st">"Tampa"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"LA"</span>, <span class="st">"East Baton Rouge"</span>, <span class="fl">3</span>,</span>
+<span>  <span class="st">"OH"</span>, <span class="st">"Cincinnati"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Austin"</span>, <span class="fl">9</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"El Paso"</span>, <span class="fl">5</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Greater Houston Area"</span>, <span class="fl">3</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Permian Basin"</span>, <span class="fl">2</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Rio Grande Valley"</span>, <span class="fl">26</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"San Antonio"</span>, <span class="fl">15</span>,</span>
+<span>  <span class="st">"TX"</span>, <span class="st">"Tarrant County"</span>, <span class="fl">4</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">grouped_data</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">region</th>
+<th align="right">n_campuses</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Austin</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">El Paso</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Greater Houston Area</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">Permian Basin</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Rio Grande Valley</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">San Antonio</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">TX</td>
+<td align="left">Tarrant County</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table></div>
+<p>To do so, we could simply use <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> to duplicate the rows. The first 10 rows are printed as an example:</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/uncount.html">uncount</a></span><span class="op">(</span><span class="va">n_campuses</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">state</th>
+<th align="left">region</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Jacksonville</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+</tr>
+<tr class="even">
+<td align="left">FL</td>
+<td align="left">Tampa</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="even">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="odd">
+<td align="left">LA</td>
+<td align="left">East Baton Rouge</td>
+</tr>
+<tr class="even">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+</tr>
+<tr class="odd">
+<td align="left">OH</td>
+<td align="left">Cincinnati</td>
+</tr>
+<tr class="even">
+<td align="left">TX</td>
+<td align="left">Austin</td>
+</tr>
+</tbody>
+</table></div>
+<p>The data frame could then be built out with information pertaining to each school, or could be plotted more easily in a <code>ggplot</code> call. Check the <a href="https://tidyr.tidyverse.org/reference/uncount.html">documentation</a> for other useful arguments.</p>
+</div>
+<div id="creating-scaffolds-when-joining-data" class="section level3" number="14.1.4">
+<h3>
+<span class="header-section-number">14.1.4</span> Creating “Scaffolds” when joining data<a class="anchor" aria-label="anchor" href="#creating-scaffolds-when-joining-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Coming Soon. . .</p>
+</div>
+</div>
+<div id="statistical-pitfalls" class="section level2" number="14.2">
+<h2>
+<span class="header-section-number">14.2</span> Statistical pitfalls<a class="anchor" aria-label="anchor" href="#statistical-pitfalls"><i class="fas fa-link"></i></a>
+</h2>
+<div id="simpsons-paradox" class="section level3" number="14.2.1">
+<h3>
+<span class="header-section-number">14.2.1</span> Simpson’s Paradox<a class="anchor" aria-label="anchor" href="#simpsons-paradox"><i class="fas fa-link"></i></a>
+</h3>
+<p>When identifying trends in a distribution, be careful of interpreting those trends, particularly when there is hierarchy involved in the population. The ranking, magnitude, and direction of the trends can reverse when conditioning on a certain level of a hierarchy. For example, STAAR achievement levels as a function of minutes on an individual learning program like Dreambox may not be significant at the district level, but could be significant when at the school or classroom level.</p>
+</div>
+<div id="bias-variance-tradeoff" class="section level3" number="14.2.2">
+<h3>
+<span class="header-section-number">14.2.2</span> Bias-variance tradeoff<a class="anchor" aria-label="anchor" href="#bias-variance-tradeoff"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+</div>
+<div id="troubleshooting-messages-and-errors" class="section level2" number="14.3">
+<h2>
+<span class="header-section-number">14.3</span> Troubleshooting messages and errors<a class="anchor" aria-label="anchor" href="#troubleshooting-messages-and-errors"><i class="fas fa-link"></i></a>
+</h2>
+<div id="connection-to-the-dashboard" class="section level3" number="14.3.1">
+<h3>
+<span class="header-section-number">14.3.1</span> Connection to the dashboard<a class="anchor" aria-label="anchor" href="#connection-to-the-dashboard"><i class="fas fa-link"></i></a>
+</h3>
+<p>When working with ideadata in RStudio, issues with connecting to the servers and dashboards that host ideadata may occur. For example, warnings or errors may include Resetting connection to conn_Dashboard and/or environment server connections may show ptr as “&lt;pointer: (nil)&gt;.</p>
+<p>To resolve this issue, consider following:</p>
+<p>Check your VPN status, code accuracy, environment, connections, and config settings if using ProjectTemplate <a href="project-applications.html#what-goes-where">What goes where</a>.</p>
+<p>VPN (aka Global Protect)
+VPN connection is required for server access.
+Check to make sure you are logged in to VPN.
+If you are not logged in, please enter your IDEA login credentials.
+When logged in and connected to VPN, please continue to next steps.</p>
+<p>Code Accuracy:
+Check your code for accuracy.
+If you are trying to connect to a specific table, be sure the information for table, database, schema, and server names are listed correctly based on the most updated information.</p>
+<p>Environment and Connections:
+Review your environment and connections.
+For example, check your environment for the server connections. If “null pointer” (&lt;pointer: (nil)&gt;), then you will need to reset the connection and try reloading the project.</p>
+<p>Depending on the issue, select from the following commands to enter in the console:
+restart R session (CTRL + Shift + F10): to clear objects and libraries
+<code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>:to remove one or more objects from a specified environment, example<code>rm(conn_Dashboard)</code>
+<code>disconnect()</code>: to close a connection, example <code>disconnect(conn_PROD1)</code>
+<code>clear.cache()</code>: to clear the cache, example: <code>clear.cache(conn_PROD1)</code></p>
+<p>Then try reloading the project and running the script.</p>
+</div>
+</div>
+<div id="export-excel-workbook-with-multiple-worksheets-using-r" class="section level2" number="14.4">
+<h2>
+<span class="header-section-number">14.4</span> Export Excel Workbook with Multiple Worksheets Using R<a class="anchor" aria-label="anchor" href="#export-excel-workbook-with-multiple-worksheets-using-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Assume a request came in to provide a list of all Core Value Award nominations and return it as an Excel workbook. The requestor has also asked that each entity be presented in a separate worksheet. To save the manual process of separating the entities into different worksheets within Excel, R can be utilized. This will streamline the workflow and make it reproducible in the event that this request is made again in the future. Note that there are a number of ways to accomplish this task in R though only one will be demonstrated here.</p>
+<p>To begin, install (if necessary) and load {tidyverse} and {openxlsx} and create a sample data frame:</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load packages ----</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html">openxlsx</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create the sample data frame ----</span></span>
+<span><span class="va">core_value_award_nominations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>entity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'TX'</span>, <span class="st">'TX'</span>, <span class="st">'IPS'</span>, <span class="st">'TX'</span>, <span class="st">'IPS'</span><span class="op">)</span>,</span>
+<span>                                           name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Simone Biles'</span>,</span>
+<span>                                                    <span class="st">'Laurie Hernandez'</span>,</span>
+<span>                                                    <span class="st">'Alexandra Raisman'</span>,</span>
+<span>                                                    <span class="st">'Madison Kocian'</span>,</span>
+<span>                                                    <span class="st">'Gabrielle Douglas'</span><span class="op">)</span>, </span>
+<span>                                           core_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'We Achieve Academic Excellence'</span>,</span>
+<span>                                                          <span class="st">'We Bring Joy'</span>,</span>
+<span>                                                          <span class="st">'We Deliver Results'</span>,</span>
+<span>                                                          <span class="st">'We Bring Joy'</span>,</span>
+<span>                                                          <span class="st">'We Achieve Academic Excellence'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">The sample data frame will appear as follows:
+<img src="img/core_value_df.png" width="360">
+</div>
+<p><code>write.xlsx()</code> from {openxlsx} will be used to create the workbook with
+the two worksheets (one for Texas nominations and one for IPS
+nominations). The first argument of the function is the list of
+worksheets. For each worksheet, the name is provided surrounded by
+“quotes” followed by an equal sign and then what should be included in
+that worksheet. In this case, the first worksheet is named “Texas” and
+includes the entire <code>core_value_award_nominations</code> data frame for only
+those who are part of the Texas entity. This is followed by the IPS
+worksheet which includes nominations for IPS.</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create Excel workbook ----</span></span>
+<span><span class="fu">write.xlsx</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Texas"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'TX'</span><span class="op">)</span>,</span>
+<span>             <span class="st">"IPS"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'IPS'</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>        file <span class="op">=</span> <span class="st">"C:/Users/fname.lname/Desktop/core_values_entity.xlsx"</span><span class="op">)</span> <span class="co"># insert your path here</span></span></code></pre></div>
+<div class="inline-figure">Below is an image of the resulting Excel workbook
+<img src="img/final_workbook.png" width="360">
+</div>
+<p>Note that if the number of unique worksheets were longer (e.g., a
+worksheet for each region), a loop could be employed.</p>
+</div>
+<div id="renviron" class="section level2" number="14.5">
+<h2>
+<span class="header-section-number">14.5</span> .Renviron<a class="anchor" aria-label="anchor" href="#renviron"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>.Renviron</code> is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts.</p>
+<p>To open and make changes to your <code>.Renviron</code> file, run the following code:</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Once this file is open, changes can be made. To access IDEA data, the following should be included:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="tips-and-tricks.html#cb128-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
+<span id="cb128-2"><a href="tips-and-tricks.html#cb128-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
+<span id="cb128-3"><a href="tips-and-tricks.html#cb128-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
+<p>To access Posit Connect, the following should be included:</p>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CONNECT_API_KEY</span> <span class="op">=</span> <span class="st">'your key here'</span></span>
+<span><span class="va">CONNECT_SERVER</span> <span class="op">=</span> <span class="st">'https://analytics.ideapublicschools.org/'</span></span></code></pre></div>
+<p>As an additional example, there may be a need for a Mapbox API token. If so, include the following in the <code>.Renviron</code> file:</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">MAPBOX_API_TOKEN</span> <span class="op">=</span> <span class="st">'your key here'</span></span></code></pre></div>
+<p>Once that is included in the <code>.Renviron</code> file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.</p>
+<p>If changes are made to the <code>.Renviron</code> file, don’t forget to restart R to have changes take effect.</p>
+</div>
+<div id="idea-acronym-guide" class="section level2" number="14.6">
+<h2>
+<span class="header-section-number">14.6</span> IDEA Acronym Guide<a class="anchor" aria-label="anchor" href="#idea-acronym-guide"><i class="fas fa-link"></i></a>
+</h2>
+<p>IDEA uses acronyms frequently. Several of these acronyms have been compiled in <a href="https://ideapublicschoolsorg.sharepoint.com/:x:/s/ResearchandAnalysis/ERRH0_4pZSJMiKoGMClX-0kBtV3QTF0hnswjxo7BFY0LGw?e=yHhKGA">this resource</a>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></div>
+<div class="next"><a href="references-1.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tips-and-tricks"><span class="header-section-number">14</span> Tips and Tricks</a></li>
+<li>
+<a class="nav-link" href="#data-processing"><span class="header-section-number">14.1</span> Data processing</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#de-duplicating-rows-in-a-table"><span class="header-section-number">14.1.1</span> De-duplicating rows in a table</a></li>
+<li><a class="nav-link" href="#hierarchical-aggregation-or-the-list-group_by-trick"><span class="header-section-number">14.1.2</span> Hierarchical aggregation, or the list-group_by trick</a></li>
+<li><a class="nav-link" href="#duplicating-rows"><span class="header-section-number">14.1.3</span> Duplicating rows</a></li>
+<li><a class="nav-link" href="#creating-scaffolds-when-joining-data"><span class="header-section-number">14.1.4</span> Creating “Scaffolds” when joining data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#statistical-pitfalls"><span class="header-section-number">14.2</span> Statistical pitfalls</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simpsons-paradox"><span class="header-section-number">14.2.1</span> Simpson’s Paradox</a></li>
+<li><a class="nav-link" href="#bias-variance-tradeoff"><span class="header-section-number">14.2.2</span> Bias-variance tradeoff</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#troubleshooting-messages-and-errors"><span class="header-section-number">14.3</span> Troubleshooting messages and errors</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#connection-to-the-dashboard"><span class="header-section-number">14.3.1</span> Connection to the dashboard</a></li></ul>
+</li>
+<li><a class="nav-link" href="#export-excel-workbook-with-multiple-worksheets-using-r"><span class="header-section-number">14.4</span> Export Excel Workbook with Multiple Worksheets Using R</a></li>
+<li><a class="nav-link" href="#renviron"><span class="header-section-number">14.5</span> .Renviron</a></li>
+<li><a class="nav-link" href="#idea-acronym-guide"><span class="header-section-number">14.6</span> IDEA Acronym Guide</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/14-Tips_and_Tricks.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/14-Tips_and_Tricks.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

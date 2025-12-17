@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Visualization Standards | IDEA R&amp;A Manual</title>
+<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
+<meta name="description" content="Data visualization standards are outlined in the handbook available here. This guidebook’s goal is to provide best practices that make visualizations simple yet elegant, allowing for a clear...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Visualization Standards | IDEA R&amp;A Manual">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/visualization-standards.html">
+<meta property="og:description" content="Data visualization standards are outlined in the handbook available here. This guidebook’s goal is to provide best practices that make visualizations simple yet elegant, allowing for a clear...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Visualization Standards | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="Data visualization standards are outlined in the handbook available here. This guidebook’s goal is to provide best practices that make visualizations simple yet elegant, allowing for a clear...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IDEA R&amp;A Manual</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
+<li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
+<li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
+<li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></li>
+<li><a class="active" href="visualization-standards.html"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li><a class="" href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">10</span> Surveys</a></li>
+<li><a class="" href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">14</span> Tips and Tricks</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/idea-analytics/r_and_a_manual">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="visualization-standards" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Visualization Standards<a class="anchor" aria-label="anchor" href="#visualization-standards"><i class="fas fa-link"></i></a>
+</h1>
+<p>Data visualization standards are outlined in the handbook available <a href="https://ideapublicschoolsorg.sharepoint.com/:w:/s/ResearchandAnalysis/IQDCokDu_a9-QpKjk5ae89pPAbmLmyFdcrV4kbZS71so-0s?e=utEgXG">here</a>. This guidebook’s goal is to provide best practices that make visualizations simple yet elegant, allowing for a clear message to be conveyed.</p>
+<div id="idea-branding" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> IDEA Branding<a class="anchor" aria-label="anchor" href="#idea-branding"><i class="fas fa-link"></i></a>
+</h2>
+<p>When producing a visualization for presentation or publication, use the <a href="https://brandfolder.com/ideapublicschools">IDEA 2024 Branding Guidelines</a> established by the <a href="https://ideapublicschoolsorg.sharepoint.com/sites/MCE/SitePages/Marketing-Team.aspx">Marketing team</a>. Many of these guidelines, particularly colors, have already been incorporated into an R package, <code>ideacolors</code>.</p>
+<div id="the-ideacolors-package" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> The <code>ideacolors</code> package<a class="anchor" aria-label="anchor" href="#the-ideacolors-package"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <code>ideacolors</code> package is used in conjunction with <code>ggplot2</code> to produce graphs and visualizations consistent with the primary and secondary brand color schemes. For more information, consult the <code>ideacolors</code> <a href="https://idea-analytics.github.io/ideacolors/">documentation</a>.</p>
+<p>To install the package, use the following code:</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"idea-analytics/ideacolors"</span><span class="op">)</span></span></code></pre></div>
+<div id="ideacolors-themes-and-scales" class="section level4" number="6.1.1.1">
+<h4>
+<span class="header-section-number">6.1.1.1</span> <code>ideacolors</code> themes and scales<a class="anchor" aria-label="anchor" href="#ideacolors-themes-and-scales"><i class="fas fa-link"></i></a>
+</h4>
+<p>Consider the following chart using the <code>mtcars</code> data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we’ve set the color aesthetic (or channel) to the number of cylinders a car’s engine has:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, </span>
+<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">disp</span>, </span>
+<span>                y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/get_plot-1.png" width="672"></div>
+<p>You can quickly apply IDEA brand compliant colors by using the <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea()</a></code> function:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://idea-analytics.github.io/ideacolors/index.html">ideacolors</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/apply_scale_color_idea-1.png" width="672"></div>
+<p><strong>Super easy!</strong> We can also easily change the palette and even reverse it:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"blueorange"</span>, reverse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/reverse_palette-1.png" width="672"></div>
+<p>Available palettes are given in the <code>idea_palettes</code> variable and can be seen here:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">idea_palettes</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/swatchplot-1.png" width="672"></div>
+</div>
+<div id="differences-between-branding-guidelines" class="section level4" number="6.1.1.2">
+<h4>
+<span class="header-section-number">6.1.1.2</span> Differences between branding guidelines<a class="anchor" aria-label="anchor" href="#differences-between-branding-guidelines"><i class="fas fa-link"></i></a>
+</h4>
+<p>The branding guidelines released in 2024 modifies the 2019 color palette and removes the <code>magenta</code> accent in favor of a <code>vermillion</code> accent. To switch between palettes, use the <code>year</code> argument in <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea()</a></code> or <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_fill_idea.html">scale_fill_idea()</a></code>. Note the default behavior is to use the most recent branding guidelines available (in this case, <code>year = 2024</code>).</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/switch_guidelines-1.png" width="672"></div>
+<p>For more information on using the different branding guidelines, please refer to the <a href="https://idea-analytics.github.io/ideacolors/articles/switching-guidelines.html">package vignette</a>.</p>
+</div>
+</div>
+<div id="color-blindness" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> Color Blindness<a class="anchor" aria-label="anchor" href="#color-blindness"><i class="fas fa-link"></i></a>
+</h3>
+<p>Note that IDEA’s brand colors are not completely safe for color blindness. Here’s each palette with adjustments to check for the predominant types of color blindness in the population:</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">colorspace</span><span class="fu">::</span><span class="fu"><a href="https://colorspace.R-Forge.R-project.org/reference/swatchplot.html">swatchplot</a></span><span class="op">(</span><span class="va">idea_palettes</span>, cvd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"desaturate"</span>, <span class="st">'deutan'</span>, <span class="st">"protan"</span>, <span class="st">"tritan"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/swatchplot_cb-1.png" width="672"></div>
+<div class="tip">
+<p>The chart above includes the following types of color blindness:</p>
+<ul>
+<li><p>Deuteranopia: Deuteranopia is a type of color blindness that primarily affects the perception of the green color spectrum. People with deuteranopia have a deficiency or absence of the green cone cells in their eyes, which are responsible for perceiving green light. As a result, they have <strong>difficulty distinguishing between green and red hues</strong>. The red and green colors may appear more similar or indistinguishable to individuals with deuteranopia.</p></li>
+<li><p>Protanopia: Protanopia is a type of color blindness that primarily affects the perception of the red color spectrum. Individuals with protanopia lack or have a reduced number of functional red cone cells in their eyes. Consequently, they <strong>struggle to differentiate between red and green colors</strong>. They may perceive these colors as muted or similar in appearance.</p></li>
+<li><p>Tritanopia: Tritanopia, also known as blue-yellow color blindness, is a rarer form of color blindness that affects the perception of the blue and yellow color spectrum. People with tritanopia have a deficiency or absence of the blue cone cells in their eyes, leading to <strong>difficulty in distinguishing between blue and yellow colors</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div id="raceethnicity-colors" class="section level3" number="6.1.3">
+<h3>
+<span class="header-section-number">6.1.3</span> Race/Ethnicity Colors<a class="anchor" aria-label="anchor" href="#raceethnicity-colors"><i class="fas fa-link"></i></a>
+</h3>
+<p>When creating visuals of Race/Ethnicity we want to be consistent with the colors chosen for each race/ethnicity. Additionally, we want to ensure that the colors are not offensive to any group. Below are the colors that were used for all of the Diversity, Equity, and Inclusion (DEI) work that has been completed in the last couple of months of 2022.</p>
+<ul>
+<li>
+<strong>American Indian/Alaskan Native:</strong> idea_colors$melon (#F9A054)</li>
+<li>
+<strong>Asian:</strong> idea_colors$cyan (#53B4CC)</li>
+<li>
+<strong>Black:</strong> idea_colors$magenta (#EE3A80)</li>
+<li>
+<strong>Hispanic:</strong> idea_colors$blue (#0079C1)</li>
+<li>
+<strong>Multi-racial:</strong> idea_colors$lime (#A4C364)</li>
+<li>
+<strong>Other:</strong> idea_colors$yellow (#FFDE75)</li>
+<li>
+<strong>Pacific Islander:</strong> idea_colors$darkblue (#1A4789)</li>
+<li>
+<strong>White:</strong> idea_colors$coolgray (#626363)</li>
+</ul>
+<p>Suppose your data frame, <code>df_reading_levels</code>, contains information about Academy students’ grade-level reading equivalents <code>GradeLevelEquivalent</code> with race and ethnicity in the <code>RaceEthnicity</code> column. To create a visualization of reading levels using the custom palette, you’ll need to code the palette in three places:</p>
+<ol style="list-style-type: decimal">
+<li>as a vector of colors, outside of the plotting function</li>
+<li>as an aesthetic, inside the initial plotting call</li>
+<li>as a value, inside a manual scale function</li>
+</ol>
+<p>Let’s define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 1</span></span>
+<span><span class="va">race_ethnicity_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"American Indian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">melon</span>,</span>
+<span>                           <span class="st">"Asian"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">cyan</span>,</span>
+<span>                           <span class="st">"Black"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">magenta</span>,</span>
+<span>                           <span class="st">"Hispanic"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">blue</span>,</span>
+<span>                           <span class="st">"Other"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">yellow</span>,</span>
+<span>                           <span class="st">"Pacific Islander"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">darkblue</span>,</span>
+<span>                           <span class="st">"Two or more races"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">lime</span>,</span>
+<span>                           <span class="st">"White"</span> <span class="op">=</span> <span class="va">idea_colors</span><span class="op">$</span><span class="va">coolgray</span><span class="op">)</span></span></code></pre></div>
+<p>Then, inside a <code>geom_*()</code> layer, assign the appropriate column <code>RaceEthnicity</code> to the appropriate aesthetic <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. (Depending on your visualization, the aesthetic might be <code>fill</code>, <code>shape</code>, etc.).</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 2</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
+<span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>One additional call is needed to force <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> to use the palette you specified earlier.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># step 2</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_reading_levels</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">GradeLevelEquivalent</span>,</span>
+<span>                   color <span class="op">=</span> <span class="va">RaceEthnicity</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># other layers go here... +</span></span>
+<span>  <span class="co"># step 3</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">race_ethnicity_legend</span>,</span>
+<span>                     drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Race / Ethnicity"</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual()</a></code> call will accept the vector of colors specified earlier in <code>values</code>, and <code>drop = FALSE</code> forces the legend to show all possible values and colors of <code>race_ethnicity_legend</code>, regardless if they appear in the <code>RaceEthnicity</code> column. (If the aesthetic is <code>fill</code>, then use <code>scale_fill_manual(values = race_ethnicity_legend, drop = FALSE)</code>, and so on).</p>
+<p>The default legend title is to use the column name. However, the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> call <em>relabels</em> the legend title for the <code>color</code> aesthetic to “Race / Ethnicity”. (If the aesthetic is <code>fill</code>, then use <code>labs(fill = "Race / Ethnicity")</code>, and so on).</p>
+</div>
+<div id="grade-level-colors" class="section level3" number="6.1.4">
+<h3>
+<span class="header-section-number">6.1.4</span> Grade Level Colors<a class="anchor" aria-label="anchor" href="#grade-level-colors"><i class="fas fa-link"></i></a>
+</h3>
+<p>If your visualization or reporting requires grouping across grade levels, using the IDEA polo color for that grade level is a familiar palette for IDEA schools. For more information about uniforms, refer to the <a href="https://ideapublicschools.org/parents/uniform-guides/">parent guide</a>.</p>
+<p>The following are the current polo colors for each grade level:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th>Grade Level</th>
+<th>Color</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>PK-5th, 8th</td>
+<td>Blue</td>
+</tr>
+<tr class="even">
+<td>6th, 10th</td>
+<td>Red</td>
+</tr>
+<tr class="odd">
+<td>7th, 11th</td>
+<td>Orange</td>
+</tr>
+<tr class="even">
+<td>9th</td>
+<td>Green</td>
+</tr>
+<tr class="odd">
+<td>12th</td>
+<td>Black</td>
+</tr>
+</tbody>
+</table></div>
+<p>Clearly, if all grade levels are present on one plot and cannot be individually labeled (say, a scatterplot), then using one color for multiple grade levels is not advised. However, if color coding a document or table where colors can be repeated, then this palette can provide visual cues to contextualize the report.</p>
+</div>
+<div id="separation-colors" class="section level3" number="6.1.5">
+<h3>
+<span class="header-section-number">6.1.5</span> Separation Colors<a class="anchor" aria-label="anchor" href="#separation-colors"><i class="fas fa-link"></i></a>
+</h3>
+<p>When reporting on separation reasons from Tyler Munis (located in the reporting.employees table), the following colors should be used:</p>
+<ul>
+<li>
+<strong>Did not Return Next Year in FT Position:</strong> Dark Green (#214F28)</li>
+<li>
+<strong>Entity Change:</strong> Purple (#7030A0)</li>
+<li>
+<strong>Failed I-9 Verification:</strong> Light Yellow (#FFDE75)</li>
+<li>
+<strong>Involuntary Position Eliminated:</strong> Burnt Orange (#C55A11)</li>
+<li>
+<strong>Involuntary Misconduct:</strong> Pink (#EE3A80)</li>
+<li>
+<strong>Involuntary Non-Renew:</strong> Light Blue (#BDD7EE)</li>
+<li>
+<strong>Involuntary Poor Performance:</strong> Navy Blue (#1A4789)</li>
+<li>
+<strong>Job Change to Seasonal/Part-Time:</strong> Tan (#E5C09F)</li>
+<li>
+<strong>No Call No Show:</strong> Light Purple (#CD9BFF)</li>
+<li>
+<strong>Resign in Lieu of Termination:</strong> Green (#00B050)</li>
+<li>
+<strong>Voluntary Resignation No Notice:</strong> Orange (#F9A054)</li>
+<li>
+<strong>Voluntary Resignation With Notice:</strong> Blue (#0079C1)</li>
+<li>
+<strong>Voluntary No Return From Leave:</strong> Light Green (#A4C364)</li>
+<li>
+<strong>Voluntary Retirement:</strong> Dark Grey (#626363)</li>
+</ul>
+<p>The following code defines this palette as a vector which can easily be used as the values for <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual()</a></code>.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">separation_reason_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DID NOT RETURN NEXT YEAR IN FT POSITION"</span> <span class="op">=</span> <span class="st">"#214F28"</span>,</span>
+<span>                              <span class="st">"ENTITY CHANGE"</span> <span class="op">=</span> <span class="st">"#7030A0"</span>,</span>
+<span>                              <span class="st">"FAILED I-9 VERIFICATION"</span> <span class="op">=</span>   <span class="st">"#FFDE75"</span>,</span>
+<span>                              <span class="st">"INVOL POSITION ELIMINATED"</span> <span class="op">=</span> <span class="st">"#C55A11"</span>,</span>
+<span>                              <span class="st">"INVOLUNTARY MISCONDUCT"</span> <span class="op">=</span> <span class="st">"#EE3A80"</span>,</span>
+<span>                              <span class="st">"INVOLUNTARY NON RENEW"</span> <span class="op">=</span> <span class="st">"#BDD7EE"</span>,</span>
+<span>                              <span class="st">"INVOLUNTARY POOR PERFORMANCE"</span> <span class="op">=</span> <span class="st">"#1A4789"</span>,</span>
+<span>                              <span class="st">"JOB CHANGE TO SEASONAL / PART-TIME"</span> <span class="op">=</span> <span class="st">"#E5C09F"</span>,</span>
+<span>                              <span class="st">"NO CALL NO SHOW"</span> <span class="op">=</span> <span class="st">"#CD9BFF"</span>,</span>
+<span>                              <span class="st">"RESIGN IN LIEU OF TERMINATION"</span> <span class="op">=</span> <span class="st">"#00B050"</span>,</span>
+<span>                              <span class="st">"VOL RESIGNATION NO NOTICE"</span> <span class="op">=</span> <span class="st">"#F9A054"</span>,</span>
+<span>                              <span class="st">"VOL RESIGNATION WITH NOTICE"</span> <span class="op">=</span>   <span class="st">"#0079C1"</span>,</span>
+<span>                              <span class="st">"VOLUNTARY NO RETURN FROM LEAVE"</span> <span class="op">=</span> <span class="st">"#A4C364"</span>,</span>
+<span>                              <span class="st">"VOLUNTARY RETIREMENT"</span> <span class="op">=</span> <span class="st">"#626363"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="idea-palette-color-ramp" class="section level3" number="6.1.6">
+<h3>
+<span class="header-section-number">6.1.6</span> IDEA Palette Color Ramp<a class="anchor" aria-label="anchor" href="#idea-palette-color-ramp"><i class="fas fa-link"></i></a>
+</h3>
+<p>To obtain a color ramp of the IDEA palette with hex codes, use following R code:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="visualization-standards.html#cb48-1" tabindex="-1"></a><span class="co"># load libraries</span></span>
+<span id="cb48-2"><a href="visualization-standards.html#cb48-2" tabindex="-1"></a><span class="fu">library</span>(ideacolors)</span>
+<span id="cb48-3"><a href="visualization-standards.html#cb48-3" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb48-4"><a href="visualization-standards.html#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="visualization-standards.html#cb48-5" tabindex="-1"></a><span class="fu">show_col</span>(<span class="fu">idea_palette_ramp</span>()(___) <span class="co"># substitute blank with the number of colors desired</span></span></code></pre></div>
+<p>As an example, the IDEA palette color ramp for six colors is as follows:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">show_col</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/idea_palette_ramp.html">idea_palette_ramp</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="img/idea_palette_ramp_6.png" title="show_col(idea_palette_ramp()(6))" width="500" alt="IDEA palette color ramp with six colors"><div class="figcaption">IDEA palette color ramp with six colors</div>
+</div>
+</div>
+<div id="typography" class="section level3" number="6.1.7">
+<h3>
+<span class="header-section-number">6.1.7</span> Typography<a class="anchor" aria-label="anchor" href="#typography"><i class="fas fa-link"></i></a>
+</h3>
+<p>The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("showtext")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">showtext_auto</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">font_add</span><span class="op">(</span><span class="st">"proxima"</span>,</span>
+<span>         regular <span class="op">=</span> <span class="st">"proximanova-regular.ttf"</span>,</span>
+<span>         bold <span class="op">=</span> <span class="st">"proximanova-extrabold.ttf"</span>,</span>
+<span>         italic <span class="op">=</span> <span class="st">"proximanova-regularit.ttf"</span>,</span>
+<span>         bolditalic <span class="op">=</span> <span class="st">"proximanova-extraboldit.ttf"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># showtext_auto(FALSE) # revert back to default fonts</span></span></code></pre></div>
+<p>This code will apply the font consistently to all text in any visualization created for that R session. To stop using the custom fonts in a session, use <code>showtext_auto(FALSE)</code> to revert to the default fonts.</p>
+</div>
+</div>
+<div id="camp-rio-branding" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Camp RIO branding<a class="anchor" aria-label="anchor" href="#camp-rio-branding"><i class="fas fa-link"></i></a>
+</h2>
+<p>For Camp RIO-specific analyses, visualizations, or publications, use the <a href="https://brandfolder.com/ideapublicschools">Camp RIO 2022 brand guidelines</a> from the Advancement and Marketing teams.</p>
+<div id="camp-rio-scales" class="section level3" number="6.2.1">
+<h3>
+<span class="header-section-number">6.2.1</span> Camp RIO scales<a class="anchor" aria-label="anchor" href="#camp-rio-scales"><i class="fas fa-link"></i></a>
+</h3>
+<p>To use Camp RIO scales in a visualization, use <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_camp_rio.html">scale_color_camp_rio()</a></code> or <code><a href="https://rdrr.io/pkg/ideacolors/man/scale_fill_camp_rio.html">scale_fill_camp_rio()</a></code>. The default palette is <code>year = 2022</code>.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_camp_rio.html">scale_color_camp_rio</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/scale_color_camp_rio-1.png" width="672"></div>
+</div>
+<div id="camp-rio-palette-ramp" class="section level3" number="6.2.2">
+<h3>
+<span class="header-section-number">6.2.2</span> Camp RIO palette ramp<a class="anchor" aria-label="anchor" href="#camp-rio-palette-ramp"><i class="fas fa-link"></i></a>
+</h3>
+<p>The palette ramp for Camp RIO is shown below:</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">show_col</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/camp_rio_palette_ramp.html">camp_rio_palette_ramp</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="img/camp-rio-palette-ramp-edit.png" title="show_col(camp_rio_palette_ramp()(6))" width="500" alt="Camp RIO palette color ramp with six colors"><div class="figcaption">Camp RIO palette color ramp with six colors</div>
+</div>
+</div>
+<div id="typography-1" class="section level3" number="6.2.3">
+<h3>
+<span class="header-section-number">6.2.3</span> Typography<a class="anchor" aria-label="anchor" href="#typography-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>The primary brand fonts are Baloo and Baloo 2; the secondary fonts are Verveine, which is useful for taglines, and Assistant, which is useful for subheadings and body text.</p>
+</div>
+</div>
+<div id="visualizing-hierarchical-data" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Visualizing Hierarchical Data<a class="anchor" aria-label="anchor" href="#visualizing-hierarchical-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Our data is often presented and displayed hierarchically (e.g., state, then region, then school, etc.). Therefore, it may be useful to group visualizations in a hierarchy, rather than arranging them alphabetically or in another manner.</p>
+<p>Let’s use the <a href="https://jennybc.github.io/gapminder/"><code>gapminder</code></a> data in R, where each row is a life expectancy, population, and GDP per capita corresponding with a specific country in a specific year.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span><span class="va">sample</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_gapminder_sample</span> <span class="op">&lt;-</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">sample</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_gapminder_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="left">country</th>
+<th align="left">continent</th>
+<th align="right">year</th>
+<th align="right">lifeExp</th>
+<th align="right">pop</th>
+<th align="right">gdpPercap</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Congo, Dem. Rep.</td>
+<td align="left">Africa</td>
+<td align="right">1952</td>
+<td align="right">39.143</td>
+<td align="right">14100005</td>
+<td align="right">780.5423</td>
+</tr>
+<tr class="even">
+<td align="left">Congo, Dem. Rep.</td>
+<td align="left">Africa</td>
+<td align="right">1957</td>
+<td align="right">40.652</td>
+<td align="right">15577932</td>
+<td align="right">905.8602</td>
+</tr>
+<tr class="odd">
+<td align="left">Mali</td>
+<td align="left">Africa</td>
+<td align="right">1952</td>
+<td align="right">33.685</td>
+<td align="right">3838168</td>
+<td align="right">452.3370</td>
+</tr>
+<tr class="even">
+<td align="left">Mali</td>
+<td align="left">Africa</td>
+<td align="right">1957</td>
+<td align="right">35.307</td>
+<td align="right">4241884</td>
+<td align="right">490.3822</td>
+</tr>
+<tr class="odd">
+<td align="left">Nepal</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">36.157</td>
+<td align="right">9182536</td>
+<td align="right">545.8657</td>
+</tr>
+<tr class="even">
+<td align="left">Nepal</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">37.686</td>
+<td align="right">9682338</td>
+<td align="right">597.9364</td>
+</tr>
+<tr class="odd">
+<td align="left">Pakistan</td>
+<td align="left">Asia</td>
+<td align="right">1952</td>
+<td align="right">43.436</td>
+<td align="right">41346560</td>
+<td align="right">684.5971</td>
+</tr>
+<tr class="even">
+<td align="left">Pakistan</td>
+<td align="left">Asia</td>
+<td align="right">1957</td>
+<td align="right">45.557</td>
+<td align="right">46679944</td>
+<td align="right">747.0835</td>
+</tr>
+<tr class="odd">
+<td align="left">Peru</td>
+<td align="left">Americas</td>
+<td align="right">1952</td>
+<td align="right">43.902</td>
+<td align="right">8025700</td>
+<td align="right">3758.5234</td>
+</tr>
+<tr class="even">
+<td align="left">Peru</td>
+<td align="left">Americas</td>
+<td align="right">1957</td>
+<td align="right">46.263</td>
+<td align="right">9146100</td>
+<td align="right">4245.2567</td>
+</tr>
+<tr class="odd">
+<td align="left">Poland</td>
+<td align="left">Europe</td>
+<td align="right">1952</td>
+<td align="right">61.310</td>
+<td align="right">25730551</td>
+<td align="right">4029.3297</td>
+</tr>
+<tr class="even">
+<td align="left">Poland</td>
+<td align="left">Europe</td>
+<td align="right">1957</td>
+<td align="right">65.770</td>
+<td align="right">28235346</td>
+<td align="right">4734.2530</td>
+</tr>
+<tr class="odd">
+<td align="left">Senegal</td>
+<td align="left">Africa</td>
+<td align="right">1952</td>
+<td align="right">37.278</td>
+<td align="right">2755589</td>
+<td align="right">1450.3570</td>
+</tr>
+<tr class="even">
+<td align="left">Senegal</td>
+<td align="left">Africa</td>
+<td align="right">1957</td>
+<td align="right">39.329</td>
+<td align="right">3054547</td>
+<td align="right">1567.6530</td>
+</tr>
+<tr class="odd">
+<td align="left">Turkey</td>
+<td align="left">Europe</td>
+<td align="right">1952</td>
+<td align="right">43.585</td>
+<td align="right">22235677</td>
+<td align="right">1969.1010</td>
+</tr>
+<tr class="even">
+<td align="left">Turkey</td>
+<td align="left">Europe</td>
+<td align="right">1957</td>
+<td align="right">48.079</td>
+<td align="right">25670939</td>
+<td align="right">2218.7543</td>
+</tr>
+<tr class="odd">
+<td align="left">Uganda</td>
+<td align="left">Africa</td>
+<td align="right">1952</td>
+<td align="right">39.978</td>
+<td align="right">5824797</td>
+<td align="right">734.7535</td>
+</tr>
+<tr class="even">
+<td align="left">Uganda</td>
+<td align="left">Africa</td>
+<td align="right">1957</td>
+<td align="right">42.571</td>
+<td align="right">6675501</td>
+<td align="right">774.3711</td>
+</tr>
+<tr class="odd">
+<td align="left">Venezuela</td>
+<td align="left">Americas</td>
+<td align="right">1952</td>
+<td align="right">55.088</td>
+<td align="right">5439568</td>
+<td align="right">7689.7998</td>
+</tr>
+<tr class="even">
+<td align="left">Venezuela</td>
+<td align="left">Americas</td>
+<td align="right">1957</td>
+<td align="right">57.907</td>
+<td align="right">6702668</td>
+<td align="right">9802.4665</td>
+</tr>
+</tbody>
+</table></div>
+<p>We could visualize the changes in life expectancy vs. GDP per capita over time like this:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df_gapminder_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
+<span>             color <span class="op">=</span> <span class="va">continent</span>,</span>
+<span>             alpha <span class="op">=</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># each country has a separate panel, arranged alphabetically by country</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">country</span>,</span>
+<span>                labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html">label_wrap_gen</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                scale <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/theme_idea_min.html">theme_idea_min</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>                                   angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>size <span class="op">=</span> <span class="st">"Population"</span>,</span>
+<span>       alpha <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>       color <span class="op">=</span> <span class="st">"Continent"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Per capita GDP"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Life expectancy vs. per capita GDP"</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="img/gapminder_unnested.png" title="Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by country" width="500" alt="This graph displays changes in life expectancy arranged alphabetically by country."><div class="figcaption">This graph displays changes in life expectancy arranged alphabetically by country.</div>
+</div>
+<p>The line graphs are arranged alphabetically by country. However, it might be more visually appealing and intuitive to a reader if the graphs were arranged by continent and <em>then</em> country. To do this, we can use the <a href="https://github.com/teunbrand/ggh4x">ggh4x</a> package <a href="https://teunbrand.github.io/ggh4x/articles/ggh4x.html">(documentation here)</a>, and switch from <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> in <code>ggplot2</code> to <code>facet_nested()</code> or <code>facet_nested_wrap()</code> in <code>ggh4x</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/teunbrand/ggh4x">ggh4x</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_gapminder_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
+<span>           color <span class="op">=</span> <span class="va">continent</span>,</span>
+<span>           alpha <span class="op">=</span> <span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_path</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># each country has a separate panel,</span></span>
+<span>  <span class="co"># but arranged alphabetically by continent, then by country</span></span>
+<span>  <span class="fu">facet_nested</span><span class="op">(</span> <span class="op">~</span> <span class="va">continent</span> <span class="op">+</span> <span class="va">country</span>,</span>
+<span>                labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html">label_wrap_gen</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                scale <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/theme_idea_min.html">theme_idea_min</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>                                   angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>size <span class="op">=</span> <span class="st">"Population"</span>,</span>
+<span>       alpha <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>       color <span class="op">=</span> <span class="st">"Continent"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Per capita GDP"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Life expectancy vs. per capita GDP"</span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="img/gapminder_nested.png" title="Series of graphs displaying changes in life expectancy vs. per capita GDP over time, arranged alphabetically by continent first, then country" width="500" alt="This graph displays changes in life expectancy arranged alphabetically by continent first, then country."><div class="figcaption">This graph displays changes in life expectancy arranged alphabetically by continent first, then country.</div>
+</div>
+</div>
+<div id="saving-and-publishing-visualizations" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Saving and publishing visualizations<a class="anchor" aria-label="anchor" href="#saving-and-publishing-visualizations"><i class="fas fa-link"></i></a>
+</h2>
+<p>Data visualization can also communicate our findings effectively to external (to R&amp;A) audiences. Often, the graphs or tables we publish are included in slide decks or products around the organization. Thus, it is important to consider both the <strong>quality</strong> (i.e. plot resolution and size) and <strong>device output</strong> (e.g. .png, .pdf, .svg, etc.) of the visualization produced.</p>
+<p>Often, clicking on <code>Plots -&gt; Export -&gt; Save as image...</code> produces a <em>low-resolution bitmap</em> (.bmp) that does not resize appropriately. It is suggested you use one of the following methods instead:</p>
+<div id="using-device-functions" class="section level3" number="6.4.1">
+<h3>
+<span class="header-section-number">6.4.1</span> Using device functions<a class="anchor" aria-label="anchor" href="#using-device-functions"><i class="fas fa-link"></i></a>
+</h3>
+<p>To save a plot directly to a specified device, use the “output sandwich” method.</p>
+<ol style="list-style-type: decimal">
+<li>Open the device using a device function like <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code>, <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code>, <code><a href="https://rdrr.io/r/grDevices/png.html">jpeg()</a></code>, etc.</li>
+<li>Include the code to produce the output.</li>
+<li>Close the device using <code><a href="https://rdrr.io/r/grDevices/dev.html">dev.off()</a></code>.</li>
+</ol>
+<p>Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename <code>01-my-high-quality-graph.pdf</code>. Then, the output sandwich would look like this:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. open the device</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/pdf.html">pdf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"graphs"</span>, <span class="st">"01-my-high-quality-graph.pdf"</span><span class="op">)</span>,</span>
+<span>    width <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. include the code to produce the output</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_data_frame</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_continuous_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># other layers as needed</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My high quality graph"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. close the device</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="using-ggsave" class="section level3" number="6.4.2">
+<h3>
+<span class="header-section-number">6.4.2</span> Using <code>ggsave()</code><a class="anchor" aria-label="anchor" href="#using-ggsave"><i class="fas fa-link"></i></a>
+</h3>
+<p>The function <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> provides a wrapper around multiple device functions, like <code><a href="https://rdrr.io/r/grDevices/png.html">png()</a></code> or <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code>, but gives nice defaults for saving a high quality plot object to a device of your choice. It is suggested to use the function like this:</p>
+<ol style="list-style-type: decimal">
+<li>Build your plot and assign the plot object (<code>&lt;-</code>).</li>
+<li>Determine the dimensions, resolution, and output needed for the final product.</li>
+<li>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> with the specifications identified in step 2. Note: the file name MUST include the extension of the device.</li>
+<li>Revise specifications as needed.</li>
+</ol>
+<p>Suppose you need to include a plot (.png) that takes up about <span class="math inline">\(\frac{1}{4}\)</span> of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). If you used a theme that had a transparent background, you could also specify a background (bg) of white. Then, the code would look like this:</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_data_frame</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">my_continuous_var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="co"># other layers as needed</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My high quality graph"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="st">"graphs"</span>, <span class="st">"01-my-high-quality-graph.png"</span><span class="op">)</span>,</span>
+<span>       plot <span class="op">=</span> <span class="va">my_plot</span>,</span>
+<span>       scale <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>       width <span class="op">=</span> <span class="fl">6.5</span>,</span>
+<span>       height <span class="op">=</span> <span class="fl">6.5</span>,</span>
+<span>       units <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>       dpi <span class="op">=</span> <span class="fl">320</span>,</span>
+<span>       bg <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code></pre></div>
+<p>For more information on saving your output, reference the <a href="https://ggplot2-book.org/themes#sec-saving">ggplot2 book</a> or the <a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave documentation</a>.</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></div>
+<div class="next"><a href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#visualization-standards"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li>
+<a class="nav-link" href="#idea-branding"><span class="header-section-number">6.1</span> IDEA Branding</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-ideacolors-package"><span class="header-section-number">6.1.1</span> The ideacolors package</a></li>
+<li><a class="nav-link" href="#color-blindness"><span class="header-section-number">6.1.2</span> Color Blindness</a></li>
+<li><a class="nav-link" href="#raceethnicity-colors"><span class="header-section-number">6.1.3</span> Race/Ethnicity Colors</a></li>
+<li><a class="nav-link" href="#grade-level-colors"><span class="header-section-number">6.1.4</span> Grade Level Colors</a></li>
+<li><a class="nav-link" href="#separation-colors"><span class="header-section-number">6.1.5</span> Separation Colors</a></li>
+<li><a class="nav-link" href="#idea-palette-color-ramp"><span class="header-section-number">6.1.6</span> IDEA Palette Color Ramp</a></li>
+<li><a class="nav-link" href="#typography"><span class="header-section-number">6.1.7</span> Typography</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#camp-rio-branding"><span class="header-section-number">6.2</span> Camp RIO branding</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#camp-rio-scales"><span class="header-section-number">6.2.1</span> Camp RIO scales</a></li>
+<li><a class="nav-link" href="#camp-rio-palette-ramp"><span class="header-section-number">6.2.2</span> Camp RIO palette ramp</a></li>
+<li><a class="nav-link" href="#typography-1"><span class="header-section-number">6.2.3</span> Typography</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#visualizing-hierarchical-data"><span class="header-section-number">6.3</span> Visualizing Hierarchical Data</a></li>
+<li>
+<a class="nav-link" href="#saving-and-publishing-visualizations"><span class="header-section-number">6.4</span> Saving and publishing visualizations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#using-device-functions"><span class="header-section-number">6.4.1</span> Using device functions</a></li>
+<li><a class="nav-link" href="#using-ggsave"><span class="header-section-number">6.4.2</span> Using ggsave()</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/06-Visualization-Standards.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/06-Visualization-Standards.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

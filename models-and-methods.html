@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 Models and Methods | IDEA R&amp;A Manual</title>
+<meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
+<meta name="description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/models-and-methods.html">
+<meta property="og:description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 Models and Methods | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">IDEA R&amp;A Manual</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> A little about this manual</a></li>
+<li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
+<li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
+<li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li><a class="" href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></li>
+<li><a class="active" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">10</span> Surveys</a></li>
+<li><a class="" href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></li>
+<li><a class="" href="geospatial-methods-and-gis.html"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">14</span> Tips and Tricks</a></li>
+<li><a class="" href="references-1.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/idea-analytics/r_and_a_manual">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="models-and-methods" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Models and Methods<a class="anchor" aria-label="anchor" href="#models-and-methods"><i class="fas fa-link"></i></a>
+</h1>
+<p>Our research involves a wide variety of methods in statistics and data science to analyze problems and answer questions in educational data. In consultation with our stakeholders, we carefully select the most relevant approach(es) to provide an appropriate and accurate product.</p>
+<p>We use methods in descriptive, inferential, and predictive statistics to understand information about our organization. The choice of frequentist vs. Bayesian methods is up to you and should always be justified, but choosing the simplest, appropriate tool should be the starting point for analysis. But, before we start any analysis, the design of the program influences how we establish our methods of research.</p>
+<div id="research-design" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Research design<a class="anchor" aria-label="anchor" href="#research-design"><i class="fas fa-link"></i></a>
+</h2>
+<p>When our work requires us to assign causation, we must consider how the data were collected before deciding on an appropriate model.</p>
+<div id="causal-inference" class="section level3" number="8.1.1">
+<h3>
+<span class="header-section-number">8.1.1</span> Causal inference<a class="anchor" aria-label="anchor" href="#causal-inference"><i class="fas fa-link"></i></a>
+</h3>
+<p>Most of our data is observational, so if we want to describe causal relationships in our data, we must appeal to potential outcomes. Thus, we will briefly cover some of the relevant causal inference concepts and techniques.</p>
+<p>When a student is marked for inclusion in, say, a tutorial group, we would like to see how much the tutorial increased their score on a test, compared to a scenario where the student did not attend the tutorial. If the student attends the tutorial, we can measure the outcome of the treatment (the tutorial) by seeing what grade they earned after a test; we cannot observe, however, the outcome of the control (no tutorial). Potential outcomes aims to remedy this.</p>
+<div id="potential-outcomes" class="section level4" number="8.1.1.1">
+<h4>
+<span class="header-section-number">8.1.1.1</span> Potential outcomes<a class="anchor" aria-label="anchor" href="#potential-outcomes"><i class="fas fa-link"></i></a>
+</h4>
+<p>Suppose we have both the treatment and control outcomes for each student. We would like to measure <span class="math inline">\(\delta_i = Y^1_i - Y^0_i\)</span>, the difference in the treatment outcome <span class="math inline">\(Y^1_i\)</span> and control outcome <span class="math inline">\(Y^0_i\)</span> for student <span class="math inline">\(i\)</span>. Then, our main estimators for the tutorial effect are <span class="math inline">\(ATE, ATT\)</span> and <span class="math inline">\(ATU\)</span>, which are defined below:</p>
+<ul>
+<li><p><span class="math inline">\(ATE = E[\delta_i]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment <strong>E</strong>ffect <span class="math inline">\(E[\delta_i] = E[Y^1_i - Y^0_i]\)</span>. In other words, <span class="math inline">\(ATE\)</span> answers the question “What is the additional effect of the treatment?”</p></li>
+<li><p><span class="math inline">\(ATT = E[\delta_i \mid \textrm{in treatment group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>T</strong>reatment group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in treatment group}]\)</span>. In other words, <span class="math inline">\(ATT\)</span> answers the question “What is the additional effect of the treatment for those in the treatment group?”</p></li>
+<li><p><span class="math inline">\(ATU = E[\delta_i \mid \textrm{in control group}]\)</span> represents the <strong>A</strong>verage <strong>T</strong>reatment effect of the <strong>U</strong>ntreated (control) group, <span class="math inline">\(E[Y^1_i - Y^0_i \mid \textrm{in control group}]\)</span>. In other words, <span class="math inline">\(ATU\)</span> answers the question “What is the additional effect of the treatment for those in the control group?”</p></li>
+<li><p><span class="math inline">\(ATE\)</span> can be decomposed into a weighted average of <span class="math inline">\(ATT, ATU\)</span>, such that <span class="math inline">\(ATE = p\times ATT + (1-p)\times ATU\)</span>, where <span class="math inline">\(p\)</span> is the weight of the treatment group.</p></li>
+</ul>
+<p>In our scenario,</p>
+<ul>
+<li><p><span class="math inline">\(ATE\)</span> represents the expected marginal effect of the tutorial group on test scores for all students,</p></li>
+<li><p><span class="math inline">\(ATT\)</span> represents the expected marginal effect of the tutorial group for students who participate in tutorials, and</p></li>
+<li><p><span class="math inline">\(ATU\)</span> represents the expected marginal effect of the tutorial group for students who do not participate in tutorials.</p></li>
+</ul>
+<p>Estimates may be biased because we do not randomly assign students to tutorials - we select them for each group based on some criteria. Using randomization inference, we can separate assignment bias from the estimates of <span class="math inline">\(ATT, ATU\)</span> to find appropriate estimates and p-values on <span class="math inline">\(ATE\)</span>.</p>
+</div>
+<div id="matching-models" class="section level4" number="8.1.1.2">
+<h4>
+<span class="header-section-number">8.1.1.2</span> Matching models<a class="anchor" aria-label="anchor" href="#matching-models"><i class="fas fa-link"></i></a>
+</h4>
+<p>We can leverage large samples to find a potential outcome for a student by matching other students who are reasonably similar, using a specified distance measure. Thus, we can reasonably estimate <span class="math inline">\(ATE\)</span> since we have both the treatment and control outcomes.</p>
+<p>By using the <code>matchit</code> package in R, we can specify covariates we would like to match in our data between the treatment and control groups.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#use matchit like a glm</span></span>
+<span><span class="va">m_out</span> <span class="op">&lt;-</span> <span class="fu">matchit</span><span class="op">(</span><span class="va">ActiveIL</span> <span class="op">~</span> <span class="va">Race</span> <span class="op">+</span> <span class="va">Gender</span> <span class="op">+</span> <span class="va">Grade</span> <span class="op">+</span></span>
+<span>                   <span class="va">SPED</span> <span class="op">+</span> <span class="va">LEP</span> <span class="op">+</span> <span class="va">EcoDis</span> <span class="op">+</span> <span class="va">GradeEquivalentBOY</span>, <span class="co">#response specifies control/treatment, covariates specify what to match</span></span>
+<span>                 data <span class="op">=</span> <span class="va">rs_il_mod</span>,</span>
+<span>                 method <span class="op">=</span> <span class="st">"cem"</span>, <span class="co">#specify matching method</span></span>
+<span>                 link <span class="op">=</span> <span class="st">"logit"</span>,</span>
+<span>                 estimand <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#produces data frame with needed weights</span></span>
+<span><span class="va">m_data</span> <span class="op">&lt;-</span> <span class="fu">match.data</span><span class="op">(</span><span class="va">m_out</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#model uses weighted linear model to estimate causal effect of using Imagine Learning</span></span>
+<span><span class="va">m_att</span> <span class="op">&lt;-</span> <span class="fu">lm_robust</span><span class="op">(</span><span class="va">GradeEquivalentGrowth</span> <span class="op">~</span> <span class="va">ActiveIL</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">m_data</span>,</span>
+<span>                   weights <span class="op">=</span> <span class="va">m_data</span><span class="op">$</span><span class="va">weights</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m_att</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="regression-discontinuity" class="section level4" number="8.1.1.3">
+<h4>
+<span class="header-section-number">8.1.1.3</span> Regression discontinuity<a class="anchor" aria-label="anchor" href="#regression-discontinuity"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+<div id="instrumental-variables" class="section level4" number="8.1.1.4">
+<h4>
+<span class="header-section-number">8.1.1.4</span> Instrumental variables<a class="anchor" aria-label="anchor" href="#instrumental-variables"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+<div id="difference-in-differences" class="section level4" number="8.1.1.5">
+<h4>
+<span class="header-section-number">8.1.1.5</span> Difference-in-differences<a class="anchor" aria-label="anchor" href="#difference-in-differences"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+</div>
+<div id="experimental-design" class="section level3" number="8.1.2">
+<h3>
+<span class="header-section-number">8.1.2</span> Experimental design<a class="anchor" aria-label="anchor" href="#experimental-design"><i class="fas fa-link"></i></a>
+</h3>
+<p>Under ideal conditions, we would test the effect of a program by randomized controlled trials – this usually does not happen. However, we can still use the tools of design to <em>structure</em> our data and variance appropriately.</p>
+<div id="differences-among-distributions-of-groups" class="section level4" number="8.1.2.1">
+<h4>
+<span class="header-section-number">8.1.2.1</span> Differences among distributions of groups<a class="anchor" aria-label="anchor" href="#differences-among-distributions-of-groups"><i class="fas fa-link"></i></a>
+</h4>
+<p>If we are comparing means from multiple groups, then we first need a procedure to compare all means together. Afterward, we might choose a post-hoc procedure to see which pairs of means are different.</p>
+<p>The most common way of comparing multiple means is an ANOVA (analysis of variance). To perform an ANOVA:</p>
+<ol style="list-style-type: decimal">
+<li>construct a linear model and save the object <code>lm_my_model &lt;- lm()</code> (see linear modeling below)</li>
+<li>compare the variance among the groups using <code>aov(lm_my_model)</code>
+</li>
+</ol>
+<p>Suppose we want to use SEL survey results to measure emotion regulation (a quantitative variable) across multiple grade levels. To see if the average <code>EmotionRegulationScore</code> differs at all between grade levels, then we can use the following code:</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># linear model, where grade level is treated as a factor, not numeric</span></span>
+<span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">GradeLevelID</span><span class="op">)</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># perform ANOVA</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">lm_survey_results</span><span class="op">)</span></span></code></pre></div>
+<p>Then, if the ANOVA suggests the means are not all the same, then a post-hoc analysis can reveal <em>which</em> groups are different.</p>
+<ol style="list-style-type: decimal">
+<li>Determine how many tests are being conducted.</li>
+<li>Use a Bonferonni correction (or other appropriate correction) to adjust p-values or <span class="math inline">\(\alpha\)</span>-level.</li>
+<li>Choose an appropriate post-hoc test:
+<ol style="list-style-type: lower-alpha">
+<li>Tukey HSD - check all pairs of means to see which pairs are significantly different</li>
+<li>Dunnett - compare all means to a control</li>
+<li>Hsu - check which means are the “best”, either the lowest or highest of the group</li>
+</ol>
+</li>
+</ol>
+</div>
+<div id="differences-among-levels-of-variables" class="section level4" number="8.1.2.2">
+<h4>
+<span class="header-section-number">8.1.2.2</span> Differences among levels of variables<a class="anchor" aria-label="anchor" href="#differences-among-levels-of-variables"><i class="fas fa-link"></i></a>
+</h4>
+<p>Educational data can often be described in a hierarchy:</p>
+<ul>
+<li>Level 1: student</li>
+<li>Level 2: student within a school</li>
+<li>Level 3: student within a school within a region</li>
+</ul>
+<p>A <strong>mixed model</strong> (also, <strong>hierarchical</strong> or <strong>multilevel</strong>) allows for both fixed and random effects, so this nesting will give us different variances at each level. This is ideal for modeling an outcome that can vary by school and regional differences - in other words, we can vary the slope and intercept by each school and region.</p>
+<p><strong>Case 1: level 1 model</strong></p>
+<p>A model where the error term does not account for any grouping, such as modeling the response of student <span class="math inline">\(i\)</span>, would look like:</p>
+<p><span class="math inline">\(\textrm{EmotionRegulationScore}_i = \beta_0 + \beta_1 \times \textrm{AvgDailyAttendance}_i + \epsilon_i\)</span></p>
+<p>and can be estimated using <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code>:</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm_survey_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="va">AvgDailyAttendance</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_survey_results</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Case 2: level 2 model</strong></p>
+<p>A mixed model where the error term accounts for the grouping of student <span class="math inline">\(i\)</span> in school <span class="math inline">\(j\)</span>, and the slope and intercept are dependent on each school, would look like</p>
+<p><span class="math inline">\(\textrm{LifeSatisfactionScore}_{ij} = \beta_{0j} + \beta_{1j} \times \textrm{AvgDailyAttendance}_{ij} + \epsilon_{ij}\)</span></p>
+<p>and can be estimated using <code>lme4::lmer()</code>:</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("lme4")</span></span>
+<span><span class="co"># library(lme4)</span></span>
+<span><span class="va">mm_survey_results</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                          data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get all effects, correlations between fixed effects, ANOVA</span></span>
+<span><span class="fu">fixef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get inference on fixed effects coefficients</span></span>
+<span><span class="fu">ranef</span><span class="op">(</span><span class="va">mm_survey_results</span><span class="op">)</span> <span class="co"># get estimates of random effects coefficients</span></span></code></pre></div>
+<p>Note that if only the intercept needs to vary, then the code would change to</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_random_intercept</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span>,</span>
+<span>                            data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p>while if only the slope needs to vary, then the code would change to</p>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_random_slope</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                        data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Case 3: level 3+ model</strong></p>
+<p>A mixed model with three or more nested levels would account for, say a student <span class="math inline">\(i\)</span> within a school <span class="math inline">\(j\)</span> within a region <span class="math inline">\(k\)</span>. Such a model would look like</p>
+<p><span class="math inline">\(\textrm{EmotionRegulationScore}_{ijk} = \beta_{0jk} + \beta_{1jk} \times \textrm{AvgDailyAttendance}_{ijk} + \epsilon_{ijk}\)</span></p>
+<p>and could be coded as</p>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mm_level_3</span> <span class="op">&lt;-</span> <span class="fu">lmer</span><span class="op">(</span><span class="va">EmotionRegulationScore</span> <span class="op">~</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">AvgDailyAttendance</span> <span class="op">|</span> <span class="va">Region</span> <span class="op">/</span> <span class="va">SchoolName</span><span class="op">)</span>,</span>
+<span>                   data <span class="op">=</span> <span class="va">df_sel_survey</span><span class="op">)</span></span></code></pre></div>
+<p>Note: The initial level of nesting is coded using a vertical pipe <code>|</code> and all subsequent levels of nesting is coded using a backslash <code>/</code>.</p>
+</div>
+</div>
+</div>
+<div id="descriptive-statistics" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Descriptive statistics<a class="anchor" aria-label="anchor" href="#descriptive-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p>When summarizing a distribution of data, we are usually tasked with describing (1) measures of center, such as counts and proportions for categorical data, or means and medians for quantitative data and then displaying those values for our stakeholders. To provide context and increase the statistical literacy of our team and family, we also describe the (2) spread, (3) shape, and (4) unusual features of the distribution.</p>
+<div id="numerical-summaries---broad-principles" class="section level3" number="8.2.1">
+<h3>
+<span class="header-section-number">8.2.1</span> Numerical summaries - broad principles<a class="anchor" aria-label="anchor" href="#numerical-summaries---broad-principles"><i class="fas fa-link"></i></a>
+</h3>
+<p>For <strong>categorical data</strong>, consider the distribution of proportions and counts (the sample size) across the various categories. One-way and two-way frequency tables, with marginal and total proportions and counts, are useful for displaying the data.</p>
+<p>For <strong>univariate, quantitative data</strong>, use the shape of the distribution to determine appropriate numerical measures. For symmetric data, the mean <span class="math inline">\(\bar{x}\)</span> <code>mean(x)</code> and standard deviation <span class="math inline">\(s\)</span> <code>sd(x)</code> can be appropriate for reporting and is accessible by a broad audience. For skewed data, consider the median <span class="math inline">\(\tilde{x}\)</span> <code>median(x)</code> (and possibly the MAD - median absolute deviation <code>mad(x)</code>), and provide context for choosing these measures. Note: The median is also a widely accessible statistic to most people, since it describes the midpoint of your distribution. Consider using it alongside the mean.</p>
+<p>For <strong>bivariate data</strong>, use a scatterplot to determine if linear measures can be used appropriately. The Pearson correlation <span class="math inline">\(r\)</span> <code>cor(x, y)</code> can be easily understood by a wide audience to describe the linear strength of a bivariate association. However, the Spearman rank correlation <code>cor(x, y, method = "spearman")</code> can provide an associative measure for monotonic nonlinear associations, and Kendall’s <span class="math inline">\(\tau\)</span> <code>cor(x, y, method = "kendall")</code> can describe concordance for ordinal data.</p>
+<p>When describing <strong>outliers</strong> in a report, care should be taken when describing how we identify and use (or remove) the outliers from the data set.</p>
+<div class="tip">
+<p>One heuristic way for deciding what to do with an outlier is to ask yourself, “Does this observation <em>belong</em> in the sample?”</p>
+<p>If you decide that the observation is fundamentally different than the others (e.g., a school is off-model and does not implement the Imagine Learning the same way that other schools do), then you might consider removing that observation. If the observation represents some exceptional case of the proposed model, then you might consider keeping that observation.</p>
+</div>
+<p>In general, we should be modeling a measure of center and its spread as a function of covariates (see Modeling and predictive statistics).</p>
+</div>
+<div id="graphical-summaries---broad-principles" class="section level3" number="8.2.2">
+<h3>
+<span class="header-section-number">8.2.2</span> Graphical summaries - broad principles<a class="anchor" aria-label="anchor" href="#graphical-summaries---broad-principles"><i class="fas fa-link"></i></a>
+</h3>
+<p>While there are plenty of ways to display data, all graphs should be accompanied by an explanation of key features. Our aim is to help educators interpret the data in memorable, meaningful ways and graphs without context can convey the wrong information or may obscure what the researcher attempted to communicate. Each graph should include a descriptive title, axes, and appropriate labels; consider using the <a href="https://idea-analytics.github.io/ideacolors/">ideacolors</a> package for aesthetics.</p>
+<p>Selecting an appropriate graphical display depends on the purpose of the analysis and the communication of results. Bar graphs, line graphs, histograms, and scatterplots each have their place in displaying central tendency; however, emphasis should be placed on displaying variation within the data.</p>
+<div id="displaying-variation" class="section level4" number="8.2.2.1">
+<h4>
+<span class="header-section-number">8.2.2.1</span> Displaying variation<a class="anchor" aria-label="anchor" href="#displaying-variation"><i class="fas fa-link"></i></a>
+</h4>
+<p>Variation can be addressed by the following (non-exhaustive) list:</p>
+<ol style="list-style-type: decimal">
+<li><p>Comparing sample sizes, both for the entire distribution and within each group</p></li>
+<li><p>Comparing variation within and between groups</p></li>
+<li><p>Displaying variation across time</p></li>
+<li><p>Clustering of values in a region (and conversely, gaps in data)</p></li>
+</ol>
+<p>Different approaches to this could be altering alpha values, jittering, color scales, size, and the shape of the marker. Some sample code for doing is found below:</p>
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu">make_Data_By_Launch_Cohort</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">LaunchSchoolYear</span>,</span>
+<span>             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/jitter.html">jitter</a></span><span class="op">(</span><span class="va">MedianGrowth</span><span class="op">)</span>, <span class="co">#jittering of clustered points</span></span>
+<span>             group <span class="op">=</span> <span class="va">School</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">School</span>, <span class="co">#change color by school</span></span>
+<span>                 alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, <span class="co">#set transparency level to 0.2</span></span>
+<span>             size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> <span class="op">+</span> <span class="co">#increases size of point</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">MedianGrowthLaunch</span>,</span>
+<span>                 color <span class="op">=</span> <span class="va">LaunchOrder</span><span class="op">)</span>,</span>
+<span>             shape <span class="op">=</span> <span class="fl">3</span>, <span class="co">#changes shape to plus sign +</span></span>
+<span>             size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/scale_color_idea.html">scale_color_idea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ideacolors/man/theme_idea_light.html">theme_idea_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">LaunchOrder</span>,</span>
+<span>             labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>LaunchOrder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"First Year"</span>,</span>
+<span>                                                 <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Second Year"</span>,</span>
+<span>                                                 <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Third Year"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Median RenStar Reading Growth"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Results grouped by schools launching in the same year"</span>,</span>
+<span>       caption <span class="op">=</span> <span class="st">"+ represents median RenStar reading growth for that launching cohort"</span>,</span>
+<span>       x <span class="op">=</span> <span class="st">"Launch Year"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Median RenStar Growth"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2017-2018"</span> <span class="op">=</span> <span class="st">"2017-18"</span>,</span>
+<span>                              <span class="st">"2018-2019"</span> <span class="op">=</span> <span class="st">"2018-19"</span>,</span>
+<span>                              <span class="st">"2019-2020"</span> <span class="op">=</span> <span class="st">"2019-20"</span>,</span>
+<span>                              <span class="st">"2020-2021"</span> <span class="op">=</span> <span class="st">"2020-21"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
+<p>This code spaces out MedianGrowth if there are multiple schools with the same median growth, changes the transparency level to 0.2, and changes color with each school. The value of MedianGrowthLaunch is plotted with a “plus” shape at a larger size to emphasize the median growth for each school year.</p>
+<div class="float">
+<img src="img/variation-in-graph-example.png" title="Example of a graph displaying variation in median RenStar growth" alt="This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians."><div class="figcaption">This image shows a graph of median RenStar growth levels from launching schools in different school years and shows variation in those medians.</div>
+</div>
+</div>
+</div>
+</div>
+<div id="inferential-statistics" class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Inferential statistics<a class="anchor" aria-label="anchor" href="#inferential-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p>If the goal of the project is to do <em>inference</em>, or drawing conclusions about the population from the data, then we should provide context about these conclusions, particularly around variability and likelihood.</p>
+<div id="interval-estimates" class="section level3" number="8.3.1">
+<h3>
+<span class="header-section-number">8.3.1</span> Interval estimates<a class="anchor" aria-label="anchor" href="#interval-estimates"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose we are providing an estimate, like forecasted student persistence rates. A single <em>point estimate</em> may give us our best target, but due to variability, we surely will not reach that exact forecast. Thus, we also provide a <em>confidence interval</em> (or a <em>Bayesian credible interval</em>) to give a lower and upper bound around our estimate. These bounds could be found by computing a margin of error around the point estimate, or could be determined by the bootstrapped quantiles.</p>
+<p>It may be instructive for a general audience to interpret these bounds as a</p>
+<ul>
+<li>“worst case scenario” and</li>
+<li>“best case scenario”</li>
+</ul>
+<p>and give a visual around these estimates. For reference, see the <a href="https://app.powerbi.com/links/OsCFNR7-a2?ctid=02f61eb0-8f78-48cf-beec-40296abdf806&amp;pbi_source=linkShare">Persistence Dashboard</a> (no longer actively updated).</p>
+</div>
+<div id="p-values-and-hypothesis-testing" class="section level3" number="8.3.2">
+<h3>
+<span class="header-section-number">8.3.2</span> p-values and hypothesis testing<a class="anchor" aria-label="anchor" href="#p-values-and-hypothesis-testing"><i class="fas fa-link"></i></a>
+</h3>
+<p>When deciding if a pattern or relationship even exists, we can choose a model and set of hypotheses to test. Given the type of explanatory and response variables in your model, you should choose an appropriately designed test <a href="https://guides.nyu.edu/quant/choose_test_1DV">(reference for common tests)</a>. Often, the test statistics and p-values are already given when using a package. Note the term “statistical significance” may carry a lot of weight with an audience, but it should be use with great caution. When using or explaining a p-value, first recall that</p>
+<p><em>a p-value is the probability of obtaining a result as extreme or greater from repeated sampling under the proposed distribution of the null hypothesis</em></p>
+<p>meaning that our probability operates under the assumption that <em>the proposed model (the null hypothesis) is correct</em>. (This means if we change the null hypothesis, then we could get an entirely different p-value with the same data). Thus, we should look carefully at how our choices in modeling and distribution affected the significance of the result. Furthermore, the choice of <em>level</em> (typically, <span class="math inline">\(\alpha = 0.05\)</span>) is arbitrary, so we cannot make certain conclusions, such as:</p>
+<ul>
+<li>If a result has a p-value of 0.06, and another has 0.04, then one result is not necessarily “more significant” than the other.</li>
+<li>The p-value does not imply how large the effect size is.</li>
+</ul>
+<blockquote>
+<p>Statistical significance does not necessarily represent practical significance.</p>
+</blockquote>
+<p><strong>When communicating your results, do not merely rely on a p-value.</strong> Supplement a p-value with other explanations of the effect in context, like an interval estimate, graphs, a margin of error, or transformed values.</p>
+<p>For reference, see the American Statistical Association’s statement on p-values <a href="https://doi.org/10.1080/00031305.2016.1154108">(2016)</a>.</p>
+</div>
+<div id="inferential-methods-with-the-infer-package" class="section level3" number="8.3.3">
+<h3>
+<span class="header-section-number">8.3.3</span> Inferential methods with the <code>{infer}</code> package<a class="anchor" aria-label="anchor" href="#inferential-methods-with-the-infer-package"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://infer.tidymodels.org/"><code>{infer}</code></a> package provides <code>tidyverse</code> grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which is excellent. This section will simply provide some examples to get you started.</p>
+<p><a href="https://github.com/tidymodels/infer">infer</a> implements a straightforward inferential workflow, which is encapsulated by four verbs:</p>
+<ul>
+<li>
+<code>specify()</code> a relationship between variables</li>
+<li>
+<code>hypothesize()</code> the null relationship (i.e., <em>declare</em> the null hypothesis)</li>
+<li>
+<code>generate()</code> data that holds if the null hypothesis is true (i.e, draws form the null distribution)</li>
+<li>
+<code>calculate()</code>the distribution of statistics from null distributions data</li>
+</ul>
+<p>Additionally the package provides tools for visualizing the relationship between the null distributions and your observed data. The workflow is illustrated below:</p>
+<div class="float">
+<img src="https://raw.githubusercontent.com/tidymodels/infer/main/figs/ht-diagram.png" width="500" alt="The infer package’s hypothesis testing workflow."><div class="figcaption">The infer package’s hypothesis testing workflow.</div>
+</div>
+<div class="inline-table"><table style="width:99%;" class="table table-sm">
+<caption>Inferential methods based on observed variable types and numbers</caption>
+<colgroup>
+<col width="20%">
+<col width="40%">
+<col width="11%">
+<col width="25%">
+<col width="0%">
+</colgroup>
+<thead><tr class="header">
+<th>Data</th>
+<th>Null Hypothesis</th>
+<th>Test Type</th>
+<th><code>Code</code></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>
+<p>Sample mean</p>
+<p>1 continuous variable</p>
+</td>
+<td>hypothesized true mean</td>
+<td>1-sample <em>t</em>-test</td>
+<td><div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="va">hypothesized_value</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>
+<p>means of paired values</p>
+<p>1 continuous variable, measured twice</p>
+</td>
+<td>difference in pairs of 0</td>
+<td>paired <em>t-</em>test</td>
+<td><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span> <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"point"</span>, mu <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td colspan="5">means of two populations | difference in means is 0 | 2-sample <em>t</em>-test | <code>R                                                                 |                                                         |                                                                                                                 |                              | gss %&gt;%                                                               | 2 continuous variables                                   |                                                                                                                 |                              |   specify(hours ~ college) %&gt;%                                                         |                                                                                                                 |                              |   hypothesize(null = "independence") %&gt;%                              |                                                         |                                                                                                                 |                              |   generate(reps = 1000, type = "permute") %&gt;%                         |                                                         |                                                                                                                 |                              |   calculate(stat = "diff in means", order = c("degree", "no degree")) |                                                         |                                                                                                                 |                              |</code> |</td>
+</tr>
+<tr class="even">
+<td>
+<p>Differences in means across groups</p>
+<p>1 continuous variable grouped by a categorical variable</p>
+</td>
+<td>Means across populations are the same (i.e., categorical variable has no relationship with continuous variable)</td>
+<td>
+<p>Analysis of Variance (ANOVA)</p>
+<p>F-test</p>
+</td>
+<td><div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">specify</span><span class="op">(</span><span class="va">age</span> <span class="op">~</span> <span class="va">partyid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">generate</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">calculate</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"F"</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Association between two categorical variables</td>
+<td>No relationship between both categorical variables</td>
+<td>
+<span class="math inline">\(\chi^2\)</span> test</td>
+<td><div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">null_dist_sim</span> <span class="op">&lt;-</span> <span class="va">gss</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">specify</span><span class="op">(</span><span class="va">college</span> <span class="op">~</span> <span class="va">finrela</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">hypothesize</span><span class="op">(</span>null <span class="op">=</span> <span class="st">"independence"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">generate</span><span class="op">(</span>reps <span class="op">=</span> <span class="fl">1000</span>, type <span class="op">=</span> <span class="st">"permute"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">calculate</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"Chisq"</span><span class="op">)</span></span></code></pre></div></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div id="modeling-and-predictive-statistics" class="section level2" number="8.4">
+<h2>
+<span class="header-section-number">8.4</span> Modeling and predictive statistics<a class="anchor" aria-label="anchor" href="#modeling-and-predictive-statistics"><i class="fas fa-link"></i></a>
+</h2>
+<p>A large chunk of our statistical work involves developing a model and making predictions about a new set of data. The methods we use range from the basic models, like a least-squares linear model, to non-parametric methods and machine learning, like random forests. The choice of model largely depends on the goal of the project.</p>
+<div id="linear-modeling" class="section level3" number="8.4.1">
+<h3>
+<span class="header-section-number">8.4.1</span> Linear modeling<a class="anchor" aria-label="anchor" href="#linear-modeling"><i class="fas fa-link"></i></a>
+</h3>
+<p>To measure an association between two or more variables, we usually start with a simple linear regression, which essentially models a mean (quantitative) response value as a function of other explanatory variables. The mathematical model looks like this:</p>
+<p><span class="math inline">\(\mu_i = \beta_0 + \beta_1 x_{1i} + \cdots \beta_n x_{ni} + \epsilon_i\)</span></p>
+<p>Suppose we want to model the number of questions a student gets correct on their STAAR exam as a function of their semester exam questions correct and their course grade.</p>
+<p><span class="math inline">\(\textrm{STAARCorrect}_i = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
+<p>To estimate these coefficients and evaluate the fit, we can use the following workflow:</p>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># df_staar_scores has columns StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade, SchoolName, Approaches, Meets, Masters</span></span>
+<span><span class="co"># all columns are numeric except SchoolName; StudentNumber, STAARQuestionsCorrect, SemesterExamQuestionsCorrect, CourseGrade are integers; Approaches, Meets, Masters are 0 or 1</span></span>
+<span></span>
+<span><span class="co"># run the regression (a linear model)</span></span>
+<span><span class="co"># lm(formula = response ~ explanatory_1 + explanatory_2 + ..., </span></span>
+<span><span class="co">#    data = data.frame)</span></span>
+<span><span class="va">lm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STAARQuestionsCorrect</span> <span class="op">~</span> <span class="va">SemesterExamQuestionsCorrect</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
+<span>               data <span class="op">=</span> <span class="va">df_staar_scores</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view the coefficients, std errors, model error, t-statistics, p-values, R^2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_staar</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view residual plots, Q-Q plots, leverage plot (Cook's D)</span></span>
+<span><span class="co"># par(mfrow = c(2, 2)) # use this if you want to view all 4 plots at once</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">lm_staar</span><span class="op">)</span></span></code></pre></div>
+<p>We can describe the coefficients as an <em>additional</em> unit effect on the number of STAAR questions correct. For example, if the coefficient on <code>SemesterExamQuestionsCorrect</code> is 1.34, then we would say that as a student gets an additional correct answer on the semester exam, then on average, the predicted increase in STAAR questions correct is about 1.34.</p>
+<p>If the model has been identified using a DAG, then we can interpret the coefficient of a direct path as the causal effect.</p>
+</div>
+<div id="generalized-linear-modeling" class="section level3" number="8.4.2">
+<h3>
+<span class="header-section-number">8.4.2</span> Generalized linear modeling<a class="anchor" aria-label="anchor" href="#generalized-linear-modeling"><i class="fas fa-link"></i></a>
+</h3>
+<p>When a transformed response is linear in the betas, then we use a generalized linear model (GLM). A common example of GLM is a logistic regression, where the response is binary, so we effectively predict the odds of an event happening relative to another event. The mathematical model looks like this:</p>
+<p><span class="math inline">\(g(\mu_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_n x_{ni} + \epsilon_i\)</span></p>
+<p>where</p>
+<ul>
+<li>
+<span class="math inline">\(g(\cdot)\)</span> is a link function to the mean</li>
+<li>
+<span class="math inline">\(\mu\)</span> is the mean response</li>
+</ul>
+<p>Note that there are many <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/family">link functions</a>, so the choice of link and mean response will affect the interpretation of the model. Different implementations in R will provide differing pieces of information, so it is best to look up the <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/glm">documentation.</a> However, base R provides the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function, which gives options to choose a link.</p>
+<p>Now suppose we are modeling the probability of a student passing the STAAR (probability approaches <span class="math inline">\(P(\textrm{App}_i)\)</span>) as a function of their semester exam questions correct and course grade.</p>
+<p><span class="math inline">\(\log{\frac{P(\textrm{App}_i)}{1 - P(\textrm{App}_i)}} = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># logistic regression to determine log odds of passing STAAR</span></span>
+<span><span class="va">glm_staar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">Approaches</span> <span class="op">~</span> <span class="va">SemesterExamQuestions</span> <span class="op">+</span> <span class="va">CourseGrade</span>,</span>
+<span>                 family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
+<span>                 data <span class="op">=</span> <span class="va">df_staar_scores</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view the coefficients, std errors, model error, z-scores, p-values, deviance</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">glm_staar</span><span class="op">)</span></span></code></pre></div>
+<p>Here, we used a logistic regression, which models the <em>log odds</em> (which can be converted into a probability), by defining the <code>binomial</code> family with a <code>logit</code> link. If the coefficient on <code>SemesterExamQuestions</code> is 0.04, then as a student gets an additional question correct on the semester exam, then on average, the predicted odds of passing increases by about <span class="math inline">\(e^{0.04}\)</span>, or a probability of <span class="math inline">\(\frac{e^{0.04}}{1 + e^{0.04}}\)</span>. (Use the <code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code> function for Euler’s constant, e.g. <span class="math inline">\(e^{0.04} =\)</span><code>exp(0.04)</code>).</p>
+<p>If the response is multinomial (multiple categories), then it is suggested to use a <strong>multinomial logistic regression</strong>. If the categories are ordered, which are common in assessment data, TCP ratings, Likert scales, etc., the model may benefit from using ordered responses in an <strong>ordinal logistic regression</strong>, which improves the power.</p>
+<p>For example, modeling an AP score (which only takes on ordered levels of 1 to 5) as a function of semester exam questions correct and the course grade could be:</p>
+<p><span class="math inline">\(g(\textrm{APScore}_i) = \beta_0 + \beta_1\times\textrm{SemesterExamCorrect}_i + \beta_2\times\textrm{CourseGrade}_i + \epsilon_i\)</span></p>
+<p>See <a href="https://cscu.cornell.edu/wp-content/uploads/91_ordlogistic.pdf">this reference</a> for implementations of ordinal logistic regression using various packages.</p>
+<div id="ordinal-logistic-regression-in-r" class="section level4" number="8.4.2.1">
+<h4>
+<span class="header-section-number">8.4.2.1</span> Ordinal logistic regression in R<a class="anchor" aria-label="anchor" href="#ordinal-logistic-regression-in-r"><i class="fas fa-link"></i></a>
+</h4>
+<p>As seen in the previous section, ordinal logistic regression is the appropriate regression model to use when the levels of a categorical response variable are ordered. With a sufficient sample size, training and testing data frames can be utilized. The training data frame is used to estimate the model while the testing data frame is used, as the name implies, to test it. Predictions are made with the testing data with a confusion matrix and misclassification error following. Below is sample R code to accomplish these steps.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulhendricks/titanic">titanic</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span> </span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># load data</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">titanic_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Pclass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Pclass</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># prepare training and testing data frames ----</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">21</span><span class="op">)</span> </span>
+<span><span class="va">df_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">df</span>, prop <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> </span>
+<span><span class="va">df_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">df_split</span><span class="op">)</span> </span>
+<span><span class="va">df_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">df_split</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># model ----</span></span>
+<span><span class="va">olr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MASS/man/polr.html">polr</a></span><span class="op">(</span><span class="va">Pclass</span> <span class="op">~</span> <span class="va">Fare</span>, </span>
+<span>            data <span class="op">=</span> <span class="va">df_train</span>,</span>
+<span>            Hess <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">olr</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># predict using testing data ----</span></span>
+<span><span class="va">predicted_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">olr</span>, <span class="va">df_test</span><span class="op">)</span>  <span class="co"># predict the classes</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">predicted_class</span><span class="op">)</span></span>
+<span><span class="va">predicted_probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">olr</span>, <span class="va">df_test</span>, type <span class="op">=</span> <span class="st">"probs"</span><span class="op">)</span>  <span class="co"># predict the probabilities</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">predicted_probs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># confusion matrix and misclassification error ----</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_test</span><span class="op">$</span><span class="va">Pclass</span>, <span class="va">predicted_class</span><span class="op">)</span>  <span class="co"># confusion matrix</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">df_test</span><span class="op">$</span><span class="va">Pclass</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">predicted_class</span><span class="op">)</span><span class="op">)</span>  <span class="co"># misclassification error</span></span></code></pre></div>
+</div>
+</div>
+<div id="generalized-additive-modeling" class="section level3" number="8.4.3">
+<h3>
+<span class="header-section-number">8.4.3</span> Generalized additive modeling<a class="anchor" aria-label="anchor" href="#generalized-additive-modeling"><i class="fas fa-link"></i></a>
+</h3>
+<p>If the relationship between the explanatory and response variables cannot be specified by simple functions (linear, log, etc.), then a generalized additive model (GAM) can be used to fit a nonlinear relationship. This model uses <em>splines</em>, which are more flexible and somewhat less restrictive than fitting polynomials.</p>
+<p>Suppose you notice a sharp increase in enrollment at the beginning of the year, and then a gradual decrease over the remainder of the year. A parabola assumes the same rate of increase and decrease, so a polynomial would not fit the data well. However, a spline will locally fit the curvature of the data and better describe the shape.</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span> <span class="co"># widely used for fitting different types of GAMs</span></span>
+<span></span>
+<span><span class="co"># model enrolled students using a GAM</span></span>
+<span><span class="co"># fit a linear relationship with years_open</span></span>
+<span><span class="co"># fit a spline with date</span></span>
+<span><span class="va">gam_enrollment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">enrolled</span> <span class="op">~</span> <span class="va">years_open</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>                      data <span class="op">=</span> <span class="va">df_enrollment</span><span class="op">)</span> <span class="co"># use s() to enclose variables with a nonlinear relationship</span></span>
+<span></span>
+<span><span class="co"># check fitted coefficient on years_open, degrees of freedom on s(date)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">gam_enrollment</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot fitted splines against response variable</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gam_enrollment</span><span class="op">)</span></span></code></pre></div>
+<p>Note that splines only fit relationships within the domain of the data. In other words, do not extrapolate 2021-22 enrollment splines to 2022-23, unless you believe the relationship will hold again. Splines also may overfit data if the relationship is unclear, so use caution before choosing to model nonlinear relationships with a spline.</p>
+<p>More resources for learning about GAMs are listed below:</p>
+<ol style="list-style-type: decimal">
+<li>Wood, S. N. (2017). <em>Generalized Additive Models: An Introduction with R</em> (2nd ed.). Chapman and Hall/CRC. (Comprehensive introduction by author of <code>mgcv</code> package)</li>
+<li>
+<a href="https://noamross.github.io/gams-in-r-course/">GAMs in R</a> (Short course by Noam Ross)</li>
+<li>
+<a href="https://m-clark.github.io/generalized-additive-models/">Generalized Additive Models</a> (Short book by Michael Clark)</li>
+</ol>
+</div>
+<div id="machine-learning" class="section level3" number="8.4.4">
+<h3>
+<span class="header-section-number">8.4.4</span> Machine learning<a class="anchor" aria-label="anchor" href="#machine-learning"><i class="fas fa-link"></i></a>
+</h3>
+<p>If the goal moves beyond inference (describing and estimating relationships) towards prediction (getting as accurate of a response as possible), then we can use machine (statistical) learning methods to model the data. These tools are particularly useful when we are modeling nonlinear trends and cannot assume a functional form.</p>
+<p>Note that communicating results from these models may be beyond a general audience’s reach, so caution should be taken when describing a marginal effect of a variable.</p>
+<p>The <a href="https://www.statlearning.com/">ISLR website</a> and <a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html">tidymodels implementation</a> should be consulted for more details about these models.</p>
+<div id="supervised-learning" class="section level4" number="8.4.4.1">
+<h4>
+<span class="header-section-number">8.4.4.1</span> Supervised Learning<a class="anchor" aria-label="anchor" href="#supervised-learning"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+<div id="unsupervised-learning" class="section level4" number="8.4.4.2">
+<h4>
+<span class="header-section-number">8.4.4.2</span> Unsupervised Learning<a class="anchor" aria-label="anchor" href="#unsupervised-learning"><i class="fas fa-link"></i></a>
+</h4>
+<p>Unsupervised learning is a type of machine learning algorithms that used a different type of input data from supervised learning. Namely, unsupervised learning uses unlabeled data (whereas, supervised learning uses labeled data to train the models on before inputting test data) and infer its own rules based on looking for patterns, grouping, and anomalies, without explicit guidance or instruction.
+Why would a statistician prefer to use an unsupervised learning model? First, there is a huge amount of unlabeled data. Unlabeled data is everywhere and very abundant and easy to access. Second, putting labels on the data takes hours, weeks or even months, and can be extremely tedious. It also often requires human labor to put the labels on the data. Next, it can be very helpful and useful to explore raw data and unknown data, looking for patterns, associations, or groupings. It is also helpful for conducting pattern recognition when a statistician has very large data sets.</p>
+<div id="clustering" class="section level5" number="8.4.4.2.1">
+<h5>
+<span class="header-section-number">8.4.4.2.1</span> Clustering<a class="anchor" aria-label="anchor" href="#clustering"><i class="fas fa-link"></i></a>
+</h5>
+<p>This is a technique used on unlabeled data, to explore and break the data down into groups (e.g., “clusters used”). These groups are based on similarities or differences.
+A common type of clustering is K-means. In this method, the data points are assigned into K groups, where K is the number of clusters based on the distance from each group’s centroid.</p>
+</div>
+<div id="association-rules" class="section level5" number="8.4.4.2.2">
+<h5>
+<span class="header-section-number">8.4.4.2.2</span> Association Rules<a class="anchor" aria-label="anchor" href="#association-rules"><i class="fas fa-link"></i></a>
+</h5>
+<p>It is a rule-based approach to discover correlations, co-occurrences, and relationships within the data, usually in very large data sets; again, it uses unlabeled data.</p>
+</div>
+<div id="dimensionality-reduction" class="section level5" number="8.4.4.2.3">
+<h5>
+<span class="header-section-number">8.4.4.2.3</span> Dimensionality Reduction<a class="anchor" aria-label="anchor" href="#dimensionality-reduction"><i class="fas fa-link"></i></a>
+</h5>
+<p>A method to reduce the number of dimensions (i.e., such as the number of variables one might used in a regression model) and exclude extraneous, random, or irrelevant factors in the data.</p>
+</div>
+<div id="examples" class="section level5" number="8.4.4.2.4">
+<h5>
+<span class="header-section-number">8.4.4.2.4</span> Examples:<a class="anchor" aria-label="anchor" href="#examples"><i class="fas fa-link"></i></a>
+</h5>
+<p>Anomaly detection by identifying data points that are atypical for that type of dataset
+One type of anomaly detection is looking for behaviors in the data that deviate from normal patterns in the data, which could expose fraudulent transactions</p>
+</div>
+<div id="references" class="section level5" number="8.4.4.2.5">
+<h5>
+<span class="header-section-number">8.4.4.2.5</span> References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+</h5>
+<p><a href="https://cloud.google.com/discover/what-is-unsupervised-learning#section-5" class="uri">https://cloud.google.com/discover/what-is-unsupervised-learning#section-5</a>
+<a href="https://learn.g2.com/unsupervised-learning" class="uri">https://learn.g2.com/unsupervised-learning</a></p>
+<div class="inline-figure">Graphical Example of Clustering
++ <img src="img/Clustering.png" width="500" alt="This image shows an example of clustering.">
+</div>
+</div>
+</div>
+</div>
+<div id="natural-language-processing-sentiment-analysis" class="section level3" number="8.4.5">
+<h3>
+<span class="header-section-number">8.4.5</span> Natural Language Processing (Sentiment Analysis)<a class="anchor" aria-label="anchor" href="#natural-language-processing-sentiment-analysis"><i class="fas fa-link"></i></a>
+</h3>
+<p>Natural Language Processing (NLP) is a process to analyze, understand and interpret linguistics, in such it involves using machine learning algorithms and linguistic techniques to analyze and classify subjective information. NLP can be broken down into five parts: lexical analysis (structure), parse (tokenization), semantic analysis (meaning), discourse integration (contextualization), and pragmatic analysis (intent).</p>
+<p>Within NLP, our team specifically utilizes Sentiment Analysis. Sentiment analysis in NLP is the process of determining the sentiment or emotion expressed in a piece of text, such as positive, negative, or neutral. The libararies we use are tidytext and sentimentr with tidyverse. Here is an example:</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://juliasilge.github.io/tidytext/">tidytext</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ps_tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>statment <span class="op">=</span> <span class="st">"The R&amp;A manual is awesome and I love to working with it"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">unnest_tokens</span><span class="op">(</span><span class="va">word</span>, <span class="va">statment</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># we can get overall positive vs. negative with the Bing lexicon **</span></span>
+<span><span class="va">ps_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="fu">get_sentiments</span><span class="op">(</span><span class="st">"bing"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div id="qualitative-methods" class="section level2" number="8.5">
+<h2>
+<span class="header-section-number">8.5</span> Qualitative Methods<a class="anchor" aria-label="anchor" href="#qualitative-methods"><i class="fas fa-link"></i></a>
+</h2>
+<div id="qualitative-research" class="section level3" number="8.5.1">
+<h3>
+<span class="header-section-number">8.5.1</span> Qualitative Research<a class="anchor" aria-label="anchor" href="#qualitative-research"><i class="fas fa-link"></i></a>
+</h3>
+<p>Qualitative Research provides IDEA Public Schools rich, contextual information through various data collection and analysis techniques that are aimed to understand the meaning of the information collected. While qualitative research can be used for both exploratory and confirmatory research, it is most useful when context is important, a rich description is needed, and when participant interpretation and meaning of experiences need to be considered.</p>
+<p>The R&amp;A team specializes in the construction of qualitative methods and approaches, data collection, and data analysis of several qualitative methods.</p>
+<p>Common methods used to collect data include:</p>
+<ul>
+<li>Individual Interviews</li>
+<li>Focus Groups</li>
+<li>Review of archival documents.</li>
+</ul>
+<p>Common methods used to analyze data include:</p>
+<ul>
+<li>Thematic analysis</li>
+<li>Triangulation</li>
+<li>Linguistic analysis
+– Emotions (including Natural Language Processing).</li>
+</ul>
+</div>
+<div id="qualitative-tools" class="section level3" number="8.5.2">
+<h3>
+<span class="header-section-number">8.5.2</span> Qualitative Tools<a class="anchor" aria-label="anchor" href="#qualitative-tools"><i class="fas fa-link"></i></a>
+</h3>
+<div id="maxqda" class="section level4" number="8.5.2.1">
+<h4>
+<span class="header-section-number">8.5.2.1</span> MaxQDA<a class="anchor" aria-label="anchor" href="#maxqda"><i class="fas fa-link"></i></a>
+</h4>
+<p>The R&amp;A team engages in qualitative analyses using several approaches (i.e., Natural Language Processing, thematic analysis) and tools. Qualitative analysis provides rich contextual information to research projects at IDEA Public Schools.</p>
+<p>One tool used for thematic analyses is <a href="www.maxqda.com">MaxQDA</a>, which is a software program that is used to assist in analysis of qualitative and mixed-methods data.</p>
+<p>Data that can be imported are:</p>
+<ul>
+<li>Survey data,</li>
+<li>Interview and focus group data, and</li>
+<li>Media (texts, images, audio, and video) files.</li>
+</ul>
+<p>MaxQDA is mainly used by the R&amp;A Evaluation team. Qualitative analyses that have used MaxQDA include:</p>
+<ul>
+<li>GPTW Annual OER Survey Analysis</li>
+<li>CNP May Survey Analysis</li>
+<li>EVP Analysis (Interviews, Focus Groups, Staff Survey)</li>
+<li>GPTW Pulse Check OER Survey Analysis</li>
+<li>Core Values 2x2 Analysis</li>
+</ul>
+<div id="importing-files" class="section level5" number="8.5.2.1.1">
+<h5>
+<span class="header-section-number">8.5.2.1.1</span> Importing Files<a class="anchor" aria-label="anchor" href="#importing-files"><i class="fas fa-link"></i></a>
+</h5>
+<p>There are various types of text file formats that can be used in MaxQDA for analysis, such as Word, PDF, and Excel documents. The following section provides a walk through for creating a new project and importing Excel documents into MaxQDA.</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>Create folders to store original data, MaxQDA analysis, description visualizations, and project deliverables.</p>
+<ul>
+<li><p><strong>Tip: Be sure to prep and save your raw data in this folder prior to opening MaxQDA.</strong></p></li>
+<li><div class="float">
+<img src="img/maxqda_folder_organization.png" width="500" alt="This image shows the folder structure for a MaxQDA project."><div class="figcaption">This image shows the folder structure for a MaxQDA project.</div>
+</div></li>
+</ul>
+</li>
+<li><p>Open MaxQDA software and select ‘New’ project. Create a file name for the project and save in the analysis folder created in step 1 (e.g., ‘OER Analysis’).</p></li>
+<li><p>Under the ‘Import’ tab, click on the ‘Texts, PDFs, Tables’ icon.</p></li>
+<li>
+<p>Select the data file that will be used for analysis.</p>
+<ul>
+<li><p>Identify columns for ‘Document Group’ and ‘Document name.’ Document group may describe certain characteristics of groups (i.e., students, regions). Document name refers to the individual documents (i.e., participant #).</p></li>
+<li><p>Select columns that you want to be imported as ‘Code’ and/or ‘Variable’. Code reflects text data for OER analysis. Variable reflects data (i.e., Likert responses, demographics) that will not be coded for via OER analysis.</p></li>
+<li><div class="float">
+<img src="img/maxqda_excel_import.png" width="500" alt="This image shows the import process for a new MaxQDA project."><div class="figcaption">This image shows the import process for a new MaxQDA project.</div>
+</div></li>
+<li><p>Click ‘Ok’, review the data field, and then Click ‘Import’.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div id="randomly-selecting-files" class="section level5" number="8.5.2.1.2">
+<h5>
+<span class="header-section-number">8.5.2.1.2</span> Randomly Selecting Files<a class="anchor" aria-label="anchor" href="#randomly-selecting-files"><i class="fas fa-link"></i></a>
+</h5>
+<p>Depending on the purposes of your analysis and the total number of responses, you may want to randomly select responses for analysis.</p>
+<p>After importing files into the Document System of MaxQDA, responses can be randomly selected using the following steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Select the document group of interest.</p></li>
+<li><p>Right click the highlighted document group.</p></li>
+<li><p>Under the ‘Activation’ section, select the ‘More…’ option.</p></li>
+<li><p>Select ‘Activate Documents by Random’.</p></li>
+<li><p>A small window will then pop-up. Enter the desired n, and click ‘Ok’.</p></li>
+</ol>
+<p>The randomly selected documents will appear in the Code System section of MaxQDA. You may need to alter the display frequency to display only the ‘Coded segments in all activated documents’.</p>
+<p>Note: This does not save the randomly selected documents. We suggest applying a code to all of the randomly selected documents (i.e., “random_sample”).</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></div>
+<div class="next"><a href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#models-and-methods"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li>
+<a class="nav-link" href="#research-design"><span class="header-section-number">8.1</span> Research design</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#causal-inference"><span class="header-section-number">8.1.1</span> Causal inference</a></li>
+<li><a class="nav-link" href="#experimental-design"><span class="header-section-number">8.1.2</span> Experimental design</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#descriptive-statistics"><span class="header-section-number">8.2</span> Descriptive statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#numerical-summaries---broad-principles"><span class="header-section-number">8.2.1</span> Numerical summaries - broad principles</a></li>
+<li><a class="nav-link" href="#graphical-summaries---broad-principles"><span class="header-section-number">8.2.2</span> Graphical summaries - broad principles</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#inferential-statistics"><span class="header-section-number">8.3</span> Inferential statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#interval-estimates"><span class="header-section-number">8.3.1</span> Interval estimates</a></li>
+<li><a class="nav-link" href="#p-values-and-hypothesis-testing"><span class="header-section-number">8.3.2</span> p-values and hypothesis testing</a></li>
+<li><a class="nav-link" href="#inferential-methods-with-the-infer-package"><span class="header-section-number">8.3.3</span> Inferential methods with the {infer} package</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#modeling-and-predictive-statistics"><span class="header-section-number">8.4</span> Modeling and predictive statistics</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#linear-modeling"><span class="header-section-number">8.4.1</span> Linear modeling</a></li>
+<li><a class="nav-link" href="#generalized-linear-modeling"><span class="header-section-number">8.4.2</span> Generalized linear modeling</a></li>
+<li><a class="nav-link" href="#generalized-additive-modeling"><span class="header-section-number">8.4.3</span> Generalized additive modeling</a></li>
+<li><a class="nav-link" href="#machine-learning"><span class="header-section-number">8.4.4</span> Machine learning</a></li>
+<li><a class="nav-link" href="#natural-language-processing-sentiment-analysis"><span class="header-section-number">8.4.5</span> Natural Language Processing (Sentiment Analysis)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#qualitative-methods"><span class="header-section-number">8.5</span> Qualitative Methods</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#qualitative-research"><span class="header-section-number">8.5.1</span> Qualitative Research</a></li>
+<li><a class="nav-link" href="#qualitative-tools"><span class="header-section-number">8.5.2</span> Qualitative Tools</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/08-Models-and-Methods.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/08-Models-and-Methods.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
