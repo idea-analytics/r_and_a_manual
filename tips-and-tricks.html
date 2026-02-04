@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="This section of the R&amp;A Manual is for sharing various tricks that will make your life easier. Rules of thumb, explanations of how things work, and useful design patterns are all fair game.  14.1...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -103,7 +103,7 @@
 <p>Schools data, especially student-level data, is embedded in hierarchical groupings.</p>
 <p>Let’s look at the <a href="https://www.zillow.com/research/data/">Zillow Home Value Index</a> for all homes (i.e, single family homes, condos, and coops), which is a smoothed, seasonally adjusted measure of the typical home value and market changes across a given region. It reflects the typical value for homes in the 35th to 65th percentile range at the neighborhood level. These home values are available for every month from January 2000 to May 2022.</p>
 <p>It’s a very large dataset so we’ll use the <a href="https://arrow.apache.org/docs/r/">Apache Arrow Project</a>’s feather file format to read the data into R and subset the housing costs to IDEA metro areas since 2020.</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'arrow'</span></span>
@@ -372,7 +372,7 @@
 </table></div>
 <p>These data are nested: we have 22 years of home prices within neighborhoods, cities, counties, metro areas, and states. Often we’d like to do aggregations over these various levels. That is, we’d like to know the mean home price for each neighborhood, city, and county. A typical work flow to achieve this is to write a <a href="https://dplyr.tidyverse.org">dplyr</a> pipeline for one <code>group_by</code> combination and then copy-and-paste that pipeline and change the columns in the <code>group_by</code> call. While this works in a pinch, its repetitive (violating <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">the DRY doctrine</a>), prone to copying errors and leaves with a bunch of dataframe that have increasingly awkward names.</p>
 <p>A more elegant solution is to leverage <a href="https://purrr.tidyverse.org/">purrr</a>’s <code>map_df</code> function and to pass it a list of already grouped data frames. Here’s a simple example:</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -386,8 +386,13 @@
 <span>      <span class="co"># across allows us to apply a function to every column satisfying a condition</span></span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
-<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; ℹ Summaries were computed grouped by county_name and state.</span></span>
+<span><span class="co">#&gt; ℹ Output is grouped by county_name.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.groups = "drop_last")` to silence this</span></span>
+<span><span class="co">#&gt;   message.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.by = c(county_name, state))` for</span></span>
+<span><span class="co">#&gt;   per-operation grouping (`?dplyr::dplyr_by`) instead.</span></span>
 <span>  </span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">zillow_idea_county_state</span><span class="op">)</span></span></code></pre></div>
@@ -1005,7 +1010,7 @@
 </tbody>
 </table></div>
 <p>We now have a data frame with county-level <em>and</em> state-level means in one data frame. Notice however that the <code>county_name</code> field is <code>NA</code> for state level data:</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -1140,7 +1145,7 @@
 </tbody>
 </table></div>
 <p>This makes sense, since <code>map_df</code> uses <code>bind_rows</code> to concatenate the aggregated tables together and will fill columns that are missing in a data frame with NA values. With a simple example like this we could add an extra step at the end of our pipeline to provide more information:</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zillow_idea_county_state</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># create a list of grouped data.frames</span></span>
 <span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
@@ -1153,8 +1158,13 @@
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html">replace_na</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>county_name <span class="op">=</span> <span class="st">"State Avg"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
-<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; ℹ Summaries were computed grouped by county_name and state.</span></span>
+<span><span class="co">#&gt; ℹ Output is grouped by county_name.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.groups = "drop_last")` to silence this</span></span>
+<span><span class="co">#&gt;   message.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.by = c(county_name, state))` for</span></span>
+<span><span class="co">#&gt;   per-operation grouping (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">zillow_idea_county_state</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">county_name</span><span class="op">)</span><span class="op">)</span></span>
@@ -1302,7 +1312,7 @@
 </tbody>
 </table></div>
 <p>Why have all of this in one data frame? Because it can now be easily graphed:</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></span>
 <span></span>
@@ -1339,13 +1349,13 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Typical home values"</span>, </span>
 <span>       x <span class="op">=</span> <span class="st">"Month"</span>,</span>
 <span>       color <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
-<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/zillow_graph-1.png" width="672"></div>
+<div class="inline-figure"><img src="r-and-a-manual_files/figure-html/zillow_graph-1.png" alt="" width="672"></div>
 <div id="saving-grouping-info" class="section level4" number="14.1.2.1">
 <h4>
 <span class="header-section-number">14.1.2.1</span> Saving grouping info<a class="anchor" aria-label="anchor" href="#saving-grouping-info"><i class="fas fa-link"></i></a>
 </h4>
 <p>Another trick is to save the <code>group_by</code> info that you are passing with the grouped data.frame into a column. Here’s an example:</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">zillow_idea_neighborhood</span> <span class="op">&lt;-</span> <span class="va">zillow_idea</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># create a list of grouped data.frames</span></span>
@@ -1361,14 +1371,18 @@
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"x20"</span><span class="op">)</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_data.html">group_vars</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'region_name', 'city',</span></span>
-<span><span class="co">#&gt; 'metro', 'county_name'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'city', 'metro',</span></span>
-<span><span class="co">#&gt; 'county_name'. You can override using the `.groups`</span></span>
-<span><span class="co">#&gt; argument.</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'county_name'. You can</span></span>
-<span><span class="co">#&gt; override using the `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; ℹ Summaries were computed grouped by region_name, city,</span></span>
+<span><span class="co">#&gt;   metro, county_name, and state.</span></span>
+<span><span class="co">#&gt; ℹ Output is grouped by region_name, city, metro, and</span></span>
+<span><span class="co">#&gt;   county_name.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.groups = "drop_last")` to silence this</span></span>
+<span><span class="co">#&gt;   message.</span></span>
+<span><span class="co">#&gt; ℹ Use `summarise(.by = c(region_name, city, metro,</span></span>
+<span><span class="co">#&gt;   county_name, state))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span></span>
 <span></span>
@@ -2513,7 +2527,7 @@
 <span class="header-section-number">14.1.3</span> Duplicating rows<a class="anchor" aria-label="anchor" href="#duplicating-rows"><i class="fas fa-link"></i></a>
 </h3>
 <p>Suppose you have aggregated data like the table below, but instead, you need the duplicated rows to create a visualization for each instance of the region. For example, we might need 3 duplicate rows for East Baton Rouge, 9 duplicate rows for Austin, and so on.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span> <span class="va">state</span>, <span class="op">~</span> <span class="va">region</span>, <span class="op">~</span> <span class="va">n_campuses</span>,</span>
 <span>  <span class="st">"FL"</span>, <span class="st">"Jacksonville"</span>, <span class="fl">2</span>,</span>
@@ -2595,7 +2609,7 @@
 </tbody>
 </table></div>
 <p>To do so, we could simply use <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> to duplicate the rows. The first 10 rows are printed as an example:</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grouped_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/uncount.html">uncount</a></span><span class="op">(</span><span class="va">n_campuses</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2709,7 +2723,7 @@ restart R session (CTRL + Shift + F10): to clear objects and libraries
 </h2>
 <p>Assume a request came in to provide a list of all Core Value Award nominations and return it as an Excel workbook. The requestor has also asked that each entity be presented in a separate worksheet. To save the manual process of separating the entities into different worksheets within Excel, R can be utilized. This will streamline the workflow and make it reproducible in the event that this request is made again in the future. Note that there are a number of ways to accomplish this task in R though only one will be demonstrated here.</p>
 <p>To begin, install (if necessary) and load {tidyverse} and {openxlsx} and create a sample data frame:</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load packages ----</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ycphs.github.io/openxlsx/index.html">openxlsx</a></span><span class="op">)</span></span>
@@ -2738,7 +2752,7 @@ that worksheet. In this case, the first worksheet is named “Texas” and
 includes the entire <code>core_value_award_nominations</code> data frame for only
 those who are part of the Texas entity. This is followed by the IPS
 worksheet which includes nominations for IPS.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create Excel workbook ----</span></span>
 <span><span class="fu">write.xlsx</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Texas"</span> <span class="op">=</span> <span class="va">core_value_award_nominations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">entity</span> <span class="op">==</span> <span class="st">'TX'</span><span class="op">)</span>,</span>
@@ -2757,19 +2771,19 @@ worksheet for each region), a loop could be employed.</p>
 </h2>
 <p><code>.Renviron</code> is a file that can be used to create environment variables in R. One large benefit is that credentials such as API keys no longer need to be included in R scripts.</p>
 <p>To open and make changes to your <code>.Renviron</code> file, run the following code:</p>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usethis.r-lib.org">usethis</a></span><span class="op">)</span></span>
 <span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Once this file is open, changes can be made. To access IDEA data, the following should be included:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="tips-and-tricks.html#cb128-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
-<span id="cb128-2"><a href="tips-and-tricks.html#cb128-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
-<span id="cb128-3"><a href="tips-and-tricks.html#cb128-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="tips-and-tricks.html#cb129-1" tabindex="-1"></a>IDEA_RNA_DB_UID <span class="ot">=</span> ‘firstname.lastname’</span>
+<span id="cb129-2"><a href="tips-and-tricks.html#cb129-2" tabindex="-1"></a>IDEA_RNA_DB_PWD <span class="ot">=</span> ‘password’ (your IDEA password)</span>
+<span id="cb129-3"><a href="tips-and-tricks.html#cb129-3" tabindex="-1"></a>IDEA_RNA_ODC_DRIVER <span class="ot">=</span> ‘{ODBC Driver __ <span class="cf">for</span> SQL Server}’ (substitute blank with current number)</span></code></pre></div>
 <p>To access Posit Connect, the following should be included:</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CONNECT_API_KEY</span> <span class="op">=</span> <span class="st">'your key here'</span></span>
 <span><span class="va">CONNECT_SERVER</span> <span class="op">=</span> <span class="st">'https://analytics.ideapublicschools.org/'</span></span></code></pre></div>
 <p>As an additional example, there may be a need for a Mapbox API token. If so, include the following in the <code>.Renviron</code> file:</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">MAPBOX_API_TOKEN</span> <span class="op">=</span> <span class="st">'your key here'</span></span></code></pre></div>
 <p>Once that is included in the <code>.Renviron</code> file, the key can be called within an R script with ‘Sys.getenv(“MAPBOX_API_TOKEN”)’.</p>
 <p>If changes are made to the <code>.Renviron</code> file, don’t forget to restart R to have changes take effect.</p>
@@ -2826,7 +2840,7 @@ worksheet for each region), a loop could be employed.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2026-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

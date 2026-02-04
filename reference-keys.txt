@@ -41,6 +41,7 @@ schools-table
 regions-table
 school-launch-year
 school-scaling-status
+school-information-combined
 student-attendance
 common-queries-1
 other-uses
@@ -106,6 +107,7 @@ missing-tcp-placements
 leaver-rates
 exit-surveys-for-teacher-leavers
 tcp-levels-and-composite-score-correlations
+big-board-databases
 data-oddities-and-exceptions
 travis-campus
 joins

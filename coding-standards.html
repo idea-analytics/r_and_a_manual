@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="There is no naming convention that is “standard” in R and SQL but there are typically used practices. Coding practices are to help your future self and others understand and continue your work. ...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -87,7 +87,7 @@
 <h4>
 <span class="header-section-number">5.1.1.1</span> R<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># header ----                                                                  #</span></span>
 <span><span class="co">#                                                                              #</span></span>
 <span><span class="co"># Filename: 01_describe_what_your_script_does.R                                #</span></span>
@@ -105,18 +105,18 @@
 <h4>
 <span class="header-section-number">5.1.1.2</span> SQL<a class="anchor" aria-label="anchor" href="#sql"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb36"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb36-1"><a href="coding-standards.html#cb36-1" tabindex="-1"></a><span class="co">/******************************************************************************/</span></span>
-<span id="cb36-2"><a href="coding-standards.html#cb36-2" tabindex="-1"></a><span class="co">/* Filename: 01_describe_what_your_script_does.sql                            */</span></span>
-<span id="cb36-3"><a href="coding-standards.html#cb36-3" tabindex="-1"></a><span class="co">/* Path: data/01_describe_what_your_script_does.R                             */</span></span>
-<span id="cb36-4"><a href="coding-standards.html#cb36-4" tabindex="-1"></a><span class="co">/* Author: Your Name                                                          */</span></span>
-<span id="cb36-5"><a href="coding-standards.html#cb36-5" tabindex="-1"></a><span class="co">/* Date created: 2025-10-15                                                   */</span></span>
-<span id="cb36-6"><a href="coding-standards.html#cb36-6" tabindex="-1"></a><span class="co">/* Date modified: 2025-10-15                                                  */</span></span>
-<span id="cb36-7"><a href="coding-standards.html#cb36-7" tabindex="-1"></a><span class="co">/* Purpose: Describe why you would use this script.                           */</span></span>
-<span id="cb36-8"><a href="coding-standards.html#cb36-8" tabindex="-1"></a><span class="co">/* Inputs: Identify any files, dependencies, etc. this script requires.       */</span></span>
-<span id="cb36-9"><a href="coding-standards.html#cb36-9" tabindex="-1"></a><span class="co">/* Outputs: Identify any named outputs, files, etc. this script produces.     */</span></span>
-<span id="cb36-10"><a href="coding-standards.html#cb36-10" tabindex="-1"></a><span class="co">/* Notes: Add any additional notes, links, etc. for others to execute your    */</span></span>
-<span id="cb36-11"><a href="coding-standards.html#cb36-11" tabindex="-1"></a><span class="co">/*        code properly.                                                      */</span></span>
-<span id="cb36-12"><a href="coding-standards.html#cb36-12" tabindex="-1"></a><span class="co">/******************************************************************************/</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb37-1"><a href="coding-standards.html#cb37-1" tabindex="-1"></a><span class="co">/******************************************************************************/</span></span>
+<span id="cb37-2"><a href="coding-standards.html#cb37-2" tabindex="-1"></a><span class="co">/* Filename: 01_describe_what_your_script_does.sql                            */</span></span>
+<span id="cb37-3"><a href="coding-standards.html#cb37-3" tabindex="-1"></a><span class="co">/* Path: data/01_describe_what_your_script_does.R                             */</span></span>
+<span id="cb37-4"><a href="coding-standards.html#cb37-4" tabindex="-1"></a><span class="co">/* Author: Your Name                                                          */</span></span>
+<span id="cb37-5"><a href="coding-standards.html#cb37-5" tabindex="-1"></a><span class="co">/* Date created: 2025-10-15                                                   */</span></span>
+<span id="cb37-6"><a href="coding-standards.html#cb37-6" tabindex="-1"></a><span class="co">/* Date modified: 2025-10-15                                                  */</span></span>
+<span id="cb37-7"><a href="coding-standards.html#cb37-7" tabindex="-1"></a><span class="co">/* Purpose: Describe why you would use this script.                           */</span></span>
+<span id="cb37-8"><a href="coding-standards.html#cb37-8" tabindex="-1"></a><span class="co">/* Inputs: Identify any files, dependencies, etc. this script requires.       */</span></span>
+<span id="cb37-9"><a href="coding-standards.html#cb37-9" tabindex="-1"></a><span class="co">/* Outputs: Identify any named outputs, files, etc. this script produces.     */</span></span>
+<span id="cb37-10"><a href="coding-standards.html#cb37-10" tabindex="-1"></a><span class="co">/* Notes: Add any additional notes, links, etc. for others to execute your    */</span></span>
+<span id="cb37-11"><a href="coding-standards.html#cb37-11" tabindex="-1"></a><span class="co">/*        code properly.                                                      */</span></span>
+<span id="cb37-12"><a href="coding-standards.html#cb37-12" tabindex="-1"></a><span class="co">/******************************************************************************/</span></span></code></pre></div>
 </div>
 </div>
 <div id="naming-conventions-1" class="section level3" number="5.1.2">
@@ -244,7 +244,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2026-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Some of the team’s data analysis and evaluation work is done on an annual basis, such as annual performance reporting (APR) on grant-funded evaluations and analyzing academic performance on state...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.11/grViz.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -183,8 +183,8 @@
 <span class="header-section-number">7.1.3.2.1</span> Command line<a class="anchor" aria-label="anchor" href="#command-line"><i class="fas fa-link"></i></a>
 </h5>
 <p>Here I’m saving this to temporary space, by navigating to <code>~/tmp/~</code> and then cloning the data:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="project-applications.html#cb58-1" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/</span>
-<span id="cb58-2"><a href="project-applications.html#cb58-2" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="project-applications.html#cb59-1" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/</span>
+<span id="cb59-2"><a href="project-applications.html#cb59-2" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/idea-analytics/r_and_a_manual.git</span></code></pre></div>
 <p>This will pull down all the content of the repo: files, folders, all commits, all branches. Really the whole kit and kaboodle.</p>
 </div>
 <div id="rstudio" class="section level5" number="7.1.3.2.2">
@@ -220,10 +220,10 @@
 <span class="header-section-number">7.1.3.3.1</span> Command line<a class="anchor" aria-label="anchor" href="#command-line-1"><i class="fas fa-link"></i></a>
 </h5>
 <p>It’s pretty straightforward. You create the branch, by giving a short but meaningful name, and then check it out.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="project-applications.html#cb59-1" tabindex="-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
-<span id="cb59-2"><a href="project-applications.html#cb59-2" tabindex="-1"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="project-applications.html#cb60-1" tabindex="-1"></a><span class="fu">git</span> branch update-bio-cjh</span>
+<span id="cb60-2"><a href="project-applications.html#cb60-2" tabindex="-1"></a><span class="fu">git</span> checkout update-bio-cjh</span></code></pre></div>
 <p>Or you can do both of those moves in one line by using <code>git checkout</code> with the <code>-b</code> flag:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="project-applications.html#cb60-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="project-applications.html#cb61-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> update-bio-cjh</span></code></pre></div>
 </div>
 <div id="rstudio-1" class="section level5" number="7.1.3.3.2">
 <h5>
@@ -249,16 +249,16 @@
 <span class="header-section-number">7.1.3.5</span> Command line<a class="anchor" aria-label="anchor" href="#command-line-2"><i class="fas fa-link"></i></a>
 </h4>
 <p>After saving you’ll run the <code>git commit</code> command with the <code>-a</code> (adds all changes) and <code>-m</code> (add commit message) flag with a short description of what you did.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="project-applications.html#cb61-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="project-applications.html#cb62-1" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-a</span> <span class="at">-m</span> <span class="st">"Updated Chris's bio"</span></span></code></pre></div>
 <p>You should do this often. After awhile you’ll want to push your changes up to GitHub (frequently, but not as often as commits):</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="project-applications.html#cb62-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="project-applications.html#cb63-1" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
 <p>You’ve likely not yet defined where this remote branch should go, but Git will give you a helpful error which gives you the command for syncing your local branch with a new remote branch:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="project-applications.html#cb63-1" tabindex="-1"></a><span class="ex">fatal:</span> The current branch update-bio-cjh has no upstream branch.</span>
-<span id="cb63-2"><a href="project-applications.html#cb63-2" tabindex="-1"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
-<span id="cb63-3"><a href="project-applications.html#cb63-3" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="project-applications.html#cb63-4" tabindex="-1"></a>    <span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="project-applications.html#cb64-1" tabindex="-1"></a><span class="ex">fatal:</span> The current branch update-bio-cjh has no upstream branch.</span>
+<span id="cb64-2"><a href="project-applications.html#cb64-2" tabindex="-1"></a><span class="ex">To</span> push the current branch and set the remote as upstream, use</span>
+<span id="cb64-3"><a href="project-applications.html#cb64-3" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="project-applications.html#cb64-4" tabindex="-1"></a>    <span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
 <p>Go ahead and copy and run that command.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="project-applications.html#cb64-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="project-applications.html#cb65-1" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--set-upstream</span> origin update-bio-cjh</span></code></pre></div>
 <p>After that you can just use <code>git push</code> and your branch changes will be saved remotely.</p>
 </div>
 <div id="maintaining-large-files" class="section level4" number="7.1.3.6">
@@ -280,15 +280,15 @@
 <li>Switch to the repo and branch that has the large file.</li>
 <li>Install the LFS extension in the correct repo and branch using</li>
 </ol>
-<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="project-applications.html#cb65-1" tabindex="-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="project-applications.html#cb66-1" tabindex="-1"></a><span class="fu">git</span> lfs install</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Track the file extension (in our scenario, .pbix), using</li>
 </ol>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="project-applications.html#cb66-1" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="project-applications.html#cb67-1" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">"*.pbix"</span></span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Track .gitattributes</li>
 </ol>
-<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="project-applications.html#cb67-1" tabindex="-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="project-applications.html#cb68-1" tabindex="-1"></a><span class="fu">git</span> add .gitattributes</span></code></pre></div>
 <p>N.B. Do not complete steps 3, 4, and 5 until after you have switched to the correct repo and branch. 6. Commit the file and push normally.</p>
 <p>When you commit, you will see a message indicating the LFS extension was used on that file.</p>
 </div>
@@ -537,7 +537,7 @@
 <span class="header-section-number">7.3.1</span> Installing ProjectTemplate<a class="anchor" aria-label="anchor" href="#installing-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Installing the package is straightforward</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ProjectTemplate"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="creating-a-project-with-projecttemplate" class="section level3" number="7.3.2">
@@ -545,7 +545,7 @@
 <span class="header-section-number">7.3.2</span> Creating a project with ProjectTemplate<a class="anchor" aria-label="anchor" href="#creating-a-project-with-projecttemplate"><i class="fas fa-link"></i></a>
 </h3>
 <p>Creating a project is pretty simple. Navigate to where you typically save projects via RStudio and then run the following commands:</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span></span>
 <span><span class="fu">create.project</span><span class="op">(</span><span class="st">"learning-pt"</span><span class="op">)</span></span></code></pre></div>
 <p>Doing that bestows upon you the following directory structure:</p>
@@ -692,11 +692,11 @@
 <div class="inline-figure"><img src="img/github-repo-1_create-folder-for-repo.png" width="500"></div>
 <p>2. Open R</p>
 <p>3. R: Set the working directory to use the folder that was just created</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"[insert your path]"</span><span class="op">)</span></span></code></pre></div>
 <p>4. R: Set up the ProjectTemplate directory structure inside a folder titled “new_project”</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ProjectTemplate"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://projecttemplate.net">ProjectTemplate</a></span><span class="op">)</span></span>
@@ -728,7 +728,7 @@
 <p><em>Step 5: Publish repository &gt; check “Keep this code private” &gt; select Organization as “idea-analytics”</em></p>
 <div class="inline-figure"><img src="img/github-repo-11_publish-repo.png" width="459"></div>
 <p>8. R: install ideadata and ideacolors packages</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/renv/">renv</a></span><span class="op">)</span></span>
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"idea-analytics/ideadata@main"</span><span class="op">)</span></span>
@@ -739,13 +739,13 @@
 <p><em>If you get this error,</em></p>
 <div class="inline-figure"><img src="img/github-repo-12_error.png" width="353"></div>
 <p><em>use this code instead</em></p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"idea-analytics/ideacolors"</span>, auth_token <span class="op">=</span> <span class="st">"my_personal_access_token"</span><span class="op">)</span></span></code></pre></div>
 <p>10. R: open config &gt; global.dcf and change load_libraries to TRUE + add ideadata and ideacolors to library list + add any other libraries needed + change any other configuration settings as needed</p>
 <div class="inline-figure"><img src="img/github-repo-13_global.png" width="429"></div>
 <p>11. R: save the state of the project library (and do this each time you want to save the state of the project)</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">renv</span><span class="fu">::</span><span class="fu">snapshot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -873,7 +873,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2025-12-17.</p>
+    <p>"<strong>IDEA R&amp;A Manual</strong>" was written by Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner. It was last built on 2026-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
