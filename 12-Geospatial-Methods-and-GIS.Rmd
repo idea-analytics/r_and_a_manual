@@ -782,4 +782,3 @@ weights <- eigen(AHP_matrix, symmetric = F)$vectors[,1] / sum(eigen(AHP_matrix, 
 ```
 
 The results show that the *Distance to Schools* is the highest weighted criteria followed by *Slope* and *Distance to Population Centers*. Now that the criteria weights are computed, they can be used in the WLC method or, as an example, in conjunction with OWA.
-

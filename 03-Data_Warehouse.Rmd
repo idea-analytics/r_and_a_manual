@@ -390,4 +390,3 @@ The `ideadata` package has a function that will open up a sortable, filterable, 
 ::: {.tip}
 Another important aspect of the warehouse is that the sources system for most student data is our SIS: PowerSchool.  The [PowerSchool Tables Data Dictionary](http://www.albertapsug.ca/uploads/1/5/1/2/15120130/ps10x_data_dictionary_tbl.pdf) is a helpful resource in understanding fields and relationships between tables. 
 :::
-

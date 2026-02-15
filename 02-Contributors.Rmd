@@ -100,4 +100,3 @@ Note that clicking on the hyperlinked pull request number will take you to the d
 ```{r, out.width="110%", echo=FALSE, fig.align='left'}
 knitr::include_app("https://analytics.ideapublicschools.org/r-and-a-manual-update-tracker/")
 ```
-

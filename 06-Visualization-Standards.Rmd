@@ -12,7 +12,7 @@ The `ideacolors` package is used in conjunction with `ggplot2` to produce graphs
 
 To install the package, use the following code:
 
-```{r ideacolors-6, echo=TRUE, eval=FALSE}
+```{r ideacolors, echo=TRUE, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("idea-analytics/ideacolors")
 ```
@@ -21,7 +21,7 @@ devtools::install_github("idea-analytics/ideacolors")
 
 Consider the following chart using the `mtcars` data set, where we create a scatter plot of engine displacement by fuel efficiency measured in miles per gallon where we've set the color aesthetic (or channel) to the number of cylinders a car's engine has:
 
-```{r get_plot-6}
+```{r get_plot}
 p <- ggplot(mtcars, 
             aes(x = disp, 
                 y = mpg)) +
@@ -32,7 +32,7 @@ p
 
 You can quickly apply IDEA brand compliant colors by using the `scale_color_idea()` function:
 
-```{r apply_scale_color_idea-6}
+```{r apply_scale_color_idea}
 library(ideacolors)
 
 p +
@@ -41,14 +41,14 @@ p +
 
 **Super easy!** We can also easily change the palette and even reverse it:
 
-```{r reverse_palette-6}
+```{r reverse_palette}
 p +
   scale_color_idea(palette = "blueorange", reverse = TRUE)
 ```
 
 Available palettes are given in the `idea_palettes` variable and can be seen here:
 
-```{r swatchplot-6}
+```{r swatchplot}
 colorspace::swatchplot(idea_palettes)
 ```
 
@@ -56,7 +56,7 @@ colorspace::swatchplot(idea_palettes)
 
 The branding guidelines released in 2024 modifies the 2019 color palette and removes the `magenta` accent in favor of a `vermillion` accent. To switch between palettes, use the `year` argument in `scale_color_idea()` or `scale_fill_idea()`. Note the default behavior is to use the most recent branding guidelines available (in this case, `year = 2024`).
 
-```{r switch_guidelines-6}
+```{r switch_guidelines}
 p +
   scale_color_idea(year = 2019)
 ```
@@ -67,7 +67,7 @@ For more information on using the different branding guidelines, please refer to
 
 Note that IDEA's brand colors are not completely safe for color blindness. Here's each palette with adjustments to check for the predominant types of color blindness in the population:
 
-```{r swatchplot_cb-6}
+```{r swatchplot_cb}
 colorspace::swatchplot(idea_palettes, cvd = c("desaturate", 'deutan', "protan", "tritan"))
 ```
 
@@ -102,7 +102,7 @@ Suppose your data frame, `df_reading_levels`, contains information about Academy
 
 Let's define the palette as a vector. You may need to adjust the names of the race or ethnicity to match the factors in your data frame.
 
-```{r vector_colors-6, eval=FALSE}
+```{r vector_colors, eval=FALSE}
 # step 1
 race_ethnicity_legend <- c("American Indian" = idea_colors$melon,
                            "Asian" = idea_colors$cyan,
@@ -116,7 +116,7 @@ race_ethnicity_legend <- c("American Indian" = idea_colors$melon,
 
 Then, inside a `geom_*()` layer, assign the appropriate column `RaceEthnicity` to the appropriate aesthetic `aes()`. (Depending on your visualization, the aesthetic might be `fill`, `shape`, etc.).
 
-```{r geom_aes-6, eval=FALSE}
+```{r geom_aes, eval=FALSE}
 # step 2
 ggplot(df_reading_levels) +
   geom_boxplot(aes(x = GradeLevelEquivalent,
@@ -125,7 +125,7 @@ ggplot(df_reading_levels) +
 
 One additional call is needed to force `ggplot()` to use the palette you specified earlier.
 
-```{r scale_color_manual-6, eval=FALSE}
+```{r scale_color_manual, eval=FALSE}
 # step 2
 ggplot(df_reading_levels) +
   geom_boxplot(aes(x = GradeLevelEquivalent,
@@ -178,7 +178,7 @@ When reporting on separation reasons from Tyler Munis (located in the reporting.
 
 The following code defines this palette as a vector which can easily be used as the values for `scale_fill_manual()`.
 
-```{r separation_colors-6, eval=FALSE}
+```{r separation_colors, eval=FALSE}
 separation_reason_legend <- c("DID NOT RETURN NEXT YEAR IN FT POSITION"	= "#214F28",
                               "ENTITY CHANGE" =	"#7030A0",
                               "FAILED I-9 VERIFICATION" =	"#FFDE75",
@@ -199,7 +199,7 @@ separation_reason_legend <- c("DID NOT RETURN NEXT YEAR IN FT POSITION"	= "#214F
 
 To obtain a color ramp of the IDEA palette with hex codes, use following R code:
 
-```{r show idea palette ramp-6, eval = FALSE}
+```{r show idea palette ramp, eval = FALSE}
 # load libraries
 library(ideacolors)
 library(scales)
@@ -209,7 +209,7 @@ show_col(idea_palette_ramp()(___) # substitute blank with the number of colors d
 
 As an example, the IDEA palette color ramp for six colors is as follows:
 
-```{r idea palette ramp 6 colors-6, eval = FALSE}
+```{r idea palette ramp 6 colors, eval = FALSE}
 show_col(idea_palette_ramp()(6))
 ```
 
@@ -219,7 +219,7 @@ show_col(idea_palette_ramp()(6))
 
 The primary brand font is Proxima Nova; the secondary fonts are Arial or Helvetica. Before using the code, ensure that these fonts have already been installed. Then, to add these fonts to a visualization, use the following code:
 
-```{r fonts-6, echo=TRUE, eval=FALSE}
+```{r fonts, echo=TRUE, eval=FALSE}
 # install.packages("showtext")
 library(showtext)
 
@@ -243,7 +243,7 @@ For Camp RIO-specific analyses, visualizations, or publications, use the [Camp R
 
 To use Camp RIO scales in a visualization, use `scale_color_camp_rio()` or `scale_fill_camp_rio()`. The default palette is `year = 2022`.
 
-```{r scale_color_camp_rio-6}
+```{r scale_color_camp_rio}
 p +
   scale_color_camp_rio()
 ```
@@ -252,7 +252,7 @@ p +
 
 The palette ramp for Camp RIO is shown below:
 
-```{r camp_rio_palette_ramp-6, eval = FALSE}
+```{r camp_rio_palette_ramp, eval = FALSE}
 show_col(camp_rio_palette_ramp()(6))
 ```
 
@@ -268,7 +268,7 @@ Our data is often presented and displayed hierarchically (e.g., state, then regi
 
 Let's use the [`gapminder`](https://jennybc.github.io/gapminder/) data in R, where each row is a life expectancy, population, and GDP per capita corresponding with a specific country in a specific year.
 
-```{r gapminder_data-6, echo=TRUE, eval=TRUE}
+```{r gapminder_data, echo=TRUE, eval=TRUE}
 library(gapminder)
 
 set.seed(1234)
@@ -288,7 +288,7 @@ df_gapminder_sample %>%
 
 We could visualize the changes in life expectancy vs. GDP per capita over time like this:
 
-```{r gapminder_unnested-6, echo=TRUE, eval=FALSE}
+```{r gapminder_unnested, echo=TRUE, eval=FALSE}
 df_gapminder_sample %>%
   ggplot(aes(x = gdpPercap, y = lifeExp,
              color = continent,
@@ -316,7 +316,7 @@ df_gapminder_sample %>%
 
 The line graphs are arranged alphabetically by country. However, it might be more visually appealing and intuitive to a reader if the graphs were arranged by continent and *then* country. To do this, we can use the `{ggh4x}` package [(documentation here)](https://teunbrand.github.io/ggh4x/articles/ggh4x.html), and switch from `facet_grid()` or `facet_wrap()` in `ggplot2` to `facet_nested()` or `facet_nested_wrap()` in `ggh4x`.
 
-```{r gapminder_nested-6, echo=TRUE, eval=FALSE}
+```{r gapminder_nested, echo=TRUE, eval=FALSE}
 library(ggh4x)
 
 df_gapminder_sample %>%
@@ -360,7 +360,7 @@ To save a plot directly to a specified device, use the "output sandwich" method.
 
 Suppose you needed to save an image as a .pdf file with dimensions 3 inches by 4 inches to the filename `01-my-high-quality-graph.pdf`. Then, the output sandwich would look like this:
 
-```{r output_sandwich-6, eval=FALSE}
+```{r output_sandwich, eval=FALSE}
 # 1. open the device
 pdf(file = here::here("graphs", "01-my-high-quality-graph.pdf"),
     width = 3,
@@ -388,7 +388,7 @@ The function `ggsave()` provides a wrapper around multiple device functions, lik
 
 Suppose you need to include a plot (.png) that takes up about $\frac{1}{4}$ of a standard PowerPoint slide (16:9 widescreen). You might want to adjust the zoom (scale = 1.5), change the resolution (dpi = 320), and change the dimensions (6.5 inches by 6.5 inches). If you used a theme that had a transparent background, you could also specify a background (bg) of white. Then, the code would look like this:
 
-```{r ggsave-6, eval=FALSE}
+```{r ggsave, eval=FALSE}
 my_plot <- ggplot(my_data_frame) +
   geom_histogram(aes(x = my_continuous_var)) +
   
