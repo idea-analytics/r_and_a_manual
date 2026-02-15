@@ -288,7 +288,7 @@ meaning that our probability operates under the assumption that *the proposed mo
 
 For reference, see the American Statistical Association's statement on p-values [(2016)](https://doi.org/10.1080/00031305.2016.1154108).
 
-### Inferential methods with the `{infer}` package
+## Inferential methods with the `{infer}` package
 
 The [`{infer}`](https://infer.tidymodels.org/) package provides `tidyverse` grammar for statistical inference. Like many packages referenced in this manual, you should read the doc, which is excellent. This section will simply provide some examples to get you started.
 
