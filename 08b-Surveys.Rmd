@@ -1,0 +1,31 @@
+# Surveys
+
+This chapter describes surveys, survey research, and best practices conducted at IDEA Public Schools.
+
+## About Survey Research
+
+Surveys are a popular and common way to collect information from a sample of people through their responses to survey items (questions or statements) with the aim to understand the population as a whole. 
+
+Participants, instrumentation, and data collection are essential to survey research.
+
+Survey research involves strategies from qualitative, quantitative, and mixed methods.
+
+## Surveys at IDEA
+
+***Organization-wide** surveys are often conducted on an annual basis such as: Annual Employee Experience Survey (AEES), Great Place to Work (GPTW), Student Survey, Family Survey, and more. 
+
+***Program-specific** surveys may be conducted one or more times depending on the survey purpose, size and scope of the program, and program needs. R&A has supported data analysis on surveys to support programs including the Child Nutrition Program (CNP), Social Emotional Learning (SEL), Camp Rio, 21st Century and Afterschool Programs, and more. 
+
+## Best Practices
+
+### Survey Planning
+
+Why conduct a survey? What do you need to plan for when conducting a survey project?
+
+
+### Survey Items
+
+
+
+
+
