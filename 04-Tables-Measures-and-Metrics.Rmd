@@ -1713,8 +1713,7 @@ Both of the previously mentioned staff retention tables (StaffHeadCountNew and R
 
 ## Staff Data
 
-### Regrettable vs Non Regrettable Separation
-Regrettable separation is defined as a separation that IDEA did not want to occur. Non-regrettable separation is defined as a separation that is tolerable for IDEA.
+### Regrettable vs Non Regrettable Separation 
 
 For a separation to be classified as regrettable, the leaver must have one of the following exit reasons:
 
