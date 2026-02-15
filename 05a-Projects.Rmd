@@ -128,14 +128,14 @@ Cool. You should now have the R&A Manual files on repo history on your computer!
 
 It's pretty straightforward. You create the branch, by giving a short but meaningful name, and then check it out.
 
-```{bash branch, eval=FALSE}
+```{bash branch-5a, eval=FALSE}
 git branch update-bio-cjh
 git checkout update-bio-cjh
 ```
 
 Or you can do both of those moves in one line by using `git checkout` with the `-b` flag:
 
-```{bash branch_one_line, eval=FALSE}
+```{bash branch_one_line-5a, eval=FALSE}
 git checkout -b update-bio-cjh
 ```
 
@@ -161,7 +161,7 @@ git commit -a -m "Updated Chris's bio"
 
 You should do this often. After awhile you'll want to push your changes up to GitHub (frequently, but not as often as commits):
 
-```{bash push, eval = FALSE}
+```{bash push-5a, eval = FALSE}
 git push
 ```
 
@@ -408,7 +408,7 @@ Seriously, though. The [ProjectTemplate documentation](http://projecttemplate.ne
 
 Installing the package is straightforward
 
-```{r install_pt, eval=FALSE}
+```{r install_pt-5a, eval=FALSE}
 install.packages("ProjectTemplate")
 ```
 
@@ -416,7 +416,7 @@ install.packages("ProjectTemplate")
 
 Creating a project is pretty simple. Navigate to where you typically save projects via RStudio and then run the following commands:
 
-```{r create-poject, eval=FALSE}
+```{r create-poject-5a, eval=FALSE}
 library(ProjectTemplate)
 create.project("learning-pt")
 ```
@@ -579,7 +579,7 @@ Below is a step-by-step guide to create a GitHub repository with ProjectTemplate
 
 3\. R: Set the working directory to use the folder that was just created
 
-```{r set_working_directory, eval=FALSE}
+```{r set_working_directory-5a, eval=FALSE}
 
 setwd("[insert your path]")
 
@@ -587,7 +587,7 @@ setwd("[insert your path]")
 
 4\. R: Set up the ProjectTemplate directory structure inside a folder titled "new_project"
 
-```{r set_up_project_template, eval=FALSE}
+```{r set_up_project_template-5a, eval=FALSE}
 
 install.packages("ProjectTemplate")
 library(ProjectTemplate)
@@ -647,7 +647,7 @@ create.project("[insert your path]", merge.strategy = "allow.non.conflict")
 
 8\. R: install ideadata and ideacolors packages
 
-```{r install_ideadata_ideacolors, eval=FALSE}
+```{r install_ideadata_ideacolors-5a, eval=FALSE}
 
 library(renv)
 renv::install("idea-analytics/ideadata@main")
@@ -664,7 +664,7 @@ devtools::install_github("idea-analytics/ideacolors")
 
 *use this code instead*
 
-```{r install_github, eval=FALSE}
+```{r install_github-5a, eval=FALSE}
 
 devtools::install_github("idea-analytics/ideacolors", auth_token = "my_personal_access_token")
 
@@ -676,7 +676,7 @@ devtools::install_github("idea-analytics/ideacolors", auth_token = "my_personal_
 
 11\. R: save the state of the project library (and do this each time you want to save the state of the project)
 
-```{r project_state, eval=FALSE}
+```{r project_state-5a, eval=FALSE}
 
 renv::snapshot()
 
