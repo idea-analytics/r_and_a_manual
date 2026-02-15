@@ -97,7 +97,7 @@ Now you'll pull the remote repo from GitHub onto you computer. You'll want to th
 
 Here I'm saving this to temporary space, by navigating to `~/tmp/~` and then cloning the data:
 
-```{bash cloning, eval=FALSE}
+```{bash cloning-5a, eval=FALSE}
 cd ~/tmp/
 git clone https://github.com/idea-analytics/r_and_a_manual.git
 ```
@@ -155,7 +155,7 @@ Now you'll want to commit those changes, which takes a snapshot of the current s
 
 After saving you'll run the `git commit` command with the `-a` (adds all changes) and `-m` (add commit message) flag with a short description of what you did.
 
-```{bash commit, eval=FALSE}
+```{bash commit-5a, eval=FALSE}
 git commit -a -m "Updated Chris's bio"
 ```
 
@@ -197,19 +197,19 @@ Scenario: Suppose you have a PowerBI file `Persistence_Dashboard.pbix` that is 1
 2.  Switch to the repo and branch that has the large file.
 3.  Install the LFS extension in the correct repo and branch using
 
-```{bash lfs install, eval = FALSE}
+```{bash lfs install-5a, eval = FALSE}
 git lfs install
 ```
 
 4.  Track the file extension (in our scenario, .pbix), using
 
-```{bash lfs track, eval = FALSE}
+```{bash lfs track-5a, eval = FALSE}
 git lfs track "*.pbix"
 ```
 
 5.  Track .gitattributes
 
-```{bash add gitattributes, eval = FALSE}
+```{bash add gitattributes-5a, eval = FALSE}
 git add .gitattributes
 ```
 
