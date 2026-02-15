@@ -2653,7 +2653,7 @@ both full-time and part-time employees.
 
 ## Staff Data
 
-### Regrettable vs Non Regrettable Separation
+### Regrettable vs Non Regrettable Separation 
 
 Regrettable separation is defined as a separation that IDEA did not want
 to occur. Non-regrettable separation is defined as a separation that is
