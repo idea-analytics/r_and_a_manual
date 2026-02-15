@@ -4,17 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 11 Geospatial Methods and GIS | IDEA R&amp;A Manual</title>
+<title>Chapter 12 Geospatial Methods and GIS | IDEA R&amp;A Manual</title>
 <meta name="author" content="Chris Haid, Edison Coronado, Mishan Jensen, Steven Macapagal, Aline Orr, Ilissa Madrigal, Marlena Coco, Karina Pacheco, Lindsey Smith, Connor Caldwell, Jose Rodriguez, Colleen Skinner">
-<meta name="description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  11.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
+<meta name="description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  12.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
 <meta name="generator" content="bookdown 0.46 with bs4_book()">
-<meta property="og:title" content="Chapter 11 Geospatial Methods and GIS | IDEA R&amp;A Manual">
+<meta property="og:title" content="Chapter 12 Geospatial Methods and GIS | IDEA R&amp;A Manual">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://idea-analytics.github.io/r_and_a_manual/geospatial-methods-and-gis.html">
-<meta property="og:description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  11.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
+<meta property="og:description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  12.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 11 Geospatial Methods and GIS | IDEA R&amp;A Manual">
-<meta name="twitter:description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  11.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
+<meta name="twitter:title" content="Chapter 12 Geospatial Methods and GIS | IDEA R&amp;A Manual">
+<meta name="twitter:description" content="This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.  12.1 What is a simple feature? Simple Features is a set of ISO and Open Geospatial...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.10.0/transition.js"></script><script src="libs/bs3compat-0.10.0/tabs.js"></script><script src="libs/bs3compat-0.10.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -50,16 +50,16 @@
 <li><a class="" href="who.html"><span class="header-section-number">2</span> Contributors</a></li>
 <li><a class="" href="the-data-warehouse-and-how-to-access-it.html"><span class="header-section-number">3</span> The Data Warehouse and How to Access It</a></li>
 <li><a class="" href="key-tables-measures-and-metrics.html"><span class="header-section-number">4</span> Key Tables, Measures, and Metrics</a></li>
-<li><a class="" href="projects.html"><span class="header-section-number">5</span> Projects</a></li>
-<li><a class="" href="communicating-results.html"><span class="header-section-number">6</span> Communicating Results</a></li>
-<li><a class="" href="evaluation-projects.html"><span class="header-section-number">7</span> Evaluation Projects</a></li>
-<li><a class="" href="coding-standards.html"><span class="header-section-number">8</span> Coding Standards</a></li>
-<li><a class="" href="visualization-standards.html"><span class="header-section-number">9</span> Visualization Standards</a></li>
-<li><a class="" href="models-and-methods.html"><span class="header-section-number">10</span> Models and Methods</a></li>
-<li><a class="active" href="geospatial-methods-and-gis.html"><span class="header-section-number">11</span> Geospatial Methods and GIS</a></li>
-<li><a class="" href="surveys.html"><span class="header-section-number">12</span> Surveys</a></li>
-<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">13</span> Tips and Tricks</a></li>
-<li><a class="" href="platforms.html"><span class="header-section-number">14</span> Platforms</a></li>
+<li><a class="" href="coding-standards.html"><span class="header-section-number">5</span> Coding Standards</a></li>
+<li><a class="" href="visualization-standards.html"><span class="header-section-number">6</span> Visualization Standards</a></li>
+<li><a class="" href="project-applications.html"><span class="header-section-number">7</span> Project Applications</a></li>
+<li><a class="" href="models-and-methods.html"><span class="header-section-number">8</span> Models and Methods</a></li>
+<li><a class="" href="evaluation-projects.html"><span class="header-section-number">9</span> Evaluation Projects</a></li>
+<li><a class="" href="surveys.html"><span class="header-section-number">10</span> Surveys</a></li>
+<li><a class="" href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></li>
+<li><a class="active" href="geospatial-methods-and-gis.html"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
+<li><a class="" href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></li>
+<li><a class="" href="tips-and-tricks.html"><span class="header-section-number">14</span> Tips and Tricks</a></li>
 <li><a class="" href="references-1.html">References</a></li>
 </ul>
 
@@ -68,28 +68,28 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="geospatial-methods-and-gis" class="section level1" number="11">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="geospatial-methods-and-gis" class="section level1" number="12">
 <h1>
-<span class="header-section-number">11</span> Geospatial Methods and GIS<a class="anchor" aria-label="anchor" href="#geospatial-methods-and-gis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12</span> Geospatial Methods and GIS<a class="anchor" aria-label="anchor" href="#geospatial-methods-and-gis"><i class="fas fa-link"></i></a>
 </h1>
 <p>This chapter provides a gentle introduction to Geographic Information Systems (GIS) in R with simple features.</p>
-<div id="what-is-a-simple-feature" class="section level2" number="11.1">
+<div id="what-is-a-simple-feature" class="section level2" number="12.1">
 <h2>
-<span class="header-section-number">11.1</span> What is a simple feature?<a class="anchor" aria-label="anchor" href="#what-is-a-simple-feature"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1</span> What is a simple feature?<a class="anchor" aria-label="anchor" href="#what-is-a-simple-feature"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>Simple Features</strong> is a set of ISO and Open Geospatial Consortium (OGC) standards that specify a common storage and access model of geographic feature made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by geographic information systems. Simple features underlie the most common commercial and open-source GIS platforms (e.g., ESRI ArcGIS, PostGIS, the GeoJSON standard).</p>
 <p>A <strong>feature</strong> is essentially a thing in the world. In the simple feature specification a feature has <em>a geometry</em> describing where on Earth the feature is located, <strong>and they have attributes</strong>, which describe other properties, like names or metrics such as population.</p>
-<div id="how-are-simple-features-implemented-in-r" class="section level3" number="11.1.1">
+<div id="how-are-simple-features-implemented-in-r" class="section level3" number="12.1.1">
 <h3>
-<span class="header-section-number">11.1.1</span> How are simple features implemented in R<a class="anchor" aria-label="anchor" href="#how-are-simple-features-implemented-in-r"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1.1</span> How are simple features implemented in R<a class="anchor" aria-label="anchor" href="#how-are-simple-features-implemented-in-r"><i class="fas fa-link"></i></a>
 </h3>
 <p>In a word, simply. A special feature in R is essentially a row in <code>data.frame</code> with class <strong>sf</strong>. This <code>data.frame</code> will have the normal suspects—names of things, metrics you care about—in columns and then a special column named <strong>geometry</strong> or <strong>geom</strong>. This will typically be a list-column, meaning that instead of holding characters or numbers, the contents are a list and each list is collection of 2-d coordinates that describe how to plot or draw the geometry. The image below illustrates the structure of an <code>sf</code> <code>data.frame</code></p>
 <div class="inline-figure"><img src="img/sf_layout.png" width="500"></div>
 </div>
 </div>
-<div id="sf-workflow" class="section level2" number="11.2">
+<div id="sf-workflow" class="section level2" number="12.2">
 <h2>
-<span class="header-section-number">11.2</span> Workflows using <code>sf</code> objects<a class="anchor" aria-label="anchor" href="#sf-workflow"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2</span> Workflows using <code>sf</code> objects<a class="anchor" aria-label="anchor" href="#sf-workflow"><i class="fas fa-link"></i></a>
 </h2>
 <p>Importing and transforming data in a <code>sf</code> data frame is somewhat different than using data frames because extra metadata is encoded into an <code>sf</code> object. R&amp;A uses the following skills (as of October 2023) …</p>
 <p>… for basic <code>sf</code> handling:</p>
@@ -117,12 +117,12 @@
 <li>Census geographies</li>
 <li>Using the Census API</li>
 </ul>
-<div id="taco-gis" class="section level3" number="11.2.1">
+<div id="taco-gis" class="section level3" number="12.2.1">
 <h3>
-<span class="header-section-number">11.2.1</span> Guided example using TACO schools<a class="anchor" aria-label="anchor" href="#taco-gis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.1</span> Guided example using TACO schools<a class="anchor" aria-label="anchor" href="#taco-gis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Let’s start by getting schools in Tarrant County (TACO). We can get these schools and their addresses from the data warehouse:</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># library(tidyverse)</span></span>
 <span><span class="co"># library(ideadata)</span></span>
 <span></span>
@@ -195,13 +195,13 @@
 </tbody>
 </table></div>
 </div>
-<div id="geocoding" class="section level3" number="11.2.2">
+<div id="geocoding" class="section level3" number="12.2.2">
 <h3>
-<span class="header-section-number">11.2.2</span> Geocoding<a class="anchor" aria-label="anchor" href="#geocoding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.2</span> Geocoding<a class="anchor" aria-label="anchor" href="#geocoding"><i class="fas fa-link"></i></a>
 </h3>
 <p>We’ve got schools and addresses! But that isn’t sufficient to plot these schools on a map, and we certainly don’t have a simple features data.frame.</p>
 <p>The first stop is <strong>geocoding</strong> these addresses, which is simply getting their latitude and longitude. Doing so is very straightforward for with the <code>[tidygeocoder](https://jessecambon.github.io/tidygeocoder/)</code> package which provides a great interface to a number of different geocoders (e.g., US Census, OpenStreetMaps, geocod.io).</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jessecambon.github.io/tidygeocoder/">tidygeocoder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># note that different geocoders may require a full address OR</span></span>
@@ -215,7 +215,7 @@
 <span>      method <span class="op">=</span> <span class="st">"osm"</span> <span class="co"># we also use method = "geocodio"</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="co">#&gt; Passing 4 addresses to the Nominatim single address geocoder</span></span>
-<span><span class="co">#&gt; Query completed in: 4.4 seconds</span></span>
+<span><span class="co">#&gt; Query completed in: 4.3 seconds</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">taco_schools_geocoded</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -253,8 +253,8 @@
 <td align="left">Fort Worth</td>
 <td align="left">TX</td>
 <td align="right">76134</td>
-<td align="right">32.65121</td>
-<td align="right">-97.38418</td>
+<td align="right">32.64822</td>
+<td align="right">-97.34140</td>
 </tr>
 <tr class="odd">
 <td align="left">Rise</td>
@@ -271,14 +271,14 @@
 <td align="left">Fort Worth</td>
 <td align="left">TX</td>
 <td align="right">76119</td>
-<td align="right">32.68474</td>
-<td align="right">-97.28824</td>
+<td align="right">32.68495</td>
+<td align="right">-97.28093</td>
 </tr>
 </tbody>
 </table></div>
 <p>Brilliant! We’ve got <code>lat</code> and <code>long</code> variables for those addresses. Super Cool!</p>
 <p>Let’s transform these now to a <code>sf</code> object:</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2()</span></span>
 <span><span class="co">#&gt; is TRUE</span></span>
@@ -320,7 +320,7 @@
 <td align="left">Fort Worth</td>
 <td align="left">TX</td>
 <td align="right">76134</td>
-<td align="left">POINT (-97.38418 32.65121)</td>
+<td align="left">POINT (-97.3414 32.64822)</td>
 </tr>
 <tr class="odd">
 <td align="left">Rise</td>
@@ -336,19 +336,19 @@
 <td align="left">Fort Worth</td>
 <td align="left">TX</td>
 <td align="right">76119</td>
-<td align="left">POINT (-97.28824 32.68474)</td>
+<td align="left">POINT (-97.28093 32.68495)</td>
 </tr>
 </tbody>
 </table></div>
 <p>Notice that the <code>lat</code> and <code>long</code> variables are replaced by the <code>geometry</code> column.</p>
 </div>
-<div id="coordinate-reference-system" class="section level3" number="11.2.3">
+<div id="coordinate-reference-system" class="section level3" number="12.2.3">
 <h3>
-<span class="header-section-number">11.2.3</span> Coordinate Reference System<a class="anchor" aria-label="anchor" href="#coordinate-reference-system"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.3</span> Coordinate Reference System<a class="anchor" aria-label="anchor" href="#coordinate-reference-system"><i class="fas fa-link"></i></a>
 </h3>
 <p>Notice in the meta-data above that CRS is <code>NA</code>. CRS refers to the Coordinate Reference System, which is a framework for measuring locations precisely as coordinates. A CRS includes a coordinate system, a horizontal datum that binds the coordinates to a real space on the spheroid Earth with an estimate of the Earth’s curvature and a set of control points, and finally a projection that converts spherical coordinates to Cartesian coordinates.</p>
 <p>You should always set this and the most common CRS in latitude and longitude as <code>WGS84</code> (used by the GPS satellite navigation system) with the following CRS string <code>"+init=epsg:4326"</code> as a formal identifier, but also more simply by its name:</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">taco_schools_sf</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"WGS84"</span></span>
 <span></span>
 <span><span class="co"># alternate ways of establishing a CRS in the same pipe</span></span>
@@ -368,12 +368,12 @@
 <span><span class="co">#   st_as_sf(coords = c("long", "lat")) %&gt;%</span></span>
 <span><span class="co">#   st_transform("WGS84")</span></span></code></pre></div>
 </div>
-<div id="basic-mapping" class="section level3" number="11.2.4">
+<div id="basic-mapping" class="section level3" number="12.2.4">
 <h3>
-<span class="header-section-number">11.2.4</span> Basic mapping<a class="anchor" aria-label="anchor" href="#basic-mapping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.4</span> Basic mapping<a class="anchor" aria-label="anchor" href="#basic-mapping"><i class="fas fa-link"></i></a>
 </h3>
 <p>We now have enough information to draw a map! To create a map, you need a ggmap object, a base layer map, and additional <code>sf</code> layers you want to display. All <code>sf</code> objects can be plotted if the <code>geometry</code> column is specified. The function <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> reads the geometry column and automatically plots the data using the specified metadata.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># {ggsflabel} is not available on CRAN, {ggmap} requires get_stadiamap()</span></span>
 <span><span class="co"># that is not yet on CRAN</span></span>
 <span><span class="co"># renv::install("yutannihilation/ggsflabel")</span></span>
@@ -411,7 +411,7 @@
 </div>
 <p>There are many types of <strong>map tiles</strong> that can be used to display geographic data. I don’t always love Google Maps’ look for display purposes on slides, so let’s change that up with Stamen, which give us different styles of map tiles. In particular, we will use <code>toner-lite</code>, which provides a neutral, grey-white background. Stamen tiles, now provided by <a href="https://stadiamaps.com/stamen/">Stadia Maps</a>, requires an API key.</p>
 <p>To get any baselayer map, you must specify the <strong>bounding box</strong>, or a set of longitudes and latitudes that respectively establish the left/right and top/bottom edges of the map. You can either get the bounding box attributes from the Google Map baselayer, or you can create your own.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gets bounding box from Google Map base layer attributes</span></span>
 <span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/bb2bbox.html">bb2bbox</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">base_google_map</span>, <span class="st">"bb"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -442,12 +442,12 @@
 <img src="img/taco_stamen_map.png" title="This map overlays the location of Tarrant County schools in hotpink on Stamen tiles from Stadia Maps." width="600" alt="Schools in Tarrant County, using Stamen tiles from Stadia Maps"><div class="figcaption">Schools in Tarrant County, using Stamen tiles from Stadia Maps</div>
 </div>
 </div>
-<div id="getting-drive-times" class="section level3" number="11.2.5">
+<div id="getting-drive-times" class="section level3" number="12.2.5">
 <h3>
-<span class="header-section-number">11.2.5</span> Getting drive times<a class="anchor" aria-label="anchor" href="#getting-drive-times"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.5</span> Getting drive times<a class="anchor" aria-label="anchor" href="#getting-drive-times"><i class="fas fa-link"></i></a>
 </h3>
 <p>We are often interested in getting an <strong>isochrone</strong>, or a radius around a geographic feature with respect to time. Isochrones can be useful for identifying what communities are within a 10- or 15-minute drive-time of a school. This calculation requires the MapBox API, which requires an API key.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("mapboxapi")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/walkerke/mapboxapi">mapboxapi</a></span><span class="op">)</span></span>
 <span></span>
@@ -496,9 +496,9 @@
 <img src="img/taco_isochrones.png" title="This map overlays the 10-minute isochrone for each Tarrant County school." width="600" alt="Plotting 10-minute isochrones for each Tarrant County school"><div class="figcaption">Plotting 10-minute isochrones for each Tarrant County school</div>
 </div>
 </div>
-<div id="spatial-joins" class="section level3" number="11.2.6">
+<div id="spatial-joins" class="section level3" number="12.2.6">
 <h3>
-<span class="header-section-number">11.2.6</span> Spatial joins<a class="anchor" aria-label="anchor" href="#spatial-joins"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.2.6</span> Spatial joins<a class="anchor" aria-label="anchor" href="#spatial-joins"><i class="fas fa-link"></i></a>
 </h3>
 <p>Using a <strong>spatial join</strong> is somewhat different than joining data frames. There are many types of <em>spatial predicates</em>, or join type, for spatial data, including:</p>
 <ul>
@@ -511,7 +511,7 @@
 </ul>
 <p>Spatial joins operate on the <code>geometry</code> column and check the relationship of the shapes (<code>POINT</code>, <code>POLYGON</code>, <code>LINE</code>, etc.) in the data frames with the spatial predicate.</p>
 <p>Suppose we have a data frame describing the locations of each school as a <code>POINT</code>, and a second data frame describing the drive time radius around each school as a <code>POLYGON</code>. We might want to check if there are other schools located in a certain school’s drive time radius. Spatially, we are using an intersecting join to check if certain points fall inside a polygon.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># use spatial joins with two sf objects</span></span>
@@ -552,7 +552,7 @@
 <img src="img/taco_isochrone_intersection.png" title="This map overlays the intersection of 10-minute isochrones in goldenrod." width="600" alt="Plotting the intersection of 10-minute isochrones for each Tarrant County school"><div class="figcaption">Plotting the intersection of 10-minute isochrones for each Tarrant County school</div>
 </div>
 <p>And what schools are found in this area of overlapping isochrones? We can use <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter()</a></code> with an <code>st_within</code> join to help us identify points inside of a polygon.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">schools_in_overlap</span> <span class="op">&lt;-</span> <span class="va">taco_schools_sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_filter</a></span><span class="op">(</span></span>
 <span>    <span class="va">taco_area_of_max_intersection</span>, </span>
@@ -563,22 +563,22 @@
 <p>It may look like Edgecliff is within the 10-minute drive time overlap area, but in truth it is just outside of the boundary.</p>
 </div>
 </div>
-<div id="census-data" class="section level2" number="11.3">
+<div id="census-data" class="section level2" number="12.3">
 <h2>
-<span class="header-section-number">11.3</span> Census Data<a class="anchor" aria-label="anchor" href="#census-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3</span> Census Data<a class="anchor" aria-label="anchor" href="#census-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kyle Walker has written the exceptional <code>[tidycensus](https://walker-data.com/tidycensus/)</code>package, with fantastic documentation, which allows you to pull US Census data sources (including the Decennial Census and the yearly American Community Survey).</p>
 <p>Let’s load some Census data. We’ll need a Census API key first to gain access.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages('tidycensus')</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://walker-data.com/tidycensus/">tidycensus</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># NEt command saves Census API key to your .Renviron file</span></span>
 <span><span class="co"># census_api_key("YOUR API KEY GOES HERE")</span></span>
 <span><span class="co"># census_api_key(Sys.getenv("CENSUS_API_KEY"))</span></span></code></pre></div>
-<div id="getting-basic-data" class="section level5" number="11.3.0.0.1">
+<div id="getting-basic-data" class="section level5" number="12.3.0.0.1">
 <h5>
-<span class="header-section-number">11.3.0.0.1</span> Getting Basic Data<a class="anchor" aria-label="anchor" href="#getting-basic-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.0.0.1</span> Getting Basic Data<a class="anchor" aria-label="anchor" href="#getting-basic-data"><i class="fas fa-link"></i></a>
 </h5>
 <p>There are two major functions implemented in tidycensus:</p>
 <ul>
@@ -588,7 +588,7 @@
 <code><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs()</a></code>, which grants access to the 1-year and 5-year American Community Survey APIs.</li>
 </ul>
 <p>Let’s get <em>median age by state</em> in 2010:</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_decennial.html">get_decennial</a></span><span class="op">(</span>geography <span class="op">=</span> <span class="st">"state"</span>, </span>
 <span>                       variables <span class="op">=</span> <span class="st">"P013001"</span>, </span>
 <span>                       year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
@@ -639,7 +639,7 @@
 </tbody>
 </table></div>
 <p>Census data is structured to make usual tasks, like cleaning and plotting, work in the ways you expect using the tidyverse. For example, we can plot the median age by state using ggplot:</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">age10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
@@ -657,13 +657,13 @@
 <img src="img/median_age_by_state.png" title="This dotplot shows the median age by state, ordered from oldest to youngest." width="600" alt="This plot is an example of how Census data can be plotted."><div class="figcaption">This plot is an example of how Census data can be plotted.</div>
 </div>
 </div>
-<div id="searching-for-variables" class="section level5" number="11.3.0.0.2">
+<div id="searching-for-variables" class="section level5" number="12.3.0.0.2">
 <h5>
-<span class="header-section-number">11.3.0.0.2</span> Searching for variables<a class="anchor" aria-label="anchor" href="#searching-for-variables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.0.0.2</span> Searching for variables<a class="anchor" aria-label="anchor" href="#searching-for-variables"><i class="fas fa-link"></i></a>
 </h5>
 <p>How, pray tell, does one know that <code>P013001</code> is the variable for median age? Getting variables from the Census or ACS requires knowing the variable ID - and there are thousands of these IDs across the different Census files. To rapidly search for variables, use the <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> function. There are <a href="https://walker-data.com/tidycensus/articles/basic-usage.html#searching-for-variables">more details on in the package’s documentation page</a>.</p>
 <p>To browse these variables, assign the result of <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> to a variable and use the <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code> function in RStudio. An optional argument <code>cache = TRUE</code> will cache the dataset on your computer for future use.</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">v_2020</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"acs5"</span>, cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># View(v_2020)</span></span></code></pre></div>
@@ -684,7 +684,7 @@
 <code>geometry</code>: TRUE will pull the appropriate geometry from the <code>tigris</code> package and return an sf object</li>
 </ul>
 <p>Because I looked up the appropriate variable names in the <code><a href="https://walker-data.com/tidycensus/reference/load_variables.html">load_variables()</a></code> function, I know that the appropriate table is <code>B01001</code>, and I will choose the correct variables. I want this data at the smallest geographic unit, so I will choose “block group” for the geography, and I need data as of 2020. Because I eventually would like to map this data, I will choose to include the <code>geometry</code> column to have an sf data frame.</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tarr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://walker-data.com/tidycensus/reference/get_acs.html">get_acs</a></span><span class="op">(</span></span>
 <span>    geography <span class="op">=</span> <span class="st">"block group"</span>, </span>
 <span>    variables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
@@ -707,20 +707,20 @@
 <span>  <span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="plotting-geographic-data" class="section level2" number="11.4">
+<div id="plotting-geographic-data" class="section level2" number="12.4">
 <h2>
-<span class="header-section-number">11.4</span> Plotting geographic data<a class="anchor" aria-label="anchor" href="#plotting-geographic-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4</span> Plotting geographic data<a class="anchor" aria-label="anchor" href="#plotting-geographic-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Spatial data can broadly be represented as discrete processes, aggregations, or continuous processes.</p>
 <p>You can use point pattern analysis when data merely locate the longitude and latitude of a variable. For example, we could plot where every school-aged child lives in Tarrant County. Areal data are aggregate data that describe a geographic <em>area</em> or <em>region</em>. The <em>total</em> number of school-aged children living in Tarrant County, Dallas County, or other surrounding counties is an example of areal data. Continuous processes map a point to a <em>value</em> - in this case, it could be the age of a single child at a given point. We could also add time as a variable and make the data spatiotemporal.</p>
 <p>Specific resources on <strong>modeling</strong> these types of data can be found in <a href="https://paezha.github.io/spatial-analysis-r/">An Introduction to Spatial Data Analysis and Statistics</a>.</p>
 <p>For <strong>mapping</strong> geographic data, we also have different methods depending on the type of spatial data used.</p>
-<div id="chloropleth" class="section level3" number="11.4.1">
+<div id="chloropleth" class="section level3" number="12.4.1">
 <h3>
-<span class="header-section-number">11.4.1</span> Chloropleth<a class="anchor" aria-label="anchor" href="#chloropleth"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4.1</span> Chloropleth<a class="anchor" aria-label="anchor" href="#chloropleth"><i class="fas fa-link"></i></a>
 </h3>
 <p>A <strong>chloropleth</strong> is a type of plot used for areal data that takes on different colors, depending on the data. Let’s sum up all school aged children (5-17 year old boy and girls) by block group:</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># aggregate school-aged children by block group</span></span>
@@ -771,14 +771,14 @@
 </div>
 <p>From this map, we can use color to identify which block groups have high densities of school-aged children and which do not.</p>
 </div>
-<div id="dot-density" class="section level3" number="11.4.2">
+<div id="dot-density" class="section level3" number="12.4.2">
 <h3>
-<span class="header-section-number">11.4.2</span> Dot-density<a class="anchor" aria-label="anchor" href="#dot-density"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.4.2</span> Dot-density<a class="anchor" aria-label="anchor" href="#dot-density"><i class="fas fa-link"></i></a>
 </h3>
 <p>Areal representation of data suffer from a few problems. One problem is that geographically large areas draw the eye and can often over-emphasize those areas versus smaller geographies. This distortion is familiar to those who follow elections, where geographically large states with small populations, like Wyoming, loom larger than geographically small, but densely populated states, like Delaware (Wyoming has 1/2 the population of Delaware, but 42x the land mass). This distortion occurs with Census geographies because blocks, block groups, and tracts are created to have roughly equal populations (e.g., Census tracts generally have a population size between 1,200 and 8,000 people, with an optimum size of 4,000 people); these geographies are consequently larger in rural places than in urban centers.</p>
 <p>A second issue is that it’s very hard to show heterogeneity in spatial distributions. The plot above shows estimates of the count of all children aged 5-17 years in each tract. But, we may be interested in how differently distributed those students are.</p>
 <p>A method to remedy both issues is to use <strong>dot-density</strong> plots which simply plot a sample of points within each geography for each group (often down sampled where each dot represents some number of people (e.g., 20 or 100 persons per dot). It’s pretty straightforward to get what you need by using <a href="https://walker-data.com/tidycensus/reference/as_dot_density.html"><code>tidycensus::as_dot_density()</code></a></p>
-<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># library(terra) # as_dot_density() requires the {terra} package</span></span>
 <span></span>
 <span><span class="co"># this table will be used to combine the male and female groups for estimating</span></span>
@@ -817,7 +817,7 @@
 <span>    group <span class="op">=</span> <span class="st">"age_range"</span>   <span class="co"># specify how dots should be categorized (if needed)</span></span>
 <span>  <span class="op">)</span> </span></code></pre></div>
 <p>Note that <code><a href="https://walker-data.com/tidycensus/reference/as_dot_density.html">as_dot_density()</a></code> will convert an areal value (the count of children), represented in a <code>POLYGON</code>, into a value represented by a <code>POINT</code>. Once we have our data prepped as a dot density, then we are ready to plot the data.</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_stamen_map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/ggmap/man/ggmap.html">ggmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>
@@ -874,20 +874,20 @@
 <p>Dot densities can be particularly useful when the variables are faceted, so differences in distributions can be seen.</p>
 </div>
 </div>
-<div id="gis-based-mcda" class="section level2" number="11.5">
+<div id="gis-based-mcda" class="section level2" number="12.5">
 <h2>
-<span class="header-section-number">11.5</span> GIS-Based MCDA<a class="anchor" aria-label="anchor" href="#gis-based-mcda"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5</span> GIS-Based MCDA<a class="anchor" aria-label="anchor" href="#gis-based-mcda"><i class="fas fa-link"></i></a>
 </h2>
 <p>Suitability analyses can be used in a variety of contexts such as choosing the best candidate, car, or phone. Additionally, it can be used with a Geographic Information System (GIS) where land suitability is assessed. This land suitability analysis could be conducted for a variety of reasons such as identifying good locations for a park or landfill.</p>
 <p>When making decisions regarding the suitability of a piece of land for a particular purpose, multiple criteria are considered thus a multi-criteria decision analysis (MCDA) is conducted. This is the focus of this section, GIS-based MCDA. Three different methods will be covered, the simple and weighted linear combination and the analytical hierarchy process.</p>
-<div id="simple-and-weighted-linear-combination" class="section level3" number="11.5.1">
+<div id="simple-and-weighted-linear-combination" class="section level3" number="12.5.1">
 <h3>
-<span class="header-section-number">11.5.1</span> Simple and Weighted Linear Combination<a class="anchor" aria-label="anchor" href="#simple-and-weighted-linear-combination"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.1</span> Simple and Weighted Linear Combination<a class="anchor" aria-label="anchor" href="#simple-and-weighted-linear-combination"><i class="fas fa-link"></i></a>
 </h3>
 <p>The simple and weighted linear combination methods are two MCDAs. In the simple linear combination method, all criteria are equally weighted while the weighted linear combination method allows for criteria to be weighted according to importance.</p>
 <p>If one were interested in locating suitable sites for a landfill (as an example), criteria would be identified and then rasters created. Each cell of those rasters is considered a potential alternative site for the landfill and a score is assigned to it. Raster algebra is used to compute the combination scores and then a threshold is set to distinguish between cells that are and are not suitable for a landfill site.</p>
 <p>Assume that three criteria are being used for a landfill land suitability analysis: <em>Distance to Schools</em> (farther is better), <em>Slope</em> (flatter is better), and <em>Distance to Population Centers</em> (decently far away, but not too far). The first step for these linear combination methods is to create a raster for each of the criteria (school_raster, slope_raster, and pop_center_raster) where each cell is assessed with respect to that raster’s criteria. Once that is complete, combine linearly with either equal (simple linear combination method) or unequal (weighted linear combination method) weights and compare to a threshold value. Below is sample R code to accomplish this.</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">layer_stack</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">school_raster</span>, </span>
 <span>                 <span class="va">slope_raster</span>,</span>
 <span>                 <span class="va">pop_center_raster</span><span class="op">)</span></span>
@@ -915,20 +915,20 @@
 <span>       axes <span class="op">=</span> <span class="cn">F</span>, </span>
 <span>       main <span class="op">=</span> <span class="st">"Weighted Linear Combination"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="analytical-hierarchy-process" class="section level3" number="11.5.2">
+<div id="analytical-hierarchy-process" class="section level3" number="12.5.2">
 <h3>
-<span class="header-section-number">11.5.2</span> Analytical Hierarchy Process<a class="anchor" aria-label="anchor" href="#analytical-hierarchy-process"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2</span> Analytical Hierarchy Process<a class="anchor" aria-label="anchor" href="#analytical-hierarchy-process"><i class="fas fa-link"></i></a>
 </h3>
 <p>The analytical hierarchy process (AHP) was developed by Thomas Saaty in the 1970s and can be used as a Geographic Information System (GIS) multi-criteria decision analysis (MCDA) method. The AHP creates a set of weights that can then be used in the weighted linear combination (WLC) method or, as an example, in conjunction with Ordered Weighted Averaging (OWA). Here, the step-by-step process of the AHP method will be presented, both by hand and in R.</p>
-<div id="context" class="section level4" number="11.5.2.1">
+<div id="context" class="section level4" number="12.5.2.1">
 <h4>
-<span class="header-section-number">11.5.2.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.1</span> Context<a class="anchor" aria-label="anchor" href="#context"><i class="fas fa-link"></i></a>
 </h4>
 <p>The number of uses for suitability analyses is vast. Some examples are identifying locations for new restaurants, parks, and retail sites; identifying the best candidate for a job; and choosing the best car for an individual. In this example, the goal is to identify the best location for a new landfill.</p>
 </div>
-<div id="ahp-steps" class="section level4" number="11.5.2.2">
+<div id="ahp-steps" class="section level4" number="12.5.2.2">
 <h4>
-<span class="header-section-number">11.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.2</span> AHP Steps<a class="anchor" aria-label="anchor" href="#ahp-steps"><i class="fas fa-link"></i></a>
 </h4>
 <p>The general steps to perform the AHP are:<br>
 • Identify the criteria<br>
@@ -937,9 +937,9 @@
 • Check the consistency of the matrix<br>
 • Compute the criteria weights<br></p>
 </div>
-<div id="identify-the-criteria" class="section level4" number="11.5.2.3">
+<div id="identify-the-criteria" class="section level4" number="12.5.2.3">
 <h4>
-<span class="header-section-number">11.5.2.3</span> Identify the Criteria<a class="anchor" aria-label="anchor" href="#identify-the-criteria"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.3</span> Identify the Criteria<a class="anchor" aria-label="anchor" href="#identify-the-criteria"><i class="fas fa-link"></i></a>
 </h4>
 <p>Three arbitrary+ criteria will be used:<br>
 • Distance to schools<br>
@@ -947,18 +947,18 @@
 • Distance to population centers<br>
 +Please note that this is an <em>example</em> based on <a href="https://nkaza.github.io/post/land-suitabilty-with-ahp-wlc">this sample land suitability analysis</a>. Other criteria could be utilized to identify appropriate locations for a landfill.</p>
 </div>
-<div id="create-the-hierarchical-structure" class="section level4" number="11.5.2.4">
+<div id="create-the-hierarchical-structure" class="section level4" number="12.5.2.4">
 <h4>
-<span class="header-section-number">11.5.2.4</span> Create the Hierarchical Structure<a class="anchor" aria-label="anchor" href="#create-the-hierarchical-structure"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.4</span> Create the Hierarchical Structure<a class="anchor" aria-label="anchor" href="#create-the-hierarchical-structure"><i class="fas fa-link"></i></a>
 </h4>
 <p>The AHP hierarchy includes, at a minimum, three levels: the goal, criteria, and alternatives. The alternatives could be the candidates or cars of interest (see examples in the Context section above). In the case where raster data is being used, the alternatives are every cell in the raster data.</p>
 <div class="float">
 <img src="img/ahp_hierarchy.png" title="AHP hierarchy" width="500" alt="AHP hierarchy"><div class="figcaption">AHP hierarchy</div>
 </div>
 </div>
-<div id="make-pairwise-comparisons-and-create-matrix" class="section level4" number="11.5.2.5">
+<div id="make-pairwise-comparisons-and-create-matrix" class="section level4" number="12.5.2.5">
 <h4>
-<span class="header-section-number">11.5.2.5</span> Make Pairwise Comparisons and Create Matrix<a class="anchor" aria-label="anchor" href="#make-pairwise-comparisons-and-create-matrix"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.5</span> Make Pairwise Comparisons and Create Matrix<a class="anchor" aria-label="anchor" href="#make-pairwise-comparisons-and-create-matrix"><i class="fas fa-link"></i></a>
 </h4>
 <p>The nodes at each level must be compared two-by-two in relation to their contribution to the node above. These values will then be entered into a matrix which will be used to compute the criteria weights.</p>
 <p>The AHP fundamental scale (see below) is used when making these pairwise comparisons.</p>
@@ -970,7 +970,7 @@
 <p>The results can now be transferred to a matrix.</p>
 <p><img src="img/ahp_matrix.png" title="AHP Matrix" width="500" alt="AHP Matrix"><br></p>
 <p>To accomplish this in R, the following code can be used:</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a 3x3 matrix with all 1s</span></span>
 <span><span class="va">AHP_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>,</span>
 <span>                     nrow <span class="op">=</span> <span class="fl">3</span>, </span>
@@ -1008,9 +1008,9 @@
 <span><span class="co"># Slope                               0.20              1.0       2</span></span>
 <span><span class="co"># Distance to Population Centers      0.25              0.5       1</span></span></code></pre></div>
 </div>
-<div id="check-the-consistency-of-the-matrix" class="section level4" number="11.5.2.6">
+<div id="check-the-consistency-of-the-matrix" class="section level4" number="12.5.2.6">
 <h4>
-<span class="header-section-number">11.5.2.6</span> Check the Consistency of the Matrix<a class="anchor" aria-label="anchor" href="#check-the-consistency-of-the-matrix"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.6</span> Check the Consistency of the Matrix<a class="anchor" aria-label="anchor" href="#check-the-consistency-of-the-matrix"><i class="fas fa-link"></i></a>
 </h4>
 <p>The AHP matrix must be consistent. To measure this, the Consistency Ratio (CR) is computed by dividing the Consistency Index (CI) by the Random Consistency Index (RCI) (Saaty, 1980).</p>
 <p><img src="img/random_consistency_index.png" title="Random Consistency Index" width="500" alt="Random Consistency Index"><br></p>
@@ -1019,7 +1019,7 @@
 <p><img src="img/ahp_ci_formula.png" title="CI Formula" width="100"><br></p>
 <p>where λmax = largest eigenvalue of the matrix and <em>n</em> = the number of criteria.</p>
 <p>In R,</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CI</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/complex.html">Mod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span><span class="op">)</span><span class="op">$</span><span class="va">values</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span><span class="op">/</span> <span class="fl">2</span></span>
 <span><span class="co"># [1] 0.04700755</span></span>
 <span></span>
@@ -1028,13 +1028,13 @@
 <span><span class="co"># [1] 0.08104751</span></span></code></pre></div>
 <p>The value of the CR is less than 0.10 so the AHP matrix is considered consistent in this example.</p>
 </div>
-<div id="compute-the-criteria-weights" class="section level4" number="11.5.2.7">
+<div id="compute-the-criteria-weights" class="section level4" number="12.5.2.7">
 <h4>
-<span class="header-section-number">11.5.2.7</span> Compute the Criteria Weights<a class="anchor" aria-label="anchor" href="#compute-the-criteria-weights"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.5.2.7</span> Compute the Criteria Weights<a class="anchor" aria-label="anchor" href="#compute-the-criteria-weights"><i class="fas fa-link"></i></a>
 </h4>
 <p>The final step of the AHP is to compute the criteria weights. These weights are computed by normalizing the largest eigenvector of the matrix. To do this, each value in the largest eigenvector is divided by the sum of the values in that vector.</p>
 <p>In R,</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># compute criteria weights by normalizing the largest eigenvector </span></span>
 <span><span class="va">weights</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">AHP_matrix</span>, symmetric <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] 0.6869815+0i 0.1864755+0i 0.1265431+0i</span></span></code></pre></div>
@@ -1045,44 +1045,44 @@
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="models-and-methods.html"><span class="header-section-number">10</span> Models and Methods</a></div>
-<div class="next"><a href="surveys.html"><span class="header-section-number">12</span> Surveys</a></div>
+<div class="prev"><a href="survey-platforms.html"><span class="header-section-number">11</span> Survey Platforms</a></div>
+<div class="next"><a href="communicating-results.html"><span class="header-section-number">13</span> Communicating Results</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#geospatial-methods-and-gis"><span class="header-section-number">11</span> Geospatial Methods and GIS</a></li>
+<li><a class="nav-link" href="#geospatial-methods-and-gis"><span class="header-section-number">12</span> Geospatial Methods and GIS</a></li>
 <li>
-<a class="nav-link" href="#what-is-a-simple-feature"><span class="header-section-number">11.1</span> What is a simple feature?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#how-are-simple-features-implemented-in-r"><span class="header-section-number">11.1.1</span> How are simple features implemented in R</a></li></ul>
+<a class="nav-link" href="#what-is-a-simple-feature"><span class="header-section-number">12.1</span> What is a simple feature?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#how-are-simple-features-implemented-in-r"><span class="header-section-number">12.1.1</span> How are simple features implemented in R</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#sf-workflow"><span class="header-section-number">11.2</span> Workflows using sf objects</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#taco-gis"><span class="header-section-number">11.2.1</span> Guided example using TACO schools</a></li>
-<li><a class="nav-link" href="#geocoding"><span class="header-section-number">11.2.2</span> Geocoding</a></li>
-<li><a class="nav-link" href="#coordinate-reference-system"><span class="header-section-number">11.2.3</span> Coordinate Reference System</a></li>
-<li><a class="nav-link" href="#basic-mapping"><span class="header-section-number">11.2.4</span> Basic mapping</a></li>
-<li><a class="nav-link" href="#getting-drive-times"><span class="header-section-number">11.2.5</span> Getting drive times</a></li>
-<li><a class="nav-link" href="#spatial-joins"><span class="header-section-number">11.2.6</span> Spatial joins</a></li>
+<a class="nav-link" href="#sf-workflow"><span class="header-section-number">12.2</span> Workflows using sf objects</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#taco-gis"><span class="header-section-number">12.2.1</span> Guided example using TACO schools</a></li>
+<li><a class="nav-link" href="#geocoding"><span class="header-section-number">12.2.2</span> Geocoding</a></li>
+<li><a class="nav-link" href="#coordinate-reference-system"><span class="header-section-number">12.2.3</span> Coordinate Reference System</a></li>
+<li><a class="nav-link" href="#basic-mapping"><span class="header-section-number">12.2.4</span> Basic mapping</a></li>
+<li><a class="nav-link" href="#getting-drive-times"><span class="header-section-number">12.2.5</span> Getting drive times</a></li>
+<li><a class="nav-link" href="#spatial-joins"><span class="header-section-number">12.2.6</span> Spatial joins</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#census-data"><span class="header-section-number">11.3</span> Census Data</a></li>
+<li><a class="nav-link" href="#census-data"><span class="header-section-number">12.3</span> Census Data</a></li>
 <li>
-<a class="nav-link" href="#plotting-geographic-data"><span class="header-section-number">11.4</span> Plotting geographic data</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chloropleth"><span class="header-section-number">11.4.1</span> Chloropleth</a></li>
-<li><a class="nav-link" href="#dot-density"><span class="header-section-number">11.4.2</span> Dot-density</a></li>
+<a class="nav-link" href="#plotting-geographic-data"><span class="header-section-number">12.4</span> Plotting geographic data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chloropleth"><span class="header-section-number">12.4.1</span> Chloropleth</a></li>
+<li><a class="nav-link" href="#dot-density"><span class="header-section-number">12.4.2</span> Dot-density</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#gis-based-mcda"><span class="header-section-number">11.5</span> GIS-Based MCDA</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#simple-and-weighted-linear-combination"><span class="header-section-number">11.5.1</span> Simple and Weighted Linear Combination</a></li>
-<li><a class="nav-link" href="#analytical-hierarchy-process"><span class="header-section-number">11.5.2</span> Analytical Hierarchy Process</a></li>
+<a class="nav-link" href="#gis-based-mcda"><span class="header-section-number">12.5</span> GIS-Based MCDA</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#simple-and-weighted-linear-combination"><span class="header-section-number">12.5.1</span> Simple and Weighted Linear Combination</a></li>
+<li><a class="nav-link" href="#analytical-hierarchy-process"><span class="header-section-number">12.5.2</span> Analytical Hierarchy Process</a></li>
 </ul>
 </li>
 </ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/08a-GIS.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/08a-GIS.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/idea-analytics/r_and_a_manual/blob/master/12-Geospatial-Methods-and-GIS.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/idea-analytics/r_and_a_manual/edit/master/12-Geospatial-Methods-and-GIS.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
