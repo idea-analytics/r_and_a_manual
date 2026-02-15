@@ -8,7 +8,7 @@ There is no naming convention that is "standard" in R and SQL but there are typi
   
   Below is a sample header you can use at the top of an R script.
   
-```{r sample_header, eval=FALSE}
+```{r sample_header_o, eval=FALSE}
 # header ----                                                                  #
 #                                                                              #
 # Filename: 01_describe_what_your_script_does.R                                #
